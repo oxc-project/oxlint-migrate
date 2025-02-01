@@ -1,0 +1,29 @@
+{
+  "name": "eslint-to-oxlint-generator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "packageManager": "pnpm@9.15.0",
+  "scripts": {
+    "test": "vitest",
+    "format": "npx prettier --write .",
+    "generate": "node --import @oxc-node/core/register ./scripts/generate.ts"
+  },
+  "keywords": [
+    "oxc",
+    "oxlint",
+    "eslint",
+    "rules"
+  ],
+  "author": "Sysix <sysix@sysix-coding.de>",
+  "license": "MIT",
+  "devDependencies": {
+    "@oxc-node/core": "^0.0.19",
+    "@types/node": "^22.13.0",
+    "eslint": "^9.19.0",
+    "oxlint": "^0.15.9",
+    "prettier": "^3.4.2",
+    "vitest": "^3.0.4"
+  }
+}
