@@ -1,7 +1,19 @@
 import type { Linter } from 'eslint';
 
+type OxlintConfigPlugins = string[];
+type OxlintConfigCategories = Record<string, unknown>;
+type OxlintConfigIgnorePatterns = string[];
+type OxlintConfigOverride = {
+  files: string[];
+  rules: Partial<Linter.RulesRecord>;
+};
+
 type OxlintConfig = {
-  rules: Linter.RulesRecord;
+  plugins?: OxlintConfigPlugins;
+  categories?: OxlintConfigCategories;
+  rules: Partial<Linter.RulesRecord>;
+  overrides?: OxlintConfigOverride[];
+  ignorePatterns?: OxlintConfigIgnorePatterns;
 };
 
 const transformRuleEntry = (
@@ -22,31 +34,50 @@ const main = (configs: Linter.Config[]): OxlintConfig => {
   const oxlintConfig: OxlintConfig = {
     rules: {},
   };
+  const overrides: OxlintConfigOverride[] = [];
 
   for (const config of configs) {
-    // ToDo: same when its only for some files
-    // maybe move the check out and pass it as a bool to some underline functions
-    if (config.files === undefined) {
-      // ToDo: check if we need to enable some plugins
-      if (config.plugins !== undefined) {
-      }
-
-      // ToDo: add to ignorePatterns
-      if (config.ignores !== undefined) {
-      }
-
-      if (config.rules !== undefined) {
-        transformRuleEntry(oxlintConfig.rules, config.rules);
-      }
-
-      // ToDo: add globals to oxlint config
-      if (config.languageOptions?.globals !== undefined) {
-      }
-
-      // ToDo: for what?
-      if (config.settings !== undefined) {
-      }
+    // we are ignoring oxlint eslint plugin
+    if (config.name?.startsWith('oxlint')) {
+      continue;
     }
+
+    // target the base config or create an override config
+    let targetConfig: OxlintConfig | OxlintConfigOverride;
+
+    if (config.files === undefined) {
+      targetConfig = oxlintConfig;
+    } else {
+      targetConfig = {
+        files: Array.isArray(config.files!) ? config.files! : [config.files!],
+        rules: {},
+      };
+      overrides.push(targetConfig as OxlintConfigOverride);
+    }
+
+    // ToDo: check if we need to enable some plugins
+    if (config.plugins !== undefined) {
+    }
+
+    if (config.ignores !== undefined) {
+      oxlintConfig.ignorePatterns = config.ignores;
+    }
+
+    if (config.rules !== undefined) {
+      transformRuleEntry(targetConfig.rules, config.rules);
+    }
+
+    // ToDo: add globals to oxlint config
+    if (config.languageOptions?.globals !== undefined) {
+    }
+
+    // ToDo: for what?
+    if (config.settings !== undefined) {
+    }
+  }
+
+  if (overrides.length > 0) {
+    oxlintConfig.overrides = overrides;
   }
 
   return oxlintConfig;
