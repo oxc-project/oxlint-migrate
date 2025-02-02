@@ -31,7 +31,7 @@ const transformRuleEntry = (
   }
 };
 
-const main = (configs: Linter.Config[]): OxlintConfig => {
+const buildConfig = (configs: Linter.Config[]): OxlintConfig => {
   const oxlintConfig: OxlintConfig = {
     rules: {},
   };
@@ -91,5 +91,15 @@ const main = (configs: Linter.Config[]): OxlintConfig => {
 
   return oxlintConfig;
 };
+
+const main = async (configs: Linter.Config | Linter.Config[] | Promise<Linter.Config> | Promise<Linter.Config[]>): Promise<OxlintConfig> => {
+  const resolved = await Promise.resolve(configs);
+
+  if (Array.isArray(resolved)) {
+    return buildConfig(resolved);
+  }
+
+  return buildConfig([resolved]);
+}
 
 export default main;

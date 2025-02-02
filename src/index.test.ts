@@ -2,8 +2,8 @@ import { describe, expect, test } from 'vitest';
 import main from './index.js';
 
 describe('main', () => {
-  test('basic', () => {
-    const result = main([
+  test('basic', async () => {
+    const result = await main([
       {
         rules: {
           'no-magic-numbers': 'error',
@@ -18,8 +18,8 @@ describe('main', () => {
     });
   });
 
-  test('2 basic configs', () => {
-    const result = main([
+  test('2 basic configs', async () => {
+    const result = await main([
       {
         rules: {
           'no-magic-numbers': 'error',
@@ -40,8 +40,8 @@ describe('main', () => {
     });
   });
 
-  test('1 basic config, 1 file config', () => {
-    const result = main([
+  test('1 basic config, 1 file config', async () => {
+    const result = await main([
       {
         rules: {
           'no-magic-numbers': 'error',
@@ -71,8 +71,8 @@ describe('main', () => {
     });
   });
 
-  test('globals', () => {
-    const result = main([
+  test('globals', async () => {
+    const result = await main([
       {
         languageOptions: {
           globals: {
