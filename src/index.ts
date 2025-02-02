@@ -34,6 +34,11 @@ const transformRuleEntry = (
   }
 };
 
+// ToDo: some globals are not readonly, check for a better method
+const isGlobalReadonly = (global: string | boolean | undefined): boolean => {
+  return [false, 'readable', 'readonly'].includes(global!);
+};
+
 // In Eslint v9 there are no envs and all are build in with `globals` package
 // we look what environment is supported and remove all globals which fall under it
 const removeGlobalsWithAreCoveredByEnv = (config: OxlintConfig) => {
@@ -45,10 +50,27 @@ const removeGlobalsWithAreCoveredByEnv = (config: OxlintConfig) => {
     if (config.env[env] === true) {
       for (const entry of Object.keys(entries)) {
         // only remove when its readonly
-        if ([false, 'readable', 'readonly'].includes(config.globals[entry])) {
+        if (isGlobalReadonly(config.globals[entry])) {
           delete config.globals[entry];
         }
       }
+    }
+  }
+};
+
+const detectEnvironmentByGlobals = (config: OxlintConfig) => {
+  if (config.globals === undefined) {
+    return;
+  }
+
+  for (const [env, entries] of Object.entries(globals)) {
+    let search = Object.keys(entries);
+    let found = search.filter((entry) =>
+      isGlobalReadonly(config.globals![entry])
+    );
+
+    if (search.length === found.length) {
+      config.env[env] = true;
     }
   }
 };
@@ -132,6 +154,7 @@ const buildConfig = (configs: Linter.Config[]): OxlintConfig => {
     oxlintConfig.overrides = overrides;
   }
 
+  detectEnvironmentByGlobals(oxlintConfig);
   removeGlobalsWithAreCoveredByEnv(oxlintConfig);
 
   return oxlintConfig;

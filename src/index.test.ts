@@ -125,10 +125,24 @@ describe('main', () => {
       },
     ]);
 
+    // ToDo: just detect the oldest one and skip all others
+    // we can not be sure that es2022 is supported, when no ecmaVersion is provided
+    // the match in globals package could possible detect es2021 support.
     expect(result).toStrictEqual({
       env: {
         builtin: true,
+        es2015: true,
+        es2016: true,
+        es2017: true,
+        es2018: true,
+        es2019: true,
+        es2020: true,
+        es2021: true,
         es2022: true,
+        es2023: true,
+        es2024: true,
+        es3: true,
+        es5: true,
       },
       globals: {},
       rules: {},
