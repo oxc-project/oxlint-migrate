@@ -70,4 +70,35 @@ describe('main', () => {
       },
     });
   });
+
+  test('globals', () => {
+    const result = main([
+      {
+        languageOptions: {
+          globals: {
+            "Foo": "writable",
+            "Foo2": "writeable",
+            "Bar": "readable",
+            "Bar2": "writeable",
+            "Baz": "off",
+            "Bux": true,
+            "Bux2": false
+          }
+        },
+      },
+    ]);
+
+    expect(result).toStrictEqual({
+      globals: {
+        "Foo": "writable",
+        "Foo2": "writeable",
+        "Bar": "readable",
+        "Bar2": "writeable",
+        "Baz": "off",
+        "Bux": true,
+        "Bux2": false
+      },
+      rules: {}
+    });
+  });
 });

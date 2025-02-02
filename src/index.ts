@@ -14,6 +14,7 @@ type OxlintConfig = {
   rules: Partial<Linter.RulesRecord>;
   overrides?: OxlintConfigOverride[];
   ignorePatterns?: OxlintConfigIgnorePatterns;
+  globals?: Linter.Globals;
 };
 
 const transformRuleEntry = (
@@ -49,7 +50,9 @@ const main = (configs: Linter.Config[]): OxlintConfig => {
       targetConfig = oxlintConfig;
     } else {
       targetConfig = {
-        files: Array.isArray(config.files!) ? config.files! : [config.files!],
+        files: (Array.isArray(config.files)
+          ? config.files
+          : [config.files]) as string[],
         rules: {},
       };
       overrides.push(targetConfig as OxlintConfigOverride);
@@ -67,8 +70,14 @@ const main = (configs: Linter.Config[]): OxlintConfig => {
       transformRuleEntry(targetConfig.rules, config.rules);
     }
 
-    // ToDo: add globals to oxlint config
     if (config.languageOptions?.globals !== undefined) {
+      if (oxlintConfig.globals === undefined) {
+        oxlintConfig.globals = {};
+      }
+
+      // ToDo: we are only appending globals to the main config
+      // overrides configs are not able to 
+      Object.assign(oxlintConfig.globals, config.languageOptions.globals);
     }
 
     // ToDo: for what?
