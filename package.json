@@ -1,5 +1,5 @@
 {
-  "name": "eslint-to-oxlint-generator",
+  "name": "oxlint-migrate",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -31,5 +31,8 @@
   "lint-staged": {
     "*.{js,cjs,ts}": "eslint",
     "*": "prettier --ignore-unknown --write"
+  },
+  "dependencies": {
+    "globals": "^15.14.0"
   }
 }

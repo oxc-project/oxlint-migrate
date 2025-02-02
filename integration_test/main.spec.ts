@@ -10,7 +10,6 @@ describe('integration tests with github repositories', () => {
   });
 
   test('nuxt-auth', async () => {
-    console.log(nuxt_auth_test);
     const result = await main(nuxt_auth_test);
     expect(result).toMatchSnapshot('nuxt-auth');
   });

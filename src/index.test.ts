@@ -1,5 +1,6 @@
 import { describe, expect, test } from 'vitest';
 import main from './index.js';
+import globals, { builtin, es2015 } from 'globals';
 
 describe('main', () => {
   test('basic', async () => {
@@ -110,6 +111,26 @@ describe('main', () => {
         Bux: true,
         Bux2: false,
       },
+      rules: {},
+    });
+  });
+
+  test('auto removes globals when env is detected', async () => {
+    const result = await main([
+      {
+        languageOptions: {
+          ecmaVersion: 2022,
+          globals: globals.es2022,
+        },
+      },
+    ]);
+
+    expect(result).toStrictEqual({
+      env: {
+        builtin: true,
+        es2022: true,
+      },
+      globals: {},
       rules: {},
     });
   });

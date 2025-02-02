@@ -1,4 +1,5 @@
 import type { Linter } from 'eslint';
+import globals from 'globals';
 
 type OxlintConfigPlugins = string[];
 type OxlintConfigCategories = Record<string, unknown>;
@@ -30,6 +31,25 @@ const transformRuleEntry = (
 
     // ToDo: check if we need to enable a oxlint plugin
     extendable[rule] = config;
+  }
+};
+
+// In Eslint v9 there are no envs and all are build in with `globals` package
+// we look what environment is supported and remove all globals which fall under it
+const removeGlobalsWithAreCoveredByEnv = (config: OxlintConfig) => {
+  if (config.globals === undefined) {
+    return;
+  }
+
+  for (const [env, entries] of Object.entries(globals)) {
+    if (config.env[env] === true) {
+      for (const entry of Object.keys(entries)) {
+        // only remove when its readonly
+        if ([false, 'readable', 'readonly'].includes(config.globals[entry])) {
+          delete config.globals[entry];
+        }
+      }
+    }
   }
 };
 
@@ -111,6 +131,8 @@ const buildConfig = (configs: Linter.Config[]): OxlintConfig => {
   if (overrides.length > 0) {
     oxlintConfig.overrides = overrides;
   }
+
+  removeGlobalsWithAreCoveredByEnv(oxlintConfig);
 
   return oxlintConfig;
 };
