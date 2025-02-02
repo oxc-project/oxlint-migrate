@@ -2,6 +2,10 @@
 
 exports[`integration tests with github repositories > nuxt-auth > nuxt-auth 1`] = `
 {
+  "env": {
+    "builtin": true,
+    "es2022": true,
+  },
   "globals": {
     "AI": false,
     "AITextSession": false,
@@ -2653,6 +2657,9 @@ exports[`integration tests with github repositories > nuxt-auth > nuxt-auth 1`] 
 
 exports[`integration tests with github repositories > typescript > typescript 1`] = `
 {
+  "env": {
+    "builtin": true,
+  },
   "globals": {
     "AbortController": false,
     "AbortSignal": false,

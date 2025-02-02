@@ -1,16 +1,16 @@
 {
-    "name": "integration_test",
-    "type": "module",
-    "packageManager": "pnpm@9.15.0",
-    "scripts": {
-        "test": "vitest"
-    },
-    "devDependencies": {
-        "@antfu/eslint-config": "^4.1.1",
-        "@oxc-node/core": "^0.0.19",
-        "eslint-plugin-regexp": "^2.7.0",
-        "globals": "^15.14.0",
-        "typescript-eslint": "^8.22.0",
-        "vitest": "^3.0.4"
-    }
+  "name": "integration_test",
+  "type": "module",
+  "packageManager": "pnpm@9.15.0",
+  "scripts": {
+    "test": "vitest"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^4.1.1",
+    "@oxc-node/core": "^0.0.19",
+    "eslint-plugin-regexp": "^2.7.0",
+    "globals": "^15.14.0",
+    "typescript-eslint": "^8.22.0",
+    "vitest": "^3.0.4"
+  }
 }

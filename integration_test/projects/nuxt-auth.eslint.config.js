@@ -1,4 +1,4 @@
-import antfu from '@antfu/eslint-config'
+import antfu from '@antfu/eslint-config';
 
 const ignores = [
   '.nuxt',
@@ -9,8 +9,8 @@ const ignores = [
   '**/dist/**',
   'node_modules',
   '**/node_modules/**',
-  '**/public/**'
-]
+  '**/public/**',
+];
 
 export default antfu({
   // .eslintignore is no longer supported in Flat config, use ignores instead
@@ -34,7 +34,7 @@ export default antfu({
   rules: {
     'no-console': 'off',
     'style/comma-dangle': 'off',
-    'curly': ['error', 'all'],
+    curly: ['error', 'all'],
     'node/prefer-global/process': ['error', 'always'],
   },
-})
+});

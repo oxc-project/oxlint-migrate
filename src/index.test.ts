@@ -12,6 +12,9 @@ describe('main', () => {
     ]);
 
     expect(result).toStrictEqual({
+      env: {
+        builtin: true,
+      },
       rules: {
         'no-magic-numbers': 'error',
       },
@@ -33,6 +36,9 @@ describe('main', () => {
     ]);
 
     expect(result).toStrictEqual({
+      env: {
+        builtin: true,
+      },
       rules: {
         'no-magic-numbers': 'error',
         'no-loss-of-precision': 'error',
@@ -57,6 +63,9 @@ describe('main', () => {
     ]);
 
     expect(result).toStrictEqual({
+      env: {
+        builtin: true,
+      },
       overrides: [
         {
           files: ['*.ts'],
@@ -76,29 +85,32 @@ describe('main', () => {
       {
         languageOptions: {
           globals: {
-            "Foo": "writable",
-            "Foo2": "writeable",
-            "Bar": "readable",
-            "Bar2": "writeable",
-            "Baz": "off",
-            "Bux": true,
-            "Bux2": false
-          }
+            Foo: 'writable',
+            Foo2: 'writeable',
+            Bar: 'readable',
+            Bar2: 'writeable',
+            Baz: 'off',
+            Bux: true,
+            Bux2: false,
+          },
         },
       },
     ]);
 
     expect(result).toStrictEqual({
-      globals: {
-        "Foo": "writable",
-        "Foo2": "writeable",
-        "Bar": "readable",
-        "Bar2": "writeable",
-        "Baz": "off",
-        "Bux": true,
-        "Bux2": false
+      env: {
+        builtin: true,
       },
-      rules: {}
+      globals: {
+        Foo: 'writable',
+        Foo2: 'writeable',
+        Bar: 'readable',
+        Bar2: 'writeable',
+        Baz: 'off',
+        Bux: true,
+        Bux2: false,
+      },
+      rules: {},
     });
   });
 });

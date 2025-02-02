@@ -2,6 +2,7 @@ import type { Linter } from 'eslint';
 
 type OxlintConfigPlugins = string[];
 type OxlintConfigCategories = Record<string, unknown>;
+type OxlintConfigEnv = Record<string, boolean>;
 type OxlintConfigIgnorePatterns = string[];
 type OxlintConfigOverride = {
   files: string[];
@@ -9,6 +10,7 @@ type OxlintConfigOverride = {
 };
 
 type OxlintConfig = {
+  env: OxlintConfigEnv;
   plugins?: OxlintConfigPlugins;
   categories?: OxlintConfigCategories;
   rules: Partial<Linter.RulesRecord>;
@@ -33,6 +35,9 @@ const transformRuleEntry = (
 
 const buildConfig = (configs: Linter.Config[]): OxlintConfig => {
   const oxlintConfig: OxlintConfig = {
+    env: {
+      builtin: true,
+    },
     rules: {},
   };
   const overrides: OxlintConfigOverride[] = [];
@@ -76,8 +81,26 @@ const buildConfig = (configs: Linter.Config[]): OxlintConfig => {
       }
 
       // ToDo: we are only appending globals to the main config
-      // overrides configs are not able to 
+      // overrides configs are not able to
       Object.assign(oxlintConfig.globals, config.languageOptions.globals);
+    }
+
+    if (config.languageOptions?.ecmaVersion !== undefined) {
+      if (oxlintConfig.globals === undefined) {
+        oxlintConfig.globals = {};
+      }
+
+      // ToDo: we are only appending globals to the main config
+      // overrides configs are not able to
+      if (config.languageOptions?.ecmaVersion === 'latest') {
+        oxlintConfig.env['es2024'] = true;
+      } else if (
+        [6, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024].includes(
+          config.languageOptions?.ecmaVersion
+        )
+      ) {
+        oxlintConfig.env[`es${config.languageOptions?.ecmaVersion}`] = true;
+      }
     }
 
     // ToDo: for what?
@@ -92,7 +115,13 @@ const buildConfig = (configs: Linter.Config[]): OxlintConfig => {
   return oxlintConfig;
 };
 
-const main = async (configs: Linter.Config | Linter.Config[] | Promise<Linter.Config> | Promise<Linter.Config[]>): Promise<OxlintConfig> => {
+const main = async (
+  configs:
+    | Linter.Config
+    | Linter.Config[]
+    | Promise<Linter.Config>
+    | Promise<Linter.Config[]>
+): Promise<OxlintConfig> => {
   const resolved = await Promise.resolve(configs);
 
   if (Array.isArray(resolved)) {
@@ -100,6 +129,6 @@ const main = async (configs: Linter.Config | Linter.Config[] | Promise<Linter.Co
   }
 
   return buildConfig([resolved]);
-}
+};
 
 export default main;
