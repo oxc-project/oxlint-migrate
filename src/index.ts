@@ -76,6 +76,22 @@ const detectEnvironmentByGlobals = (config: OxlintConfig) => {
   }
 };
 
+const cleanUpOxlintConfig = (config: OxlintConfig | OxlintConfigOverride) => {
+  // no entries in globals, we can remove the globals key
+  if (
+    config.globals !== undefined &&
+    Object.keys(config.globals).length === 0
+  ) {
+    delete config.globals;
+  }
+
+  // the only key left is
+  if (Object.keys(config).length === 1 && 'files' in config) {
+    // @ts-ignore -- what?
+    delete config.files;
+  }
+};
+
 const buildConfig = (configs: Linter.Config[]): OxlintConfig => {
   const oxlintConfig: OxlintConfig = {
     env: {
@@ -155,6 +171,8 @@ const buildConfig = (configs: Linter.Config[]): OxlintConfig => {
     // ToDo: for what?
     if (config.settings !== undefined) {
     }
+
+    cleanUpOxlintConfig(targetConfig);
   }
 
   if (overrides.length > 0) {

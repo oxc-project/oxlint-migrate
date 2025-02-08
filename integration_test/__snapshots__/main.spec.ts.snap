@@ -1172,19 +1172,8 @@ exports[`integration tests with github repositories > nuxt-auth > nuxt-auth 1`] 
     "**/*.md/*.md",
   ],
   "overrides": [
-    {
-      "files": [
-        "**/*.?([cm])jsx",
-        "**/*.?([cm])tsx",
-      ],
-    },
-    {
-      "files": [
-        "**/*.?([cm])ts",
-        "**/*.?([cm])tsx",
-        "**/*.vue",
-      ],
-    },
+    {},
+    {},
     {
       "files": [
         "**/*.?([cm])ts",
@@ -1671,16 +1660,8 @@ exports[`integration tests with github repositories > nuxt-auth > nuxt-auth 1`] 
         "toml/vue-custom-block/no-parsing-error": "error",
       },
     },
-    {
-      "files": [
-        "**/*.md",
-      ],
-    },
-    {
-      "files": [
-        "**/*.md",
-      ],
-    },
+    {},
+    {},
     {
       "files": [
         "**/*.md/**/*.?([cm])[jt]s?(x)",
@@ -2621,11 +2602,7 @@ exports[`integration tests with github repositories > typescript > typescript 1`
     "coverage/**",
   ],
   "overrides": [
-    {
-      "files": [
-        "**/*.{ts,tsx,cts,mts,js,cjs,mjs}",
-      ],
-    },
+    {},
     {
       "files": [
         "**/*.ts",
@@ -2716,16 +2693,8 @@ exports[`integration tests with github repositories > typescript > typescript 1`
         ],
       },
     },
-    {
-      "files": [
-        "src/**",
-      ],
-    },
-    {
-      "files": [
-        "scripts/**",
-      ],
-    },
+    {},
+    {},
     {
       "files": [
         "src/**",
@@ -2847,7 +2816,6 @@ exports[`integration tests with github repositories > typescript > typescript 1`
       "files": [
         "src/lib/*.d.ts",
       ],
-      "globals": {},
       "rules": {
         "@typescript-eslint/interface-name-prefix": "off",
         "@typescript-eslint/no-unsafe-function-type": "off",
