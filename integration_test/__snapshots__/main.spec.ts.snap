@@ -1172,8 +1172,6 @@ exports[`integration tests with github repositories > nuxt-auth > nuxt-auth 1`] 
     "**/*.md/*.md",
   ],
   "overrides": [
-    {},
-    {},
     {
       "files": [
         "**/*.?([cm])ts",
@@ -1220,20 +1218,6 @@ exports[`integration tests with github repositories > nuxt-auth > nuxt-auth 1`] 
     },
     {
       "files": [
-        "**/*.vue",
-      ],
-      "rules": {},
-    },
-    {
-      "files": [
-        "**/*.toml",
-      ],
-      "rules": {},
-    },
-    {},
-    {},
-    {
-      "files": [
         "**/*.md/**/*.?([cm])[jt]s?(x)",
         "**/*.md/**/*.vue",
       ],
@@ -1268,25 +1252,11 @@ exports[`integration tests with github repositories > nuxt-auth > nuxt-auth 1`] 
     },
     {
       "files": [
-        "**/bin/**/*",
-        "**/bin.?([cm])[jt]s?(x)",
-      ],
-      "rules": {},
-    },
-    {
-      "files": [
         "**/*.d.?([cm])ts",
       ],
       "rules": {
         "import/no-duplicates": "off",
       },
-    },
-    {
-      "files": [
-        "**/*.js",
-        "**/*.cjs",
-      ],
-      "rules": {},
     },
     {
       "files": [
@@ -1512,7 +1482,6 @@ exports[`integration tests with github repositories > typescript > typescript 1`
     "coverage/**",
   ],
   "overrides": [
-    {},
     {
       "files": [
         "**/*.ts",
@@ -1597,8 +1566,6 @@ exports[`integration tests with github repositories > typescript > typescript 1`
         ],
       },
     },
-    {},
-    {},
     {
       "files": [
         "src/**",
@@ -1638,18 +1605,6 @@ exports[`integration tests with github repositories > typescript > typescript 1`
       "rules": {
         "no-restricted-globals": "off",
       },
-    },
-    {
-      "files": [
-        "src/**/_namespaces/**",
-      ],
-      "rules": {},
-    },
-    {
-      "files": [
-        "src/lib/*.d.ts",
-      ],
-      "rules": {},
     },
     {
       "files": [

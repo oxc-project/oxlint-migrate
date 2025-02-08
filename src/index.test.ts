@@ -110,8 +110,7 @@ describe('main', () => {
         Baz: 'off',
         Bux: true,
         Bux2: false,
-      },
-      rules: {},
+      }
     });
   });
 
@@ -145,7 +144,6 @@ describe('main', () => {
         es5: true,
       },
       globals: {},
-      rules: {},
     });
   });
 });

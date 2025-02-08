@@ -18,7 +18,7 @@ type OxlintConfig = {
   globals?: Linter.Globals;
   plugins?: OxlintConfigPlugins;
   categories?: OxlintConfigCategories;
-  rules: Partial<Linter.RulesRecord>;
+  rules?: Partial<Linter.RulesRecord>;
   overrides?: OxlintConfigOverride[];
   ignorePatterns?: OxlintConfigIgnorePatterns;
 };
@@ -86,6 +86,12 @@ const cleanUpOxlintConfig = (config: OxlintConfig | OxlintConfigOverride) => {
     Object.keys(config.globals).length === 0
   ) {
     delete config.globals;
+  }
+
+  if (config.rules !== undefined && 
+    Object.keys(config.rules).length === 0
+  ) {
+    delete config.rules
   }
 
   // the only key left is
@@ -178,8 +184,9 @@ const buildConfig = (configs: Linter.Config[]): OxlintConfig => {
     cleanUpOxlintConfig(targetConfig);
   }
 
-  if (overrides.length > 0) {
-    oxlintConfig.overrides = overrides;
+  let overrides_filtered = overrides.filter(overrides => Object.keys(overrides).length > 0);
+  if (overrides_filtered.length > 0) {
+    oxlintConfig.overrides = overrides_filtered;
   }
 
   detectEnvironmentByGlobals(oxlintConfig);
