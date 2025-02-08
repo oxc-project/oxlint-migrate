@@ -36,11 +36,6 @@ const transformRuleEntry = (
   }
 };
 
-// ToDo: some globals are not readonly, check for a better method
-const isGlobalReadonly = (global: string | boolean | undefined): boolean => {
-  return [false, 'readable', 'readonly'].includes(global!);
-};
-
 // In Eslint v9 there are no envs and all are build in with `globals` package
 // we look what environment is supported and remove all globals which fall under it
 const removeGlobalsWithAreCoveredByEnv = (config: OxlintConfig) => {
@@ -51,8 +46,8 @@ const removeGlobalsWithAreCoveredByEnv = (config: OxlintConfig) => {
   for (const [env, entries] of Object.entries(globals)) {
     if (config.env[env] === true) {
       for (const entry of Object.keys(entries)) {
-        // only remove when its readonly
-        if (isGlobalReadonly(config.globals[entry])) {
+        // @ts-ignore -- filtering makes the key to any
+        if (config.globals[entry] == entries[entry]) {
           delete config.globals[entry];
         }
       }
@@ -67,11 +62,12 @@ const detectEnvironmentByGlobals = (config: OxlintConfig) => {
 
   for (const [env, entries] of Object.entries(globals)) {
     let search = Object.keys(entries);
-    let found = search.filter((entry) =>
-      isGlobalReadonly(config.globals![entry])
+    let matches = search.filter(
+      (entry) =>
+        // @ts-ignore -- filtering makes the key to any
+        config.globals![entry] == entries[entry]
     );
-
-    if (search.length === found.length) {
+    if (search.length === matches.length) {
       if (config.env === undefined) {
         config.env = {};
       }
