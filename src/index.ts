@@ -1,5 +1,6 @@
 import type { Linter } from 'eslint';
 import globals from 'globals';
+import rules from './generated/rules.js';
 
 type OxlintConfigPlugins = string[];
 type OxlintConfigCategories = Record<string, unknown>;
@@ -31,8 +32,10 @@ const transformRuleEntry = (
     // when not ask the user if this is ok
     // maybe put it still into the jsonc file but commented out
 
-    // ToDo: check if we need to enable a oxlint plugin
-    extendable[rule] = config;
+    // ToDo: typescript uses `ts/no-unused-expressions`. New Namespace?
+    if (rules.includes(rule)) {
+      extendable[rule] = config;
+    }
   }
 };
 
