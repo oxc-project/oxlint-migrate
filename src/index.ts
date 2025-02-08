@@ -7,17 +7,19 @@ type OxlintConfigEnv = Record<string, boolean>;
 type OxlintConfigIgnorePatterns = string[];
 type OxlintConfigOverride = {
   files: string[];
-  rules: Partial<Linter.RulesRecord>;
+  env?: OxlintConfigEnv;
+  globals?: Linter.Globals;
+  rules?: Partial<Linter.RulesRecord>;
 };
 
 type OxlintConfig = {
-  env: OxlintConfigEnv;
+  env?: OxlintConfigEnv;
+  globals?: Linter.Globals;
   plugins?: OxlintConfigPlugins;
   categories?: OxlintConfigCategories;
   rules: Partial<Linter.RulesRecord>;
   overrides?: OxlintConfigOverride[];
   ignorePatterns?: OxlintConfigIgnorePatterns;
-  globals?: Linter.Globals;
 };
 
 const transformRuleEntry = (
@@ -42,7 +44,7 @@ const isGlobalReadonly = (global: string | boolean | undefined): boolean => {
 // In Eslint v9 there are no envs and all are build in with `globals` package
 // we look what environment is supported and remove all globals which fall under it
 const removeGlobalsWithAreCoveredByEnv = (config: OxlintConfig) => {
-  if (config.globals === undefined) {
+  if (config.globals === undefined || config.env === undefined) {
     return;
   }
 
@@ -70,6 +72,9 @@ const detectEnvironmentByGlobals = (config: OxlintConfig) => {
     );
 
     if (search.length === found.length) {
+      if (config.env === undefined) {
+        config.env = {};
+      }
       config.env[env] = true;
     }
   }
@@ -100,7 +105,6 @@ const buildConfig = (configs: Linter.Config[]): OxlintConfig => {
         files: (Array.isArray(config.files)
           ? config.files
           : [config.files]) as string[],
-        rules: {},
       };
       overrides.push(targetConfig as OxlintConfigOverride);
     }
@@ -114,34 +118,41 @@ const buildConfig = (configs: Linter.Config[]): OxlintConfig => {
     }
 
     if (config.rules !== undefined) {
+      if (targetConfig.rules === undefined) {
+        targetConfig.rules = {};
+      }
       transformRuleEntry(targetConfig.rules, config.rules);
     }
 
     if (config.languageOptions?.globals !== undefined) {
-      if (oxlintConfig.globals === undefined) {
-        oxlintConfig.globals = {};
+      if (targetConfig.globals === undefined) {
+        targetConfig.globals = {};
       }
 
-      // ToDo: we are only appending globals to the main config
-      // overrides configs are not able to
-      Object.assign(oxlintConfig.globals, config.languageOptions.globals);
+      Object.assign(targetConfig.globals, config.languageOptions.globals);
     }
 
     if (config.languageOptions?.ecmaVersion !== undefined) {
-      if (oxlintConfig.globals === undefined) {
-        oxlintConfig.globals = {};
+      if (targetConfig.globals === undefined) {
+        targetConfig.globals = {};
       }
 
       // ToDo: we are only appending globals to the main config
       // overrides configs are not able to
       if (config.languageOptions?.ecmaVersion === 'latest') {
-        oxlintConfig.env['es2024'] = true;
+        if (targetConfig.env === undefined) {
+          targetConfig.env = {};
+        }
+        targetConfig.env['es2024'] = true;
       } else if (
         [6, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024].includes(
           config.languageOptions?.ecmaVersion
         )
       ) {
-        oxlintConfig.env[`es${config.languageOptions?.ecmaVersion}`] = true;
+        if (targetConfig.env === undefined) {
+          targetConfig.env = {};
+        }
+        targetConfig.env[`es${config.languageOptions?.ecmaVersion}`] = true;
       }
     }
 

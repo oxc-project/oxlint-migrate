@@ -1113,7 +1113,6 @@ exports[`integration tests with github repositories > nuxt-auth > nuxt-auth 1`] 
         "**/*.?([cm])jsx",
         "**/*.?([cm])tsx",
       ],
-      "rules": {},
     },
     {
       "files": [
@@ -1121,7 +1120,6 @@ exports[`integration tests with github repositories > nuxt-auth > nuxt-auth 1`] 
         "**/*.?([cm])tsx",
         "**/*.vue",
       ],
-      "rules": {},
     },
     {
       "files": [
@@ -1613,13 +1611,11 @@ exports[`integration tests with github repositories > nuxt-auth > nuxt-auth 1`] 
       "files": [
         "**/*.md",
       ],
-      "rules": {},
     },
     {
       "files": [
         "**/*.md",
       ],
-      "rules": {},
     },
     {
       "files": [
@@ -2569,7 +2565,6 @@ exports[`integration tests with github repositories > typescript > typescript 1`
       "files": [
         "**/*.{ts,tsx,cts,mts,js,cjs,mjs}",
       ],
-      "rules": {},
     },
     {
       "files": [
@@ -2665,13 +2660,11 @@ exports[`integration tests with github repositories > typescript > typescript 1`
       "files": [
         "src/**",
       ],
-      "rules": {},
     },
     {
       "files": [
         "scripts/**",
       ],
-      "rules": {},
     },
     {
       "files": [
@@ -2794,6 +2787,7 @@ exports[`integration tests with github repositories > typescript > typescript 1`
       "files": [
         "src/lib/*.d.ts",
       ],
+      "globals": {},
       "rules": {
         "@typescript-eslint/interface-name-prefix": "off",
         "@typescript-eslint/no-unsafe-function-type": "off",

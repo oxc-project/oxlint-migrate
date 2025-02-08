@@ -1,6 +1,6 @@
 import { describe, expect, test } from 'vitest';
 import main from './index.js';
-import globals, { builtin, es2015 } from 'globals';
+import globals from 'globals';
 
 describe('main', () => {
   test('basic', async () => {
