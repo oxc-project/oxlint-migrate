@@ -68,7 +68,7 @@ const buildConfig = (configs: Linter.Config[]): [OxlintConfig, Problems] => {
     if (config.plugins !== undefined) {
     }
 
-    // ToDo: oxlint does not support it currently
+    // ToDo: oxlint does not support it currently in overrides
     transformIgnorePatterns(
       config,
       oxlintConfig,
