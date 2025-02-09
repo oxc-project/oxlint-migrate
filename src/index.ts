@@ -7,6 +7,7 @@ import {
   transformEnvAndGlobals,
 } from './env_globals.js';
 import { cleanUpOxlintConfig } from './cleanup.js';
+import { transformIgnorePatterns } from './ignorePatterns.js';
 
 const transformRuleEntry = (
   extendable: Partial<Linter.RulesRecord>,
@@ -40,6 +41,7 @@ const buildConfig = (configs: Linter.Config[]): [OxlintConfig, Problems] => {
   const problems: Problems = {
     unsupportedRules: [],
     foundSpecialParsers: [],
+    foundUnsupportedIgnore: [],
   };
 
   for (const config of configs) {
@@ -66,9 +68,12 @@ const buildConfig = (configs: Linter.Config[]): [OxlintConfig, Problems] => {
     if (config.plugins !== undefined) {
     }
 
-    if (config.ignores !== undefined) {
-      oxlintConfig.ignorePatterns = config.ignores;
-    }
+    // ToDo: oxlint does not support it currently
+    transformIgnorePatterns(
+      config,
+      oxlintConfig,
+      problems.foundUnsupportedIgnore
+    );
 
     if (config.rules !== undefined) {
       if (targetConfig.rules === undefined) {

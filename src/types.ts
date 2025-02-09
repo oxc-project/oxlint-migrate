@@ -27,4 +27,5 @@ export type OxlintConfigOrOverride = OxlintConfig | OxlintConfigOverride;
 export type Problems = {
   unsupportedRules: string[];
   foundSpecialParsers: string[];
+  foundUnsupportedIgnore: string[];
 };
