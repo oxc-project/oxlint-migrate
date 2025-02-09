@@ -3,6 +3,8 @@ import globals from 'globals';
 import { OxlintConfig } from "./types.js";
 import type { Linter } from 'eslint';
 
+export const ES_VERSIONS = [6, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024];
+
 const normalizeGlobValue = (value: Linter.GlobalConf) :boolean | undefined => {
     if (value === 'writable' || value === 'writeable' || value === false) {
         return false;

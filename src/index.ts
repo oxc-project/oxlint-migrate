@@ -1,7 +1,7 @@
 import type { Linter } from 'eslint';
 import rules from './generated/rules.js';
 import { OxlintConfig, OxlintConfigOverride } from './types.js';
-import { detectEnvironmentByGlobals, removeGlobalsWithAreCoveredByEnv } from './env_globals.js';
+import { detectEnvironmentByGlobals, ES_VERSIONS, removeGlobalsWithAreCoveredByEnv } from './env_globals.js';
 
 
 
@@ -29,6 +29,24 @@ const cleanUpOxlintConfig = (config: OxlintConfig | OxlintConfigOverride) => {
     Object.keys(config.globals).length === 0
   ) {
     delete config.globals;
+  }
+
+  if (config.env !== undefined) {
+    // es3 and es5 is not supported by oxlint
+    delete config.env.es3;
+    delete config.env.es5;
+    delete config.env.es2015;
+
+    let detected = false;
+    // remove older es versions, 
+    // because newer ones are always a superset of them
+    for (const esVersion of ES_VERSIONS.reverse()) {
+      if (detected) {
+        delete config.env[`es${esVersion}`]
+      } else if (config.env[`es${esVersion}`] === true) {
+        detected = true;
+      }
+    }
   }
 
   if (config.rules !== undefined && 
@@ -109,7 +127,7 @@ const buildConfig = (configs: Linter.Config[]): OxlintConfig => {
         }
         targetConfig.env['es2024'] = true;
       } else if (
-        [6, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024].includes(
+        ES_VERSIONS.includes(
           config.languageOptions?.ecmaVersion
         )
       ) {
