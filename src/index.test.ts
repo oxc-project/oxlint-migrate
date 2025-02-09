@@ -112,7 +112,7 @@ describe('main', () => {
         Baz: 'off',
         Bux: true,
         Bux2: false,
-      }
+      },
     });
   });
 
@@ -135,7 +135,7 @@ describe('main', () => {
         chai: true, // ToDo: why?
         es2024: true,
         phantomjs: true, // ToDo: why?
-      }
+      },
     });
   });
 });

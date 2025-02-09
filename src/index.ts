@@ -1,10 +1,12 @@
 import type { Linter } from 'eslint';
 import rules from './generated/rules.js';
 import { OxlintConfig, OxlintConfigOverride, Problems } from './types.js';
-import { detectEnvironmentByGlobals, ES_VERSIONS, removeGlobalsWithAreCoveredByEnv } from './env_globals.js';
+import {
+  detectEnvironmentByGlobals,
+  ES_VERSIONS,
+  removeGlobalsWithAreCoveredByEnv,
+} from './env_globals.js';
 import { cleanUpOxlintConfig } from './cleanup.js';
-
-
 
 const transformRuleEntry = (
   extendable: Partial<Linter.RulesRecord>,
@@ -28,18 +30,17 @@ const transformRuleEntry = (
   }
 };
 
-
 const buildConfig = (configs: Linter.Config[]): [OxlintConfig, Problems] => {
   const oxlintConfig: OxlintConfig = {
     env: {
       builtin: true,
-    }
+    },
   };
   const overrides: OxlintConfigOverride[] = [];
   const problems: Problems = {
     unsupportedRules: [],
     foundSpecialParsers: [],
-  }
+  };
 
   for (const config of configs) {
     // we are ignoring oxlint eslint plugin
@@ -73,11 +74,17 @@ const buildConfig = (configs: Linter.Config[]): [OxlintConfig, Problems] => {
       if (targetConfig.rules === undefined) {
         targetConfig.rules = {};
       }
-      transformRuleEntry(targetConfig.rules, config.rules, problems.unsupportedRules);
+      transformRuleEntry(
+        targetConfig.rules,
+        config.rules,
+        problems.unsupportedRules
+      );
     }
 
     if (config.languageOptions?.parser !== undefined) {
-      problems.foundSpecialParsers.push('special parser detected: ' + config.languageOptions.parser.meta?.name)
+      problems.foundSpecialParsers.push(
+        'special parser detected: ' + config.languageOptions.parser.meta?.name
+      );
     }
 
     if (config.languageOptions?.globals !== undefined) {
@@ -100,11 +107,7 @@ const buildConfig = (configs: Linter.Config[]): [OxlintConfig, Problems] => {
           targetConfig.env = {};
         }
         targetConfig.env['es2024'] = true;
-      } else if (
-        ES_VERSIONS.includes(
-          config.languageOptions?.ecmaVersion
-        )
-      ) {
+      } else if (ES_VERSIONS.includes(config.languageOptions?.ecmaVersion)) {
         if (targetConfig.env === undefined) {
           targetConfig.env = {};
         }
@@ -122,7 +125,9 @@ const buildConfig = (configs: Linter.Config[]): [OxlintConfig, Problems] => {
     }
   }
 
-  let overrides_filtered = overrides.filter(overrides => Object.keys(overrides).length > 0);
+  let overrides_filtered = overrides.filter(
+    (overrides) => Object.keys(overrides).length > 0
+  );
   if (overrides_filtered.length > 0) {
     oxlintConfig.overrides = overrides_filtered;
   }
@@ -152,8 +157,8 @@ const main = async (
     problems.foundSpecialParsers.forEach(console.warn);
     problems.unsupportedRules.forEach(console.warn);
   }
- 
-  return config
+
+  return config;
 };
 
 export default main;

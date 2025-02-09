@@ -1,21 +1,22 @@
-
 import globals from 'globals';
-import { OxlintConfig } from "./types.js";
+import { OxlintConfig } from './types.js';
 import type { Linter } from 'eslint';
 
-export const ES_VERSIONS = [6, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025];
+export const ES_VERSIONS = [
+  6, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025,
+];
 
-const normalizeGlobValue = (value: Linter.GlobalConf) :boolean | undefined => {
-    if (value === 'readable' || value === 'readonly' || value === false) {
-        return false;
-    }
+const normalizeGlobValue = (value: Linter.GlobalConf): boolean | undefined => {
+  if (value === 'readable' || value === 'readonly' || value === false) {
+    return false;
+  }
 
-    if (value === 'off') {
-        return undefined;
-    }
+  if (value === 'off') {
+    return undefined;
+  }
 
-    return true;
-}
+  return true;
+};
 
 // In Eslint v9 there are no envs and all are build in with `globals` package
 // we look what environment is supported and remove all globals which fall under it
