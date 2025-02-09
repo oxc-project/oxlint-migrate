@@ -1,13 +1,14 @@
 import type { Linter } from 'eslint';
 import rules from './generated/rules.js';
-import { OxlintConfig, OxlintConfigOverride } from './types.js';
+import { OxlintConfig, OxlintConfigOverride, Problems } from './types.js';
 import { detectEnvironmentByGlobals, ES_VERSIONS, removeGlobalsWithAreCoveredByEnv } from './env_globals.js';
 
 
 
 const transformRuleEntry = (
   extendable: Partial<Linter.RulesRecord>,
-  rulesToExtend: Partial<Linter.RulesRecord>
+  rulesToExtend: Partial<Linter.RulesRecord>,
+  unsupportedRules: string[]
 ) => {
   for (const [rule, config] of Object.entries(rulesToExtend)) {
     // ToDo: check if the rule is really supported by oxlint
@@ -17,12 +18,14 @@ const transformRuleEntry = (
     // ToDo: typescript uses `ts/no-unused-expressions`. New Namespace?
     if (rules.includes(rule)) {
       extendable[rule] = config;
+    } else {
+      unsupportedRules.push(`unsupported rule: ${rule}`);
     }
   }
 };
 
 
-const cleanUpOxlintConfig = (config: OxlintConfig | OxlintConfigOverride) => {
+const cleanUpOxlintConfig = (config: OxlintConfig | OxlintConfigOverride): void => {
   // no entries in globals, we can remove the globals key
   if (
     config.globals !== undefined &&
@@ -62,14 +65,17 @@ const cleanUpOxlintConfig = (config: OxlintConfig | OxlintConfigOverride) => {
   }
 };
 
-const buildConfig = (configs: Linter.Config[]): OxlintConfig => {
+const buildConfig = (configs: Linter.Config[]): [OxlintConfig, Problems] => {
   const oxlintConfig: OxlintConfig = {
     env: {
       builtin: true,
-    },
-    rules: {},
+    }
   };
   const overrides: OxlintConfigOverride[] = [];
+  const problems: Problems = {
+    unsupportedRules: [],
+    foundSpecialParsers: [],
+  }
 
   for (const config of configs) {
     // we are ignoring oxlint eslint plugin
@@ -103,7 +109,11 @@ const buildConfig = (configs: Linter.Config[]): OxlintConfig => {
       if (targetConfig.rules === undefined) {
         targetConfig.rules = {};
       }
-      transformRuleEntry(targetConfig.rules, config.rules);
+      transformRuleEntry(targetConfig.rules, config.rules, problems.unsupportedRules);
+    }
+
+    if (config.languageOptions?.parser !== undefined) {
+      problems.foundSpecialParsers.push('special parser detected: ' + config.languageOptions.parser.meta?.name)
     }
 
     if (config.languageOptions?.globals !== undefined) {
@@ -157,7 +167,7 @@ const buildConfig = (configs: Linter.Config[]): OxlintConfig => {
   removeGlobalsWithAreCoveredByEnv(oxlintConfig);
   cleanUpOxlintConfig(oxlintConfig);
 
-  return oxlintConfig;
+  return [oxlintConfig, problems];
 };
 
 const main = async (
@@ -165,15 +175,21 @@ const main = async (
     | Linter.Config
     | Linter.Config[]
     | Promise<Linter.Config>
-    | Promise<Linter.Config[]>
+    | Promise<Linter.Config[]>,
+  reportProblems = false
 ): Promise<OxlintConfig> => {
   const resolved = await Promise.resolve(configs);
 
-  if (Array.isArray(resolved)) {
-    return buildConfig(resolved);
-  }
+  const [config, problems] = Array.isArray(resolved)
+    ? buildConfig(resolved)
+    : buildConfig([resolved]);
 
-  return buildConfig([resolved]);
+  if (reportProblems) {
+    problems.foundSpecialParsers.forEach(console.warn);
+    problems.unsupportedRules.forEach(console.warn);
+  }
+ 
+  return config
 };
 
 export default main;
