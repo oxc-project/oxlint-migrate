@@ -6,7 +6,7 @@ import type { Linter } from 'eslint';
 export const ES_VERSIONS = [6, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024];
 
 const normalizeGlobValue = (value: Linter.GlobalConf) :boolean | undefined => {
-    if (value === 'writable' || value === 'writeable' || value === false) {
+    if (value === 'readable' || value === 'readonly' || value === false) {
         return false;
     }
 
@@ -47,7 +47,6 @@ export const detectEnvironmentByGlobals = (config: OxlintConfig) => {
     let matches = search.filter(
       (entry) =>
         // @ts-ignore -- filtering makes the key to any
-        // ToDo: readonly === false
         normalizeGlobValue(config.globals![entry]) === entries[entry]
     );
     if (search.length === matches.length) {
