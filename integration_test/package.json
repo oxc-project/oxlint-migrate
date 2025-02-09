@@ -7,7 +7,11 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "^4.1.1",
+    "@logux/eslint-config": "^53.5.1",
     "@oxc-node/core": "^0.0.19",
+    "@stylistic/eslint-plugin-ts": "^3.1.0",
+    "eslint-plugin-header": "^3.1.1",
+    "eslint-plugin-local": "^6.0.0",
     "eslint-plugin-regexp": "^2.7.0",
     "globals": "^15.14.0",
     "typescript-eslint": "^8.22.0",

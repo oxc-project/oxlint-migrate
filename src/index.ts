@@ -68,6 +68,7 @@ const detectEnvironmentByGlobals = (config: OxlintConfig) => {
     let matches = search.filter(
       (entry) =>
         // @ts-ignore -- filtering makes the key to any
+        // ToDo: readonly === false
         config.globals![entry] == entries[entry]
     );
     if (search.length === matches.length) {
