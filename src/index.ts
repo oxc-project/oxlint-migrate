@@ -3,8 +3,8 @@ import rules from './generated/rules.js';
 import { OxlintConfig, OxlintConfigOverride, Problems } from './types.js';
 import {
   detectEnvironmentByGlobals,
-  ES_VERSIONS,
   removeGlobalsWithAreCoveredByEnv,
+  transformEnvAndGlobals,
 } from './env_globals.js';
 import { cleanUpOxlintConfig } from './cleanup.js';
 
@@ -81,39 +81,7 @@ const buildConfig = (configs: Linter.Config[]): [OxlintConfig, Problems] => {
       );
     }
 
-    if (config.languageOptions?.parser !== undefined) {
-      problems.foundSpecialParsers.push(
-        'special parser detected: ' + config.languageOptions.parser.meta?.name
-      );
-    }
-
-    if (config.languageOptions?.globals !== undefined) {
-      if (targetConfig.globals === undefined) {
-        targetConfig.globals = {};
-      }
-
-      Object.assign(targetConfig.globals, config.languageOptions.globals);
-    }
-
-    if (config.languageOptions?.ecmaVersion !== undefined) {
-      if (targetConfig.globals === undefined) {
-        targetConfig.globals = {};
-      }
-
-      // ToDo: we are only appending globals to the main config
-      // overrides configs are not able to
-      if (config.languageOptions?.ecmaVersion === 'latest') {
-        if (targetConfig.env === undefined) {
-          targetConfig.env = {};
-        }
-        targetConfig.env['es2024'] = true;
-      } else if (ES_VERSIONS.includes(config.languageOptions?.ecmaVersion)) {
-        if (targetConfig.env === undefined) {
-          targetConfig.env = {};
-        }
-        targetConfig.env[`es${config.languageOptions?.ecmaVersion}`] = true;
-      }
-    }
+    transformEnvAndGlobals(config, targetConfig, problems.foundSpecialParsers);
 
     // ToDo: for what?
     if (config.settings !== undefined) {
@@ -121,6 +89,9 @@ const buildConfig = (configs: Linter.Config[]): [OxlintConfig, Problems] => {
 
     // clean up overrides
     if ('files' in targetConfig) {
+      // ToDo: cleanup for overrides envs which do not change
+      // detectEnvironmentByGlobals(targetConfig);
+      // removeGlobalsWithAreCoveredByEnv(targetConfig);
       cleanUpOxlintConfig(targetConfig);
     }
   }

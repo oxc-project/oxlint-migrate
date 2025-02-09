@@ -1,5 +1,5 @@
 import globals from 'globals';
-import { OxlintConfig } from './types.js';
+import { OxlintConfig, OxlintConfigOrOverride } from './types.js';
 import type { Linter } from 'eslint';
 
 export const ES_VERSIONS = [
@@ -55,6 +55,49 @@ export const detectEnvironmentByGlobals = (config: OxlintConfig) => {
         config.env = {};
       }
       config.env[env] = true;
+    }
+  }
+};
+
+export const transformEnvAndGlobals = (
+  eslintConfig: Linter.Config,
+  targetConfig: OxlintConfigOrOverride,
+  foundSpecialParsersProblems: string[]
+): void => {
+  if (eslintConfig.languageOptions?.parser !== undefined) {
+    foundSpecialParsersProblems.push(
+      'special parser detected: ' +
+        eslintConfig.languageOptions.parser.meta?.name
+    );
+  }
+
+  if (eslintConfig.languageOptions?.globals !== undefined) {
+    if (targetConfig.globals === undefined) {
+      targetConfig.globals = {};
+    }
+
+    Object.assign(targetConfig.globals, eslintConfig.languageOptions.globals);
+  }
+
+  if (eslintConfig.languageOptions?.ecmaVersion !== undefined) {
+    if (targetConfig.globals === undefined) {
+      targetConfig.globals = {};
+    }
+
+    // ToDo: we are only appending globals to the main config
+    // overrides configs are not able to
+    if (eslintConfig.languageOptions?.ecmaVersion === 'latest') {
+      if (targetConfig.env === undefined) {
+        targetConfig.env = {};
+      }
+      targetConfig.env[`es${ES_VERSIONS[ES_VERSIONS.length - 1]}`] = true;
+    } else if (
+      ES_VERSIONS.includes(eslintConfig.languageOptions?.ecmaVersion)
+    ) {
+      if (targetConfig.env === undefined) {
+        targetConfig.env = {};
+      }
+      targetConfig.env[`es${eslintConfig.languageOptions?.ecmaVersion}`] = true;
     }
   }
 };
