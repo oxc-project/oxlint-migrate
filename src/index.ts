@@ -124,7 +124,10 @@ const buildConfig = (configs: Linter.Config[]): OxlintConfig => {
     if (config.settings !== undefined) {
     }
 
-    cleanUpOxlintConfig(targetConfig);
+    // clean up overrides
+    if ('files' in targetConfig) {
+      cleanUpOxlintConfig(targetConfig);
+    }
   }
 
   let overrides_filtered = overrides.filter(overrides => Object.keys(overrides).length > 0);
@@ -134,6 +137,7 @@ const buildConfig = (configs: Linter.Config[]): OxlintConfig => {
 
   detectEnvironmentByGlobals(oxlintConfig);
   removeGlobalsWithAreCoveredByEnv(oxlintConfig);
+  cleanUpOxlintConfig(oxlintConfig);
 
   return oxlintConfig;
 };

@@ -146,8 +146,7 @@ describe('main', () => {
         es3: true,
         es5: true,
         phantomjs: true, // ToDo: why?
-      },
-      globals: {},
+      }
     });
   });
 });
