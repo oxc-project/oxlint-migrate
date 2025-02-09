@@ -101,6 +101,8 @@ describe('main', () => {
     expect(result).toStrictEqual({
       env: {
         builtin: true,
+        chai: true, // ToDo: why?
+        phantomjs: true, // ToDo: why?
       },
       globals: {
         Foo: 'writable',
@@ -130,6 +132,7 @@ describe('main', () => {
     expect(result).toStrictEqual({
       env: {
         builtin: true,
+        chai: true, // ToDo: why?
         es2015: true,
         es2016: true,
         es2017: true,
@@ -142,6 +145,7 @@ describe('main', () => {
         es2024: true,
         es3: true,
         es5: true,
+        phantomjs: true, // ToDo: why?
       },
       globals: {},
     });

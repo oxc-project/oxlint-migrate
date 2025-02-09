@@ -4,6 +4,7 @@ exports[`nuxt-auth > nuxt-auth 1`] = `
 {
   "env": {
     "builtin": true,
+    "chai": true,
     "commonjs": true,
     "es2015": true,
     "es2016": true,

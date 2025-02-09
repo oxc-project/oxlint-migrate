@@ -1,27 +1,9 @@
 import type { Linter } from 'eslint';
-import globals from 'globals';
 import rules from './generated/rules.js';
+import { OxlintConfig, OxlintConfigOverride } from './types.js';
+import { detectEnvironmentByGlobals, removeGlobalsWithAreCoveredByEnv } from './env_globals.js';
 
-type OxlintConfigPlugins = string[];
-type OxlintConfigCategories = Record<string, unknown>;
-type OxlintConfigEnv = Record<string, boolean>;
-type OxlintConfigIgnorePatterns = string[];
-type OxlintConfigOverride = {
-  files: string[];
-  env?: OxlintConfigEnv;
-  globals?: Linter.Globals;
-  rules?: Partial<Linter.RulesRecord>;
-};
 
-type OxlintConfig = {
-  env?: OxlintConfigEnv;
-  globals?: Linter.Globals;
-  plugins?: OxlintConfigPlugins;
-  categories?: OxlintConfigCategories;
-  rules?: Partial<Linter.RulesRecord>;
-  overrides?: OxlintConfigOverride[];
-  ignorePatterns?: OxlintConfigIgnorePatterns;
-};
 
 const transformRuleEntry = (
   extendable: Partial<Linter.RulesRecord>,
@@ -39,46 +21,6 @@ const transformRuleEntry = (
   }
 };
 
-// In Eslint v9 there are no envs and all are build in with `globals` package
-// we look what environment is supported and remove all globals which fall under it
-const removeGlobalsWithAreCoveredByEnv = (config: OxlintConfig) => {
-  if (config.globals === undefined || config.env === undefined) {
-    return;
-  }
-
-  for (const [env, entries] of Object.entries(globals)) {
-    if (config.env[env] === true) {
-      for (const entry of Object.keys(entries)) {
-        // @ts-ignore -- filtering makes the key to any
-        if (config.globals[entry] == entries[entry]) {
-          delete config.globals[entry];
-        }
-      }
-    }
-  }
-};
-
-const detectEnvironmentByGlobals = (config: OxlintConfig) => {
-  if (config.globals === undefined) {
-    return;
-  }
-
-  for (const [env, entries] of Object.entries(globals)) {
-    let search = Object.keys(entries);
-    let matches = search.filter(
-      (entry) =>
-        // @ts-ignore -- filtering makes the key to any
-        // ToDo: readonly === false
-        config.globals![entry] == entries[entry]
-    );
-    if (search.length === matches.length) {
-      if (config.env === undefined) {
-        config.env = {};
-      }
-      config.env[env] = true;
-    }
-  }
-};
 
 const cleanUpOxlintConfig = (config: OxlintConfig | OxlintConfigOverride) => {
   // no entries in globals, we can remove the globals key
