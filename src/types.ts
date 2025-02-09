@@ -22,7 +22,9 @@ export type OxlintConfig = {
   ignorePatterns?: OxlintConfigIgnorePatterns;
 };
 
+export type OxlintConfigOrOverride = OxlintConfig | OxlintConfigOverride;
+
 export type Problems = {
     unsupportedRules: string[],
     foundSpecialParsers: string[],
-}
+};
