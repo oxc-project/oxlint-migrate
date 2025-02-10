@@ -94,7 +94,10 @@ exports[`autoprefixer > autoprefixer 1`] = `
       },
     },
   ],
-  "plugins": [],
+  "plugins": [
+    "import",
+    "promise",
+  ],
   "rules": {
     "array-callback-return": [
       "error",

@@ -13,7 +13,10 @@ exports[`eslint-plugin-oxlint > eslint-plugin-oxlint 1`] = `
   "ignorePatterns": [
     "dist/",
   ],
-  "plugins": [],
+  "plugins": [
+    "unicorn",
+    "typescript",
+  ],
   "rules": {
     "@typescript-eslint/ban-ts-comment": "error",
     "@typescript-eslint/no-array-constructor": "error",

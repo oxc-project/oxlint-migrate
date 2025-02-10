@@ -27,14 +27,14 @@ const buildConfig = (configs: Linter.Config[]): [OxlintConfig, Problems] => {
   const overrides: OxlintConfigOverride[] = [];
   const problems: Problems = {
     unsupportedRules: [],
-    foundSpecialParsers: [],
-    foundUnsupportedIgnore: [],
+    unsupportedParsers: [],
+    unsupportedIgnore: [],
     unsupportedPlugins: [],
   };
 
   for (const config of configs) {
     // we are ignoring oxlint eslint plugin
-    if (config.name?.startsWith('oxlint')) {
+    if (config.name?.startsWith('oxlint/')) {
       continue;
     }
 
@@ -57,22 +57,18 @@ const buildConfig = (configs: Linter.Config[]): [OxlintConfig, Problems] => {
     }
 
     // ToDo: oxlint does not support it currently in overrides
-    transformIgnorePatterns(
-      config,
-      oxlintConfig,
-      problems.foundUnsupportedIgnore
-    );
-
+    transformIgnorePatterns(config, oxlintConfig, problems.unsupportedIgnore);
     transformRuleEntry(config, targetConfig, problems.unsupportedRules);
-    transformEnvAndGlobals(config, targetConfig, problems.foundSpecialParsers);
+    transformEnvAndGlobals(config, targetConfig, problems.unsupportedParsers);
 
     // ToDo: for what?
     if (config.settings !== undefined) {
     }
 
+    detectNeededRulesPlugins(targetConfig, problems.unsupportedPlugins);
+
     // clean up overrides
     if ('files' in targetConfig) {
-      detectNeededRulesPlugins(targetConfig, problems.unsupportedPlugins);
       // ToDo: cleanup for overrides envs which do not change
       // detectEnvironmentByGlobals(targetConfig);
       // removeGlobalsWithAreCoveredByEnv(targetConfig);
@@ -109,8 +105,8 @@ const main = async (
     : buildConfig([resolved]);
 
   if (reportProblems) {
-    problems.foundUnsupportedIgnore.forEach(console.warn);
-    problems.foundSpecialParsers.forEach(console.warn);
+    problems.unsupportedIgnore.forEach(console.warn);
+    problems.unsupportedParsers.forEach(console.warn);
     problems.unsupportedRules.forEach(console.warn);
     problems.unsupportedPlugins.forEach(console.warn);
   }

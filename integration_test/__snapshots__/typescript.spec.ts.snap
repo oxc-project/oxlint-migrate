@@ -97,9 +97,6 @@ exports[`typescript > typescript 1`] = `
       ],
       "plugins": [
         "typescript",
-        "typescript",
-        "typescript",
-        "typescript",
       ],
       "rules": {
         "@typescript-eslint/no-unsafe-function-type": "off",
@@ -123,7 +120,9 @@ exports[`typescript > typescript 1`] = `
       },
     },
   ],
-  "plugins": [],
+  "plugins": [
+    "typescript",
+  ],
   "rules": {
     "@typescript-eslint/adjacent-overload-signatures": "error",
     "@typescript-eslint/array-type": "error",

@@ -132,7 +132,12 @@ exports[`nuxt-auth > nuxt-auth 1`] = `
       },
     },
   ],
-  "plugins": [],
+  "plugins": [
+    "node",
+    "jsdoc",
+    "import",
+    "unicorn",
+  ],
   "rules": {
     "array-callback-return": "error",
     "constructor-super": "error",
