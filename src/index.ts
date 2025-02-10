@@ -1,5 +1,4 @@
 import type { Linter } from 'eslint';
-import rules from './generated/rules.js';
 import { OxlintConfig, OxlintConfigOverride, Problems } from './types.js';
 import {
   detectEnvironmentByGlobals,
@@ -8,28 +7,7 @@ import {
 } from './env_globals.js';
 import { cleanUpOxlintConfig } from './cleanup.js';
 import { transformIgnorePatterns } from './ignorePatterns.js';
-
-const transformRuleEntry = (
-  extendable: Partial<Linter.RulesRecord>,
-  rulesToExtend: Partial<Linter.RulesRecord>,
-  unsupportedRules: string[]
-) => {
-  for (const [rule, config] of Object.entries(rulesToExtend)) {
-    // ToDo: check if the rule is really supported by oxlint
-    // when not ask the user if this is ok
-    // maybe put it still into the jsonc file but commented out
-
-    // ToDo: typescript uses `ts/no-unused-expressions`. New Namespace?
-    // ToDo: maybe if it is nursery
-    if (rules.includes(rule)) {
-      extendable[rule] = config;
-    } else {
-      // ToDo: only report when enabled
-      // maybe use a force flag when some enabled rules are detected?
-      unsupportedRules.push(`unsupported rule: ${rule}`);
-    }
-  }
-};
+import { transformRuleEntry } from './plugins_rules.js';
 
 const buildConfig = (configs: Linter.Config[]): [OxlintConfig, Problems] => {
   const oxlintConfig: OxlintConfig = {
@@ -81,17 +59,7 @@ const buildConfig = (configs: Linter.Config[]): [OxlintConfig, Problems] => {
       problems.foundUnsupportedIgnore
     );
 
-    if (config.rules !== undefined) {
-      if (targetConfig.rules === undefined) {
-        targetConfig.rules = {};
-      }
-      transformRuleEntry(
-        targetConfig.rules,
-        config.rules,
-        problems.unsupportedRules
-      );
-    }
-
+    transformRuleEntry(config, targetConfig, problems.unsupportedRules);
     transformEnvAndGlobals(config, targetConfig, problems.foundSpecialParsers);
 
     // ToDo: for what?
