@@ -2,6 +2,9 @@
 
 exports[`vscode > vscode 1`] = `
 {
+  "categories": {
+    "correctness": "off",
+  },
   "env": {
     "builtin": true,
   },
@@ -267,6 +270,7 @@ exports[`vscode > vscode 1`] = `
       },
     },
   ],
+  "plugins": [],
   "rules": {
     "constructor-super": "warn",
     "eqeqeq": "warn",

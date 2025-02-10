@@ -2,6 +2,9 @@
 
 exports[`eslint-plugin-oxlint > eslint-plugin-oxlint 1`] = `
 {
+  "categories": {
+    "correctness": "off",
+  },
   "env": {
     "builtin": true,
     "chai": true,
@@ -42,6 +45,7 @@ exports[`eslint-plugin-oxlint > eslint-plugin-oxlint 1`] = `
       },
     },
   ],
+  "plugins": [],
   "rules": {
     "@typescript-eslint/ban-ts-comment": "error",
     "@typescript-eslint/no-array-constructor": "error",

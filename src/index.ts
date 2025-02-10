@@ -33,8 +33,14 @@ const transformRuleEntry = (
 
 const buildConfig = (configs: Linter.Config[]): [OxlintConfig, Problems] => {
   const oxlintConfig: OxlintConfig = {
+    // disable all plugins and check later
+    plugins: [],
     env: {
       builtin: true,
+    },
+    categories: {
+      // default category
+      correctness: 'off',
     },
   };
   const overrides: OxlintConfigOverride[] = [];

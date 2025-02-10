@@ -2,6 +2,9 @@
 
 exports[`typescript > typescript 1`] = `
 {
+  "categories": {
+    "correctness": "off",
+  },
   "env": {
     "builtin": true,
     "chai": true,
@@ -169,6 +172,7 @@ exports[`typescript > typescript 1`] = `
       },
     },
   ],
+  "plugins": [],
   "rules": {
     "@typescript-eslint/adjacent-overload-signatures": "error",
     "@typescript-eslint/array-type": "error",

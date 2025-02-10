@@ -13,9 +13,13 @@ describe('main', () => {
     ]);
 
     expect(result).toStrictEqual({
+      categories: {
+        correctness: 'off',
+      },
       env: {
         builtin: true,
       },
+      plugins: [],
       rules: {
         'no-magic-numbers': 'error',
       },
@@ -37,9 +41,13 @@ describe('main', () => {
     ]);
 
     expect(result).toStrictEqual({
+      categories: {
+        correctness: 'off',
+      },
       env: {
         builtin: true,
       },
+      plugins: [],
       rules: {
         'no-magic-numbers': 'error',
         'no-loss-of-precision': 'error',
@@ -64,6 +72,9 @@ describe('main', () => {
     ]);
 
     expect(result).toStrictEqual({
+      categories: {
+        correctness: 'off',
+      },
       env: {
         builtin: true,
       },
@@ -75,6 +86,7 @@ describe('main', () => {
           },
         },
       ],
+      plugins: [],
       rules: {
         'no-magic-numbers': 'error',
       },
@@ -99,6 +111,9 @@ describe('main', () => {
     ]);
 
     expect(result).toStrictEqual({
+      categories: {
+        correctness: 'off',
+      },
       env: {
         builtin: true,
         chai: true, // ToDo: why?
@@ -113,6 +128,7 @@ describe('main', () => {
         Bux: true,
         Bux2: false,
       },
+      plugins: [],
     });
   });
 
@@ -130,12 +146,16 @@ describe('main', () => {
     // we can not be sure that es2022 is supported, when no ecmaVersion is provided
     // the match in globals package could possible detect es2021 support.
     expect(result).toStrictEqual({
+      categories: {
+        correctness: 'off',
+      },
       env: {
         builtin: true,
         chai: true, // ToDo: why?
         es2024: true,
         phantomjs: true, // ToDo: why?
       },
+      plugins: [],
     });
   });
 });

@@ -2,6 +2,9 @@
 
 exports[`autoprefixer > autoprefixer 1`] = `
 {
+  "categories": {
+    "correctness": "off",
+  },
   "env": {
     "builtin": true,
     "chai": true,
@@ -92,6 +95,7 @@ exports[`autoprefixer > autoprefixer 1`] = `
       },
     },
   ],
+  "plugins": [],
   "rules": {
     "array-callback-return": [
       "error",
