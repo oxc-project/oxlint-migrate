@@ -52,7 +52,7 @@ export const detectNeededRulesPlugins = (
     }
 
     let found = false;
-    for (const [prefix, plugin] of Object.entriesu(rulesPrefixesForPlugins)) {
+    for (const [prefix, plugin] of Object.entries(rulesPrefixesForPlugins)) {
       if (rule.startsWith(`${prefix}/`)) {
         targetConfig.plugins.push(plugin);
         found = true;
