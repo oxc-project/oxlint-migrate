@@ -7,7 +7,6 @@ exports[`autoprefixer > autoprefixer 1`] = `
   },
   "env": {
     "builtin": true,
-    "chai": true,
     "commonjs": true,
     "es2022": true,
   },

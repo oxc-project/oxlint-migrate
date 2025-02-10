@@ -8,11 +8,9 @@ exports[`nuxt-auth > nuxt-auth 1`] = `
   "env": {
     "browser": true,
     "builtin": true,
-    "chai": true,
     "commonjs": true,
     "es2024": true,
     "node": true,
-    "nodeBuiltin": true,
     "shared-node-browser": true,
   },
   "globals": {

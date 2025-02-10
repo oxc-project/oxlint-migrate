@@ -116,7 +116,6 @@ describe('main', () => {
       },
       env: {
         builtin: true,
-        chai: true, // ToDo: why?
         phantomjs: true, // ToDo: why?
       },
       globals: {
@@ -151,7 +150,6 @@ describe('main', () => {
       },
       env: {
         builtin: true,
-        chai: true, // ToDo: why?
         es2024: true,
         phantomjs: true, // ToDo: why?
       },

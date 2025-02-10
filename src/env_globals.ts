@@ -6,6 +6,34 @@ export const ES_VERSIONS = [
   6, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025,
 ];
 
+// <https://github.com/oxc-project/oxc/blob/addaa8e0a3f8682982368f1f325d99af8da952f2/tasks/javascript_globals/src/main.rs>
+const OTHER_SUPPORTED_ENVS = [
+  'browser',
+  'node',
+  'shared-node-browser',
+  'worker',
+  'serviceworker',
+  'commonjs',
+  'amd',
+  'mocha',
+  'jasmine',
+  'jest',
+  'phantomjs',
+  'jquery',
+  'qunit',
+  'prototypejs',
+  'shelljs',
+  'meteor',
+  'mongo',
+  'protractor',
+  'applescript',
+  'nashorn',
+  'atomtest',
+  'embertest',
+  'webextensions',
+  'greasemonkey',
+];
+
 const normalizeGlobValue = (value: Linter.GlobalConf): boolean | undefined => {
   if (value === 'readable' || value === 'readonly' || value === false) {
     return false;
@@ -44,6 +72,10 @@ export const detectEnvironmentByGlobals = (config: OxlintConfig) => {
 
   // ToDo: only check for envs which are supported by oxlint
   for (const [env, entries] of Object.entries(globals)) {
+    if (!env.startsWith('es') && !OTHER_SUPPORTED_ENVS.includes(env)) {
+      continue;
+    }
+
     let search = Object.keys(entries);
     let matches = search.filter(
       (entry) =>
