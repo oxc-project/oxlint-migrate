@@ -7,7 +7,10 @@ import {
 } from './env_globals.js';
 import { cleanUpOxlintConfig } from './cleanup.js';
 import { transformIgnorePatterns } from './ignorePatterns.js';
-import { transformRuleEntry } from './plugins_rules.js';
+import {
+  detectNeededRulesPlugins,
+  transformRuleEntry,
+} from './plugins_rules.js';
 
 const buildConfig = (configs: Linter.Config[]): [OxlintConfig, Problems] => {
   const oxlintConfig: OxlintConfig = {
@@ -26,6 +29,7 @@ const buildConfig = (configs: Linter.Config[]): [OxlintConfig, Problems] => {
     unsupportedRules: [],
     foundSpecialParsers: [],
     foundUnsupportedIgnore: [],
+    unsupportedPlugins: [],
   };
 
   for (const config of configs) {
@@ -68,6 +72,7 @@ const buildConfig = (configs: Linter.Config[]): [OxlintConfig, Problems] => {
 
     // clean up overrides
     if ('files' in targetConfig) {
+      detectNeededRulesPlugins(targetConfig, problems.unsupportedPlugins);
       // ToDo: cleanup for overrides envs which do not change
       // detectEnvironmentByGlobals(targetConfig);
       // removeGlobalsWithAreCoveredByEnv(targetConfig);
@@ -104,8 +109,10 @@ const main = async (
     : buildConfig([resolved]);
 
   if (reportProblems) {
+    problems.foundUnsupportedIgnore.forEach(console.warn);
     problems.foundSpecialParsers.forEach(console.warn);
     problems.unsupportedRules.forEach(console.warn);
+    problems.unsupportedPlugins.forEach(console.warn);
   }
 
   return config;

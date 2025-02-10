@@ -53,6 +53,9 @@ exports[`vscode > vscode 1`] = `
       "files": [
         "**/vscode.d.ts",
       ],
+      "plugins": [
+        "jsdoc",
+      ],
       "rules": {
         "jsdoc/require-returns": "warn",
       },

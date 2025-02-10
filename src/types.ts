@@ -9,6 +9,7 @@ export type OxlintConfigOverride = {
   files: string[];
   env?: OxlintConfigEnv;
   globals?: Linter.Globals;
+  plugins?: OxlintConfigPlugins;
   rules?: Partial<Linter.RulesRecord>;
 };
 
@@ -28,4 +29,5 @@ export type Problems = {
   unsupportedRules: string[];
   foundSpecialParsers: string[];
   foundUnsupportedIgnore: string[];
+  unsupportedPlugins: string[];
 };

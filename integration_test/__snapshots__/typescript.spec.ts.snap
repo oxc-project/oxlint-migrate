@@ -97,6 +97,12 @@ exports[`typescript > typescript 1`] = `
       "files": [
         "src/lib/*.d.ts",
       ],
+      "plugins": [
+        "typescript",
+        "typescript",
+        "typescript",
+        "typescript",
+      ],
       "rules": {
         "@typescript-eslint/no-unsafe-function-type": "off",
         "@typescript-eslint/no-unused-vars": "off",
@@ -110,6 +116,9 @@ exports[`typescript > typescript 1`] = `
     {
       "files": [
         "src/lib/es2019.array.d.ts",
+      ],
+      "plugins": [
+        "typescript",
       ],
       "rules": {
         "@typescript-eslint/array-type": "off",

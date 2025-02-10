@@ -1,12 +1,13 @@
 import type { Linter } from 'eslint';
 import rules from './generated/rules.js';
 import { OxlintConfigOrOverride } from './types.js';
+import { rulesPrefixesForPlugins } from './constants.js';
 
 export const transformRuleEntry = (
   eslintConfig: Linter.Config,
   targetConfig: OxlintConfigOrOverride,
   unsupportedRules: string[]
-) => {
+): void => {
   if (eslintConfig.rules == undefined) {
     return;
   }
@@ -28,6 +29,38 @@ export const transformRuleEntry = (
       // ToDo: only report when enabled
       // maybe use a force flag when some enabled rules are detected?
       unsupportedRules.push(`unsupported rule: ${rule}`);
+    }
+  }
+};
+
+export const detectNeededRulesPlugins = (
+  targetConfig: OxlintConfigOrOverride,
+  unsupportedPlugins: string[]
+): void => {
+  if (targetConfig.rules === undefined) {
+    return;
+  }
+
+  if (targetConfig.plugins === undefined) {
+    targetConfig.plugins = [];
+  }
+
+  for (const rule of Object.keys(targetConfig.rules)) {
+    // eslint rule has no / prefix and is supported by oxlint out of the box
+    if (!rule.includes('/')) {
+      continue;
+    }
+
+    let found = false;
+    for (const [prefix, plugin] of Object.entriesu(rulesPrefixesForPlugins)) {
+      if (rule.startsWith(`${prefix}/`)) {
+        targetConfig.plugins.push(plugin);
+        found = true;
+      }
+    }
+
+    if (!found) {
+      unsupportedPlugins.push(`unsupported plugin for rule: ${rule}`);
     }
   }
 };
