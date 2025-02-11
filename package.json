@@ -6,9 +6,11 @@
   "type": "module",
   "packageManager": "pnpm@9.15.0",
   "scripts": {
-    "test": "vitest",
+    "prepare": "husky",
+    "generate": "node --import @oxc-node/core/register ./scripts/generate.ts",
     "format": "npx prettier --write .",
-    "generate": "node --import @oxc-node/core/register ./scripts/generate.ts"
+    "type-check": "tsc --noEmit",
+    "test": "vitest"
   },
   "keywords": [
     "oxc",
@@ -22,6 +24,7 @@
     "@oxc-node/core": "^0.0.19",
     "@types/node": "^22.13.0",
     "eslint": "^9.19.0",
+    "husky": "^9.1.7",
     "lint-staged": "^15.4.3",
     "oxlint": "^0.15.9",
     "prettier": "^3.4.2",

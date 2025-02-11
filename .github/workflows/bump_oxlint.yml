@@ -1,0 +1,56 @@
+name: Bump oxlint
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        required: true
+        type: string
+
+env:
+  OXLINT_PACKAGE_NAME: oxlint
+
+permissions: {}
+
+jobs:
+  bump:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+        with:
+          persist-credentials: false # should be fine, we give another token for PR creation
+
+      - uses: ./.github/actions/pnpm
+
+      - name: Generate version ${{ inputs.version }}
+        env:
+          OXLINT_VERSION: ${{ inputs.version }}
+        run: |
+          pnpm install oxlint@${OXLINT_VERSION}
+          pnpm run generate # Generate rules
+          pnpm run format # run prettier over it
+
+      - name: Test and update snapshot
+        continue-on-error: true # we check in PR why it fails
+        run: pnpm run test -u # Update test snapshots
+
+      - name: Bump oxlint rules
+        env:
+          OXLINT_VERSION: ${{ inputs.version }}
+        run: npm version ${OXLINT_VERSION} --no-git-tag-version
+
+      - uses: peter-evans/create-pull-request@67ccf781d68cd99b580ae25a5c18a1cc84ffff1f # v7
+        with:
+          # bot account with PAT required for triggering workflow runs
+          # See https://github.com/peter-evans/create-pull-request/blob/main/docs/concepts-guidelines.md#triggering-further-workflow-runs
+          token: ${{ secrets.OXC_BOT_PAT }}
+          commit-message: 'release: v${{ inputs.version }}'
+          committer: Boshen <Boshen@users.noreply.github.com>
+          author: Boshen <Boshen@users.noreply.github.com>
+          branch: release
+          branch-suffix: timestamp
+          title: 'release: v${{ inputs.version }}'
+          assignees: Boshen
+          base: main
