@@ -36,7 +36,6 @@
     "vitest": "^3.0.5"
   },
   "lint-staged": {
-    "*.{js,cjs,ts}": "eslint",
     "*": "prettier --ignore-unknown --write"
   },
   "dependencies": {
