@@ -76,12 +76,7 @@ const buildConfig = (configs: Linter.Config[]): [OxlintConfig, Problems] => {
     }
   }
 
-  let overrides_filtered = overrides.filter(
-    (overrides) => Object.keys(overrides).length > 0
-  );
-  if (overrides_filtered.length > 0) {
-    oxlintConfig.overrides = overrides_filtered;
-  }
+  oxlintConfig.overrides = overrides;
 
   detectEnvironmentByGlobals(oxlintConfig);
   removeGlobalsWithAreCoveredByEnv(oxlintConfig);

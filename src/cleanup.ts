@@ -62,7 +62,8 @@ const cleanUpDefaultTypeScriptOverridesForEslint = (
     }
   }
 
-  indexesToDelete.forEach((index) => delete config.overrides![index as string]);
+  // @ts-ignore -- TS Gods please help me to survive this madness
+  indexesToDelete.forEach((index) => delete config.overrides![index]);
 
   if (Object.keys(config.overrides).length === 0) {
     delete config.overrides;
@@ -115,5 +116,15 @@ export const cleanUpOxlintConfig = (config: OxlintConfigOrOverride): void => {
     }
   } else {
     cleanUpDefaultTypeScriptOverridesForEslint(config);
+
+    if (config.overrides !== undefined) {
+      config.overrides = config.overrides.filter(
+        (overrides) => Object.keys(overrides).length > 0
+      );
+
+      if (config.overrides.length === 0) {
+        delete config.overrides;
+      }
+    }
   }
 };
