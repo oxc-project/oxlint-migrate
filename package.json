@@ -4,6 +4,9 @@
   "description": "",
   "main": "index.js",
   "type": "module",
+  "bin": {
+    "oxlint-migrate": "./bin/oxlint-migrate.ts"
+  },
   "packageManager": "pnpm@9.15.0",
   "scripts": {
     "prepare": "husky",
@@ -37,6 +40,7 @@
     "*": "prettier --ignore-unknown --write"
   },
   "dependencies": {
+    "commander": "^13.1.0",
     "globals": "^15.14.0"
   }
 }
