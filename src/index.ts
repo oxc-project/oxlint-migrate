@@ -2,7 +2,6 @@ import type { Linter } from 'eslint';
 import { OxlintConfig, OxlintConfigOverride, Problems } from './types.js';
 import {
   detectEnvironmentByGlobals,
-  removeGlobalsWithAreCoveredByEnv,
   transformEnvAndGlobals,
 } from './env_globals.js';
 import { cleanUpOxlintConfig } from './cleanup.js';
@@ -56,29 +55,28 @@ const buildConfig = (configs: Linter.Config[]): [OxlintConfig, Problems] => {
     if (config.plugins !== undefined) {
     }
 
-    transformIgnorePatterns(config, targetConfig, problems.unsupportedIgnore);
-    transformRuleEntry(config, targetConfig, problems.unsupportedRules);
-    transformEnvAndGlobals(config, targetConfig, problems.unsupportedParsers);
-
     // ToDo: for what?
     if (config.settings !== undefined) {
     }
 
-    detectNeededRulesPlugins(targetConfig, problems.unsupportedPlugins);
+    transformIgnorePatterns(config, targetConfig, problems.unsupportedIgnore);
+    transformRuleEntry(config, targetConfig, problems.unsupportedRules);
+    transformEnvAndGlobals(config, targetConfig, problems.unsupportedParsers);
 
     // clean up overrides
     if ('files' in targetConfig) {
+      detectNeededRulesPlugins(targetConfig, problems.unsupportedPlugins);
+
       // ToDo: cleanup for overrides envs which do not change
       // detectEnvironmentByGlobals(targetConfig);
-      // removeGlobalsWithAreCoveredByEnv(targetConfig);
       cleanUpOxlintConfig(targetConfig);
     }
   }
 
   oxlintConfig.overrides = overrides;
 
+  detectNeededRulesPlugins(oxlintConfig, problems.unsupportedPlugins);
   detectEnvironmentByGlobals(oxlintConfig);
-  removeGlobalsWithAreCoveredByEnv(oxlintConfig);
   cleanUpOxlintConfig(oxlintConfig);
 
   return [oxlintConfig, problems];

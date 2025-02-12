@@ -1,4 +1,7 @@
-import { ES_VERSIONS } from './env_globals.js';
+import {
+  ES_VERSIONS,
+  removeGlobalsWithAreCoveredByEnv,
+} from './env_globals.js';
 import {
   OxlintConfigOrOverride,
   OxlintConfig,
@@ -71,6 +74,8 @@ const cleanUpDefaultTypeScriptOverridesForEslint = (
 };
 
 export const cleanUpOxlintConfig = (config: OxlintConfigOrOverride): void => {
+  removeGlobalsWithAreCoveredByEnv(config);
+
   // no entries in globals, we can remove the globals key
   if (
     config.globals !== undefined &&
