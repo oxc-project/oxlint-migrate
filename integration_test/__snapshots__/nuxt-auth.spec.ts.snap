@@ -215,9 +215,6 @@ exports[`nuxt-auth > nuxt-auth 1`] = `
       "files": [
         "**/*.d.?([cm])ts",
       ],
-      "plugins": [
-        "import",
-      ],
       "rules": {
         "import/no-duplicates": "off",
       },

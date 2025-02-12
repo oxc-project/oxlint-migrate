@@ -73,6 +73,36 @@ const cleanUpDefaultTypeScriptOverridesForEslint = (
   }
 };
 
+const cleanUpUselessOverridesEntries = (config: OxlintConfig): void => {
+  if (config.overrides === undefined) {
+    return;
+  }
+
+  config.overrides = config.overrides.filter(
+    (overrides) => Object.keys(overrides).length > 0
+  );
+
+  if (config.plugins !== undefined) {
+    for (const override of config.overrides) {
+      if (override.plugins === undefined) {
+        continue;
+      }
+
+      override.plugins = override.plugins.filter(
+        (overridePlugin) => !config.plugins!.includes(overridePlugin)
+      );
+
+      if (override.plugins.length === 0) {
+        delete override.plugins;
+      }
+    }
+  }
+
+  if (config.overrides.length === 0) {
+    delete config.overrides;
+  }
+};
+
 export const cleanUpOxlintConfig = (config: OxlintConfigOrOverride): void => {
   removeGlobalsWithAreCoveredByEnv(config);
 
@@ -121,15 +151,6 @@ export const cleanUpOxlintConfig = (config: OxlintConfigOrOverride): void => {
     }
   } else {
     cleanUpDefaultTypeScriptOverridesForEslint(config);
-
-    if (config.overrides !== undefined) {
-      config.overrides = config.overrides.filter(
-        (overrides) => Object.keys(overrides).length > 0
-      );
-
-      if (config.overrides.length === 0) {
-        delete config.overrides;
-      }
-    }
+    cleanUpUselessOverridesEntries(config);
   }
 };
