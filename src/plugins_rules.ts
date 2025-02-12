@@ -3,6 +3,19 @@ import rules from './generated/rules.js';
 import { OxlintConfigOrOverride } from './types.js';
 import { rulesPrefixesForPlugins } from './constants.js';
 
+/**
+ * checks if value is validSet, or if validSet is an array, check if value is first value of it
+ */
+const isValueInSet = (value: unknown, validSet: unknown[]) =>
+  validSet.includes(value) ||
+  (Array.isArray(value) && validSet.includes(value[0]));
+
+/**
+ * check if the value is "error", "warn", 1, 2, ["error", ...], ["warn", ...], [1, ...], or [2, ...]
+ */
+const isActiveValue = (value: unknown) =>
+  isValueInSet(value, ['error', 'warn', 1, 2]);
+
 export const transformRuleEntry = (
   eslintConfig: Linter.Config,
   targetConfig: OxlintConfigOrOverride,
@@ -28,7 +41,9 @@ export const transformRuleEntry = (
     } else {
       // ToDo: only report when enabled
       // maybe use a force flag when some enabled rules are detected?
-      unsupportedRules.push(`unsupported rule: ${rule}`);
+      if (isActiveValue(config)) {
+        unsupportedRules.push(`unsupported rule: ${rule}`);
+      }
     }
   }
 };

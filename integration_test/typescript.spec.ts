@@ -1,8 +1,8 @@
 import { expect, test } from 'vitest';
 import typescript_test from './projects/typescript.eslint.config.mjs';
-import main from '../src/index.js';
+import { getSnapshotResult } from './utils.js';
 
 test('typescript', async () => {
-  const result = await main(typescript_test);
+  const result = await getSnapshotResult(typescript_test);
   expect(result).toMatchSnapshot('typescript');
 });

@@ -1,8 +1,8 @@
 import { expect, test } from 'vitest';
 import autoprefixer_test from './projects/autoprefixer.eslint.config.mjs';
-import main from '../src/index.js';
+import { getSnapshotResult } from './utils.js';
 
 test('autoprefixer', async () => {
-  const result = await main(autoprefixer_test);
+  const result = await getSnapshotResult(autoprefixer_test);
   expect(result).toMatchSnapshot('autoprefixer');
 });

@@ -88,7 +88,7 @@ const main = async (
     | Linter.Config[]
     | Promise<Linter.Config>
     | Promise<Linter.Config[]>,
-  reportProblems = false
+  reporter: ((warning: string) => void) | undefined = undefined
 ): Promise<OxlintConfig> => {
   const resolved = await Promise.resolve(configs);
 
@@ -96,11 +96,11 @@ const main = async (
     ? buildConfig(resolved)
     : buildConfig([resolved]);
 
-  if (reportProblems) {
-    problems.unsupportedIgnore.forEach(console.warn);
-    problems.unsupportedParsers.forEach(console.warn);
-    problems.unsupportedRules.forEach(console.warn);
-    problems.unsupportedPlugins.forEach(console.warn);
+  if (reporter !== undefined) {
+    problems.unsupportedIgnore.forEach((error) => reporter(error));
+    problems.unsupportedParsers.forEach((error) => reporter(error));
+    problems.unsupportedRules.forEach((error) => reporter(error));
+    problems.unsupportedPlugins.forEach((error) => reporter(error));
   }
 
   return config;
