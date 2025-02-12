@@ -1,5 +1,5 @@
 import globals from 'globals';
-import { OxlintConfig, OxlintConfigOrOverride } from './types.js';
+import { OxlintConfig, OxlintConfigOrOverride, Reporter } from './types.js';
 import type { Linter } from 'eslint';
 
 export const ES_VERSIONS = [
@@ -80,8 +80,9 @@ export const detectEnvironmentByGlobals = (config: OxlintConfig) => {
 
     let matches = search.filter(
       (entry) =>
-        // @ts-ignore -- filtering makes the key to any
+        // @ts-ignore -- we already checked for undefined
         entry in config.globals &&
+        // @ts-ignore -- filtering makes the key to any
         normalizeGlobValue(config.globals[entry]) === entries[entry]
     );
     if (search.length === matches.length) {
@@ -96,13 +97,14 @@ export const detectEnvironmentByGlobals = (config: OxlintConfig) => {
 export const transformEnvAndGlobals = (
   eslintConfig: Linter.Config,
   targetConfig: OxlintConfigOrOverride,
-  foundSpecialParsersProblems: string[]
+  reporter: Reporter
 ): void => {
   if (eslintConfig.languageOptions?.parser !== undefined) {
-    foundSpecialParsersProblems.push(
-      'special parser detected: ' +
-        eslintConfig.languageOptions.parser.meta?.name
-    );
+    reporter !== undefined &&
+      reporter(
+        'special parser detected: ' +
+          eslintConfig.languageOptions.parser.meta?.name
+      );
   }
 
   if (eslintConfig.languageOptions?.globals !== undefined) {

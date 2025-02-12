@@ -1,19 +1,18 @@
 import type { Linter } from 'eslint';
-import { OxlintConfigOrOverride } from './types.js';
+import { OxlintConfigOrOverride, Reporter } from './types.js';
 
 export const transformIgnorePatterns = (
   eslintConfig: Linter.Config,
   targetConfig: OxlintConfigOrOverride,
-  foundUnsupportedIgnore: string[]
+  reporter: Reporter
 ) => {
   if (eslintConfig.ignores === undefined) {
     return;
   }
 
   if ('files' in targetConfig) {
-    foundUnsupportedIgnore.push(
-      'ignore list inside overrides is not supported'
-    );
+    reporter !== undefined &&
+      reporter('ignore list inside overrides is not supported');
     return;
   }
 
@@ -24,11 +23,11 @@ export const transformIgnorePatterns = (
   targetConfig.ignorePatterns.push(...eslintConfig.ignores);
 
   // see https://github.com/oxc-project/oxc/issues/8842
-  foundUnsupportedIgnore.push(
-    ...eslintConfig.ignores
-      .filter((ignore) => ignore.startsWith('!'))
-      .map(
-        (ignore) => `ignore allow list is currently not supported: ${ignore}`
-      )
-  );
+  eslintConfig.ignores
+    .filter((ignore) => ignore.startsWith('!'))
+    .forEach(
+      (ignore) =>
+        reporter !== undefined &&
+        reporter(`ignore allow list is currently not supported: ${ignore}`)
+    );
 };

@@ -194,7 +194,6 @@ exports[`eslint-plugin-oxlint > eslint-plugin-oxlint 1`] = `
     },
   },
   "warnings": [
-    "special parser detected: typescript-eslint/parser",
     "unsupported rule: no-dupe-args",
     "unsupported rule: no-misleading-character-class",
     "unsupported rule: no-octal",
@@ -222,6 +221,7 @@ exports[`eslint-plugin-oxlint > eslint-plugin-oxlint 1`] = `
     "unsupported rule: unicorn/prevent-abbreviations",
     "unsupported rule: unicorn/relative-url-style",
     "unsupported rule: unicorn/template-indent",
+    "special parser detected: typescript-eslint/parser",
     "unsupported rule: prefer-const",
     "unsupported plugin for rule: unicorn/consistent-empty-array-spread",
     "unsupported plugin for rule: unicorn/consistent-existence-index-check",

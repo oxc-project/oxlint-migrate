@@ -25,9 +25,4 @@ export type OxlintConfig = {
 
 export type OxlintConfigOrOverride = OxlintConfig | OxlintConfigOverride;
 
-export type Problems = {
-  unsupportedRules: string[];
-  unsupportedParsers: string[];
-  unsupportedIgnore: string[];
-  unsupportedPlugins: string[];
-};
+export type Reporter = ((warning: string) => void) | undefined;

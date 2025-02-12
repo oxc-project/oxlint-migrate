@@ -1,5 +1,5 @@
 import type { Linter } from 'eslint';
-import { OxlintConfig, OxlintConfigOverride, Problems } from './types.js';
+import { OxlintConfig, OxlintConfigOverride, Reporter } from './types.js';
 import {
   detectEnvironmentByGlobals,
   transformEnvAndGlobals,
@@ -11,7 +11,10 @@ import {
   transformRuleEntry,
 } from './plugins_rules.js';
 
-const buildConfig = (configs: Linter.Config[]): [OxlintConfig, Problems] => {
+const buildConfig = (
+  configs: Linter.Config[],
+  reporter: Reporter
+): OxlintConfig => {
   const oxlintConfig: OxlintConfig = {
     // disable all plugins and check later
     plugins: [],
@@ -24,12 +27,6 @@ const buildConfig = (configs: Linter.Config[]): [OxlintConfig, Problems] => {
     },
   };
   const overrides: OxlintConfigOverride[] = [];
-  const problems: Problems = {
-    unsupportedRules: [],
-    unsupportedParsers: [],
-    unsupportedIgnore: [],
-    unsupportedPlugins: [],
-  };
 
   for (const config of configs) {
     // we are ignoring oxlint eslint plugin
@@ -59,14 +56,13 @@ const buildConfig = (configs: Linter.Config[]): [OxlintConfig, Problems] => {
     if (config.settings !== undefined) {
     }
 
-    transformIgnorePatterns(config, targetConfig, problems.unsupportedIgnore);
-    transformRuleEntry(config, targetConfig, problems.unsupportedRules);
-    transformEnvAndGlobals(config, targetConfig, problems.unsupportedParsers);
+    transformIgnorePatterns(config, targetConfig, reporter);
+    transformRuleEntry(config, targetConfig, reporter);
+    transformEnvAndGlobals(config, targetConfig, reporter);
 
     // clean up overrides
     if ('files' in targetConfig) {
-      detectNeededRulesPlugins(targetConfig, problems.unsupportedPlugins);
-
+      detectNeededRulesPlugins(targetConfig, reporter);
       detectEnvironmentByGlobals(targetConfig);
       cleanUpOxlintConfig(targetConfig);
     }
@@ -74,11 +70,11 @@ const buildConfig = (configs: Linter.Config[]): [OxlintConfig, Problems] => {
 
   oxlintConfig.overrides = overrides;
 
-  detectNeededRulesPlugins(oxlintConfig, problems.unsupportedPlugins);
+  detectNeededRulesPlugins(oxlintConfig, reporter);
   detectEnvironmentByGlobals(oxlintConfig);
   cleanUpOxlintConfig(oxlintConfig);
 
-  return [oxlintConfig, problems];
+  return oxlintConfig;
 };
 
 const main = async (
@@ -87,22 +83,13 @@ const main = async (
     | Linter.Config[]
     | Promise<Linter.Config>
     | Promise<Linter.Config[]>,
-  reporter: ((warning: string) => void) | undefined = undefined
+  reporter: Reporter = undefined
 ): Promise<OxlintConfig> => {
   const resolved = await Promise.resolve(configs);
 
-  const [config, problems] = Array.isArray(resolved)
-    ? buildConfig(resolved)
-    : buildConfig([resolved]);
-
-  if (reporter !== undefined) {
-    problems.unsupportedIgnore.forEach((error) => reporter(error));
-    problems.unsupportedParsers.forEach((error) => reporter(error));
-    problems.unsupportedRules.forEach((error) => reporter(error));
-    problems.unsupportedPlugins.forEach((error) => reporter(error));
-  }
-
-  return config;
+  return Array.isArray(resolved)
+    ? buildConfig(resolved, reporter)
+    : buildConfig([resolved], reporter);
 };
 
 export default main;

@@ -1,6 +1,6 @@
 import type { Linter } from 'eslint';
 import rules from './generated/rules.js';
-import { OxlintConfigOrOverride } from './types.js';
+import { OxlintConfigOrOverride, Reporter } from './types.js';
 import { rulesPrefixesForPlugins } from './constants.js';
 
 /**
@@ -19,7 +19,7 @@ const isActiveValue = (value: unknown) =>
 export const transformRuleEntry = (
   eslintConfig: Linter.Config,
   targetConfig: OxlintConfigOrOverride,
-  unsupportedRules: string[]
+  reporter: Reporter
 ): void => {
   if (eslintConfig.rules == undefined) {
     return;
@@ -41,7 +41,7 @@ export const transformRuleEntry = (
     } else {
       // ToDo: maybe use a force flag when some enabled rules are detected?
       if (isActiveValue(config)) {
-        unsupportedRules.push(`unsupported rule: ${rule}`);
+        reporter !== undefined && reporter(`unsupported rule: ${rule}`);
       }
     }
   }
@@ -49,7 +49,7 @@ export const transformRuleEntry = (
 
 export const detectNeededRulesPlugins = (
   targetConfig: OxlintConfigOrOverride,
-  unsupportedPlugins: string[]
+  reporter: Reporter
 ): void => {
   if (targetConfig.rules === undefined) {
     return;
@@ -77,7 +77,8 @@ export const detectNeededRulesPlugins = (
     }
 
     if (!found) {
-      unsupportedPlugins.push(`unsupported plugin for rule: ${rule}`);
+      reporter !== undefined &&
+        reporter(`unsupported plugin for rule: ${rule}`);
     }
   }
 };
