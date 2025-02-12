@@ -34,6 +34,9 @@ const OTHER_SUPPORTED_ENVS = [
   'greasemonkey',
 ];
 
+// these parsers are supported by oxlint and should not be reported
+const SUPPORTED_ESLINT_PARSERS = ['typescript-eslint/parser'];
+
 const normalizeGlobValue = (value: Linter.GlobalConf): boolean | undefined => {
   if (value === 'readable' || value === 'readonly' || value === false) {
     return false;
@@ -99,7 +102,12 @@ export const transformEnvAndGlobals = (
   targetConfig: OxlintConfigOrOverride,
   reporter: Reporter
 ): void => {
-  if (eslintConfig.languageOptions?.parser !== undefined) {
+  if (
+    eslintConfig.languageOptions?.parser !== undefined &&
+    !SUPPORTED_ESLINT_PARSERS.includes(
+      eslintConfig.languageOptions.parser.meta?.name!
+    )
+  ) {
     reporter !== undefined &&
       reporter(
         'special parser detected: ' +

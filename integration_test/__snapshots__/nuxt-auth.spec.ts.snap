@@ -480,7 +480,6 @@ exports[`nuxt-auth > nuxt-auth 1`] = `
     "unsupported rule: import/no-mutable-exports",
     "unsupported rule: import/newline-after-import",
     "unsupported rule: command/command",
-    "special parser detected: typescript-eslint/parser",
     "unsupported rule: prefer-const",
     "unsupported rule: ts/ban-ts-comment",
     "unsupported rule: ts/no-array-constructor",
