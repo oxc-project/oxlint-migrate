@@ -39,8 +39,7 @@ export const transformRuleEntry = (
     if (rules.includes(rule)) {
       targetConfig.rules[rule] = config;
     } else {
-      // ToDo: only report when enabled
-      // maybe use a force flag when some enabled rules are detected?
+      // ToDo: maybe use a force flag when some enabled rules are detected?
       if (isActiveValue(config)) {
         unsupportedRules.push(`unsupported rule: ${rule}`);
       }

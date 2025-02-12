@@ -116,7 +116,6 @@ describe('main', () => {
       },
       env: {
         builtin: true,
-        phantomjs: true, // ToDo: why?
       },
       globals: {
         Foo: 'writable',
@@ -151,7 +150,6 @@ describe('main', () => {
       env: {
         builtin: true,
         es2024: true,
-        phantomjs: true, // ToDo: why?
       },
       plugins: [],
     });

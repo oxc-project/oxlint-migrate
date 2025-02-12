@@ -98,6 +98,29 @@ const cleanUpUselessOverridesEntries = (config: OxlintConfig): void => {
     }
   }
 
+  if (config.env !== undefined) {
+    for (const override of config.overrides) {
+      if (override.env === undefined) {
+        continue;
+      }
+
+      for (const [overrideEnv, overrideEnvConfig] of Object.entries(
+        override.env
+      )) {
+        if (
+          overrideEnv in config.env &&
+          config.env[overrideEnv] === overrideEnvConfig
+        ) {
+          delete override.env[overrideEnv];
+        }
+      }
+
+      if (Object.keys(override.env).length === 0) {
+        delete override.env;
+      }
+    }
+  }
+
   if (config.overrides.length === 0) {
     delete config.overrides;
   }

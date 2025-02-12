@@ -9,7 +9,6 @@ exports[`eslint-plugin-oxlint > eslint-plugin-oxlint 1`] = `
     "env": {
       "builtin": true,
       "es2025": true,
-      "phantomjs": true,
     },
     "ignorePatterns": [
       "dist/",

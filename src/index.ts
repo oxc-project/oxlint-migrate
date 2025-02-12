@@ -67,8 +67,7 @@ const buildConfig = (configs: Linter.Config[]): [OxlintConfig, Problems] => {
     if ('files' in targetConfig) {
       detectNeededRulesPlugins(targetConfig, problems.unsupportedPlugins);
 
-      // ToDo: cleanup for overrides envs which do not change
-      // detectEnvironmentByGlobals(targetConfig);
+      detectEnvironmentByGlobals(targetConfig);
       cleanUpOxlintConfig(targetConfig);
     }
   }

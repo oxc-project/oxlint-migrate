@@ -77,10 +77,12 @@ export const detectEnvironmentByGlobals = (config: OxlintConfig) => {
     }
 
     let search = Object.keys(entries);
+
     let matches = search.filter(
       (entry) =>
         // @ts-ignore -- filtering makes the key to any
-        normalizeGlobValue(config.globals![entry]) === entries[entry]
+        entry in config.globals &&
+        normalizeGlobValue(config.globals[entry]) === entries[entry]
     );
     if (search.length === matches.length) {
       if (config.env === undefined) {
