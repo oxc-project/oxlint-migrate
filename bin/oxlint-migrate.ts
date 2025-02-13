@@ -2,7 +2,7 @@
 
 import { program } from 'commander';
 import { getAutodetectedEslintConfigName } from './autoDetectConfigFile.js';
-import { existsSync } from 'fs';
+import { existsSync, renameSync, writeFileSync } from 'fs';
 import main from '../src/index.js';
 import path from 'path';
 
@@ -15,20 +15,30 @@ program
 program.parse();
 
 let [filePath] = program.args;
+let cwd = process.cwd();
 
 if (filePath === '') {
-  filePath = getAutodetectedEslintConfigName() ?? '';
+  filePath = getAutodetectedEslintConfigName(cwd) ?? '';
 } else {
-  filePath = path.join(process.cwd(), filePath);
+  filePath = path.join(cwd, filePath);
 }
 
 if (!existsSync(filePath)) {
   // check for failed auto detection
   program.error(`eslint config file not found: ${filePath}`);
 } else {
-  console.log(filePath);
   const eslintConfigs = await import(filePath);
-  const oxlintConfig = await main(eslintConfigs, console.warn);
 
-  console.log(oxlintConfig);
+  const oxlintConfig =
+    'default' in eslintConfigs
+      ? await main(eslintConfigs.default, console.warn)
+      : await main(eslintConfigs, console.warn);
+
+  const oxlintFilePath = path.join(cwd, '.oxlintrc.json');
+
+  if (existsSync(oxlintFilePath)) {
+    renameSync(oxlintFilePath, `${oxlintFilePath}.bak`);
+  }
+
+  writeFileSync(oxlintFilePath, JSON.stringify(oxlintConfig, null, 2));
 }

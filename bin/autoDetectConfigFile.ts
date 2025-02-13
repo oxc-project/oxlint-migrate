@@ -11,9 +11,9 @@ const FLAT_CONFIG_FILENAMES = [
   'eslint.config.cts',
 ];
 
-export const getAutodetectedEslintConfigName = (): string | undefined => {
-  const cwd = process.cwd();
-
+export const getAutodetectedEslintConfigName = (
+  cwd: string
+): string | undefined => {
   for (const filename of FLAT_CONFIG_FILENAMES) {
     const filePath = path.join(cwd, filename);
     if (existsSync(filePath)) {

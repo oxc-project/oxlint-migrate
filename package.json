@@ -15,7 +15,7 @@
     "type-check": "tsc --noEmit",
     "test": "vitest",
     "build": "vite build",
-    "manual-test": "pnpm build; chmod +x dist/bin/oxlint-migrate.mjs; npx . config-path.js"
+    "manual-test": "pnpm build; chmod +x dist/bin/oxlint-migrate.mjs; npx . integration_test/projects/autoprefixer.eslint.config.mjs"
   },
   "files": [
     "bin/*",

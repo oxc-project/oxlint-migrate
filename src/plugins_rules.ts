@@ -21,7 +21,7 @@ export const transformRuleEntry = (
   targetConfig: OxlintConfigOrOverride,
   reporter: Reporter
 ): void => {
-  if (eslintConfig.rules == undefined) {
+  if (eslintConfig.rules === undefined) {
     return;
   }
 
