@@ -100,7 +100,7 @@ export const detectEnvironmentByGlobals = (config: OxlintConfig) => {
 export const transformEnvAndGlobals = (
   eslintConfig: Linter.Config,
   targetConfig: OxlintConfigOrOverride,
-  reporter: Reporter
+  reporter?: Reporter
 ): void => {
   if (
     eslintConfig.languageOptions?.parser !== undefined &&
@@ -128,8 +128,6 @@ export const transformEnvAndGlobals = (
       targetConfig.globals = {};
     }
 
-    // ToDo: we are only appending globals to the main config
-    // overrides configs are not able to
     if (eslintConfig.languageOptions?.ecmaVersion === 'latest') {
       if (targetConfig.env === undefined) {
         targetConfig.env = {};
