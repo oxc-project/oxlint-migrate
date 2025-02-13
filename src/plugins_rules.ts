@@ -61,6 +61,7 @@ export const detectNeededRulesPlugins = (
 
   for (const rule of Object.keys(targetConfig.rules)) {
     // eslint rule has no / prefix and is supported by oxlint out of the box
+    // ToDo: not every rule
     if (!rule.includes('/')) {
       continue;
     }

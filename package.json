@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "bin": {
-    "oxlint-migrate": "./bin/oxlint-migrate.ts"
+    "oxlint-migrate": "./dist/bin/oxlint-migrate.mjs"
   },
   "packageManager": "pnpm@9.15.0",
   "scripts": {
@@ -13,8 +13,14 @@
     "generate": "node --import @oxc-node/core/register ./scripts/generate.ts",
     "format": "npx prettier --write .",
     "type-check": "tsc --noEmit",
-    "test": "vitest"
+    "test": "vitest",
+    "build": "vite build",
+    "manual-test": "pnpm build; chmod +x dist/bin/oxlint-migrate.mjs; npx . config-path.js"
   },
+  "files": [
+    "bin/*",
+    "README.md"
+  ],
   "keywords": [
     "oxc",
     "oxlint",
@@ -32,6 +38,7 @@
     "oxlint": "^0.15.10",
     "prettier": "^3.5.0",
     "typescript": "^5.7.3",
+    "vite": "^6.1.0",
     "vite-plugin-dts": "^4.5.0",
     "vitest": "^3.0.5"
   },

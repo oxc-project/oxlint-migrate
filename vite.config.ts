@@ -9,13 +9,17 @@ export default defineConfig({
     },
   },
   build: {
+    target: 'node18',
     lib: {
-      entry: [path.resolve(import.meta.dirname, 'src/index.ts')],
-      fileName: (format, entryName) => {
-        return `${entryName}.${format === 'es' ? 'mjs' : 'cjs'}`;
+      entry: [
+        path.resolve(import.meta.dirname, 'src/index.ts'),
+        path.resolve(import.meta.dirname, 'bin/oxlint-migrate.ts'),
+      ],
+      fileName: (_format, entryName) => {
+        return `${entryName}.mjs`;
       },
       name: 'eslint-to-oxlint-generator',
-      formats: ['cjs', 'es'],
+      formats: ['es'],
     },
     rollupOptions: {
       external: (id: string) => !id.startsWith('.') && !path.isAbsolute(id),
