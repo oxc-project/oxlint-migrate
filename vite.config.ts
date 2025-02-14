@@ -18,7 +18,7 @@ export default defineConfig({
       fileName: (_format, entryName) => {
         return `${entryName}.mjs`;
       },
-      name: 'eslint-to-oxlint-generator',
+      name: 'oxlint-migrate',
       formats: ['es'],
     },
     rollupOptions: {
