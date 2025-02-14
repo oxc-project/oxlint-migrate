@@ -6,7 +6,10 @@
   "bin": {
     "oxlint-migrate": "./dist/bin/oxlint-migrate.mjs"
   },
-  "packageManager": "pnpm@9.15.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/oxc-project/oxlint-migrate"
+  },
   "scripts": {
     "prepare": "husky",
     "generate": "node --import @oxc-node/core/register ./scripts/generate.ts",
@@ -61,5 +64,6 @@
   },
   "peerDependencies": {
     "eslint": "^9"
-  }
+  },
+  "packageManager": "pnpm@9.15.0"
 }
