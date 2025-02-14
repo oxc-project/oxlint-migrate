@@ -18,7 +18,7 @@
     "manual-test": "pnpm build; chmod +x dist/bin/oxlint-migrate.mjs; npx . integration_test/projects/autoprefixer.eslint.config.mjs"
   },
   "files": [
-    "bin/*",
+    "dist/*",
     "README.md"
   ],
   "keywords": [
