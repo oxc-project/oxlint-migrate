@@ -1,5 +1,9 @@
 # oxlint-migrate
 
+![test](https://github.com/oxc-project/oxlint-migrate/actions/workflows/test.yml/badge.svg)
+[![NPM Version](https://img.shields.io/npm/v/%40oxlint%2Fmigrate)](https://www.npmjs.com/package/@oxlint/migrate)
+[![NPM Downloads](https://img.shields.io/npm/dm/%40oxlint%2Fmigrate)](https://www.npmjs.com/package/@oxlint/migrate)
+
 Generates a `.oxlintrc.json` from a existing eslint v9 configuration
 
 🚧 Still under development
