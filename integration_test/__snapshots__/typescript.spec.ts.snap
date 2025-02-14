@@ -3,6 +3,7 @@
 exports[`typescript > typescript 1`] = `
 {
   "config": {
+    "$schema": "./node_modules/oxlint/configuration_schema.json",
     "categories": {
       "correctness": "off",
     },

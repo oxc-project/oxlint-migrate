@@ -3,6 +3,7 @@
 exports[`autoprefixer > autoprefixer 1`] = `
 {
   "config": {
+    "$schema": "./node_modules/oxlint/configuration_schema.json",
     "categories": {
       "correctness": "off",
     },

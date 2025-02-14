@@ -13,6 +13,7 @@ describe('main', () => {
     ]);
 
     expect(result).toStrictEqual({
+      $schema: './node_modules/oxlint/configuration_schema.json',
       categories: {
         correctness: 'off',
       },
@@ -41,6 +42,7 @@ describe('main', () => {
     ]);
 
     expect(result).toStrictEqual({
+      $schema: './node_modules/oxlint/configuration_schema.json',
       categories: {
         correctness: 'off',
       },
@@ -72,6 +74,7 @@ describe('main', () => {
     ]);
 
     expect(result).toStrictEqual({
+      $schema: './node_modules/oxlint/configuration_schema.json',
       categories: {
         correctness: 'off',
       },
@@ -111,6 +114,7 @@ describe('main', () => {
     ]);
 
     expect(result).toStrictEqual({
+      $schema: './node_modules/oxlint/configuration_schema.json',
       categories: {
         correctness: 'off',
       },
@@ -144,6 +148,7 @@ describe('main', () => {
     // we can not be sure that es2022 is supported, when no ecmaVersion is provided
     // the match in globals package could possible detect es2021 support.
     expect(result).toStrictEqual({
+      $schema: './node_modules/oxlint/configuration_schema.json',
       categories: {
         correctness: 'off',
       },

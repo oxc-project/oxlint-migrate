@@ -16,6 +16,7 @@ const buildConfig = (
   reporter: Reporter
 ): OxlintConfig => {
   const oxlintConfig: OxlintConfig = {
+    $schema: './node_modules/oxlint/configuration_schema.json',
     // disable all plugins and check later
     plugins: [],
     env: {
