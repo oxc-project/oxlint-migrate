@@ -6,7 +6,7 @@ Generates a `.oxlintrc.json` from a existing eslint v9 configuration
 
 ## Usage
 
-`pnpm install @oxlint/migrate`
+`pnpm install @oxlint/migrate`  
 `npx oxlint-migrate <optional-eslint-v9-config-path>`
 
 When no config file provided, the script searches for the default eslint config filenames in the current directory.
