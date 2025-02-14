@@ -28,8 +28,6 @@ const isEqualDeep = <T>(a: T, b: T): boolean => {
 const TS_ESLINT_DEFAULT_OVERRIDE: OxlintConfigOverride = {
   files: ['**/*.ts', '**/*.tsx', '**/*.mts', '**/*.cts'],
   rules: {
-    'constructor-super': 'off',
-    'getter-return': 'off',
     'no-class-assign': 'off',
     'no-const-assign': 'off',
     'no-dupe-class-members': 'off',
@@ -41,8 +39,6 @@ const TS_ESLINT_DEFAULT_OVERRIDE: OxlintConfigOverride = {
     'no-redeclare': 'off',
     'no-setter-return': 'off',
     'no-this-before-super': 'off',
-    'no-undef': 'off',
-    'no-unreachable': 'off',
     'no-unsafe-negation': 'off',
     'no-var': 'error',
     'prefer-rest-params': 'error',

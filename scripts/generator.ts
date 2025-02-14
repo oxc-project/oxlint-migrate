@@ -25,6 +25,15 @@ export class RulesGenerator {
       .join(',\n');
     code += '\n]\n\n';
 
+    code += 'export const nurseryRules = [\n';
+    code += rulesArray
+      .filter((rule) => rule.category === 'nursery')
+      .map((rule) => {
+        return `  '${rule.value.replaceAll('_', '-')}'`;
+      })
+      .join(',\n');
+    code += '\n]\n\n';
+
     code += 'export default rules;\n';
 
     return code;

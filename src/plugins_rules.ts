@@ -1,5 +1,5 @@
 import type { Linter } from 'eslint';
-import rules from './generated/rules.js';
+import rules, { nurseryRules } from './generated/rules.js';
 import { OxlintConfigOrOverride, Reporter } from './types.js';
 import { rulesPrefixesForPlugins } from './constants.js';
 
@@ -19,7 +19,7 @@ const isActiveValue = (value: unknown) =>
 export const transformRuleEntry = (
   eslintConfig: Linter.Config,
   targetConfig: OxlintConfigOrOverride,
-  reporter: Reporter
+  reporter?: Reporter
 ): void => {
   if (eslintConfig.rules === undefined) {
     return;
@@ -37,6 +37,13 @@ export const transformRuleEntry = (
     // ToDo: typescript uses `ts/no-unused-expressions`. New Namespace?
     // ToDo: maybe if it is nursery
     if (rules.includes(rule)) {
+      // ToDo: enable via flag
+      if (nurseryRules.includes(rule)) {
+        reporter !== undefined &&
+          reporter(`unsupported rule, but in development: ${rule}`);
+        continue;
+      }
+
       targetConfig.rules[rule] = config;
     } else {
       // ToDo: maybe use a force flag when some enabled rules are detected?

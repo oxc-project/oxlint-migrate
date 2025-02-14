@@ -252,32 +252,9 @@ exports[`vscode > vscode 1`] = `
           ],
         },
       },
-      {
-        "files": [
-          "src/**/electron-utility/**/*.ts",
-        ],
-        "rules": {
-          "no-restricted-imports": [
-            "warn",
-            {
-              "paths": [
-                {
-                  "allowImportNames": [
-                    "net",
-                    "system-preferences",
-                  ],
-                  "message": "Only net and system-preferences are allowed to be imported from electron",
-                  "name": "electron",
-                },
-              ],
-            },
-          ],
-        },
-      },
     ],
     "plugins": [],
     "rules": {
-      "constructor-super": "warn",
       "eqeqeq": "warn",
       "no-async-promise-executor": "warn",
       "no-caller": "warn",
@@ -309,6 +286,7 @@ exports[`vscode > vscode 1`] = `
   },
   "warnings": [
     "ignore allow list is currently not supported: !.vscode",
+    "unsupported rule, but in development: constructor-super",
     "unsupported rule: curly",
     "unsupported rule: prefer-const",
     "unsupported rule: no-buffer-constructor",
@@ -324,6 +302,7 @@ exports[`vscode > vscode 1`] = `
     "unsupported rule: jsdoc/require-jsdoc",
     "unsupported rule: jsdoc/check-param-names",
     "unsupported rule: no-restricted-syntax",
+    "unsupported rule, but in development: no-restricted-imports",
     "unsupported rule: @typescript-eslint/naming-convention",
     "unsupported rule: comma-dangle",
     "unsupported rule: @typescript-eslint/naming-convention",

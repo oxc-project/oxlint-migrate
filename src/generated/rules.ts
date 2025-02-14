@@ -527,4 +527,20 @@ const rules = [
   'vitest/valid-expect',
 ];
 
+export const nurseryRules = [
+  'constructor-super',
+  'getter-return',
+  'no-restricted-imports',
+  'no-undef',
+  'no-unreachable',
+  'import/export',
+  'import/named',
+  'oxc/no-map-spread',
+  'promise/no-return-in-finally',
+  'react-hooks/exhaustive-deps',
+  'react/require-render-return',
+  '@typescript-eslint/consistent-type-imports',
+  '@typescript-eslint/no-restricted-imports',
+];
+
 export default rules;
