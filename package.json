@@ -62,8 +62,5 @@
     "commander": "^13.1.0",
     "globals": "^15.15.0"
   },
-  "peerDependencies": {
-    "eslint": "^9"
-  },
   "packageManager": "pnpm@9.15.0"
 }
