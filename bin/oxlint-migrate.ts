@@ -10,7 +10,7 @@ program
   .name('oxlint-migrate')
   .version('0.0.0')
   // ToDo lazy auto detect it
-  .argument('<eslint-config>', 'The path to the eslint v9 config file');
+  .argument('<eslint-config>', 'The path to the eslint v9 config file', '');
 
 program.parse();
 
