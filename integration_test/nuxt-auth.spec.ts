@@ -1,4 +1,5 @@
 import { expect, test } from 'vitest';
+// @ts-ignore
 import nuxt_auth_test from './projects/nuxt-auth.eslint.config.js';
 import { getSnapshotResult } from './utils.js';
 

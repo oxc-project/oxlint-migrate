@@ -30,15 +30,26 @@
   "author": "Sysix <sysix@sysix-coding.de>",
   "license": "MIT",
   "devDependencies": {
+    "@antfu/eslint-config": "^4.2.0",
+    "@logux/eslint-config": "^53.5.1",
     "@oxc-node/core": "^0.0.19",
-    "@types/node": "^22.13.1",
+    "@stylistic/eslint-plugin-ts": "^3.1.0",
+    "@types/eslint-config-prettier": "^6.11.3",
+    "@types/node": "^22.13.4",
     "@vitest/coverage-v8": "^3.0.5",
     "eslint": "^9.20.1",
+    "eslint-config-prettier": "^10.0.1",
+    "eslint-plugin-header": "^3.1.1",
+    "eslint-plugin-local": "^6.0.0",
+    "eslint-plugin-oxlint": "^0.15.10",
+    "eslint-plugin-regexp": "^2.7.0",
+    "globals": "^15.14.0",
     "husky": "^9.1.7",
     "lint-staged": "^15.4.3",
     "oxlint": "^0.15.10",
-    "prettier": "^3.5.0",
+    "prettier": "^3.5.1",
     "typescript": "^5.7.3",
+    "typescript-eslint": "^8.24.0",
     "vite": "^6.1.0",
     "vite-plugin-dts": "^4.5.0",
     "vitest": "^3.0.5"
@@ -48,6 +59,9 @@
   },
   "dependencies": {
     "commander": "^13.1.0",
-    "globals": "^15.14.0"
+    "globals": "^15.15.0"
+  },
+  "peerDependencies": {
+    "eslint": "^9.20.1"
   }
 }

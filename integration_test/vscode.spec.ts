@@ -1,4 +1,5 @@
 import { expect, test } from 'vitest';
+// @ts-ignore
 import vscode_test from './projects/vscode.eslint.config.js';
 import { getSnapshotResult } from './utils.js';
 
