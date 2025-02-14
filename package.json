@@ -43,7 +43,6 @@
     "eslint-plugin-local": "^6.0.0",
     "eslint-plugin-oxlint": "^0.15.10",
     "eslint-plugin-regexp": "^2.7.0",
-    "globals": "^15.14.0",
     "husky": "^9.1.7",
     "lint-staged": "^15.4.3",
     "oxlint": "^0.15.10",
