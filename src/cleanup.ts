@@ -1,6 +1,7 @@
 import {
   ES_VERSIONS,
   removeGlobalsWithAreCoveredByEnv,
+  transformBoolGlobalToString,
 } from './env_globals.js';
 import {
   OxlintConfigOrOverride,
@@ -128,6 +129,7 @@ const cleanUpUselessOverridesEntries = (config: OxlintConfig): void => {
 
 export const cleanUpOxlintConfig = (config: OxlintConfigOrOverride): void => {
   removeGlobalsWithAreCoveredByEnv(config);
+  transformBoolGlobalToString(config);
 
   // no entries in globals, we can remove the globals key
   if (

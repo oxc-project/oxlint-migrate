@@ -123,8 +123,8 @@ describe('main', () => {
         Bar: 'readable',
         Bar2: 'writeable',
         Baz: 'off',
-        Bux: true,
-        Bux2: false,
+        Bux: 'writable',
+        Bux2: 'readonly',
       },
       plugins: [],
     });

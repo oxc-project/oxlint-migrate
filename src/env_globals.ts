@@ -1,5 +1,5 @@
 import globals from 'globals';
-import { OxlintConfig, OxlintConfigOrOverride, Reporter } from './types.js';
+import { OxlintConfigOrOverride, Reporter } from './types.js';
 import type { Linter } from 'eslint';
 
 export const ES_VERSIONS = [
@@ -51,7 +51,9 @@ const normalizeGlobValue = (value: Linter.GlobalConf): boolean | undefined => {
 
 // In Eslint v9 there are no envs and all are build in with `globals` package
 // we look what environment is supported and remove all globals which fall under it
-export const removeGlobalsWithAreCoveredByEnv = (config: OxlintConfig) => {
+export const removeGlobalsWithAreCoveredByEnv = (
+  config: OxlintConfigOrOverride
+) => {
   if (config.globals === undefined || config.env === undefined) {
     return;
   }
@@ -68,7 +70,21 @@ export const removeGlobalsWithAreCoveredByEnv = (config: OxlintConfig) => {
   }
 };
 
-export const detectEnvironmentByGlobals = (config: OxlintConfig) => {
+export const transformBoolGlobalToString = (config: OxlintConfigOrOverride) => {
+  if (config.globals === undefined) {
+    return;
+  }
+
+  for (const [entry, value] of Object.entries(config.globals)) {
+    if (value === false) {
+      config.globals[entry] = 'readonly';
+    } else if (value === true) {
+      config.globals[entry] = 'writable';
+    }
+  }
+};
+
+export const detectEnvironmentByGlobals = (config: OxlintConfigOrOverride) => {
   if (config.globals === undefined) {
     return;
   }
