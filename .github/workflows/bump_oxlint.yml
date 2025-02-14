@@ -36,7 +36,7 @@ jobs:
         continue-on-error: true # we check in PR why it fails
         run: pnpm run test -u # Update test snapshots
 
-      - name: Bump oxlint rules
+      - name: Bump Version
         env:
           OXLINT_VERSION: ${{ inputs.version }}
         run: npm version ${OXLINT_VERSION} --no-git-tag-version
