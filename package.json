@@ -1,6 +1,6 @@
 {
   "name": "@oxlint/migrate",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Generates a `.oxlintrc.json` from a existing eslint v9 configuration",
   "type": "module",
   "bin": {
