@@ -14,7 +14,7 @@ export type OxlintConfigOverride = {
 };
 
 export type OxlintConfig = {
-  $schema: string;
+  $schema?: string;
   env?: OxlintConfigEnv;
   globals?: Linter.Globals;
   plugins?: OxlintConfigPlugins;
