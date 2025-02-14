@@ -8,7 +8,7 @@ Generates a `.oxlintrc.json` from a existing eslint v9 configuration
 
 `npx oxlint-migrate <optional-eslint-v9-config-path>`
 
-When no config file provided, we look at the default eslint config filenames in the current directory.
+When no config file provided, the script searches for the default eslint config filenames in the current directory.
 
 ### User Flow
 
