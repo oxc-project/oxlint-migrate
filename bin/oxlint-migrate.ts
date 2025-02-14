@@ -5,11 +5,11 @@ import { getAutodetectedEslintConfigName } from './autoDetectConfigFile.js';
 import { existsSync, renameSync, writeFileSync } from 'fs';
 import main from '../src/index.js';
 import path from 'path';
+import packageJson from '../package.json' assert { type: 'json' };
 
 program
   .name('oxlint-migrate')
-  .version('0.0.0')
-  // ToDo lazy auto detect it
+  .version(packageJson.version)
   .argument('<eslint-config>', 'The path to the eslint v9 config file', '');
 
 program.parse();
@@ -19,6 +19,10 @@ let cwd = process.cwd();
 
 if (filePath === '') {
   filePath = getAutodetectedEslintConfigName(cwd) ?? '';
+
+  if (filePath === '') {
+    program.error(`could not autodetect eslint config file`);
+  }
 } else {
   filePath = path.join(cwd, filePath);
 }
