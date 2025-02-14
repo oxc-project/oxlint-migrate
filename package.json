@@ -1,8 +1,8 @@
 {
   "name": "@oxlint/migrate",
   "version": "0.0.1",
-  "description": "",
-  "main": "index.js",
+  "description": "Generates a `.oxlintrc.json` from a existing eslint v9 configuration",
+  "main": "dist/bin/oxlint-migrate.mjs",
   "type": "module",
   "bin": {
     "oxlint-migrate": "./dist/bin/oxlint-migrate.mjs"
