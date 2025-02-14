@@ -369,10 +369,6 @@ exports[`autoprefixer > autoprefixer 1`] = `
     "unsupported rule: prefer-arrow-callback",
     "unsupported rule: prefer-let/prefer-let",
     "unsupported rule: promise/no-multiple-resolved",
-    "unsupported plugin for rule: import/first",
-    "unsupported plugin for rule: import/no-duplicates",
-    "unsupported plugin for rule: import/no-named-default",
-    "unsupported plugin for rule: import/no-webpack-loader-syntax",
   ],
 }
 `;

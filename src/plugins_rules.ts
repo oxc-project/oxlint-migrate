@@ -49,7 +49,7 @@ export const transformRuleEntry = (
 
 export const detectNeededRulesPlugins = (
   targetConfig: OxlintConfigOrOverride,
-  reporter: Reporter
+  reporter?: Reporter
 ): void => {
   if (targetConfig.rules === undefined) {
     return;
@@ -68,11 +68,10 @@ export const detectNeededRulesPlugins = (
 
     let found = false;
     for (const [prefix, plugin] of Object.entries(rulesPrefixesForPlugins)) {
-      if (
-        rule.startsWith(`${prefix}/`) &&
-        !targetConfig.plugins.includes(plugin)
-      ) {
-        targetConfig.plugins.push(plugin);
+      if (rule.startsWith(`${prefix}/`)) {
+        if (!targetConfig.plugins.includes(plugin)) {
+          targetConfig.plugins.push(plugin);
+        }
         found = true;
       }
     }
