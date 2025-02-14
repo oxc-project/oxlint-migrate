@@ -31,6 +31,11 @@ jobs:
           VERSION=$(echo "${COMMIT_MESSAGE}" | grep -oP 'release: \Kv[0-9]+\.[0-9]+\.[0-9]+')
           echo "VERSION=$VERSION" >> $GITHUB_ENV
 
+      - name: Publish to NPM
+        run: npm publish --tag latest --provenance --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
       - name: Create and push tag
         run: |
           git tag ${VERSION}
@@ -40,8 +45,3 @@ jobs:
         continue-on-error: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Publish to NPM
-        run: npm publish --tag latest --provenance --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
