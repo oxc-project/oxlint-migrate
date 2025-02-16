@@ -1,5 +1,6 @@
 import { describe, expect, test } from 'vitest';
 import {
+  cleanUpUselessOverridesEnv,
   detectEnvironmentByGlobals,
   removeGlobalsWithAreCoveredByEnv,
   transformEnvAndGlobals,
@@ -67,6 +68,35 @@ describe('transformEnvAndGlobals', () => {
       env: {
         es2025: true,
       },
+    });
+  });
+
+  test('cleanUpUselessOverridesEnv', () => {
+    const config: OxlintConfig = {
+      env: {
+        es2024: true,
+      },
+      overrides: [
+        {
+          files: [],
+          env: {
+            es2024: true,
+          },
+        },
+      ],
+    };
+
+    cleanUpUselessOverridesEnv(config);
+
+    expect(config).toStrictEqual({
+      env: {
+        es2024: true,
+      },
+      overrides: [
+        {
+          files: [],
+        },
+      ],
     });
   });
 });
