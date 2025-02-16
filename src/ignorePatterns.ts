@@ -4,7 +4,7 @@ import { OxlintConfigOrOverride, Reporter } from './types.js';
 export const transformIgnorePatterns = (
   eslintConfig: Linter.Config,
   targetConfig: OxlintConfigOrOverride,
-  reporter: Reporter
+  reporter?: Reporter
 ) => {
   if (eslintConfig.ignores === undefined) {
     return;

@@ -13,7 +13,7 @@ import {
 
 const buildConfig = (
   configs: Linter.Config[],
-  reporter: Reporter
+  reporter?: Reporter
 ): OxlintConfig => {
   const oxlintConfig: OxlintConfig = {
     $schema: './node_modules/oxlint/configuration_schema.json',
@@ -84,7 +84,7 @@ const main = async (
     | Linter.Config[]
     | Promise<Linter.Config>
     | Promise<Linter.Config[]>,
-  reporter: Reporter = undefined
+  reporter?: Reporter
 ): Promise<OxlintConfig> => {
   const resolved = await Promise.resolve(configs);
 

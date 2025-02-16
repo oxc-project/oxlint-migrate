@@ -26,4 +26,4 @@ export type OxlintConfig = {
 
 export type OxlintConfigOrOverride = OxlintConfig | OxlintConfigOverride;
 
-export type Reporter = ((warning: string) => void) | undefined;
+export type Reporter = (warning: string) => void;
