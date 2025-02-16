@@ -1,7 +1,7 @@
 {
   "name": "@oxlint/migrate",
   "version": "0.0.4",
-  "description": "Generates a `.oxlintrc.json` from a existing eslint v9 configuration",
+  "description": "Generates a `.oxlintrc.json` from a existing eslint flat config",
   "type": "module",
   "bin": {
     "oxlint-migrate": "./dist/bin/oxlint-migrate.mjs"
