@@ -4,7 +4,7 @@
 [![NPM Version](https://img.shields.io/npm/v/%40oxlint%2Fmigrate)](https://www.npmjs.com/package/@oxlint/migrate)
 [![NPM Downloads](https://img.shields.io/npm/dm/%40oxlint%2Fmigrate)](https://www.npmjs.com/package/@oxlint/migrate)
 
-Generates a `.oxlintrc.json` from a existing eslint v9 configuration
+Generates a `.oxlintrc.json` from a existing eslint flat config.
 
 🚧 Still under development
 
@@ -12,7 +12,7 @@ Generates a `.oxlintrc.json` from a existing eslint v9 configuration
 
 ```shell
 pnpm install @oxlint/migrate
-npx oxlint-migrate <optional-eslint-v9-config-path>
+npx oxlint-migrate <optional-eslint-flat-config-path>
 ```
 
 When no config file provided, the script searches for the default eslint config filenames in the current directory.
