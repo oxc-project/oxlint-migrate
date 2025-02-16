@@ -1,5 +1,5 @@
 import globals from 'globals';
-import { OxlintConfigOrOverride, Reporter } from './types.js';
+import { OxlintConfig, OxlintConfigOrOverride, Reporter } from './types.js';
 import type { Linter } from 'eslint';
 
 export const ES_VERSIONS = [
@@ -156,6 +156,33 @@ export const transformEnvAndGlobals = (
         targetConfig.env = {};
       }
       targetConfig.env[`es${eslintConfig.languageOptions?.ecmaVersion}`] = true;
+    }
+  }
+};
+
+export const cleanUpUselessOverridesEnv = (config: OxlintConfig): void => {
+  if (config.env === undefined || config.overrides === undefined) {
+    return;
+  }
+
+  for (const override of config.overrides) {
+    if (override.env === undefined) {
+      continue;
+    }
+
+    for (const [overrideEnv, overrideEnvConfig] of Object.entries(
+      override.env
+    )) {
+      if (
+        overrideEnv in config.env &&
+        config.env[overrideEnv] === overrideEnvConfig
+      ) {
+        delete override.env[overrideEnv];
+      }
+    }
+
+    if (Object.keys(override.env).length === 0) {
+      delete override.env;
     }
   }
 };

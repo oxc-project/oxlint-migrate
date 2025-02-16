@@ -158,9 +158,6 @@ exports[`nuxt-auth > nuxt-auth 1`] = `
           "no-unused-expressions": "off",
           "no-unused-vars": "off",
           "no-useless-constructor": "off",
-          "no-var": "error",
-          "prefer-rest-params": "error",
-          "prefer-spread": "error",
         },
       },
       {
@@ -182,7 +179,6 @@ exports[`nuxt-auth > nuxt-auth 1`] = `
         ],
         "rules": {
           "no-alert": "off",
-          "no-console": "off",
           "no-labels": "off",
           "no-lone-blocks": "off",
           "no-unused-expressions": "off",
@@ -193,36 +189,10 @@ exports[`nuxt-auth > nuxt-auth 1`] = `
       },
       {
         "files": [
-          "**/scripts/**/*.?([cm])[jt]s?(x)",
-        ],
-        "rules": {
-          "no-console": "off",
-        },
-      },
-      {
-        "files": [
-          "**/cli/**/*.?([cm])[jt]s?(x)",
-          "**/cli.?([cm])[jt]s?(x)",
-        ],
-        "rules": {
-          "no-console": "off",
-        },
-      },
-      {
-        "files": [
           "**/*.d.?([cm])ts",
         ],
         "rules": {
           "import/no-duplicates": "off",
-        },
-      },
-      {
-        "files": [
-          "**/*.config.?([cm])[jt]s?(x)",
-          "**/*.config.*.?([cm])[jt]s?(x)",
-        ],
-        "rules": {
-          "no-console": "off",
         },
       },
     ],

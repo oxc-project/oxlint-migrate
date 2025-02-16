@@ -1,8 +1,13 @@
 import {
+  cleanUpUselessOverridesEnv,
   ES_VERSIONS,
   removeGlobalsWithAreCoveredByEnv,
   transformBoolGlobalToString,
 } from './env_globals.js';
+import {
+  cleanUpUselessOverridesPlugins,
+  cleanUpUselessOverridesRules,
+} from './plugins_rules.js';
 import {
   OxlintConfigOrOverride,
   OxlintConfig,
@@ -44,6 +49,7 @@ const TS_ESLINT_DEFAULT_OVERRIDE: OxlintConfigOverride = {
     'prefer-rest-params': 'error',
     'prefer-spread': 'error',
   },
+  plugins: [],
 };
 
 const cleanUpDefaultTypeScriptOverridesForEslint = (
@@ -65,58 +71,34 @@ const cleanUpDefaultTypeScriptOverridesForEslint = (
   // @ts-ignore -- TS Gods please help me to survive this madness
   indexesToDelete.forEach((index) => delete config.overrides![index]);
 
+  config.overrides = config.overrides.filter(
+    (overrides) => Object.keys(overrides).length > 0
+  );
+
   if (Object.keys(config.overrides).length === 0) {
     delete config.overrides;
   }
 };
 
 const cleanUpUselessOverridesEntries = (config: OxlintConfig): void => {
+  cleanUpUselessOverridesRules(config);
+  cleanUpUselessOverridesPlugins(config);
+  cleanUpUselessOverridesEnv(config);
+
   if (config.overrides === undefined) {
     return;
+  }
+
+  for (const overrideIndex in config.overrides) {
+    // the only key left is
+    if (Object.keys(config.overrides[overrideIndex]).length === 1) {
+      delete config.overrides[overrideIndex];
+    }
   }
 
   config.overrides = config.overrides.filter(
     (overrides) => Object.keys(overrides).length > 0
   );
-
-  if (config.plugins !== undefined) {
-    for (const override of config.overrides) {
-      if (override.plugins === undefined) {
-        continue;
-      }
-
-      override.plugins = override.plugins.filter(
-        (overridePlugin) => !config.plugins!.includes(overridePlugin)
-      );
-
-      if (override.plugins.length === 0) {
-        delete override.plugins;
-      }
-    }
-  }
-
-  if (config.env !== undefined) {
-    for (const override of config.overrides) {
-      if (override.env === undefined) {
-        continue;
-      }
-
-      for (const [overrideEnv, overrideEnvConfig] of Object.entries(
-        override.env
-      )) {
-        if (
-          overrideEnv in config.env &&
-          config.env[overrideEnv] === overrideEnvConfig
-        ) {
-          delete override.env[overrideEnv];
-        }
-      }
-
-      if (Object.keys(override.env).length === 0) {
-        delete override.env;
-      }
-    }
-  }
 
   if (config.overrides.length === 0) {
     delete config.overrides;
@@ -153,24 +135,7 @@ export const cleanUpOxlintConfig = (config: OxlintConfigOrOverride): void => {
     }
   }
 
-  if (config.rules !== undefined && Object.keys(config.rules).length === 0) {
-    delete config.rules;
-  }
-
-  if ('files' in config) {
-    if (
-      config.plugins !== undefined &&
-      Object.keys(config.plugins).length === 0
-    ) {
-      delete config.plugins;
-    }
-
-    // the only key left is
-    if (Object.keys(config).length === 1) {
-      // @ts-ignore -- what?
-      delete config.files;
-    }
-  } else {
+  if (!('files' in config)) {
     cleanUpDefaultTypeScriptOverridesForEslint(config);
     cleanUpUselessOverridesEntries(config);
   }

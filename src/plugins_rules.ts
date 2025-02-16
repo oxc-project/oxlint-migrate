@@ -1,6 +1,6 @@
 import type { Linter } from 'eslint';
 import rules, { nurseryRules } from './generated/rules.js';
-import { OxlintConfigOrOverride, Reporter } from './types.js';
+import { OxlintConfig, OxlintConfigOrOverride, Reporter } from './types.js';
 import { rulesPrefixesForPlugins } from './constants.js';
 
 /**
@@ -86,6 +86,50 @@ export const detectNeededRulesPlugins = (
     if (!found) {
       reporter !== undefined &&
         reporter(`unsupported plugin for rule: ${rule}`);
+    }
+  }
+};
+
+export const cleanUpUselessOverridesPlugins = (config: OxlintConfig): void => {
+  if (config.overrides === undefined) {
+    return;
+  }
+
+  if (config.plugins !== undefined) {
+    for (const override of config.overrides) {
+      if (override.plugins === undefined) {
+        continue;
+      }
+
+      override.plugins = override.plugins.filter(
+        (overridePlugin) => !config.plugins!.includes(overridePlugin)
+      );
+
+      if (override.plugins.length === 0) {
+        delete override.plugins;
+      }
+    }
+  }
+};
+export const cleanUpUselessOverridesRules = (config: OxlintConfig): void => {
+  if (config.rules === undefined || config.overrides === undefined) {
+    return;
+  }
+
+  for (const override of config.overrides) {
+    if (override.rules === undefined) {
+      continue;
+    }
+
+    for (const [rule, settings] of Object.entries(override.rules)) {
+      // when they are the same, delete inside override
+      if (config.rules[rule] === settings) {
+        delete override.rules[rule];
+      }
+    }
+
+    if (Object.keys(override.rules).length === 0) {
+      delete override.rules;
     }
   }
 };
