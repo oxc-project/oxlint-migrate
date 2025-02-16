@@ -4,6 +4,13 @@ import nuxt_auth_test from './projects/nuxt-auth.eslint.config.js';
 import { getSnapshotResult } from './utils.js';
 
 test('nuxt-auth', async () => {
-  const result = await getSnapshotResult(nuxt_auth_test);
+  // https://github.com/antfu/eslint-config?tab=readme-ov-file#plugins-renaming
+  const result = await getSnapshotResult(
+    nuxt_auth_test.renamePlugins({
+      ts: '@typescript-eslint',
+      n: 'node',
+      test: 'vitest',
+    })
+  );
   expect(result).toMatchSnapshot('nuxt-auth');
 });

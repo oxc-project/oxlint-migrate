@@ -12,6 +12,7 @@ export const getSnapshotResult = async (config: Parameters<typeof main>[0]) => {
       .filter((error) => !error.startsWith('unsupported rule: perfectionist/'))
       .filter((error) => !error.startsWith('unsupported rule: vue/'))
       .filter((error) => !error.startsWith('unsupported rule: regexp/'))
-      .filter((error) => !error.startsWith('unsupported rule: toml/')),
+      .filter((error) => !error.startsWith('unsupported rule: toml/'))
+      .filter((error) => !error.startsWith('unsupported rule: style/')),
   };
 };
