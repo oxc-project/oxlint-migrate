@@ -48,6 +48,9 @@ importers:
       eslint-plugin-header:
         specifier: ^3.1.1
         version: 3.1.1(eslint@9.20.1)
+      eslint-plugin-jsdoc:
+        specifier: ^50.6.3
+        version: 50.6.3(eslint@9.20.1)
       eslint-plugin-local:
         specifier: ^6.0.0
         version: 6.0.0(eslint@9.20.1)
