@@ -33,7 +33,7 @@
   "license": "MIT",
   "devDependencies": {
     "@antfu/eslint-config": "^4.2.0",
-    "@logux/eslint-config": "^53.5.1",
+    "@logux/eslint-config": "^54.0.0",
     "@oxc-node/core": "^0.0.19",
     "@stylistic/eslint-plugin-ts": "^3.1.0",
     "@types/eslint-config-prettier": "^6.11.3",
@@ -62,5 +62,5 @@
     "commander": "^13.1.0",
     "globals": "^15.15.0"
   },
-  "packageManager": "pnpm@9.15.0"
+  "packageManager": "pnpm@10.4.1"
 }
