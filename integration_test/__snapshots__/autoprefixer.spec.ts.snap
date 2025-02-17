@@ -242,6 +242,7 @@ exports[`autoprefixer > autoprefixer 1`] = `
       "prefer-exponentiation-operator": "error",
       "prefer-promise-reject-errors": "error",
       "prefer-rest-params": "error",
+      "prefer-spread": "error",
       "promise/param-names": "error",
       "require-yield": "error",
       "symbol-description": "error",
