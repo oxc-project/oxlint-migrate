@@ -6,6 +6,7 @@ import { existsSync, renameSync, writeFileSync } from 'fs';
 import main from '../src/index.js';
 import path from 'path';
 import packageJson from '../package.json' assert { type: 'json' };
+import { pathToFileURL } from 'node:url';
 
 program
   .name('oxlint-migrate')
@@ -28,7 +29,9 @@ program
       // check for failed auto detection
       program.error(`eslint config file not found: ${filePath}`);
     } else {
-      const eslintConfigs = await import(filePath);
+      // windows allows only file:// prefix to be imported, reported Error:
+      // Only URLs with a scheme in: file, data, and node are supported by the default ESM loader. On Windows, absolute paths must be valid file:// URLs. Received protocol 'c:'
+      const eslintConfigs = await import(pathToFileURL(filePath).toString());
 
       const oxlintConfig =
         'default' in eslintConfigs
