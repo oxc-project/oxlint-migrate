@@ -1,5 +1,6 @@
 export const rulesPrefixesForPlugins: Record<string, string> = {
   import: 'import',
+  'import-x': 'import',
   jest: 'jest',
   jsdoc: 'jsdoc',
   'jsx-a11y': 'jsx-a11y',

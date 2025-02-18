@@ -77,6 +77,14 @@ function getAliasRules(rule: Rule): Rule | undefined {
     };
   }
 
+  if (rule.scope === 'import') {
+    return {
+      value: `import-x/${rule.value}`,
+      scope: 'import-x',
+      category: rule.category,
+    };
+  }
+
   if (
     rule.scope === 'eslint' &&
     unicornRulesExtendEslintRules.includes(rule.value)
