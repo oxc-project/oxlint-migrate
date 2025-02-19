@@ -1,7 +1,10 @@
 import type { Linter } from 'eslint';
 import rules, { nurseryRules } from './generated/rules.js';
 import { OxlintConfig, OxlintConfigOrOverride, Reporter } from './types.js';
-import { rulesPrefixesForPlugins } from './constants.js';
+import {
+  rulesPrefixesForPlugins,
+  typescriptRulesExtendEslintRules,
+} from './constants.js';
 
 /**
  * checks if value is validSet, or if validSet is an array, check if value is first value of it
@@ -131,5 +134,35 @@ export const cleanUpUselessOverridesRules = (config: OxlintConfig): void => {
     if (Object.keys(override.rules).length === 0) {
       delete override.rules;
     }
+  }
+};
+
+export const replaceTypescriptAliasRules = (
+  config: OxlintConfigOrOverride
+): void => {
+  if (config.rules === undefined) {
+    return;
+  }
+  for (const rule of Object.keys(config.rules)) {
+    const prefix = '@typescript-eslint/';
+    if (!rule.startsWith(prefix)) {
+      continue;
+    }
+
+    const eslintRule = rule.slice(prefix.length);
+
+    if (!typescriptRulesExtendEslintRules.includes(eslintRule)) {
+      continue;
+    }
+
+    config.rules[eslintRule] = config.rules[rule];
+
+    // delete ts rule
+    delete config.rules[rule];
+  }
+
+  // cleanup
+  if (Object.keys(config.rules).length === 0) {
+    delete config.rules;
   }
 };

@@ -167,12 +167,6 @@ exports[`vuejs/core > vuejs/core 1`] = `
           "no-restricted-globals": "off",
         },
       },
-      {
-        "files": [
-          "packages/compiler-sfc/src/**",
-        ],
-        "rules": {},
-      },
     ],
     "plugins": [],
   },

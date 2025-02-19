@@ -3,6 +3,7 @@ import type { OxlintConfig } from './types.js';
 import {
   cleanUpUselessOverridesRules,
   detectNeededRulesPlugins,
+  replaceTypescriptAliasRules,
   transformRuleEntry,
 } from './plugins_rules.js';
 import type { Linter } from 'eslint';
@@ -57,6 +58,26 @@ describe('rules and plugins', () => {
         'unicorn/prefer-set-has': 'error',
       },
       overrides: [{ files: [] }],
+    });
+  });
+
+  describe('typescript eslint alias rules', () => {
+    // oxlint support them under one namespace and we can replace them
+    // this is useful because we can later clean up to duplicated overrides easier
+    test('replace typescript alias rules with the eslint one', () => {
+      const config: OxlintConfig = {
+        rules: {
+          '@typescript-eslint/no-magic-numbers': 'error',
+        },
+      };
+
+      replaceTypescriptAliasRules(config);
+
+      expect(config).toStrictEqual({
+        rules: {
+          'no-magic-numbers': 'error',
+        },
+      });
     });
   });
 });

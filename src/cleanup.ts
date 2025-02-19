@@ -7,6 +7,7 @@ import {
 import {
   cleanUpUselessOverridesPlugins,
   cleanUpUselessOverridesRules,
+  replaceTypescriptAliasRules,
 } from './plugins_rules.js';
 import {
   OxlintConfigOrOverride,
@@ -108,6 +109,7 @@ const cleanUpUselessOverridesEntries = (config: OxlintConfig): void => {
 export const cleanUpOxlintConfig = (config: OxlintConfigOrOverride): void => {
   removeGlobalsWithAreCoveredByEnv(config);
   transformBoolGlobalToString(config);
+  replaceTypescriptAliasRules(config);
 
   // no entries in globals, we can remove the globals key
   if (

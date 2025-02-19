@@ -14,31 +14,6 @@ export const aliasPluginNames: Record<string, string> = {
   jsx_a11y: 'jsx-a11y',
 };
 
-// Some typescript-eslint rules are re-implemented version of eslint rules.
-// Since oxlint supports these rules under eslint/* and it also supports TS,
-// we should override these to make implementation status up-to-date.
-// remapping in source-code: <https://github.com/oxc-project/oxc/blob/814eab656291a7d809de808bf4a717bcfa483430/crates/oxc_linter/src/utils/mod.rs>
-export const typescriptRulesExtendEslintRules = [
-  'class-methods-use-this',
-  'default-param-last',
-  'init-declarations',
-  'max-params',
-  'no-array-constructor',
-  'no-dupe-class-members',
-  'no-empty-function',
-  'no-invalid-this',
-  'no-loop-func',
-  'no-loss-of-precision',
-  'no-magic-numbers',
-  'no-redeclare',
-  'no-restricted-imports',
-  'no-shadow',
-  'no-unused-expressions',
-  'no-unused-vars',
-  'no-use-before-define',
-  'no-useless-constructor',
-];
-
 // Some vitest rules are re-implemented version of jest rules.
 // Since oxlint supports these rules under jest/*, we need to remap them.
 // remapping in source-code: <https://github.com/oxc-project/oxc/blob/814eab656291a7d809de808bf4a717bcfa483430/crates/oxc_linter/src/utils/mod.rs>
