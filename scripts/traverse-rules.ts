@@ -2,10 +2,10 @@ import { execSync } from 'node:child_process';
 import {
   aliasPluginNames,
   reactHookRulesInsideReactScope,
-  typescriptRulesExtendEslintRules,
   unicornRulesExtendEslintRules,
   viteTestCompatibleRules,
 } from './constants.js';
+import { typescriptRulesExtendEslintRules } from '../src/constants.js';
 
 export type Rule = {
   value: string;
