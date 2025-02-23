@@ -30,7 +30,7 @@ describe('removeGlobalsWithAreCoveredByEnv', () => {
     };
 
     removeGlobalsWithAreCoveredByEnv(config);
-    expect(config.globals).toStrictEqual({});
+    expect(config.globals).toBeUndefined();
   });
 });
 

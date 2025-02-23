@@ -82,6 +82,7 @@ const cleanUpDefaultTypeScriptOverridesForEslint = (
 };
 
 const cleanUpUselessOverridesEntries = (config: OxlintConfig): void => {
+  cleanUpDefaultTypeScriptOverridesForEslint(config);
   cleanUpUselessOverridesRules(config);
   cleanUpUselessOverridesPlugins(config);
   cleanUpUselessOverridesEnv(config);
@@ -138,7 +139,6 @@ export const cleanUpOxlintConfig = (config: OxlintConfigOrOverride): void => {
   }
 
   if (!('files' in config)) {
-    cleanUpDefaultTypeScriptOverridesForEslint(config);
     cleanUpUselessOverridesEntries(config);
   }
 };

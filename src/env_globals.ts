@@ -68,6 +68,10 @@ export const removeGlobalsWithAreCoveredByEnv = (
       }
     }
   }
+
+  if (Object.keys(config.globals).length === 0) {
+    delete config.globals;
+  }
 };
 
 export const transformBoolGlobalToString = (config: OxlintConfigOrOverride) => {
