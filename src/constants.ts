@@ -6,6 +6,7 @@ export const rulesPrefixesForPlugins: Record<string, string> = {
   'jsx-a11y': 'jsx-a11y',
   '@next/next': 'nextjs',
   node: 'node',
+  n: 'node',
   promise: 'promise',
   react: 'react',
   'react-perf': 'react',

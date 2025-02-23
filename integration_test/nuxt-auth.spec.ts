@@ -8,7 +8,6 @@ test('nuxt-auth', async () => {
   const result = await getSnapshotResult(
     nuxt_auth_test.renamePlugins({
       ts: '@typescript-eslint',
-      n: 'node',
       test: 'vitest',
     })
   );
