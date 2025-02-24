@@ -149,6 +149,12 @@ exports[`autoprefixer > autoprefixer 1`] = `
       "no-this-before-super": "error",
       "no-throw-literal": "error",
       "no-unexpected-multiline": "error",
+      "no-unneeded-ternary": [
+        "error",
+        {
+          "defaultAssignment": false,
+        },
+      ],
       "no-unsafe-finally": "error",
       "no-unsafe-negation": "error",
       "no-unsafe-optional-chaining": "error",
@@ -239,7 +245,6 @@ exports[`autoprefixer > autoprefixer 1`] = `
     "unsupported rule, but in development: no-undef",
     "unsupported rule: no-undef-init",
     "unsupported rule: no-unmodified-loop-condition",
-    "unsupported rule: no-unneeded-ternary",
     "unsupported rule, but in development: no-unreachable",
     "unsupported rule: no-unreachable-loop",
     "unsupported rule: no-use-before-define",
