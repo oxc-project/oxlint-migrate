@@ -166,3 +166,25 @@ export const replaceTypescriptAliasRules = (
     delete config.rules;
   }
 };
+
+/**
+ * Oxlint support them only under the node plugin name
+ */
+export const replaceNodePluginName = (config: OxlintConfigOrOverride): void => {
+  if (config.rules === undefined) {
+    return;
+  }
+
+  for (const rule of Object.keys(config.rules)) {
+    const prefix = 'n/';
+    if (!rule.startsWith(prefix)) {
+      continue;
+    }
+
+    const nodeRule = `node/${rule.slice(prefix.length)}`;
+
+    config.rules[nodeRule] = config.rules[rule];
+    // delete old rule
+    delete config.rules[rule];
+  }
+};

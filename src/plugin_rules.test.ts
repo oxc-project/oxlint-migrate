@@ -3,6 +3,7 @@ import type { OxlintConfig } from './types.js';
 import {
   cleanUpUselessOverridesRules,
   detectNeededRulesPlugins,
+  replaceNodePluginName,
   replaceTypescriptAliasRules,
   transformRuleEntry,
 } from './plugins_rules.js';
@@ -61,7 +62,7 @@ describe('rules and plugins', () => {
     });
   });
 
-  describe('typescript eslint alias rules', () => {
+  describe('replaceTypescriptAliasRules', () => {
     // oxlint support them under one namespace and we can replace them
     // this is useful because we can later clean up to duplicated overrides easier
     test('replace typescript alias rules with the eslint one', () => {
@@ -76,6 +77,24 @@ describe('rules and plugins', () => {
       expect(config).toStrictEqual({
         rules: {
           'no-magic-numbers': 'error',
+        },
+      });
+    });
+  });
+
+  describe('replaceNodePluginName', () => {
+    test('replace n/rule-name to node/rule-name', () => {
+      const config: OxlintConfig = {
+        rules: {
+          'n/no-new-require': 'error',
+        },
+      };
+
+      replaceNodePluginName(config);
+
+      expect(config).toStrictEqual({
+        rules: {
+          'node/no-new-require': 'error',
         },
       });
     });
