@@ -4,7 +4,7 @@
   "description": "Generates a `.oxlintrc.json` from a existing eslint flat config",
   "type": "module",
   "bin": {
-    "oxlint-migrate": "./dist/bin/oxlint-migrate.mjs"
+    "@oxlint/migrate": "./dist/bin/oxlint-migrate.mjs"
   },
   "repository": {
     "type": "git",
