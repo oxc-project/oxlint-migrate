@@ -5,7 +5,7 @@ import { getAutodetectedEslintConfigName } from './autoDetectConfigFile.js';
 import { existsSync, renameSync, writeFileSync } from 'fs';
 import main from '../src/index.js';
 import path from 'path';
-import packageJson from '../package.json' assert { type: 'json' };
+import packageJson from '../package.json' with { type: 'json' };
 import { pathToFileURL } from 'node:url';
 
 program
