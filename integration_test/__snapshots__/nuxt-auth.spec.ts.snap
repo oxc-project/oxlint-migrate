@@ -323,6 +323,10 @@ exports[`nuxt-auth > nuxt-auth 1`] = `
     ],
     "rules": {
       "array-callback-return": "error",
+      "curly": [
+        "error",
+        "all",
+      ],
       "default-case-last": "error",
       "eqeqeq": [
         "error",
@@ -330,6 +334,7 @@ exports[`nuxt-auth > nuxt-auth 1`] = `
       ],
       "import/first": "error",
       "import/no-duplicates": "error",
+      "import/no-mutable-exports": "error",
       "import/no-named-default": "error",
       "import/no-self-import": "error",
       "import/no-webpack-loader-syntax": "error",
@@ -567,7 +572,6 @@ exports[`nuxt-auth > nuxt-auth 1`] = `
     "unsupported rule: antfu/no-import-dist",
     "unsupported rule: antfu/no-import-node-modules-by-path",
     "unsupported rule: import/consistent-type-specifier-style",
-    "unsupported rule: import/no-mutable-exports",
     "unsupported rule: import/newline-after-import",
     "unsupported rule: command/command",
     "unsupported rule, but in development: constructor-super",
@@ -592,7 +596,6 @@ exports[`nuxt-auth > nuxt-auth 1`] = `
     "special parser detected: parser-plain",
     "unsupported rule, but in development: no-undef",
     "unsupported rule, but in development: @typescript-eslint/consistent-type-imports",
-    "unsupported rule: curly",
     "unsupported rule: node/prefer-global/process",
   ],
 }

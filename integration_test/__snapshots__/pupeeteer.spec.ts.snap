@@ -206,6 +206,38 @@ exports[`puppeteer > puppeteer 1`] = `
       },
       {
         "files": [
+          "packages/puppeteer-core/src/**/*.ts",
+        ],
+        "rules": {
+          "no-restricted-imports": [
+            "error",
+            {
+              "paths": [],
+              "patterns": [
+                "*Events",
+                "*.test.js",
+              ],
+            },
+          ],
+        },
+      },
+      {
+        "files": [
+          "test/**/*.ts",
+        ],
+        "rules": {
+          "no-restricted-imports": [
+            "error",
+            {
+              "patterns": [
+                "*src*",
+              ],
+            },
+          ],
+        },
+      },
+      {
+        "files": [
           "test/**/*.spec.ts",
         ],
         "plugins": [
@@ -226,6 +258,10 @@ exports[`puppeteer > puppeteer 1`] = `
       "import",
     ],
     "rules": {
+      "curly": [
+        "error",
+        "all",
+      ],
       "eqeqeq": [
         "error",
       ],
@@ -265,7 +301,6 @@ exports[`puppeteer > puppeteer 1`] = `
     "ignore allow list is currently not supported: !.vscode/extensions.json",
     "ignore allow list is currently not supported: !.vscode/*.template.json",
     "unsupported rule, but in development: import/named",
-    "unsupported rule: curly",
     "unsupported rule: arrow-body-style",
     "unsupported rule: prettier/prettier",
     "unsupported rule: spaced-comment",
@@ -311,9 +346,7 @@ exports[`puppeteer > puppeteer 1`] = `
     "unsupported rule, but in development: @typescript-eslint/consistent-type-imports",
     "unsupported rule: @typescript-eslint/consistent-type-exports",
     "unsupported rule: no-restricted-syntax",
-    "unsupported rule, but in development: no-restricted-imports",
     "unsupported rule: tsdoc/syntax",
-    "unsupported rule, but in development: no-restricted-imports",
     "unsupported rule: no-restricted-syntax",
     "unsupported rule: mocha/no-skipped-tests",
     "unsupported rule: mocha/no-identical-title",
