@@ -7,11 +7,13 @@ import main from '../src/index.js';
 import path from 'path';
 import packageJson from '../package.json' with { type: 'json' };
 import { pathToFileURL } from 'node:url';
+import { Options } from '../src/types.js';
 
 program
   .name('oxlint-migrate')
   .version(packageJson.version)
   .argument('[eslint-config]', 'The path to the eslint v9 config file')
+  .option('-u', '--upgrade', 'Upgrade existing .oxlintrc.json configuration')
   .action(async (filePath) => {
     let cwd = process.cwd();
 
@@ -33,10 +35,16 @@ program
       // Only URLs with a scheme in: file, data, and node are supported by the default ESM loader. On Windows, absolute paths must be valid file:// URLs. Received protocol 'c:'
       const eslintConfigs = await import(pathToFileURL(filePath).toString());
 
+      const cliOptions = program.opts();
+      const options: Options = {
+        reporter: console.warn,
+        upgrade: !!cliOptions.upgrade,
+      };
+
       const oxlintConfig =
         'default' in eslintConfigs
-          ? await main(eslintConfigs.default, console.warn)
-          : await main(eslintConfigs, console.warn);
+          ? await main(eslintConfigs.default, options)
+          : await main(eslintConfigs, options);
 
       const oxlintFilePath = path.join(cwd, '.oxlintrc.json');
 

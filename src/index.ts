@@ -1,5 +1,10 @@
 import type { Linter } from 'eslint';
-import { OxlintConfig, OxlintConfigOverride, Reporter } from './types.js';
+import {
+  Options,
+  OxlintConfig,
+  OxlintConfigOverride,
+  Reporter,
+} from './types.js';
 import {
   detectEnvironmentByGlobals,
   transformEnvAndGlobals,
@@ -84,13 +89,13 @@ const main = async (
     | Linter.Config[]
     | Promise<Linter.Config>
     | Promise<Linter.Config[]>,
-  reporter?: Reporter
+  options?: Options
 ): Promise<OxlintConfig> => {
   const resolved = await Promise.resolve(configs);
 
   return Array.isArray(resolved)
-    ? buildConfig(resolved, reporter)
-    : buildConfig([resolved], reporter);
+    ? buildConfig(resolved, options?.reporter)
+    : buildConfig([resolved], options?.reporter);
 };
 
 export default main;
