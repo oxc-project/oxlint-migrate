@@ -1,4 +1,5 @@
 {
+  "plugins": ["unicorn", "typescript", "oxc"],
   "categories": {
     "correctness": "error",
     "perf": "error"
