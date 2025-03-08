@@ -99,7 +99,9 @@ function getAliasRules(rule: Rule): Rule | undefined {
 
 export function traverseRules(): Rule[] {
   // get all rules and filter the ignored one
-  const rules = readRulesFromCommand();
+  const rules = readRulesFromCommand().filter(
+    (rule) => !['oxc'].includes(rule.scope)
+  );
 
   const aliasRules: Rule[] = [];
 
