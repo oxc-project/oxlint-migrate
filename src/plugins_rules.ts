@@ -5,7 +5,6 @@ import {
   rulesPrefixesForPlugins,
   typescriptRulesExtendEslintRules,
 } from './constants.js';
-import { warn } from 'node:console';
 
 /**
  * checks if value is validSet, or if validSet is an array, check if value is first value of it
