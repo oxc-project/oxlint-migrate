@@ -5,6 +5,7 @@ import {
   rulesPrefixesForPlugins,
   typescriptRulesExtendEslintRules,
 } from './constants.js';
+import { warn } from 'node:console';
 
 /**
  * checks if value is validSet, or if validSet is an array, check if value is first value of it
@@ -18,6 +19,45 @@ const isValueInSet = (value: unknown, validSet: unknown[]) =>
  */
 const isActiveValue = (value: unknown) =>
   isValueInSet(value, ['error', 'warn', 1, 2]);
+
+const isOffValue = (value: unknown) => isValueInSet(value, ['off', 0]);
+
+const isErrorValue = (value: unknown) => isValueInSet(value, ['error', 1]);
+
+const isWarnValue = (value: unknown) => isValueInSet(value, ['warn', 2]);
+
+const normalizeSeverityValue = (value: Linter.RuleEntry | undefined) => {
+  if (value === undefined) {
+    return value;
+  }
+
+  if (isWarnValue(value)) {
+    if (Array.isArray(value)) {
+      value[0] == 'warn';
+      return value;
+    }
+
+    return 'warn';
+  } else if (isErrorValue(value)) {
+    if (Array.isArray(value)) {
+      value[0] == 'error';
+      return value;
+    }
+
+    return 'error';
+  }
+
+  if (isOffValue(value)) {
+    if (Array.isArray(value)) {
+      value[0] == 'off';
+      return value;
+    }
+
+    return 'off';
+  }
+
+  return undefined;
+};
 
 export const transformRuleEntry = (
   eslintConfig: Linter.Config,
@@ -47,7 +87,7 @@ export const transformRuleEntry = (
         continue;
       }
 
-      targetConfig.rules[rule] = config;
+      targetConfig.rules[rule] = normalizeSeverityValue(config);
     } else {
       // ToDo: maybe use a force flag when some enabled rules are detected?
       if (isActiveValue(config)) {
