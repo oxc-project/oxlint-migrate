@@ -31,7 +31,16 @@ const buildConfig = (
     };
   }
 
-  const overrides: OxlintConfigOverride[] = [];
+  // when upgrade check if $schema is not defined,
+  // the default config has already defined it
+  if (oxlintConfig.$schema === undefined && options?.upgrade) {
+    oxlintConfig.$schema = './node_modules/oxlint/configuration_schema.json';
+  }
+
+  // when upgrade use the existing overrides, or else create an empty one
+  const overrides: OxlintConfigOverride[] = options?.upgrade
+    ? (oxlintConfig.overrides ?? [])
+    : [];
 
   for (const config of configs) {
     // we are ignoring oxlint eslint plugin
@@ -45,6 +54,7 @@ const buildConfig = (
     if (config.files === undefined) {
       targetConfig = oxlintConfig;
     } else {
+      // ToDo: (when upgrade) check if config.files matches already existing overrides
       targetConfig = {
         files: (Array.isArray(config.files)
           ? config.files
