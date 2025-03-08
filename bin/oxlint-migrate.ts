@@ -15,7 +15,8 @@ program
   .argument('[eslint-config]', 'The path to the eslint v9 config file')
   .option('-u', '--upgrade', 'Upgrade existing .oxlintrc.json configuration')
   .action(async (filePath) => {
-    let cwd = process.cwd();
+    const cwd = process.cwd();
+    const oxlintFilePath = path.join(cwd, '.oxlintrc.json');
 
     if (filePath === undefined) {
       filePath = getAutodetectedEslintConfigName(cwd);
@@ -41,12 +42,11 @@ program
         upgrade: !!cliOptions.upgrade,
       };
 
+      // ToDo: check if oxlintFilePath is a existing file and load it when options.upgrade == true
       const oxlintConfig =
         'default' in eslintConfigs
-          ? await main(eslintConfigs.default, options)
-          : await main(eslintConfigs, options);
-
-      const oxlintFilePath = path.join(cwd, '.oxlintrc.json');
+          ? await main(eslintConfigs.default, undefined, options)
+          : await main(eslintConfigs, undefined, options);
 
       if (existsSync(oxlintFilePath)) {
         renameSync(oxlintFilePath, `${oxlintFilePath}.bak`);

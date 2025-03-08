@@ -13,20 +13,24 @@ import {
 
 const buildConfig = (
   configs: Linter.Config[],
+  oxlintConfig?: OxlintConfig,
   options?: Options
 ): OxlintConfig => {
-  const oxlintConfig: OxlintConfig = {
-    $schema: './node_modules/oxlint/configuration_schema.json',
-    // disable all plugins and check later
-    plugins: [],
-    env: {
-      builtin: true,
-    },
-    categories: {
-      // default category
-      correctness: 'off',
-    },
-  };
+  if (oxlintConfig === undefined) {
+    oxlintConfig = {
+      $schema: './node_modules/oxlint/configuration_schema.json',
+      // disable all plugins and check later
+      plugins: [],
+      env: {
+        builtin: true,
+      },
+      categories: {
+        // default category
+        correctness: 'off',
+      },
+    };
+  }
+
   const overrides: OxlintConfigOverride[] = [];
 
   for (const config of configs) {
@@ -84,13 +88,14 @@ const main = async (
     | Linter.Config[]
     | Promise<Linter.Config>
     | Promise<Linter.Config[]>,
+  oxlintConfig?: OxlintConfig,
   options?: Options
 ): Promise<OxlintConfig> => {
   const resolved = await Promise.resolve(configs);
 
   return Array.isArray(resolved)
-    ? buildConfig(resolved, options)
-    : buildConfig([resolved], options);
+    ? buildConfig(resolved, oxlintConfig, options)
+    : buildConfig([resolved], oxlintConfig, options);
 };
 
 export default main;

@@ -2,7 +2,7 @@ import main from '../src/index.js';
 
 export const getSnapshotResult = async (config: Parameters<typeof main>[0]) => {
   const collector: string[] = [];
-  const result = await main(config, {
+  const result = await main(config, undefined, {
     reporter: collector.push.bind(collector),
   });
 
