@@ -86,7 +86,15 @@ export const transformRuleEntry = (
         continue;
       }
 
-      targetConfig.rules[rule] = normalizeSeverityValue(config);
+      // when upgrade only override if not exists
+      // for non upgrade override it because eslint/typescript rules
+      if (options?.upgrade) {
+        if (!(rule in targetConfig.rules)) {
+          targetConfig.rules[rule] = normalizeSeverityValue(config);
+        }
+      } else {
+        targetConfig.rules[rule] = normalizeSeverityValue(config);
+      }
     } else {
       // ToDo: maybe use a force flag when some enabled rules are detected?
       if (isActiveValue(config)) {

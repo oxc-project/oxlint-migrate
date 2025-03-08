@@ -21,7 +21,7 @@ describe('rules and plugins', () => {
     expect(config.plugins).toContain('unicorn');
   });
 
-  test('transformRuleEntry', () => {
+  test('transformRuleEntry default', () => {
     const eslintConfig: Linter.Config = {
       rules: {
         'unicorn/prefer-set-has': 'error',
@@ -35,6 +35,27 @@ describe('rules and plugins', () => {
     assert(config.rules);
     expect(config.rules['unicorn/prefer-set-has']).toBe('error');
     expect(config.rules['unknown-rule']).toBe(undefined);
+  });
+
+  test('transformRuleEntry upgrade', () => {
+    const eslintConfig: Linter.Config = {
+      rules: {
+        'unicorn/prefer-set-has': 'error',
+      },
+    };
+
+    const config: OxlintConfig = {
+      rules: {
+        'unicorn/prefer-set-has': 'warn',
+      },
+    };
+
+    transformRuleEntry(eslintConfig, config, {
+      upgrade: true,
+    });
+
+    assert(config.rules);
+    expect(config.rules['unicorn/prefer-set-has']).toBe('warn');
   });
 
   test('cleanUpUselessOverridesRules', () => {
