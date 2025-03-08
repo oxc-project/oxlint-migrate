@@ -2,13 +2,12 @@
 
 import { program } from 'commander';
 import { getAutodetectedEslintConfigName } from './autoDetectConfigFile.js';
-import { existsSync, renameSync, writeFileSync } from 'fs';
+import { existsSync, renameSync, writeFileSync, readFileSync } from 'fs';
 import main from '../src/index.js';
 import path from 'path';
 import packageJson from '../package.json' with { type: 'json' };
 import { pathToFileURL } from 'node:url';
 import { Options } from '../src/types.js';
-import { readFile, readFileSync, readSync } from 'node:fs';
 
 program
   .name('oxlint-migrate')

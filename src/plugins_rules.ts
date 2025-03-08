@@ -1,10 +1,12 @@
 import type { Linter } from 'eslint';
-import rules, { nurseryRules } from './generated/rules.js';
+import * as rules from './generated/rules.js';
 import { Options, OxlintConfig, OxlintConfigOrOverride } from './types.js';
 import {
   rulesPrefixesForPlugins,
   typescriptRulesExtendEslintRules,
 } from './constants.js';
+
+const allRules = Object.values(rules).flat();
 
 /**
  * checks if value is validSet, or if validSet is an array, check if value is first value of it
@@ -18,6 +20,45 @@ const isValueInSet = (value: unknown, validSet: unknown[]) =>
  */
 const isActiveValue = (value: unknown) =>
   isValueInSet(value, ['error', 'warn', 1, 2]);
+
+const isOffValue = (value: unknown) => isValueInSet(value, ['off', 0]);
+
+const isErrorValue = (value: unknown) => isValueInSet(value, ['error', 1]);
+
+const isWarnValue = (value: unknown) => isValueInSet(value, ['warn', 2]);
+
+const normalizeSeverityValue = (value: Linter.RuleEntry | undefined) => {
+  if (value === undefined) {
+    return value;
+  }
+
+  if (isWarnValue(value)) {
+    if (Array.isArray(value)) {
+      value[0] == 'warn';
+      return value;
+    }
+
+    return 'warn';
+  } else if (isErrorValue(value)) {
+    if (Array.isArray(value)) {
+      value[0] == 'error';
+      return value;
+    }
+
+    return 'error';
+  }
+
+  if (isOffValue(value)) {
+    if (Array.isArray(value)) {
+      value[0] == 'off';
+      return value;
+    }
+
+    return 'off';
+  }
+
+  return undefined;
+};
 
 export const transformRuleEntry = (
   eslintConfig: Linter.Config,
@@ -37,17 +78,15 @@ export const transformRuleEntry = (
     // when not ask the user if this is ok
     // maybe put it still into the jsonc file but commented out
 
-    // ToDo: typescript uses `ts/no-unused-expressions`. New Namespace?
-    // ToDo: maybe if it is nursery
-    if (rules.includes(rule)) {
+    if (allRules.includes(rule)) {
       // ToDo: enable via flag
-      if (nurseryRules.includes(rule)) {
+      if (rules.nurseryRules.includes(rule)) {
         options?.reporter !== undefined &&
           options.reporter(`unsupported rule, but in development: ${rule}`);
         continue;
       }
 
-      targetConfig.rules[rule] = config;
+      targetConfig.rules[rule] = normalizeSeverityValue(config);
     } else {
       // ToDo: maybe use a force flag when some enabled rules are detected?
       if (isActiveValue(config)) {
