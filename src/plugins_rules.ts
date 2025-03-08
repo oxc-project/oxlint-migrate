@@ -1,10 +1,12 @@
 import type { Linter } from 'eslint';
-import rules, { nurseryRules } from './generated/rules.js';
+import * as rules from './generated/rules.js';
 import { OxlintConfig, OxlintConfigOrOverride, Reporter } from './types.js';
 import {
   rulesPrefixesForPlugins,
   typescriptRulesExtendEslintRules,
 } from './constants.js';
+
+const allRules = Object.values(rules).flat();
 
 /**
  * checks if value is validSet, or if validSet is an array, check if value is first value of it
@@ -76,11 +78,9 @@ export const transformRuleEntry = (
     // when not ask the user if this is ok
     // maybe put it still into the jsonc file but commented out
 
-    // ToDo: typescript uses `ts/no-unused-expressions`. New Namespace?
-    // ToDo: maybe if it is nursery
-    if (rules.includes(rule)) {
+    if (allRules.includes(rule)) {
       // ToDo: enable via flag
-      if (nurseryRules.includes(rule)) {
+      if (rules.nurseryRules.includes(rule)) {
         reporter !== undefined &&
           reporter(`unsupported rule, but in development: ${rule}`);
         continue;
