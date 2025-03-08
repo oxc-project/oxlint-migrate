@@ -1,6 +1,6 @@
 import type { Linter } from 'eslint';
 import rules, { nurseryRules } from './generated/rules.js';
-import { OxlintConfig, OxlintConfigOrOverride, Reporter } from './types.js';
+import { Options, OxlintConfig, OxlintConfigOrOverride } from './types.js';
 import {
   rulesPrefixesForPlugins,
   typescriptRulesExtendEslintRules,
@@ -22,7 +22,7 @@ const isActiveValue = (value: unknown) =>
 export const transformRuleEntry = (
   eslintConfig: Linter.Config,
   targetConfig: OxlintConfigOrOverride,
-  reporter?: Reporter
+  options?: Options
 ): void => {
   if (eslintConfig.rules === undefined) {
     return;
@@ -42,8 +42,8 @@ export const transformRuleEntry = (
     if (rules.includes(rule)) {
       // ToDo: enable via flag
       if (nurseryRules.includes(rule)) {
-        reporter !== undefined &&
-          reporter(`unsupported rule, but in development: ${rule}`);
+        options?.reporter !== undefined &&
+          options.reporter(`unsupported rule, but in development: ${rule}`);
         continue;
       }
 
@@ -51,7 +51,8 @@ export const transformRuleEntry = (
     } else {
       // ToDo: maybe use a force flag when some enabled rules are detected?
       if (isActiveValue(config)) {
-        reporter !== undefined && reporter(`unsupported rule: ${rule}`);
+        options?.reporter !== undefined &&
+          options.reporter(`unsupported rule: ${rule}`);
       }
     }
   }
@@ -59,7 +60,7 @@ export const transformRuleEntry = (
 
 export const detectNeededRulesPlugins = (
   targetConfig: OxlintConfigOrOverride,
-  reporter?: Reporter
+  options?: Options
 ): void => {
   if (targetConfig.rules === undefined) {
     return;
@@ -87,8 +88,8 @@ export const detectNeededRulesPlugins = (
     }
 
     if (!found) {
-      reporter !== undefined &&
-        reporter(`unsupported plugin for rule: ${rule}`);
+      options?.reporter !== undefined &&
+        options.reporter(`unsupported plugin for rule: ${rule}`);
     }
   }
 };

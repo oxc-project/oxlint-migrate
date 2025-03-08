@@ -1,5 +1,5 @@
 import globals from 'globals';
-import { OxlintConfig, OxlintConfigOrOverride, Reporter } from './types.js';
+import { Options, OxlintConfig, OxlintConfigOrOverride } from './types.js';
 import type { Linter } from 'eslint';
 
 export const ES_VERSIONS = [
@@ -120,7 +120,7 @@ export const detectEnvironmentByGlobals = (config: OxlintConfigOrOverride) => {
 export const transformEnvAndGlobals = (
   eslintConfig: Linter.Config,
   targetConfig: OxlintConfigOrOverride,
-  reporter?: Reporter
+  options?: Options
 ): void => {
   if (
     eslintConfig.languageOptions?.parser !== undefined &&
@@ -128,8 +128,8 @@ export const transformEnvAndGlobals = (
       eslintConfig.languageOptions.parser.meta?.name!
     )
   ) {
-    reporter !== undefined &&
-      reporter(
+    options?.reporter !== undefined &&
+      options.reporter(
         'special parser detected: ' +
           eslintConfig.languageOptions.parser.meta?.name
       );

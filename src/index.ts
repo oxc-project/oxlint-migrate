@@ -1,10 +1,5 @@
 import type { Linter } from 'eslint';
-import {
-  Options,
-  OxlintConfig,
-  OxlintConfigOverride,
-  Reporter,
-} from './types.js';
+import { Options, OxlintConfig, OxlintConfigOverride } from './types.js';
 import {
   detectEnvironmentByGlobals,
   transformEnvAndGlobals,
@@ -18,7 +13,7 @@ import {
 
 const buildConfig = (
   configs: Linter.Config[],
-  reporter?: Reporter
+  options?: Options
 ): OxlintConfig => {
   const oxlintConfig: OxlintConfig = {
     $schema: './node_modules/oxlint/configuration_schema.json',
@@ -62,13 +57,13 @@ const buildConfig = (
     if (config.settings !== undefined) {
     }
 
-    transformIgnorePatterns(config, targetConfig, reporter);
-    transformRuleEntry(config, targetConfig, reporter);
-    transformEnvAndGlobals(config, targetConfig, reporter);
+    transformIgnorePatterns(config, targetConfig, options);
+    transformRuleEntry(config, targetConfig, options);
+    transformEnvAndGlobals(config, targetConfig, options);
 
     // clean up overrides
     if ('files' in targetConfig) {
-      detectNeededRulesPlugins(targetConfig, reporter);
+      detectNeededRulesPlugins(targetConfig, options);
       detectEnvironmentByGlobals(targetConfig);
       cleanUpOxlintConfig(targetConfig);
     }
@@ -76,7 +71,7 @@ const buildConfig = (
 
   oxlintConfig.overrides = overrides;
 
-  detectNeededRulesPlugins(oxlintConfig, reporter);
+  detectNeededRulesPlugins(oxlintConfig, options);
   detectEnvironmentByGlobals(oxlintConfig);
   cleanUpOxlintConfig(oxlintConfig);
 
@@ -94,8 +89,8 @@ const main = async (
   const resolved = await Promise.resolve(configs);
 
   return Array.isArray(resolved)
-    ? buildConfig(resolved, options?.reporter)
-    : buildConfig([resolved], options?.reporter);
+    ? buildConfig(resolved, options)
+    : buildConfig([resolved], options);
 };
 
 export default main;
