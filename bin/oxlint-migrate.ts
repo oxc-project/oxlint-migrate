@@ -8,12 +8,13 @@ import path from 'path';
 import packageJson from '../package.json' with { type: 'json' };
 import { pathToFileURL } from 'node:url';
 import { Options } from '../src/types.js';
+import { readFile, readFileSync, readSync } from 'node:fs';
 
 program
   .name('oxlint-migrate')
   .version(packageJson.version)
   .argument('[eslint-config]', 'The path to the eslint v9 config file')
-  .option('-u', '--upgrade', 'Upgrade existing .oxlintrc.json configuration')
+  .option('--upgrade', 'Upgrade existing .oxlintrc.json configuration')
   .action(async (filePath) => {
     const cwd = process.cwd();
     const oxlintFilePath = path.join(cwd, '.oxlintrc.json');
@@ -42,11 +43,18 @@ program
         upgrade: !!cliOptions.upgrade,
       };
 
-      // ToDo: check if oxlintFilePath is a existing file and load it when options.upgrade == true
+      let config;
+      if (options.upgrade && existsSync(oxlintFilePath)) {
+        // we expect that is a right config file
+        config = JSON.parse(
+          readFileSync(oxlintFilePath, { encoding: 'utf8', flag: 'r' })
+        );
+      }
+
       const oxlintConfig =
         'default' in eslintConfigs
-          ? await main(eslintConfigs.default, undefined, options)
-          : await main(eslintConfigs, undefined, options);
+          ? await main(eslintConfigs.default, config, options)
+          : await main(eslintConfigs, config, options);
 
       if (existsSync(oxlintFilePath)) {
         renameSync(oxlintFilePath, `${oxlintFilePath}.bak`);
