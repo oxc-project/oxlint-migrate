@@ -4,8 +4,6 @@
  * Copyright 2024 Google Inc.
  * SPDX-License-Identifier: Apache-2.0
  */
-import fs from 'node:fs';
-import path from 'node:path';
 
 import { FlatCompat } from '@eslint/eslintrc';
 import js from '@eslint/js';

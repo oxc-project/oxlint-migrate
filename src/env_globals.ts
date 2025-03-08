@@ -124,8 +124,8 @@ export const transformEnvAndGlobals = (
 ): void => {
   if (
     eslintConfig.languageOptions?.parser !== undefined &&
-    !SUPPORTED_ESLINT_PARSERS.includes(
-      eslintConfig.languageOptions.parser.meta?.name!
+    !(SUPPORTED_ESLINT_PARSERS as (string | undefined)[]).includes(
+      eslintConfig.languageOptions.parser.meta?.name
     )
   ) {
     reporter !== undefined &&
