@@ -10,6 +10,7 @@ export type OxlintConfigOverride = {
   env?: OxlintConfigEnv;
   globals?: Linter.Globals;
   plugins?: OxlintConfigPlugins;
+  categories?: OxlintConfigCategories;
   rules?: Partial<Linter.RulesRecord>;
 };
 

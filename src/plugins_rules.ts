@@ -185,6 +185,39 @@ export const cleanUpUselessOverridesRules = (config: OxlintConfig): void => {
   }
 };
 
+export const cleanUpRulesWhichAreCoveredByCategory = (
+  config: OxlintConfigOrOverride
+): void => {
+  if (config.rules === undefined || config.categories === undefined) {
+    return;
+  }
+
+  const enabledCategories = Object.entries(config.categories)
+    .filter(([, severity]) => severity === 'warn' || severity === 'error')
+    .map(([category]) => category);
+
+  for (const [rule, settings] of Object.entries(config.rules)) {
+    for (const category of enabledCategories) {
+      // check if the rule is inside the enabled category
+      if (
+        `${category}Rules` in rules &&
+        // @ts-expect-error -- ts can not resolve the type
+        (rules[`${category}Rules`] as string[]).includes(rule)
+      ) {
+        // check if the severity is the same. only check when no custom config is passed
+        if (
+          settings === config.categories[category] ||
+          (Array.isArray(settings) &&
+            settings.length === 1 &&
+            settings[0] === config.categories[category])
+        ) {
+          delete config.rules[rule];
+        }
+      }
+    }
+  }
+};
+
 export const replaceTypescriptAliasRules = (
   config: OxlintConfigOrOverride
 ): void => {

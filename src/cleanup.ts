@@ -5,6 +5,7 @@ import {
   transformBoolGlobalToString,
 } from './env_globals.js';
 import {
+  cleanUpRulesWhichAreCoveredByCategory,
   cleanUpUselessOverridesPlugins,
   cleanUpUselessOverridesRules,
   replaceNodePluginName,
@@ -113,6 +114,7 @@ export const cleanUpOxlintConfig = (config: OxlintConfigOrOverride): void => {
   transformBoolGlobalToString(config);
   replaceTypescriptAliasRules(config);
   replaceNodePluginName(config);
+  cleanUpRulesWhichAreCoveredByCategory(config);
 
   // no entries in globals, we can remove the globals key
   if (
