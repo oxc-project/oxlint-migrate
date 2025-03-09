@@ -20,7 +20,11 @@ export const transformIgnorePatterns = (
     targetConfig.ignorePatterns = [];
   }
 
-  targetConfig.ignorePatterns.push(...eslintConfig.ignores);
+  for (const ignores of eslintConfig.ignores) {
+    if (!targetConfig.ignorePatterns.includes(ignores)) {
+      targetConfig.ignorePatterns.push(ignores);
+    }
+  }
 
   // see https://github.com/oxc-project/oxc/issues/8842
   eslintConfig.ignores
