@@ -37,7 +37,7 @@
     "@eslint/eslintrc": "^3.3.0",
     "@eslint/js": "^9.20.0",
     "@logux/eslint-config": "^55.0.0",
-    "@oxc-node/core": "^0.0.19",
+    "@oxc-node/core": "^0.0.20",
     "@stylistic/eslint-plugin": "^4.0.1",
     "@stylistic/eslint-plugin-ts": "^4.0.0",
     "@types/eslint-config-prettier": "^6.11.3",
@@ -72,5 +72,5 @@
     "commander": "^13.1.0",
     "globals": "^16.0.0"
   },
-  "packageManager": "pnpm@10.5.2"
+  "packageManager": "pnpm@10.6.1"
 }
