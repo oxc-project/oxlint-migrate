@@ -25,6 +25,8 @@ const buildConfig = (
         builtin: true,
       },
       categories: {
+        // ToDo: for upgrade set the default category manuel when it is not found
+        // ToDo: later we can remove it again
         // default category
         correctness: 'off',
       },
