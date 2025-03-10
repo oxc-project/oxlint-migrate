@@ -18,6 +18,156 @@ exports[`vuejs/core > vuejs/core 1`] = `
       "explorations/",
       "dts-build/packages",
     ],
+    "overrides": [
+      {
+        "files": [
+          "**/*.js",
+          "**/*.ts",
+          "**/*.tsx",
+        ],
+        "plugins": [
+          "typescript",
+        ],
+        "rules": {
+          "@typescript-eslint/no-import-type-side-effects": "error",
+          "@typescript-eslint/prefer-ts-expect-error": "error",
+          "no-console": [
+            "error",
+            {
+              "allow": [
+                "warn",
+                "error",
+                "info",
+              ],
+            },
+          ],
+          "no-debugger": "error",
+          "no-restricted-globals": [
+            "error",
+            "window",
+            "document",
+            "module",
+            "require",
+          ],
+          "sort-imports": [
+            "error",
+            {
+              "ignoreDeclarationSort": true,
+            },
+          ],
+        },
+      },
+      {
+        "files": [
+          "**/__tests__/**",
+          "packages-private/dts-test/**",
+          "packages-private/dts-build-test/**",
+        ],
+        "globals": {
+          "afterAll": "writeable",
+          "afterEach": "writeable",
+          "assert": "writeable",
+          "assertType": "writeable",
+          "beforeAll": "writeable",
+          "beforeEach": "writeable",
+          "chai": "writeable",
+          "describe": "writeable",
+          "expect": "writeable",
+          "expectTypeOf": "writeable",
+          "it": "writeable",
+          "onTestFailed": "writeable",
+          "onTestFinished": "writeable",
+          "suite": "writeable",
+          "test": "writeable",
+          "vi": "writeable",
+          "vitest": "writeable",
+        },
+        "plugins": [
+          "vitest",
+        ],
+        "rules": {
+          "no-console": "off",
+          "no-restricted-globals": "off",
+          "vitest/no-disabled-tests": "error",
+          "vitest/no-focused-tests": "error",
+        },
+      },
+      {
+        "files": [
+          "packages/shared/**",
+          "eslint.config.js",
+        ],
+        "rules": {
+          "no-restricted-globals": "off",
+        },
+      },
+      {
+        "files": [
+          "packages/{vue,vue-compat,runtime-dom}/**",
+        ],
+        "rules": {
+          "no-restricted-globals": [
+            "error",
+            "module",
+            "require",
+          ],
+        },
+      },
+      {
+        "files": [
+          "packages/{compiler-sfc,compiler-ssr,server-renderer}/**",
+        ],
+        "rules": {
+          "no-restricted-globals": [
+            "error",
+            "window",
+            "document",
+          ],
+        },
+      },
+      {
+        "files": [
+          "packages-private/template-explorer/**",
+          "packages-private/sfc-playground/**",
+        ],
+        "rules": {
+          "no-console": "off",
+          "no-restricted-globals": [
+            "error",
+            "module",
+            "require",
+          ],
+        },
+      },
+      {
+        "files": [
+          "*.js",
+        ],
+        "rules": {
+          "no-unused-vars": [
+            "error",
+            {
+              "args": "none",
+              "vars": "all",
+            },
+          ],
+        },
+      },
+      {
+        "files": [
+          "eslint.config.js",
+          "rollup*.config.js",
+          "scripts/**",
+          "./*.{js,ts}",
+          "packages/*/*.js",
+          "packages/vue/*/*.js",
+        ],
+        "rules": {
+          "no-console": "off",
+          "no-restricted-globals": "off",
+        },
+      },
+    ],
     "plugins": [],
   },
   "warnings": [
@@ -47,6 +197,168 @@ exports[`vuejs/core upgrade > vuejs/core--upgrade 1`] = `
       ".idea/",
       "explorations/",
       "dts-build/packages",
+    ],
+    "overrides": [
+      {
+        "files": [
+          "**/*.js",
+          "**/*.ts",
+          "**/*.tsx",
+        ],
+        "plugins": [
+          "typescript",
+        ],
+        "rules": {
+          "@typescript-eslint/no-import-type-side-effects": "error",
+          "@typescript-eslint/prefer-ts-expect-error": "error",
+          "no-console": [
+            "error",
+            {
+              "allow": [
+                "warn",
+                "error",
+                "info",
+              ],
+            },
+          ],
+          "no-debugger": "error",
+          "no-restricted-globals": [
+            "error",
+            "window",
+            "document",
+            "module",
+            "require",
+          ],
+          "sort-imports": [
+            "error",
+            {
+              "ignoreDeclarationSort": true,
+            },
+          ],
+        },
+      },
+      {
+        "files": [
+          "**/__tests__/**",
+          "packages-private/dts-test/**",
+          "packages-private/dts-build-test/**",
+        ],
+        "globals": {
+          "afterAll": "writeable",
+          "afterEach": "writeable",
+          "assert": "writeable",
+          "assertType": "writeable",
+          "beforeAll": "writeable",
+          "beforeEach": "writeable",
+          "chai": "writeable",
+          "describe": "writeable",
+          "expect": "writeable",
+          "expectTypeOf": "writeable",
+          "it": "writeable",
+          "onTestFailed": "writeable",
+          "onTestFinished": "writeable",
+          "suite": "writeable",
+          "test": "writeable",
+          "vi": "writeable",
+          "vitest": "writeable",
+        },
+        "plugins": [
+          "vitest",
+        ],
+        "rules": {
+          "no-console": "off",
+          "no-restricted-globals": "off",
+          "vitest/no-disabled-tests": "error",
+          "vitest/no-focused-tests": "error",
+        },
+      },
+      {
+        "files": [
+          "packages/shared/**",
+          "eslint.config.js",
+        ],
+        "plugins": [],
+        "rules": {
+          "no-restricted-globals": "off",
+        },
+      },
+      {
+        "files": [
+          "packages/{vue,vue-compat,runtime-dom}/**",
+        ],
+        "plugins": [],
+        "rules": {
+          "no-restricted-globals": [
+            "error",
+            "module",
+            "require",
+          ],
+        },
+      },
+      {
+        "files": [
+          "packages/{compiler-sfc,compiler-ssr,server-renderer}/**",
+        ],
+        "plugins": [],
+        "rules": {
+          "no-restricted-globals": [
+            "error",
+            "window",
+            "document",
+          ],
+        },
+      },
+      {
+        "files": [
+          "packages-private/template-explorer/**",
+          "packages-private/sfc-playground/**",
+        ],
+        "plugins": [],
+        "rules": {
+          "no-console": "off",
+          "no-restricted-globals": [
+            "error",
+            "module",
+            "require",
+          ],
+        },
+      },
+      {
+        "files": [
+          "*.js",
+        ],
+        "plugins": [],
+        "rules": {
+          "no-unused-vars": [
+            "error",
+            {
+              "args": "none",
+              "vars": "all",
+            },
+          ],
+        },
+      },
+      {
+        "files": [
+          "eslint.config.js",
+          "rollup*.config.js",
+          "scripts/**",
+          "./*.{js,ts}",
+          "packages/*/*.js",
+          "packages/vue/*/*.js",
+        ],
+        "plugins": [],
+        "rules": {
+          "no-console": "off",
+          "no-restricted-globals": "off",
+        },
+      },
+      {
+        "files": [
+          "packages/compiler-sfc/src/**",
+        ],
+        "plugins": [],
+      },
     ],
   },
   "warnings": [

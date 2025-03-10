@@ -63,7 +63,11 @@ const buildConfig = (
           ? config.files
           : [config.files]) as string[],
       };
-      targetConfig = detectSameOverride(oxlintConfig, targetConfig);
+      const [push, result] = detectSameOverride(oxlintConfig, targetConfig);
+
+      if (push) {
+        overrides.push(result);
+      }
     }
 
     // ToDo: check if we need to enable some plugins
