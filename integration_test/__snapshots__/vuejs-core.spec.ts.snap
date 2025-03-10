@@ -277,7 +277,6 @@ exports[`vuejs/core upgrade > vuejs/core--upgrade 1`] = `
           "packages/shared/**",
           "eslint.config.js",
         ],
-        "plugins": [],
         "rules": {
           "no-restricted-globals": "off",
         },
@@ -286,7 +285,6 @@ exports[`vuejs/core upgrade > vuejs/core--upgrade 1`] = `
         "files": [
           "packages/{vue,vue-compat,runtime-dom}/**",
         ],
-        "plugins": [],
         "rules": {
           "no-restricted-globals": [
             "error",
@@ -299,7 +297,6 @@ exports[`vuejs/core upgrade > vuejs/core--upgrade 1`] = `
         "files": [
           "packages/{compiler-sfc,compiler-ssr,server-renderer}/**",
         ],
-        "plugins": [],
         "rules": {
           "no-restricted-globals": [
             "error",
@@ -313,7 +310,6 @@ exports[`vuejs/core upgrade > vuejs/core--upgrade 1`] = `
           "packages-private/template-explorer/**",
           "packages-private/sfc-playground/**",
         ],
-        "plugins": [],
         "rules": {
           "no-console": "off",
           "no-restricted-globals": [
@@ -327,7 +323,6 @@ exports[`vuejs/core upgrade > vuejs/core--upgrade 1`] = `
         "files": [
           "*.js",
         ],
-        "plugins": [],
         "rules": {
           "no-unused-vars": [
             "error",
@@ -347,17 +342,10 @@ exports[`vuejs/core upgrade > vuejs/core--upgrade 1`] = `
           "packages/*/*.js",
           "packages/vue/*/*.js",
         ],
-        "plugins": [],
         "rules": {
           "no-console": "off",
           "no-restricted-globals": "off",
         },
-      },
-      {
-        "files": [
-          "packages/compiler-sfc/src/**",
-        ],
-        "plugins": [],
       },
     ],
   },
