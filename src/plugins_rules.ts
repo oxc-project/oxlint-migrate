@@ -139,6 +139,11 @@ export const detectNeededRulesPlugins = (
         options.reporter(`unsupported plugin for rule: ${rule}`);
     }
   }
+
+  // only in overrides cleanup plugins, in root we want to disable the default ones
+  if ('files' in targetConfig && targetConfig.plugins.length === 0) {
+    delete targetConfig.plugins;
+  }
 };
 
 export const cleanUpUselessOverridesPlugins = (config: OxlintConfig): void => {

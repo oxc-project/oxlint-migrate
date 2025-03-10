@@ -37,7 +37,6 @@ const TS_ESLINT_DEFAULT_OVERRIDE: OxlintConfigOverride = {
     'prefer-rest-params': 'error',
     'prefer-spread': 'error',
   },
-  plugins: [],
 };
 
 const cleanUpDefaultTypeScriptOverridesForEslint = (
