@@ -10,6 +10,7 @@ import {
   detectNeededRulesPlugins,
   transformRuleEntry,
 } from './plugins_rules.js';
+import { detectSameOverride } from './overrides.js';
 
 const buildConfig = (
   configs: Linter.Config[],
@@ -62,7 +63,7 @@ const buildConfig = (
           ? config.files
           : [config.files]) as string[],
       };
-      overrides.push(targetConfig as OxlintConfigOverride);
+      targetConfig = detectSameOverride(oxlintConfig, targetConfig);
     }
 
     // ToDo: check if we need to enable some plugins

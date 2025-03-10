@@ -1,6 +1,6 @@
 import { expect, test } from 'vitest';
 import eslint_plugin_oxlint_test from './projects/eslint-plugin-oxlint.eslint.config.js';
-import { getSnapshotResult } from './utils.js';
+import { getSnapshotResult, getSnapShotUpgradeResult } from './utils.js';
 
 test('eslint-plugin-oxlint', async () => {
   // @ts-ignore -- maybe bug in other plugin?

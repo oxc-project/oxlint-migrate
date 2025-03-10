@@ -21,17 +21,6 @@ exports[`autoprefixer > autoprefixer 1`] = `
     "ignorePatterns": [
       "coverage",
     ],
-    "overrides": [
-      {
-        "files": [
-          "**/*.test.{js,jsx}",
-          "**/*.test.{ts,tsx}",
-        ],
-        "rules": {
-          "no-unused-expressions": "off",
-        },
-      },
-    ],
     "plugins": [
       "import",
       "promise",
