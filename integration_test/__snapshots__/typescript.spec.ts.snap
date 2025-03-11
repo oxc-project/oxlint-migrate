@@ -281,6 +281,7 @@ exports[`typescript upgrade > typescript--upgrade 1`] = `
       "perf": "error",
     },
     "env": {
+      "builtin": true,
       "commonjs": true,
       "node": true,
       "shared-node-browser": true,

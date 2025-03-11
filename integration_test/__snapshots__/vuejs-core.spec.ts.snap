@@ -190,6 +190,9 @@ exports[`vuejs/core upgrade > vuejs/core--upgrade 1`] = `
       "correctness": "error",
       "perf": "error",
     },
+    "env": {
+      "builtin": true,
+    },
     "ignorePatterns": [
       "**/dist/",
       "**/temp/",

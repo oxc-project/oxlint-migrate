@@ -46,7 +46,6 @@ describe('transformEnvAndGlobals', () => {
     transformEnvAndGlobals(eslintConfig, config);
 
     expect(config).toStrictEqual({
-      globals: {},
       env: {
         es2024: true,
       },
@@ -64,7 +63,6 @@ describe('transformEnvAndGlobals', () => {
     transformEnvAndGlobals(eslintConfig, config);
 
     expect(config).toStrictEqual({
-      globals: {},
       env: {
         es2025: true,
       },

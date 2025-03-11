@@ -341,6 +341,9 @@ exports[`vscode upgrade > vscode--upgrade 1`] = `
       "correctness": "error",
       "perf": "error",
     },
+    "env": {
+      "builtin": true,
+    },
     "ignorePatterns": [
       "**/build/*/**/*.js",
       "**/dist/**/*.js",

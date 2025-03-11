@@ -363,6 +363,7 @@ exports[`puppeteer upgrade > puppeteer--upgrade 1`] = `
       "perf": "error",
     },
     "env": {
+      "builtin": true,
       "commonjs": true,
       "es2025": true,
       "node": true,
