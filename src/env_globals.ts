@@ -144,10 +144,6 @@ export const transformEnvAndGlobals = (
   }
 
   if (eslintConfig.languageOptions?.ecmaVersion !== undefined) {
-    if (targetConfig.globals === undefined) {
-      targetConfig.globals = {};
-    }
-
     if (eslintConfig.languageOptions?.ecmaVersion === 'latest') {
       if (targetConfig.env === undefined) {
         targetConfig.env = {};

@@ -117,7 +117,7 @@ export const cleanUpOxlintConfig = (config: OxlintConfigOrOverride): void => {
     let detected = false;
     // remove older es versions,
     // because newer ones are always a superset of them
-    for (const esVersion of ES_VERSIONS.reverse()) {
+    for (const esVersion of [...ES_VERSIONS].reverse()) {
       if (detected) {
         delete config.env[`es${esVersion}`];
       } else if (config.env[`es${esVersion}`] === true) {

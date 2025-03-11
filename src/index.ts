@@ -40,6 +40,13 @@ const buildConfig = (
     oxlintConfig.$schema = './node_modules/oxlint/configuration_schema.json';
   }
 
+  // when upgrading check for env default
+  // the default config has already defined it
+  // ToDo: env can be defined, but builtin not
+  if (oxlintConfig.env === undefined && options?.upgrade) {
+    oxlintConfig.env = { builtin: true };
+  }
+
   // when upgrade use the existing overrides, or else create an empty one
   const overrides: OxlintConfigOverride[] = options?.upgrade
     ? (oxlintConfig.overrides ?? [])
