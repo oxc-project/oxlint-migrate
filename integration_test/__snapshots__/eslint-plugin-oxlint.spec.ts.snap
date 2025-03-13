@@ -182,6 +182,7 @@ exports[`eslint-plugin-oxlint > eslint-plugin-oxlint 1`] = `
       "unicorn/prefer-type-error": "error",
       "unicorn/require-array-join-separator": "error",
       "unicorn/require-number-to-fixed-digits-argument": "error",
+      "unicorn/require-post-message-target-origin": "off",
       "unicorn/switch-case-braces": "error",
       "unicorn/text-encoding-identifier-case": "error",
       "unicorn/throw-new-error": "error",
