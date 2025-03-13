@@ -1,6 +1,6 @@
 {
   "name": "@oxlint/migrate",
-  "version": "0.15.14",
+  "version": "0.15.15",
   "description": "Generates a `.oxlintrc.json` from a existing eslint flat config",
   "type": "module",
   "bin": {
@@ -57,7 +57,7 @@
     "eslint-plugin-unicorn": "^57.0.0",
     "husky": "^9.1.7",
     "lint-staged": "^15.4.3",
-    "oxlint": "^0.15.14",
+    "oxlint": "^0.15.15",
     "prettier": "^3.5.1",
     "typescript": "^5.7.3",
     "typescript-eslint": "^8.24.0",

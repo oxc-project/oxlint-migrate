@@ -97,6 +97,7 @@ export const nurseryRules = [
   'react-hooks/exhaustive-deps',
   'react/require-render-return',
   '@typescript-eslint/consistent-type-imports',
+  '@typescript-eslint/no-unnecessary-parameter-property-assignment',
   'import-x/export',
   'import-x/named',
 ];
@@ -558,6 +559,7 @@ export const suspiciousRules = [
   '@typescript-eslint/no-unnecessary-type-constraint',
   'unicorn/consistent-function-scoping',
   'unicorn/prefer-add-event-listener',
+  'unicorn/require-post-message-target-origin',
   '@typescript-eslint/no-useless-constructor',
   'import-x/no-absolute-path',
   'import-x/no-duplicates',
