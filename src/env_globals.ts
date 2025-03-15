@@ -140,7 +140,19 @@ export const transformEnvAndGlobals = (
       targetConfig.globals = {};
     }
 
-    Object.assign(targetConfig.globals, eslintConfig.languageOptions.globals);
+    // when upgrading check if the global already exists and do not write
+    if (options?.upgrade) {
+      for (const [global, globalSetting] of Object.entries(
+        eslintConfig.languageOptions.globals
+      )) {
+        if (!(global in targetConfig.globals)) {
+          targetConfig.globals[global] = globalSetting;
+        }
+      }
+    } else {
+      // no upgrade, hard append
+      Object.assign(targetConfig.globals, eslintConfig.languageOptions.globals);
+    }
   }
 
   if (eslintConfig.languageOptions?.ecmaVersion !== undefined) {
@@ -148,14 +160,20 @@ export const transformEnvAndGlobals = (
       if (targetConfig.env === undefined) {
         targetConfig.env = {};
       }
-      targetConfig.env[`es${ES_VERSIONS[ES_VERSIONS.length - 1]}`] = true;
+      const latestVersion = `es${ES_VERSIONS[ES_VERSIONS.length - 1]}`;
+      if (!(latestVersion in targetConfig.env)) {
+        targetConfig.env[latestVersion] = true;
+      }
     } else if (
       ES_VERSIONS.includes(eslintConfig.languageOptions?.ecmaVersion)
     ) {
       if (targetConfig.env === undefined) {
         targetConfig.env = {};
       }
-      targetConfig.env[`es${eslintConfig.languageOptions?.ecmaVersion}`] = true;
+      const targetVersion = `es${eslintConfig.languageOptions?.ecmaVersion}`;
+      if (!(targetVersion in targetConfig.env)) {
+        targetConfig.env[targetVersion] = true;
+      }
     }
   }
 };
