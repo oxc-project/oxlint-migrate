@@ -9,10 +9,10 @@ export const detectSameOverride = (
     return [true, override];
   }
 
-  // ToDo: check for plugins too
-  const matchedOverride = config.overrides.find(({ files }) => {
-    // console.log(files, override.files)
-    return isEqualDeep(files, override.files);
+  // only when override has no categories to avoid merging rules which requires a plugin
+  // plugins array will be later filled
+  const matchedOverride = config.overrides.find(({ files, categories }) => {
+    return categories === undefined && isEqualDeep(files, override.files);
   });
 
   if (matchedOverride !== undefined) {
