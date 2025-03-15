@@ -269,3 +269,234 @@ exports[`autoprefixer > autoprefixer 1`] = `
   ],
 }
 `;
+
+exports[`autoprefixer upgrade > autoprefixer--upgrade 1`] = `
+{
+  "config": {
+    "$schema": "./node_modules/oxlint/configuration_schema.json",
+    "categories": {
+      "correctness": "error",
+      "perf": "error",
+    },
+    "env": {
+      "builtin": true,
+      "commonjs": true,
+      "es2024": true,
+      "node": true,
+      "shared-node-browser": true,
+    },
+    "globals": {
+      "document": "readonly",
+      "window": "readonly",
+    },
+    "ignorePatterns": [
+      "coverage",
+    ],
+    "overrides": [
+      {
+        "files": [
+          "**/*.test.{js,jsx}",
+          "**/*.test.{ts,tsx}",
+        ],
+        "rules": {
+          "no-unused-expressions": "off",
+        },
+      },
+    ],
+    "plugins": [
+      "import",
+      "promise",
+    ],
+    "rules": {
+      "array-callback-return": [
+        "error",
+        {
+          "allowImplicit": false,
+          "checkForEach": false,
+        },
+      ],
+      "curly": [
+        "error",
+        "multi-line",
+      ],
+      "default-case-last": "error",
+      "eqeqeq": [
+        "error",
+        "always",
+        {
+          "null": "ignore",
+        },
+      ],
+      "import-x/first": "error",
+      "import-x/no-absolute-path": [
+        "error",
+        {
+          "amd": false,
+          "commonjs": true,
+          "esmodule": true,
+        },
+      ],
+      "import-x/no-duplicates": "error",
+      "import-x/no-named-default": "error",
+      "import-x/no-webpack-loader-syntax": "error",
+      "new-cap": [
+        "error",
+        {
+          "capIsNew": false,
+          "newIsCap": true,
+          "properties": true,
+        },
+      ],
+      "no-array-constructor": "error",
+      "no-case-declarations": "error",
+      "no-console": "error",
+      "no-constant-condition": [
+        "error",
+        {
+          "checkLoops": false,
+        },
+      ],
+      "no-empty": [
+        "error",
+        {
+          "allowEmptyCatch": true,
+        },
+      ],
+      "no-extend-native": "error",
+      "no-fallthrough": "error",
+      "no-iterator": "error",
+      "no-labels": [
+        "error",
+        {
+          "allowLoop": false,
+          "allowSwitch": false,
+        },
+      ],
+      "no-lone-blocks": "error",
+      "no-multi-str": "error",
+      "no-nested-ternary": "error",
+      "no-new-func": "error",
+      "no-new-wrappers": "error",
+      "no-object-constructor": "error",
+      "no-proto": "error",
+      "no-prototype-builtins": "error",
+      "no-redeclare": [
+        "error",
+        {
+          "builtinGlobals": false,
+        },
+      ],
+      "no-regex-spaces": "error",
+      "no-return-assign": [
+        "error",
+        "except-parens",
+      ],
+      "no-self-assign": [
+        "error",
+        {
+          "props": true,
+        },
+      ],
+      "no-self-compare": "error",
+      "no-template-curly-in-string": "error",
+      "no-throw-literal": "error",
+      "no-unexpected-multiline": "error",
+      "no-unneeded-ternary": [
+        "error",
+        {
+          "defaultAssignment": false,
+        },
+      ],
+      "no-unused-expressions": [
+        "error",
+        {
+          "allowShortCircuit": true,
+          "allowTaggedTemplates": true,
+          "allowTernary": true,
+        },
+      ],
+      "no-unused-vars": [
+        "error",
+        {
+          "args": "after-used",
+          "vars": "all",
+        },
+      ],
+      "no-useless-constructor": "error",
+      "no-var": "warn",
+      "no-void": "error",
+      "prefer-exponentiation-operator": "error",
+      "prefer-promise-reject-errors": "error",
+      "prefer-rest-params": "error",
+      "prefer-spread": "error",
+      "promise/param-names": "error",
+      "symbol-description": "error",
+      "use-isnan": [
+        "error",
+        {
+          "enforceForIndexOf": true,
+          "enforceForSwitchCase": true,
+        },
+      ],
+      "valid-typeof": [
+        "error",
+        {
+          "requireStringLiterals": true,
+        },
+      ],
+      "yoda": [
+        "error",
+        "never",
+      ],
+    },
+  },
+  "warnings": [
+    "unsupported rule: accessor-pairs",
+    "unsupported rule: block-scoped-var",
+    "unsupported rule: camelcase",
+    "unsupported rule, but in development: constructor-super",
+    "unsupported rule: dot-notation",
+    "unsupported rule: func-name-matching",
+    "unsupported rule, but in development: getter-return",
+    "unsupported rule, but in development: import-x/export",
+    "unsupported rule: n/global-require",
+    "unsupported rule: n/handle-callback-err",
+    "unsupported rule: n/no-deprecated-api",
+    "unsupported rule: n/no-exports-assign",
+    "unsupported rule: n/no-extraneous-require",
+    "unsupported rule: n/no-missing-require",
+    "unsupported rule: n/no-new-require",
+    "unsupported rule: n/no-path-concat",
+    "unsupported rule: n/no-unpublished-require",
+    "unsupported rule: n/no-unsupported-features/es-builtins",
+    "unsupported rule: n/no-unsupported-features/es-syntax",
+    "unsupported rule: n/no-unsupported-features/node-builtins",
+    "unsupported rule: n/prefer-node-protocol",
+    "unsupported rule: n/process-exit-as-throw",
+    "unsupported rule: no-dupe-args",
+    "unsupported rule: no-extra-bind",
+    "unsupported rule: no-implied-eval",
+    "unsupported rule: no-invalid-this",
+    "unsupported rule: no-lonely-if",
+    "unsupported rule: no-misleading-character-class",
+    "unsupported rule: no-octal",
+    "unsupported rule: no-octal-escape",
+    "unsupported rule: no-sequences",
+    "unsupported rule: no-shadow",
+    "unsupported rule, but in development: no-undef",
+    "unsupported rule: no-undef-init",
+    "unsupported rule: no-unmodified-loop-condition",
+    "unsupported rule, but in development: no-unreachable",
+    "unsupported rule: no-unreachable-loop",
+    "unsupported rule: no-use-before-define",
+    "unsupported rule: no-useless-backreference",
+    "unsupported rule: no-useless-computed-key",
+    "unsupported rule: no-useless-return",
+    "unsupported rule: object-shorthand",
+    "unsupported rule: one-var",
+    "unsupported rule: prefer-arrow-callback",
+    "unsupported rule: prefer-let/prefer-let",
+    "unsupported rule: prefer-regex-literals",
+  ],
+}
+`;

@@ -1,8 +1,16 @@
+import { expect } from 'vitest';
 import main from '../src/index.js';
+import { OxlintConfig } from '../src/types.js';
 
-export const getSnapshotResult = async (config: Parameters<typeof main>[0]) => {
+export const getSnapshotResult = async (
+  config: Parameters<typeof main>[0],
+  oxlintConfig?: OxlintConfig
+) => {
   const collector: string[] = [];
-  const result = await main(config, collector.push.bind(collector));
+  const result = await main(config, oxlintConfig, {
+    reporter: collector.push.bind(collector),
+    upgrade: oxlintConfig !== undefined,
+  });
 
   return {
     config: result,
@@ -15,4 +23,17 @@ export const getSnapshotResult = async (config: Parameters<typeof main>[0]) => {
       .filter((error) => !error.startsWith('unsupported rule: toml/'))
       .filter((error) => !error.startsWith('unsupported rule: style/')),
   };
+};
+
+export const getSnapShotUpgradeResult = async (
+  config: Parameters<typeof main>[0],
+  oxlintConfig: OxlintConfig
+) => {
+  const result = await getSnapshotResult(config, oxlintConfig);
+  const upgradedResult = structuredClone(result);
+  const result2 = await getSnapshotResult(config, upgradedResult.config);
+
+  expect(result2).toStrictEqual(result);
+
+  return result2;
 };
