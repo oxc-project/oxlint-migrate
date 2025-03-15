@@ -18,8 +18,9 @@ When no config file provided, the script searches for the default eslint config 
 
 ### Options
 
-|Options|Description|
-|`--upgrade`|\* Upgrade existing .oxlintrc.json configuration|
+| Options     | Description                                      |
+| ----------- | ------------------------------------------------ |
+| `--upgrade` | \* Upgrade existing .oxlintrc.json configuration |
 
 \* WARNING: When you some `categories` enabled, this tools will enable more rules for `plugins`.
 Or else we need to disable each rule `plugin/categories` combination which is not covered by your eslint configuration.
