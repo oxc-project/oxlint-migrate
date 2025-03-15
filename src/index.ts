@@ -18,20 +18,29 @@ const buildConfig = (
   options?: Options
 ): OxlintConfig => {
   if (oxlintConfig === undefined) {
-    oxlintConfig = {
-      $schema: './node_modules/oxlint/configuration_schema.json',
-      // disable all plugins and check later
-      plugins: [],
-      env: {
-        builtin: true,
-      },
-      categories: {
-        // ToDo: for upgrade set the default category manuel when it is not found
-        // ToDo: later we can remove it again
-        // default category
-        correctness: 'off',
-      },
-    };
+    // when upgrading and no configuration is found, we use the default configuration from oxlint
+    if (options?.upgrade) {
+      oxlintConfig = {
+        // disable all plugins and check later
+        plugins: ['oxc', 'typescript', 'unicorn', 'react'],
+        categories: {
+          correctness: 'warn',
+        },
+      };
+    } else {
+      // when no upgrade we start from 0 rules
+      oxlintConfig = {
+        $schema: './node_modules/oxlint/configuration_schema.json',
+        // disable all plugins and check later
+        plugins: [],
+        categories: {
+          // ToDo: for upgrade set the default category manuel when it is not found
+          // ToDo: later we can remove it again
+          // default category
+          correctness: 'off',
+        },
+      };
+    }
   }
 
   // when upgrade check if $schema is not defined,
@@ -42,7 +51,7 @@ const buildConfig = (
 
   // when upgrading check for env default
   // the default config has already defined it
-  if (oxlintConfig.env?.builtin === undefined && options?.upgrade) {
+  if (oxlintConfig.env?.builtin === undefined) {
     if (oxlintConfig.env === undefined) {
       oxlintConfig.env = {};
     }
