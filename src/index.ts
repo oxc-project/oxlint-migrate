@@ -42,9 +42,11 @@ const buildConfig = (
 
   // when upgrading check for env default
   // the default config has already defined it
-  // ToDo: env can be defined, but builtin not
-  if (oxlintConfig.env === undefined && options?.upgrade) {
-    oxlintConfig.env = { builtin: true };
+  if (oxlintConfig.env?.builtin === undefined && options?.upgrade) {
+    if (oxlintConfig.env === undefined) {
+      oxlintConfig.env = {};
+    }
+    oxlintConfig.env.builtin = true;
   }
 
   // when upgrade use the existing overrides, or else create an empty one
@@ -64,7 +66,6 @@ const buildConfig = (
     if (config.files === undefined) {
       targetConfig = oxlintConfig;
     } else {
-      // ToDo: (when upgrade) check if config.files matches already existing overrides
       targetConfig = {
         files: (Array.isArray(config.files)
           ? config.files
@@ -75,10 +76,6 @@ const buildConfig = (
       if (push) {
         overrides.push(result);
       }
-    }
-
-    // ToDo: check if we need to enable some plugins
-    if (config.plugins !== undefined) {
     }
 
     // ToDo: for what?
