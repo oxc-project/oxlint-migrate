@@ -8,6 +8,7 @@ export const pedanticRules = [
   'max-classes-per-file',
   'max-depth',
   'max-lines',
+  'no-lonely-if',
   'no-object-constructor',
   'no-array-constructor',
   'no-case-declarations',
