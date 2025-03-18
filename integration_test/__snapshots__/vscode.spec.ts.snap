@@ -333,7 +333,7 @@ exports[`vscode > vscode 1`] = `
 }
 `;
 
-exports[`vscode upgrade > vscode--upgrade 1`] = `
+exports[`vscode merge > vscode--merge 1`] = `
 {
   "config": {
     "$schema": "./node_modules/oxlint/configuration_schema.json",

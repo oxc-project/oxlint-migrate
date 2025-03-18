@@ -182,7 +182,7 @@ exports[`vuejs/core > vuejs/core 1`] = `
 }
 `;
 
-exports[`vuejs/core upgrade > vuejs/core--upgrade 1`] = `
+exports[`vuejs/core merge > vuejs/core--merge 1`] = `
 {
   "config": {
     "$schema": "./node_modules/oxlint/configuration_schema.json",

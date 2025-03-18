@@ -354,7 +354,7 @@ exports[`puppeteer > puppeteer 1`] = `
 }
 `;
 
-exports[`puppeteer upgrade > puppeteer--upgrade 1`] = `
+exports[`puppeteer merge > puppeteer--merge 1`] = `
 {
   "config": {
     "$schema": "./node_modules/oxlint/configuration_schema.json",

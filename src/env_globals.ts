@@ -141,7 +141,7 @@ export const transformEnvAndGlobals = (
     }
 
     // when upgrading check if the global already exists and do not write
-    if (options?.upgrade) {
+    if (options?.merge) {
       for (const [global, globalSetting] of Object.entries(
         eslintConfig.languageOptions.globals
       )) {
@@ -150,7 +150,7 @@ export const transformEnvAndGlobals = (
         }
       }
     } else {
-      // no upgrade, hard append
+      // no merge, hard append
       Object.assign(targetConfig.globals, eslintConfig.languageOptions.globals);
     }
   }

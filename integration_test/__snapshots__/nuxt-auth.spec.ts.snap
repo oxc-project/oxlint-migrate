@@ -593,7 +593,7 @@ exports[`nuxt-auth > nuxt-auth 1`] = `
 }
 `;
 
-exports[`nuxt-auth upgrade > nuxt-auth--upgrade 1`] = `
+exports[`nuxt-auth merge > nuxt-auth--merge 1`] = `
 {
   "config": {
     "$schema": "./node_modules/oxlint/configuration_schema.json",

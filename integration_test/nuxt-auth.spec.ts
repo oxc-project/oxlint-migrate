@@ -1,7 +1,7 @@
 import { expect, test } from 'vitest';
 // @ts-ignore
 import nuxt_auth_test from './projects/nuxt-auth.eslint.config.js';
-import { getSnapshotResult, getSnapShotUpgradeResult } from './utils.js';
+import { getSnapshotResult, getSnapShotMergeResult } from './utils.js';
 
 test('nuxt-auth', async () => {
   // https://github.com/antfu/eslint-config?tab=readme-ov-file#plugins-renaming
@@ -14,8 +14,8 @@ test('nuxt-auth', async () => {
   expect(result).toMatchSnapshot('nuxt-auth');
 });
 
-test('nuxt-auth upgrade', async () => {
-  const result = await getSnapShotUpgradeResult(
+test('nuxt-auth merge', async () => {
+  const result = await getSnapShotMergeResult(
     nuxt_auth_test.renamePlugins({
       ts: '@typescript-eslint',
       test: 'vitest',
@@ -27,5 +27,5 @@ test('nuxt-auth upgrade', async () => {
       },
     }
   );
-  expect(result).toMatchSnapshot('nuxt-auth--upgrade');
+  expect(result).toMatchSnapshot('nuxt-auth--merge');
 });

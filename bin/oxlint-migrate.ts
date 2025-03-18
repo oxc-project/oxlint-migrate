@@ -13,7 +13,10 @@ program
   .name('oxlint-migrate')
   .version(packageJson.version)
   .argument('[eslint-config]', 'The path to the eslint v9 config file')
-  .option('--upgrade', 'Upgrade existing .oxlintrc.json configuration')
+  .option(
+    '--merge',
+    'Merge eslint configuration with an existing .oxlintrc.json configuration'
+  )
   .action(async (filePath) => {
     const cwd = process.cwd();
     const oxlintFilePath = path.join(cwd, '.oxlintrc.json');
@@ -39,11 +42,11 @@ program
       const cliOptions = program.opts();
       const options: Options = {
         reporter: console.warn,
-        upgrade: !!cliOptions.upgrade,
+        merge: !!cliOptions.merge,
       };
 
       let config;
-      if (options.upgrade && existsSync(oxlintFilePath)) {
+      if (options.merge && existsSync(oxlintFilePath)) {
         // we expect that is a right config file
         config = JSON.parse(
           readFileSync(oxlintFilePath, { encoding: 'utf8', flag: 'r' })

@@ -272,7 +272,7 @@ exports[`typescript > typescript 1`] = `
 }
 `;
 
-exports[`typescript upgrade > typescript--upgrade 1`] = `
+exports[`typescript merge > typescript--merge 1`] = `
 {
   "config": {
     "$schema": "./node_modules/oxlint/configuration_schema.json",

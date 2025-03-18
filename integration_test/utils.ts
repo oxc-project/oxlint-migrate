@@ -9,7 +9,7 @@ export const getSnapshotResult = async (
   const collector: string[] = [];
   const result = await main(config, oxlintConfig, {
     reporter: collector.push.bind(collector),
-    upgrade: oxlintConfig !== undefined,
+    merge: oxlintConfig !== undefined,
   });
 
   return {
@@ -25,13 +25,13 @@ export const getSnapshotResult = async (
   };
 };
 
-export const getSnapShotUpgradeResult = async (
+export const getSnapShotMergeResult = async (
   config: Parameters<typeof main>[0],
   oxlintConfig: OxlintConfig
 ) => {
   const result = await getSnapshotResult(config, oxlintConfig);
-  const upgradedResult = structuredClone(result);
-  const result2 = await getSnapshotResult(config, upgradedResult.config);
+  const mergedResult = structuredClone(result);
+  const result2 = await getSnapshotResult(config, mergedResult.config);
 
   expect(result2).toStrictEqual(result);
 

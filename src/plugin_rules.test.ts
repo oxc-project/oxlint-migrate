@@ -38,7 +38,7 @@ describe('rules and plugins', () => {
     expect(config.rules['unknown-rule']).toBe(undefined);
   });
 
-  test('transformRuleEntry upgrade', () => {
+  test('transformRuleEntry merge', () => {
     const eslintConfig: Linter.Config = {
       rules: {
         'unicorn/prefer-set-has': 'error',
@@ -52,7 +52,7 @@ describe('rules and plugins', () => {
     };
 
     transformRuleEntry(eslintConfig, config, {
-      upgrade: true,
+      merge: true,
     });
 
     assert(config.rules);

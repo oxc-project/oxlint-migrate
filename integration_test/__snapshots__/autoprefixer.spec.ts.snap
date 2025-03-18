@@ -270,7 +270,7 @@ exports[`autoprefixer > autoprefixer 1`] = `
 }
 `;
 
-exports[`autoprefixer upgrade > autoprefixer--upgrade 1`] = `
+exports[`autoprefixer merge > autoprefixer--merge 1`] = `
 {
   "config": {
     "$schema": "./node_modules/oxlint/configuration_schema.json",

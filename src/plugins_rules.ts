@@ -86,9 +86,9 @@ export const transformRuleEntry = (
         continue;
       }
 
-      // when upgrade only override if not exists
-      // for non upgrade override it because eslint/typescript rules
-      if (options?.upgrade) {
+      // when merge only override if not exists
+      // for non merge override it because eslint/typescript rules
+      if (options?.merge) {
         if (!(rule in targetConfig.rules)) {
           targetConfig.rules[rule] = normalizeSeverityValue(config);
         }

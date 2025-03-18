@@ -31,5 +31,5 @@ type Reporter = (warning: string) => void;
 
 export type Options = {
   reporter?: Reporter;
-  upgrade?: boolean;
+  merge?: boolean;
 };

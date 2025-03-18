@@ -19,7 +19,7 @@ const buildConfig = (
 ): OxlintConfig => {
   if (oxlintConfig === undefined) {
     // when upgrading and no configuration is found, we use the default configuration from oxlint
-    if (options?.upgrade) {
+    if (options?.merge) {
       oxlintConfig = {
         // disable all plugins and check later
         plugins: ['oxc', 'typescript', 'unicorn', 'react'],
@@ -28,13 +28,13 @@ const buildConfig = (
         },
       };
     } else {
-      // when no upgrade we start from 0 rules
+      // when no merge we start from 0 rules
       oxlintConfig = {
         $schema: './node_modules/oxlint/configuration_schema.json',
         // disable all plugins and check later
         plugins: [],
         categories: {
-          // ToDo: for upgrade set the default category manuel when it is not found
+          // ToDo: for merge set the default category manuel when it is not found
           // ToDo: later we can remove it again
           // default category
           correctness: 'off',
@@ -43,9 +43,9 @@ const buildConfig = (
     }
   }
 
-  // when upgrade check if $schema is not defined,
+  // when merge check if $schema is not defined,
   // the default config has already defined it
-  if (oxlintConfig.$schema === undefined && options?.upgrade) {
+  if (oxlintConfig.$schema === undefined && options?.merge) {
     oxlintConfig.$schema = './node_modules/oxlint/configuration_schema.json';
   }
 
@@ -58,8 +58,8 @@ const buildConfig = (
     oxlintConfig.env.builtin = true;
   }
 
-  // when upgrade use the existing overrides, or else create an empty one
-  const overrides: OxlintConfigOverride[] = options?.upgrade
+  // when merge use the existing overrides, or else create an empty one
+  const overrides: OxlintConfigOverride[] = options?.merge
     ? (oxlintConfig.overrides ?? [])
     : [];
 

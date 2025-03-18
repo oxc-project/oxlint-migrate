@@ -234,7 +234,7 @@ exports[`eslint-plugin-oxlint > eslint-plugin-oxlint 1`] = `
 }
 `;
 
-exports[`eslint-plugin-oxlint upgrade > eslint-plugin-oxlint-upgrade 1`] = `
+exports[`eslint-plugin-oxlint merge > eslint-plugin-oxlint-merge 1`] = `
 {
   "config": {
     "$schema": "./node_modules/oxlint/configuration_schema.json",
