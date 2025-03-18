@@ -18,7 +18,7 @@ program
   .option(
     '--output-file <file>',
     'The oxlint configuration file where to eslint v9 rules will be written to',
-    path.join(cwd, '.oxlintrc.json')
+    '.oxlintrc.json'
   )
   .option(
     '--merge',
@@ -26,7 +26,7 @@ program
   )
   .action(async (filePath) => {
     const cliOptions = program.opts();
-    const oxlintFilePath = cliOptions.outputFile;
+    const oxlintFilePath = path.join(cwd, cliOptions.outputFile);
 
     if (filePath === undefined) {
       filePath = getAutodetectedEslintConfigName(cwd);
