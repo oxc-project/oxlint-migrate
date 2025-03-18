@@ -1,6 +1,7 @@
 import { assert, describe, expect, test } from 'vitest';
 import type { OxlintConfig } from './types.js';
 import {
+  cleanUpRulesWhichAreCoveredByCategory,
   cleanUpUselessOverridesRules,
   detectNeededRulesPlugins,
   replaceNodePluginName,
@@ -21,7 +22,7 @@ describe('rules and plugins', () => {
     expect(config.plugins).toContain('unicorn');
   });
 
-  test('transformRuleEntry', () => {
+  test('transformRuleEntry default', () => {
     const eslintConfig: Linter.Config = {
       rules: {
         'unicorn/prefer-set-has': 'error',
@@ -35,6 +36,27 @@ describe('rules and plugins', () => {
     assert(config.rules);
     expect(config.rules['unicorn/prefer-set-has']).toBe('error');
     expect(config.rules['unknown-rule']).toBe(undefined);
+  });
+
+  test('transformRuleEntry merge', () => {
+    const eslintConfig: Linter.Config = {
+      rules: {
+        'unicorn/prefer-set-has': 'error',
+      },
+    };
+
+    const config: OxlintConfig = {
+      rules: {
+        'unicorn/prefer-set-has': 'warn',
+      },
+    };
+
+    transformRuleEntry(eslintConfig, config, {
+      merge: true,
+    });
+
+    assert(config.rules);
+    expect(config.rules['unicorn/prefer-set-has']).toBe('warn');
   });
 
   test('cleanUpUselessOverridesRules', () => {
@@ -59,6 +81,31 @@ describe('rules and plugins', () => {
         'unicorn/prefer-set-has': 'error',
       },
       overrides: [{ files: [] }],
+    });
+  });
+
+  test('cleanUpRulesWhichAreCoveredByCategory', () => {
+    const config: OxlintConfig = {
+      categories: {
+        perf: 'error',
+      },
+      rules: {
+        'no-await-in-loop': 'error',
+        'no-useless-call': ['error', 'some-config'],
+        'unicorn/prefer-set-has': ['error'],
+      },
+    };
+
+    cleanUpRulesWhichAreCoveredByCategory(config);
+
+    expect(config).toStrictEqual({
+      categories: {
+        perf: 'error',
+      },
+      rules: {
+        // in the same category but with custom configuration which maybe changes from the default one
+        'no-useless-call': ['error', 'some-config'],
+      },
     });
   });
 

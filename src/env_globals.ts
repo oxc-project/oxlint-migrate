@@ -1,5 +1,5 @@
 import globals from 'globals';
-import { OxlintConfig, OxlintConfigOrOverride, Reporter } from './types.js';
+import { Options, OxlintConfig, OxlintConfigOrOverride } from './types.js';
 import type { Linter } from 'eslint';
 
 export const ES_VERSIONS = [
@@ -120,7 +120,7 @@ export const detectEnvironmentByGlobals = (config: OxlintConfigOrOverride) => {
 export const transformEnvAndGlobals = (
   eslintConfig: Linter.Config,
   targetConfig: OxlintConfigOrOverride,
-  reporter?: Reporter
+  options?: Options
 ): void => {
   if (
     eslintConfig.languageOptions?.parser !== undefined &&
@@ -128,8 +128,8 @@ export const transformEnvAndGlobals = (
       eslintConfig.languageOptions.parser.meta?.name
     )
   ) {
-    reporter !== undefined &&
-      reporter(
+    options?.reporter !== undefined &&
+      options.reporter(
         'special parser detected: ' +
           eslintConfig.languageOptions.parser.meta?.name
       );
@@ -140,26 +140,40 @@ export const transformEnvAndGlobals = (
       targetConfig.globals = {};
     }
 
-    Object.assign(targetConfig.globals, eslintConfig.languageOptions.globals);
+    // when upgrading check if the global already exists and do not write
+    if (options?.merge) {
+      for (const [global, globalSetting] of Object.entries(
+        eslintConfig.languageOptions.globals
+      )) {
+        if (!(global in targetConfig.globals)) {
+          targetConfig.globals[global] = globalSetting;
+        }
+      }
+    } else {
+      // no merge, hard append
+      Object.assign(targetConfig.globals, eslintConfig.languageOptions.globals);
+    }
   }
 
   if (eslintConfig.languageOptions?.ecmaVersion !== undefined) {
-    if (targetConfig.globals === undefined) {
-      targetConfig.globals = {};
-    }
-
     if (eslintConfig.languageOptions?.ecmaVersion === 'latest') {
       if (targetConfig.env === undefined) {
         targetConfig.env = {};
       }
-      targetConfig.env[`es${ES_VERSIONS[ES_VERSIONS.length - 1]}`] = true;
+      const latestVersion = `es${ES_VERSIONS[ES_VERSIONS.length - 1]}`;
+      if (!(latestVersion in targetConfig.env)) {
+        targetConfig.env[latestVersion] = true;
+      }
     } else if (
       ES_VERSIONS.includes(eslintConfig.languageOptions?.ecmaVersion)
     ) {
       if (targetConfig.env === undefined) {
         targetConfig.env = {};
       }
-      targetConfig.env[`es${eslintConfig.languageOptions?.ecmaVersion}`] = true;
+      const targetVersion = `es${eslintConfig.languageOptions?.ecmaVersion}`;
+      if (!(targetVersion in targetConfig.env)) {
+        targetConfig.env[targetVersion] = true;
+      }
     }
   }
 };

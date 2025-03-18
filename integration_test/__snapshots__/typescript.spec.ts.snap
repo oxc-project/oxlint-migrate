@@ -271,3 +271,203 @@ exports[`typescript > typescript 1`] = `
   ],
 }
 `;
+
+exports[`typescript merge > typescript--merge 1`] = `
+{
+  "config": {
+    "$schema": "./node_modules/oxlint/configuration_schema.json",
+    "categories": {
+      "correctness": "error",
+      "perf": "error",
+    },
+    "env": {
+      "builtin": true,
+      "commonjs": true,
+      "node": true,
+      "shared-node-browser": true,
+    },
+    "ignorePatterns": [
+      "**/node_modules/**",
+      "built/**",
+      "tests/**",
+      "lib/**",
+      "src/lib/*.generated.d.ts",
+      "scripts/**/*.js",
+      "scripts/**/*.d.*",
+      "internal/**",
+      "coverage/**",
+    ],
+    "overrides": [
+      {
+        "files": [
+          "**/*.mjs",
+          "**/*.mts",
+        ],
+        "rules": {
+          "no-restricted-globals": [
+            "error",
+            {
+              "name": "__filename",
+            },
+            {
+              "name": "__dirname",
+            },
+            {
+              "name": "require",
+            },
+            {
+              "name": "module",
+            },
+            {
+              "name": "exports",
+            },
+          ],
+        },
+      },
+      {
+        "files": [
+          "src/**",
+        ],
+        "rules": {
+          "no-restricted-globals": [
+            "error",
+            {
+              "name": "setTimeout",
+            },
+            {
+              "name": "clearTimeout",
+            },
+            {
+              "name": "setInterval",
+            },
+            {
+              "name": "clearInterval",
+            },
+            {
+              "name": "setImmediate",
+            },
+            {
+              "name": "clearImmediate",
+            },
+            {
+              "name": "performance",
+            },
+          ],
+        },
+      },
+      {
+        "files": [
+          "src/harness/**",
+          "src/testRunner/**",
+        ],
+        "rules": {
+          "no-restricted-globals": "off",
+        },
+      },
+      {
+        "files": [
+          "src/lib/*.d.ts",
+        ],
+        "rules": {
+          "@typescript-eslint/no-unsafe-function-type": "off",
+          "@typescript-eslint/no-wrapper-object-types": "off",
+          "@typescript-eslint/prefer-function-type": "off",
+          "no-restricted-globals": "off",
+          "no-shadow-restricted-names": "off",
+          "no-unused-vars": "off",
+          "no-var": "off",
+        },
+      },
+      {
+        "files": [
+          "src/lib/es2019.array.d.ts",
+        ],
+        "rules": {
+          "@typescript-eslint/array-type": "off",
+        },
+      },
+    ],
+    "plugins": [
+      "typescript",
+    ],
+    "rules": {
+      "@typescript-eslint/adjacent-overload-signatures": "error",
+      "@typescript-eslint/array-type": "error",
+      "@typescript-eslint/ban-ts-comment": "error",
+      "@typescript-eslint/ban-tslint-comment": "error",
+      "@typescript-eslint/consistent-generic-constructors": "error",
+      "@typescript-eslint/consistent-indexed-object-style": "error",
+      "@typescript-eslint/consistent-type-definitions": "error",
+      "@typescript-eslint/no-confusing-non-null-assertion": "error",
+      "@typescript-eslint/no-empty-interface": "off",
+      "@typescript-eslint/no-empty-object-type": "error",
+      "@typescript-eslint/no-explicit-any": "error",
+      "@typescript-eslint/no-inferrable-types": "error",
+      "@typescript-eslint/no-namespace": "error",
+      "@typescript-eslint/no-require-imports": "error",
+      "@typescript-eslint/no-unnecessary-type-constraint": "error",
+      "@typescript-eslint/no-unsafe-function-type": "error",
+      "@typescript-eslint/no-var-requires": "off",
+      "@typescript-eslint/prefer-for-of": "error",
+      "@typescript-eslint/prefer-function-type": "error",
+      "@typescript-eslint/prefer-namespace-keyword": "error",
+      "eqeqeq": "error",
+      "no-array-constructor": "error",
+      "no-case-declarations": "error",
+      "no-empty": "error",
+      "no-empty-function": "error",
+      "no-fallthrough": "error",
+      "no-inner-declarations": "off",
+      "no-new-func": "error",
+      "no-new-wrappers": "error",
+      "no-prototype-builtins": "error",
+      "no-redeclare": "error",
+      "no-regex-spaces": "error",
+      "no-template-curly-in-string": "error",
+      "no-throw-literal": "error",
+      "no-unexpected-multiline": "error",
+      "no-unused-expressions": "error",
+      "no-var": "error",
+      "prefer-object-spread": "error",
+      "unicode-bom": [
+        "error",
+        "never",
+      ],
+    },
+  },
+  "warnings": [
+    "unsupported rule, but in development: constructor-super",
+    "unsupported rule, but in development: getter-return",
+    "unsupported rule: no-dupe-args",
+    "unsupported rule: no-misleading-character-class",
+    "unsupported rule: no-octal",
+    "unsupported rule, but in development: no-undef",
+    "unsupported rule, but in development: no-unreachable",
+    "unsupported rule: no-useless-backreference",
+    "unsupported rule, but in development: constructor-super",
+    "unsupported rule, but in development: getter-return",
+    "unsupported rule, but in development: no-undef",
+    "unsupported rule, but in development: no-unreachable",
+    "unsupported rule: prefer-const",
+    "unsupported rule, but in development: constructor-super",
+    "unsupported rule, but in development: getter-return",
+    "unsupported rule, but in development: no-undef",
+    "unsupported rule, but in development: no-unreachable",
+    "unsupported rule: prefer-const",
+    "unsupported rule: @typescript-eslint/class-literal-property-style",
+    "unsupported rule: @typescript-eslint/consistent-type-assertions",
+    "unsupported rule: no-misleading-character-class",
+    "unsupported rule: prefer-regex-literals",
+    "unsupported rule: dot-notation",
+    "unsupported rule: no-extra-bind",
+    "unsupported rule: no-return-await",
+    "unsupported rule: no-undef-init",
+    "unsupported rule: object-shorthand",
+    "unsupported rule: prefer-const",
+    "unsupported rule: no-restricted-syntax",
+    "unsupported rule: @typescript-eslint/naming-convention",
+    "unsupported rule: @typescript-eslint/unified-signatures",
+    "unsupported rule: @typescript-eslint/no-unnecessary-type-assertion",
+  ],
+}
+`;

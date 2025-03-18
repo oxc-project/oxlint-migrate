@@ -10,6 +10,7 @@ export type OxlintConfigOverride = {
   env?: OxlintConfigEnv;
   globals?: Linter.Globals;
   plugins?: OxlintConfigPlugins;
+  categories?: OxlintConfigCategories;
   rules?: Partial<Linter.RulesRecord>;
 };
 
@@ -26,4 +27,9 @@ export type OxlintConfig = {
 
 export type OxlintConfigOrOverride = OxlintConfig | OxlintConfigOverride;
 
-export type Reporter = (warning: string) => void;
+type Reporter = (warning: string) => void;
+
+export type Options = {
+  reporter?: Reporter;
+  merge?: boolean;
+};

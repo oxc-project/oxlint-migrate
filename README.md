@@ -16,6 +16,16 @@ npx @oxlint/migrate <optional-eslint-flat-config-path>
 
 When no config file provided, the script searches for the default eslint config filenames in the current directory.
 
+### Options
+
+| Options   | Description                                                                 |
+| --------- | --------------------------------------------------------------------------- |
+| `--merge` | \* merge eslint configuration with an existing .oxlintrc.json configuration |
+
+\* WARNING: When some `categories` are enabled, this tools will enable more rules with the combination of `plugins`.
+Else we need to disable each rule `plugin/categories` combination, which is not covered by your eslint configuration.
+This behavior can change in the future.
+
 ### User Flow
 
 - Upgrade `oxlint` and `@oxlint/migrate` to the same version.

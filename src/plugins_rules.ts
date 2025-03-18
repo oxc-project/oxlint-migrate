@@ -1,6 +1,6 @@
 import type { Linter } from 'eslint';
 import * as rules from './generated/rules.js';
-import { OxlintConfig, OxlintConfigOrOverride, Reporter } from './types.js';
+import { Options, OxlintConfig, OxlintConfigOrOverride } from './types.js';
 import {
   rulesPrefixesForPlugins,
   typescriptRulesExtendEslintRules,
@@ -63,7 +63,7 @@ const normalizeSeverityValue = (value: Linter.RuleEntry | undefined) => {
 export const transformRuleEntry = (
   eslintConfig: Linter.Config,
   targetConfig: OxlintConfigOrOverride,
-  reporter?: Reporter
+  options?: Options
 ): void => {
   if (eslintConfig.rules === undefined) {
     return;
@@ -81,16 +81,25 @@ export const transformRuleEntry = (
     if (allRules.includes(rule)) {
       // ToDo: enable via flag
       if (rules.nurseryRules.includes(rule)) {
-        reporter !== undefined &&
-          reporter(`unsupported rule, but in development: ${rule}`);
+        options?.reporter !== undefined &&
+          options.reporter(`unsupported rule, but in development: ${rule}`);
         continue;
       }
 
-      targetConfig.rules[rule] = normalizeSeverityValue(config);
+      // when merge only override if not exists
+      // for non merge override it because eslint/typescript rules
+      if (options?.merge) {
+        if (!(rule in targetConfig.rules)) {
+          targetConfig.rules[rule] = normalizeSeverityValue(config);
+        }
+      } else {
+        targetConfig.rules[rule] = normalizeSeverityValue(config);
+      }
     } else {
       // ToDo: maybe use a force flag when some enabled rules are detected?
       if (isActiveValue(config)) {
-        reporter !== undefined && reporter(`unsupported rule: ${rule}`);
+        options?.reporter !== undefined &&
+          options.reporter(`unsupported rule: ${rule}`);
       }
     }
   }
@@ -98,7 +107,7 @@ export const transformRuleEntry = (
 
 export const detectNeededRulesPlugins = (
   targetConfig: OxlintConfigOrOverride,
-  reporter?: Reporter
+  options?: Options
 ): void => {
   if (targetConfig.rules === undefined) {
     return;
@@ -126,8 +135,8 @@ export const detectNeededRulesPlugins = (
     }
 
     if (!found) {
-      reporter !== undefined &&
-        reporter(`unsupported plugin for rule: ${rule}`);
+      options?.reporter !== undefined &&
+        options.reporter(`unsupported plugin for rule: ${rule}`);
     }
   }
 
@@ -177,6 +186,39 @@ export const cleanUpUselessOverridesRules = (config: OxlintConfig): void => {
 
     if (Object.keys(override.rules).length === 0) {
       delete override.rules;
+    }
+  }
+};
+
+export const cleanUpRulesWhichAreCoveredByCategory = (
+  config: OxlintConfigOrOverride
+): void => {
+  if (config.rules === undefined || config.categories === undefined) {
+    return;
+  }
+
+  const enabledCategories = Object.entries(config.categories)
+    .filter(([, severity]) => severity === 'warn' || severity === 'error')
+    .map(([category]) => category);
+
+  for (const [rule, settings] of Object.entries(config.rules)) {
+    for (const category of enabledCategories) {
+      // check if the rule is inside the enabled category
+      if (
+        `${category}Rules` in rules &&
+        // @ts-expect-error -- ts can not resolve the type
+        (rules[`${category}Rules`] as string[]).includes(rule)
+      ) {
+        // check if the severity is the same. only check when no custom config is passed
+        if (
+          settings === config.categories[category] ||
+          (Array.isArray(settings) &&
+            settings.length === 1 &&
+            settings[0] === config.categories[category])
+        ) {
+          delete config.rules[rule];
+        }
+      }
     }
   }
 };

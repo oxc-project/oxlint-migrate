@@ -5,6 +5,7 @@ import {
   transformBoolGlobalToString,
 } from './env_globals.js';
 import {
+  cleanUpRulesWhichAreCoveredByCategory,
   cleanUpUselessOverridesPlugins,
   cleanUpUselessOverridesRules,
   replaceNodePluginName,
@@ -15,22 +16,7 @@ import {
   OxlintConfig,
   OxlintConfigOverride,
 } from './types.js';
-
-// thanks to https://stackoverflow.com/a/77278013/7387397
-const isEqualDeep = <T>(a: T, b: T): boolean => {
-  if (a === b) {
-    return true;
-  }
-
-  const bothAreObjects =
-    a && b && typeof a === 'object' && typeof b === 'object';
-
-  return Boolean(
-    bothAreObjects &&
-      Object.keys(a).length === Object.keys(b).length &&
-      Object.entries(a).every(([k, v]) => isEqualDeep(v, b[k as keyof T]))
-  );
-};
+import { isEqualDeep } from './utilities.js';
 
 const TS_ESLINT_DEFAULT_OVERRIDE: OxlintConfigOverride = {
   files: ['**/*.ts', '**/*.tsx', '**/*.mts', '**/*.cts'],
@@ -112,6 +98,7 @@ export const cleanUpOxlintConfig = (config: OxlintConfigOrOverride): void => {
   transformBoolGlobalToString(config);
   replaceTypescriptAliasRules(config);
   replaceNodePluginName(config);
+  cleanUpRulesWhichAreCoveredByCategory(config);
 
   // no entries in globals, we can remove the globals key
   if (
@@ -130,7 +117,7 @@ export const cleanUpOxlintConfig = (config: OxlintConfigOrOverride): void => {
     let detected = false;
     // remove older es versions,
     // because newer ones are always a superset of them
-    for (const esVersion of ES_VERSIONS.reverse()) {
+    for (const esVersion of [...ES_VERSIONS].reverse()) {
       if (detected) {
         delete config.env[`es${esVersion}`];
       } else if (config.env[`es${esVersion}`] === true) {
