@@ -1,6 +1,6 @@
 {
   "name": "@oxlint/migrate",
-  "version": "0.15.15",
+  "version": "0.16.0",
   "description": "Generates a `.oxlintrc.json` from a existing eslint flat config",
   "type": "module",
   "bin": {
@@ -37,7 +37,7 @@
     "@eslint/eslintrc": "^3.3.0",
     "@eslint/js": "^9.20.0",
     "@logux/eslint-config": "^55.0.0",
-    "@oxc-node/core": "^0.0.20",
+    "@oxc-node/core": "^0.0.21",
     "@stylistic/eslint-plugin": "^4.0.1",
     "@stylistic/eslint-plugin-ts": "^4.0.0",
     "@types/eslint-config-prettier": "^6.11.3",
@@ -52,12 +52,12 @@
     "eslint-plugin-import-x": "^4.6.1",
     "eslint-plugin-jsdoc": "^50.6.3",
     "eslint-plugin-local": "^6.0.0",
-    "eslint-plugin-oxlint": "^0.15.10",
+    "eslint-plugin-oxlint": "^0.16.0",
     "eslint-plugin-regexp": "^2.7.0",
     "eslint-plugin-unicorn": "^57.0.0",
     "husky": "^9.1.7",
     "lint-staged": "^15.4.3",
-    "oxlint": "^0.15.15",
+    "oxlint": "^0.16.0",
     "prettier": "^3.5.1",
     "typescript": "^5.7.3",
     "typescript-eslint": "^8.24.0",
@@ -72,5 +72,5 @@
     "commander": "^13.1.0",
     "globals": "^16.0.0"
   },
-  "packageManager": "pnpm@10.6.1"
+  "packageManager": "pnpm@10.6.3"
 }
