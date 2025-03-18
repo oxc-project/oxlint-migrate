@@ -1,9 +1,7 @@
 // @ts-check
 import eslint from '@eslint/js';
 import * as regexpPlugin from 'eslint-plugin-regexp';
-import fs from 'fs';
 import globals from 'globals';
-import { createRequire } from 'module';
 import path from 'path';
 import tseslint from 'typescript-eslint';
 import url from 'url';
@@ -11,11 +9,9 @@ import url from 'url';
 const __filename = url.fileURLToPath(new URL(import.meta.url));
 const __dirname = path.dirname(__filename);
 
-const require = createRequire(import.meta.url);
-
-const rulesDir = path.join(__dirname, 'scripts', 'eslint', 'rules');
-const ext = '.cjs';
-const ruleFiles = fs.readdirSync(rulesDir).filter((p) => p.endsWith(ext));
+// const rulesDir = path.join(__dirname, 'scripts', 'eslint', 'rules');
+// const ruleFiles = fs.readdirSync(rulesDir).filter((p) => p.endsWith(ext));
+const ruleFiles = [];
 
 export default tseslint.config(
   {
@@ -41,11 +37,7 @@ export default tseslint.config(
   {
     plugins: {
       local: {
-        rules: Object.fromEntries(
-          ruleFiles.map((p) => {
-            return [p.slice(0, -ext.length), require(path.join(rulesDir, p))];
-          })
-        ),
+        rules: Object.fromEntries(ruleFiles),
       },
     },
   },
