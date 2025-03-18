@@ -79,8 +79,7 @@ export const transformRuleEntry = (
     // maybe put it still into the jsonc file but commented out
 
     if (allRules.includes(rule)) {
-      // ToDo: enable via flag
-      if (rules.nurseryRules.includes(rule)) {
+      if (!options?.withNursery && rules.nurseryRules.includes(rule)) {
         options?.reporter !== undefined &&
           options.reporter(`unsupported rule, but in development: ${rule}`);
         continue;

@@ -22,7 +22,13 @@ program
   )
   .option(
     '--merge',
-    'Merge eslint configuration with an existing .oxlintrc.json configuration'
+    'Merge eslint configuration with an existing .oxlintrc.json configuration',
+    false
+  )
+  .option(
+    '--with-nursery',
+    'Include oxlint rules which are currently under development',
+    false
   )
   .action(async (filePath) => {
     const cliOptions = program.opts();
@@ -49,6 +55,7 @@ program
       const options: Options = {
         reporter: console.warn,
         merge: !!cliOptions.merge,
+        withNursery: !!cliOptions.withNursery,
       };
 
       let config;
