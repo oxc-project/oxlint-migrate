@@ -21,6 +21,7 @@ When no config file provided, the script searches for the default eslint config 
 | Options                | Description                                                                                          |
 | ---------------------- | ---------------------------------------------------------------------------------------------------- |
 | `--merge`              | \* merge eslint configuration with an existing .oxlintrc.json configuration                          |
+| `--with-nursery`       | Include oxlint rules which are currently under development                                           |
 | `--output-file <file>` | The oxlint configuration file where to eslint v9 rules will be written to, default: `.oxlintrc.json` |
 
 \* WARNING: When some `categories` are enabled, this tools will enable more rules with the combination of `plugins`.
