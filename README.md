@@ -45,7 +45,7 @@ pnpm generate
 pnpm format
 ```
 
-### Vitest + Integration Test
+### Unit + Integration Test
 
 ```shell
 pnpm vitest
