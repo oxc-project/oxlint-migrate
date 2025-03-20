@@ -63,7 +63,7 @@ describe('rules and plugins', () => {
     test('withNursery', () => {
       const eslintConfig: Linter.Config = {
         rules: {
-          'constructor-super': 'error',
+          'getter-return': 'error',
         },
       };
 
@@ -77,7 +77,7 @@ describe('rules and plugins', () => {
         withNursery: true,
       });
       assert(configWithNursery.rules);
-      expect(configWithNursery.rules['constructor-super']).toBe('error');
+      expect(configWithNursery.rules['getter-return']).toBe('error');
     });
   });
 
