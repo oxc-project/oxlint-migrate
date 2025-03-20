@@ -87,22 +87,6 @@ export const pedanticRules = [
   'vitest/no-conditional-in-test',
 ];
 
-export const nurseryRules = [
-  'constructor-super',
-  'getter-return',
-  'no-undef',
-  'no-unreachable',
-  'import/export',
-  'import/named',
-  'promise/no-return-in-finally',
-  'react-hooks/exhaustive-deps',
-  'react/require-render-return',
-  '@typescript-eslint/consistent-type-imports',
-  '@typescript-eslint/no-unnecessary-parameter-property-assignment',
-  'import-x/export',
-  'import-x/named',
-];
-
 export const styleRules = [
   'curly',
   'default-case-last',
@@ -488,6 +472,7 @@ export const correctnessRules = [
   '@typescript-eslint/no-misused-new',
   '@typescript-eslint/no-non-null-asserted-optional-chain',
   '@typescript-eslint/no-this-alias',
+  '@typescript-eslint/no-unnecessary-parameter-property-assignment',
   '@typescript-eslint/no-unsafe-declaration-merging',
   '@typescript-eslint/no-useless-empty-export',
   '@typescript-eslint/no-wrapper-object-types',
@@ -524,6 +509,20 @@ export const correctnessRules = [
   'vitest/valid-expect',
 ];
 
+export const nurseryRules = [
+  'getter-return',
+  'no-undef',
+  'no-unreachable',
+  'import/export',
+  'import/named',
+  'promise/no-return-in-finally',
+  'react-hooks/exhaustive-deps',
+  'react/require-render-return',
+  '@typescript-eslint/consistent-type-imports',
+  'import-x/export',
+  'import-x/named',
+];
+
 export const perfRules = [
   'no-useless-call',
   'no-await-in-loop',
@@ -542,6 +541,7 @@ export const suspiciousRules = [
   'no-unexpected-multiline',
   'no-useless-concat',
   'no-useless-constructor',
+  'import/no-empty-named-blocks',
   'import/no-absolute-path',
   'import/no-duplicates',
   'import/no-named-as-default',
@@ -562,6 +562,7 @@ export const suspiciousRules = [
   'unicorn/prefer-add-event-listener',
   'unicorn/require-post-message-target-origin',
   '@typescript-eslint/no-useless-constructor',
+  'import-x/no-empty-named-blocks',
   'import-x/no-absolute-path',
   'import-x/no-duplicates',
   'import-x/no-named-as-default',

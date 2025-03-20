@@ -309,7 +309,7 @@ exports[`vscode > vscode 1`] = `
   },
   "warnings": [
     "ignore allow list is currently not supported: !.vscode",
-    "unsupported rule, but in development: constructor-super",
+    "unsupported rule: constructor-super",
     "unsupported rule: prefer-const",
     "unsupported rule: no-buffer-constructor",
     "unsupported rule: no-extra-semi",
@@ -643,7 +643,7 @@ exports[`vscode merge > vscode--merge 1`] = `
   },
   "warnings": [
     "ignore allow list is currently not supported: !.vscode",
-    "unsupported rule, but in development: constructor-super",
+    "unsupported rule: constructor-super",
     "unsupported rule: prefer-const",
     "unsupported rule: no-buffer-constructor",
     "unsupported rule: no-extra-semi",

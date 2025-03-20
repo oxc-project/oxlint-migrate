@@ -191,7 +191,7 @@ exports[`eslint-plugin-oxlint > eslint-plugin-oxlint 1`] = `
     },
   },
   "warnings": [
-    "unsupported rule, but in development: constructor-super",
+    "unsupported rule: constructor-super",
     "unsupported rule, but in development: getter-return",
     "unsupported rule: no-dupe-args",
     "unsupported rule: no-misleading-character-class",
@@ -225,7 +225,6 @@ exports[`eslint-plugin-oxlint > eslint-plugin-oxlint 1`] = `
     "unsupported rule: unicorn/prevent-abbreviations",
     "unsupported rule: unicorn/relative-url-style",
     "unsupported rule: unicorn/template-indent",
-    "unsupported rule, but in development: constructor-super",
     "unsupported rule, but in development: getter-return",
     "unsupported rule, but in development: no-undef",
     "unsupported rule, but in development: no-unreachable",
@@ -358,7 +357,7 @@ exports[`eslint-plugin-oxlint merge > eslint-plugin-oxlint-merge 1`] = `
     },
   },
   "warnings": [
-    "unsupported rule, but in development: constructor-super",
+    "unsupported rule: constructor-super",
     "unsupported rule, but in development: getter-return",
     "unsupported rule: no-dupe-args",
     "unsupported rule: no-misleading-character-class",
@@ -392,7 +391,6 @@ exports[`eslint-plugin-oxlint merge > eslint-plugin-oxlint-merge 1`] = `
     "unsupported rule: unicorn/prevent-abbreviations",
     "unsupported rule: unicorn/relative-url-style",
     "unsupported rule: unicorn/template-indent",
-    "unsupported rule, but in development: constructor-super",
     "unsupported rule, but in development: getter-return",
     "unsupported rule, but in development: no-undef",
     "unsupported rule, but in development: no-unreachable",
