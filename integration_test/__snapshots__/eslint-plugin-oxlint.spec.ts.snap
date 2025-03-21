@@ -291,6 +291,7 @@ exports[`eslint-plugin-oxlint merge > eslint-plugin-oxlint-merge 1`] = `
       "unicorn/no-array-reduce": "error",
       "unicorn/no-await-expression-member": "error",
       "unicorn/no-console-spaces": "error",
+      "unicorn/no-document-cookie": "error",
       "unicorn/no-hex-escape": "error",
       "unicorn/no-length-as-slice-end": "error",
       "unicorn/no-lonely-if": "error",
