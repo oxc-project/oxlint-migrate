@@ -15,7 +15,7 @@ test('eslint-plugin-oxlint merge', async () => {
     plugins: ['unicorn', 'typescript', 'oxc'],
     categories: {
       correctness: 'error',
-      suspicious: 'warn',
+      suspicious: 'error',
     },
   });
   expect(result).toMatchSnapshot('eslint-plugin-oxlint-merge');
