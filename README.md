@@ -6,8 +6,6 @@
 
 Generates a `.oxlintrc.json` from a existing eslint flat config.
 
-🚧 Still under development
-
 ## Usage
 
 ```shell
