@@ -200,6 +200,7 @@ exports[`nuxt-auth > nuxt-auth 1`] = `
           ],
           "no-unused-vars": "off",
           "no-useless-constructor": "off",
+          "no-with": "off",
         },
       },
       {
@@ -794,6 +795,7 @@ exports[`nuxt-auth merge > nuxt-auth--merge 1`] = `
           ],
           "no-unused-vars": "off",
           "no-useless-constructor": "off",
+          "no-with": "off",
         },
       },
       {
