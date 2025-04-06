@@ -14,6 +14,34 @@ exports[`eslint-plugin-oxlint > eslint-plugin-oxlint 1`] = `
     "ignorePatterns": [
       "dist/",
     ],
+    "overrides": [
+      {
+        "files": [
+          "**/*.ts",
+          "**/*.tsx",
+          "**/*.mts",
+          "**/*.cts",
+        ],
+        "rules": {
+          "no-class-assign": "off",
+          "no-const-assign": "off",
+          "no-dupe-class-members": "off",
+          "no-dupe-keys": "off",
+          "no-func-assign": "off",
+          "no-import-assign": "off",
+          "no-new-native-nonconstructor": "off",
+          "no-obj-calls": "off",
+          "no-redeclare": "off",
+          "no-setter-return": "off",
+          "no-this-before-super": "off",
+          "no-unsafe-negation": "off",
+          "no-var": "error",
+          "no-with": "off",
+          "prefer-rest-params": "error",
+          "prefer-spread": "error",
+        },
+      },
+    ],
     "plugins": [
       "unicorn",
       "typescript",
@@ -247,6 +275,34 @@ exports[`eslint-plugin-oxlint merge > eslint-plugin-oxlint-merge 1`] = `
     },
     "ignorePatterns": [
       "dist/",
+    ],
+    "overrides": [
+      {
+        "files": [
+          "**/*.ts",
+          "**/*.tsx",
+          "**/*.mts",
+          "**/*.cts",
+        ],
+        "rules": {
+          "no-class-assign": "off",
+          "no-const-assign": "off",
+          "no-dupe-class-members": "off",
+          "no-dupe-keys": "off",
+          "no-func-assign": "off",
+          "no-import-assign": "off",
+          "no-new-native-nonconstructor": "off",
+          "no-obj-calls": "off",
+          "no-redeclare": "off",
+          "no-setter-return": "off",
+          "no-this-before-super": "off",
+          "no-unsafe-negation": "off",
+          "no-var": "error",
+          "no-with": "off",
+          "prefer-rest-params": "error",
+          "prefer-spread": "error",
+        },
+      },
     ],
     "plugins": [
       "unicorn",
