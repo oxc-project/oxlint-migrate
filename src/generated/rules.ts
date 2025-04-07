@@ -559,6 +559,7 @@ export const suspiciousRules = [
   '@typescript-eslint/no-extraneous-class',
   '@typescript-eslint/no-unnecessary-type-constraint',
   'unicorn/consistent-function-scoping',
+  'unicorn/no-accessor-recursion',
   'unicorn/prefer-add-event-listener',
   'unicorn/require-post-message-target-origin',
   '@typescript-eslint/no-useless-constructor',
