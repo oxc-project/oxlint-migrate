@@ -316,6 +316,7 @@ exports[`nuxt-auth > nuxt-auth 1`] = `
     ],
     "rules": {
       "array-callback-return": "error",
+      "block-scoped-var": "error",
       "curly": [
         "error",
         "all",
@@ -514,7 +515,6 @@ exports[`nuxt-auth > nuxt-auth 1`] = `
   "warnings": [
     "unsupported rule: accessor-pairs",
     "unsupported rule: antfu/no-top-level-await",
-    "unsupported rule: block-scoped-var",
     "unsupported rule: constructor-super",
     "unsupported rule: dot-notation",
     "unsupported rule: no-dupe-args",
@@ -923,6 +923,7 @@ exports[`nuxt-auth merge > nuxt-auth--merge 1`] = `
     ],
     "rules": {
       "array-callback-return": "error",
+      "block-scoped-var": "error",
       "curly": [
         "error",
         "all",
@@ -1094,7 +1095,6 @@ exports[`nuxt-auth merge > nuxt-auth--merge 1`] = `
   "warnings": [
     "unsupported rule: accessor-pairs",
     "unsupported rule: antfu/no-top-level-await",
-    "unsupported rule: block-scoped-var",
     "unsupported rule: constructor-super",
     "unsupported rule: dot-notation",
     "unsupported rule: no-dupe-args",
