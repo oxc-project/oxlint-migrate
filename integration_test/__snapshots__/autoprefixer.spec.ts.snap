@@ -44,6 +44,7 @@ exports[`autoprefixer > autoprefixer 1`] = `
           "checkForEach": false,
         },
       ],
+      "block-scoped-var": "error",
       "curly": [
         "error",
         "multi-line",
@@ -222,7 +223,6 @@ exports[`autoprefixer > autoprefixer 1`] = `
   },
   "warnings": [
     "unsupported rule: accessor-pairs",
-    "unsupported rule: block-scoped-var",
     "unsupported rule: camelcase",
     "unsupported rule: constructor-super",
     "unsupported rule: dot-notation",
@@ -315,6 +315,7 @@ exports[`autoprefixer merge > autoprefixer--merge 1`] = `
           "checkForEach": false,
         },
       ],
+      "block-scoped-var": "error",
       "curly": [
         "error",
         "multi-line",
@@ -453,7 +454,6 @@ exports[`autoprefixer merge > autoprefixer--merge 1`] = `
   },
   "warnings": [
     "unsupported rule: accessor-pairs",
-    "unsupported rule: block-scoped-var",
     "unsupported rule: camelcase",
     "unsupported rule: constructor-super",
     "unsupported rule: dot-notation",
