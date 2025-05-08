@@ -6,6 +6,10 @@
   "bin": {
     "@oxlint/migrate": "./dist/bin/oxlint-migrate.mjs"
   },
+  "exports": {
+    "import": "./dist/src/index.mjs",
+    "types": "./dist/src/index.d.ts"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/oxc-project/oxlint-migrate"
