@@ -69,8 +69,10 @@
     "*": "prettier --ignore-unknown --write"
   },
   "dependencies": {
-    "commander": "^13.1.0",
-    "globals": "^16.0.0"
+    "commander": "^13.1.0"
+  },
+  "peerDependencies": {
+    "globals": "^14.0.0 || ^15.0.0 || ^16.0.0"
   },
   "packageManager": "pnpm@10.6.5"
 }
