@@ -78,5 +78,5 @@
   "peerDependencies": {
     "globals": "^14.0.0 || ^15.0.0 || ^16.0.0"
   },
-  "packageManager": "pnpm@10.10.0"
+  "packageManager": "pnpm@10.11.0"
 }
