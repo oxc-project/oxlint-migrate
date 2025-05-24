@@ -6,32 +6,34 @@ export const ES_VERSIONS = [
   6, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025,
 ];
 
-// <https://github.com/oxc-project/oxc/blob/addaa8e0a3f8682982368f1f325d99af8da952f2/tasks/javascript_globals/src/main.rs>
+// <https://github.com/oxc-project/javascript-globals/blob/9c992463bb7e0cc24b94b30a7399e3726696afc4/xtask/src/main.rs#L117-L158>
 const OTHER_SUPPORTED_ENVS = [
   'browser',
   'node',
   'shared-node-browser',
   'worker',
   'serviceworker',
-  'commonjs',
+
   'amd',
-  'mocha',
+  'applescript',
+  'atomtest',
+  'commonjs',
+  'embertest',
+  'greasemonkey',
   'jasmine',
   'jest',
-  'phantomjs',
   'jquery',
-  'qunit',
-  'prototypejs',
-  'shelljs',
   'meteor',
+  'mocha',
   'mongo',
-  'protractor',
-  'applescript',
   'nashorn',
-  'atomtest',
-  'embertest',
+  'protractor',
+  'prototypejs',
+  'phantomjs',
+  'shelljs',
   'webextensions',
-  'greasemonkey',
+  'qunit',
+  'vitest',
 ];
 
 // these parsers are supported by oxlint and should not be reported
