@@ -1,10 +1,14 @@
 {
   "name": "@oxlint/migrate",
-  "version": "0.16.4",
+  "version": "0.18.0",
   "description": "Generates a `.oxlintrc.json` from a existing eslint flat config",
   "type": "module",
   "bin": {
     "@oxlint/migrate": "./dist/bin/oxlint-migrate.mjs"
+  },
+  "exports": {
+    "import": "./dist/src/index.mjs",
+    "types": "./dist/src/index.d.ts"
   },
   "repository": {
     "type": "git",
@@ -37,7 +41,7 @@
     "@eslint/eslintrc": "^3.3.0",
     "@eslint/js": "^9.20.0",
     "@logux/eslint-config": "^55.0.0",
-    "@oxc-node/core": "^0.0.22",
+    "@oxc-node/core": "^0.0.28",
     "@stylistic/eslint-plugin": "^4.0.1",
     "@stylistic/eslint-plugin-ts": "^4.0.0",
     "@types/eslint-config-prettier": "^6.11.3",
@@ -52,12 +56,12 @@
     "eslint-plugin-import-x": "^4.6.1",
     "eslint-plugin-jsdoc": "^50.6.3",
     "eslint-plugin-local": "^6.0.0",
-    "eslint-plugin-oxlint": "^0.16.0",
+    "eslint-plugin-oxlint": "^0.18.0",
     "eslint-plugin-regexp": "^2.7.0",
-    "eslint-plugin-unicorn": "^58.0.0",
+    "eslint-plugin-unicorn": "^59.0.0",
     "husky": "^9.1.7",
-    "lint-staged": "^15.4.3",
-    "oxlint": "^0.16.4",
+    "lint-staged": "^16.0.0",
+    "oxlint": "^0.18.0",
     "prettier": "^3.5.1",
     "typescript": "^5.7.3",
     "typescript-eslint": "^8.24.0",
@@ -69,8 +73,10 @@
     "*": "prettier --ignore-unknown --write"
   },
   "dependencies": {
-    "commander": "^13.1.0",
-    "globals": "^16.0.0"
+    "commander": "^14.0.0"
   },
-  "packageManager": "pnpm@10.7.1"
+  "peerDependencies": {
+    "globals": "^14.0.0 || ^15.0.0 || ^16.0.0"
+  },
+  "packageManager": "pnpm@10.12.1"
 }

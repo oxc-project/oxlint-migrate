@@ -147,6 +147,14 @@ exports[`nuxt-auth > nuxt-auth 1`] = `
             "error",
             "interface",
           ],
+          "@typescript-eslint/consistent-type-imports": [
+            "error",
+            {
+              "disallowTypeAnnotations": false,
+              "fixStyle": "separate-type-imports",
+              "prefer": "type-imports",
+            },
+          ],
           "@typescript-eslint/no-duplicate-enum-values": "error",
           "@typescript-eslint/no-dynamic-delete": "off",
           "@typescript-eslint/no-empty-object-type": [
@@ -251,6 +259,7 @@ exports[`nuxt-auth > nuxt-auth 1`] = `
           "typescript",
         ],
         "rules": {
+          "@typescript-eslint/consistent-type-imports": "off",
           "@typescript-eslint/explicit-function-return-type": "off",
           "@typescript-eslint/no-namespace": "off",
           "@typescript-eslint/no-require-imports": "off",
@@ -273,14 +282,6 @@ exports[`nuxt-auth > nuxt-auth 1`] = `
         ],
         "rules": {
           "@typescript-eslint/explicit-function-return-type": "off",
-        },
-      },
-      {
-        "files": [
-          "**/*.d.?([cm])ts",
-        ],
-        "rules": {
-          "import/no-duplicates": "off",
         },
       },
       {
@@ -311,11 +312,11 @@ exports[`nuxt-auth > nuxt-auth 1`] = `
     "plugins": [
       "node",
       "jsdoc",
-      "import",
       "unicorn",
     ],
     "rules": {
       "array-callback-return": "error",
+      "block-scoped-var": "error",
       "curly": [
         "error",
         "all",
@@ -325,12 +326,6 @@ exports[`nuxt-auth > nuxt-auth 1`] = `
         "error",
         "smart",
       ],
-      "import/first": "error",
-      "import/no-duplicates": "error",
-      "import/no-mutable-exports": "error",
-      "import/no-named-default": "error",
-      "import/no-self-import": "error",
-      "import/no-webpack-loader-syntax": "error",
       "jsdoc/check-access": "warn",
       "jsdoc/check-property-names": "warn",
       "jsdoc/empty-tags": "warn",
@@ -460,6 +455,7 @@ exports[`nuxt-auth > nuxt-auth 1`] = `
           "vars": "all",
         },
       ],
+      "no-useless-backreference": "off",
       "no-useless-call": "error",
       "no-useless-catch": "error",
       "no-useless-constructor": "error",
@@ -481,6 +477,7 @@ exports[`nuxt-auth > nuxt-auth 1`] = `
       "unicorn/error-message": "error",
       "unicorn/escape-case": "error",
       "unicorn/new-for-builtins": "error",
+      "unicorn/no-instanceof-builtins": "error",
       "unicorn/no-new-array": "error",
       "unicorn/no-new-buffer": "error",
       "unicorn/number-literal-case": "error",
@@ -514,7 +511,6 @@ exports[`nuxt-auth > nuxt-auth 1`] = `
   "warnings": [
     "unsupported rule: accessor-pairs",
     "unsupported rule: antfu/no-top-level-await",
-    "unsupported rule: block-scoped-var",
     "unsupported rule: constructor-super",
     "unsupported rule: dot-notation",
     "unsupported rule: no-dupe-args",
@@ -532,7 +528,6 @@ exports[`nuxt-auth > nuxt-auth 1`] = `
     "unsupported rule, but in development: no-unreachable",
     "unsupported rule: no-unreachable-loop",
     "unsupported rule: no-use-before-define",
-    "unsupported rule: no-useless-backreference",
     "unsupported rule: no-useless-computed-key",
     "unsupported rule: no-useless-return",
     "unsupported rule: object-shorthand",
@@ -563,15 +558,11 @@ exports[`nuxt-auth > nuxt-auth 1`] = `
     "unsupported rule: antfu/import-dedupe",
     "unsupported rule: antfu/no-import-dist",
     "unsupported rule: antfu/no-import-node-modules-by-path",
-    "unsupported rule: import/consistent-type-specifier-style",
-    "unsupported rule: import/newline-after-import",
     "unsupported rule: command/command",
-    "unsupported rule: unicorn/no-instanceof-builtins",
     "unsupported rule, but in development: getter-return",
     "unsupported rule, but in development: no-undef",
     "unsupported rule, but in development: no-unreachable",
     "unsupported rule: prefer-const",
-    "unsupported rule, but in development: @typescript-eslint/consistent-type-imports",
     "unsupported rule: @typescript-eslint/method-signature-style",
     "unsupported rule: @typescript-eslint/no-use-before-define",
     "unsupported rule: antfu/consistent-chaining",
@@ -587,7 +578,6 @@ exports[`nuxt-auth > nuxt-auth 1`] = `
     "ignore list inside overrides is not supported",
     "special parser detected: parser-plain",
     "unsupported rule, but in development: no-undef",
-    "unsupported rule, but in development: @typescript-eslint/consistent-type-imports",
     "unsupported rule: node/prefer-global/process",
   ],
 }
@@ -741,6 +731,14 @@ exports[`nuxt-auth merge > nuxt-auth--merge 1`] = `
             "error",
             "interface",
           ],
+          "@typescript-eslint/consistent-type-imports": [
+            "error",
+            {
+              "disallowTypeAnnotations": false,
+              "fixStyle": "separate-type-imports",
+              "prefer": "type-imports",
+            },
+          ],
           "@typescript-eslint/no-duplicate-enum-values": "error",
           "@typescript-eslint/no-dynamic-delete": "off",
           "@typescript-eslint/no-empty-object-type": [
@@ -846,6 +844,7 @@ exports[`nuxt-auth merge > nuxt-auth--merge 1`] = `
           "typescript",
         ],
         "rules": {
+          "@typescript-eslint/consistent-type-imports": "off",
           "@typescript-eslint/explicit-function-return-type": "off",
           "@typescript-eslint/no-namespace": "off",
           "@typescript-eslint/no-require-imports": "off",
@@ -883,14 +882,6 @@ exports[`nuxt-auth merge > nuxt-auth--merge 1`] = `
       },
       {
         "files": [
-          "**/*.d.?([cm])ts",
-        ],
-        "rules": {
-          "import/no-duplicates": "off",
-        },
-      },
-      {
-        "files": [
           "**/*.js",
           "**/*.cjs",
         ],
@@ -918,11 +909,11 @@ exports[`nuxt-auth merge > nuxt-auth--merge 1`] = `
     "plugins": [
       "node",
       "jsdoc",
-      "import",
       "unicorn",
     ],
     "rules": {
       "array-callback-return": "error",
+      "block-scoped-var": "error",
       "curly": [
         "error",
         "all",
@@ -932,12 +923,6 @@ exports[`nuxt-auth merge > nuxt-auth--merge 1`] = `
         "error",
         "smart",
       ],
-      "import/first": "error",
-      "import/no-duplicates": "error",
-      "import/no-mutable-exports": "error",
-      "import/no-named-default": "error",
-      "import/no-self-import": "error",
-      "import/no-webpack-loader-syntax": "error",
       "jsdoc/check-access": "warn",
       "jsdoc/check-property-names": "warn",
       "jsdoc/empty-tags": "warn",
@@ -1063,6 +1048,7 @@ exports[`nuxt-auth merge > nuxt-auth--merge 1`] = `
       "unicorn/error-message": "error",
       "unicorn/escape-case": "error",
       "unicorn/new-for-builtins": "error",
+      "unicorn/no-instanceof-builtins": "error",
       "unicorn/no-new-buffer": "error",
       "unicorn/number-literal-case": "error",
       "unicorn/prefer-dom-node-text-content": "error",
@@ -1094,7 +1080,6 @@ exports[`nuxt-auth merge > nuxt-auth--merge 1`] = `
   "warnings": [
     "unsupported rule: accessor-pairs",
     "unsupported rule: antfu/no-top-level-await",
-    "unsupported rule: block-scoped-var",
     "unsupported rule: constructor-super",
     "unsupported rule: dot-notation",
     "unsupported rule: no-dupe-args",
@@ -1112,7 +1097,6 @@ exports[`nuxt-auth merge > nuxt-auth--merge 1`] = `
     "unsupported rule, but in development: no-unreachable",
     "unsupported rule: no-unreachable-loop",
     "unsupported rule: no-use-before-define",
-    "unsupported rule: no-useless-backreference",
     "unsupported rule: no-useless-computed-key",
     "unsupported rule: no-useless-return",
     "unsupported rule: object-shorthand",
@@ -1143,15 +1127,11 @@ exports[`nuxt-auth merge > nuxt-auth--merge 1`] = `
     "unsupported rule: antfu/import-dedupe",
     "unsupported rule: antfu/no-import-dist",
     "unsupported rule: antfu/no-import-node-modules-by-path",
-    "unsupported rule: import/consistent-type-specifier-style",
-    "unsupported rule: import/newline-after-import",
     "unsupported rule: command/command",
-    "unsupported rule: unicorn/no-instanceof-builtins",
     "unsupported rule, but in development: getter-return",
     "unsupported rule, but in development: no-undef",
     "unsupported rule, but in development: no-unreachable",
     "unsupported rule: prefer-const",
-    "unsupported rule, but in development: @typescript-eslint/consistent-type-imports",
     "unsupported rule: @typescript-eslint/method-signature-style",
     "unsupported rule: @typescript-eslint/no-use-before-define",
     "unsupported rule: antfu/consistent-chaining",
@@ -1167,7 +1147,6 @@ exports[`nuxt-auth merge > nuxt-auth--merge 1`] = `
     "ignore list inside overrides is not supported",
     "special parser detected: parser-plain",
     "unsupported rule, but in development: no-undef",
-    "unsupported rule, but in development: @typescript-eslint/consistent-type-imports",
     "unsupported rule: node/prefer-global/process",
   ],
 }

@@ -29,6 +29,13 @@ exports[`vuejs/core > vuejs/core 1`] = `
           "typescript",
         ],
         "rules": {
+          "@typescript-eslint/consistent-type-imports": [
+            "error",
+            {
+              "disallowTypeAnnotations": false,
+              "fixStyle": "inline-type-imports",
+            },
+          ],
           "@typescript-eslint/no-import-type-side-effects": "error",
           "@typescript-eslint/prefer-ts-expect-error": "error",
           "no-console": [
@@ -173,7 +180,6 @@ exports[`vuejs/core > vuejs/core 1`] = `
   "warnings": [
     "unsupported rule: no-restricted-syntax",
     "unsupported rule: import-x/no-nodejs-modules",
-    "unsupported rule, but in development: @typescript-eslint/consistent-type-imports",
     "unsupported rule: no-restricted-syntax",
     "unsupported rule: no-restricted-syntax",
     "unsupported rule: no-restricted-syntax",
@@ -212,6 +218,13 @@ exports[`vuejs/core merge > vuejs/core--merge 1`] = `
           "typescript",
         ],
         "rules": {
+          "@typescript-eslint/consistent-type-imports": [
+            "error",
+            {
+              "disallowTypeAnnotations": false,
+              "fixStyle": "inline-type-imports",
+            },
+          ],
           "@typescript-eslint/no-import-type-side-effects": "error",
           "@typescript-eslint/prefer-ts-expect-error": "error",
           "no-console": [
@@ -355,7 +368,6 @@ exports[`vuejs/core merge > vuejs/core--merge 1`] = `
   "warnings": [
     "unsupported rule: no-restricted-syntax",
     "unsupported rule: import-x/no-nodejs-modules",
-    "unsupported rule, but in development: @typescript-eslint/consistent-type-imports",
     "unsupported rule: no-restricted-syntax",
     "unsupported rule: no-restricted-syntax",
     "unsupported rule: no-restricted-syntax",

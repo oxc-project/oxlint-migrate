@@ -44,6 +44,7 @@ exports[`autoprefixer > autoprefixer 1`] = `
           "checkForEach": false,
         },
       ],
+      "block-scoped-var": "error",
       "curly": [
         "error",
         "multi-line",
@@ -186,6 +187,7 @@ exports[`autoprefixer > autoprefixer 1`] = `
           "vars": "all",
         },
       ],
+      "no-useless-backreference": "error",
       "no-useless-call": "error",
       "no-useless-catch": "error",
       "no-useless-constructor": "error",
@@ -222,7 +224,6 @@ exports[`autoprefixer > autoprefixer 1`] = `
   },
   "warnings": [
     "unsupported rule: accessor-pairs",
-    "unsupported rule: block-scoped-var",
     "unsupported rule: camelcase",
     "unsupported rule: constructor-super",
     "unsupported rule: dot-notation",
@@ -258,7 +259,6 @@ exports[`autoprefixer > autoprefixer 1`] = `
     "unsupported rule, but in development: no-unreachable",
     "unsupported rule: no-unreachable-loop",
     "unsupported rule: no-use-before-define",
-    "unsupported rule: no-useless-backreference",
     "unsupported rule: no-useless-computed-key",
     "unsupported rule: no-useless-return",
     "unsupported rule: object-shorthand",
@@ -315,6 +315,7 @@ exports[`autoprefixer merge > autoprefixer--merge 1`] = `
           "checkForEach": false,
         },
       ],
+      "block-scoped-var": "error",
       "curly": [
         "error",
         "multi-line",
@@ -453,7 +454,6 @@ exports[`autoprefixer merge > autoprefixer--merge 1`] = `
   },
   "warnings": [
     "unsupported rule: accessor-pairs",
-    "unsupported rule: block-scoped-var",
     "unsupported rule: camelcase",
     "unsupported rule: constructor-super",
     "unsupported rule: dot-notation",
@@ -489,7 +489,6 @@ exports[`autoprefixer merge > autoprefixer--merge 1`] = `
     "unsupported rule, but in development: no-unreachable",
     "unsupported rule: no-unreachable-loop",
     "unsupported rule: no-use-before-define",
-    "unsupported rule: no-useless-backreference",
     "unsupported rule: no-useless-computed-key",
     "unsupported rule: no-useless-return",
     "unsupported rule: object-shorthand",
