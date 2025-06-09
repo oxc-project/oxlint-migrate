@@ -41,7 +41,7 @@
     "@eslint/eslintrc": "^3.3.0",
     "@eslint/js": "^9.20.0",
     "@logux/eslint-config": "^55.0.0",
-    "@oxc-node/core": "^0.0.27",
+    "@oxc-node/core": "^0.0.28",
     "@stylistic/eslint-plugin": "^4.0.1",
     "@stylistic/eslint-plugin-ts": "^4.0.0",
     "@types/eslint-config-prettier": "^6.11.3",
@@ -56,7 +56,7 @@
     "eslint-plugin-import-x": "^4.6.1",
     "eslint-plugin-jsdoc": "^50.6.3",
     "eslint-plugin-local": "^6.0.0",
-    "eslint-plugin-oxlint": "^0.17.0",
+    "eslint-plugin-oxlint": "^0.18.0",
     "eslint-plugin-regexp": "^2.7.0",
     "eslint-plugin-unicorn": "^59.0.0",
     "husky": "^9.1.7",
@@ -78,5 +78,5 @@
   "peerDependencies": {
     "globals": "^14.0.0 || ^15.0.0 || ^16.0.0"
   },
-  "packageManager": "pnpm@10.11.0"
+  "packageManager": "pnpm@10.12.1"
 }
