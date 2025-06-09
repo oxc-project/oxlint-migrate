@@ -286,14 +286,6 @@ exports[`nuxt-auth > nuxt-auth 1`] = `
       },
       {
         "files": [
-          "**/*.d.?([cm])ts",
-        ],
-        "rules": {
-          "import/no-duplicates": "off",
-        },
-      },
-      {
-        "files": [
           "**/*.js",
           "**/*.cjs",
         ],
@@ -320,7 +312,6 @@ exports[`nuxt-auth > nuxt-auth 1`] = `
     "plugins": [
       "node",
       "jsdoc",
-      "import",
       "unicorn",
     ],
     "rules": {
@@ -335,16 +326,6 @@ exports[`nuxt-auth > nuxt-auth 1`] = `
         "error",
         "smart",
       ],
-      "import/consistent-type-specifier-style": [
-        "error",
-        "prefer-top-level",
-      ],
-      "import/first": "error",
-      "import/no-duplicates": "error",
-      "import/no-mutable-exports": "error",
-      "import/no-named-default": "error",
-      "import/no-self-import": "error",
-      "import/no-webpack-loader-syntax": "error",
       "jsdoc/check-access": "warn",
       "jsdoc/check-property-names": "warn",
       "jsdoc/empty-tags": "warn",
@@ -577,7 +558,6 @@ exports[`nuxt-auth > nuxt-auth 1`] = `
     "unsupported rule: antfu/import-dedupe",
     "unsupported rule: antfu/no-import-dist",
     "unsupported rule: antfu/no-import-node-modules-by-path",
-    "unsupported rule: import/newline-after-import",
     "unsupported rule: command/command",
     "unsupported rule, but in development: getter-return",
     "unsupported rule, but in development: no-undef",
@@ -902,14 +882,6 @@ exports[`nuxt-auth merge > nuxt-auth--merge 1`] = `
       },
       {
         "files": [
-          "**/*.d.?([cm])ts",
-        ],
-        "rules": {
-          "import/no-duplicates": "off",
-        },
-      },
-      {
-        "files": [
           "**/*.js",
           "**/*.cjs",
         ],
@@ -937,7 +909,6 @@ exports[`nuxt-auth merge > nuxt-auth--merge 1`] = `
     "plugins": [
       "node",
       "jsdoc",
-      "import",
       "unicorn",
     ],
     "rules": {
@@ -952,16 +923,6 @@ exports[`nuxt-auth merge > nuxt-auth--merge 1`] = `
         "error",
         "smart",
       ],
-      "import/consistent-type-specifier-style": [
-        "error",
-        "prefer-top-level",
-      ],
-      "import/first": "error",
-      "import/no-duplicates": "error",
-      "import/no-mutable-exports": "error",
-      "import/no-named-default": "error",
-      "import/no-self-import": "error",
-      "import/no-webpack-loader-syntax": "error",
       "jsdoc/check-access": "warn",
       "jsdoc/check-property-names": "warn",
       "jsdoc/empty-tags": "warn",
@@ -1166,7 +1127,6 @@ exports[`nuxt-auth merge > nuxt-auth--merge 1`] = `
     "unsupported rule: antfu/import-dedupe",
     "unsupported rule: antfu/no-import-dist",
     "unsupported rule: antfu/no-import-node-modules-by-path",
-    "unsupported rule: import/newline-after-import",
     "unsupported rule: command/command",
     "unsupported rule, but in development: getter-return",
     "unsupported rule, but in development: no-undef",
