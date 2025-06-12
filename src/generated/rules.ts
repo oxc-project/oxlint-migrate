@@ -92,6 +92,7 @@ export const pedanticRules = [
 
 export const suspiciousRules = [
   'block-scoped-var',
+  'no-extra-bind',
   'no-unneeded-ternary',
   'no-extend-native',
   'no-new',
