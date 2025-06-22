@@ -1,12 +1,14 @@
 #!/usr/bin/env node
 
 import { program } from 'commander';
-import { getAutodetectedEslintConfigName } from './autoDetectConfigFile.js';
-import { existsSync, renameSync, writeFileSync, readFileSync } from 'fs';
+import { existsSync, renameSync, writeFileSync, readFileSync } from 'node:fs';
+import path from 'node:path';
+import {
+  getAutodetectedEslintConfigName,
+  loadESLintConfig,
+} from './config-loader.js';
 import main from '../src/index.js';
-import path from 'path';
 import packageJson from '../package.json' with { type: 'json' };
-import { pathToFileURL } from 'node:url';
 import { Options } from '../src/types.js';
 
 const cwd = process.cwd();
@@ -44,21 +46,7 @@ program
       program.error(`could not autodetect eslint config file`);
     }
 
-    // report when json file is found
-    if (filePath.endsWith('json')) {
-      program.error(
-        `json format is not supported. @oxlint/migrate only supports the eslint flat configuration`
-      );
-    }
-
-    // report when file does not exists
-    if (!existsSync(filePath)) {
-      program.error(`eslint config file not found: ${filePath}`);
-    }
-
-    // windows allows only file:// prefix to be imported, reported Error:
-    // Only URLs with a scheme in: file, data, and node are supported by the default ESM loader. On Windows, absolute paths must be valid file:// URLs. Received protocol 'c:'
-    const eslintConfigs = await import(pathToFileURL(filePath).toString());
+    const eslintConfigs = await loadESLintConfig(filePath);
 
     const options: Options = {
       reporter: console.warn,

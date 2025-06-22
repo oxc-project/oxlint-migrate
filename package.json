@@ -60,6 +60,7 @@
     "eslint-plugin-regexp": "^2.7.0",
     "eslint-plugin-unicorn": "^59.0.0",
     "husky": "^9.1.7",
+    "jiti": "^2.4.2",
     "lint-staged": "^16.0.0",
     "oxlint": "^1.1.0",
     "prettier": "^3.5.1",
@@ -76,7 +77,8 @@
     "commander": "^14.0.0"
   },
   "peerDependencies": {
-    "globals": "^14.0.0 || ^15.0.0 || ^16.0.0"
+    "globals": "^14.0.0 || ^15.0.0 || ^16.0.0",
+    "jiti": "*"
   },
   "packageManager": "pnpm@10.12.1"
 }
