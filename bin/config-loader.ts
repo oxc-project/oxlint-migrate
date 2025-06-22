@@ -41,7 +41,6 @@ export const loadESLintConfig = async (filePath: string): Promise<any> => {
   }
 
   // Bun and Deno supports TS import natively, only Node needs a custom loader
-  // jiti is used to load TypeScript files in a Node.js environment
   if ('Bun' in globalThis || 'Deno' in globalThis) {
     return import(url);
   }
