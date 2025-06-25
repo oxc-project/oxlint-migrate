@@ -32,6 +32,11 @@ This behavior can change in the future.
 - Execute `npx @oxlint/migrate`
 - (Optional): Disable supported rules via [eslint-plugin-oxlint](https://github.com/oxc-project/eslint-plugin-oxlint)
 
+### TypeScript ESLint Configuration Files
+
+For Deno and Bun, TypeScript configuration files, like `eslint.config.mts`, are natively supported.
+For Node.js, you must install [jiti](https://www.npmjs.com/package/jiti) as a dev dependency.
+
 ## Contributing
 
 ### Generate rules
