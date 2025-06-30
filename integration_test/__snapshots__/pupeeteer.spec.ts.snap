@@ -262,6 +262,10 @@ exports[`puppeteer > puppeteer 1`] = `
       "import",
     ],
     "rules": {
+      "arrow-body-style": [
+        "error",
+        "always",
+      ],
       "curly": [
         "error",
         "all",
@@ -305,7 +309,6 @@ exports[`puppeteer > puppeteer 1`] = `
     "ignore allow list is currently not supported: !.vscode/extensions.json",
     "ignore allow list is currently not supported: !.vscode/*.template.json",
     "unsupported rule, but in development: import/named",
-    "unsupported rule: arrow-body-style",
     "unsupported rule: prettier/prettier",
     "unsupported rule: spaced-comment",
     "unsupported rule: accessor-pairs",
@@ -617,6 +620,10 @@ exports[`puppeteer merge > puppeteer--merge 1`] = `
       "import",
     ],
     "rules": {
+      "arrow-body-style": [
+        "error",
+        "always",
+      ],
       "curly": [
         "error",
         "all",
@@ -649,7 +656,6 @@ exports[`puppeteer merge > puppeteer--merge 1`] = `
     "ignore allow list is currently not supported: !.vscode/extensions.json",
     "ignore allow list is currently not supported: !.vscode/*.template.json",
     "unsupported rule, but in development: import/named",
-    "unsupported rule: arrow-body-style",
     "unsupported rule: prettier/prettier",
     "unsupported rule: spaced-comment",
     "unsupported rule: accessor-pairs",
