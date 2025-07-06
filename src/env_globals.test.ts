@@ -18,6 +18,15 @@ describe('detectEnvironmentByGlobals', () => {
     detectEnvironmentByGlobals(config);
     expect(config.env?.es2024).toBe(true);
   });
+
+  test('does not detect unsupported es version', () => {
+    const config: OxlintConfig = {
+      globals: globals.es3,
+    };
+
+    detectEnvironmentByGlobals(config);
+    expect(config.env).toBeUndefined();
+  });
 });
 
 describe('removeGlobalsWithAreCoveredByEnv', () => {

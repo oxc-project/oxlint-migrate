@@ -95,9 +95,16 @@ export const detectEnvironmentByGlobals = (config: OxlintConfigOrOverride) => {
     return;
   }
 
-  // ToDo: only check for envs which are supported by oxlint
   for (const [env, entries] of Object.entries(globals)) {
     if (!env.startsWith('es') && !OTHER_SUPPORTED_ENVS.includes(env)) {
+      continue;
+    }
+
+    // skip unsupported oxlint EcmaScript versions
+    if (
+      env.startsWith('es') &&
+      !ES_VERSIONS.includes(parseInt(env.replace(/^es/, '')))
+    ) {
       continue;
     }
 
