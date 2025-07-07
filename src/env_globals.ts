@@ -2,11 +2,12 @@ import globals from 'globals';
 import { Options, OxlintConfig, OxlintConfigOrOverride } from './types.js';
 import type { Linter } from 'eslint';
 
+// <https://github.com/oxc-project/javascript-globals/blob/55be079bd9ac417b7d5007723beb7aa59193dbd0/xtask/src/main.rs#L121-L136>
 export const ES_VERSIONS = [
-  6, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025,
+  6, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026,
 ];
 
-// <https://github.com/oxc-project/javascript-globals/blob/9c992463bb7e0cc24b94b30a7399e3726696afc4/xtask/src/main.rs#L117-L158>
+// <https://github.com/oxc-project/javascript-globals/blob/55be079bd9ac417b7d5007723beb7aa59193dbd0/xtask/src/main.rs#L136-L162>
 const OTHER_SUPPORTED_ENVS = [
   'browser',
   'node',

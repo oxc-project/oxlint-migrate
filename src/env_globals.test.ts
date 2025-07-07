@@ -61,7 +61,7 @@ describe('transformEnvAndGlobals', () => {
     });
   });
 
-  test('transform latest languageOptions.ecmaVersion to 24024', () => {
+  test('transform latest languageOptions.ecmaVersion to 2026', () => {
     const eslintConfig: Linter.Config = {
       languageOptions: {
         ecmaVersion: 'latest',
@@ -73,7 +73,7 @@ describe('transformEnvAndGlobals', () => {
 
     expect(config).toStrictEqual({
       env: {
-        es2025: true,
+        es2026: true,
       },
     });
   });

@@ -10,7 +10,7 @@ exports[`puppeteer > puppeteer 1`] = `
     "env": {
       "builtin": true,
       "commonjs": true,
-      "es2025": true,
+      "es2026": true,
       "node": true,
       "shared-node-browser": true,
     },
@@ -368,7 +368,7 @@ exports[`puppeteer merge > puppeteer--merge 1`] = `
     "env": {
       "builtin": true,
       "commonjs": true,
-      "es2025": true,
+      "es2026": true,
       "node": true,
       "shared-node-browser": true,
     },
