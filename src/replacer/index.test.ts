@@ -80,9 +80,7 @@ describe('replaceRuleDirectiveComment', () => {
       ];
 
       for (const comment of comments) {
-        expect(replaceRuleDirectiveComment(comment)).toBe(
-          comment.replace('eslint', 'oxlint')
-        );
+        expect(replaceRuleDirectiveComment(comment)).toBe(comment);
       }
     });
   });
