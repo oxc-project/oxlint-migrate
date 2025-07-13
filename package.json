@@ -74,7 +74,9 @@
     "*": "prettier --ignore-unknown --write"
   },
   "dependencies": {
-    "commander": "^14.0.0"
+    "commander": "^14.0.0",
+    "fast-glob": "^3.3.3",
+    "oxc-parser": "^0.77.0"
   },
   "peerDependencies": {
     "globals": "^14.0.0 || ^15.0.0 || ^16.0.0",
