@@ -80,5 +80,5 @@
     "globals": "^14.0.0 || ^15.0.0 || ^16.0.0",
     "jiti": "*"
   },
-  "packageManager": "pnpm@10.12.4"
+  "packageManager": "pnpm@10.13.1"
 }
