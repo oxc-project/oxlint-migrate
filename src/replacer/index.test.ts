@@ -12,7 +12,13 @@ const eslintCommentsPrefixes = [
 describe('replaceRuleDirectiveComment', () => {
   describe('untouched comments', () => {
     it('should keep non eslint comments', () => {
-      const comments = ['hello world', 'eslint-invalid-comment'];
+      const comments = [
+        'hello world',
+        'eslint-invalid-comment',
+        'eslint-disable-what',
+        'eslint-disable-line-what',
+        'eslint-disable-next-line-what',
+      ];
 
       for (const comment of comments) {
         expect(replaceRuleDirectiveComment(comment)).toBe(comment);
