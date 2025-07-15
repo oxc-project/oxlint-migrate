@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { replaceRuleDirectiveComment } from './index.js';
-import { correctnessRules } from '../generated/rules.js';
+import replaceRuleDirectiveComment from './replaceRuleDirectiveComment.js';
+import { correctnessRules, nurseryRules } from '../generated/rules.js';
 
 const eslintCommentsPrefixes = [
   'eslint-disable',
@@ -21,7 +21,7 @@ describe('replaceRuleDirectiveComment', () => {
       ];
 
       for (const comment of comments) {
-        expect(replaceRuleDirectiveComment(comment)).toBe(comment);
+        expect(replaceRuleDirectiveComment(comment, {})).toBe(comment);
       }
     });
 
@@ -33,7 +33,7 @@ describe('replaceRuleDirectiveComment', () => {
       ];
 
       for (const comment of comments) {
-        expect(replaceRuleDirectiveComment(comment)).toBe(comment);
+        expect(replaceRuleDirectiveComment(comment, {})).toBe(comment);
       }
     });
 
@@ -46,7 +46,7 @@ describe('replaceRuleDirectiveComment', () => {
       ];
 
       for (const comment of comments) {
-        expect(replaceRuleDirectiveComment(comment)).toBe(comment);
+        expect(replaceRuleDirectiveComment(comment, {})).toBe(comment);
       }
     });
 
@@ -62,15 +62,15 @@ describe('replaceRuleDirectiveComment', () => {
       ];
 
       for (const comment of comments) {
-        expect(replaceRuleDirectiveComment(comment)).toBe(comment);
+        expect(replaceRuleDirectiveComment(comment, {})).toBe(comment);
       }
     });
 
     it('should keep eslint comments with multiple rules, where the comma between is missing', () => {
       const comments = [
-        // the comma is missing here, it will not count as an valid comment
-        // ______________________________________________________________________v
         ...eslintCommentsPrefixes.map(
+          // the comma is missing here, it will not count as an valid comment
+          // __________________________________________v
           (prefix) => `${prefix} ${correctnessRules[0]} ${correctnessRules[1]}`
         ),
         ...eslintCommentsPrefixes.map(
@@ -80,7 +80,7 @@ describe('replaceRuleDirectiveComment', () => {
       ];
 
       for (const comment of comments) {
-        expect(replaceRuleDirectiveComment(comment)).toBe(comment);
+        expect(replaceRuleDirectiveComment(comment, {})).toBe(comment);
       }
     });
   });
@@ -97,7 +97,7 @@ describe('replaceRuleDirectiveComment', () => {
       ];
 
       for (const comment of comments) {
-        expect(replaceRuleDirectiveComment(comment)).toBe(
+        expect(replaceRuleDirectiveComment(comment, {})).toBe(
           comment.replace('eslint', 'oxlint')
         );
       }
@@ -115,9 +115,45 @@ describe('replaceRuleDirectiveComment', () => {
       ];
 
       for (const comment of comments) {
-        expect(replaceRuleDirectiveComment(comment)).toBe(
+        expect(replaceRuleDirectiveComment(comment, {})).toBe(
           comment.replace('eslint', 'oxlint')
         );
+      }
+    });
+  });
+
+  describe('withNurseryCheck', () => {
+    it('should ignore nursery rules on default', () => {
+      const comments = [
+        ...eslintCommentsPrefixes.map(
+          (prefix) => `${prefix} ${nurseryRules[0]}`
+        ),
+        ...eslintCommentsPrefixes.map(
+          (prefix) => `${prefix} ${nurseryRules[0]} -- description`
+        ),
+      ];
+
+      for (const comment of comments) {
+        expect(replaceRuleDirectiveComment(comment, {})).toBe(comment);
+      }
+    });
+
+    it('should respect nursery rules with `options.withNursery`', () => {
+      const comments = [
+        ...eslintCommentsPrefixes.map(
+          (prefix) => `${prefix} ${nurseryRules[0]}`
+        ),
+        ...eslintCommentsPrefixes.map(
+          (prefix) => `${prefix} ${nurseryRules[0]} -- description`
+        ),
+      ];
+
+      for (const comment of comments) {
+        expect(
+          replaceRuleDirectiveComment(comment, {
+            withNursery: true,
+          })
+        ).toBe(comment.replace('eslint', 'oxlint'));
       }
     });
   });
