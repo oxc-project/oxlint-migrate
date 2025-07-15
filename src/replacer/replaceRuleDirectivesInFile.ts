@@ -27,7 +27,7 @@ export default function replaceRuleDirectivesInFile(
       // no need to sort them in reversed order to avoid shifting offsets.
       // ToDo: validate that with different comment line breaks and leading line breaks
       const newComment =
-        comment.type === 'Line' ? `// ${replacedStr}` : `/* ${replacedStr} */`;
+        comment.type === 'Line' ? `//${replacedStr}` : `/*${replacedStr}*/`;
       sourceText =
         sourceText.slice(0, comment.start) +
         newComment +

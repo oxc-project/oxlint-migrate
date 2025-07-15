@@ -14,15 +14,12 @@ describe('replaceRuleDirectivesInFile', () => {
 
     const newSourceText = replaceRuleDirectivesInFile(filePath, sourceText, {});
 
-    expect(
-      newSourceText,
-      `
+    expect(newSourceText).toBe(`
         // oxlint-disable no-debugger
         debugger;
         // oxlint-disable no-console -- description
         console.log('hello world');
-        `
-    );
+        `);
   });
 
   it('should replace multiple block comments', () => {
@@ -35,14 +32,11 @@ describe('replaceRuleDirectivesInFile', () => {
 
     const newSourceText = replaceRuleDirectivesInFile(filePath, sourceText, {});
 
-    expect(
-      newSourceText,
-      `
+    expect(newSourceText).toBe(`
         /* oxlint-disable no-debugger */
         debugger;
-        /* oxlint-disable no-console */
+        /* oxlint-disable no-console -- description */
         console.log('hello world');
-        `
-    );
+        `);
   });
 });
