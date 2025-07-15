@@ -25,9 +25,12 @@ export default function replaceRuleDirectivesInFile(
     if (replacedStr !== comment.value) {
       // we know that the length of the comment will not change,
       // no need to sort them in reversed order to avoid shifting offsets.
+      // ToDo: validate that with different comment line breaks and leading line breaks
+      const newComment =
+        comment.type === 'Line' ? `// ${replacedStr}` : `/* ${replacedStr} */`;
       sourceText =
         sourceText.slice(0, comment.start) +
-        replacedStr +
+        newComment +
         sourceText.slice(comment.end);
     }
   }

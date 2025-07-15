@@ -23,7 +23,7 @@ const writeSourceTextToFile = (
   absoluteFilePath: string,
   sourceText: string
 ): Promise<void> => {
-  return writeFile(absoluteFilePath, sourceText);
+  return writeFile(absoluteFilePath, sourceText, 'utf-8');
 };
 
 export const replaceRuleDirectives = async (
@@ -49,7 +49,7 @@ export const replaceRuleDirectives = async (
         return Promise.resolve();
       }
 
-      return writeSourceTextToFile(file, sourceText);
+      return writeSourceTextToFile(file, newSourceText);
     })
   );
 };
