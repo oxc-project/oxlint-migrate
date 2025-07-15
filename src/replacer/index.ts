@@ -26,7 +26,9 @@ const writeSourceTextToFile = (
   return writeFile(absoluteFilePath, sourceText);
 };
 
-export const replacer = async (options: Options): Promise<void> => {
+export const replaceRuleDirectives = async (
+  options: Options
+): Promise<void> => {
   const files = await getAllProjectFiles();
 
   await Promise.all(

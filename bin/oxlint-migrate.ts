@@ -10,6 +10,7 @@ import {
 import main from '../src/index.js';
 import packageJson from '../package.json' with { type: 'json' };
 import { Options } from '../src/types.js';
+import { replaceRuleDirectives } from '../src/replacer/index.js';
 
 const cwd = process.cwd();
 
@@ -32,6 +33,10 @@ program
     'Include oxlint rules which are currently under development',
     false
   )
+  .option(
+    '--replace-rule-comments',
+    'Search in the project files for eslint-disable / eslint-enable comments and replaces them with oxlint'
+  )
   .action(async (filePath: string | undefined) => {
     const cliOptions = program.opts();
     const oxlintFilePath = path.join(cwd, cliOptions.outputFile);
@@ -52,6 +57,7 @@ program
       reporter: console.warn,
       merge: !!cliOptions.merge,
       withNursery: !!cliOptions.withNursery,
+      replaceRuleDirectives: !!cliOptions.replaceRuleComments,
     };
 
     let config;
@@ -72,6 +78,10 @@ program
     }
 
     writeFileSync(oxlintFilePath, JSON.stringify(oxlintConfig, null, 2));
+
+    if (options.replaceRuleDirectives) {
+      await replaceRuleDirectives(options);
+    }
   });
 
 program.parse();
