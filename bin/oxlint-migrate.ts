@@ -57,7 +57,6 @@ program
       reporter: console.warn,
       merge: !!cliOptions.merge,
       withNursery: !!cliOptions.withNursery,
-      replaceRuleDirectives: !!cliOptions.replaceRuleComments,
     };
 
     let config;
@@ -79,7 +78,7 @@ program
 
     writeFileSync(oxlintFilePath, JSON.stringify(oxlintConfig, null, 2));
 
-    if (options.replaceRuleDirectives) {
+    if (cliOptions.replaceRuleComments) {
       await replaceRuleDirectives(options);
     }
   });

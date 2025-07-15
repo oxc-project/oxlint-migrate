@@ -33,5 +33,4 @@ export type Options = {
   reporter?: Reporter;
   merge?: boolean;
   withNursery?: boolean;
-  replaceRuleDirectives?: boolean;
 };

@@ -1,14 +1,20 @@
-import glob from 'tiny-glob';
+import { glob } from 'tinyglobby';
 import { readFileSync } from 'node:fs';
 import { writeFile } from 'node:fs/promises';
 import { Options } from '../types.js';
 import replaceRuleDirectivesInFile from './replaceRuleDirectivesInFile.js';
 
 const getAllProjectFiles = (): Promise<string[]> => {
-  return glob('**/*.{js,cjs,mjs,ts,cts,mts,vue,astro,svelte}', {
-    absolute: true,
-    filesOnly: true,
-  });
+  return glob(
+    [
+      '**/*.{js,cjs,mjs,ts,cts,mts,vue,astro,svelte}',
+      '!**/node_modules/**',
+      '!**/build/**',
+    ],
+    {
+      absolute: true,
+    }
+  );
 };
 
 const getSourceText = (absoluteFilePath: string): string | undefined => {
@@ -32,24 +38,27 @@ export const replaceRuleDirectives = async (
   const files = await getAllProjectFiles();
 
   await Promise.all(
-    files.map((file): Promise<void> => {
-      let sourceText = getSourceText(file);
+    files
+      .map((file): Promise<void> | undefined => {
+        let sourceText = getSourceText(file);
 
-      if (!sourceText) {
-        return Promise.resolve();
-      }
+        if (!sourceText) {
+          return;
+        }
 
-      const newSourceText = replaceRuleDirectivesInFile(
-        file,
-        sourceText,
-        options
-      );
+        const newSourceText = replaceRuleDirectivesInFile(
+          file,
+          sourceText,
+          options
+        );
 
-      if (newSourceText === sourceText) {
-        return Promise.resolve();
-      }
+        if (newSourceText === sourceText) {
+          return;
+        }
 
-      return writeSourceTextToFile(file, newSourceText);
-    })
+        return writeSourceTextToFile(file, newSourceText);
+      })
+      // filter out non promises
+      .filter(Boolean)
   );
 };
