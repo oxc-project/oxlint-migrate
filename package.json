@@ -75,8 +75,8 @@
   },
   "dependencies": {
     "commander": "^14.0.0",
-    "fast-glob": "^3.3.3",
-    "oxc-parser": "^0.77.0"
+    "oxc-parser": "^0.77.0",
+    "tiny-glob": "^0.2.9"
   },
   "peerDependencies": {
     "globals": "^14.0.0 || ^15.0.0 || ^16.0.0",
