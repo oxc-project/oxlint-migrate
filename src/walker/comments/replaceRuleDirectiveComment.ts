@@ -5,6 +5,7 @@ const allRules = Object.values(rules).flat();
 
 export default function replaceRuleDirectiveComment(
   comment: string,
+  type: 'Line' | 'Block',
   options: Options
 ): string {
   const originalComment = comment;
@@ -23,10 +24,12 @@ export default function replaceRuleDirectiveComment(
   } else if (comment.startsWith('disable')) {
     comment = comment.substring(7);
 
-    if (comment.startsWith('-next-line')) {
-      comment = comment.substring(10);
-    } else if (comment.startsWith('-line')) {
-      comment = comment.substring(5);
+    if (type === 'Line') {
+      if (comment.startsWith('-next-line')) {
+        comment = comment.substring(10);
+      } else if (comment.startsWith('-line')) {
+        comment = comment.substring(5);
+      }
     }
   } else {
     // "eslint-" needs to follow up with "disable" or "enable"

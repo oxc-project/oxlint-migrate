@@ -20,7 +20,7 @@ export default function replaceCommentsInFile(
 
   for (const comment of comments) {
     try {
-      const replacedStr = replaceComments(comment.value, options);
+      const replacedStr = replaceComments(comment.value, comment.type, options);
       // we got a new string, replace it in the source code
       if (replacedStr !== comment.value) {
         // we know that the length of the comment will not change,

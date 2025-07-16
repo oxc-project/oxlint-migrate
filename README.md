@@ -16,11 +16,12 @@ When no config file provided, the script searches for the default eslint config 
 
 ### Options
 
-| Options                | Description                                                                                          |
-| ---------------------- | ---------------------------------------------------------------------------------------------------- |
-| `--merge`              | \* merge eslint configuration with an existing .oxlintrc.json configuration                          |
-| `--with-nursery`       | Include oxlint rules which are currently under development                                           |
-| `--output-file <file>` | The oxlint configuration file where to eslint v9 rules will be written to, default: `.oxlintrc.json` |
+| Options                     | Description                                                                                                                                 |
+| --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| `--merge`                   | \* merge eslint configuration with an existing .oxlintrc.json configuration                                                                 |
+| `--with-nursery`            | Include oxlint rules which are currently under development                                                                                  |
+| `--output-file <file>`      | The oxlint configuration file where to eslint v9 rules will be written to, default: `.oxlintrc.json`                                        |
+| `--replace-eslint-comments` | Search in the project files for eslint comments and replaces them with oxlint. Some eslint comments are not supported and will be reported. |
 
 \* WARNING: When some `categories` are enabled, this tools will enable more rules with the combination of `plugins`.
 Else we need to disable each rule `plugin/categories` combination, which is not covered by your eslint configuration.

@@ -1,21 +1,7 @@
-import { glob } from 'tinyglobby';
 import { readFileSync } from 'node:fs';
 import { writeFile } from 'node:fs/promises';
 import { Options } from '../types.js';
 import replaceCommentsInFile from './replaceCommentsInFile.js';
-
-const getAllProjectFiles = (): Promise<string[]> => {
-  return glob(
-    [
-      '**/*.{js,cjs,mjs,ts,cts,mts,vue,astro,svelte}',
-      '!**/node_modules/**',
-      '!**/build/**',
-    ],
-    {
-      absolute: true,
-    }
-  );
-};
 
 const getSourceText = (absoluteFilePath: string): string | undefined => {
   try {
@@ -32,23 +18,22 @@ const writeSourceTextToFile = (
   return writeFile(absoluteFilePath, sourceText, 'utf-8');
 };
 
-export const walkAndReplaceProjectFiles = async (
+export const walkAndReplaceProjectFiles = (
+  projectFiles: string[],
   options: Options
-): Promise<void> => {
-  const files = await getAllProjectFiles();
-
-  await Promise.all(
-    files.map((file): Promise<void> | undefined => {
+): Promise<void[]> => {
+  return Promise.all(
+    projectFiles.map((file): Promise<void> => {
       let sourceText = getSourceText(file);
 
       if (!sourceText) {
-        return;
+        return Promise.resolve();
       }
 
       const newSourceText = replaceCommentsInFile(file, sourceText, options);
 
       if (newSourceText === sourceText) {
-        return;
+        return Promise.resolve();
       }
 
       return writeSourceTextToFile(file, newSourceText);

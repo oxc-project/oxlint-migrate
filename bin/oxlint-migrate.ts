@@ -11,6 +11,7 @@ import main from '../src/index.js';
 import packageJson from '../package.json' with { type: 'json' };
 import { Options } from '../src/types.js';
 import { walkAndReplaceProjectFiles } from '../src/walker/index.js';
+import { getAllProjectFiles } from './project-loader.js';
 
 const cwd = process.cwd();
 
@@ -34,8 +35,8 @@ program
     false
   )
   .option(
-    '--replace-rule-comments',
-    'Search in the project files for eslint-disable / eslint-enable comments and replaces them with oxlint'
+    '--replace-eslint-comments',
+    'Search in the project files for eslint comments and replaces them with oxlint. Some eslint comments are not supported and will be reported.'
   )
   .action(async (filePath: string | undefined) => {
     const cliOptions = program.opts();
@@ -78,8 +79,8 @@ program
 
     writeFileSync(oxlintFilePath, JSON.stringify(oxlintConfig, null, 2));
 
-    if (cliOptions.replaceRuleComments) {
-      await walkAndReplaceProjectFiles(options);
+    if (cliOptions.replaceEslintComments) {
+      await walkAndReplaceProjectFiles(await getAllProjectFiles(), options);
     }
   });
 
