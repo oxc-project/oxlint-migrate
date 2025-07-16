@@ -515,6 +515,7 @@ export const correctnessRules = [
   '@next/next/no-title-in-document-head',
   '@next/next/no-typos',
   '@next/next/no-unwanted-polyfillio',
+  '@next/next/no-html-link-for-pages',
   'promise/no-callback-in-promise',
   'promise/no-new-statics',
   'promise/valid-params',
