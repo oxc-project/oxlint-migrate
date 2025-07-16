@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
-import replaceRuleDirectivesInFile from './replaceRuleDirectivesInFile.js';
+import replaceCommentsInFile from './replaceCommentsInFile.js';
 
-describe('replaceRuleDirectivesInFile', () => {
+describe('replaceCommentsInFile', () => {
   const filePath = '/tmp/fake-path.ts';
 
   it('should replace multiple line comments', () => {
@@ -12,7 +12,7 @@ describe('replaceRuleDirectivesInFile', () => {
         console.log('hello world');
         `;
 
-    const newSourceText = replaceRuleDirectivesInFile(filePath, sourceText, {});
+    const newSourceText = replaceCommentsInFile(filePath, sourceText, {});
 
     expect(newSourceText).toBe(`
         // oxlint-disable no-debugger
@@ -30,12 +30,36 @@ describe('replaceRuleDirectivesInFile', () => {
         console.log('hello world');
         `;
 
-    const newSourceText = replaceRuleDirectivesInFile(filePath, sourceText, {});
+    const newSourceText = replaceCommentsInFile(filePath, sourceText, {});
 
     expect(newSourceText).toBe(`
         /* oxlint-disable no-debugger */
         debugger;
         /* oxlint-disable no-console -- description */
+        console.log('hello world');
+        `);
+  });
+
+  it('should replace respect line breaks ', () => {
+    const sourceText = `
+        /*
+        eslint-disable no-debugger
+        */
+        debugger;
+        /*    eslint-disable no-console -- description */
+
+        console.log('hello world');
+        `;
+
+    const newSourceText = replaceCommentsInFile(filePath, sourceText, {});
+
+    expect(newSourceText).toBe(`
+        /*
+        oxlint-disable no-debugger
+        */
+        debugger;
+        /*    oxlint-disable no-console -- description */
+
         console.log('hello world');
         `);
   });

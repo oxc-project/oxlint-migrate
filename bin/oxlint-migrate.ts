@@ -10,7 +10,7 @@ import {
 import main from '../src/index.js';
 import packageJson from '../package.json' with { type: 'json' };
 import { Options } from '../src/types.js';
-import { replaceRuleDirectives } from '../src/replacer/index.js';
+import { walkAndReplaceProjectFiles } from '../src/walker/index.js';
 
 const cwd = process.cwd();
 
@@ -79,7 +79,7 @@ program
     writeFileSync(oxlintFilePath, JSON.stringify(oxlintConfig, null, 2));
 
     if (cliOptions.replaceRuleComments) {
-      await replaceRuleDirectives(options);
+      await walkAndReplaceProjectFiles(options);
     }
   });
 

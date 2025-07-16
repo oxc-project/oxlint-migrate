@@ -2,7 +2,7 @@ import { glob } from 'tinyglobby';
 import { readFileSync } from 'node:fs';
 import { writeFile } from 'node:fs/promises';
 import { Options } from '../types.js';
-import replaceRuleDirectivesInFile from './replaceRuleDirectivesInFile.js';
+import replaceCommentsInFile from './replaceCommentsInFile.js';
 
 const getAllProjectFiles = (): Promise<string[]> => {
   return glob(
@@ -32,33 +32,26 @@ const writeSourceTextToFile = (
   return writeFile(absoluteFilePath, sourceText, 'utf-8');
 };
 
-export const replaceRuleDirectives = async (
+export const walkAndReplaceProjectFiles = async (
   options: Options
 ): Promise<void> => {
   const files = await getAllProjectFiles();
 
   await Promise.all(
-    files
-      .map((file): Promise<void> | undefined => {
-        let sourceText = getSourceText(file);
+    files.map((file): Promise<void> | undefined => {
+      let sourceText = getSourceText(file);
 
-        if (!sourceText) {
-          return;
-        }
+      if (!sourceText) {
+        return;
+      }
 
-        const newSourceText = replaceRuleDirectivesInFile(
-          file,
-          sourceText,
-          options
-        );
+      const newSourceText = replaceCommentsInFile(file, sourceText, options);
 
-        if (newSourceText === sourceText) {
-          return;
-        }
+      if (newSourceText === sourceText) {
+        return;
+      }
 
-        return writeSourceTextToFile(file, newSourceText);
-      })
-      // filter out non promises
-      .filter(Boolean)
+      return writeSourceTextToFile(file, newSourceText);
+    })
   );
 };

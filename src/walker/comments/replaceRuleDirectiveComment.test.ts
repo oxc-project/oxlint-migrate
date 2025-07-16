@@ -1,12 +1,12 @@
 import { describe, expect, it } from 'vitest';
 import replaceRuleDirectiveComment from './replaceRuleDirectiveComment.js';
-import { correctnessRules, nurseryRules } from '../generated/rules.js';
+import { correctnessRules, nurseryRules } from '../../generated/rules.js';
 
 const eslintCommentsPrefixes = [
-  'eslint-disable',
-  'eslint-disable-line',
-  'eslint-disable-next-line',
-  'eslint-enable',
+  /*eslint-*/ 'disable',
+  /*eslint-*/ 'disable-line',
+  /*eslint-*/ 'disable-next-line',
+  /*eslint-*/ 'enable',
 ];
 
 describe('replaceRuleDirectiveComment', () => {
@@ -14,10 +14,10 @@ describe('replaceRuleDirectiveComment', () => {
     it('should keep non eslint comments', () => {
       const comments = [
         'hello world',
-        'eslint-invalid-comment',
-        'eslint-disable-what',
-        'eslint-disable-line-what',
-        'eslint-disable-next-line-what',
+        'invalid-comment',
+        'disable-what',
+        'disable-line-what',
+        'disable-next-line-what',
       ];
 
       for (const comment of comments) {
@@ -29,7 +29,7 @@ describe('replaceRuleDirectiveComment', () => {
       const comments = [
         ...eslintCommentsPrefixes,
         ...eslintCommentsPrefixes.map((prefix) => `${prefix} -- description`),
-        'eslint-disable -- no-debugger', // rule-name inside comment
+        'disable -- no-debugger', // rule-name inside comment
       ];
 
       for (const comment of comments) {

@@ -1,5 +1,5 @@
-import * as rules from '../generated/rules.js';
-import { Options } from '../types.js';
+import * as rules from '../../generated/rules.js';
+import { Options } from '../../types.js';
 
 const allRules = Object.values(rules).flat();
 
@@ -23,10 +23,13 @@ export default function replaceRuleDirectiveComment(
   } else if (comment.startsWith('disable')) {
     comment = comment.substring(7);
 
-    // eslint-disable-next-line and eslint-disable-line
-    comment = comment.replace(/^-next/, '').replace(/^-line/, '');
-    // "eslint-" needs to follow up with "disable" or "enable"
+    if (comment.startsWith('-next-line')) {
+      comment = comment.substring(10);
+    } else if (comment.startsWith('-line')) {
+      comment = comment.substring(5);
+    }
   } else {
+    // "eslint-" needs to follow up with "disable" or "enable"
     return originalComment;
   }
 
