@@ -63,4 +63,55 @@ describe('replaceCommentsInFile', () => {
         console.log('hello world');
         `);
   });
+
+  describe('unsupported eslint comments', () => {
+    it('should report inline configuration comments', () => {
+      const sourceText = `
+        /* eslint eqeqeq: "off" */
+        debugger;
+        /* eslint eqeqeq: "off" -- description */
+        console.log('hello world');
+        `;
+      const reports: string[] = [];
+      const newSourceText = replaceCommentsInFile(filePath, sourceText, {
+        reporter: reports.push.bind(reports),
+      });
+      expect(newSourceText).toBe(sourceText);
+      expect(reports).toStrictEqual([
+        '/tmp/fake-path.ts, char offset 9: changing eslint rules with inline comment is not supported',
+        '/tmp/fake-path.ts, char offset 62: changing eslint rules with inline comment is not supported',
+      ]);
+    });
+
+    it('should report inline global configuration', () => {
+      const sourceText = `
+        /* global jQuery */
+        debugger;
+        /* global jQuery -- description */
+        console.log('hello world');
+        `;
+      const reports: string[] = [];
+      const newSourceText = replaceCommentsInFile(filePath, sourceText, {
+        reporter: reports.push.bind(reports),
+      });
+      expect(newSourceText).toBe(sourceText);
+      expect(reports).toStrictEqual([
+        '/tmp/fake-path.ts, char offset 9: changing globals with inline comment is not supported',
+        '/tmp/fake-path.ts, char offset 55: changing globals with inline comment is not supported',
+      ]);
+    });
+
+    it('should ignore standalone eslint comment', () => {
+      const sourceText = `
+        /* eslint */
+        debugger;
+        `;
+      const reports: string[] = [];
+      const newSourceText = replaceCommentsInFile(filePath, sourceText, {
+        reporter: reports.push.bind(reports),
+      });
+      expect(newSourceText).toBe(sourceText);
+      expect(reports).toStrictEqual([]);
+    });
+  });
 });

@@ -3,10 +3,10 @@ import replaceRuleDirectiveComment from './replaceRuleDirectiveComment.js';
 import { correctnessRules, nurseryRules } from '../../generated/rules.js';
 
 const eslintCommentsPrefixes = [
-  /*eslint-*/ 'disable',
-  /*eslint-*/ 'disable-line',
-  /*eslint-*/ 'disable-next-line',
-  /*eslint-*/ 'enable',
+  'eslint-disable',
+  'eslint-disable-line',
+  'eslint-disable-next-line',
+  'eslint-enable',
 ];
 
 describe('replaceRuleDirectiveComment', () => {
@@ -32,7 +32,7 @@ describe('replaceRuleDirectiveComment', () => {
         'disable -- no-debugger', // rule-name inside comment
       ];
 
-      for (const comment of comments) {
+      for (const comment in comments) {
         expect(replaceRuleDirectiveComment(comment, {})).toBe(comment);
       }
     });
@@ -97,9 +97,9 @@ describe('replaceRuleDirectiveComment', () => {
       ];
 
       for (const comment of comments) {
-        expect(replaceRuleDirectiveComment(comment, {})).toBe(
-          comment.replace('eslint', 'oxlint')
-        );
+        const newComment = replaceRuleDirectiveComment(comment, {});
+        expect(comment).toContain('eslint-');
+        expect(newComment).toBe(comment.replace('eslint', 'oxlint'));
       }
     });
 

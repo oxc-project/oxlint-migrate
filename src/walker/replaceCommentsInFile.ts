@@ -25,7 +25,6 @@ export default function replaceCommentsInFile(
       if (replacedStr !== comment.value) {
         // we know that the length of the comment will not change,
         // no need to sort them in reversed order to avoid shifting offsets.
-        // ToDo: validate that with different comment line breaks and leading line breaks
         const newComment =
           comment.type === 'Line' ? `//${replacedStr}` : `/*${replacedStr}*/`;
         sourceText =
@@ -36,7 +35,7 @@ export default function replaceCommentsInFile(
     } catch (error: unknown) {
       if (error instanceof Error && options.reporter) {
         options.reporter(
-          `${absoluteFilePath}:offset ${comment.start}: ${error.message}`
+          `${absoluteFilePath}, char offset ${comment.start}: ${error.message}`
         );
         continue;
       }
