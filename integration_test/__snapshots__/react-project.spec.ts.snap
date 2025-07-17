@@ -1,0 +1,98 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`react-project > react-project 1`] = `
+{
+  "config": {
+    "$schema": "./node_modules/oxlint/configuration_schema.json",
+    "categories": {
+      "correctness": "off",
+    },
+    "env": {
+      "builtin": true,
+    },
+    "plugins": [
+      "react",
+      "react-perf",
+    ],
+    "rules": {
+      "react-hooks/exhaustive-deps": "warn",
+      "react-hooks/rules-of-hooks": "error",
+      "react-perf/jsx-no-new-array-as-prop": "warn",
+      "react-perf/jsx-no-new-function-as-prop": "warn",
+      "react-perf/jsx-no-new-object-as-prop": "warn",
+      "react/jsx-key": "warn",
+      "react/jsx-no-comment-textnodes": "warn",
+      "react/jsx-no-duplicate-props": "warn",
+      "react/jsx-no-target-blank": "warn",
+      "react/jsx-no-undef": "warn",
+      "react/no-children-prop": "warn",
+      "react/no-danger-with-children": "warn",
+      "react/no-direct-mutation-state": "warn",
+      "react/no-find-dom-node": "warn",
+      "react/no-is-mounted": "warn",
+      "react/no-render-return-value": "warn",
+      "react/no-string-refs": "warn",
+      "react/no-unescaped-entities": "warn",
+      "react/no-unknown-property": "warn",
+      "react/react-in-jsx-scope": "off",
+    },
+  },
+  "warnings": [
+    "unsupported rule: react/display-name",
+    "unsupported rule: react/jsx-uses-react",
+    "unsupported rule: react/jsx-uses-vars",
+    "unsupported rule: react/no-deprecated",
+    "unsupported rule: react/prop-types",
+    "unsupported rule, but in development: react/require-render-return",
+  ],
+}
+`;
+
+exports[`react-project merge > react-project--merge 1`] = `
+{
+  "config": {
+    "$schema": "./node_modules/oxlint/configuration_schema.json",
+    "categories": {
+      "correctness": "error",
+      "perf": "error",
+    },
+    "env": {
+      "builtin": true,
+    },
+    "plugins": [
+      "react",
+      "react-perf",
+    ],
+    "rules": {
+      "react-hooks/exhaustive-deps": "warn",
+      "react-hooks/rules-of-hooks": "error",
+      "react-perf/jsx-no-new-array-as-prop": "warn",
+      "react-perf/jsx-no-new-function-as-prop": "warn",
+      "react-perf/jsx-no-new-object-as-prop": "warn",
+      "react/jsx-key": "warn",
+      "react/jsx-no-comment-textnodes": "warn",
+      "react/jsx-no-duplicate-props": "warn",
+      "react/jsx-no-target-blank": "warn",
+      "react/jsx-no-undef": "warn",
+      "react/no-children-prop": "warn",
+      "react/no-danger-with-children": "warn",
+      "react/no-direct-mutation-state": "warn",
+      "react/no-find-dom-node": "warn",
+      "react/no-is-mounted": "warn",
+      "react/no-render-return-value": "warn",
+      "react/no-string-refs": "warn",
+      "react/no-unescaped-entities": "warn",
+      "react/no-unknown-property": "warn",
+      "react/react-in-jsx-scope": "warn",
+    },
+  },
+  "warnings": [
+    "unsupported rule: react/display-name",
+    "unsupported rule: react/jsx-uses-react",
+    "unsupported rule: react/jsx-uses-vars",
+    "unsupported rule: react/no-deprecated",
+    "unsupported rule: react/prop-types",
+    "unsupported rule, but in development: react/require-render-return",
+  ],
+}
+`;
