@@ -34,6 +34,20 @@ describe('partialVueSourceTextLoader', () => {
     ]);
   });
 
+  it('should parse script tag with ">" inside attribute', () => {
+    const sourceText = `
+    <template><h1>hello world</h1></template>
+    <script lang="ts" description="PI > 3">debugger;</script>`;
+    const result = partialVueSourceTextLoader(sourceText);
+
+    expect(result).toStrictEqual([
+      {
+        sourceText: 'debugger;',
+        offset: 90,
+      },
+    ]);
+  });
+
   it('should return empty array when no script found', () => {
     const sourceText = `<template><h1>hello world</h1></template>`;
     const result = partialVueSourceTextLoader(sourceText);
