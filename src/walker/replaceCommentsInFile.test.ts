@@ -145,6 +145,24 @@ describe('replaceCommentsInFile', () => {
       `);
     });
 
+    it('should handle typescript syntax in .vue files', () => {
+      const sourceText = `
+        <script lang="ts">
+        import { type Ref } from 'vue';
+        /* eslint-disable no-debugger */
+        debugger;
+        </script>
+      `;
+      const newSourceText = replaceCommentsInFile(sveltePath, sourceText, {});
+      expect(newSourceText).toBe(`
+        <script lang="ts">
+        import { type Ref } from 'vue';
+        /* oxlint-disable no-debugger */
+        debugger;
+        </script>
+      `);
+    });
+
     it('should handle .astro files', () => {
       const sourceText = `
         ---
@@ -186,6 +204,36 @@ describe('replaceCommentsInFile', () => {
       const newSourceText = replaceCommentsInFile(sveltePath, sourceText, {});
       expect(newSourceText).toBe(`
         <script>
+        /* oxlint-disable no-debugger */
+        debugger;
+        </script>
+        <script>
+        /* oxlint-disable no-console */
+        console.log('hello world');
+        </script>
+        <div>Hello Svelte</div>
+      `);
+    });
+
+    it('should handle typescript syntax in .svelte files', () => {
+      const sourceText = `
+        <script lang="ts">
+        import { t } from 'svelte-i18n';
+        import { type Address, isAddress } from 'viem';
+        /* eslint-disable no-debugger */
+        debugger;
+        </script>
+        <script>
+        /* eslint-disable no-console */
+        console.log('hello world');
+        </script>
+        <div>Hello Svelte</div>
+      `;
+      const newSourceText = replaceCommentsInFile(sveltePath, sourceText, {});
+      expect(newSourceText).toBe(`
+        <script lang="ts">
+        import { t } from 'svelte-i18n';
+        import { type Address, isAddress } from 'viem';
         /* oxlint-disable no-debugger */
         debugger;
         </script>

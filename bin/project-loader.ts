@@ -5,7 +5,7 @@ export const getAllProjectFiles = (): Promise<string[]> => {
     [
       '**/*.{js,cjs,mjs,ts,cts,mts,vue,astro,svelte}',
       '!**/node_modules/**',
-      '!**/build/**',
+      '!**/dist/**',
     ],
     {
       absolute: true,

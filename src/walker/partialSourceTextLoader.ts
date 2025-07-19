@@ -1,11 +1,53 @@
 export type PartialSourceText = {
   sourceText: string;
   offset: number;
+  lang?: 'js' | 'jsx' | 'ts' | 'tsx';
+  sourceType?: 'script' | 'module';
 };
+
+function extractLangAttribute(
+  source: string
+): PartialSourceText['lang'] | undefined {
+  const langIndex = source.indexOf('lang');
+  if (langIndex === -1) return undefined;
+
+  let cursor = langIndex + 4;
+
+  // Skip whitespace after "lang"
+  while (cursor < source.length && isWhitespace(source[cursor])) {
+    cursor++;
+  }
+
+  // Check for '='
+  if (source[cursor] !== '=') return undefined;
+  cursor++;
+
+  // Skip whitespace after '='
+  while (cursor < source.length && isWhitespace(source[cursor])) {
+    cursor++;
+  }
+
+  const quote = source[cursor];
+  if (quote !== '"' && quote !== "'") return undefined;
+  cursor++;
+
+  let value = '';
+  while (cursor < source.length && source[cursor] !== quote) {
+    value += source[cursor++];
+  }
+
+  if (value === 'js' || value === 'jsx' || value === 'ts' || value === 'tsx') {
+    return value;
+  }
+
+  return undefined;
+}
 
 function extractScriptBlocks(
   sourceText: string,
-  offset: number
+  offset: number,
+  maxBlocks: number,
+  parseLangAttribute: boolean
 ): PartialSourceText[] {
   const results: PartialSourceText[] = [];
 
@@ -63,6 +105,11 @@ function extractScriptBlocks(
 
     if (i >= sourceText.length) break;
 
+    let lang: PartialSourceText['lang'] | undefined = undefined;
+    if (parseLangAttribute) {
+      lang = extractLangAttribute(sourceText.slice(idx, i));
+    }
+
     // Find closing </script> tag
     const contentStart = i;
     const closeTag = '</script>';
@@ -70,7 +117,12 @@ function extractScriptBlocks(
     if (closeIdx === -1) break;
 
     const content = sourceText.slice(contentStart, closeIdx);
-    results.push({ sourceText: content, offset: contentStart });
+
+    results.push({ sourceText: content, offset: contentStart, lang });
+
+    if (results.length >= maxBlocks) {
+      break; // Limit reached
+    }
 
     offset = closeIdx + closeTag.length;
   }
@@ -139,13 +191,13 @@ function findDelimiter(sourceText: string, startPos: number): number {
 export function partialVueSourceTextLoader(
   sourceText: string
 ): PartialSourceText[] {
-  return extractScriptBlocks(sourceText, 0);
+  return extractScriptBlocks(sourceText, 0, 2, true);
 }
 
 export function partialSvelteSourceTextLoader(
   sourceText: string
 ): PartialSourceText[] {
-  return extractScriptBlocks(sourceText, 0);
+  return extractScriptBlocks(sourceText, 0, 2, true);
 }
 
 export function partialAstroSourceTextLoader(
@@ -174,12 +226,22 @@ export function partialAstroSourceTextLoader(
       results.push({
         sourceText: content,
         offset: frontmatterContentStart,
+        lang: 'ts' as const,
+        sourceType: 'module' as const,
       });
       pos = frontmatterEndDelimiter + 3;
     }
   }
 
-  results.push(...extractScriptBlocks(sourceText, pos));
+  results.push(
+    ...extractScriptBlocks(sourceText, pos, Number.MAX_SAFE_INTEGER, false).map(
+      (sourceText) => ({
+        ...sourceText,
+        lang: 'ts' as const,
+        sourceType: 'module' as const,
+      })
+    )
+  );
 
   return results;
 }

@@ -18,6 +18,7 @@ describe('partialVueSourceTextLoader', () => {
 
     expect(result).toStrictEqual([
       {
+        lang: undefined,
         sourceText: 'debugger;',
         offset: 59,
       },
@@ -32,6 +33,7 @@ describe('partialVueSourceTextLoader', () => {
 
     expect(result).toStrictEqual([
       {
+        lang: 'ts',
         sourceText: 'debugger;',
         offset: 118,
       },
@@ -46,6 +48,7 @@ describe('partialVueSourceTextLoader', () => {
 
     expect(result).toStrictEqual([
       {
+        lang: 'ts',
         sourceText: 'debugger;',
         offset: 90,
       },
@@ -67,6 +70,7 @@ describe('partialVueSourceTextLoader', () => {
 
     expect(result).toStrictEqual([
       {
+        lang: undefined,
         sourceText: 'debugger;',
         offset: 60,
       },
@@ -82,10 +86,12 @@ describe('partialVueSourceTextLoader', () => {
 
     expect(result).toStrictEqual([
       {
+        lang: undefined,
         sourceText: ' export default {} ',
         offset: 60,
       },
       {
+        lang: undefined,
         sourceText: 'debugger;',
         offset: 107,
       },
@@ -107,6 +113,7 @@ describe('partialSvelteSourceTextLoader', () => {
     const result = partialSvelteSourceTextLoader(sourceText);
     expect(result).toStrictEqual([
       {
+        lang: undefined,
         sourceText: '\n     console.log("hi");\n   ',
         offset: 12,
       },
@@ -123,6 +130,7 @@ describe('partialSvelteSourceTextLoader', () => {
 
     expect(result).toStrictEqual([
       {
+        lang: 'ts',
         sourceText: '\n      console.log("hi");\n    ',
         offset: 72,
       },
@@ -141,10 +149,12 @@ describe('partialSvelteSourceTextLoader', () => {
     const result = partialSvelteSourceTextLoader(sourceText);
     expect(result).toStrictEqual([
       {
+        lang: undefined,
         sourceText: "\n      export const foo = 'bar';\n    ",
         offset: 30,
       },
       {
+        lang: undefined,
         sourceText: '\n      console.log("hi");\n    ',
         offset: 89,
       },
@@ -164,6 +174,8 @@ describe('partialAstroSourceTextLoader', () => {
     const result = partialAstroSourceTextLoader(sourceText);
     expect(result).toStrictEqual([
       {
+        lang: 'ts',
+        sourceType: 'module',
         sourceText: 'console.log("Hi");',
         offset: 42,
       },
@@ -184,11 +196,15 @@ describe('partialAstroSourceTextLoader', () => {
     const result = partialAstroSourceTextLoader(sourceText);
     expect(result).toStrictEqual([
       {
+        lang: 'ts',
+        sourceType: 'module',
         sourceText:
           "\n    const { message = 'Welcome, world!' } = Astro.props;\n    ",
         offset: 8,
       },
       {
+        lang: 'ts',
+        sourceType: 'module',
         sourceText: '\n      console.log("Hi");\n    ',
         offset: 117,
       },
@@ -208,10 +224,14 @@ describe('partialAstroSourceTextLoader', () => {
     const result = partialAstroSourceTextLoader(sourceText);
     expect(result).toStrictEqual([
       {
+        lang: 'ts',
+        sourceType: 'module',
         sourceText: '',
         offset: 94,
       },
       {
+        lang: 'ts',
+        sourceType: 'module',
         sourceText: '\n      console.log("Hi");\n    ',
         offset: 117,
       },
@@ -231,6 +251,8 @@ describe('partialAstroSourceTextLoader', () => {
     const result = partialAstroSourceTextLoader(sourceText);
     expect(result).toStrictEqual([
       {
+        lang: 'ts',
+        sourceType: 'module',
         sourceText: '\n        console.log("Hi");\n      ',
         offset: 116,
       },
