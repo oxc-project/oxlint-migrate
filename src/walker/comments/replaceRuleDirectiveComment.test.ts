@@ -65,6 +65,7 @@ describe('replaceRuleDirectiveComment', () => {
     it('should keep eslint comments which disable / enable all rules', () => {
       const comments = [
         ...eslintCommentsBlock,
+        ...eslintCommentsBlock.map((comment) => `${comment} `),
         'disable -- no-debugger', // rule-name inside comment
       ];
 

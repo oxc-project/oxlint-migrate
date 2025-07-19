@@ -43,6 +43,10 @@ export default function replaceRuleDirectiveComment(
 
   comment = comment.trimStart();
 
+  if (comment.length === 0) {
+    return originalComment;
+  }
+
   while (comment.length) {
     let foundRule = false;
     for (const rule of allRules) {
