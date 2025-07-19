@@ -3,7 +3,7 @@ import { writeFile } from 'node:fs/promises';
 import { Options } from '../types.js';
 import replaceCommentsInFile from './replaceCommentsInFile.js';
 
-const getSourceText = (absoluteFilePath: string): string | undefined => {
+const getFileContent = (absoluteFilePath: string): string | undefined => {
   try {
     return readFileSync(absoluteFilePath, 'utf-8');
   } catch {
@@ -24,7 +24,7 @@ export const walkAndReplaceProjectFiles = (
 ): Promise<void[]> => {
   return Promise.all(
     projectFiles.map((file): Promise<void> => {
-      let sourceText = getSourceText(file);
+      const sourceText = getFileContent(file);
 
       if (!sourceText) {
         return Promise.resolve();

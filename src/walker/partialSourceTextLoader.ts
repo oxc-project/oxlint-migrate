@@ -1,4 +1,4 @@
-type PartialSourceText = {
+export type PartialSourceText = {
   sourceText: string;
   offset: number;
 };
@@ -80,20 +80,21 @@ function extractScriptBlocks(
 
 export default function partialSourceTextLoader(
   absoluteFilePath: string,
-  sourceText: string
+  fileContent: string
 ): PartialSourceText[] {
   if (absoluteFilePath.endsWith('.vue')) {
-    return partialVueSourceTextLoader(sourceText);
+    // ToDo: only two script blocks are supported
+    return partialVueSourceTextLoader(fileContent);
   } else if (absoluteFilePath.endsWith('.astro')) {
-    return partialAstroSourceTextLoader(sourceText);
+    return partialAstroSourceTextLoader(fileContent);
   } else if (absoluteFilePath.endsWith('.svelte')) {
-    // ToDo: implement svelte parser
-    return [];
+    // ToDo: only two script blocks are supported
+    return partialSvelteSourceTextLoader(fileContent);
   }
 
   return [
     {
-      sourceText,
+      sourceText: fileContent,
       offset: 0,
     },
   ];

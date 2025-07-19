@@ -1,6 +1,7 @@
 import { type Comment, parseSync } from 'oxc-parser';
 import { Options } from '../types.js';
 import replaceComments from './comments/index.js';
+import partialSourceTextLoader from './partialSourceTextLoader.js';
 
 const getComments = (
   absoluteFilePath: string,
@@ -11,9 +12,10 @@ const getComments = (
   return parserResult.comments;
 };
 
-export default function replaceCommentsInFile(
+function replaceCommentsInSourceText(
   absoluteFilePath: string,
   sourceText: string,
+  sourceTextOffset: number,
   options: Options
 ): string {
   const comments = getComments(absoluteFilePath, sourceText);
@@ -35,7 +37,7 @@ export default function replaceCommentsInFile(
     } catch (error: unknown) {
       if (error instanceof Error && options.reporter) {
         options.reporter(
-          `${absoluteFilePath}, char offset ${comment.start}: ${error.message}`
+          `${absoluteFilePath}, char offset ${comment.start + sourceTextOffset}: ${error.message}`
         );
         continue;
       }
@@ -44,4 +46,31 @@ export default function replaceCommentsInFile(
   }
 
   return sourceText;
+}
+
+export default function replaceCommentsInFile(
+  absoluteFilePath: string,
+  fileContent: string,
+  options: Options
+): string {
+  for (const { sourceText, offset } of partialSourceTextLoader(
+    absoluteFilePath,
+    fileContent
+  )) {
+    const newSourceText = replaceCommentsInSourceText(
+      absoluteFilePath,
+      sourceText,
+      offset,
+      options
+    );
+
+    if (newSourceText !== sourceText) {
+      fileContent =
+        fileContent.slice(0, offset) +
+        newSourceText +
+        fileContent.slice(offset + sourceText.length);
+    }
+  }
+
+  return fileContent;
 }

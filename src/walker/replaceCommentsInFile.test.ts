@@ -2,7 +2,10 @@ import { describe, expect, it } from 'vitest';
 import replaceCommentsInFile from './replaceCommentsInFile.js';
 
 describe('replaceCommentsInFile', () => {
-  const filePath = '/tmp/fake-path.ts';
+  const tsPath = '/tmp/fake-path.ts';
+  const vuePath = '/tmp/fake-path.vue';
+  const astroPath = '/tmp/fake-path.astro';
+  const sveltePath = '/tmp/fake-path.svelte';
 
   it('should replace multiple line comments', () => {
     const sourceText = `
@@ -12,7 +15,7 @@ describe('replaceCommentsInFile', () => {
         console.log('hello world');
         `;
 
-    const newSourceText = replaceCommentsInFile(filePath, sourceText, {});
+    const newSourceText = replaceCommentsInFile(tsPath, sourceText, {});
 
     expect(newSourceText).toBe(`
         // oxlint-disable no-debugger
@@ -30,7 +33,7 @@ describe('replaceCommentsInFile', () => {
         console.log('hello world');
         `;
 
-    const newSourceText = replaceCommentsInFile(filePath, sourceText, {});
+    const newSourceText = replaceCommentsInFile(tsPath, sourceText, {});
 
     expect(newSourceText).toBe(`
         /* oxlint-disable no-debugger */
@@ -51,7 +54,7 @@ describe('replaceCommentsInFile', () => {
         console.log('hello world');
         `;
 
-    const newSourceText = replaceCommentsInFile(filePath, sourceText, {});
+    const newSourceText = replaceCommentsInFile(tsPath, sourceText, {});
 
     expect(newSourceText).toBe(`
         /*
@@ -73,7 +76,7 @@ describe('replaceCommentsInFile', () => {
         console.log('hello world');
         `;
       const reports: string[] = [];
-      const newSourceText = replaceCommentsInFile(filePath, sourceText, {
+      const newSourceText = replaceCommentsInFile(tsPath, sourceText, {
         reporter: reports.push.bind(reports),
       });
       expect(newSourceText).toBe(sourceText);
@@ -91,7 +94,7 @@ describe('replaceCommentsInFile', () => {
         console.log('hello world');
         `;
       const reports: string[] = [];
-      const newSourceText = replaceCommentsInFile(filePath, sourceText, {
+      const newSourceText = replaceCommentsInFile(tsPath, sourceText, {
         reporter: reports.push.bind(reports),
       });
       expect(newSourceText).toBe(sourceText);
@@ -107,11 +110,91 @@ describe('replaceCommentsInFile', () => {
         debugger;
         `;
       const reports: string[] = [];
-      const newSourceText = replaceCommentsInFile(filePath, sourceText, {
+      const newSourceText = replaceCommentsInFile(tsPath, sourceText, {
         reporter: reports.push.bind(reports),
       });
       expect(newSourceText).toBe(sourceText);
       expect(reports).toStrictEqual([]);
+    });
+  });
+
+  describe('special file extensions', () => {
+    it('should handle .vue files', () => {
+      const sourceText = `
+        <template><h1>hello world</h1></template>
+        <script>
+        /* eslint-disable no-debugger */
+        debugger;
+        </script>
+        <script>
+        /* eslint-disable no-console */
+        console.log('hello world');
+        </script>
+      `;
+      const newSourceText = replaceCommentsInFile(vuePath, sourceText, {});
+      expect(newSourceText).toBe(`
+        <template><h1>hello world</h1></template>
+        <script>
+        /* oxlint-disable no-debugger */
+        debugger;
+        </script>
+        <script>
+        /* oxlint-disable no-console */
+        console.log('hello world');
+        </script>
+      `);
+    });
+
+    it('should handle .astro files', () => {
+      const sourceText = `
+        ---
+        /* eslint-disable no-debugger */
+        debugger;
+        ---
+        <script>
+        /* eslint-disable no-console */
+        console.log('hello world');
+        </script>
+        <h1>Hello World!</h1>
+      `;
+      const newSourceText = replaceCommentsInFile(astroPath, sourceText, {});
+      expect(newSourceText).toBe(`
+        ---
+        /* oxlint-disable no-debugger */
+        debugger;
+        ---
+        <script>
+        /* oxlint-disable no-console */
+        console.log('hello world');
+        </script>
+        <h1>Hello World!</h1>
+      `);
+    });
+
+    it('should handle .svelte files', () => {
+      const sourceText = `
+        <script>
+        /* eslint-disable no-debugger */
+        debugger;
+        </script>
+        <script>
+        /* eslint-disable no-console */
+        console.log('hello world');
+        </script>
+        <div>Hello Svelte</div>
+      `;
+      const newSourceText = replaceCommentsInFile(sveltePath, sourceText, {});
+      expect(newSourceText).toBe(`
+        <script>
+        /* oxlint-disable no-debugger */
+        debugger;
+        </script>
+        <script>
+        /* oxlint-disable no-console */
+        console.log('hello world');
+        </script>
+        <div>Hello Svelte</div>
+      `);
     });
   });
 });
