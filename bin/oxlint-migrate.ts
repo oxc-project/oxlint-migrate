@@ -12,8 +12,17 @@ import packageJson from '../package.json' with { type: 'json' };
 import { Options } from '../src/types.js';
 import { walkAndReplaceProjectFiles } from '../src/walker/index.js';
 import { getAllProjectFiles } from './project-loader.js';
+import { writeFile } from 'node:fs/promises';
 
 const cwd = process.cwd();
+
+const getFileContent = (absoluteFilePath: string): string | undefined => {
+  try {
+    return readFileSync(absoluteFilePath, 'utf-8');
+  } catch {
+    return undefined;
+  }
+};
 
 program
   .name('oxlint-migrate')
@@ -42,6 +51,25 @@ program
     const cliOptions = program.opts();
     const oxlintFilePath = path.join(cwd, cliOptions.outputFile);
 
+    const options: Options = {
+      reporter: console.warn,
+      merge: !!cliOptions.merge,
+      withNursery: !!cliOptions.withNursery,
+    };
+
+    if (cliOptions.replaceEslintComments) {
+      await walkAndReplaceProjectFiles(
+        await getAllProjectFiles(),
+        (filePath: string) => getFileContent(filePath),
+        (filePath: string, content: string) =>
+          writeFile(filePath, content, 'utf-8'),
+        options
+      );
+
+      // stop the program
+      return;
+    }
+
     if (filePath === undefined) {
       filePath = getAutodetectedEslintConfigName(cwd);
     } else {
@@ -53,12 +81,6 @@ program
     }
 
     const eslintConfigs = await loadESLintConfig(filePath);
-
-    const options: Options = {
-      reporter: console.warn,
-      merge: !!cliOptions.merge,
-      withNursery: !!cliOptions.withNursery,
-    };
 
     let config;
     if (options.merge && existsSync(oxlintFilePath)) {
@@ -78,10 +100,6 @@ program
     }
 
     writeFileSync(oxlintFilePath, JSON.stringify(oxlintConfig, null, 2));
-
-    if (cliOptions.replaceEslintComments) {
-      await walkAndReplaceProjectFiles(await getAllProjectFiles(), options);
-    }
   });
 
 program.parse();

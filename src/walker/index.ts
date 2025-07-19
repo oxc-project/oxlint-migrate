@@ -1,30 +1,19 @@
-import { readFileSync } from 'node:fs';
-import { writeFile } from 'node:fs/promises';
 import { Options } from '../types.js';
 import replaceCommentsInFile from './replaceCommentsInFile.js';
 
-const getFileContent = (absoluteFilePath: string): string | undefined => {
-  try {
-    return readFileSync(absoluteFilePath, 'utf-8');
-  } catch {
-    return undefined;
-  }
-};
-
-const writeSourceTextToFile = (
-  absoluteFilePath: string,
-  sourceText: string
-): Promise<void> => {
-  return writeFile(absoluteFilePath, sourceText, 'utf-8');
-};
-
 export const walkAndReplaceProjectFiles = (
+  /** all projects files to check */
   projectFiles: string[],
+  /** function for reading the file */
+  readFileSync: (filePath: string) => string | undefined,
+  /** function for writing the file */
+  writeFile: (filePath: string, content: string) => Promise<void>,
+  /** options for the walker, for `reporter` and `withNurseryRules` */
   options: Options
 ): Promise<void[]> => {
   return Promise.all(
     projectFiles.map((file): Promise<void> => {
-      const sourceText = getFileContent(file);
+      const sourceText = readFileSync(file);
 
       if (!sourceText) {
         return Promise.resolve();
@@ -36,7 +25,7 @@ export const walkAndReplaceProjectFiles = (
         return Promise.resolve();
       }
 
-      return writeSourceTextToFile(file, newSourceText);
+      return writeFile(file, newSourceText);
     })
   );
 };
