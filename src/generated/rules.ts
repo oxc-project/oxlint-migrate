@@ -221,7 +221,6 @@ export const styleRules = [
   'unicorn/prefer-object-from-entries',
   'unicorn/prefer-array-index-of',
   'unicorn/prefer-spread',
-  'unicorn/prefer-array-flat-map',
   'unicorn/prefer-dom-node-text-content',
   'unicorn/prefer-includes',
   'unicorn/prefer-logical-operator-over-ternary',
@@ -596,5 +595,6 @@ export const perfRules = [
   'react-perf/jsx-no-new-function-as-prop',
   'react-perf/jsx-no-new-object-as-prop',
   'unicorn/prefer-array-find',
+  'unicorn/prefer-array-flat-map',
   'unicorn/prefer-set-has',
 ];
