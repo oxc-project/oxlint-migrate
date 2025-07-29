@@ -359,6 +359,7 @@ export const restrictionRules = [
   'react/jsx-filename-extension',
   'react/no-danger',
   'react/no-unknown-property',
+  '@typescript-eslint/explicit-module-boundary-types',
   '@typescript-eslint/explicit-function-return-type',
   '@typescript-eslint/no-dynamic-delete',
   '@typescript-eslint/no-empty-object-type',
