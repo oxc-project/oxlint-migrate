@@ -119,6 +119,7 @@ export const styleRules = [
   'no-template-curly-in-string',
   'no-ternary',
   'operator-assignment',
+  'prefer-destructuring',
   'prefer-promise-reject-errors',
   'prefer-exponentiation-operator',
   'prefer-numeric-literals',
@@ -397,6 +398,7 @@ export const restrictionRules = [
 
 export const correctnessRules = [
   'for-direction',
+  'no-unassigned-vars',
   'no-async-promise-executor',
   'no-caller',
   'no-class-assign',
