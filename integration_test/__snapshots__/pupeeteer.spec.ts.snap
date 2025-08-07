@@ -194,6 +194,13 @@ exports[`puppeteer > puppeteer 1`] = `
           "@typescript-eslint/explicit-function-return-type": "off",
           "@typescript-eslint/explicit-module-boundary-types": "error",
           "@typescript-eslint/no-explicit-any": "off",
+          "@typescript-eslint/no-floating-promises": [
+            "error",
+            {
+              "ignoreIIFE": true,
+              "ignoreVoid": true,
+            },
+          ],
           "@typescript-eslint/no-import-type-side-effects": "error",
           "@typescript-eslint/no-non-null-assertion": "off",
           "@typescript-eslint/no-unsafe-function-type": "error",
@@ -224,6 +231,18 @@ exports[`puppeteer > puppeteer 1`] = `
               ],
             },
           ],
+        },
+      },
+      {
+        "files": [
+          "packages/puppeteer-core/src/**/*.test.ts",
+          "tools/mocha-runner/src/test.ts",
+        ],
+        "plugins": [
+          "typescript",
+        ],
+        "rules": {
+          "@typescript-eslint/no-floating-promises": "off",
         },
       },
       {
@@ -345,7 +364,6 @@ exports[`puppeteer > puppeteer 1`] = `
     "unsupported rule: rulesdir/use-using",
     "unsupported rule: @typescript-eslint/no-unnecessary-template-expression",
     "unsupported rule: no-restricted-syntax",
-    "unsupported rule: @typescript-eslint/no-floating-promises",
     "unsupported rule: @typescript-eslint/return-await",
     "unsupported rule: @typescript-eslint/consistent-type-exports",
     "unsupported rule: no-restricted-syntax",
@@ -552,6 +570,13 @@ exports[`puppeteer merge > puppeteer--merge 1`] = `
           "@typescript-eslint/explicit-function-return-type": "off",
           "@typescript-eslint/explicit-module-boundary-types": "error",
           "@typescript-eslint/no-explicit-any": "off",
+          "@typescript-eslint/no-floating-promises": [
+            "error",
+            {
+              "ignoreIIFE": true,
+              "ignoreVoid": true,
+            },
+          ],
           "@typescript-eslint/no-import-type-side-effects": "error",
           "@typescript-eslint/no-non-null-assertion": "off",
           "@typescript-eslint/no-unsafe-function-type": "error",
@@ -582,6 +607,18 @@ exports[`puppeteer merge > puppeteer--merge 1`] = `
               ],
             },
           ],
+        },
+      },
+      {
+        "files": [
+          "packages/puppeteer-core/src/**/*.test.ts",
+          "tools/mocha-runner/src/test.ts",
+        ],
+        "plugins": [
+          "typescript",
+        ],
+        "rules": {
+          "@typescript-eslint/no-floating-promises": "off",
         },
       },
       {
@@ -692,7 +729,6 @@ exports[`puppeteer merge > puppeteer--merge 1`] = `
     "unsupported rule: rulesdir/use-using",
     "unsupported rule: @typescript-eslint/no-unnecessary-template-expression",
     "unsupported rule: no-restricted-syntax",
-    "unsupported rule: @typescript-eslint/no-floating-promises",
     "unsupported rule: @typescript-eslint/return-await",
     "unsupported rule: @typescript-eslint/consistent-type-exports",
     "unsupported rule: no-restricted-syntax",
