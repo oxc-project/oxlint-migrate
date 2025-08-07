@@ -303,6 +303,8 @@ export const suspiciousRules = [
   'react/no-namespace',
   'react/react-in-jsx-scope',
   'react/style-prop-object',
+  '@typescript-eslint/no-misused-promises',
+  '@typescript-eslint/no-floating-promises',
   '@typescript-eslint/no-confusing-non-null-assertion',
   '@typescript-eslint/no-extraneous-class',
   '@typescript-eslint/no-unnecessary-type-constraint',
