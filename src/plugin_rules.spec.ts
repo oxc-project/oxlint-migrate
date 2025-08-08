@@ -79,6 +79,28 @@ describe('rules and plugins', () => {
       assert(configWithNursery.rules);
       expect(configWithNursery.rules['getter-return']).toBe('error');
     });
+
+    test('typeAware', () => {
+      const eslintConfig: Linter.Config = {
+        rules: {
+          '@typescript-eslint/no-floating-promises': 'error',
+        },
+      };
+
+      const configWithTypeAware: OxlintConfig = {};
+      const configWithoutTypeAware: OxlintConfig = {};
+
+      transformRuleEntry(eslintConfig, configWithoutTypeAware);
+      expect(configWithoutTypeAware.rules).toStrictEqual({});
+
+      transformRuleEntry(eslintConfig, configWithTypeAware, {
+        typeAware: true,
+      });
+      assert(configWithTypeAware.rules);
+      expect(
+        configWithTypeAware.rules['@typescript-eslint/no-floating-promises']
+      ).toBe('error');
+    });
   });
 
   test('cleanUpUselessOverridesRules', () => {
