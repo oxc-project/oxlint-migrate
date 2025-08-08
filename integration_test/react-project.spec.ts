@@ -8,6 +8,13 @@ test('react-project', async () => {
   expect(result).toMatchSnapshot('react-project');
 });
 
+test('react-project --type-aware', async () => {
+  const result = await getSnapshotResult(puppeteer_test, undefined, {
+    typeAware: true,
+  });
+  expect(result).toMatchSnapshot('react-project--type-aware');
+});
+
 test('react-project merge', async () => {
   const result = await getSnapShotMergeResult(puppeteer_test, {
     categories: {

@@ -19,6 +19,7 @@ When no config file provided, the script searches for the default eslint config 
 | Options                     | Description                                                                                                                                 |
 | --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
 | `--merge`                   | \* merge eslint configuration with an existing .oxlintrc.json configuration                                                                 |
+| `--type-aware`              | Include type aware rules, which are supported with `oxlint --type-aware`                                                                    |
 | `--with-nursery`            | Include oxlint rules which are currently under development                                                                                  |
 | `--output-file <file>`      | The oxlint configuration file where to eslint v9 rules will be written to, default: `.oxlintrc.json`                                        |
 | `--replace-eslint-comments` | Search in the project files for eslint comments and replaces them with oxlint. Some eslint comments are not supported and will be reported. |

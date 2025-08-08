@@ -1,15 +1,17 @@
 import { expect } from 'vitest';
 import main from '../src/index.js';
-import { OxlintConfig } from '../src/types.js';
+import { Options, OxlintConfig } from '../src/types.js';
 
 export const getSnapshotResult = async (
   config: Parameters<typeof main>[0],
-  oxlintConfig?: OxlintConfig
+  oxlintConfig?: OxlintConfig,
+  options?: Pick<Options, 'typeAware'>
 ) => {
   const collector: string[] = [];
   const result = await main(config, oxlintConfig, {
     reporter: collector.push.bind(collector),
     merge: oxlintConfig !== undefined,
+    ...options,
   });
 
   return {

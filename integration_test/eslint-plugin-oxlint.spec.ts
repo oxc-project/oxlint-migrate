@@ -8,6 +8,14 @@ test('eslint-plugin-oxlint', async () => {
   expect(result).toMatchSnapshot('eslint-plugin-oxlint');
 });
 
+test('eslint-plugin-oxlint --type-aware', async () => {
+  // @ts-ignore -- maybe bug in other plugin?
+  const result = await getSnapshotResult(eslint_plugin_oxlint_test, undefined, {
+    typeAware: true,
+  });
+  expect(result).toMatchSnapshot('eslint-plugin-oxlint--type-ware');
+});
+
 test('eslint-plugin-oxlint merge', async () => {
   // original config
   // @ts-ignore -- maybe bug in other plugin?
@@ -18,5 +26,5 @@ test('eslint-plugin-oxlint merge', async () => {
       suspicious: 'error',
     },
   });
-  expect(result).toMatchSnapshot('eslint-plugin-oxlint-merge');
+  expect(result).toMatchSnapshot('eslint-plugin-oxlint--merge');
 });

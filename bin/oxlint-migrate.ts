@@ -47,6 +47,10 @@ program
     '--replace-eslint-comments',
     'Search in the project files for eslint comments and replaces them with oxlint. Some eslint comments are not supported and will be reported.'
   )
+  .option(
+    '--type-aware',
+    'Includes supported type-aware rules. Needs the same flag in `oxlint` to enable it.'
+  )
   .action(async (filePath: string | undefined) => {
     const cliOptions = program.opts();
     const oxlintFilePath = path.join(cwd, cliOptions.outputFile);
@@ -55,6 +59,7 @@ program
       reporter: console.warn,
       merge: !!cliOptions.merge,
       withNursery: !!cliOptions.withNursery,
+      typeAware: !!cliOptions.typeAware,
     };
 
     if (cliOptions.replaceEslintComments) {
