@@ -4,6 +4,7 @@ import { Options, OxlintConfig, OxlintConfigOrOverride } from './types.js';
 import {
   rulesPrefixesForPlugins,
   typescriptRulesExtendEslintRules,
+  typescriptTypeAwareRules,
 } from './constants.js';
 
 const allRules = Object.values(rules).flat();
@@ -85,9 +86,16 @@ export const transformRuleEntry = (
         continue;
       }
 
-      // when merge only override if not exists
-      // for non merge override it because eslint/typescript rules
+      if (!options?.typeAware && typescriptTypeAwareRules.includes(rule)) {
+        options?.reporter !== undefined &&
+          options.reporter(
+            `type-aware rule detected, but \`--type-aware\` is not enabled: ${rule}`
+          );
+        continue;
+      }
       if (options?.merge) {
+        // when merge only override if not exists
+        // for non merge override it because eslint/typescript rules
         if (!(rule in targetConfig.rules)) {
           targetConfig.rules[rule] = normalizeSeverityValue(config);
         }

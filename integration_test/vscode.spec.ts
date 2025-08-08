@@ -8,6 +8,13 @@ test('vscode', async () => {
   expect(result).toMatchSnapshot('vscode');
 });
 
+test('vscode --type-aware', async () => {
+  const result = await getSnapshotResult(vscode_test, undefined, {
+    typeAware: true,
+  });
+  expect(result).toMatchSnapshot('vscode--type-aware');
+});
+
 test('vscode merge', async () => {
   const result = await getSnapShotMergeResult(vscode_test, {
     categories: {

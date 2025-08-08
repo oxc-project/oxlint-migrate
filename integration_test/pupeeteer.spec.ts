@@ -8,6 +8,13 @@ test('puppeteer', async () => {
   expect(result).toMatchSnapshot('puppeteer');
 });
 
+test('puppeteer --type-aware', async () => {
+  const result = await getSnapshotResult(puppeteer_test, undefined, {
+    typeAware: true,
+  });
+  expect(result).toMatchSnapshot('puppeteer--type-aware');
+});
+
 test('puppeteer merge', async () => {
   const result = await getSnapShotMergeResult(puppeteer_test, {
     categories: {

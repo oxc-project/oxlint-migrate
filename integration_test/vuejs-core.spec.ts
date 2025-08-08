@@ -8,6 +8,13 @@ test('vuejs/core', async () => {
   expect(result).toMatchSnapshot('vuejs/core');
 });
 
+test('vuejs/core --type-ware', async () => {
+  const result = await getSnapshotResult(vuejs_core_test, undefined, {
+    typeAware: true,
+  });
+  expect(result).toMatchSnapshot('vuejs/core--type-aware');
+});
+
 test('vuejs/core merge', async () => {
   const result = await getSnapShotMergeResult(vuejs_core_test, {
     categories: {

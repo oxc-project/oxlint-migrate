@@ -8,6 +8,13 @@ test('autoprefixer', async () => {
   expect(result).toMatchSnapshot('autoprefixer');
 });
 
+test('autoprefixer --type-aware', async () => {
+  const result = await getSnapshotResult(autoprefixer_test, undefined, {
+    typeAware: true,
+  });
+  expect(result).toMatchSnapshot('autoprefixer--type-aware');
+});
+
 test('autoprefixer merge', async () => {
   const result = await getSnapShotMergeResult(autoprefixer_test, {
     categories: {

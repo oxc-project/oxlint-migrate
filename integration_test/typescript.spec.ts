@@ -8,6 +8,13 @@ test('typescript', async () => {
   expect(result).toMatchSnapshot('typescript');
 });
 
+test('typescript --type-aware', async () => {
+  const result = await getSnapshotResult(typescript_test, undefined, {
+    typeAware: true,
+  });
+  expect(result).toMatchSnapshot('typescript--type-aware');
+});
+
 test('typescript merge', async () => {
   const result = await getSnapShotMergeResult(typescript_test, {
     categories: {
