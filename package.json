@@ -78,7 +78,7 @@
   },
   "dependencies": {
     "commander": "^14.0.0",
-    "oxc-parser": "^0.81.0",
+    "oxc-parser": "^0.82.0",
     "tinyglobby": "^0.2.14"
   },
   "peerDependencies": {
