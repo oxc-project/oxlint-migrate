@@ -478,6 +478,7 @@ exports[`nuxt-auth > nuxt-auth 1`] = `
       "prefer-promise-reject-errors": "error",
       "prefer-rest-params": "error",
       "prefer-spread": "error",
+      "prefer-template": "error",
       "symbol-description": "error",
       "unicode-bom": [
         "error",
@@ -544,7 +545,6 @@ exports[`nuxt-auth > nuxt-auth 1`] = `
     "unsupported rule: prefer-arrow-callback",
     "unsupported rule: prefer-const",
     "unsupported rule: prefer-regex-literals",
-    "unsupported rule: prefer-template",
     "unsupported rule: unused-imports/no-unused-imports",
     "unsupported rule: unused-imports/no-unused-vars",
     "unsupported rule: eslint-comments/no-aggregating-enable",
@@ -1285,6 +1285,7 @@ exports[`nuxt-auth --type-aware > nuxt-auth--type-aware 1`] = `
       "prefer-promise-reject-errors": "error",
       "prefer-rest-params": "error",
       "prefer-spread": "error",
+      "prefer-template": "error",
       "symbol-description": "error",
       "unicode-bom": [
         "error",
@@ -1351,7 +1352,6 @@ exports[`nuxt-auth --type-aware > nuxt-auth--type-aware 1`] = `
     "unsupported rule: prefer-arrow-callback",
     "unsupported rule: prefer-const",
     "unsupported rule: prefer-regex-literals",
-    "unsupported rule: prefer-template",
     "unsupported rule: unused-imports/no-unused-imports",
     "unsupported rule: unused-imports/no-unused-vars",
     "unsupported rule: eslint-comments/no-aggregating-enable",
@@ -2080,6 +2080,7 @@ exports[`nuxt-auth merge > nuxt-auth--merge 1`] = `
       "prefer-promise-reject-errors": "error",
       "prefer-rest-params": "error",
       "prefer-spread": "error",
+      "prefer-template": "error",
       "symbol-description": "error",
       "unicode-bom": [
         "error",
@@ -2144,7 +2145,6 @@ exports[`nuxt-auth merge > nuxt-auth--merge 1`] = `
     "unsupported rule: prefer-arrow-callback",
     "unsupported rule: prefer-const",
     "unsupported rule: prefer-regex-literals",
-    "unsupported rule: prefer-template",
     "unsupported rule: unused-imports/no-unused-imports",
     "unsupported rule: unused-imports/no-unused-vars",
     "unsupported rule: eslint-comments/no-aggregating-enable",
