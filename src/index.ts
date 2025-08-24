@@ -11,6 +11,7 @@ import {
   transformRuleEntry,
 } from './plugins_rules.js';
 import { detectSameOverride } from './overrides.js';
+import fixForJsPlugins from './js_plugin_fixes.js';
 
 const buildConfig = (
   configs: Linter.Config[],
@@ -121,11 +122,10 @@ const main = async (
   oxlintConfig?: OxlintConfig,
   options?: Options
 ): Promise<OxlintConfig> => {
-  const resolved = await Promise.resolve(configs);
+  const resolved = await Promise.resolve(fixForJsPlugins(configs));
+  const resolvedConfigs = Array.isArray(resolved) ? resolved : [resolved];
 
-  return Array.isArray(resolved)
-    ? buildConfig(resolved, oxlintConfig, options)
-    : buildConfig([resolved], oxlintConfig, options);
+  return buildConfig(resolvedConfigs, oxlintConfig, options);
 };
 
 export default main;
