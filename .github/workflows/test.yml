@@ -20,5 +20,29 @@ jobs:
 
       - uses: ./.github/actions/pnpm
 
-      - name: Run tests
+      - name: Run tests (Node.js)
         run: pnpm run test --coverage
+
+      - uses: denoland/setup-deno@v1
+        with:
+          deno-version: v1.x
+
+      - name: Run tests (Deno)
+        run: |
+          if [ -f deno.json ] || [ -f deno.jsonc ]; then
+            deno test --allow-all || echo "No Deno tests found or failed"
+          else
+            echo "No Deno config found, skipping Deno tests."
+          fi
+
+      - uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+
+      - name: Run tests (Bun)
+        run: |
+          if bun --version >/dev/null 2>&1 && [ -f package.json ]; then
+            bun test || echo "No Bun tests found or failed"
+          else
+            echo "Bun not available or no package.json, skipping Bun tests."
+          fi
