@@ -26,18 +26,16 @@ const fixForAntfuEslintConfig = <T extends PossibleConfigs>(config: T): T => {
  */
 const fixForNextEslintConfig = async (): Promise<() => void> => {
   type ModuleType = typeof import('module') & {
-    // this is a private function not exposed by d.ts
+    // `_load` is Node.js's internal module loading function. We access this private API here
+    // to intercept and mock the loading of '@rushstack/eslint-patch', preventing side effects
+    // during ESLint config processing. This is necessary because there is no public API for this.
     _load: (request: string, ...args: unknown[]) => any;
   };
   const Module = await import('module');
   const mod = (Module.default || Module) as ModuleType;
   const originalLoad = mod._load;
   mod._load = function (request: string, ...args: unknown[]) {
-    if (
-      request &&
-      request.includes &&
-      request.includes('@rushstack/eslint-patch')
-    ) {
+    if (request && request.includes('@rushstack/eslint-patch')) {
       // Return a harmless mock to avoid side effects
       return {};
     }
