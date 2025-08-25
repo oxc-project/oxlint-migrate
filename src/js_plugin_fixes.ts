@@ -25,11 +25,14 @@ const fixForAntfuEslintConfig = <T extends PossibleConfigs>(config: T): T => {
  * @link https://github.com/oxc-project/oxlint-migrate/issues/160
  */
 const fixForNextEslintConfig = async (): Promise<() => void> => {
-  // Patch require to mock '@rushstack/eslint-patch/modern-module-resolution' before any imports
+  type ModuleType = typeof import('module') & {
+    // this is a private function not exposed by d.ts
+    _load: (request: string, ...args: unknown[]) => any;
+  };
   const Module = await import('module');
-  const mod = Module.default || Module;
-  const originalLoad = (mod as any)._load;
-  (mod as any)._load = function (request: any, _parent: any, _isMain: any) {
+  const mod = (Module.default || Module) as ModuleType;
+  const originalLoad = mod._load;
+  mod._load = function (request: string, ...args: unknown[]) {
     if (
       request &&
       request.includes &&
@@ -38,11 +41,11 @@ const fixForNextEslintConfig = async (): Promise<() => void> => {
       // Return a harmless mock to avoid side effects
       return {};
     }
-    return originalLoad.apply(mod, arguments);
+    return originalLoad.apply(mod, [request, ...args]);
   };
 
   return () => {
-    (mod as any)._load = originalLoad;
+    mod._load = originalLoad;
   };
 };
 
