@@ -21,8 +21,36 @@ const fixForAntfuEslintConfig = <T extends PossibleConfigs>(config: T): T => {
   return config;
 };
 
+/**
+ * @link https://github.com/oxc-project/oxlint-migrate/issues/160
+ */
+const fixForNextEslintConfig = (): (() => void) => {
+  // Patch require to mock '@rushstack/eslint-patch/modern-module-resolution' before any imports
+  const Module = require('module');
+  const originalLoad = Module._load;
+  Module._load = function (request: any, _parent: any, _isMain: any) {
+    if (
+      request &&
+      request.includes &&
+      request.includes('@rushstack/eslint-patch')
+    ) {
+      // Return a harmless mock to avoid side effects
+      return {};
+    }
+    return originalLoad.apply(this, arguments);
+  };
+
+  return () => {
+    Module._load = originalLoad;
+  };
+};
+
 export default function fixForJsPlugins(
   configs: PossibleConfigs
 ): PossibleConfigs {
   return fixForAntfuEslintConfig(configs);
 }
+
+export const preFixForJsPlugins = (): (() => void) => {
+  return fixForNextEslintConfig();
+};
