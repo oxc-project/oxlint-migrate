@@ -1,8 +1,12 @@
-import { afterAll, expect, test } from 'vitest';
+import { afterAll, beforeAll, expect, test } from 'vitest';
 import { getSnapshotResult, getSnapShotMergeResult } from './utils.js';
 import { preFixForJsPlugins } from '../src/js_plugin_fixes.js';
 
-const reset = preFixForJsPlugins();
+let reset: () => void;
+
+beforeAll(async () => {
+  reset = await preFixForJsPlugins();
+});
 
 afterAll(() => {
   reset();

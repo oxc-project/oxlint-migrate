@@ -86,7 +86,7 @@ program
       program.error(`could not autodetect eslint config file`);
     }
 
-    const resetPreFix = preFixForJsPlugins();
+    const resetPreFix = await preFixForJsPlugins();
     const eslintConfigs = await loadESLintConfig(filePath);
     resetPreFix();
 
