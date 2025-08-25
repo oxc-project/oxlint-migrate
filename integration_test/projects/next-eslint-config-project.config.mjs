@@ -9,6 +9,11 @@ const eslintConfig = [
   ...compat.config({
     extends: ['next'],
   }),
+  {
+    rules: {
+      'node/prefer-global/process': ['error', 'always'],
+    },
+  },
 ];
 
 export default eslintConfig;
