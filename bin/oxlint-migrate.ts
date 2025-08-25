@@ -13,6 +13,7 @@ import { Options } from '../src/types.js';
 import { walkAndReplaceProjectFiles } from '../src/walker/index.js';
 import { getAllProjectFiles } from './project-loader.js';
 import { writeFile } from 'node:fs/promises';
+import { preFixForJsPlugins } from '../src/js_plugin_fixes.js';
 
 const cwd = process.cwd();
 
@@ -85,7 +86,9 @@ program
       program.error(`could not autodetect eslint config file`);
     }
 
+    const resetPreFix = preFixForJsPlugins();
     const eslintConfigs = await loadESLintConfig(filePath);
+    resetPreFix();
 
     let config;
     if (options.merge && existsSync(oxlintFilePath)) {

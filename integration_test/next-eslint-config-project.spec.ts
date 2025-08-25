@@ -1,23 +1,11 @@
 import { afterAll, expect, test } from 'vitest';
 import { getSnapshotResult, getSnapShotMergeResult } from './utils.js';
+import { preFixForJsPlugins } from '../src/js_plugin_fixes.js';
 
-// Patch require to mock '@rushstack/eslint-patch/modern-module-resolution' before any imports
-const Module = require('module');
-const originalLoad = Module._load;
-Module._load = function (request: any, _parent: any, _isMain: any) {
-  if (
-    request &&
-    request.includes &&
-    request.includes('@rushstack/eslint-patch')
-  ) {
-    // Return a harmless mock to avoid side effects
-    return {};
-  }
-  return originalLoad.apply(this, arguments);
-};
+const reset = preFixForJsPlugins();
 
 afterAll(() => {
-  Module._load = originalLoad;
+  reset();
 });
 
 test('next-eslint-config-project', async () => {
