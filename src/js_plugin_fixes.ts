@@ -25,6 +25,12 @@ const fixForAntfuEslintConfig = <T extends PossibleConfigs>(config: T): T => {
  * @link https://github.com/oxc-project/oxlint-migrate/issues/160
  */
 const fixForNextEslintConfig = async (): Promise<() => void> => {
+  // this fix can only be done in `Node.js` environment.
+  // `module` does only exist there.
+  if ('Deno' in globalThis || 'Bun' in globalThis) {
+    return () => {};
+  }
+
   type ModuleType = typeof import('module') & {
     // `_load` is Node.js's internal module loading function. We access this private API here
     // to intercept and mock the loading of '@rushstack/eslint-patch', preventing side effects
