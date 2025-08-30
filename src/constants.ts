@@ -14,6 +14,7 @@ export const rulesPrefixesForPlugins: Record<string, string> = {
   '@typescript-eslint': 'typescript',
   unicorn: 'unicorn',
   vitest: 'vitest',
+  vue: 'vue',
 };
 
 // Some typescript-eslint rules are re-implemented version of eslint rules.
