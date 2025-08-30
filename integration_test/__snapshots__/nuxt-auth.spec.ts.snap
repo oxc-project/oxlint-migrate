@@ -248,6 +248,7 @@ exports[`nuxt-auth > nuxt-auth 1`] = `
         ],
         "rules": {
           "@typescript-eslint/explicit-function-return-type": "off",
+          "vue/valid-define-emits": "error",
         },
       },
       {
@@ -709,7 +710,6 @@ exports[`nuxt-auth > nuxt-auth 1`] = `
     "unsupported rule: vue/return-in-emits-validator",
     "unsupported rule: vue/use-v-on-exact",
     "unsupported rule: vue/valid-attribute-name",
-    "unsupported rule: vue/valid-define-emits",
     "unsupported rule: vue/valid-define-options",
     "unsupported rule: vue/valid-define-props",
     "unsupported rule: vue/valid-next-tick",
@@ -798,6 +798,7 @@ exports[`nuxt-auth > nuxt-auth 1`] = `
     "unsupported rule: vue/space-in-parens",
     "unsupported rule: vue/template-curly-spacing",
     "special parser detected: vue-eslint-parser",
+    "unsupported plugin for rule: vue/valid-define-emits",
     "special parser detected: toml-eslint-parser",
     "ignore list inside overrides is not supported",
     "special parser detected: parser-plain",
@@ -1055,6 +1056,7 @@ exports[`nuxt-auth --type-aware > nuxt-auth--type-aware 1`] = `
         ],
         "rules": {
           "@typescript-eslint/explicit-function-return-type": "off",
+          "vue/valid-define-emits": "error",
         },
       },
       {
@@ -1516,7 +1518,6 @@ exports[`nuxt-auth --type-aware > nuxt-auth--type-aware 1`] = `
     "unsupported rule: vue/return-in-emits-validator",
     "unsupported rule: vue/use-v-on-exact",
     "unsupported rule: vue/valid-attribute-name",
-    "unsupported rule: vue/valid-define-emits",
     "unsupported rule: vue/valid-define-options",
     "unsupported rule: vue/valid-define-props",
     "unsupported rule: vue/valid-next-tick",
@@ -1605,6 +1606,7 @@ exports[`nuxt-auth --type-aware > nuxt-auth--type-aware 1`] = `
     "unsupported rule: vue/space-in-parens",
     "unsupported rule: vue/template-curly-spacing",
     "special parser detected: vue-eslint-parser",
+    "unsupported plugin for rule: vue/valid-define-emits",
     "special parser detected: toml-eslint-parser",
     "ignore list inside overrides is not supported",
     "special parser detected: parser-plain",
@@ -1864,6 +1866,7 @@ exports[`nuxt-auth merge > nuxt-auth--merge 1`] = `
         ],
         "rules": {
           "@typescript-eslint/explicit-function-return-type": "off",
+          "vue/valid-define-emits": "error",
         },
       },
       {
@@ -2309,7 +2312,6 @@ exports[`nuxt-auth merge > nuxt-auth--merge 1`] = `
     "unsupported rule: vue/return-in-emits-validator",
     "unsupported rule: vue/use-v-on-exact",
     "unsupported rule: vue/valid-attribute-name",
-    "unsupported rule: vue/valid-define-emits",
     "unsupported rule: vue/valid-define-options",
     "unsupported rule: vue/valid-define-props",
     "unsupported rule: vue/valid-next-tick",
@@ -2398,6 +2400,7 @@ exports[`nuxt-auth merge > nuxt-auth--merge 1`] = `
     "unsupported rule: vue/space-in-parens",
     "unsupported rule: vue/template-curly-spacing",
     "special parser detected: vue-eslint-parser",
+    "unsupported plugin for rule: vue/valid-define-emits",
     "special parser detected: toml-eslint-parser",
     "ignore list inside overrides is not supported",
     "special parser detected: parser-plain",
