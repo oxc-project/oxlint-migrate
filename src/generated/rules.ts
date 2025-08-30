@@ -607,6 +607,7 @@ export const correctnessRules = [
   'unicorn/prefer-string-starts-ends-with',
   'vitest/no-conditional-tests',
   'vitest/require-local-test-context-for-concurrent-snapshots',
+  'vue/valid-define-emits',
   '@typescript-eslint/no-dupe-class-members',
   '@typescript-eslint/no-loss-of-precision',
   '@typescript-eslint/no-unused-vars',
