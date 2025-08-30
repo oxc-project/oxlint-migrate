@@ -244,6 +244,7 @@ exports[`nuxt-auth > nuxt-auth 1`] = `
           "**/*.vue",
         ],
         "plugins": [
+          "vue",
           "typescript",
         ],
         "rules": {
@@ -798,7 +799,6 @@ exports[`nuxt-auth > nuxt-auth 1`] = `
     "unsupported rule: vue/space-in-parens",
     "unsupported rule: vue/template-curly-spacing",
     "special parser detected: vue-eslint-parser",
-    "unsupported plugin for rule: vue/valid-define-emits",
     "special parser detected: toml-eslint-parser",
     "ignore list inside overrides is not supported",
     "special parser detected: parser-plain",
@@ -1052,6 +1052,7 @@ exports[`nuxt-auth --type-aware > nuxt-auth--type-aware 1`] = `
           "**/*.vue",
         ],
         "plugins": [
+          "vue",
           "typescript",
         ],
         "rules": {
@@ -1606,7 +1607,6 @@ exports[`nuxt-auth --type-aware > nuxt-auth--type-aware 1`] = `
     "unsupported rule: vue/space-in-parens",
     "unsupported rule: vue/template-curly-spacing",
     "special parser detected: vue-eslint-parser",
-    "unsupported plugin for rule: vue/valid-define-emits",
     "special parser detected: toml-eslint-parser",
     "ignore list inside overrides is not supported",
     "special parser detected: parser-plain",
@@ -1862,6 +1862,7 @@ exports[`nuxt-auth merge > nuxt-auth--merge 1`] = `
           "**/*.vue",
         ],
         "plugins": [
+          "vue",
           "typescript",
         ],
         "rules": {
@@ -2400,7 +2401,6 @@ exports[`nuxt-auth merge > nuxt-auth--merge 1`] = `
     "unsupported rule: vue/space-in-parens",
     "unsupported rule: vue/template-curly-spacing",
     "special parser detected: vue-eslint-parser",
-    "unsupported plugin for rule: vue/valid-define-emits",
     "special parser detected: toml-eslint-parser",
     "ignore list inside overrides is not supported",
     "special parser detected: parser-plain",
