@@ -21,4 +21,4 @@ jobs:
       - uses: ./.github/actions/pnpm
 
       - name: Run oxlint
-        run: npx oxlint
+        run: npx oxlint --type-aware
