@@ -46,16 +46,11 @@ const cleanUpDefaultTypeScriptOverridesForEslint = (
     return;
   }
 
-  const indexesToDelete: number[] = [];
-
   for (const [index, override] of config.overrides.entries()) {
     if (isEqualDeep(override, TS_ESLINT_DEFAULT_OVERRIDE)) {
-      indexesToDelete.push(index);
+      delete config.overrides[index];
     }
   }
-
-  // @ts-ignore -- TS Gods please help me to survive this madness
-  indexesToDelete.forEach((index) => config.overrides.splice(index, 1));
 
   config.overrides = config.overrides.filter(
     (overrides) => Object.keys(overrides).length > 0
@@ -79,7 +74,7 @@ const cleanUpUselessOverridesEntries = (config: OxlintConfig): void => {
   for (const [overrideIndex, override] of config.overrides.entries()) {
     // the only key left is
     if (Object.keys(override).length === 1) {
-      config.overrides.splice(overrideIndex, 1);
+      delete config.overrides[overrideIndex];
     }
   }
 

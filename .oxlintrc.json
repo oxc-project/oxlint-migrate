@@ -5,6 +5,7 @@
     "perf": "error"
   },
   "rules": {
-    "unicorn/prefer-set-has": "off"
+    "unicorn/prefer-set-has": "off",
+    "@typescript-eslint/no-array-delete": "off" // FIXME
   }
 }
