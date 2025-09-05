@@ -20,5 +20,14 @@ jobs:
 
       - uses: ./.github/actions/pnpm
 
+      - name: Run oxlint
+        run: npx oxlint --type-aware
+
+      - name: Run Format (prettier)
+        run: npx prettier . --check
+
+      - name: Type Check
+        run: npx tsc --noEmit
+
       - name: Run tests
         run: pnpm run test --coverage
