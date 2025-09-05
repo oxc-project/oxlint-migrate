@@ -25,14 +25,4 @@ export const transformIgnorePatterns = (
       targetConfig.ignorePatterns.push(ignores);
     }
   }
-
-  // see https://github.com/oxc-project/oxc/issues/8842
-  eslintConfig.ignores
-    .filter((ignore) => ignore.startsWith('!'))
-    .forEach((ignore) => {
-      options?.reporter !== undefined &&
-        options.reporter(
-          `ignore allow list is currently not supported: ${ignore}`
-        );
-    });
 };
