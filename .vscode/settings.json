@@ -7,5 +7,6 @@
     "source.fixAll.eslint": "explicit",
     "source.organizeImports": "never"
   },
+  "oxc.typeAware": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode"
 }

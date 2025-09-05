@@ -1,6 +1,6 @@
 {
   "name": "@oxlint/migrate",
-  "version": "1.13.0",
+  "version": "1.14.0",
   "description": "Generates a `.oxlintrc.json` from a existing eslint flat config",
   "type": "module",
   "bin": {
@@ -19,7 +19,7 @@
     "generate": "node --import @oxc-node/core/register ./scripts/generate.ts",
     "format": "npx prettier --write .",
     "type-check": "tsc --noEmit",
-    "lint": "oxlint",
+    "lint": "oxlint --type-aware",
     "test": "vitest",
     "build": "vite build",
     "manual-test": "pnpm build; chmod +x dist/bin/oxlint-migrate.mjs; npx ."
@@ -65,7 +65,8 @@
     "husky": "^9.1.7",
     "jiti": "^2.4.2",
     "lint-staged": "^16.1.2",
-    "oxlint": "^1.13.0",
+    "oxlint": "^1.14.0",
+    "oxlint-tsgolint": "^0.1.5",
     "prettier": "^3.6.1",
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.35.0",
@@ -78,7 +79,7 @@
   },
   "dependencies": {
     "commander": "^14.0.0",
-    "oxc-parser": "^0.82.0",
+    "oxc-parser": "^0.86.0",
     "tinyglobby": "^0.2.14"
   },
   "peerDependencies": {
