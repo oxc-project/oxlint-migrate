@@ -79,12 +79,12 @@
   },
   "dependencies": {
     "commander": "^14.0.0",
-    "oxc-parser": "^0.86.0",
+    "oxc-parser": "^0.87.0",
     "tinyglobby": "^0.2.14"
   },
   "peerDependencies": {
     "globals": "^14.0.0 || ^15.0.0 || ^16.0.0",
     "jiti": "*"
   },
-  "packageManager": "pnpm@10.15.0"
+  "packageManager": "pnpm@10.15.1"
 }
