@@ -244,10 +244,12 @@ exports[`nuxt-auth > nuxt-auth 1`] = `
           "**/*.vue",
         ],
         "plugins": [
+          "vue",
           "typescript",
         ],
         "rules": {
           "@typescript-eslint/explicit-function-return-type": "off",
+          "vue/valid-define-emits": "error",
         },
       },
       {
@@ -709,7 +711,6 @@ exports[`nuxt-auth > nuxt-auth 1`] = `
     "unsupported rule: vue/return-in-emits-validator",
     "unsupported rule: vue/use-v-on-exact",
     "unsupported rule: vue/valid-attribute-name",
-    "unsupported rule: vue/valid-define-emits",
     "unsupported rule: vue/valid-define-options",
     "unsupported rule: vue/valid-define-props",
     "unsupported rule: vue/valid-next-tick",
@@ -1051,10 +1052,12 @@ exports[`nuxt-auth --type-aware > nuxt-auth--type-aware 1`] = `
           "**/*.vue",
         ],
         "plugins": [
+          "vue",
           "typescript",
         ],
         "rules": {
           "@typescript-eslint/explicit-function-return-type": "off",
+          "vue/valid-define-emits": "error",
         },
       },
       {
@@ -1516,7 +1519,6 @@ exports[`nuxt-auth --type-aware > nuxt-auth--type-aware 1`] = `
     "unsupported rule: vue/return-in-emits-validator",
     "unsupported rule: vue/use-v-on-exact",
     "unsupported rule: vue/valid-attribute-name",
-    "unsupported rule: vue/valid-define-emits",
     "unsupported rule: vue/valid-define-options",
     "unsupported rule: vue/valid-define-props",
     "unsupported rule: vue/valid-next-tick",
@@ -1860,10 +1862,12 @@ exports[`nuxt-auth merge > nuxt-auth--merge 1`] = `
           "**/*.vue",
         ],
         "plugins": [
+          "vue",
           "typescript",
         ],
         "rules": {
           "@typescript-eslint/explicit-function-return-type": "off",
+          "vue/valid-define-emits": "error",
         },
       },
       {
@@ -2309,7 +2313,6 @@ exports[`nuxt-auth merge > nuxt-auth--merge 1`] = `
     "unsupported rule: vue/return-in-emits-validator",
     "unsupported rule: vue/use-v-on-exact",
     "unsupported rule: vue/valid-attribute-name",
-    "unsupported rule: vue/valid-define-emits",
     "unsupported rule: vue/valid-define-options",
     "unsupported rule: vue/valid-define-props",
     "unsupported rule: vue/valid-next-tick",
