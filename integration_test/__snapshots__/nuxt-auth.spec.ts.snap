@@ -249,7 +249,9 @@ exports[`nuxt-auth > nuxt-auth 1`] = `
         ],
         "rules": {
           "@typescript-eslint/explicit-function-return-type": "off",
+          "vue/no-multiple-slot-args": "warn",
           "vue/valid-define-emits": "error",
+          "vue/valid-define-props": "error",
         },
       },
       {
@@ -712,7 +714,6 @@ exports[`nuxt-auth > nuxt-auth 1`] = `
     "unsupported rule: vue/use-v-on-exact",
     "unsupported rule: vue/valid-attribute-name",
     "unsupported rule: vue/valid-define-options",
-    "unsupported rule: vue/valid-define-props",
     "unsupported rule: vue/valid-next-tick",
     "unsupported rule: vue/valid-template-root",
     "unsupported rule: vue/valid-v-bind",
@@ -756,7 +757,6 @@ exports[`nuxt-auth > nuxt-auth 1`] = `
     "unsupported rule: vue/attributes-order",
     "unsupported rule: vue/block-order",
     "unsupported rule: vue/no-lone-template",
-    "unsupported rule: vue/no-multiple-slot-args",
     "unsupported rule: vue/no-required-prop-with-default",
     "unsupported rule: vue/order-in-components",
     "unsupported rule: vue/this-in-template",
@@ -1057,7 +1057,9 @@ exports[`nuxt-auth --type-aware > nuxt-auth--type-aware 1`] = `
         ],
         "rules": {
           "@typescript-eslint/explicit-function-return-type": "off",
+          "vue/no-multiple-slot-args": "warn",
           "vue/valid-define-emits": "error",
+          "vue/valid-define-props": "error",
         },
       },
       {
@@ -1520,7 +1522,6 @@ exports[`nuxt-auth --type-aware > nuxt-auth--type-aware 1`] = `
     "unsupported rule: vue/use-v-on-exact",
     "unsupported rule: vue/valid-attribute-name",
     "unsupported rule: vue/valid-define-options",
-    "unsupported rule: vue/valid-define-props",
     "unsupported rule: vue/valid-next-tick",
     "unsupported rule: vue/valid-template-root",
     "unsupported rule: vue/valid-v-bind",
@@ -1564,7 +1565,6 @@ exports[`nuxt-auth --type-aware > nuxt-auth--type-aware 1`] = `
     "unsupported rule: vue/attributes-order",
     "unsupported rule: vue/block-order",
     "unsupported rule: vue/no-lone-template",
-    "unsupported rule: vue/no-multiple-slot-args",
     "unsupported rule: vue/no-required-prop-with-default",
     "unsupported rule: vue/order-in-components",
     "unsupported rule: vue/this-in-template",
@@ -1867,7 +1867,9 @@ exports[`nuxt-auth merge > nuxt-auth--merge 1`] = `
         ],
         "rules": {
           "@typescript-eslint/explicit-function-return-type": "off",
+          "vue/no-multiple-slot-args": "warn",
           "vue/valid-define-emits": "error",
+          "vue/valid-define-props": "error",
         },
       },
       {
@@ -2314,7 +2316,6 @@ exports[`nuxt-auth merge > nuxt-auth--merge 1`] = `
     "unsupported rule: vue/use-v-on-exact",
     "unsupported rule: vue/valid-attribute-name",
     "unsupported rule: vue/valid-define-options",
-    "unsupported rule: vue/valid-define-props",
     "unsupported rule: vue/valid-next-tick",
     "unsupported rule: vue/valid-template-root",
     "unsupported rule: vue/valid-v-bind",
@@ -2358,7 +2359,6 @@ exports[`nuxt-auth merge > nuxt-auth--merge 1`] = `
     "unsupported rule: vue/attributes-order",
     "unsupported rule: vue/block-order",
     "unsupported rule: vue/no-lone-template",
-    "unsupported rule: vue/no-multiple-slot-args",
     "unsupported rule: vue/no-required-prop-with-default",
     "unsupported rule: vue/order-in-components",
     "unsupported rule: vue/this-in-template",
