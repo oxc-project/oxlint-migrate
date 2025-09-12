@@ -19,7 +19,7 @@
     "generate": "node --import @oxc-node/core/register ./scripts/generate.ts",
     "format": "npx prettier --write .",
     "type-check": "tsc --noEmit",
-    "lint": "oxlint",
+    "lint": "oxlint --type-aware",
     "test": "vitest",
     "build": "vite build",
     "manual-test": "pnpm build; chmod +x dist/bin/oxlint-migrate.mjs; npx ."
@@ -68,7 +68,7 @@
     "lint-staged": "^16.1.2",
     "next": "^15.5.0",
     "oxlint": "^1.15.0",
-    "oxlint-tsgolint": "^0.1.5",
+    "oxlint-tsgolint": "^0.2.0",
     "prettier": "^3.6.1",
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.35.0",
