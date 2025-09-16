@@ -35,14 +35,14 @@ const normalizeSeverityValue = (value: Linter.RuleEntry | undefined) => {
 
   if (isWarnValue(value)) {
     if (Array.isArray(value)) {
-      value[0] == 'warn';
+      value[0] = 'warn';
       return value;
     }
 
     return 'warn';
   } else if (isErrorValue(value)) {
     if (Array.isArray(value)) {
-      value[0] == 'error';
+      value[0] = 'error';
       return value;
     }
 
@@ -51,7 +51,7 @@ const normalizeSeverityValue = (value: Linter.RuleEntry | undefined) => {
 
   if (isOffValue(value)) {
     if (Array.isArray(value)) {
-      value[0] == 'off';
+      value[0] = 'off';
       return value;
     }
 
