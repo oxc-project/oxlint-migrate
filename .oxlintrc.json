@@ -6,6 +6,8 @@
   },
   "rules": {
     "unicorn/prefer-set-has": "off",
+    "no-unused-expressions": ["error", { "allowShortCircuit": true }],
+    "eqeqeq": ["error", "always"],
     "@typescript-eslint/no-array-delete": "off" // FIXME
   }
 }
