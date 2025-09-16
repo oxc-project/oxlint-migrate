@@ -118,6 +118,7 @@ export const styleRules = [
   'init-declarations',
   'max-params',
   'new-cap',
+  'no-useless-computed-key',
   'no-duplicate-imports',
   'no-extra-label',
   'no-labels',
@@ -312,6 +313,7 @@ export const suspiciousRules = [
   'no-unexpected-multiline',
   'no-useless-concat',
   'no-useless-constructor',
+  'preserve-caught-error',
   'import/no-unassigned-import',
   'import/no-empty-named-blocks',
   'import/no-absolute-path',
@@ -353,6 +355,7 @@ export const suspiciousRules = [
 ];
 
 export const restrictionRules = [
+  'class-methods-use-this',
   'default-case',
   'no-alert',
   'no-bitwise',
@@ -418,6 +421,7 @@ export const restrictionRules = [
   'unicorn/prefer-node-protocol',
   'unicorn/prefer-number-properties',
   'vue/no-multiple-slot-args',
+  '@typescript-eslint/class-methods-use-this',
   '@typescript-eslint/no-restricted-imports',
   '@typescript-eslint/no-empty-function',
   '@typescript-eslint/no-unused-expressions',
