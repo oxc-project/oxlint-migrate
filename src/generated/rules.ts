@@ -264,6 +264,7 @@ export const styleRules = [
   'vitest/prefer-to-be-truthy',
   'vue/define-emits-declaration',
   'vue/define-props-declaration',
+  'vue/require-typed-ref',
   '@typescript-eslint/default-param-last',
   '@typescript-eslint/init-declarations',
   '@typescript-eslint/max-params',
@@ -344,6 +345,7 @@ export const suspiciousRules = [
   'unicorn/no-accessor-recursion',
   'unicorn/prefer-add-event-listener',
   'unicorn/require-post-message-target-origin',
+  'vue/no-required-prop-with-default',
   '@typescript-eslint/no-useless-constructor',
   'import-x/no-unassigned-import',
   'import-x/no-empty-named-blocks',
@@ -634,6 +636,7 @@ export const correctnessRules = [
 
 export const nurseryRules = [
   'getter-return',
+  'no-misleading-character-class',
   'no-undef',
   'no-unreachable',
   'import/export',
