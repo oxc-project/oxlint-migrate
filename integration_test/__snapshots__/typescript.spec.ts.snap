@@ -1052,7 +1052,6 @@ exports[`typescript merge > typescript--merge 1`] = `
       "no-template-curly-in-string": "error",
       "no-throw-literal": "error",
       "no-unexpected-multiline": "error",
-      "no-unused-expressions": "error",
       "no-var": "error",
       "prefer-object-spread": "error",
       "unicode-bom": [
