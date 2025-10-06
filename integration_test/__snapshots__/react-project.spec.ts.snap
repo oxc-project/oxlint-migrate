@@ -15,8 +15,6 @@ exports[`react-project > react-project 1`] = `
       "react-perf",
     ],
     "rules": {
-      "react-hooks/exhaustive-deps": "warn",
-      "react-hooks/rules-of-hooks": "error",
       "react-perf/jsx-no-new-array-as-prop": "warn",
       "react-perf/jsx-no-new-function-as-prop": "warn",
       "react-perf/jsx-no-new-object-as-prop": "warn",
@@ -63,8 +61,6 @@ exports[`react-project --type-aware > react-project--type-aware 1`] = `
       "react-perf",
     ],
     "rules": {
-      "react-hooks/exhaustive-deps": "warn",
-      "react-hooks/rules-of-hooks": "error",
       "react-perf/jsx-no-new-array-as-prop": "warn",
       "react-perf/jsx-no-new-function-as-prop": "warn",
       "react-perf/jsx-no-new-object-as-prop": "warn",
@@ -112,8 +108,6 @@ exports[`react-project merge > react-project--merge 1`] = `
       "react-perf",
     ],
     "rules": {
-      "react-hooks/exhaustive-deps": "warn",
-      "react-hooks/rules-of-hooks": "error",
       "react-perf/jsx-no-new-array-as-prop": "warn",
       "react-perf/jsx-no-new-function-as-prop": "warn",
       "react-perf/jsx-no-new-object-as-prop": "warn",
