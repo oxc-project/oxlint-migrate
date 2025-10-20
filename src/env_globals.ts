@@ -134,18 +134,26 @@ export const transformEnvAndGlobals = (
 ): void => {
   if (
     eslintConfig.languageOptions?.parser !== undefined &&
+    eslintConfig.languageOptions?.parser !== null &&
+    typeof eslintConfig.languageOptions.parser === 'object' &&
+    'meta' in eslintConfig.languageOptions.parser &&
     !(SUPPORTED_ESLINT_PARSERS as (string | undefined)[]).includes(
+      // @ts-ignore
       eslintConfig.languageOptions.parser.meta?.name
     )
   ) {
     options?.reporter !== undefined &&
       options.reporter(
         'special parser detected: ' +
+          // @ts-ignore
           eslintConfig.languageOptions.parser.meta?.name
       );
   }
 
-  if (eslintConfig.languageOptions?.globals !== undefined) {
+  if (
+    eslintConfig.languageOptions?.globals !== undefined &&
+    eslintConfig.languageOptions?.globals !== null
+  ) {
     if (targetConfig.globals === undefined) {
       targetConfig.globals = {};
     }
@@ -166,7 +174,7 @@ export const transformEnvAndGlobals = (
   }
 
   if (eslintConfig.languageOptions?.ecmaVersion !== undefined) {
-    if (eslintConfig.languageOptions?.ecmaVersion === 'latest') {
+    if (eslintConfig.languageOptions.ecmaVersion === 'latest') {
       if (targetConfig.env === undefined) {
         targetConfig.env = {};
       }
@@ -175,12 +183,13 @@ export const transformEnvAndGlobals = (
         targetConfig.env[latestVersion] = true;
       }
     } else if (
-      ES_VERSIONS.includes(eslintConfig.languageOptions?.ecmaVersion)
+      typeof eslintConfig.languageOptions.ecmaVersion === 'number' &&
+      ES_VERSIONS.includes(eslintConfig.languageOptions.ecmaVersion)
     ) {
       if (targetConfig.env === undefined) {
         targetConfig.env = {};
       }
-      const targetVersion = `es${eslintConfig.languageOptions?.ecmaVersion}`;
+      const targetVersion = `es${eslintConfig.languageOptions.ecmaVersion}`;
       if (!(targetVersion in targetConfig.env)) {
         targetConfig.env[targetVersion] = true;
       }
