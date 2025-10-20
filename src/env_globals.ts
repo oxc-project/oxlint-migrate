@@ -180,6 +180,7 @@ export const transformEnvAndGlobals = (
       if (targetConfig.env === undefined) {
         targetConfig.env = {};
       }
+      // oxlint-disable-next-line typescript/restrict-template-expressions typescript/no-base-to-string
       const targetVersion = `es${eslintConfig.languageOptions?.ecmaVersion}`;
       if (!(targetVersion in targetConfig.env)) {
         targetConfig.env[targetVersion] = true;
