@@ -228,7 +228,7 @@ exports[`autoprefixer > autoprefixer 1`] = `
   "warnings": [
     "unsupported rule: accessor-pairs",
     "unsupported rule: camelcase",
-    "unsupported rule: constructor-super",
+    "unsupported rule, but in development: constructor-super",
     "unsupported rule: dot-notation",
     "unsupported rule: func-name-matching",
     "unsupported rule, but in development: getter-return",
@@ -499,7 +499,7 @@ exports[`autoprefixer --type-aware > autoprefixer--type-aware 1`] = `
   "warnings": [
     "unsupported rule: accessor-pairs",
     "unsupported rule: camelcase",
-    "unsupported rule: constructor-super",
+    "unsupported rule, but in development: constructor-super",
     "unsupported rule: dot-notation",
     "unsupported rule: func-name-matching",
     "unsupported rule, but in development: getter-return",
@@ -729,7 +729,7 @@ exports[`autoprefixer merge > autoprefixer--merge 1`] = `
   "warnings": [
     "unsupported rule: accessor-pairs",
     "unsupported rule: camelcase",
-    "unsupported rule: constructor-super",
+    "unsupported rule, but in development: constructor-super",
     "unsupported rule: dot-notation",
     "unsupported rule: func-name-matching",
     "unsupported rule, but in development: getter-return",

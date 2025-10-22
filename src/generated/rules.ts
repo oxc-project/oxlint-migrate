@@ -22,6 +22,7 @@ export const pedanticRules = [
   'no-redeclare',
   'no-self-compare',
   'no-throw-literal',
+  'no-warning-comments',
   'radix',
   'require-await',
   'sort-vars',
@@ -407,6 +408,7 @@ export const restrictionRules = [
   'promise/catch-or-return',
   'promise/spec-only',
   'react/button-has-type',
+  'react/forbid-dom-props',
   'react/forbid-elements',
   'react/jsx-filename-extension',
   'react/no-danger',
@@ -453,6 +455,20 @@ export const restrictionRules = [
   'import-x/no-dynamic-require',
   'import-x/no-webpack-loader-syntax',
   'import-x/unambiguous',
+];
+
+export const nurseryRules = [
+  'constructor-super',
+  'getter-return',
+  'no-misleading-character-class',
+  'no-undef',
+  'no-unreachable',
+  'import/export',
+  'import/named',
+  'promise/no-return-in-finally',
+  'react/require-render-return',
+  'import-x/export',
+  'import-x/named',
 ];
 
 export const correctnessRules = [
@@ -654,19 +670,6 @@ export const correctnessRules = [
   'vitest/require-to-throw-message',
   'vitest/valid-describe-callback',
   'vitest/valid-expect',
-];
-
-export const nurseryRules = [
-  'getter-return',
-  'no-misleading-character-class',
-  'no-undef',
-  'no-unreachable',
-  'import/export',
-  'import/named',
-  'promise/no-return-in-finally',
-  'react/require-render-return',
-  'import-x/export',
-  'import-x/named',
 ];
 
 export const perfRules = [
