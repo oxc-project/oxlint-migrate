@@ -21,7 +21,7 @@
     "type-check": "tsc --noEmit",
     "lint": "oxlint --type-aware",
     "test": "vitest",
-    "build": "vite build",
+    "build": "tsdown",
     "manual-test": "pnpm build; chmod +x dist/bin/oxlint-migrate.mjs; npx ."
   },
   "files": [
@@ -70,10 +70,9 @@
     "oxlint": "^1.24.0",
     "oxlint-tsgolint": "^0.2.0",
     "prettier": "^3.6.1",
+    "tsdown": "^0.15.9",
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.35.0",
-    "vite": "^7.0.0",
-    "vite-plugin-dts": "^4.5.4",
     "vitest": "^3.2.4"
   },
   "lint-staged": {
