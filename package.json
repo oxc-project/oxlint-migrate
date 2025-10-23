@@ -8,7 +8,7 @@
   },
   "exports": {
     "import": "./dist/src/index.mjs",
-    "types": "./dist/src/index.d.ts"
+    "types": "./dist/src/index.d.mts"
   },
   "repository": {
     "type": "git",
