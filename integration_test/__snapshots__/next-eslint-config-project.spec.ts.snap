@@ -830,7 +830,6 @@ exports[`next-eslint-config-project > next-eslint-config-project 1`] = `
       "react/jsx-key": "warn",
       "react/jsx-no-comment-textnodes": "warn",
       "react/jsx-no-duplicate-props": "warn",
-      "react/jsx-no-target-blank": "off",
       "react/jsx-no-undef": "warn",
       "react/no-children-prop": "warn",
       "react/no-danger-with-children": "warn",
@@ -840,8 +839,6 @@ exports[`next-eslint-config-project > next-eslint-config-project 1`] = `
       "react/no-render-return-value": "warn",
       "react/no-string-refs": "warn",
       "react/no-unescaped-entities": "warn",
-      "react/no-unknown-property": "off",
-      "react/react-in-jsx-scope": "off",
     },
   },
   "warnings": [
@@ -1688,7 +1685,6 @@ exports[`next-eslint-config-project --type-aware > next-eslint-config-project--t
       "react/jsx-key": "warn",
       "react/jsx-no-comment-textnodes": "warn",
       "react/jsx-no-duplicate-props": "warn",
-      "react/jsx-no-target-blank": "off",
       "react/jsx-no-undef": "warn",
       "react/no-children-prop": "warn",
       "react/no-danger-with-children": "warn",
@@ -1698,8 +1694,6 @@ exports[`next-eslint-config-project --type-aware > next-eslint-config-project--t
       "react/no-render-return-value": "warn",
       "react/no-string-refs": "warn",
       "react/no-unescaped-entities": "warn",
-      "react/no-unknown-property": "off",
-      "react/react-in-jsx-scope": "off",
     },
   },
   "warnings": [

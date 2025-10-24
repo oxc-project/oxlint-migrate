@@ -5,6 +5,7 @@ import {
   transformBoolGlobalToString,
 } from './env_globals.js';
 import {
+  cleanUpDisabledRootRules,
   cleanUpRulesWhichAreCoveredByCategory,
   cleanUpUselessOverridesPlugins,
   cleanUpUselessOverridesRules,
@@ -122,5 +123,6 @@ export const cleanUpOxlintConfig = (config: OxlintConfigOrOverride): void => {
 
   if (!('files' in config)) {
     cleanUpUselessOverridesEntries(config);
+    cleanUpDisabledRootRules(config);
   }
 };

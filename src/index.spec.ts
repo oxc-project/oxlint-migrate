@@ -57,6 +57,33 @@ describe('main', () => {
     });
   });
 
+  test('overlapping rules in configs', async () => {
+    const result = await main([
+      {
+        rules: {
+          'no-magic-numbers': 'warn',
+        },
+      },
+      {
+        rules: {
+          'no-magic-numbers': 'off',
+        },
+      },
+    ]);
+
+    expect(result).toStrictEqual({
+      $schema: './node_modules/oxlint/configuration_schema.json',
+      categories: {
+        correctness: 'off',
+      },
+      env: {
+        builtin: true,
+      },
+      plugins: [],
+      rules: {},
+    });
+  });
+
   test('1 basic config, 1 file config', async () => {
     const result = await main([
       {
