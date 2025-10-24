@@ -234,10 +234,10 @@ export const cleanUpDisabledRootRules = (config: OxlintConfig): void => {
   }
 
   // only when all categories are disabled, we can cleanup disabled rules
-  const allCategoriesDisabled =
+  const someCategoryEnabled =
     config.categories === undefined ||
-    Object.values(config.categories).every((severity) => severity === 'off');
-  if (!allCategoriesDisabled) {
+    Object.values(config.categories).some((severity) => severity !== 'off');
+  if (someCategoryEnabled) {
     return;
   }
 
