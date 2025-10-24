@@ -2,6 +2,7 @@ import { assert, describe, expect, test } from 'vitest';
 import type { OxlintConfig } from './types.js';
 import {
   cleanUpDisabledRootRules,
+  cleanUpDisabledRootRules,
   cleanUpRulesWhichAreCoveredByCategory,
   cleanUpUselessOverridesRules,
   detectNeededRulesPlugins,
