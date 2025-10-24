@@ -27,7 +27,10 @@ export type OxlintConfig = {
 
 export type OxlintConfigOrOverride = OxlintConfig | OxlintConfigOverride;
 
-type Reporter = (warning: string) => void;
+export type Reporter = {
+  report(message: string): void;
+  getReports(): string[];
+};
 
 export type Options = {
   reporter?: Reporter;

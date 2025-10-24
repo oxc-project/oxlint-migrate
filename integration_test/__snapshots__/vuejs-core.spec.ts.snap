@@ -180,10 +180,6 @@ exports[`vuejs/core > vuejs/core 1`] = `
   "warnings": [
     "unsupported rule: no-restricted-syntax",
     "unsupported rule: import-x/no-nodejs-modules",
-    "unsupported rule: no-restricted-syntax",
-    "unsupported rule: no-restricted-syntax",
-    "unsupported rule: no-restricted-syntax",
-    "unsupported rule: import-x/no-nodejs-modules",
   ],
 }
 `;
@@ -368,10 +364,6 @@ exports[`vuejs/core --type-ware > vuejs/core--type-aware 1`] = `
   "warnings": [
     "unsupported rule: no-restricted-syntax",
     "unsupported rule: import-x/no-nodejs-modules",
-    "unsupported rule: no-restricted-syntax",
-    "unsupported rule: no-restricted-syntax",
-    "unsupported rule: no-restricted-syntax",
-    "unsupported rule: import-x/no-nodejs-modules",
   ],
 }
 `;
@@ -554,10 +546,6 @@ exports[`vuejs/core merge > vuejs/core--merge 1`] = `
     ],
   },
   "warnings": [
-    "unsupported rule: no-restricted-syntax",
-    "unsupported rule: import-x/no-nodejs-modules",
-    "unsupported rule: no-restricted-syntax",
-    "unsupported rule: no-restricted-syntax",
     "unsupported rule: no-restricted-syntax",
     "unsupported rule: import-x/no-nodejs-modules",
   ],

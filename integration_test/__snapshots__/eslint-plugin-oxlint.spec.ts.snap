@@ -263,10 +263,6 @@ exports[`eslint-plugin-oxlint > eslint-plugin-oxlint 1`] = `
     "unsupported rule: unicorn/relative-url-style",
     "unsupported rule: unicorn/require-module-attributes",
     "unsupported rule: unicorn/template-indent",
-    "unsupported rule, but in development: constructor-super",
-    "unsupported rule, but in development: getter-return",
-    "unsupported rule, but in development: no-undef",
-    "unsupported rule, but in development: no-unreachable",
     "unsupported rule: prefer-const",
   ],
 }
@@ -535,10 +531,6 @@ exports[`eslint-plugin-oxlint --type-aware > eslint-plugin-oxlint--type-ware 1`]
     "unsupported rule: unicorn/relative-url-style",
     "unsupported rule: unicorn/require-module-attributes",
     "unsupported rule: unicorn/template-indent",
-    "unsupported rule, but in development: constructor-super",
-    "unsupported rule, but in development: getter-return",
-    "unsupported rule, but in development: no-undef",
-    "unsupported rule, but in development: no-unreachable",
     "unsupported rule: prefer-const",
   ],
 }
@@ -730,10 +722,6 @@ exports[`eslint-plugin-oxlint merge > eslint-plugin-oxlint--merge 1`] = `
     "unsupported rule: unicorn/relative-url-style",
     "unsupported rule: unicorn/require-module-attributes",
     "unsupported rule: unicorn/template-indent",
-    "unsupported rule, but in development: constructor-super",
-    "unsupported rule, but in development: getter-return",
-    "unsupported rule, but in development: no-undef",
-    "unsupported rule, but in development: no-unreachable",
     "unsupported rule: prefer-const",
   ],
 }
