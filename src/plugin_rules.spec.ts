@@ -157,6 +157,9 @@ describe('rules and plugins', () => {
   describe('cleanUpDisabledRootRules', () => {
     test('remove disabled root rules', () => {
       const config: OxlintConfig = {
+        categories: {
+          correctness: 'off',
+        },
         rules: {
           'no-magic-numbers': 'error',
           'no-unused-vars': 'off',
@@ -166,6 +169,9 @@ describe('rules and plugins', () => {
       cleanUpDisabledRootRules(config);
 
       expect(config).toStrictEqual({
+        categories: {
+          correctness: 'off',
+        },
         rules: {
           'no-magic-numbers': 'error',
         },
