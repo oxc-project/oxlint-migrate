@@ -81,16 +81,12 @@ export const transformRuleEntry = (
 
     if (allRules.includes(rule)) {
       if (!options?.withNursery && rules.nurseryRules.includes(rule)) {
-        options?.reporter?.report(
-          `unsupported rule, but in development: ${rule}`
-        );
+        options?.reporter?.unsupportedRuleInDevelopment(rule);
         continue;
       }
 
       if (!options?.typeAware && typescriptTypeAwareRules.includes(rule)) {
-        options?.reporter?.report(
-          `type-aware rule detected, but \`--type-aware\` is not enabled: ${rule}`
-        );
+        options?.reporter?.typeAwareRuleNotEnabled(rule);
         continue;
       }
       if (options?.merge) {
@@ -105,7 +101,7 @@ export const transformRuleEntry = (
     } else {
       // ToDo: maybe use a force flag when some enabled rules are detected?
       if (isActiveValue(config)) {
-        options?.reporter?.report(`unsupported rule: ${rule}`);
+        options?.reporter?.unsupportedRule(rule);
       }
     }
   }
@@ -141,7 +137,7 @@ export const detectNeededRulesPlugins = (
     }
 
     if (!found) {
-      options?.reporter?.report(`unsupported plugin for rule: ${rule}`);
+      options?.reporter?.unsupportedRuleForPlugin(rule);
     }
   }
 

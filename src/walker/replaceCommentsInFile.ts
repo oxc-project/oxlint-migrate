@@ -20,7 +20,8 @@ const getComments = (
   );
 
   if (parserResult.errors.length > 0) {
-    options.reporter?.report(`${absoluteFilePath}: failed to parse`);
+    options.reporter?.failedToParse(absoluteFilePath);
+    return [];
   }
 
   return parserResult.comments;

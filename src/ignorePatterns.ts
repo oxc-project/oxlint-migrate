@@ -11,7 +11,7 @@ export const transformIgnorePatterns = (
   }
 
   if ('files' in targetConfig) {
-    options?.reporter?.report('ignore list inside overrides is not supported');
+    options?.reporter?.ignoreListInsideOverrides();
     return;
   }
 
