@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import replaceCommentsInFile from './replaceCommentsInFile.js';
+import { DefaultReporter } from '../reporter.js';
 
 describe('replaceCommentsInFile', () => {
   const tsPath = '/tmp/fake-path.ts';
@@ -75,12 +76,12 @@ describe('replaceCommentsInFile', () => {
         /* eslint eqeqeq: "off" -- description */
         console.log('hello world');
         `;
-      const reports: string[] = [];
+      const reporter = new DefaultReporter();
       const newSourceText = replaceCommentsInFile(tsPath, sourceText, {
-        reporter: reports.push.bind(reports),
+        reporter: reporter,
       });
       expect(newSourceText).toBe(sourceText);
-      expect(reports).toStrictEqual([
+      expect(reporter.getReports()).toStrictEqual([
         '/tmp/fake-path.ts, char offset 9: changing eslint rules with inline comment is not supported',
         '/tmp/fake-path.ts, char offset 62: changing eslint rules with inline comment is not supported',
       ]);
@@ -93,12 +94,12 @@ describe('replaceCommentsInFile', () => {
         /* global jQuery -- description */
         console.log('hello world');
         `;
-      const reports: string[] = [];
+      const reporter = new DefaultReporter();
       const newSourceText = replaceCommentsInFile(tsPath, sourceText, {
-        reporter: reports.push.bind(reports),
+        reporter: reporter,
       });
       expect(newSourceText).toBe(sourceText);
-      expect(reports).toStrictEqual([
+      expect(reporter.getReports()).toStrictEqual([
         '/tmp/fake-path.ts, char offset 9: changing globals with inline comment is not supported',
         '/tmp/fake-path.ts, char offset 55: changing globals with inline comment is not supported',
       ]);
@@ -109,12 +110,12 @@ describe('replaceCommentsInFile', () => {
         /* eslint */
         debugger;
         `;
-      const reports: string[] = [];
+      const reporter = new DefaultReporter();
       const newSourceText = replaceCommentsInFile(tsPath, sourceText, {
-        reporter: reports.push.bind(reports),
+        reporter: reporter,
       });
       expect(newSourceText).toBe(sourceText);
-      expect(reports).toStrictEqual([]);
+      expect(reporter.getReports()).toStrictEqual([]);
     });
   });
 

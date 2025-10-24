@@ -1,22 +1,24 @@
 import { expect } from 'vitest';
 import main from '../src/index.js';
 import { Options, OxlintConfig } from '../src/types.js';
+import { DefaultReporter } from '../src/reporter.js';
 
 export const getSnapshotResult = async (
   config: Parameters<typeof main>[0],
   oxlintConfig?: OxlintConfig,
   options?: Pick<Options, 'typeAware'>
 ) => {
-  const collector: string[] = [];
+  const reporter = new DefaultReporter();
   const result = await main(config, oxlintConfig, {
-    reporter: collector.push.bind(collector),
+    reporter: reporter,
     merge: oxlintConfig !== undefined,
     ...options,
   });
 
   return {
     config: result,
-    warnings: collector
+    warnings: reporter
+      .getReports()
       // filter out unsupported rules
       .filter((error) => !error.startsWith('unsupported rule: local/'))
       .filter((error) => !error.startsWith('unsupported rule: perfectionist/'))
