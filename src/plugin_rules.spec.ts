@@ -1,6 +1,7 @@
 import { assert, describe, expect, test } from 'vitest';
 import type { OxlintConfig } from './types.js';
 import {
+  cleanUpDisabledRootRules,
   cleanUpRulesWhichAreCoveredByCategory,
   cleanUpUselessOverridesRules,
   detectNeededRulesPlugins,
@@ -150,6 +151,42 @@ describe('rules and plugins', () => {
         // in the same category but with custom configuration which maybe changes from the default one
         'no-useless-call': ['error', 'some-config'],
       },
+    });
+  });
+
+  describe('cleanUpDisabledRootRules', () => {
+    test('remove disabled root rules', () => {
+      const config: OxlintConfig = {
+        rules: {
+          'no-magic-numbers': 'error',
+          'no-unused-vars': 'off',
+        },
+      };
+
+      cleanUpDisabledRootRules(config);
+
+      expect(config).toStrictEqual({
+        rules: {
+          'no-magic-numbers': 'error',
+        },
+      });
+    });
+
+    test('do not remove disabled root rules when in override', () => {
+      const config: OxlintConfig = {
+        overrides: [
+          {
+            files: ['*.ts'],
+            rules: {
+              'no-unused-vars': 'off',
+            },
+          },
+        ],
+      };
+      const newConfig = structuredClone(config);
+      cleanUpDisabledRootRules(newConfig);
+
+      expect(newConfig).toStrictEqual(config);
     });
   });
 

@@ -85,7 +85,6 @@ exports[`autoprefixer > autoprefixer 1`] = `
       "no-class-assign": "error",
       "no-compare-neg-zero": "error",
       "no-cond-assign": "error",
-      "no-console": "off",
       "no-const-assign": "error",
       "no-constant-condition": [
         "error",
@@ -356,7 +355,6 @@ exports[`autoprefixer --type-aware > autoprefixer--type-aware 1`] = `
       "no-class-assign": "error",
       "no-compare-neg-zero": "error",
       "no-cond-assign": "error",
-      "no-console": "off",
       "no-const-assign": "error",
       "no-constant-condition": [
         "error",

@@ -34,7 +34,6 @@ exports[`react-project > react-project 1`] = `
       "react/no-string-refs": "warn",
       "react/no-unescaped-entities": "warn",
       "react/no-unknown-property": "warn",
-      "react/react-in-jsx-scope": "off",
     },
   },
   "warnings": [
@@ -82,7 +81,6 @@ exports[`react-project --type-aware > react-project--type-aware 1`] = `
       "react/no-string-refs": "warn",
       "react/no-unescaped-entities": "warn",
       "react/no-unknown-property": "warn",
-      "react/react-in-jsx-scope": "off",
     },
   },
   "warnings": [

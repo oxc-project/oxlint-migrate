@@ -228,6 +228,26 @@ export const cleanUpRulesWhichAreCoveredByCategory = (
   }
 };
 
+export const cleanUpDisabledRootRules = (config: OxlintConfig): void => {
+  if (config.rules === undefined) {
+    return;
+  }
+
+  // only when all categories are disabled, we can cleanup disabled rules
+  const allCategoriesDisabled =
+    config.categories === undefined ||
+    Object.values(config.categories).every((severity) => severity === 'off');
+  if (!allCategoriesDisabled) {
+    return;
+  }
+
+  for (const [rule, settings] of Object.entries(config.rules)) {
+    if (isOffValue(settings)) {
+      delete config.rules[rule];
+    }
+  }
+};
+
 export const replaceTypescriptAliasRules = (
   config: OxlintConfigOrOverride
 ): void => {
