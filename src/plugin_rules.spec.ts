@@ -194,6 +194,43 @@ describe('rules and plugins', () => {
 
       expect(newConfig).toStrictEqual(config);
     });
+
+    test('do not remove disabled root rules when category enabled', () => {
+      const config: OxlintConfig = {
+        categories: {
+          correctness: 'warn',
+        },
+        rules: {
+          'no-unused-vars': 'off',
+        },
+      };
+      const newConfig = structuredClone(config);
+      cleanUpDisabledRootRules(newConfig);
+
+      expect(newConfig).toStrictEqual(config);
+    });
+
+    test('does remove disabled rules which are not in enabled category', () => {
+      const config: OxlintConfig = {
+        categories: {
+          style: 'warn',
+          correctness: 'off',
+        },
+        rules: {
+          'no-unused-vars': 'off',
+        },
+      };
+      const newConfig = structuredClone(config);
+      cleanUpDisabledRootRules(newConfig);
+
+      expect(newConfig).toStrictEqual({
+        categories: {
+          style: 'warn',
+          correctness: 'off',
+        },
+        rules: {},
+      });
+    });
   });
 
   describe('replaceTypescriptAliasRules', () => {

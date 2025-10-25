@@ -228,21 +228,50 @@ export const cleanUpRulesWhichAreCoveredByCategory = (
   }
 };
 
+const getEnabledCategories = (config: OxlintConfig): string[] => {
+  if (config.categories === undefined) {
+    return ['correctness'];
+  }
+  const categories = Object.entries(config.categories)
+    .filter(([, severity]) => severity === 'warn' || severity === 'error')
+    .map(([category]) => category);
+
+  // special case: when correctness is not defined, we consider it enabled
+  if (Object.keys(config.categories).includes('correctness')) {
+    return categories;
+  }
+
+  return [...categories, 'correctness'];
+};
+
+const isRuleInEnabledCategory = (
+  rule: string,
+  enabledCategories: string[]
+): boolean => {
+  for (const category of enabledCategories) {
+    if (
+      `${category}Rules` in rules &&
+      // @ts-expect-error -- ts can not resolve the type
+      rules[`${category}Rules`].includes(rule)
+    ) {
+      return true;
+    }
+  }
+  return false;
+};
+
 export const cleanUpDisabledRootRules = (config: OxlintConfig): void => {
   if (config.rules === undefined) {
     return;
   }
 
-  // only when all categories are disabled, we can cleanup disabled rules
-  const someCategoryEnabled =
-    config.categories === undefined ||
-    Object.values(config.categories).some((severity) => severity !== 'off');
-  if (someCategoryEnabled) {
-    return;
-  }
+  const enabledCategories = getEnabledCategories(config);
 
   for (const [rule, settings] of Object.entries(config.rules)) {
-    if (isOffValue(settings)) {
+    if (
+      isOffValue(settings) &&
+      !isRuleInEnabledCategory(rule, enabledCategories)
+    ) {
       delete config.rules[rule];
     }
   }
