@@ -6,6 +6,7 @@ import {
   typescriptRulesExtendEslintRules,
   typescriptTypeAwareRules,
 } from './constants.js';
+import { enableJsPluginRule } from './jsPlugins.js';
 
 const allRules = Object.values(rules).flat();
 
@@ -103,8 +104,15 @@ export const transformRuleEntry = (
         targetConfig.rules[rule] = normalizeSeverityValue(config);
       }
     } else {
-      // ToDo: maybe use a force flag when some enabled rules are detected?
-      if (isActiveValue(config)) {
+      if (
+        isActiveValue(config) &&
+        !enableJsPluginRule(
+          eslintConfig,
+          targetConfig,
+          rule,
+          normalizeSeverityValue(config) as 'error' | 'warn' | 'off'
+        )
+      ) {
         options?.reporter?.report(`unsupported rule: ${rule}`);
       }
     }
@@ -141,7 +149,7 @@ export const detectNeededRulesPlugins = (
     }
 
     if (!found) {
-      options?.reporter?.report(`unsupported plugin for rule: ${rule}`);
+      // options?.reporter?.report(`unsupported plugin for rule: ${rule}`);
     }
   }
 

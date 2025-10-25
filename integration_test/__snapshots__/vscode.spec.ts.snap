@@ -50,7 +50,164 @@ exports[`vscode > vscode 1`] = `
       "**/typings/**",
       "!.vscode",
     ],
+    "jsPlugins": [
+      "eslint-plugin-local",
+      "eslint-plugin-header",
+    ],
     "overrides": [
+      {
+        "files": [
+          "**/*.ts",
+        ],
+        "jsPlugins": [
+          "@stylistic/eslint-plugin",
+          "eslint-plugin-local",
+        ],
+        "rules": {
+          "@stylistic/ts/member-delimiter-style": "warn",
+          "@stylistic/ts/semi": "warn",
+          "local/code-no-static-self-ref": "warn",
+          "local/code-no-unused-expressions": [
+            "warn",
+            {
+              "allowTernary": true,
+            },
+          ],
+        },
+      },
+      {
+        "files": [
+          "**/*.test.ts",
+        ],
+        "jsPlugins": [
+          "eslint-plugin-local",
+        ],
+        "rules": {
+          "local/code-must-use-result": [
+            "warn",
+            [
+              {
+                "functions": [
+                  "assertSnapshot",
+                  "assertHeap",
+                ],
+                "message": "Expression must be awaited",
+              },
+            ],
+          ],
+          "local/code-no-test-async-suite": "warn",
+          "local/code-no-test-only": "error",
+        },
+      },
+      {
+        "files": [
+          "src/vs/**/*.test.ts",
+        ],
+        "jsPlugins": [
+          "eslint-plugin-local",
+        ],
+        "rules": {
+          "local/code-ensure-no-disposables-leak-in-test": [
+            "warn",
+            {
+              "exclude": [
+                "src/vs/platform/configuration/test/common/configuration.test.ts",
+                "src/vs/platform/opener/test/common/opener.test.ts",
+                "src/vs/platform/registry/test/common/platform.test.ts",
+                "src/vs/platform/workspace/test/common/workspace.test.ts",
+                "src/vs/platform/workspaces/test/electron-main/workspaces.test.ts",
+                "src/vs/workbench/api/test/browser/mainThreadConfiguration.test.ts",
+                "src/vs/workbench/api/test/node/extHostTunnelService.test.ts",
+                "src/vs/workbench/contrib/bulkEdit/test/browser/bulkCellEdits.test.ts",
+                "src/vs/workbench/contrib/chat/test/common/chatWordCounter.test.ts",
+                "src/vs/workbench/contrib/extensions/test/common/extensionQuery.test.ts",
+                "src/vs/workbench/contrib/notebook/test/browser/notebookExecutionService.test.ts",
+                "src/vs/workbench/contrib/notebook/test/browser/notebookExecutionStateService.test.ts",
+                "src/vs/workbench/contrib/tasks/test/common/problemMatcher.test.ts",
+                "src/vs/workbench/contrib/tasks/test/common/taskConfiguration.test.ts",
+                "src/vs/workbench/services/commands/test/common/commandService.test.ts",
+                "src/vs/workbench/services/userActivity/test/browser/domActivityTracker.test.ts",
+                "src/vs/workbench/test/browser/quickAccess.test.ts",
+              ],
+            },
+          ],
+        },
+      },
+      {
+        "files": [
+          "**/vscode.d.ts",
+          "**/vscode.proposed.*.d.ts",
+        ],
+        "jsPlugins": [
+          "eslint-plugin-local",
+        ],
+        "rules": {
+          "local/vscode-dts-cancellation": "warn",
+          "local/vscode-dts-create-func": "warn",
+          "local/vscode-dts-event-naming": [
+            "warn",
+            {
+              "allowed": [
+                "onCancellationRequested",
+                "event",
+              ],
+              "verbs": [
+                "accept",
+                "change",
+                "close",
+                "collapse",
+                "create",
+                "delete",
+                "discover",
+                "dispose",
+                "drop",
+                "edit",
+                "end",
+                "execute",
+                "expand",
+                "grant",
+                "hide",
+                "invalidate",
+                "open",
+                "override",
+                "perform",
+                "receive",
+                "register",
+                "remove",
+                "rename",
+                "save",
+                "send",
+                "start",
+                "terminate",
+                "trigger",
+                "unregister",
+                "write",
+              ],
+            },
+          ],
+          "local/vscode-dts-interface-naming": "warn",
+          "local/vscode-dts-literal-or-types": "warn",
+          "local/vscode-dts-provider-naming": [
+            "warn",
+            {
+              "allowed": [
+                "FileSystemProvider",
+                "TreeDataProvider",
+                "TestProvider",
+                "CustomEditorProvider",
+                "CustomReadonlyEditorProvider",
+                "TerminalLinkProvider",
+                "AuthenticationProvider",
+                "NotebookContentProvider",
+              ],
+            },
+          ],
+          "local/vscode-dts-string-type-literals": "warn",
+          "local/vscode-dts-use-export": "warn",
+          "local/vscode-dts-use-thenable": "warn",
+          "local/vscode-dts-vscode-in-comments": "warn",
+        },
+      },
       {
         "files": [
           "**/vscode.d.ts",
@@ -60,6 +217,17 @@ exports[`vscode > vscode 1`] = `
         ],
         "rules": {
           "jsdoc/require-returns": "warn",
+        },
+      },
+      {
+        "files": [
+          "src/**/{common,browser}/**/*.ts",
+        ],
+        "jsPlugins": [
+          "eslint-plugin-local",
+        ],
+        "rules": {
+          "local/code-amd-node-module": "warn",
         },
       },
       {
@@ -89,7 +257,11 @@ exports[`vscode > vscode 1`] = `
         "files": [
           "src/**/{browser,electron-sandbox}/**/*.ts",
         ],
+        "jsPlugins": [
+          "eslint-plugin-local",
+        ],
         "rules": {
+          "local/code-no-global-document-listener": "warn",
           "no-restricted-globals": [
             "warn",
             "name",
@@ -274,11 +446,595 @@ exports[`vscode > vscode 1`] = `
           ],
         },
       },
+      {
+        "files": [
+          "src/**/*.ts",
+        ],
+        "jsPlugins": [
+          "eslint-plugin-local",
+        ],
+        "rules": {
+          "local/code-import-patterns": [
+            "warn",
+            {
+              "allow": [],
+              "when": "hasBrowser",
+            },
+            {
+              "allow": [
+                "@parcel/watcher",
+                "@vscode/sqlite3",
+                "@vscode/vscode-languagedetection",
+                "@vscode/ripgrep",
+                "@vscode/iconv-lite-umd",
+                "@vscode/policy-watcher",
+                "@vscode/proxy-agent",
+                "@vscode/spdlog",
+                "@vscode/windows-process-tree",
+                "assert",
+                "child_process",
+                "console",
+                "cookie",
+                "crypto",
+                "dns",
+                "events",
+                "fs",
+                "fs/promises",
+                "http",
+                "https",
+                "minimist",
+                "node:module",
+                "native-keymap",
+                "native-watchdog",
+                "net",
+                "node-pty",
+                "os",
+                "path",
+                "perf_hooks",
+                "readline",
+                "stream",
+                "string_decoder",
+                "tas-client-umd",
+                "tls",
+                "undici-types",
+                "url",
+                "util",
+                "v8-inspect-profiler",
+                "vscode-regexpp",
+                "vscode-textmate",
+                "worker_threads",
+                "@xterm/addon-clipboard",
+                "@xterm/addon-image",
+                "@xterm/addon-ligatures",
+                "@xterm/addon-search",
+                "@xterm/addon-serialize",
+                "@xterm/addon-unicode11",
+                "@xterm/addon-webgl",
+                "@xterm/headless",
+                "@xterm/xterm",
+                "yauzl",
+                "yazl",
+                "zlib",
+              ],
+              "when": "hasNode",
+            },
+            {
+              "allow": [
+                "electron",
+              ],
+              "when": "hasElectron",
+            },
+            {
+              "allow": [
+                "assert",
+                "sinon",
+                "sinon-test",
+              ],
+              "when": "test",
+            },
+            {
+              "restrictions": [
+                "vs/base/~",
+              ],
+              "target": "src/vs/base/~",
+            },
+            {
+              "restrictions": [
+                "vs/base/~",
+                "vs/base/parts/*/~",
+              ],
+              "target": "src/vs/base/parts/*/~",
+            },
+            {
+              "restrictions": [
+                "vs/base/~",
+                "vs/base/parts/*/~",
+                "vs/platform/*/~",
+                "tas-client-umd",
+                "@microsoft/1ds-core-js",
+                "@microsoft/1ds-post-js",
+                "@xterm/headless",
+              ],
+              "target": "src/vs/platform/*/~",
+            },
+            {
+              "restrictions": [
+                "vs/base/~",
+                "vs/base/parts/*/~",
+                "vs/platform/*/~",
+                "vs/editor/~",
+                "@vscode/tree-sitter-wasm",
+              ],
+              "target": "src/vs/editor/~",
+            },
+            {
+              "restrictions": [
+                "vs/base/~",
+                "vs/base/parts/*/~",
+                "vs/platform/*/~",
+                "vs/editor/~",
+                "vs/editor/contrib/*/~",
+              ],
+              "target": "src/vs/editor/contrib/*/~",
+            },
+            {
+              "restrictions": [
+                "vs/base/~",
+                "vs/base/parts/*/~",
+                "vs/platform/*/~",
+                "vs/editor/~",
+                "vs/editor/contrib/*/~",
+                "vs/editor/standalone/~",
+                "@vscode/tree-sitter-wasm",
+              ],
+              "target": "src/vs/editor/standalone/~",
+            },
+            {
+              "layer": "browser",
+              "restrictions": [
+                "vs/base/~",
+                "vs/base/parts/*/~",
+                "vs/platform/*/~",
+                "vs/editor/~",
+                "vs/editor/contrib/*/~",
+              ],
+              "target": "src/vs/editor/editor.all.ts",
+            },
+            {
+              "layer": "worker",
+              "restrictions": [
+                "vs/base/~",
+                "vs/base/parts/*/~",
+                "vs/platform/*/~",
+                "vs/editor/~",
+              ],
+              "target": "src/vs/editor/editor.worker.ts",
+            },
+            {
+              "layer": "browser",
+              "restrictions": [
+                "vs/base/~",
+                "vs/base/parts/*/~",
+                "vs/editor/~",
+                "vs/editor/contrib/*/~",
+                "vs/editor/standalone/~",
+                "vs/editor/*",
+              ],
+              "target": "src/vs/editor/{editor.api.ts,editor.main.ts}",
+            },
+            {
+              "restrictions": [
+                "vs/base/~",
+                "vs/base/parts/*/~",
+                "vs/platform/*/~",
+                "vs/editor/~",
+                "vs/editor/contrib/*/~",
+                "vs/workbench/~",
+                "vs/workbench/services/*/~",
+                "assert",
+                {
+                  "pattern": "vs/workbench/contrib/*/~",
+                  "when": "test",
+                },
+              ],
+              "target": "src/vs/workbench/~",
+            },
+            {
+              "restrictions": [
+                "vscode",
+                "vs/base/~",
+                "vs/base/parts/*/~",
+                "vs/platform/*/~",
+                "vs/editor/~",
+                "vs/editor/contrib/*/~",
+                "vs/workbench/api/~",
+                "vs/workbench/~",
+                "vs/workbench/services/*/~",
+                "vs/workbench/contrib/*/~",
+                "vs/workbench/contrib/terminalContrib/*/~",
+              ],
+              "target": "src/vs/workbench/api/~",
+            },
+            {
+              "restrictions": [
+                "vs/base/~",
+                "vs/base/parts/*/~",
+                "vs/platform/*/~",
+                "vs/editor/~",
+                "vs/editor/contrib/*/~",
+                "vs/workbench/~",
+                "vs/workbench/services/*/~",
+                {
+                  "pattern": "vs/workbench/contrib/*/~",
+                  "when": "test",
+                },
+                "tas-client-umd",
+                "vscode-textmate",
+                "@vscode/vscode-languagedetection",
+                "@vscode/tree-sitter-wasm",
+                {
+                  "pattern": "@xterm/xterm",
+                  "when": "hasBrowser",
+                },
+              ],
+              "target": "src/vs/workbench/services/*/~",
+            },
+            {
+              "restrictions": [
+                "vs/base/~",
+                "vs/base/parts/*/~",
+                "vs/platform/*/~",
+                "vs/editor/~",
+                "vs/editor/contrib/*/~",
+                "vs/workbench/~",
+                "vs/workbench/services/*/~",
+                "vs/workbench/contrib/*/~",
+                "vs/workbench/contrib/terminal/terminalContribChatExports*",
+                "vs/workbench/contrib/terminal/terminalContribExports*",
+                "vscode-notebook-renderer",
+                "@vscode/tree-sitter-wasm",
+                {
+                  "pattern": "@xterm/xterm",
+                  "when": "hasBrowser",
+                },
+                {
+                  "pattern": "@xterm/addon-*",
+                  "when": "hasBrowser",
+                },
+                {
+                  "pattern": "vscode-textmate",
+                  "when": "hasBrowser",
+                },
+              ],
+              "target": "src/vs/workbench/contrib/*/~",
+            },
+            {
+              "restrictions": [
+                "vs/base/~",
+                "vs/base/parts/*/~",
+                "vs/platform/*/~",
+                "vs/editor/~",
+                "vs/editor/contrib/*/~",
+                "vs/workbench/~",
+                "vs/workbench/services/*/~",
+                "vs/workbench/contrib/*/~",
+                "vs/workbench/contrib/terminalContrib/*/~",
+                "vscode-notebook-renderer",
+                {
+                  "pattern": "@xterm/xterm",
+                  "when": "hasBrowser",
+                },
+                {
+                  "pattern": "@xterm/addon-*",
+                  "when": "hasBrowser",
+                },
+                {
+                  "pattern": "vscode-textmate",
+                  "when": "hasBrowser",
+                },
+                "@xterm/headless",
+              ],
+              "target": "src/vs/workbench/contrib/terminalContrib/*/~",
+            },
+            {
+              "restrictions": [
+                "vs/base/~",
+                "vs/base/parts/*/~",
+                "vs/platform/*/~",
+                "vs/editor/~",
+                "vs/editor/contrib/*/~",
+                "vs/code/~",
+                {
+                  "pattern": "vs/workbench/workbench.web.main.js",
+                  "when": "hasBrowser",
+                },
+                {
+                  "pattern": "vs/workbench/workbench.web.main.internal.js",
+                  "when": "hasBrowser",
+                },
+                {
+                  "pattern": "vs/workbench/~",
+                  "when": "hasBrowser",
+                },
+                {
+                  "pattern": "vs/workbench/services/*/~",
+                  "when": "hasBrowser",
+                },
+              ],
+              "target": "src/vs/code/~",
+            },
+            {
+              "restrictions": [
+                "vs/base/~",
+                "vs/base/parts/*/~",
+                "vs/platform/*/~",
+                "vs/workbench/~",
+                "vs/workbench/api/~",
+                "vs/workbench/services/*/~",
+                "vs/workbench/contrib/*/~",
+                "vs/server/~",
+              ],
+              "target": "src/vs/server/~",
+            },
+            {
+              "layer": "browser",
+              "restrictions": [
+                "vs/workbench/contrib/**",
+              ],
+              "target": "src/vs/workbench/contrib/terminal/terminal.all.ts",
+            },
+            {
+              "layer": "browser",
+              "restrictions": [
+                "vs/workbench/contrib/terminalContrib/*/~",
+              ],
+              "target": "src/vs/workbench/contrib/terminal/terminalContribChatExports.ts",
+            },
+            {
+              "layer": "browser",
+              "restrictions": [
+                "vs/platform/*/~",
+                "vs/workbench/contrib/terminalContrib/*/~",
+              ],
+              "target": "src/vs/workbench/contrib/terminal/terminalContribExports.ts",
+            },
+            {
+              "layer": "browser",
+              "restrictions": [
+                "vs/base/~",
+                "vs/base/parts/*/~",
+                "vs/platform/*/~",
+                "vs/editor/~",
+                "vs/editor/contrib/*/~",
+                "vs/editor/editor.all.js",
+                "vs/workbench/~",
+                "vs/workbench/api/~",
+                "vs/workbench/services/*/~",
+                "vs/workbench/contrib/*/~",
+                "vs/workbench/contrib/terminal/terminal.all.js",
+              ],
+              "target": "src/vs/workbench/workbench.common.main.ts",
+            },
+            {
+              "layer": "browser",
+              "restrictions": [
+                "vs/base/~",
+                "vs/base/parts/*/~",
+                "vs/platform/*/~",
+                "vs/editor/~",
+                "vs/editor/contrib/*/~",
+                "vs/editor/editor.all.js",
+                "vs/workbench/~",
+                "vs/workbench/api/~",
+                "vs/workbench/services/*/~",
+                "vs/workbench/contrib/*/~",
+                "vs/workbench/workbench.common.main.js",
+              ],
+              "target": "src/vs/workbench/workbench.web.main.ts",
+            },
+            {
+              "layer": "browser",
+              "restrictions": [
+                "vs/base/~",
+                "vs/base/parts/*/~",
+                "vs/platform/*/~",
+                "vs/editor/~",
+                "vs/editor/contrib/*/~",
+                "vs/editor/editor.all.js",
+                "vs/workbench/~",
+                "vs/workbench/api/~",
+                "vs/workbench/services/*/~",
+                "vs/workbench/contrib/*/~",
+                "vs/workbench/workbench.common.main.js",
+              ],
+              "target": "src/vs/workbench/workbench.web.main.internal.ts",
+            },
+            {
+              "layer": "electron-sandbox",
+              "restrictions": [
+                "vs/base/*/~",
+                "vs/base/parts/*/~",
+                "vs/platform/*/~",
+                "vs/editor/~",
+                "vs/editor/contrib/*/~",
+                "vs/editor/editor.all.js",
+                "vs/workbench/~",
+                "vs/workbench/api/~",
+                "vs/workbench/services/*/~",
+                "vs/workbench/contrib/*/~",
+                "vs/workbench/workbench.common.main.js",
+              ],
+              "target": "src/vs/workbench/workbench.desktop.main.ts",
+            },
+            {
+              "restrictions": [
+                "vs/base/common/*",
+              ],
+              "target": "src/vs/amdX.ts",
+            },
+            {
+              "restrictions": [],
+              "target": "src/vs/{loader.d.ts,monaco.d.ts,nls.ts,nls.messages.ts}",
+            },
+            {
+              "restrictions": [],
+              "target": "src/vscode-dts/**",
+            },
+            {
+              "restrictions": [],
+              "target": "src/bootstrap-window.ts",
+            },
+            {
+              "restrictions": [
+                "vs/*",
+              ],
+              "target": "src/vs/nls.ts",
+            },
+            {
+              "restrictions": [
+                "vs/**/common/*",
+                "vs/**/node/*",
+                "vs/nls.js",
+                "src/*.js",
+                "*",
+              ],
+              "target": "src/{bootstrap-cli.ts,bootstrap-esm.ts,bootstrap-fork.ts,bootstrap-import.ts,bootstrap-meta.ts,bootstrap-node.ts,bootstrap-server.ts,cli.ts,main.ts,server-cli.ts,server-main.ts}",
+            },
+          ],
+        },
+      },
+      {
+        "files": [
+          "test/**/*.ts",
+        ],
+        "jsPlugins": [
+          "eslint-plugin-local",
+        ],
+        "rules": {
+          "local/code-import-patterns": [
+            "warn",
+            {
+              "restrictions": [
+                "test/automation",
+                "test/smoke/**",
+                "@vscode/*",
+                "@parcel/*",
+                "@playwright/*",
+                "*",
+              ],
+              "target": "test/smoke/**",
+            },
+            {
+              "restrictions": [
+                "test/automation/**",
+                "@vscode/*",
+                "@parcel/*",
+                "playwright-core/**",
+                "@playwright/*",
+                "*",
+              ],
+              "target": "test/automation/**",
+            },
+            {
+              "restrictions": [
+                "test/integration/**",
+                "@vscode/*",
+                "@parcel/*",
+                "@playwright/*",
+                "*",
+              ],
+              "target": "test/integration/**",
+            },
+            {
+              "restrictions": [
+                "test/monaco/**",
+                "@vscode/*",
+                "@parcel/*",
+                "@playwright/*",
+                "*",
+              ],
+              "target": "test/monaco/**",
+            },
+          ],
+        },
+      },
+      {
+        "files": [
+          "src/vs/workbench/contrib/notebook/browser/view/renderers/*.ts",
+        ],
+        "jsPlugins": [
+          "eslint-plugin-local",
+        ],
+        "rules": {
+          "local/code-limited-top-functions": [
+            "error",
+            {
+              "src/vs/workbench/contrib/notebook/browser/view/renderers/webviewPreloads.ts": [
+                "webviewPreloads",
+                "preloadsScriptStr",
+              ],
+            },
+          ],
+          "local/code-no-runtime-import": [
+            "error",
+            {
+              "src/vs/workbench/contrib/notebook/browser/view/renderers/webviewPreloads.ts": [
+                "**/*",
+              ],
+            },
+          ],
+        },
+      },
     ],
     "plugins": [],
     "rules": {
       "curly": "warn",
       "eqeqeq": "warn",
+      "header/header": [
+        "warn",
+        "block",
+        [
+          "---------------------------------------------------------------------------------------------",
+          " *  Copyright (c) Microsoft Corporation. All rights reserved.",
+          " *  Licensed under the MIT License. See License.txt in the project root for license information.",
+          " *--------------------------------------------------------------------------------------------",
+        ],
+      ],
+      "local/code-declare-service-brand": "warn",
+      "local/code-layering": [
+        "warn",
+        {
+          "browser": [
+            "common",
+          ],
+          "common": [],
+          "electron-main": [
+            "common",
+            "node",
+            "electron-utility",
+          ],
+          "electron-sandbox": [
+            "common",
+            "browser",
+          ],
+          "electron-utility": [
+            "common",
+            "node",
+          ],
+          "node": [
+            "common",
+          ],
+        },
+      ],
+      "local/code-must-use-super-dispose": "warn",
+      "local/code-no-dangerous-type-assertions": "warn",
+      "local/code-no-native-private": "warn",
+      "local/code-no-nls-in-standalone-editor": "warn",
+      "local/code-no-potentially-unsafe-disposables": "warn",
+      "local/code-no-standalone-editor": "warn",
+      "local/code-no-unexternalized-strings": "warn",
+      "local/code-parameter-properties-must-have-explicit-accessibility": "warn",
+      "local/code-translation-remind": "warn",
       "no-async-promise-executor": "warn",
       "no-caller": "warn",
       "no-case-declarations": "warn",
@@ -312,9 +1068,6 @@ exports[`vscode > vscode 1`] = `
     "unsupported rule: no-buffer-constructor",
     "unsupported rule: no-extra-semi",
     "unsupported rule, but in development: no-misleading-character-class",
-    "unsupported rule: header/header",
-    "unsupported rule: @stylistic/ts/semi",
-    "unsupported rule: @stylistic/ts/member-delimiter-style",
     "unsupported rule: jsdoc/no-types",
     "unsupported rule: @typescript-eslint/naming-convention",
     "unsupported rule: no-restricted-syntax",
@@ -378,7 +1131,164 @@ exports[`vscode --type-aware > vscode--type-aware 1`] = `
       "**/typings/**",
       "!.vscode",
     ],
+    "jsPlugins": [
+      "eslint-plugin-local",
+      "eslint-plugin-header",
+    ],
     "overrides": [
+      {
+        "files": [
+          "**/*.ts",
+        ],
+        "jsPlugins": [
+          "@stylistic/eslint-plugin",
+          "eslint-plugin-local",
+        ],
+        "rules": {
+          "@stylistic/ts/member-delimiter-style": "warn",
+          "@stylistic/ts/semi": "warn",
+          "local/code-no-static-self-ref": "warn",
+          "local/code-no-unused-expressions": [
+            "warn",
+            {
+              "allowTernary": true,
+            },
+          ],
+        },
+      },
+      {
+        "files": [
+          "**/*.test.ts",
+        ],
+        "jsPlugins": [
+          "eslint-plugin-local",
+        ],
+        "rules": {
+          "local/code-must-use-result": [
+            "warn",
+            [
+              {
+                "functions": [
+                  "assertSnapshot",
+                  "assertHeap",
+                ],
+                "message": "Expression must be awaited",
+              },
+            ],
+          ],
+          "local/code-no-test-async-suite": "warn",
+          "local/code-no-test-only": "error",
+        },
+      },
+      {
+        "files": [
+          "src/vs/**/*.test.ts",
+        ],
+        "jsPlugins": [
+          "eslint-plugin-local",
+        ],
+        "rules": {
+          "local/code-ensure-no-disposables-leak-in-test": [
+            "warn",
+            {
+              "exclude": [
+                "src/vs/platform/configuration/test/common/configuration.test.ts",
+                "src/vs/platform/opener/test/common/opener.test.ts",
+                "src/vs/platform/registry/test/common/platform.test.ts",
+                "src/vs/platform/workspace/test/common/workspace.test.ts",
+                "src/vs/platform/workspaces/test/electron-main/workspaces.test.ts",
+                "src/vs/workbench/api/test/browser/mainThreadConfiguration.test.ts",
+                "src/vs/workbench/api/test/node/extHostTunnelService.test.ts",
+                "src/vs/workbench/contrib/bulkEdit/test/browser/bulkCellEdits.test.ts",
+                "src/vs/workbench/contrib/chat/test/common/chatWordCounter.test.ts",
+                "src/vs/workbench/contrib/extensions/test/common/extensionQuery.test.ts",
+                "src/vs/workbench/contrib/notebook/test/browser/notebookExecutionService.test.ts",
+                "src/vs/workbench/contrib/notebook/test/browser/notebookExecutionStateService.test.ts",
+                "src/vs/workbench/contrib/tasks/test/common/problemMatcher.test.ts",
+                "src/vs/workbench/contrib/tasks/test/common/taskConfiguration.test.ts",
+                "src/vs/workbench/services/commands/test/common/commandService.test.ts",
+                "src/vs/workbench/services/userActivity/test/browser/domActivityTracker.test.ts",
+                "src/vs/workbench/test/browser/quickAccess.test.ts",
+              ],
+            },
+          ],
+        },
+      },
+      {
+        "files": [
+          "**/vscode.d.ts",
+          "**/vscode.proposed.*.d.ts",
+        ],
+        "jsPlugins": [
+          "eslint-plugin-local",
+        ],
+        "rules": {
+          "local/vscode-dts-cancellation": "warn",
+          "local/vscode-dts-create-func": "warn",
+          "local/vscode-dts-event-naming": [
+            "warn",
+            {
+              "allowed": [
+                "onCancellationRequested",
+                "event",
+              ],
+              "verbs": [
+                "accept",
+                "change",
+                "close",
+                "collapse",
+                "create",
+                "delete",
+                "discover",
+                "dispose",
+                "drop",
+                "edit",
+                "end",
+                "execute",
+                "expand",
+                "grant",
+                "hide",
+                "invalidate",
+                "open",
+                "override",
+                "perform",
+                "receive",
+                "register",
+                "remove",
+                "rename",
+                "save",
+                "send",
+                "start",
+                "terminate",
+                "trigger",
+                "unregister",
+                "write",
+              ],
+            },
+          ],
+          "local/vscode-dts-interface-naming": "warn",
+          "local/vscode-dts-literal-or-types": "warn",
+          "local/vscode-dts-provider-naming": [
+            "warn",
+            {
+              "allowed": [
+                "FileSystemProvider",
+                "TreeDataProvider",
+                "TestProvider",
+                "CustomEditorProvider",
+                "CustomReadonlyEditorProvider",
+                "TerminalLinkProvider",
+                "AuthenticationProvider",
+                "NotebookContentProvider",
+              ],
+            },
+          ],
+          "local/vscode-dts-string-type-literals": "warn",
+          "local/vscode-dts-use-export": "warn",
+          "local/vscode-dts-use-thenable": "warn",
+          "local/vscode-dts-vscode-in-comments": "warn",
+        },
+      },
       {
         "files": [
           "**/vscode.d.ts",
@@ -388,6 +1298,17 @@ exports[`vscode --type-aware > vscode--type-aware 1`] = `
         ],
         "rules": {
           "jsdoc/require-returns": "warn",
+        },
+      },
+      {
+        "files": [
+          "src/**/{common,browser}/**/*.ts",
+        ],
+        "jsPlugins": [
+          "eslint-plugin-local",
+        ],
+        "rules": {
+          "local/code-amd-node-module": "warn",
         },
       },
       {
@@ -417,7 +1338,11 @@ exports[`vscode --type-aware > vscode--type-aware 1`] = `
         "files": [
           "src/**/{browser,electron-sandbox}/**/*.ts",
         ],
+        "jsPlugins": [
+          "eslint-plugin-local",
+        ],
         "rules": {
+          "local/code-no-global-document-listener": "warn",
           "no-restricted-globals": [
             "warn",
             "name",
@@ -602,11 +1527,595 @@ exports[`vscode --type-aware > vscode--type-aware 1`] = `
           ],
         },
       },
+      {
+        "files": [
+          "src/**/*.ts",
+        ],
+        "jsPlugins": [
+          "eslint-plugin-local",
+        ],
+        "rules": {
+          "local/code-import-patterns": [
+            "warn",
+            {
+              "allow": [],
+              "when": "hasBrowser",
+            },
+            {
+              "allow": [
+                "@parcel/watcher",
+                "@vscode/sqlite3",
+                "@vscode/vscode-languagedetection",
+                "@vscode/ripgrep",
+                "@vscode/iconv-lite-umd",
+                "@vscode/policy-watcher",
+                "@vscode/proxy-agent",
+                "@vscode/spdlog",
+                "@vscode/windows-process-tree",
+                "assert",
+                "child_process",
+                "console",
+                "cookie",
+                "crypto",
+                "dns",
+                "events",
+                "fs",
+                "fs/promises",
+                "http",
+                "https",
+                "minimist",
+                "node:module",
+                "native-keymap",
+                "native-watchdog",
+                "net",
+                "node-pty",
+                "os",
+                "path",
+                "perf_hooks",
+                "readline",
+                "stream",
+                "string_decoder",
+                "tas-client-umd",
+                "tls",
+                "undici-types",
+                "url",
+                "util",
+                "v8-inspect-profiler",
+                "vscode-regexpp",
+                "vscode-textmate",
+                "worker_threads",
+                "@xterm/addon-clipboard",
+                "@xterm/addon-image",
+                "@xterm/addon-ligatures",
+                "@xterm/addon-search",
+                "@xterm/addon-serialize",
+                "@xterm/addon-unicode11",
+                "@xterm/addon-webgl",
+                "@xterm/headless",
+                "@xterm/xterm",
+                "yauzl",
+                "yazl",
+                "zlib",
+              ],
+              "when": "hasNode",
+            },
+            {
+              "allow": [
+                "electron",
+              ],
+              "when": "hasElectron",
+            },
+            {
+              "allow": [
+                "assert",
+                "sinon",
+                "sinon-test",
+              ],
+              "when": "test",
+            },
+            {
+              "restrictions": [
+                "vs/base/~",
+              ],
+              "target": "src/vs/base/~",
+            },
+            {
+              "restrictions": [
+                "vs/base/~",
+                "vs/base/parts/*/~",
+              ],
+              "target": "src/vs/base/parts/*/~",
+            },
+            {
+              "restrictions": [
+                "vs/base/~",
+                "vs/base/parts/*/~",
+                "vs/platform/*/~",
+                "tas-client-umd",
+                "@microsoft/1ds-core-js",
+                "@microsoft/1ds-post-js",
+                "@xterm/headless",
+              ],
+              "target": "src/vs/platform/*/~",
+            },
+            {
+              "restrictions": [
+                "vs/base/~",
+                "vs/base/parts/*/~",
+                "vs/platform/*/~",
+                "vs/editor/~",
+                "@vscode/tree-sitter-wasm",
+              ],
+              "target": "src/vs/editor/~",
+            },
+            {
+              "restrictions": [
+                "vs/base/~",
+                "vs/base/parts/*/~",
+                "vs/platform/*/~",
+                "vs/editor/~",
+                "vs/editor/contrib/*/~",
+              ],
+              "target": "src/vs/editor/contrib/*/~",
+            },
+            {
+              "restrictions": [
+                "vs/base/~",
+                "vs/base/parts/*/~",
+                "vs/platform/*/~",
+                "vs/editor/~",
+                "vs/editor/contrib/*/~",
+                "vs/editor/standalone/~",
+                "@vscode/tree-sitter-wasm",
+              ],
+              "target": "src/vs/editor/standalone/~",
+            },
+            {
+              "layer": "browser",
+              "restrictions": [
+                "vs/base/~",
+                "vs/base/parts/*/~",
+                "vs/platform/*/~",
+                "vs/editor/~",
+                "vs/editor/contrib/*/~",
+              ],
+              "target": "src/vs/editor/editor.all.ts",
+            },
+            {
+              "layer": "worker",
+              "restrictions": [
+                "vs/base/~",
+                "vs/base/parts/*/~",
+                "vs/platform/*/~",
+                "vs/editor/~",
+              ],
+              "target": "src/vs/editor/editor.worker.ts",
+            },
+            {
+              "layer": "browser",
+              "restrictions": [
+                "vs/base/~",
+                "vs/base/parts/*/~",
+                "vs/editor/~",
+                "vs/editor/contrib/*/~",
+                "vs/editor/standalone/~",
+                "vs/editor/*",
+              ],
+              "target": "src/vs/editor/{editor.api.ts,editor.main.ts}",
+            },
+            {
+              "restrictions": [
+                "vs/base/~",
+                "vs/base/parts/*/~",
+                "vs/platform/*/~",
+                "vs/editor/~",
+                "vs/editor/contrib/*/~",
+                "vs/workbench/~",
+                "vs/workbench/services/*/~",
+                "assert",
+                {
+                  "pattern": "vs/workbench/contrib/*/~",
+                  "when": "test",
+                },
+              ],
+              "target": "src/vs/workbench/~",
+            },
+            {
+              "restrictions": [
+                "vscode",
+                "vs/base/~",
+                "vs/base/parts/*/~",
+                "vs/platform/*/~",
+                "vs/editor/~",
+                "vs/editor/contrib/*/~",
+                "vs/workbench/api/~",
+                "vs/workbench/~",
+                "vs/workbench/services/*/~",
+                "vs/workbench/contrib/*/~",
+                "vs/workbench/contrib/terminalContrib/*/~",
+              ],
+              "target": "src/vs/workbench/api/~",
+            },
+            {
+              "restrictions": [
+                "vs/base/~",
+                "vs/base/parts/*/~",
+                "vs/platform/*/~",
+                "vs/editor/~",
+                "vs/editor/contrib/*/~",
+                "vs/workbench/~",
+                "vs/workbench/services/*/~",
+                {
+                  "pattern": "vs/workbench/contrib/*/~",
+                  "when": "test",
+                },
+                "tas-client-umd",
+                "vscode-textmate",
+                "@vscode/vscode-languagedetection",
+                "@vscode/tree-sitter-wasm",
+                {
+                  "pattern": "@xterm/xterm",
+                  "when": "hasBrowser",
+                },
+              ],
+              "target": "src/vs/workbench/services/*/~",
+            },
+            {
+              "restrictions": [
+                "vs/base/~",
+                "vs/base/parts/*/~",
+                "vs/platform/*/~",
+                "vs/editor/~",
+                "vs/editor/contrib/*/~",
+                "vs/workbench/~",
+                "vs/workbench/services/*/~",
+                "vs/workbench/contrib/*/~",
+                "vs/workbench/contrib/terminal/terminalContribChatExports*",
+                "vs/workbench/contrib/terminal/terminalContribExports*",
+                "vscode-notebook-renderer",
+                "@vscode/tree-sitter-wasm",
+                {
+                  "pattern": "@xterm/xterm",
+                  "when": "hasBrowser",
+                },
+                {
+                  "pattern": "@xterm/addon-*",
+                  "when": "hasBrowser",
+                },
+                {
+                  "pattern": "vscode-textmate",
+                  "when": "hasBrowser",
+                },
+              ],
+              "target": "src/vs/workbench/contrib/*/~",
+            },
+            {
+              "restrictions": [
+                "vs/base/~",
+                "vs/base/parts/*/~",
+                "vs/platform/*/~",
+                "vs/editor/~",
+                "vs/editor/contrib/*/~",
+                "vs/workbench/~",
+                "vs/workbench/services/*/~",
+                "vs/workbench/contrib/*/~",
+                "vs/workbench/contrib/terminalContrib/*/~",
+                "vscode-notebook-renderer",
+                {
+                  "pattern": "@xterm/xterm",
+                  "when": "hasBrowser",
+                },
+                {
+                  "pattern": "@xterm/addon-*",
+                  "when": "hasBrowser",
+                },
+                {
+                  "pattern": "vscode-textmate",
+                  "when": "hasBrowser",
+                },
+                "@xterm/headless",
+              ],
+              "target": "src/vs/workbench/contrib/terminalContrib/*/~",
+            },
+            {
+              "restrictions": [
+                "vs/base/~",
+                "vs/base/parts/*/~",
+                "vs/platform/*/~",
+                "vs/editor/~",
+                "vs/editor/contrib/*/~",
+                "vs/code/~",
+                {
+                  "pattern": "vs/workbench/workbench.web.main.js",
+                  "when": "hasBrowser",
+                },
+                {
+                  "pattern": "vs/workbench/workbench.web.main.internal.js",
+                  "when": "hasBrowser",
+                },
+                {
+                  "pattern": "vs/workbench/~",
+                  "when": "hasBrowser",
+                },
+                {
+                  "pattern": "vs/workbench/services/*/~",
+                  "when": "hasBrowser",
+                },
+              ],
+              "target": "src/vs/code/~",
+            },
+            {
+              "restrictions": [
+                "vs/base/~",
+                "vs/base/parts/*/~",
+                "vs/platform/*/~",
+                "vs/workbench/~",
+                "vs/workbench/api/~",
+                "vs/workbench/services/*/~",
+                "vs/workbench/contrib/*/~",
+                "vs/server/~",
+              ],
+              "target": "src/vs/server/~",
+            },
+            {
+              "layer": "browser",
+              "restrictions": [
+                "vs/workbench/contrib/**",
+              ],
+              "target": "src/vs/workbench/contrib/terminal/terminal.all.ts",
+            },
+            {
+              "layer": "browser",
+              "restrictions": [
+                "vs/workbench/contrib/terminalContrib/*/~",
+              ],
+              "target": "src/vs/workbench/contrib/terminal/terminalContribChatExports.ts",
+            },
+            {
+              "layer": "browser",
+              "restrictions": [
+                "vs/platform/*/~",
+                "vs/workbench/contrib/terminalContrib/*/~",
+              ],
+              "target": "src/vs/workbench/contrib/terminal/terminalContribExports.ts",
+            },
+            {
+              "layer": "browser",
+              "restrictions": [
+                "vs/base/~",
+                "vs/base/parts/*/~",
+                "vs/platform/*/~",
+                "vs/editor/~",
+                "vs/editor/contrib/*/~",
+                "vs/editor/editor.all.js",
+                "vs/workbench/~",
+                "vs/workbench/api/~",
+                "vs/workbench/services/*/~",
+                "vs/workbench/contrib/*/~",
+                "vs/workbench/contrib/terminal/terminal.all.js",
+              ],
+              "target": "src/vs/workbench/workbench.common.main.ts",
+            },
+            {
+              "layer": "browser",
+              "restrictions": [
+                "vs/base/~",
+                "vs/base/parts/*/~",
+                "vs/platform/*/~",
+                "vs/editor/~",
+                "vs/editor/contrib/*/~",
+                "vs/editor/editor.all.js",
+                "vs/workbench/~",
+                "vs/workbench/api/~",
+                "vs/workbench/services/*/~",
+                "vs/workbench/contrib/*/~",
+                "vs/workbench/workbench.common.main.js",
+              ],
+              "target": "src/vs/workbench/workbench.web.main.ts",
+            },
+            {
+              "layer": "browser",
+              "restrictions": [
+                "vs/base/~",
+                "vs/base/parts/*/~",
+                "vs/platform/*/~",
+                "vs/editor/~",
+                "vs/editor/contrib/*/~",
+                "vs/editor/editor.all.js",
+                "vs/workbench/~",
+                "vs/workbench/api/~",
+                "vs/workbench/services/*/~",
+                "vs/workbench/contrib/*/~",
+                "vs/workbench/workbench.common.main.js",
+              ],
+              "target": "src/vs/workbench/workbench.web.main.internal.ts",
+            },
+            {
+              "layer": "electron-sandbox",
+              "restrictions": [
+                "vs/base/*/~",
+                "vs/base/parts/*/~",
+                "vs/platform/*/~",
+                "vs/editor/~",
+                "vs/editor/contrib/*/~",
+                "vs/editor/editor.all.js",
+                "vs/workbench/~",
+                "vs/workbench/api/~",
+                "vs/workbench/services/*/~",
+                "vs/workbench/contrib/*/~",
+                "vs/workbench/workbench.common.main.js",
+              ],
+              "target": "src/vs/workbench/workbench.desktop.main.ts",
+            },
+            {
+              "restrictions": [
+                "vs/base/common/*",
+              ],
+              "target": "src/vs/amdX.ts",
+            },
+            {
+              "restrictions": [],
+              "target": "src/vs/{loader.d.ts,monaco.d.ts,nls.ts,nls.messages.ts}",
+            },
+            {
+              "restrictions": [],
+              "target": "src/vscode-dts/**",
+            },
+            {
+              "restrictions": [],
+              "target": "src/bootstrap-window.ts",
+            },
+            {
+              "restrictions": [
+                "vs/*",
+              ],
+              "target": "src/vs/nls.ts",
+            },
+            {
+              "restrictions": [
+                "vs/**/common/*",
+                "vs/**/node/*",
+                "vs/nls.js",
+                "src/*.js",
+                "*",
+              ],
+              "target": "src/{bootstrap-cli.ts,bootstrap-esm.ts,bootstrap-fork.ts,bootstrap-import.ts,bootstrap-meta.ts,bootstrap-node.ts,bootstrap-server.ts,cli.ts,main.ts,server-cli.ts,server-main.ts}",
+            },
+          ],
+        },
+      },
+      {
+        "files": [
+          "test/**/*.ts",
+        ],
+        "jsPlugins": [
+          "eslint-plugin-local",
+        ],
+        "rules": {
+          "local/code-import-patterns": [
+            "warn",
+            {
+              "restrictions": [
+                "test/automation",
+                "test/smoke/**",
+                "@vscode/*",
+                "@parcel/*",
+                "@playwright/*",
+                "*",
+              ],
+              "target": "test/smoke/**",
+            },
+            {
+              "restrictions": [
+                "test/automation/**",
+                "@vscode/*",
+                "@parcel/*",
+                "playwright-core/**",
+                "@playwright/*",
+                "*",
+              ],
+              "target": "test/automation/**",
+            },
+            {
+              "restrictions": [
+                "test/integration/**",
+                "@vscode/*",
+                "@parcel/*",
+                "@playwright/*",
+                "*",
+              ],
+              "target": "test/integration/**",
+            },
+            {
+              "restrictions": [
+                "test/monaco/**",
+                "@vscode/*",
+                "@parcel/*",
+                "@playwright/*",
+                "*",
+              ],
+              "target": "test/monaco/**",
+            },
+          ],
+        },
+      },
+      {
+        "files": [
+          "src/vs/workbench/contrib/notebook/browser/view/renderers/*.ts",
+        ],
+        "jsPlugins": [
+          "eslint-plugin-local",
+        ],
+        "rules": {
+          "local/code-limited-top-functions": [
+            "error",
+            {
+              "src/vs/workbench/contrib/notebook/browser/view/renderers/webviewPreloads.ts": [
+                "webviewPreloads",
+                "preloadsScriptStr",
+              ],
+            },
+          ],
+          "local/code-no-runtime-import": [
+            "error",
+            {
+              "src/vs/workbench/contrib/notebook/browser/view/renderers/webviewPreloads.ts": [
+                "**/*",
+              ],
+            },
+          ],
+        },
+      },
     ],
     "plugins": [],
     "rules": {
       "curly": "warn",
       "eqeqeq": "warn",
+      "header/header": [
+        "warn",
+        "block",
+        [
+          "---------------------------------------------------------------------------------------------",
+          " *  Copyright (c) Microsoft Corporation. All rights reserved.",
+          " *  Licensed under the MIT License. See License.txt in the project root for license information.",
+          " *--------------------------------------------------------------------------------------------",
+        ],
+      ],
+      "local/code-declare-service-brand": "warn",
+      "local/code-layering": [
+        "warn",
+        {
+          "browser": [
+            "common",
+          ],
+          "common": [],
+          "electron-main": [
+            "common",
+            "node",
+            "electron-utility",
+          ],
+          "electron-sandbox": [
+            "common",
+            "browser",
+          ],
+          "electron-utility": [
+            "common",
+            "node",
+          ],
+          "node": [
+            "common",
+          ],
+        },
+      ],
+      "local/code-must-use-super-dispose": "warn",
+      "local/code-no-dangerous-type-assertions": "warn",
+      "local/code-no-native-private": "warn",
+      "local/code-no-nls-in-standalone-editor": "warn",
+      "local/code-no-potentially-unsafe-disposables": "warn",
+      "local/code-no-standalone-editor": "warn",
+      "local/code-no-unexternalized-strings": "warn",
+      "local/code-parameter-properties-must-have-explicit-accessibility": "warn",
+      "local/code-translation-remind": "warn",
       "no-async-promise-executor": "warn",
       "no-caller": "warn",
       "no-case-declarations": "warn",
@@ -640,9 +2149,6 @@ exports[`vscode --type-aware > vscode--type-aware 1`] = `
     "unsupported rule: no-buffer-constructor",
     "unsupported rule: no-extra-semi",
     "unsupported rule, but in development: no-misleading-character-class",
-    "unsupported rule: header/header",
-    "unsupported rule: @stylistic/ts/semi",
-    "unsupported rule: @stylistic/ts/member-delimiter-style",
     "unsupported rule: jsdoc/no-types",
     "unsupported rule: @typescript-eslint/naming-convention",
     "unsupported rule: no-restricted-syntax",
@@ -707,7 +2213,164 @@ exports[`vscode merge > vscode--merge 1`] = `
       "**/typings/**",
       "!.vscode",
     ],
+    "jsPlugins": [
+      "eslint-plugin-local",
+      "eslint-plugin-header",
+    ],
     "overrides": [
+      {
+        "files": [
+          "**/*.ts",
+        ],
+        "jsPlugins": [
+          "@stylistic/eslint-plugin",
+          "eslint-plugin-local",
+        ],
+        "rules": {
+          "@stylistic/ts/member-delimiter-style": "warn",
+          "@stylistic/ts/semi": "warn",
+          "local/code-no-static-self-ref": "warn",
+          "local/code-no-unused-expressions": [
+            "warn",
+            {
+              "allowTernary": true,
+            },
+          ],
+        },
+      },
+      {
+        "files": [
+          "**/*.test.ts",
+        ],
+        "jsPlugins": [
+          "eslint-plugin-local",
+        ],
+        "rules": {
+          "local/code-must-use-result": [
+            "warn",
+            [
+              {
+                "functions": [
+                  "assertSnapshot",
+                  "assertHeap",
+                ],
+                "message": "Expression must be awaited",
+              },
+            ],
+          ],
+          "local/code-no-test-async-suite": "warn",
+          "local/code-no-test-only": "error",
+        },
+      },
+      {
+        "files": [
+          "src/vs/**/*.test.ts",
+        ],
+        "jsPlugins": [
+          "eslint-plugin-local",
+        ],
+        "rules": {
+          "local/code-ensure-no-disposables-leak-in-test": [
+            "warn",
+            {
+              "exclude": [
+                "src/vs/platform/configuration/test/common/configuration.test.ts",
+                "src/vs/platform/opener/test/common/opener.test.ts",
+                "src/vs/platform/registry/test/common/platform.test.ts",
+                "src/vs/platform/workspace/test/common/workspace.test.ts",
+                "src/vs/platform/workspaces/test/electron-main/workspaces.test.ts",
+                "src/vs/workbench/api/test/browser/mainThreadConfiguration.test.ts",
+                "src/vs/workbench/api/test/node/extHostTunnelService.test.ts",
+                "src/vs/workbench/contrib/bulkEdit/test/browser/bulkCellEdits.test.ts",
+                "src/vs/workbench/contrib/chat/test/common/chatWordCounter.test.ts",
+                "src/vs/workbench/contrib/extensions/test/common/extensionQuery.test.ts",
+                "src/vs/workbench/contrib/notebook/test/browser/notebookExecutionService.test.ts",
+                "src/vs/workbench/contrib/notebook/test/browser/notebookExecutionStateService.test.ts",
+                "src/vs/workbench/contrib/tasks/test/common/problemMatcher.test.ts",
+                "src/vs/workbench/contrib/tasks/test/common/taskConfiguration.test.ts",
+                "src/vs/workbench/services/commands/test/common/commandService.test.ts",
+                "src/vs/workbench/services/userActivity/test/browser/domActivityTracker.test.ts",
+                "src/vs/workbench/test/browser/quickAccess.test.ts",
+              ],
+            },
+          ],
+        },
+      },
+      {
+        "files": [
+          "**/vscode.d.ts",
+          "**/vscode.proposed.*.d.ts",
+        ],
+        "jsPlugins": [
+          "eslint-plugin-local",
+        ],
+        "rules": {
+          "local/vscode-dts-cancellation": "warn",
+          "local/vscode-dts-create-func": "warn",
+          "local/vscode-dts-event-naming": [
+            "warn",
+            {
+              "allowed": [
+                "onCancellationRequested",
+                "event",
+              ],
+              "verbs": [
+                "accept",
+                "change",
+                "close",
+                "collapse",
+                "create",
+                "delete",
+                "discover",
+                "dispose",
+                "drop",
+                "edit",
+                "end",
+                "execute",
+                "expand",
+                "grant",
+                "hide",
+                "invalidate",
+                "open",
+                "override",
+                "perform",
+                "receive",
+                "register",
+                "remove",
+                "rename",
+                "save",
+                "send",
+                "start",
+                "terminate",
+                "trigger",
+                "unregister",
+                "write",
+              ],
+            },
+          ],
+          "local/vscode-dts-interface-naming": "warn",
+          "local/vscode-dts-literal-or-types": "warn",
+          "local/vscode-dts-provider-naming": [
+            "warn",
+            {
+              "allowed": [
+                "FileSystemProvider",
+                "TreeDataProvider",
+                "TestProvider",
+                "CustomEditorProvider",
+                "CustomReadonlyEditorProvider",
+                "TerminalLinkProvider",
+                "AuthenticationProvider",
+                "NotebookContentProvider",
+              ],
+            },
+          ],
+          "local/vscode-dts-string-type-literals": "warn",
+          "local/vscode-dts-use-export": "warn",
+          "local/vscode-dts-use-thenable": "warn",
+          "local/vscode-dts-vscode-in-comments": "warn",
+        },
+      },
       {
         "files": [
           "**/vscode.d.ts",
@@ -717,6 +2380,17 @@ exports[`vscode merge > vscode--merge 1`] = `
         ],
         "rules": {
           "jsdoc/require-returns": "warn",
+        },
+      },
+      {
+        "files": [
+          "src/**/{common,browser}/**/*.ts",
+        ],
+        "jsPlugins": [
+          "eslint-plugin-local",
+        ],
+        "rules": {
+          "local/code-amd-node-module": "warn",
         },
       },
       {
@@ -746,7 +2420,11 @@ exports[`vscode merge > vscode--merge 1`] = `
         "files": [
           "src/**/{browser,electron-sandbox}/**/*.ts",
         ],
+        "jsPlugins": [
+          "eslint-plugin-local",
+        ],
         "rules": {
+          "local/code-no-global-document-listener": "warn",
           "no-restricted-globals": [
             "warn",
             "name",
@@ -931,11 +2609,595 @@ exports[`vscode merge > vscode--merge 1`] = `
           ],
         },
       },
+      {
+        "files": [
+          "src/**/*.ts",
+        ],
+        "jsPlugins": [
+          "eslint-plugin-local",
+        ],
+        "rules": {
+          "local/code-import-patterns": [
+            "warn",
+            {
+              "allow": [],
+              "when": "hasBrowser",
+            },
+            {
+              "allow": [
+                "@parcel/watcher",
+                "@vscode/sqlite3",
+                "@vscode/vscode-languagedetection",
+                "@vscode/ripgrep",
+                "@vscode/iconv-lite-umd",
+                "@vscode/policy-watcher",
+                "@vscode/proxy-agent",
+                "@vscode/spdlog",
+                "@vscode/windows-process-tree",
+                "assert",
+                "child_process",
+                "console",
+                "cookie",
+                "crypto",
+                "dns",
+                "events",
+                "fs",
+                "fs/promises",
+                "http",
+                "https",
+                "minimist",
+                "node:module",
+                "native-keymap",
+                "native-watchdog",
+                "net",
+                "node-pty",
+                "os",
+                "path",
+                "perf_hooks",
+                "readline",
+                "stream",
+                "string_decoder",
+                "tas-client-umd",
+                "tls",
+                "undici-types",
+                "url",
+                "util",
+                "v8-inspect-profiler",
+                "vscode-regexpp",
+                "vscode-textmate",
+                "worker_threads",
+                "@xterm/addon-clipboard",
+                "@xterm/addon-image",
+                "@xterm/addon-ligatures",
+                "@xterm/addon-search",
+                "@xterm/addon-serialize",
+                "@xterm/addon-unicode11",
+                "@xterm/addon-webgl",
+                "@xterm/headless",
+                "@xterm/xterm",
+                "yauzl",
+                "yazl",
+                "zlib",
+              ],
+              "when": "hasNode",
+            },
+            {
+              "allow": [
+                "electron",
+              ],
+              "when": "hasElectron",
+            },
+            {
+              "allow": [
+                "assert",
+                "sinon",
+                "sinon-test",
+              ],
+              "when": "test",
+            },
+            {
+              "restrictions": [
+                "vs/base/~",
+              ],
+              "target": "src/vs/base/~",
+            },
+            {
+              "restrictions": [
+                "vs/base/~",
+                "vs/base/parts/*/~",
+              ],
+              "target": "src/vs/base/parts/*/~",
+            },
+            {
+              "restrictions": [
+                "vs/base/~",
+                "vs/base/parts/*/~",
+                "vs/platform/*/~",
+                "tas-client-umd",
+                "@microsoft/1ds-core-js",
+                "@microsoft/1ds-post-js",
+                "@xterm/headless",
+              ],
+              "target": "src/vs/platform/*/~",
+            },
+            {
+              "restrictions": [
+                "vs/base/~",
+                "vs/base/parts/*/~",
+                "vs/platform/*/~",
+                "vs/editor/~",
+                "@vscode/tree-sitter-wasm",
+              ],
+              "target": "src/vs/editor/~",
+            },
+            {
+              "restrictions": [
+                "vs/base/~",
+                "vs/base/parts/*/~",
+                "vs/platform/*/~",
+                "vs/editor/~",
+                "vs/editor/contrib/*/~",
+              ],
+              "target": "src/vs/editor/contrib/*/~",
+            },
+            {
+              "restrictions": [
+                "vs/base/~",
+                "vs/base/parts/*/~",
+                "vs/platform/*/~",
+                "vs/editor/~",
+                "vs/editor/contrib/*/~",
+                "vs/editor/standalone/~",
+                "@vscode/tree-sitter-wasm",
+              ],
+              "target": "src/vs/editor/standalone/~",
+            },
+            {
+              "layer": "browser",
+              "restrictions": [
+                "vs/base/~",
+                "vs/base/parts/*/~",
+                "vs/platform/*/~",
+                "vs/editor/~",
+                "vs/editor/contrib/*/~",
+              ],
+              "target": "src/vs/editor/editor.all.ts",
+            },
+            {
+              "layer": "worker",
+              "restrictions": [
+                "vs/base/~",
+                "vs/base/parts/*/~",
+                "vs/platform/*/~",
+                "vs/editor/~",
+              ],
+              "target": "src/vs/editor/editor.worker.ts",
+            },
+            {
+              "layer": "browser",
+              "restrictions": [
+                "vs/base/~",
+                "vs/base/parts/*/~",
+                "vs/editor/~",
+                "vs/editor/contrib/*/~",
+                "vs/editor/standalone/~",
+                "vs/editor/*",
+              ],
+              "target": "src/vs/editor/{editor.api.ts,editor.main.ts}",
+            },
+            {
+              "restrictions": [
+                "vs/base/~",
+                "vs/base/parts/*/~",
+                "vs/platform/*/~",
+                "vs/editor/~",
+                "vs/editor/contrib/*/~",
+                "vs/workbench/~",
+                "vs/workbench/services/*/~",
+                "assert",
+                {
+                  "pattern": "vs/workbench/contrib/*/~",
+                  "when": "test",
+                },
+              ],
+              "target": "src/vs/workbench/~",
+            },
+            {
+              "restrictions": [
+                "vscode",
+                "vs/base/~",
+                "vs/base/parts/*/~",
+                "vs/platform/*/~",
+                "vs/editor/~",
+                "vs/editor/contrib/*/~",
+                "vs/workbench/api/~",
+                "vs/workbench/~",
+                "vs/workbench/services/*/~",
+                "vs/workbench/contrib/*/~",
+                "vs/workbench/contrib/terminalContrib/*/~",
+              ],
+              "target": "src/vs/workbench/api/~",
+            },
+            {
+              "restrictions": [
+                "vs/base/~",
+                "vs/base/parts/*/~",
+                "vs/platform/*/~",
+                "vs/editor/~",
+                "vs/editor/contrib/*/~",
+                "vs/workbench/~",
+                "vs/workbench/services/*/~",
+                {
+                  "pattern": "vs/workbench/contrib/*/~",
+                  "when": "test",
+                },
+                "tas-client-umd",
+                "vscode-textmate",
+                "@vscode/vscode-languagedetection",
+                "@vscode/tree-sitter-wasm",
+                {
+                  "pattern": "@xterm/xterm",
+                  "when": "hasBrowser",
+                },
+              ],
+              "target": "src/vs/workbench/services/*/~",
+            },
+            {
+              "restrictions": [
+                "vs/base/~",
+                "vs/base/parts/*/~",
+                "vs/platform/*/~",
+                "vs/editor/~",
+                "vs/editor/contrib/*/~",
+                "vs/workbench/~",
+                "vs/workbench/services/*/~",
+                "vs/workbench/contrib/*/~",
+                "vs/workbench/contrib/terminal/terminalContribChatExports*",
+                "vs/workbench/contrib/terminal/terminalContribExports*",
+                "vscode-notebook-renderer",
+                "@vscode/tree-sitter-wasm",
+                {
+                  "pattern": "@xterm/xterm",
+                  "when": "hasBrowser",
+                },
+                {
+                  "pattern": "@xterm/addon-*",
+                  "when": "hasBrowser",
+                },
+                {
+                  "pattern": "vscode-textmate",
+                  "when": "hasBrowser",
+                },
+              ],
+              "target": "src/vs/workbench/contrib/*/~",
+            },
+            {
+              "restrictions": [
+                "vs/base/~",
+                "vs/base/parts/*/~",
+                "vs/platform/*/~",
+                "vs/editor/~",
+                "vs/editor/contrib/*/~",
+                "vs/workbench/~",
+                "vs/workbench/services/*/~",
+                "vs/workbench/contrib/*/~",
+                "vs/workbench/contrib/terminalContrib/*/~",
+                "vscode-notebook-renderer",
+                {
+                  "pattern": "@xterm/xterm",
+                  "when": "hasBrowser",
+                },
+                {
+                  "pattern": "@xterm/addon-*",
+                  "when": "hasBrowser",
+                },
+                {
+                  "pattern": "vscode-textmate",
+                  "when": "hasBrowser",
+                },
+                "@xterm/headless",
+              ],
+              "target": "src/vs/workbench/contrib/terminalContrib/*/~",
+            },
+            {
+              "restrictions": [
+                "vs/base/~",
+                "vs/base/parts/*/~",
+                "vs/platform/*/~",
+                "vs/editor/~",
+                "vs/editor/contrib/*/~",
+                "vs/code/~",
+                {
+                  "pattern": "vs/workbench/workbench.web.main.js",
+                  "when": "hasBrowser",
+                },
+                {
+                  "pattern": "vs/workbench/workbench.web.main.internal.js",
+                  "when": "hasBrowser",
+                },
+                {
+                  "pattern": "vs/workbench/~",
+                  "when": "hasBrowser",
+                },
+                {
+                  "pattern": "vs/workbench/services/*/~",
+                  "when": "hasBrowser",
+                },
+              ],
+              "target": "src/vs/code/~",
+            },
+            {
+              "restrictions": [
+                "vs/base/~",
+                "vs/base/parts/*/~",
+                "vs/platform/*/~",
+                "vs/workbench/~",
+                "vs/workbench/api/~",
+                "vs/workbench/services/*/~",
+                "vs/workbench/contrib/*/~",
+                "vs/server/~",
+              ],
+              "target": "src/vs/server/~",
+            },
+            {
+              "layer": "browser",
+              "restrictions": [
+                "vs/workbench/contrib/**",
+              ],
+              "target": "src/vs/workbench/contrib/terminal/terminal.all.ts",
+            },
+            {
+              "layer": "browser",
+              "restrictions": [
+                "vs/workbench/contrib/terminalContrib/*/~",
+              ],
+              "target": "src/vs/workbench/contrib/terminal/terminalContribChatExports.ts",
+            },
+            {
+              "layer": "browser",
+              "restrictions": [
+                "vs/platform/*/~",
+                "vs/workbench/contrib/terminalContrib/*/~",
+              ],
+              "target": "src/vs/workbench/contrib/terminal/terminalContribExports.ts",
+            },
+            {
+              "layer": "browser",
+              "restrictions": [
+                "vs/base/~",
+                "vs/base/parts/*/~",
+                "vs/platform/*/~",
+                "vs/editor/~",
+                "vs/editor/contrib/*/~",
+                "vs/editor/editor.all.js",
+                "vs/workbench/~",
+                "vs/workbench/api/~",
+                "vs/workbench/services/*/~",
+                "vs/workbench/contrib/*/~",
+                "vs/workbench/contrib/terminal/terminal.all.js",
+              ],
+              "target": "src/vs/workbench/workbench.common.main.ts",
+            },
+            {
+              "layer": "browser",
+              "restrictions": [
+                "vs/base/~",
+                "vs/base/parts/*/~",
+                "vs/platform/*/~",
+                "vs/editor/~",
+                "vs/editor/contrib/*/~",
+                "vs/editor/editor.all.js",
+                "vs/workbench/~",
+                "vs/workbench/api/~",
+                "vs/workbench/services/*/~",
+                "vs/workbench/contrib/*/~",
+                "vs/workbench/workbench.common.main.js",
+              ],
+              "target": "src/vs/workbench/workbench.web.main.ts",
+            },
+            {
+              "layer": "browser",
+              "restrictions": [
+                "vs/base/~",
+                "vs/base/parts/*/~",
+                "vs/platform/*/~",
+                "vs/editor/~",
+                "vs/editor/contrib/*/~",
+                "vs/editor/editor.all.js",
+                "vs/workbench/~",
+                "vs/workbench/api/~",
+                "vs/workbench/services/*/~",
+                "vs/workbench/contrib/*/~",
+                "vs/workbench/workbench.common.main.js",
+              ],
+              "target": "src/vs/workbench/workbench.web.main.internal.ts",
+            },
+            {
+              "layer": "electron-sandbox",
+              "restrictions": [
+                "vs/base/*/~",
+                "vs/base/parts/*/~",
+                "vs/platform/*/~",
+                "vs/editor/~",
+                "vs/editor/contrib/*/~",
+                "vs/editor/editor.all.js",
+                "vs/workbench/~",
+                "vs/workbench/api/~",
+                "vs/workbench/services/*/~",
+                "vs/workbench/contrib/*/~",
+                "vs/workbench/workbench.common.main.js",
+              ],
+              "target": "src/vs/workbench/workbench.desktop.main.ts",
+            },
+            {
+              "restrictions": [
+                "vs/base/common/*",
+              ],
+              "target": "src/vs/amdX.ts",
+            },
+            {
+              "restrictions": [],
+              "target": "src/vs/{loader.d.ts,monaco.d.ts,nls.ts,nls.messages.ts}",
+            },
+            {
+              "restrictions": [],
+              "target": "src/vscode-dts/**",
+            },
+            {
+              "restrictions": [],
+              "target": "src/bootstrap-window.ts",
+            },
+            {
+              "restrictions": [
+                "vs/*",
+              ],
+              "target": "src/vs/nls.ts",
+            },
+            {
+              "restrictions": [
+                "vs/**/common/*",
+                "vs/**/node/*",
+                "vs/nls.js",
+                "src/*.js",
+                "*",
+              ],
+              "target": "src/{bootstrap-cli.ts,bootstrap-esm.ts,bootstrap-fork.ts,bootstrap-import.ts,bootstrap-meta.ts,bootstrap-node.ts,bootstrap-server.ts,cli.ts,main.ts,server-cli.ts,server-main.ts}",
+            },
+          ],
+        },
+      },
+      {
+        "files": [
+          "test/**/*.ts",
+        ],
+        "jsPlugins": [
+          "eslint-plugin-local",
+        ],
+        "rules": {
+          "local/code-import-patterns": [
+            "warn",
+            {
+              "restrictions": [
+                "test/automation",
+                "test/smoke/**",
+                "@vscode/*",
+                "@parcel/*",
+                "@playwright/*",
+                "*",
+              ],
+              "target": "test/smoke/**",
+            },
+            {
+              "restrictions": [
+                "test/automation/**",
+                "@vscode/*",
+                "@parcel/*",
+                "playwright-core/**",
+                "@playwright/*",
+                "*",
+              ],
+              "target": "test/automation/**",
+            },
+            {
+              "restrictions": [
+                "test/integration/**",
+                "@vscode/*",
+                "@parcel/*",
+                "@playwright/*",
+                "*",
+              ],
+              "target": "test/integration/**",
+            },
+            {
+              "restrictions": [
+                "test/monaco/**",
+                "@vscode/*",
+                "@parcel/*",
+                "@playwright/*",
+                "*",
+              ],
+              "target": "test/monaco/**",
+            },
+          ],
+        },
+      },
+      {
+        "files": [
+          "src/vs/workbench/contrib/notebook/browser/view/renderers/*.ts",
+        ],
+        "jsPlugins": [
+          "eslint-plugin-local",
+        ],
+        "rules": {
+          "local/code-limited-top-functions": [
+            "error",
+            {
+              "src/vs/workbench/contrib/notebook/browser/view/renderers/webviewPreloads.ts": [
+                "webviewPreloads",
+                "preloadsScriptStr",
+              ],
+            },
+          ],
+          "local/code-no-runtime-import": [
+            "error",
+            {
+              "src/vs/workbench/contrib/notebook/browser/view/renderers/webviewPreloads.ts": [
+                "**/*",
+              ],
+            },
+          ],
+        },
+      },
     ],
     "plugins": [],
     "rules": {
       "curly": "warn",
       "eqeqeq": "warn",
+      "header/header": [
+        "warn",
+        "block",
+        [
+          "---------------------------------------------------------------------------------------------",
+          " *  Copyright (c) Microsoft Corporation. All rights reserved.",
+          " *  Licensed under the MIT License. See License.txt in the project root for license information.",
+          " *--------------------------------------------------------------------------------------------",
+        ],
+      ],
+      "local/code-declare-service-brand": "warn",
+      "local/code-layering": [
+        "warn",
+        {
+          "browser": [
+            "common",
+          ],
+          "common": [],
+          "electron-main": [
+            "common",
+            "node",
+            "electron-utility",
+          ],
+          "electron-sandbox": [
+            "common",
+            "browser",
+          ],
+          "electron-utility": [
+            "common",
+            "node",
+          ],
+          "node": [
+            "common",
+          ],
+        },
+      ],
+      "local/code-must-use-super-dispose": "warn",
+      "local/code-no-dangerous-type-assertions": "warn",
+      "local/code-no-native-private": "warn",
+      "local/code-no-nls-in-standalone-editor": "warn",
+      "local/code-no-potentially-unsafe-disposables": "warn",
+      "local/code-no-standalone-editor": "warn",
+      "local/code-no-unexternalized-strings": "warn",
+      "local/code-parameter-properties-must-have-explicit-accessibility": "warn",
+      "local/code-translation-remind": "warn",
       "no-async-promise-executor": "warn",
       "no-caller": "warn",
       "no-case-declarations": "warn",
@@ -969,9 +3231,6 @@ exports[`vscode merge > vscode--merge 1`] = `
     "unsupported rule: no-buffer-constructor",
     "unsupported rule: no-extra-semi",
     "unsupported rule, but in development: no-misleading-character-class",
-    "unsupported rule: header/header",
-    "unsupported rule: @stylistic/ts/semi",
-    "unsupported rule: @stylistic/ts/member-delimiter-style",
     "unsupported rule: jsdoc/no-types",
     "unsupported rule: @typescript-eslint/naming-convention",
     "unsupported rule: no-restricted-syntax",

@@ -21,7 +21,7 @@ export const getSnapshotResult = async (
       .getReports()
       // filter out unsupported rules
       .filter((error) => !error.startsWith('unsupported rule: local/'))
-      .filter((error) => !error.startsWith('unsupported rule: perfectionist/'))
+      // .filter((error) => !error.startsWith('unsupported rule: perfectionist/'))
       .filter((error) => !error.startsWith('unsupported rule: toml/'))
       .filter((error) => !error.startsWith('unsupported rule: style/')),
   };

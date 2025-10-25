@@ -54,6 +54,12 @@ exports[`puppeteer > puppeteer 1`] = `
       "examples/puppeteer-in-extension/out/**/*",
       "examples/puppeteer-in-extension/node_modules/**/*",
     ],
+    "jsPlugins": [
+      "eslint-plugin-prettier",
+      "eslint-plugin-mocha",
+      "@stylistic/eslint-plugin",
+      "@puppeteer/eslint-plugin",
+    ],
     "overrides": [
       {
         "files": [
@@ -176,10 +182,14 @@ exports[`puppeteer > puppeteer 1`] = `
         "files": [
           "**/*.ts",
         ],
+        "jsPlugins": [
+          "@puppeteer/eslint-plugin",
+        ],
         "plugins": [
           "typescript",
         ],
         "rules": {
+          "@puppeteer/use-using": "error",
           "@typescript-eslint/array-type": [
             "error",
             {
@@ -228,6 +238,17 @@ exports[`puppeteer > puppeteer 1`] = `
       },
       {
         "files": [
+          "packages/**/*.ts",
+        ],
+        "jsPlugins": [
+          "eslint-plugin-tsdoc",
+        ],
+        "rules": {
+          "tsdoc/syntax": "error",
+        },
+      },
+      {
+        "files": [
           "test/**/*.ts",
         ],
         "rules": {
@@ -245,10 +266,17 @@ exports[`puppeteer > puppeteer 1`] = `
         "files": [
           "test/**/*.spec.ts",
         ],
+        "jsPlugins": [
+          "eslint-plugin-mocha",
+          "@puppeteer/eslint-plugin",
+        ],
         "plugins": [
           "typescript",
         ],
         "rules": {
+          "@puppeteer/no-quirks-mode-set-content": "error",
+          "mocha/no-identical-title": "error",
+          "mocha/no-pending-tests": "error",
           "no-unused-vars": [
             "error",
             {
@@ -264,6 +292,11 @@ exports[`puppeteer > puppeteer 1`] = `
       "import",
     ],
     "rules": {
+      "@puppeteer/check-license": "error",
+      "@puppeteer/extensions": "error",
+      "@puppeteer/prettier-comments": "error",
+      "@stylistic/function-call-spacing": "error",
+      "@stylistic/semi": "error",
       "arrow-body-style": [
         "error",
         "always",
@@ -281,6 +314,7 @@ exports[`puppeteer > puppeteer 1`] = `
           "maxDepth": Infinity,
         },
       ],
+      "mocha/no-exclusive-tests": "error",
       "no-caller": "error",
       "no-cond-assign": "error",
       "no-debugger": "error",
@@ -302,13 +336,13 @@ exports[`puppeteer > puppeteer 1`] = `
       ],
       "no-var": "error",
       "no-with": "error",
+      "prettier/prettier": "error",
       "radix": "error",
       "require-yield": "error",
       "valid-typeof": "error",
     },
   },
   "warnings": [
-    "unsupported rule: prettier/prettier",
     "unsupported rule, but in development: import/named",
     "unsupported rule: spaced-comment",
     "unsupported rule: accessor-pairs",
@@ -320,29 +354,18 @@ exports[`puppeteer > puppeteer 1`] = `
     "unsupported rule: no-octal-escape",
     "unsupported rule, but in development: no-unreachable",
     "unsupported rule: template-curly-spacing",
-    "unsupported rule: mocha/no-exclusive-tests",
     "unsupported rule: import/order",
     "unsupported rule: import/enforce-node-protocol-usage",
-    "unsupported rule: @stylistic/function-call-spacing",
-    "unsupported rule: @stylistic/semi",
-    "unsupported rule: @puppeteer/prettier-comments",
-    "unsupported rule: @puppeteer/extensions",
-    "unsupported rule: @puppeteer/check-license",
     "unsupported rule, but in development: constructor-super",
     "unsupported rule, but in development: getter-return",
     "unsupported rule, but in development: no-undef",
     "unsupported rule: @typescript-eslint/class-literal-property-style",
     "unsupported rule: @typescript-eslint/consistent-type-assertions",
-    "unsupported rule: @puppeteer/use-using",
     "type-aware rule detected, but \`--type-aware\` is not enabled: @typescript-eslint/no-unnecessary-template-expression",
     "unsupported rule: no-restricted-syntax",
     "type-aware rule detected, but \`--type-aware\` is not enabled: @typescript-eslint/no-floating-promises",
     "type-aware rule detected, but \`--type-aware\` is not enabled: @typescript-eslint/return-await",
     "unsupported rule: @typescript-eslint/consistent-type-exports",
-    "unsupported rule: tsdoc/syntax",
-    "unsupported rule: mocha/no-pending-tests",
-    "unsupported rule: mocha/no-identical-title",
-    "unsupported rule: @puppeteer/no-quirks-mode-set-content",
   ],
 }
 `;
@@ -401,6 +424,12 @@ exports[`puppeteer --type-aware > puppeteer--type-aware 1`] = `
       "examples/puppeteer-in-extension/out/**/*",
       "examples/puppeteer-in-extension/node_modules/**/*",
     ],
+    "jsPlugins": [
+      "eslint-plugin-prettier",
+      "eslint-plugin-mocha",
+      "@stylistic/eslint-plugin",
+      "@puppeteer/eslint-plugin",
+    ],
     "overrides": [
       {
         "files": [
@@ -523,10 +552,14 @@ exports[`puppeteer --type-aware > puppeteer--type-aware 1`] = `
         "files": [
           "**/*.ts",
         ],
+        "jsPlugins": [
+          "@puppeteer/eslint-plugin",
+        ],
         "plugins": [
           "typescript",
         ],
         "rules": {
+          "@puppeteer/use-using": "error",
           "@typescript-eslint/array-type": [
             "error",
             {
@@ -599,6 +632,17 @@ exports[`puppeteer --type-aware > puppeteer--type-aware 1`] = `
       },
       {
         "files": [
+          "packages/**/*.ts",
+        ],
+        "jsPlugins": [
+          "eslint-plugin-tsdoc",
+        ],
+        "rules": {
+          "tsdoc/syntax": "error",
+        },
+      },
+      {
+        "files": [
           "test/**/*.ts",
         ],
         "rules": {
@@ -616,10 +660,17 @@ exports[`puppeteer --type-aware > puppeteer--type-aware 1`] = `
         "files": [
           "test/**/*.spec.ts",
         ],
+        "jsPlugins": [
+          "eslint-plugin-mocha",
+          "@puppeteer/eslint-plugin",
+        ],
         "plugins": [
           "typescript",
         ],
         "rules": {
+          "@puppeteer/no-quirks-mode-set-content": "error",
+          "mocha/no-identical-title": "error",
+          "mocha/no-pending-tests": "error",
           "no-unused-vars": [
             "error",
             {
@@ -635,6 +686,11 @@ exports[`puppeteer --type-aware > puppeteer--type-aware 1`] = `
       "import",
     ],
     "rules": {
+      "@puppeteer/check-license": "error",
+      "@puppeteer/extensions": "error",
+      "@puppeteer/prettier-comments": "error",
+      "@stylistic/function-call-spacing": "error",
+      "@stylistic/semi": "error",
       "arrow-body-style": [
         "error",
         "always",
@@ -652,6 +708,7 @@ exports[`puppeteer --type-aware > puppeteer--type-aware 1`] = `
           "maxDepth": Infinity,
         },
       ],
+      "mocha/no-exclusive-tests": "error",
       "no-caller": "error",
       "no-cond-assign": "error",
       "no-debugger": "error",
@@ -673,13 +730,13 @@ exports[`puppeteer --type-aware > puppeteer--type-aware 1`] = `
       ],
       "no-var": "error",
       "no-with": "error",
+      "prettier/prettier": "error",
       "radix": "error",
       "require-yield": "error",
       "valid-typeof": "error",
     },
   },
   "warnings": [
-    "unsupported rule: prettier/prettier",
     "unsupported rule, but in development: import/named",
     "unsupported rule: spaced-comment",
     "unsupported rule: accessor-pairs",
@@ -691,26 +748,15 @@ exports[`puppeteer --type-aware > puppeteer--type-aware 1`] = `
     "unsupported rule: no-octal-escape",
     "unsupported rule, but in development: no-unreachable",
     "unsupported rule: template-curly-spacing",
-    "unsupported rule: mocha/no-exclusive-tests",
     "unsupported rule: import/order",
     "unsupported rule: import/enforce-node-protocol-usage",
-    "unsupported rule: @stylistic/function-call-spacing",
-    "unsupported rule: @stylistic/semi",
-    "unsupported rule: @puppeteer/prettier-comments",
-    "unsupported rule: @puppeteer/extensions",
-    "unsupported rule: @puppeteer/check-license",
     "unsupported rule, but in development: constructor-super",
     "unsupported rule, but in development: getter-return",
     "unsupported rule, but in development: no-undef",
     "unsupported rule: @typescript-eslint/class-literal-property-style",
     "unsupported rule: @typescript-eslint/consistent-type-assertions",
-    "unsupported rule: @puppeteer/use-using",
     "unsupported rule: no-restricted-syntax",
     "unsupported rule: @typescript-eslint/consistent-type-exports",
-    "unsupported rule: tsdoc/syntax",
-    "unsupported rule: mocha/no-pending-tests",
-    "unsupported rule: mocha/no-identical-title",
-    "unsupported rule: @puppeteer/no-quirks-mode-set-content",
   ],
 }
 `;
@@ -769,6 +815,12 @@ exports[`puppeteer merge > puppeteer--merge 1`] = `
       "examples/puppeteer-in-browser/node_modules/**/*",
       "examples/puppeteer-in-extension/out/**/*",
       "examples/puppeteer-in-extension/node_modules/**/*",
+    ],
+    "jsPlugins": [
+      "eslint-plugin-prettier",
+      "eslint-plugin-mocha",
+      "@stylistic/eslint-plugin",
+      "@puppeteer/eslint-plugin",
     ],
     "overrides": [
       {
@@ -892,10 +944,14 @@ exports[`puppeteer merge > puppeteer--merge 1`] = `
         "files": [
           "**/*.ts",
         ],
+        "jsPlugins": [
+          "@puppeteer/eslint-plugin",
+        ],
         "plugins": [
           "typescript",
         ],
         "rules": {
+          "@puppeteer/use-using": "error",
           "@typescript-eslint/array-type": [
             "error",
             {
@@ -944,6 +1000,17 @@ exports[`puppeteer merge > puppeteer--merge 1`] = `
       },
       {
         "files": [
+          "packages/**/*.ts",
+        ],
+        "jsPlugins": [
+          "eslint-plugin-tsdoc",
+        ],
+        "rules": {
+          "tsdoc/syntax": "error",
+        },
+      },
+      {
+        "files": [
           "test/**/*.ts",
         ],
         "rules": {
@@ -961,10 +1028,17 @@ exports[`puppeteer merge > puppeteer--merge 1`] = `
         "files": [
           "test/**/*.spec.ts",
         ],
+        "jsPlugins": [
+          "eslint-plugin-mocha",
+          "@puppeteer/eslint-plugin",
+        ],
         "plugins": [
           "typescript",
         ],
         "rules": {
+          "@puppeteer/no-quirks-mode-set-content": "error",
+          "mocha/no-identical-title": "error",
+          "mocha/no-pending-tests": "error",
           "no-unused-vars": [
             "error",
             {
@@ -980,6 +1054,11 @@ exports[`puppeteer merge > puppeteer--merge 1`] = `
       "import",
     ],
     "rules": {
+      "@puppeteer/check-license": "error",
+      "@puppeteer/extensions": "error",
+      "@puppeteer/prettier-comments": "error",
+      "@stylistic/function-call-spacing": "error",
+      "@stylistic/semi": "error",
       "eqeqeq": [
         "error",
       ],
@@ -989,6 +1068,7 @@ exports[`puppeteer merge > puppeteer--merge 1`] = `
           "maxDepth": Infinity,
         },
       ],
+      "mocha/no-exclusive-tests": "error",
       "no-labels": "error",
       "no-multi-str": "error",
       "no-self-compare": "error",
@@ -1001,11 +1081,11 @@ exports[`puppeteer merge > puppeteer--merge 1`] = `
         },
       ],
       "no-var": "error",
+      "prettier/prettier": "error",
       "radix": "error",
     },
   },
   "warnings": [
-    "unsupported rule: prettier/prettier",
     "unsupported rule, but in development: import/named",
     "unsupported rule: spaced-comment",
     "unsupported rule: accessor-pairs",
@@ -1017,29 +1097,18 @@ exports[`puppeteer merge > puppeteer--merge 1`] = `
     "unsupported rule: no-octal-escape",
     "unsupported rule, but in development: no-unreachable",
     "unsupported rule: template-curly-spacing",
-    "unsupported rule: mocha/no-exclusive-tests",
     "unsupported rule: import/order",
     "unsupported rule: import/enforce-node-protocol-usage",
-    "unsupported rule: @stylistic/function-call-spacing",
-    "unsupported rule: @stylistic/semi",
-    "unsupported rule: @puppeteer/prettier-comments",
-    "unsupported rule: @puppeteer/extensions",
-    "unsupported rule: @puppeteer/check-license",
     "unsupported rule, but in development: constructor-super",
     "unsupported rule, but in development: getter-return",
     "unsupported rule, but in development: no-undef",
     "unsupported rule: @typescript-eslint/class-literal-property-style",
     "unsupported rule: @typescript-eslint/consistent-type-assertions",
-    "unsupported rule: @puppeteer/use-using",
     "type-aware rule detected, but \`--type-aware\` is not enabled: @typescript-eslint/no-unnecessary-template-expression",
     "unsupported rule: no-restricted-syntax",
     "type-aware rule detected, but \`--type-aware\` is not enabled: @typescript-eslint/no-floating-promises",
     "type-aware rule detected, but \`--type-aware\` is not enabled: @typescript-eslint/return-await",
     "unsupported rule: @typescript-eslint/consistent-type-exports",
-    "unsupported rule: tsdoc/syntax",
-    "unsupported rule: mocha/no-pending-tests",
-    "unsupported rule: mocha/no-identical-title",
-    "unsupported rule: @puppeteer/no-quirks-mode-set-content",
   ],
 }
 `;
