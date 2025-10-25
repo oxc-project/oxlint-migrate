@@ -5,7 +5,7 @@ import { OxlintConfigOrOverride } from './types.js';
 const ignorePlugins = [
   ...Object.keys(rulesPrefixesForPlugins),
   ...Object.values(rulesPrefixesForPlugins),
-  'prefer-let', // not a plugin but a eslint rule `prefer-let/prefer-let`
+  'local', // ToDo: handle local plugin rules
 ];
 
 const getPluginNameFromRule = (rule: string): string | undefined => {
@@ -32,7 +32,7 @@ export const enableJsPluginRule = (
   eslintConfig: Linter.Config,
   targetConfig: OxlintConfigOrOverride,
   rule: string,
-  severity: 'error' | 'warn' | 'off'
+  ruleEntry: Linter.RuleEntry | undefined
 ): boolean => {
   const pluginName = getPluginNameFromRule(rule);
   if (pluginName === undefined) {
@@ -54,10 +54,8 @@ export const enableJsPluginRule = (
   if (!targetConfig.jsPlugins.includes(eslintName)) {
     targetConfig.jsPlugins.push(eslintName);
   }
-  if (rule.startsWith('babel')) {
-    console.log(rule, severity);
-  }
+
   targetConfig.rules = targetConfig.rules || {};
-  targetConfig.rules[rule] = severity;
+  targetConfig.rules[rule] = ruleEntry;
   return true;
 };

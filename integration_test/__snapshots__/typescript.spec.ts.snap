@@ -26,7 +26,6 @@ exports[`typescript > typescript 1`] = `
     ],
     "jsPlugins": [
       "eslint-plugin-regexp",
-      "eslint-plugin-local",
     ],
     "overrides": [
       {
@@ -109,11 +108,7 @@ exports[`typescript > typescript 1`] = `
         "files": [
           "src/**",
         ],
-        "jsPlugins": [
-          "eslint-plugin-local",
-        ],
         "rules": {
-          "local/no-direct-import": "error",
           "no-restricted-globals": [
             "error",
             {
@@ -195,20 +190,6 @@ exports[`typescript > typescript 1`] = `
       "@typescript-eslint/triple-slash-reference": "error",
       "eqeqeq": "error",
       "for-direction": "error",
-      "local/argument-trivia": "error",
-      "local/debug-assert": "error",
-      "local/js-extensions": "error",
-      "local/jsdoc-format": "error",
-      "local/no-array-mutating-method-expressions": "error",
-      "local/no-in-operator": "error",
-      "local/no-keywords": "error",
-      "local/only-arrow-functions": [
-        "error",
-        {
-          "allowDeclarations": true,
-          "allowNamedFunctions": true,
-        },
-      ],
       "no-array-constructor": "error",
       "no-async-promise-executor": "error",
       "no-caller": "error",
@@ -437,7 +418,6 @@ exports[`typescript --type-aware > typescript--type-aware 1`] = `
     ],
     "jsPlugins": [
       "eslint-plugin-regexp",
-      "eslint-plugin-local",
     ],
     "overrides": [
       {
@@ -520,12 +500,8 @@ exports[`typescript --type-aware > typescript--type-aware 1`] = `
         "files": [
           "src/**",
         ],
-        "jsPlugins": [
-          "eslint-plugin-local",
-        ],
         "rules": {
           "@typescript-eslint/no-unnecessary-type-assertion": "error",
-          "local/no-direct-import": "error",
           "no-restricted-globals": [
             "error",
             {
@@ -654,20 +630,6 @@ exports[`typescript --type-aware > typescript--type-aware 1`] = `
       "@typescript-eslint/triple-slash-reference": "error",
       "eqeqeq": "error",
       "for-direction": "error",
-      "local/argument-trivia": "error",
-      "local/debug-assert": "error",
-      "local/js-extensions": "error",
-      "local/jsdoc-format": "error",
-      "local/no-array-mutating-method-expressions": "error",
-      "local/no-in-operator": "error",
-      "local/no-keywords": "error",
-      "local/only-arrow-functions": [
-        "error",
-        {
-          "allowDeclarations": true,
-          "allowNamedFunctions": true,
-        },
-      ],
       "no-array-constructor": "error",
       "no-async-promise-executor": "error",
       "no-caller": "error",
@@ -857,7 +819,6 @@ exports[`typescript merge > typescript--merge 1`] = `
     ],
     "jsPlugins": [
       "eslint-plugin-regexp",
-      "eslint-plugin-local",
     ],
     "overrides": [
       {
@@ -940,11 +901,7 @@ exports[`typescript merge > typescript--merge 1`] = `
         "files": [
           "src/**",
         ],
-        "jsPlugins": [
-          "eslint-plugin-local",
-        ],
         "rules": {
-          "local/no-direct-import": "error",
           "no-restricted-globals": [
             "error",
             {
@@ -1026,20 +983,6 @@ exports[`typescript merge > typescript--merge 1`] = `
       "@typescript-eslint/prefer-function-type": "error",
       "@typescript-eslint/prefer-namespace-keyword": "error",
       "eqeqeq": "error",
-      "local/argument-trivia": "error",
-      "local/debug-assert": "error",
-      "local/js-extensions": "error",
-      "local/jsdoc-format": "error",
-      "local/no-array-mutating-method-expressions": "error",
-      "local/no-in-operator": "error",
-      "local/no-keywords": "error",
-      "local/only-arrow-functions": [
-        "error",
-        {
-          "allowDeclarations": true,
-          "allowNamedFunctions": true,
-        },
-      ],
       "no-array-constructor": "error",
       "no-case-declarations": "error",
       "no-empty": "error",

@@ -29,7 +29,9 @@ const isErrorValue = (value: unknown) => isValueInSet(value, ['error', 1]);
 
 const isWarnValue = (value: unknown) => isValueInSet(value, ['warn', 2]);
 
-const normalizeSeverityValue = (value: Linter.RuleEntry | undefined) => {
+const normalizeSeverityValue = (
+  value: Linter.RuleEntry | undefined
+): Linter.RuleEntry | undefined => {
   if (value === undefined) {
     return value;
   }
@@ -110,7 +112,7 @@ export const transformRuleEntry = (
           eslintConfig,
           targetConfig,
           rule,
-          normalizeSeverityValue(config) as 'error' | 'warn' | 'off'
+          normalizeSeverityValue(config)
         )
       ) {
         options?.reporter?.report(`unsupported rule: ${rule}`);
@@ -120,8 +122,7 @@ export const transformRuleEntry = (
 };
 
 export const detectNeededRulesPlugins = (
-  targetConfig: OxlintConfigOrOverride,
-  options?: Options
+  targetConfig: OxlintConfigOrOverride
 ): void => {
   if (targetConfig.rules === undefined) {
     return;
@@ -138,18 +139,13 @@ export const detectNeededRulesPlugins = (
       continue;
     }
 
-    let found = false;
     for (const [prefix, plugin] of Object.entries(rulesPrefixesForPlugins)) {
-      if (rule.startsWith(`${prefix}/`)) {
-        if (!targetConfig.plugins.includes(plugin)) {
-          targetConfig.plugins.push(plugin);
-        }
-        found = true;
+      if (
+        rule.startsWith(`${prefix}/`) &&
+        !targetConfig.plugins.includes(plugin)
+      ) {
+        targetConfig.plugins.push(plugin);
       }
-    }
-
-    if (!found) {
-      // options?.reporter?.report(`unsupported plugin for rule: ${rule}`);
     }
   }
 
