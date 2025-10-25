@@ -38,7 +38,6 @@
   "license": "MIT",
   "devDependencies": {
     "@antfu/eslint-config": "^5.0.0",
-    "@eslint/eslintrc": "^3.3.1",
     "@eslint/js": "^9.29.0",
     "@logux/eslint-config": "^56.0.0",
     "@oxc-node/core": "^0.0.32",
