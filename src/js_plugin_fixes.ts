@@ -15,6 +15,7 @@ const fixForAntfuEslintConfig = <T extends PossibleConfigs>(config: T): T => {
       ts: '@typescript-eslint',
       test: 'vitest',
       next: '@next/next',
+      style: '@stylistic',
     });
   }
 

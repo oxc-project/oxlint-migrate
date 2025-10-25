@@ -50,7 +50,22 @@ exports[`vscode > vscode 1`] = `
       "**/typings/**",
       "!.vscode",
     ],
+    "jsPlugins": [
+      "eslint-plugin-header",
+    ],
     "overrides": [
+      {
+        "files": [
+          "**/*.ts",
+        ],
+        "jsPlugins": [
+          "@stylistic/eslint-plugin",
+        ],
+        "rules": {
+          "@stylistic/ts/member-delimiter-style": "warn",
+          "@stylistic/ts/semi": "warn",
+        },
+      },
       {
         "files": [
           "**/vscode.d.ts",
@@ -279,6 +294,16 @@ exports[`vscode > vscode 1`] = `
     "rules": {
       "curly": "warn",
       "eqeqeq": "warn",
+      "header/header": [
+        "warn",
+        "block",
+        [
+          "---------------------------------------------------------------------------------------------",
+          " *  Copyright (c) Microsoft Corporation. All rights reserved.",
+          " *  Licensed under the MIT License. See License.txt in the project root for license information.",
+          " *--------------------------------------------------------------------------------------------",
+        ],
+      ],
       "no-async-promise-executor": "warn",
       "no-caller": "warn",
       "no-case-declarations": "warn",
@@ -312,9 +337,6 @@ exports[`vscode > vscode 1`] = `
     "unsupported rule: no-buffer-constructor",
     "unsupported rule: no-extra-semi",
     "unsupported rule, but in development: no-misleading-character-class",
-    "unsupported rule: header/header",
-    "unsupported rule: @stylistic/ts/semi",
-    "unsupported rule: @stylistic/ts/member-delimiter-style",
     "unsupported rule: jsdoc/no-types",
     "unsupported rule: @typescript-eslint/naming-convention",
     "unsupported rule: no-restricted-syntax",
@@ -378,7 +400,22 @@ exports[`vscode --type-aware > vscode--type-aware 1`] = `
       "**/typings/**",
       "!.vscode",
     ],
+    "jsPlugins": [
+      "eslint-plugin-header",
+    ],
     "overrides": [
+      {
+        "files": [
+          "**/*.ts",
+        ],
+        "jsPlugins": [
+          "@stylistic/eslint-plugin",
+        ],
+        "rules": {
+          "@stylistic/ts/member-delimiter-style": "warn",
+          "@stylistic/ts/semi": "warn",
+        },
+      },
       {
         "files": [
           "**/vscode.d.ts",
@@ -607,6 +644,16 @@ exports[`vscode --type-aware > vscode--type-aware 1`] = `
     "rules": {
       "curly": "warn",
       "eqeqeq": "warn",
+      "header/header": [
+        "warn",
+        "block",
+        [
+          "---------------------------------------------------------------------------------------------",
+          " *  Copyright (c) Microsoft Corporation. All rights reserved.",
+          " *  Licensed under the MIT License. See License.txt in the project root for license information.",
+          " *--------------------------------------------------------------------------------------------",
+        ],
+      ],
       "no-async-promise-executor": "warn",
       "no-caller": "warn",
       "no-case-declarations": "warn",
@@ -640,9 +687,6 @@ exports[`vscode --type-aware > vscode--type-aware 1`] = `
     "unsupported rule: no-buffer-constructor",
     "unsupported rule: no-extra-semi",
     "unsupported rule, but in development: no-misleading-character-class",
-    "unsupported rule: header/header",
-    "unsupported rule: @stylistic/ts/semi",
-    "unsupported rule: @stylistic/ts/member-delimiter-style",
     "unsupported rule: jsdoc/no-types",
     "unsupported rule: @typescript-eslint/naming-convention",
     "unsupported rule: no-restricted-syntax",
@@ -707,7 +751,22 @@ exports[`vscode merge > vscode--merge 1`] = `
       "**/typings/**",
       "!.vscode",
     ],
+    "jsPlugins": [
+      "eslint-plugin-header",
+    ],
     "overrides": [
+      {
+        "files": [
+          "**/*.ts",
+        ],
+        "jsPlugins": [
+          "@stylistic/eslint-plugin",
+        ],
+        "rules": {
+          "@stylistic/ts/member-delimiter-style": "warn",
+          "@stylistic/ts/semi": "warn",
+        },
+      },
       {
         "files": [
           "**/vscode.d.ts",
@@ -936,6 +995,16 @@ exports[`vscode merge > vscode--merge 1`] = `
     "rules": {
       "curly": "warn",
       "eqeqeq": "warn",
+      "header/header": [
+        "warn",
+        "block",
+        [
+          "---------------------------------------------------------------------------------------------",
+          " *  Copyright (c) Microsoft Corporation. All rights reserved.",
+          " *  Licensed under the MIT License. See License.txt in the project root for license information.",
+          " *--------------------------------------------------------------------------------------------",
+        ],
+      ],
       "no-async-promise-executor": "warn",
       "no-caller": "warn",
       "no-case-declarations": "warn",
@@ -969,9 +1038,6 @@ exports[`vscode merge > vscode--merge 1`] = `
     "unsupported rule: no-buffer-constructor",
     "unsupported rule: no-extra-semi",
     "unsupported rule, but in development: no-misleading-character-class",
-    "unsupported rule: header/header",
-    "unsupported rule: @stylistic/ts/semi",
-    "unsupported rule: @stylistic/ts/member-delimiter-style",
     "unsupported rule: jsdoc/no-types",
     "unsupported rule: @typescript-eslint/naming-convention",
     "unsupported rule: no-restricted-syntax",
