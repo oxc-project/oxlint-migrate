@@ -214,6 +214,7 @@ describe('rules and plugins', () => {
       const config: OxlintConfig = {
         categories: {
           style: 'warn',
+          correctness: 'off',
         },
         rules: {
           'no-unused-vars': 'off',
@@ -225,6 +226,7 @@ describe('rules and plugins', () => {
       expect(newConfig).toStrictEqual({
         categories: {
           style: 'warn',
+          correctness: 'off',
         },
         rules: {},
       });

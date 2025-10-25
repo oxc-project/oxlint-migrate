@@ -232,9 +232,16 @@ const getEnabledCategories = (config: OxlintConfig): string[] => {
   if (config.categories === undefined) {
     return ['correctness'];
   }
-  return Object.entries(config.categories)
+  const categories = Object.entries(config.categories)
     .filter(([, severity]) => severity === 'warn' || severity === 'error')
     .map(([category]) => category);
+
+  // special case: when correctness is not defined, we consider it enabled
+  if (Object.keys(config.categories).includes('correctness')) {
+    return categories;
+  }
+
+  return [...categories, 'correctness'];
 };
 
 const isRuleInEnabledCategory = (
