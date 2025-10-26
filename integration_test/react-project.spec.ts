@@ -1,26 +1,5 @@
-import { expect, test } from 'vitest';
 // @ts-ignore
-import puppeteer_test from './projects/react-project.eslint.config.mjs';
-import { getSnapshotResult, getSnapShotMergeResult } from './utils.js';
+import react_test from './projects/react-project.eslint.config.mjs';
+import { testProject } from './utils.js';
 
-test('react-project', async () => {
-  const result = await getSnapshotResult(puppeteer_test);
-  expect(result).toMatchSnapshot('react-project');
-});
-
-test('react-project --type-aware', async () => {
-  const result = await getSnapshotResult(puppeteer_test, undefined, {
-    typeAware: true,
-  });
-  expect(result).toMatchSnapshot('react-project--type-aware');
-});
-
-test('react-project merge', async () => {
-  const result = await getSnapShotMergeResult(puppeteer_test, {
-    categories: {
-      correctness: 'error',
-      perf: 'error',
-    },
-  });
-  expect(result).toMatchSnapshot('react-project--merge');
-});
+testProject('react-project', react_test);

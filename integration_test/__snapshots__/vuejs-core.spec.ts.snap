@@ -184,7 +184,7 @@ exports[`vuejs/core > vuejs/core 1`] = `
 }
 `;
 
-exports[`vuejs/core --type-ware > vuejs/core--type-aware 1`] = `
+exports[`vuejs/core --type-aware > vuejs/core--type-aware 1`] = `
 {
   "config": {
     "$schema": "./node_modules/oxlint/configuration_schema.json",
