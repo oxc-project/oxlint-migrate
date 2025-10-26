@@ -189,7 +189,7 @@ exports[`puppeteer > puppeteer 1`] = `
           "typescript",
         ],
         "rules": {
-          "@puppeteer/use-using": "error",
+          "@puppeteer/eslint-plugin/use-using": "error",
           "@typescript-eslint/array-type": [
             "error",
             {
@@ -244,7 +244,7 @@ exports[`puppeteer > puppeteer 1`] = `
           "eslint-plugin-tsdoc",
         ],
         "rules": {
-          "tsdoc/syntax": "error",
+          "eslint-plugin-tsdoc/syntax": "error",
         },
       },
       {
@@ -274,9 +274,9 @@ exports[`puppeteer > puppeteer 1`] = `
           "typescript",
         ],
         "rules": {
-          "@puppeteer/no-quirks-mode-set-content": "error",
-          "mocha/no-identical-title": "error",
-          "mocha/no-pending-tests": "error",
+          "@puppeteer/eslint-plugin/no-quirks-mode-set-content": "error",
+          "eslint-plugin-mocha/no-identical-title": "error",
+          "eslint-plugin-mocha/no-pending-tests": "error",
           "no-unused-vars": [
             "error",
             {
@@ -292,11 +292,11 @@ exports[`puppeteer > puppeteer 1`] = `
       "import",
     ],
     "rules": {
-      "@puppeteer/check-license": "error",
-      "@puppeteer/extensions": "error",
-      "@puppeteer/prettier-comments": "error",
-      "@stylistic/function-call-spacing": "error",
-      "@stylistic/semi": "error",
+      "@puppeteer/eslint-plugin/check-license": "error",
+      "@puppeteer/eslint-plugin/extensions": "error",
+      "@puppeteer/eslint-plugin/prettier-comments": "error",
+      "@stylistic/eslint-plugin/function-call-spacing": "error",
+      "@stylistic/eslint-plugin/semi": "error",
       "arrow-body-style": [
         "error",
         "always",
@@ -308,13 +308,14 @@ exports[`puppeteer > puppeteer 1`] = `
       "eqeqeq": [
         "error",
       ],
+      "eslint-plugin-mocha/no-exclusive-tests": "error",
+      "eslint-plugin-prettier/prettier": "error",
       "import/no-cycle": [
         "error",
         {
           "maxDepth": Infinity,
         },
       ],
-      "mocha/no-exclusive-tests": "error",
       "no-caller": "error",
       "no-cond-assign": "error",
       "no-debugger": "error",
@@ -336,7 +337,6 @@ exports[`puppeteer > puppeteer 1`] = `
       ],
       "no-var": "error",
       "no-with": "error",
-      "prettier/prettier": "error",
       "radix": "error",
       "require-yield": "error",
       "valid-typeof": "error",
@@ -559,7 +559,7 @@ exports[`puppeteer --type-aware > puppeteer--type-aware 1`] = `
           "typescript",
         ],
         "rules": {
-          "@puppeteer/use-using": "error",
+          "@puppeteer/eslint-plugin/use-using": "error",
           "@typescript-eslint/array-type": [
             "error",
             {
@@ -638,7 +638,7 @@ exports[`puppeteer --type-aware > puppeteer--type-aware 1`] = `
           "eslint-plugin-tsdoc",
         ],
         "rules": {
-          "tsdoc/syntax": "error",
+          "eslint-plugin-tsdoc/syntax": "error",
         },
       },
       {
@@ -668,9 +668,9 @@ exports[`puppeteer --type-aware > puppeteer--type-aware 1`] = `
           "typescript",
         ],
         "rules": {
-          "@puppeteer/no-quirks-mode-set-content": "error",
-          "mocha/no-identical-title": "error",
-          "mocha/no-pending-tests": "error",
+          "@puppeteer/eslint-plugin/no-quirks-mode-set-content": "error",
+          "eslint-plugin-mocha/no-identical-title": "error",
+          "eslint-plugin-mocha/no-pending-tests": "error",
           "no-unused-vars": [
             "error",
             {
@@ -686,11 +686,11 @@ exports[`puppeteer --type-aware > puppeteer--type-aware 1`] = `
       "import",
     ],
     "rules": {
-      "@puppeteer/check-license": "error",
-      "@puppeteer/extensions": "error",
-      "@puppeteer/prettier-comments": "error",
-      "@stylistic/function-call-spacing": "error",
-      "@stylistic/semi": "error",
+      "@puppeteer/eslint-plugin/check-license": "error",
+      "@puppeteer/eslint-plugin/extensions": "error",
+      "@puppeteer/eslint-plugin/prettier-comments": "error",
+      "@stylistic/eslint-plugin/function-call-spacing": "error",
+      "@stylistic/eslint-plugin/semi": "error",
       "arrow-body-style": [
         "error",
         "always",
@@ -702,13 +702,14 @@ exports[`puppeteer --type-aware > puppeteer--type-aware 1`] = `
       "eqeqeq": [
         "error",
       ],
+      "eslint-plugin-mocha/no-exclusive-tests": "error",
+      "eslint-plugin-prettier/prettier": "error",
       "import/no-cycle": [
         "error",
         {
           "maxDepth": Infinity,
         },
       ],
-      "mocha/no-exclusive-tests": "error",
       "no-caller": "error",
       "no-cond-assign": "error",
       "no-debugger": "error",
@@ -730,7 +731,6 @@ exports[`puppeteer --type-aware > puppeteer--type-aware 1`] = `
       ],
       "no-var": "error",
       "no-with": "error",
-      "prettier/prettier": "error",
       "radix": "error",
       "require-yield": "error",
       "valid-typeof": "error",
@@ -951,7 +951,7 @@ exports[`puppeteer merge > puppeteer--merge 1`] = `
           "typescript",
         ],
         "rules": {
-          "@puppeteer/use-using": "error",
+          "@puppeteer/eslint-plugin/use-using": "error",
           "@typescript-eslint/array-type": [
             "error",
             {
@@ -1006,7 +1006,7 @@ exports[`puppeteer merge > puppeteer--merge 1`] = `
           "eslint-plugin-tsdoc",
         ],
         "rules": {
-          "tsdoc/syntax": "error",
+          "eslint-plugin-tsdoc/syntax": "error",
         },
       },
       {
@@ -1036,9 +1036,9 @@ exports[`puppeteer merge > puppeteer--merge 1`] = `
           "typescript",
         ],
         "rules": {
-          "@puppeteer/no-quirks-mode-set-content": "error",
-          "mocha/no-identical-title": "error",
-          "mocha/no-pending-tests": "error",
+          "@puppeteer/eslint-plugin/no-quirks-mode-set-content": "error",
+          "eslint-plugin-mocha/no-identical-title": "error",
+          "eslint-plugin-mocha/no-pending-tests": "error",
           "no-unused-vars": [
             "error",
             {
@@ -1054,21 +1054,22 @@ exports[`puppeteer merge > puppeteer--merge 1`] = `
       "import",
     ],
     "rules": {
-      "@puppeteer/check-license": "error",
-      "@puppeteer/extensions": "error",
-      "@puppeteer/prettier-comments": "error",
-      "@stylistic/function-call-spacing": "error",
-      "@stylistic/semi": "error",
+      "@puppeteer/eslint-plugin/check-license": "error",
+      "@puppeteer/eslint-plugin/extensions": "error",
+      "@puppeteer/eslint-plugin/prettier-comments": "error",
+      "@stylistic/eslint-plugin/function-call-spacing": "error",
+      "@stylistic/eslint-plugin/semi": "error",
       "eqeqeq": [
         "error",
       ],
+      "eslint-plugin-mocha/no-exclusive-tests": "error",
+      "eslint-plugin-prettier/prettier": "error",
       "import/no-cycle": [
         "error",
         {
           "maxDepth": Infinity,
         },
       ],
-      "mocha/no-exclusive-tests": "error",
       "no-labels": "error",
       "no-multi-str": "error",
       "no-self-compare": "error",
@@ -1081,7 +1082,6 @@ exports[`puppeteer merge > puppeteer--merge 1`] = `
         },
       ],
       "no-var": "error",
-      "prettier/prettier": "error",
       "radix": "error",
     },
   },

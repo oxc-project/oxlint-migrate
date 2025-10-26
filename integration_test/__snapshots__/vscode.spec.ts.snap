@@ -62,8 +62,7 @@ exports[`vscode > vscode 1`] = `
           "@stylistic/eslint-plugin",
         ],
         "rules": {
-          "@stylistic/ts/member-delimiter-style": "warn",
-          "@stylistic/ts/semi": "warn",
+          "@stylistic/eslint-plugin/ts": "warn",
         },
       },
       {
@@ -294,7 +293,7 @@ exports[`vscode > vscode 1`] = `
     "rules": {
       "curly": "warn",
       "eqeqeq": "warn",
-      "header/header": [
+      "eslint-plugin-header/header": [
         "warn",
         "block",
         [
@@ -412,8 +411,7 @@ exports[`vscode --type-aware > vscode--type-aware 1`] = `
           "@stylistic/eslint-plugin",
         ],
         "rules": {
-          "@stylistic/ts/member-delimiter-style": "warn",
-          "@stylistic/ts/semi": "warn",
+          "@stylistic/eslint-plugin/ts": "warn",
         },
       },
       {
@@ -644,7 +642,7 @@ exports[`vscode --type-aware > vscode--type-aware 1`] = `
     "rules": {
       "curly": "warn",
       "eqeqeq": "warn",
-      "header/header": [
+      "eslint-plugin-header/header": [
         "warn",
         "block",
         [
@@ -763,8 +761,7 @@ exports[`vscode merge > vscode--merge 1`] = `
           "@stylistic/eslint-plugin",
         ],
         "rules": {
-          "@stylistic/ts/member-delimiter-style": "warn",
-          "@stylistic/ts/semi": "warn",
+          "@stylistic/eslint-plugin/ts": "warn",
         },
       },
       {
@@ -995,7 +992,7 @@ exports[`vscode merge > vscode--merge 1`] = `
     "rules": {
       "curly": "warn",
       "eqeqeq": "warn",
-      "header/header": [
+      "eslint-plugin-header/header": [
         "warn",
         "block",
         [

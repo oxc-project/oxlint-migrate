@@ -61,6 +61,166 @@ exports[`autoprefixer > autoprefixer 1`] = `
           "null": "ignore",
         },
       ],
+      "eslint-plugin-perfectionist/sort-array-includes": [
+        "warn",
+        {
+          "order": "asc",
+          "type": "alphabetical",
+        },
+      ],
+      "eslint-plugin-perfectionist/sort-classes": [
+        "warn",
+        {
+          "order": "asc",
+          "type": "alphabetical",
+        },
+      ],
+      "eslint-plugin-perfectionist/sort-decorators": [
+        "warn",
+        {
+          "order": "asc",
+          "type": "alphabetical",
+        },
+      ],
+      "eslint-plugin-perfectionist/sort-enums": [
+        "warn",
+        {
+          "order": "asc",
+          "type": "alphabetical",
+        },
+      ],
+      "eslint-plugin-perfectionist/sort-exports": [
+        "warn",
+        {
+          "order": "asc",
+          "type": "alphabetical",
+        },
+      ],
+      "eslint-plugin-perfectionist/sort-heritage-clauses": [
+        "warn",
+        {
+          "order": "asc",
+          "type": "alphabetical",
+        },
+      ],
+      "eslint-plugin-perfectionist/sort-imports": [
+        "warn",
+        {
+          "groups": [
+            "side-effect",
+            "side-effect-style",
+            "style",
+            [
+              "builtin-type",
+              "type",
+              "builtin",
+              "external",
+              "unknown",
+            ],
+            [
+              "internal-type",
+              "parent-type",
+              "sibling-type",
+              "index-type",
+              "internal",
+              "parent",
+              "sibling",
+              "index",
+            ],
+            [
+              "object",
+            ],
+          ],
+          "newlinesBetween": "always",
+          "order": "asc",
+          "type": "alphabetical",
+        },
+      ],
+      "eslint-plugin-perfectionist/sort-interfaces": [
+        "warn",
+        {
+          "order": "asc",
+          "type": "alphabetical",
+        },
+      ],
+      "eslint-plugin-perfectionist/sort-intersection-types": [
+        "warn",
+        {
+          "order": "asc",
+          "type": "alphabetical",
+        },
+      ],
+      "eslint-plugin-perfectionist/sort-jsx-props": [
+        "warn",
+        {
+          "order": "asc",
+          "type": "alphabetical",
+        },
+      ],
+      "eslint-plugin-perfectionist/sort-maps": [
+        "warn",
+        {
+          "order": "asc",
+          "type": "alphabetical",
+        },
+      ],
+      "eslint-plugin-perfectionist/sort-named-exports": [
+        "warn",
+        {
+          "order": "asc",
+          "type": "alphabetical",
+        },
+      ],
+      "eslint-plugin-perfectionist/sort-named-imports": [
+        "warn",
+        {
+          "order": "asc",
+          "type": "alphabetical",
+        },
+      ],
+      "eslint-plugin-perfectionist/sort-object-types": [
+        "warn",
+        {
+          "order": "asc",
+          "type": "alphabetical",
+        },
+      ],
+      "eslint-plugin-perfectionist/sort-objects": [
+        "warn",
+        {
+          "order": "asc",
+          "type": "alphabetical",
+        },
+      ],
+      "eslint-plugin-perfectionist/sort-sets": [
+        "warn",
+        {
+          "order": "asc",
+          "type": "alphabetical",
+        },
+      ],
+      "eslint-plugin-perfectionist/sort-switch-case": [
+        "warn",
+        {
+          "order": "asc",
+          "type": "alphabetical",
+        },
+      ],
+      "eslint-plugin-perfectionist/sort-union-types": [
+        "warn",
+        {
+          "order": "asc",
+          "type": "alphabetical",
+        },
+      ],
+      "eslint-plugin-perfectionist/sort-variable-declarations": [
+        "warn",
+        {
+          "order": "asc",
+          "type": "alphabetical",
+        },
+      ],
+      "eslint-plugin-prefer-let/prefer-let": "error",
       "for-direction": "error",
       "import-x/first": "error",
       "import-x/no-absolute-path": [
@@ -202,167 +362,7 @@ exports[`autoprefixer > autoprefixer 1`] = `
       "no-var": "warn",
       "no-void": "error",
       "no-with": "error",
-      "perfectionist/sort-array-includes": [
-        "warn",
-        {
-          "order": "asc",
-          "type": "alphabetical",
-        },
-      ],
-      "perfectionist/sort-classes": [
-        "warn",
-        {
-          "order": "asc",
-          "type": "alphabetical",
-        },
-      ],
-      "perfectionist/sort-decorators": [
-        "warn",
-        {
-          "order": "asc",
-          "type": "alphabetical",
-        },
-      ],
-      "perfectionist/sort-enums": [
-        "warn",
-        {
-          "order": "asc",
-          "type": "alphabetical",
-        },
-      ],
-      "perfectionist/sort-exports": [
-        "warn",
-        {
-          "order": "asc",
-          "type": "alphabetical",
-        },
-      ],
-      "perfectionist/sort-heritage-clauses": [
-        "warn",
-        {
-          "order": "asc",
-          "type": "alphabetical",
-        },
-      ],
-      "perfectionist/sort-imports": [
-        "warn",
-        {
-          "groups": [
-            "side-effect",
-            "side-effect-style",
-            "style",
-            [
-              "builtin-type",
-              "type",
-              "builtin",
-              "external",
-              "unknown",
-            ],
-            [
-              "internal-type",
-              "parent-type",
-              "sibling-type",
-              "index-type",
-              "internal",
-              "parent",
-              "sibling",
-              "index",
-            ],
-            [
-              "object",
-            ],
-          ],
-          "newlinesBetween": "always",
-          "order": "asc",
-          "type": "alphabetical",
-        },
-      ],
-      "perfectionist/sort-interfaces": [
-        "warn",
-        {
-          "order": "asc",
-          "type": "alphabetical",
-        },
-      ],
-      "perfectionist/sort-intersection-types": [
-        "warn",
-        {
-          "order": "asc",
-          "type": "alphabetical",
-        },
-      ],
-      "perfectionist/sort-jsx-props": [
-        "warn",
-        {
-          "order": "asc",
-          "type": "alphabetical",
-        },
-      ],
-      "perfectionist/sort-maps": [
-        "warn",
-        {
-          "order": "asc",
-          "type": "alphabetical",
-        },
-      ],
-      "perfectionist/sort-named-exports": [
-        "warn",
-        {
-          "order": "asc",
-          "type": "alphabetical",
-        },
-      ],
-      "perfectionist/sort-named-imports": [
-        "warn",
-        {
-          "order": "asc",
-          "type": "alphabetical",
-        },
-      ],
-      "perfectionist/sort-object-types": [
-        "warn",
-        {
-          "order": "asc",
-          "type": "alphabetical",
-        },
-      ],
-      "perfectionist/sort-objects": [
-        "warn",
-        {
-          "order": "asc",
-          "type": "alphabetical",
-        },
-      ],
-      "perfectionist/sort-sets": [
-        "warn",
-        {
-          "order": "asc",
-          "type": "alphabetical",
-        },
-      ],
-      "perfectionist/sort-switch-case": [
-        "warn",
-        {
-          "order": "asc",
-          "type": "alphabetical",
-        },
-      ],
-      "perfectionist/sort-union-types": [
-        "warn",
-        {
-          "order": "asc",
-          "type": "alphabetical",
-        },
-      ],
-      "perfectionist/sort-variable-declarations": [
-        "warn",
-        {
-          "order": "asc",
-          "type": "alphabetical",
-        },
-      ],
       "prefer-exponentiation-operator": "error",
-      "prefer-let/prefer-let": "error",
       "prefer-promise-reject-errors": "error",
       "prefer-rest-params": "error",
       "prefer-spread": "error",
@@ -494,6 +494,166 @@ exports[`autoprefixer --type-aware > autoprefixer--type-aware 1`] = `
           "null": "ignore",
         },
       ],
+      "eslint-plugin-perfectionist/sort-array-includes": [
+        "warn",
+        {
+          "order": "asc",
+          "type": "alphabetical",
+        },
+      ],
+      "eslint-plugin-perfectionist/sort-classes": [
+        "warn",
+        {
+          "order": "asc",
+          "type": "alphabetical",
+        },
+      ],
+      "eslint-plugin-perfectionist/sort-decorators": [
+        "warn",
+        {
+          "order": "asc",
+          "type": "alphabetical",
+        },
+      ],
+      "eslint-plugin-perfectionist/sort-enums": [
+        "warn",
+        {
+          "order": "asc",
+          "type": "alphabetical",
+        },
+      ],
+      "eslint-plugin-perfectionist/sort-exports": [
+        "warn",
+        {
+          "order": "asc",
+          "type": "alphabetical",
+        },
+      ],
+      "eslint-plugin-perfectionist/sort-heritage-clauses": [
+        "warn",
+        {
+          "order": "asc",
+          "type": "alphabetical",
+        },
+      ],
+      "eslint-plugin-perfectionist/sort-imports": [
+        "warn",
+        {
+          "groups": [
+            "side-effect",
+            "side-effect-style",
+            "style",
+            [
+              "builtin-type",
+              "type",
+              "builtin",
+              "external",
+              "unknown",
+            ],
+            [
+              "internal-type",
+              "parent-type",
+              "sibling-type",
+              "index-type",
+              "internal",
+              "parent",
+              "sibling",
+              "index",
+            ],
+            [
+              "object",
+            ],
+          ],
+          "newlinesBetween": "always",
+          "order": "asc",
+          "type": "alphabetical",
+        },
+      ],
+      "eslint-plugin-perfectionist/sort-interfaces": [
+        "warn",
+        {
+          "order": "asc",
+          "type": "alphabetical",
+        },
+      ],
+      "eslint-plugin-perfectionist/sort-intersection-types": [
+        "warn",
+        {
+          "order": "asc",
+          "type": "alphabetical",
+        },
+      ],
+      "eslint-plugin-perfectionist/sort-jsx-props": [
+        "warn",
+        {
+          "order": "asc",
+          "type": "alphabetical",
+        },
+      ],
+      "eslint-plugin-perfectionist/sort-maps": [
+        "warn",
+        {
+          "order": "asc",
+          "type": "alphabetical",
+        },
+      ],
+      "eslint-plugin-perfectionist/sort-named-exports": [
+        "warn",
+        {
+          "order": "asc",
+          "type": "alphabetical",
+        },
+      ],
+      "eslint-plugin-perfectionist/sort-named-imports": [
+        "warn",
+        {
+          "order": "asc",
+          "type": "alphabetical",
+        },
+      ],
+      "eslint-plugin-perfectionist/sort-object-types": [
+        "warn",
+        {
+          "order": "asc",
+          "type": "alphabetical",
+        },
+      ],
+      "eslint-plugin-perfectionist/sort-objects": [
+        "warn",
+        {
+          "order": "asc",
+          "type": "alphabetical",
+        },
+      ],
+      "eslint-plugin-perfectionist/sort-sets": [
+        "warn",
+        {
+          "order": "asc",
+          "type": "alphabetical",
+        },
+      ],
+      "eslint-plugin-perfectionist/sort-switch-case": [
+        "warn",
+        {
+          "order": "asc",
+          "type": "alphabetical",
+        },
+      ],
+      "eslint-plugin-perfectionist/sort-union-types": [
+        "warn",
+        {
+          "order": "asc",
+          "type": "alphabetical",
+        },
+      ],
+      "eslint-plugin-perfectionist/sort-variable-declarations": [
+        "warn",
+        {
+          "order": "asc",
+          "type": "alphabetical",
+        },
+      ],
+      "eslint-plugin-prefer-let/prefer-let": "error",
       "for-direction": "error",
       "import-x/first": "error",
       "import-x/no-absolute-path": [
@@ -635,167 +795,7 @@ exports[`autoprefixer --type-aware > autoprefixer--type-aware 1`] = `
       "no-var": "warn",
       "no-void": "error",
       "no-with": "error",
-      "perfectionist/sort-array-includes": [
-        "warn",
-        {
-          "order": "asc",
-          "type": "alphabetical",
-        },
-      ],
-      "perfectionist/sort-classes": [
-        "warn",
-        {
-          "order": "asc",
-          "type": "alphabetical",
-        },
-      ],
-      "perfectionist/sort-decorators": [
-        "warn",
-        {
-          "order": "asc",
-          "type": "alphabetical",
-        },
-      ],
-      "perfectionist/sort-enums": [
-        "warn",
-        {
-          "order": "asc",
-          "type": "alphabetical",
-        },
-      ],
-      "perfectionist/sort-exports": [
-        "warn",
-        {
-          "order": "asc",
-          "type": "alphabetical",
-        },
-      ],
-      "perfectionist/sort-heritage-clauses": [
-        "warn",
-        {
-          "order": "asc",
-          "type": "alphabetical",
-        },
-      ],
-      "perfectionist/sort-imports": [
-        "warn",
-        {
-          "groups": [
-            "side-effect",
-            "side-effect-style",
-            "style",
-            [
-              "builtin-type",
-              "type",
-              "builtin",
-              "external",
-              "unknown",
-            ],
-            [
-              "internal-type",
-              "parent-type",
-              "sibling-type",
-              "index-type",
-              "internal",
-              "parent",
-              "sibling",
-              "index",
-            ],
-            [
-              "object",
-            ],
-          ],
-          "newlinesBetween": "always",
-          "order": "asc",
-          "type": "alphabetical",
-        },
-      ],
-      "perfectionist/sort-interfaces": [
-        "warn",
-        {
-          "order": "asc",
-          "type": "alphabetical",
-        },
-      ],
-      "perfectionist/sort-intersection-types": [
-        "warn",
-        {
-          "order": "asc",
-          "type": "alphabetical",
-        },
-      ],
-      "perfectionist/sort-jsx-props": [
-        "warn",
-        {
-          "order": "asc",
-          "type": "alphabetical",
-        },
-      ],
-      "perfectionist/sort-maps": [
-        "warn",
-        {
-          "order": "asc",
-          "type": "alphabetical",
-        },
-      ],
-      "perfectionist/sort-named-exports": [
-        "warn",
-        {
-          "order": "asc",
-          "type": "alphabetical",
-        },
-      ],
-      "perfectionist/sort-named-imports": [
-        "warn",
-        {
-          "order": "asc",
-          "type": "alphabetical",
-        },
-      ],
-      "perfectionist/sort-object-types": [
-        "warn",
-        {
-          "order": "asc",
-          "type": "alphabetical",
-        },
-      ],
-      "perfectionist/sort-objects": [
-        "warn",
-        {
-          "order": "asc",
-          "type": "alphabetical",
-        },
-      ],
-      "perfectionist/sort-sets": [
-        "warn",
-        {
-          "order": "asc",
-          "type": "alphabetical",
-        },
-      ],
-      "perfectionist/sort-switch-case": [
-        "warn",
-        {
-          "order": "asc",
-          "type": "alphabetical",
-        },
-      ],
-      "perfectionist/sort-union-types": [
-        "warn",
-        {
-          "order": "asc",
-          "type": "alphabetical",
-        },
-      ],
-      "perfectionist/sort-variable-declarations": [
-        "warn",
-        {
-          "order": "asc",
-          "type": "alphabetical",
-        },
-      ],
       "prefer-exponentiation-operator": "error",
-      "prefer-let/prefer-let": "error",
       "prefer-promise-reject-errors": "error",
       "prefer-rest-params": "error",
       "prefer-spread": "error",
@@ -928,6 +928,166 @@ exports[`autoprefixer merge > autoprefixer--merge 1`] = `
           "null": "ignore",
         },
       ],
+      "eslint-plugin-perfectionist/sort-array-includes": [
+        "warn",
+        {
+          "order": "asc",
+          "type": "alphabetical",
+        },
+      ],
+      "eslint-plugin-perfectionist/sort-classes": [
+        "warn",
+        {
+          "order": "asc",
+          "type": "alphabetical",
+        },
+      ],
+      "eslint-plugin-perfectionist/sort-decorators": [
+        "warn",
+        {
+          "order": "asc",
+          "type": "alphabetical",
+        },
+      ],
+      "eslint-plugin-perfectionist/sort-enums": [
+        "warn",
+        {
+          "order": "asc",
+          "type": "alphabetical",
+        },
+      ],
+      "eslint-plugin-perfectionist/sort-exports": [
+        "warn",
+        {
+          "order": "asc",
+          "type": "alphabetical",
+        },
+      ],
+      "eslint-plugin-perfectionist/sort-heritage-clauses": [
+        "warn",
+        {
+          "order": "asc",
+          "type": "alphabetical",
+        },
+      ],
+      "eslint-plugin-perfectionist/sort-imports": [
+        "warn",
+        {
+          "groups": [
+            "side-effect",
+            "side-effect-style",
+            "style",
+            [
+              "builtin-type",
+              "type",
+              "builtin",
+              "external",
+              "unknown",
+            ],
+            [
+              "internal-type",
+              "parent-type",
+              "sibling-type",
+              "index-type",
+              "internal",
+              "parent",
+              "sibling",
+              "index",
+            ],
+            [
+              "object",
+            ],
+          ],
+          "newlinesBetween": "always",
+          "order": "asc",
+          "type": "alphabetical",
+        },
+      ],
+      "eslint-plugin-perfectionist/sort-interfaces": [
+        "warn",
+        {
+          "order": "asc",
+          "type": "alphabetical",
+        },
+      ],
+      "eslint-plugin-perfectionist/sort-intersection-types": [
+        "warn",
+        {
+          "order": "asc",
+          "type": "alphabetical",
+        },
+      ],
+      "eslint-plugin-perfectionist/sort-jsx-props": [
+        "warn",
+        {
+          "order": "asc",
+          "type": "alphabetical",
+        },
+      ],
+      "eslint-plugin-perfectionist/sort-maps": [
+        "warn",
+        {
+          "order": "asc",
+          "type": "alphabetical",
+        },
+      ],
+      "eslint-plugin-perfectionist/sort-named-exports": [
+        "warn",
+        {
+          "order": "asc",
+          "type": "alphabetical",
+        },
+      ],
+      "eslint-plugin-perfectionist/sort-named-imports": [
+        "warn",
+        {
+          "order": "asc",
+          "type": "alphabetical",
+        },
+      ],
+      "eslint-plugin-perfectionist/sort-object-types": [
+        "warn",
+        {
+          "order": "asc",
+          "type": "alphabetical",
+        },
+      ],
+      "eslint-plugin-perfectionist/sort-objects": [
+        "warn",
+        {
+          "order": "asc",
+          "type": "alphabetical",
+        },
+      ],
+      "eslint-plugin-perfectionist/sort-sets": [
+        "warn",
+        {
+          "order": "asc",
+          "type": "alphabetical",
+        },
+      ],
+      "eslint-plugin-perfectionist/sort-switch-case": [
+        "warn",
+        {
+          "order": "asc",
+          "type": "alphabetical",
+        },
+      ],
+      "eslint-plugin-perfectionist/sort-union-types": [
+        "warn",
+        {
+          "order": "asc",
+          "type": "alphabetical",
+        },
+      ],
+      "eslint-plugin-perfectionist/sort-variable-declarations": [
+        "warn",
+        {
+          "order": "asc",
+          "type": "alphabetical",
+        },
+      ],
+      "eslint-plugin-prefer-let/prefer-let": "error",
       "import-x/first": "error",
       "import-x/no-absolute-path": [
         "error",
@@ -1029,167 +1189,7 @@ exports[`autoprefixer merge > autoprefixer--merge 1`] = `
       "no-useless-constructor": "error",
       "no-var": "warn",
       "no-void": "error",
-      "perfectionist/sort-array-includes": [
-        "warn",
-        {
-          "order": "asc",
-          "type": "alphabetical",
-        },
-      ],
-      "perfectionist/sort-classes": [
-        "warn",
-        {
-          "order": "asc",
-          "type": "alphabetical",
-        },
-      ],
-      "perfectionist/sort-decorators": [
-        "warn",
-        {
-          "order": "asc",
-          "type": "alphabetical",
-        },
-      ],
-      "perfectionist/sort-enums": [
-        "warn",
-        {
-          "order": "asc",
-          "type": "alphabetical",
-        },
-      ],
-      "perfectionist/sort-exports": [
-        "warn",
-        {
-          "order": "asc",
-          "type": "alphabetical",
-        },
-      ],
-      "perfectionist/sort-heritage-clauses": [
-        "warn",
-        {
-          "order": "asc",
-          "type": "alphabetical",
-        },
-      ],
-      "perfectionist/sort-imports": [
-        "warn",
-        {
-          "groups": [
-            "side-effect",
-            "side-effect-style",
-            "style",
-            [
-              "builtin-type",
-              "type",
-              "builtin",
-              "external",
-              "unknown",
-            ],
-            [
-              "internal-type",
-              "parent-type",
-              "sibling-type",
-              "index-type",
-              "internal",
-              "parent",
-              "sibling",
-              "index",
-            ],
-            [
-              "object",
-            ],
-          ],
-          "newlinesBetween": "always",
-          "order": "asc",
-          "type": "alphabetical",
-        },
-      ],
-      "perfectionist/sort-interfaces": [
-        "warn",
-        {
-          "order": "asc",
-          "type": "alphabetical",
-        },
-      ],
-      "perfectionist/sort-intersection-types": [
-        "warn",
-        {
-          "order": "asc",
-          "type": "alphabetical",
-        },
-      ],
-      "perfectionist/sort-jsx-props": [
-        "warn",
-        {
-          "order": "asc",
-          "type": "alphabetical",
-        },
-      ],
-      "perfectionist/sort-maps": [
-        "warn",
-        {
-          "order": "asc",
-          "type": "alphabetical",
-        },
-      ],
-      "perfectionist/sort-named-exports": [
-        "warn",
-        {
-          "order": "asc",
-          "type": "alphabetical",
-        },
-      ],
-      "perfectionist/sort-named-imports": [
-        "warn",
-        {
-          "order": "asc",
-          "type": "alphabetical",
-        },
-      ],
-      "perfectionist/sort-object-types": [
-        "warn",
-        {
-          "order": "asc",
-          "type": "alphabetical",
-        },
-      ],
-      "perfectionist/sort-objects": [
-        "warn",
-        {
-          "order": "asc",
-          "type": "alphabetical",
-        },
-      ],
-      "perfectionist/sort-sets": [
-        "warn",
-        {
-          "order": "asc",
-          "type": "alphabetical",
-        },
-      ],
-      "perfectionist/sort-switch-case": [
-        "warn",
-        {
-          "order": "asc",
-          "type": "alphabetical",
-        },
-      ],
-      "perfectionist/sort-union-types": [
-        "warn",
-        {
-          "order": "asc",
-          "type": "alphabetical",
-        },
-      ],
-      "perfectionist/sort-variable-declarations": [
-        "warn",
-        {
-          "order": "asc",
-          "type": "alphabetical",
-        },
-      ],
       "prefer-exponentiation-operator": "error",
-      "prefer-let/prefer-let": "error",
       "prefer-promise-reject-errors": "error",
       "prefer-rest-params": "error",
       "prefer-spread": "error",
