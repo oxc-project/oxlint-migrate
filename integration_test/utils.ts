@@ -6,7 +6,7 @@ import { DefaultReporter } from '../src/reporter.js';
 export const getSnapshotResult = async (
   config: Parameters<typeof main>[0],
   oxlintConfig?: OxlintConfig,
-  options?: Pick<Options, 'typeAware'>
+  options?: Pick<Options, 'typeAware' | 'jsPlugins'>
 ) => {
   const reporter = new DefaultReporter();
   const result = await main(config, oxlintConfig, {
@@ -64,5 +64,12 @@ export const testProject = (
       },
     });
     expect(result).toMatchSnapshot(`${project}--merge`);
+  });
+
+  test(`${project} --js-plugins`, async () => {
+    const result = await getSnapshotResult(projectConfig, undefined, {
+      jsPlugins: true,
+    });
+    expect(result).toMatchSnapshot(`${project}--js-plugins`);
   });
 };

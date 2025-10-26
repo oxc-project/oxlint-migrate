@@ -106,15 +106,19 @@ export const transformRuleEntry = (
         targetConfig.rules[rule] = normalizeSeverityValue(config);
       }
     } else {
-      if (
-        isActiveValue(config) &&
-        !enableJsPluginRule(
-          eslintConfig,
-          targetConfig,
-          rule,
-          normalizeSeverityValue(config)
-        )
-      ) {
+      if (options?.jsPlugins) {
+        if (
+          isActiveValue(config) &&
+          !enableJsPluginRule(
+            eslintConfig,
+            targetConfig,
+            rule,
+            normalizeSeverityValue(config)
+          )
+        ) {
+          options?.reporter?.report(`unsupported rule: ${rule}`);
+        }
+      } else if (isActiveValue(config)) {
         options?.reporter?.report(`unsupported rule: ${rule}`);
       }
     }

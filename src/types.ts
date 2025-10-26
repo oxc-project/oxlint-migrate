@@ -40,4 +40,5 @@ export type Options = {
   merge?: boolean;
   withNursery?: boolean;
   typeAware?: boolean;
+  jsPlugins?: boolean;
 };
