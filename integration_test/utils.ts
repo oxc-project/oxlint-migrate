@@ -1,4 +1,4 @@
-import { expect } from 'vitest';
+import { expect, test } from 'vitest';
 import main from '../src/index.js';
 import { Options, OxlintConfig } from '../src/types.js';
 import { DefaultReporter } from '../src/reporter.js';
@@ -38,4 +38,31 @@ export const getSnapShotMergeResult = async (
   expect(result2).toStrictEqual(result);
 
   return result2;
+};
+
+export const testProject = (
+  project: string,
+  projectConfig: Parameters<typeof main>[0]
+) => {
+  test(`${project}`, async () => {
+    const result = await getSnapshotResult(projectConfig);
+    expect(result).toMatchSnapshot(project);
+  });
+
+  test(`${project} --type-aware`, async () => {
+    const result = await getSnapshotResult(projectConfig, undefined, {
+      typeAware: true,
+    });
+    expect(result).toMatchSnapshot(`${project}--type-aware`);
+  });
+
+  test(`${project} merge`, async () => {
+    const result = await getSnapShotMergeResult(projectConfig, {
+      categories: {
+        correctness: 'error',
+        perf: 'error',
+      },
+    });
+    expect(result).toMatchSnapshot(`${project}--merge`);
+  });
 };
