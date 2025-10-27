@@ -2,6 +2,7 @@ import unicorn from 'eslint-plugin-unicorn';
 import eslint from '@eslint/js';
 import eslintConfigPrettier from 'eslint-config-prettier';
 import tseslint from 'typescript-eslint';
+// @ts-expect-error -- 1.24.0 has a bug with missing types
 import oxlint from 'eslint-plugin-oxlint';
 
 export default [
