@@ -29,6 +29,13 @@ export type OxlintConfigOrOverride = OxlintConfig | OxlintConfigOverride;
 
 export type Reporter = {
   report(message: string): void;
+  unsupportedRule(rule: string): void;
+  unsupportedRuleInDevelopment(rule: string): void;
+  unsupportedRuleForPlugin(rule: string): void;
+  failedToParse(filePath: string): void;
+  typeAwareRuleNotEnabled(rule: string): void;
+  ignoreListInsideOverrides(): void;
+  specialParserDetected(parserName: string): void;
   getReports(): string[];
 };
 
