@@ -53,6 +53,10 @@ program
     '--type-aware',
     'Includes supported type-aware rules. Needs the same flag in `oxlint` to enable it.'
   )
+  .option(
+    '--js-plugins',
+    'Tries to convert unsupported oxlint plugins with `jsPlugins`.'
+  )
   .action(async (filePath: string | undefined) => {
     const cliOptions = program.opts();
     const oxlintFilePath = path.join(cwd, cliOptions.outputFile);
@@ -63,6 +67,7 @@ program
       merge: !!cliOptions.merge,
       withNursery: !!cliOptions.withNursery,
       typeAware: !!cliOptions.typeAware,
+      jsPlugins: !!cliOptions.jsPlugins,
     };
 
     if (cliOptions.replaceEslintComments) {

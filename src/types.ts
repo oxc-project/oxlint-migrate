@@ -1,6 +1,7 @@
 import type { Linter } from 'eslint';
 
 type OxlintConfigPlugins = string[];
+type OxlintConfigJsPlugins = string[];
 type OxlintConfigCategories = Record<string, unknown>;
 type OxlintConfigEnv = Record<string, boolean>;
 type OxlintConfigIgnorePatterns = string[];
@@ -10,6 +11,7 @@ export type OxlintConfigOverride = {
   env?: OxlintConfigEnv;
   globals?: Linter.Globals;
   plugins?: OxlintConfigPlugins;
+  jsPlugins?: OxlintConfigJsPlugins;
   categories?: OxlintConfigCategories;
   rules?: Partial<Linter.RulesRecord>;
 };
@@ -19,6 +21,7 @@ export type OxlintConfig = {
   env?: OxlintConfigEnv;
   globals?: Linter.Globals;
   plugins?: OxlintConfigPlugins;
+  jsPlugins?: OxlintConfigJsPlugins;
   categories?: OxlintConfigCategories;
   rules?: Partial<Linter.RulesRecord>;
   overrides?: OxlintConfigOverride[];
@@ -37,4 +40,5 @@ export type Options = {
   merge?: boolean;
   withNursery?: boolean;
   typeAware?: boolean;
+  jsPlugins?: boolean;
 };

@@ -98,7 +98,7 @@ const buildConfig = (
 
     // clean up overrides
     if ('files' in targetConfig) {
-      detectNeededRulesPlugins(targetConfig, options);
+      detectNeededRulesPlugins(targetConfig);
       detectEnvironmentByGlobals(targetConfig);
       cleanUpOxlintConfig(targetConfig);
     }
@@ -106,7 +106,7 @@ const buildConfig = (
 
   oxlintConfig.overrides = overrides;
 
-  detectNeededRulesPlugins(oxlintConfig, options);
+  detectNeededRulesPlugins(oxlintConfig);
   detectEnvironmentByGlobals(oxlintConfig);
   cleanUpOxlintConfig(oxlintConfig);
 
