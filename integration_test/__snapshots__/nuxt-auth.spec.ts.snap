@@ -1136,28 +1136,28 @@ exports[`nuxt-auth --js-plugins > nuxt-auth--js-plugins 1`] = `
           "eslint-plugin-toml",
         ],
         "rules": {
-          "eslint-plugin-toml/array-bracket-newline": "error",
-          "eslint-plugin-toml/array-bracket-spacing": "error",
-          "eslint-plugin-toml/array-element-newline": "error",
-          "eslint-plugin-toml/comma-style": "error",
-          "eslint-plugin-toml/indent": [
+          "toml/array-bracket-newline": "error",
+          "toml/array-bracket-spacing": "error",
+          "toml/array-element-newline": "error",
+          "toml/comma-style": "error",
+          "toml/indent": [
             "error",
             2,
           ],
-          "eslint-plugin-toml/inline-table-curly-spacing": "error",
-          "eslint-plugin-toml/key-spacing": "error",
-          "eslint-plugin-toml/keys-order": "error",
-          "eslint-plugin-toml/no-space-dots": "error",
-          "eslint-plugin-toml/no-unreadable-number-separator": "error",
-          "eslint-plugin-toml/padding-line-between-pairs": "error",
-          "eslint-plugin-toml/padding-line-between-tables": "error",
-          "eslint-plugin-toml/precision-of-fractional-seconds": "error",
-          "eslint-plugin-toml/precision-of-integer": "error",
-          "eslint-plugin-toml/quoted-keys": "error",
-          "eslint-plugin-toml/spaced-comment": "error",
-          "eslint-plugin-toml/table-bracket-spacing": "error",
-          "eslint-plugin-toml/tables-order": "error",
-          "eslint-plugin-toml/vue-custom-block": "error",
+          "toml/inline-table-curly-spacing": "error",
+          "toml/key-spacing": "error",
+          "toml/keys-order": "error",
+          "toml/no-space-dots": "error",
+          "toml/no-unreadable-number-separator": "error",
+          "toml/padding-line-between-pairs": "error",
+          "toml/padding-line-between-tables": "error",
+          "toml/precision-of-fractional-seconds": "error",
+          "toml/precision-of-integer": "error",
+          "toml/quoted-keys": "error",
+          "toml/spaced-comment": "error",
+          "toml/table-bracket-spacing": "error",
+          "toml/tables-order": "error",
+          "toml/vue-custom-block/no-parsing-error": "error",
         },
       },
       {
@@ -1226,70 +1226,70 @@ exports[`nuxt-auth --js-plugins > nuxt-auth--js-plugins 1`] = `
       "unicorn",
     ],
     "rules": {
-      "@stylistic/eslint-plugin/array-bracket-spacing": [
+      "@stylistic/array-bracket-spacing": [
         "error",
         "never",
       ],
-      "@stylistic/eslint-plugin/arrow-parens": [
+      "@stylistic/arrow-parens": [
         "error",
         "as-needed",
         {
           "requireForBlockBody": true,
         },
       ],
-      "@stylistic/eslint-plugin/arrow-spacing": [
+      "@stylistic/arrow-spacing": [
         "error",
         {
           "after": true,
           "before": true,
         },
       ],
-      "@stylistic/eslint-plugin/block-spacing": [
+      "@stylistic/block-spacing": [
         "error",
         "always",
       ],
-      "@stylistic/eslint-plugin/brace-style": [
+      "@stylistic/brace-style": [
         "error",
         "stroustrup",
         {
           "allowSingleLine": true,
         },
       ],
-      "@stylistic/eslint-plugin/comma-dangle": [
+      "@stylistic/comma-dangle": [
         "error",
         "always-multiline",
       ],
-      "@stylistic/eslint-plugin/comma-spacing": [
+      "@stylistic/comma-spacing": [
         "error",
         {
           "after": true,
           "before": false,
         },
       ],
-      "@stylistic/eslint-plugin/comma-style": [
+      "@stylistic/comma-style": [
         "error",
         "last",
       ],
-      "@stylistic/eslint-plugin/computed-property-spacing": [
+      "@stylistic/computed-property-spacing": [
         "error",
         "never",
         {
           "enforceForClassMembers": true,
         },
       ],
-      "@stylistic/eslint-plugin/dot-location": [
+      "@stylistic/dot-location": [
         "error",
         "property",
       ],
-      "@stylistic/eslint-plugin/eol-last": "error",
-      "@stylistic/eslint-plugin/generator-star-spacing": [
+      "@stylistic/eol-last": "error",
+      "@stylistic/generator-star-spacing": [
         "error",
         {
           "after": true,
           "before": false,
         },
       ],
-      "@stylistic/eslint-plugin/indent": [
+      "@stylistic/indent": [
         "error",
         2,
         {
@@ -1323,48 +1323,48 @@ exports[`nuxt-auth --js-plugins > nuxt-auth--js-plugins 1`] = `
           "tabLength": 2,
         },
       ],
-      "@stylistic/eslint-plugin/indent-binary-ops": [
+      "@stylistic/indent-binary-ops": [
         "error",
         2,
       ],
-      "@stylistic/eslint-plugin/jsx-closing-bracket-location": "error",
-      "@stylistic/eslint-plugin/jsx-closing-tag-location": "error",
-      "@stylistic/eslint-plugin/jsx-curly-brace-presence": [
+      "@stylistic/jsx-closing-bracket-location": "error",
+      "@stylistic/jsx-closing-tag-location": "error",
+      "@stylistic/jsx-curly-brace-presence": [
         "error",
         {
           "propElementValues": "always",
         },
       ],
-      "@stylistic/eslint-plugin/jsx-curly-newline": "error",
-      "@stylistic/eslint-plugin/jsx-curly-spacing": [
+      "@stylistic/jsx-curly-newline": "error",
+      "@stylistic/jsx-curly-spacing": [
         "error",
         "never",
       ],
-      "@stylistic/eslint-plugin/jsx-equals-spacing": "error",
-      "@stylistic/eslint-plugin/jsx-first-prop-new-line": "error",
-      "@stylistic/eslint-plugin/jsx-function-call-newline": [
+      "@stylistic/jsx-equals-spacing": "error",
+      "@stylistic/jsx-first-prop-new-line": "error",
+      "@stylistic/jsx-function-call-newline": [
         "error",
         "multiline",
       ],
-      "@stylistic/eslint-plugin/jsx-indent-props": [
+      "@stylistic/jsx-indent-props": [
         "error",
         2,
       ],
-      "@stylistic/eslint-plugin/jsx-max-props-per-line": [
+      "@stylistic/jsx-max-props-per-line": [
         "error",
         {
           "maximum": 1,
           "when": "multiline",
         },
       ],
-      "@stylistic/eslint-plugin/jsx-one-expression-per-line": [
+      "@stylistic/jsx-one-expression-per-line": [
         "error",
         {
           "allow": "single-child",
         },
       ],
-      "@stylistic/eslint-plugin/jsx-quotes": "error",
-      "@stylistic/eslint-plugin/jsx-tag-spacing": [
+      "@stylistic/jsx-quotes": "error",
+      "@stylistic/jsx-tag-spacing": [
         "error",
         {
           "afterOpening": "never",
@@ -1373,7 +1373,7 @@ exports[`nuxt-auth --js-plugins > nuxt-auth--js-plugins 1`] = `
           "closingSlash": "never",
         },
       ],
-      "@stylistic/eslint-plugin/jsx-wrap-multilines": [
+      "@stylistic/jsx-wrap-multilines": [
         "error",
         {
           "arrow": "parens-new-line",
@@ -1386,34 +1386,34 @@ exports[`nuxt-auth --js-plugins > nuxt-auth--js-plugins 1`] = `
           "return": "parens-new-line",
         },
       ],
-      "@stylistic/eslint-plugin/key-spacing": [
+      "@stylistic/key-spacing": [
         "error",
         {
           "afterColon": true,
           "beforeColon": false,
         },
       ],
-      "@stylistic/eslint-plugin/keyword-spacing": [
+      "@stylistic/keyword-spacing": [
         "error",
         {
           "after": true,
           "before": true,
         },
       ],
-      "@stylistic/eslint-plugin/lines-between-class-members": [
+      "@stylistic/lines-between-class-members": [
         "error",
         "always",
         {
           "exceptAfterSingleLine": true,
         },
       ],
-      "@stylistic/eslint-plugin/max-statements-per-line": [
+      "@stylistic/max-statements-per-line": [
         "error",
         {
           "max": 1,
         },
       ],
-      "@stylistic/eslint-plugin/member-delimiter-style": [
+      "@stylistic/member-delimiter-style": [
         "error",
         {
           "multiline": {
@@ -1434,17 +1434,17 @@ exports[`nuxt-auth --js-plugins > nuxt-auth--js-plugins 1`] = `
           },
         },
       ],
-      "@stylistic/eslint-plugin/multiline-ternary": [
+      "@stylistic/multiline-ternary": [
         "error",
         "always-multiline",
       ],
-      "@stylistic/eslint-plugin/new-parens": "error",
-      "@stylistic/eslint-plugin/no-extra-parens": [
+      "@stylistic/new-parens": "error",
+      "@stylistic/no-extra-parens": [
         "error",
         "functions",
       ],
-      "@stylistic/eslint-plugin/no-floating-decimal": "error",
-      "@stylistic/eslint-plugin/no-mixed-operators": [
+      "@stylistic/no-floating-decimal": "error",
+      "@stylistic/no-mixed-operators": [
         "error",
         {
           "allowSamePrecedence": true,
@@ -1470,9 +1470,9 @@ exports[`nuxt-auth --js-plugins > nuxt-auth--js-plugins 1`] = `
           ],
         },
       ],
-      "@stylistic/eslint-plugin/no-mixed-spaces-and-tabs": "error",
-      "@stylistic/eslint-plugin/no-multi-spaces": "error",
-      "@stylistic/eslint-plugin/no-multiple-empty-lines": [
+      "@stylistic/no-mixed-spaces-and-tabs": "error",
+      "@stylistic/no-multi-spaces": "error",
+      "@stylistic/no-multiple-empty-lines": [
         "error",
         {
           "max": 1,
@@ -1480,18 +1480,18 @@ exports[`nuxt-auth --js-plugins > nuxt-auth--js-plugins 1`] = `
           "maxEOF": 0,
         },
       ],
-      "@stylistic/eslint-plugin/no-tabs": "error",
-      "@stylistic/eslint-plugin/no-trailing-spaces": "error",
-      "@stylistic/eslint-plugin/no-whitespace-before-property": "error",
-      "@stylistic/eslint-plugin/object-curly-spacing": [
+      "@stylistic/no-tabs": "error",
+      "@stylistic/no-trailing-spaces": "error",
+      "@stylistic/no-whitespace-before-property": "error",
+      "@stylistic/object-curly-spacing": [
         "error",
         "always",
       ],
-      "@stylistic/eslint-plugin/operator-linebreak": [
+      "@stylistic/operator-linebreak": [
         "error",
         "before",
       ],
-      "@stylistic/eslint-plugin/padded-blocks": [
+      "@stylistic/padded-blocks": [
         "error",
         {
           "blocks": "never",
@@ -1499,11 +1499,11 @@ exports[`nuxt-auth --js-plugins > nuxt-auth--js-plugins 1`] = `
           "switches": "never",
         },
       ],
-      "@stylistic/eslint-plugin/quote-props": [
+      "@stylistic/quote-props": [
         "error",
         "consistent-as-needed",
       ],
-      "@stylistic/eslint-plugin/quotes": [
+      "@stylistic/quotes": [
         "error",
         "single",
         {
@@ -1511,26 +1511,26 @@ exports[`nuxt-auth --js-plugins > nuxt-auth--js-plugins 1`] = `
           "avoidEscape": false,
         },
       ],
-      "@stylistic/eslint-plugin/rest-spread-spacing": [
+      "@stylistic/rest-spread-spacing": [
         "error",
         "never",
       ],
-      "@stylistic/eslint-plugin/semi": [
+      "@stylistic/semi": [
         "error",
         "never",
       ],
-      "@stylistic/eslint-plugin/semi-spacing": [
+      "@stylistic/semi-spacing": [
         "error",
         {
           "after": true,
           "before": false,
         },
       ],
-      "@stylistic/eslint-plugin/space-before-blocks": [
+      "@stylistic/space-before-blocks": [
         "error",
         "always",
       ],
-      "@stylistic/eslint-plugin/space-before-function-paren": [
+      "@stylistic/space-before-function-paren": [
         "error",
         {
           "anonymous": "always",
@@ -1538,19 +1538,19 @@ exports[`nuxt-auth --js-plugins > nuxt-auth--js-plugins 1`] = `
           "named": "never",
         },
       ],
-      "@stylistic/eslint-plugin/space-in-parens": [
+      "@stylistic/space-in-parens": [
         "error",
         "never",
       ],
-      "@stylistic/eslint-plugin/space-infix-ops": "error",
-      "@stylistic/eslint-plugin/space-unary-ops": [
+      "@stylistic/space-infix-ops": "error",
+      "@stylistic/space-unary-ops": [
         "error",
         {
           "nonwords": false,
           "words": true,
         },
       ],
-      "@stylistic/eslint-plugin/spaced-comment": [
+      "@stylistic/spaced-comment": [
         "error",
         "always",
         {
@@ -1574,33 +1574,43 @@ exports[`nuxt-auth --js-plugins > nuxt-auth--js-plugins 1`] = `
           },
         },
       ],
-      "@stylistic/eslint-plugin/template-curly-spacing": "error",
-      "@stylistic/eslint-plugin/template-tag-spacing": [
+      "@stylistic/template-curly-spacing": "error",
+      "@stylistic/template-tag-spacing": [
         "error",
         "never",
       ],
-      "@stylistic/eslint-plugin/type-annotation-spacing": [
+      "@stylistic/type-annotation-spacing": [
         "error",
         {},
       ],
-      "@stylistic/eslint-plugin/type-generic-spacing": "error",
-      "@stylistic/eslint-plugin/type-named-tuple-spacing": "error",
-      "@stylistic/eslint-plugin/wrap-iife": [
+      "@stylistic/type-generic-spacing": "error",
+      "@stylistic/type-named-tuple-spacing": "error",
+      "@stylistic/wrap-iife": [
         "error",
         "any",
         {
           "functionPrototypeMethods": true,
         },
       ],
-      "@stylistic/eslint-plugin/yield-star-spacing": [
+      "@stylistic/yield-star-spacing": [
         "error",
         {
           "after": true,
           "before": false,
         },
       ],
+      "antfu/consistent-chaining": "error",
+      "antfu/consistent-list-newline": "error",
+      "antfu/curly": "error",
+      "antfu/if-newline": "error",
+      "antfu/import-dedupe": "error",
+      "antfu/no-import-dist": "error",
+      "antfu/no-import-node-modules-by-path": "error",
+      "antfu/no-top-level-await": "error",
+      "antfu/top-level-function": "error",
       "array-callback-return": "error",
       "block-scoped-var": "error",
+      "command/command": "error",
       "curly": [
         "error",
         "all",
@@ -1610,140 +1620,10 @@ exports[`nuxt-auth --js-plugins > nuxt-auth--js-plugins 1`] = `
         "error",
         "smart",
       ],
-      "eslint-plugin-antfu/consistent-chaining": "error",
-      "eslint-plugin-antfu/consistent-list-newline": "error",
-      "eslint-plugin-antfu/curly": "error",
-      "eslint-plugin-antfu/if-newline": "error",
-      "eslint-plugin-antfu/import-dedupe": "error",
-      "eslint-plugin-antfu/no-import-dist": "error",
-      "eslint-plugin-antfu/no-import-node-modules-by-path": "error",
-      "eslint-plugin-antfu/no-top-level-await": "error",
-      "eslint-plugin-antfu/top-level-function": "error",
-      "eslint-plugin-command/command": "error",
-      "eslint-plugin-eslint-comments/no-aggregating-enable": "error",
-      "eslint-plugin-eslint-comments/no-duplicate-disable": "error",
-      "eslint-plugin-eslint-comments/no-unlimited-disable": "error",
-      "eslint-plugin-eslint-comments/no-unused-enable": "error",
-      "eslint-plugin-perfectionist/sort-exports": [
-        "error",
-        {
-          "order": "asc",
-          "type": "natural",
-        },
-      ],
-      "eslint-plugin-perfectionist/sort-imports": [
-        "error",
-        {
-          "groups": [
-            "type",
-            [
-              "parent-type",
-              "sibling-type",
-              "index-type",
-              "internal-type",
-            ],
-            "builtin",
-            "external",
-            "internal",
-            [
-              "parent",
-              "sibling",
-              "index",
-            ],
-            "side-effect",
-            "object",
-            "unknown",
-          ],
-          "newlinesBetween": "ignore",
-          "order": "asc",
-          "type": "natural",
-        },
-      ],
-      "eslint-plugin-perfectionist/sort-named-exports": [
-        "error",
-        {
-          "order": "asc",
-          "type": "natural",
-        },
-      ],
-      "eslint-plugin-perfectionist/sort-named-imports": [
-        "error",
-        {
-          "order": "asc",
-          "type": "natural",
-        },
-      ],
-      "eslint-plugin-regexp/confusing-quantifier": "warn",
-      "eslint-plugin-regexp/control-character-escape": "error",
-      "eslint-plugin-regexp/match-any": "error",
-      "eslint-plugin-regexp/negation": "error",
-      "eslint-plugin-regexp/no-contradiction-with-assertion": "error",
-      "eslint-plugin-regexp/no-dupe-characters-character-class": "error",
-      "eslint-plugin-regexp/no-dupe-disjunctions": "error",
-      "eslint-plugin-regexp/no-empty-alternative": "warn",
-      "eslint-plugin-regexp/no-empty-capturing-group": "error",
-      "eslint-plugin-regexp/no-empty-character-class": "error",
-      "eslint-plugin-regexp/no-empty-group": "error",
-      "eslint-plugin-regexp/no-empty-lookarounds-assertion": "error",
-      "eslint-plugin-regexp/no-empty-string-literal": "error",
-      "eslint-plugin-regexp/no-escape-backspace": "error",
-      "eslint-plugin-regexp/no-extra-lookaround-assertions": "error",
-      "eslint-plugin-regexp/no-invalid-regexp": "error",
-      "eslint-plugin-regexp/no-invisible-character": "error",
-      "eslint-plugin-regexp/no-lazy-ends": "warn",
-      "eslint-plugin-regexp/no-legacy-features": "error",
-      "eslint-plugin-regexp/no-misleading-capturing-group": "error",
-      "eslint-plugin-regexp/no-misleading-unicode-character": "error",
-      "eslint-plugin-regexp/no-missing-g-flag": "error",
-      "eslint-plugin-regexp/no-non-standard-flag": "error",
-      "eslint-plugin-regexp/no-obscure-range": "error",
-      "eslint-plugin-regexp/no-optional-assertion": "error",
-      "eslint-plugin-regexp/no-potentially-useless-backreference": "warn",
-      "eslint-plugin-regexp/no-super-linear-backtracking": "error",
-      "eslint-plugin-regexp/no-trivially-nested-assertion": "error",
-      "eslint-plugin-regexp/no-trivially-nested-quantifier": "error",
-      "eslint-plugin-regexp/no-unused-capturing-group": "error",
-      "eslint-plugin-regexp/no-useless-assertions": "error",
-      "eslint-plugin-regexp/no-useless-backreference": "error",
-      "eslint-plugin-regexp/no-useless-character-class": "error",
-      "eslint-plugin-regexp/no-useless-dollar-replacements": "error",
-      "eslint-plugin-regexp/no-useless-escape": "error",
-      "eslint-plugin-regexp/no-useless-flag": "warn",
-      "eslint-plugin-regexp/no-useless-lazy": "error",
-      "eslint-plugin-regexp/no-useless-non-capturing-group": "error",
-      "eslint-plugin-regexp/no-useless-quantifier": "error",
-      "eslint-plugin-regexp/no-useless-range": "error",
-      "eslint-plugin-regexp/no-useless-set-operand": "error",
-      "eslint-plugin-regexp/no-useless-string-literal": "error",
-      "eslint-plugin-regexp/no-useless-two-nums-quantifier": "error",
-      "eslint-plugin-regexp/no-zero-quantifier": "error",
-      "eslint-plugin-regexp/optimal-lookaround-quantifier": "warn",
-      "eslint-plugin-regexp/optimal-quantifier-concatenation": "error",
-      "eslint-plugin-regexp/prefer-character-class": "error",
-      "eslint-plugin-regexp/prefer-d": "error",
-      "eslint-plugin-regexp/prefer-plus-quantifier": "error",
-      "eslint-plugin-regexp/prefer-predefined-assertion": "error",
-      "eslint-plugin-regexp/prefer-question-quantifier": "error",
-      "eslint-plugin-regexp/prefer-range": "error",
-      "eslint-plugin-regexp/prefer-set-operation": "error",
-      "eslint-plugin-regexp/prefer-star-quantifier": "error",
-      "eslint-plugin-regexp/prefer-unicode-codepoint-escapes": "error",
-      "eslint-plugin-regexp/prefer-w": "error",
-      "eslint-plugin-regexp/simplify-set-operations": "error",
-      "eslint-plugin-regexp/sort-flags": "error",
-      "eslint-plugin-regexp/strict": "error",
-      "eslint-plugin-regexp/use-ignore-case": "error",
-      "eslint-plugin-unused-imports/no-unused-imports": "error",
-      "eslint-plugin-unused-imports/no-unused-vars": [
-        "error",
-        {
-          "args": "after-used",
-          "argsIgnorePattern": "^_",
-          "ignoreRestSiblings": true,
-          "vars": "all",
-          "varsIgnorePattern": "^_",
-        },
-      ],
+      "eslint-comments/no-aggregating-enable": "error",
+      "eslint-comments/no-duplicate-disable": "error",
+      "eslint-comments/no-unlimited-disable": "error",
+      "eslint-comments/no-unused-enable": "error",
       "import/consistent-type-specifier-style": [
         "error",
         "top-level",
@@ -1888,11 +1768,120 @@ exports[`nuxt-auth --js-plugins > nuxt-auth--js-plugins 1`] = `
       "no-with": "error",
       "node/no-exports-assign": "error",
       "node/no-new-require": "error",
+      "perfectionist/sort-exports": [
+        "error",
+        {
+          "order": "asc",
+          "type": "natural",
+        },
+      ],
+      "perfectionist/sort-imports": [
+        "error",
+        {
+          "groups": [
+            "type",
+            [
+              "parent-type",
+              "sibling-type",
+              "index-type",
+              "internal-type",
+            ],
+            "builtin",
+            "external",
+            "internal",
+            [
+              "parent",
+              "sibling",
+              "index",
+            ],
+            "side-effect",
+            "object",
+            "unknown",
+          ],
+          "newlinesBetween": "ignore",
+          "order": "asc",
+          "type": "natural",
+        },
+      ],
+      "perfectionist/sort-named-exports": [
+        "error",
+        {
+          "order": "asc",
+          "type": "natural",
+        },
+      ],
+      "perfectionist/sort-named-imports": [
+        "error",
+        {
+          "order": "asc",
+          "type": "natural",
+        },
+      ],
       "prefer-exponentiation-operator": "error",
       "prefer-promise-reject-errors": "error",
       "prefer-rest-params": "error",
       "prefer-spread": "error",
       "prefer-template": "error",
+      "regexp/confusing-quantifier": "warn",
+      "regexp/control-character-escape": "error",
+      "regexp/match-any": "error",
+      "regexp/negation": "error",
+      "regexp/no-contradiction-with-assertion": "error",
+      "regexp/no-dupe-characters-character-class": "error",
+      "regexp/no-dupe-disjunctions": "error",
+      "regexp/no-empty-alternative": "warn",
+      "regexp/no-empty-capturing-group": "error",
+      "regexp/no-empty-character-class": "error",
+      "regexp/no-empty-group": "error",
+      "regexp/no-empty-lookarounds-assertion": "error",
+      "regexp/no-empty-string-literal": "error",
+      "regexp/no-escape-backspace": "error",
+      "regexp/no-extra-lookaround-assertions": "error",
+      "regexp/no-invalid-regexp": "error",
+      "regexp/no-invisible-character": "error",
+      "regexp/no-lazy-ends": "warn",
+      "regexp/no-legacy-features": "error",
+      "regexp/no-misleading-capturing-group": "error",
+      "regexp/no-misleading-unicode-character": "error",
+      "regexp/no-missing-g-flag": "error",
+      "regexp/no-non-standard-flag": "error",
+      "regexp/no-obscure-range": "error",
+      "regexp/no-optional-assertion": "error",
+      "regexp/no-potentially-useless-backreference": "warn",
+      "regexp/no-super-linear-backtracking": "error",
+      "regexp/no-trivially-nested-assertion": "error",
+      "regexp/no-trivially-nested-quantifier": "error",
+      "regexp/no-unused-capturing-group": "error",
+      "regexp/no-useless-assertions": "error",
+      "regexp/no-useless-backreference": "error",
+      "regexp/no-useless-character-class": "error",
+      "regexp/no-useless-dollar-replacements": "error",
+      "regexp/no-useless-escape": "error",
+      "regexp/no-useless-flag": "warn",
+      "regexp/no-useless-lazy": "error",
+      "regexp/no-useless-non-capturing-group": "error",
+      "regexp/no-useless-quantifier": "error",
+      "regexp/no-useless-range": "error",
+      "regexp/no-useless-set-operand": "error",
+      "regexp/no-useless-string-literal": "error",
+      "regexp/no-useless-two-nums-quantifier": "error",
+      "regexp/no-zero-quantifier": "error",
+      "regexp/optimal-lookaround-quantifier": "warn",
+      "regexp/optimal-quantifier-concatenation": "error",
+      "regexp/prefer-character-class": "error",
+      "regexp/prefer-d": "error",
+      "regexp/prefer-plus-quantifier": "error",
+      "regexp/prefer-predefined-assertion": "error",
+      "regexp/prefer-question-quantifier": "error",
+      "regexp/prefer-range": "error",
+      "regexp/prefer-set-operation": "error",
+      "regexp/prefer-star-quantifier": "error",
+      "regexp/prefer-unicode-codepoint-escapes": "error",
+      "regexp/prefer-w": "error",
+      "regexp/simplify-set-operations": "error",
+      "regexp/sort-flags": "error",
+      "regexp/strict": "error",
+      "regexp/use-ignore-case": "error",
       "symbol-description": "error",
       "unicode-bom": [
         "error",
@@ -1913,6 +1902,17 @@ exports[`nuxt-auth --js-plugins > nuxt-auth--js-plugins 1`] = `
       "unicorn/prefer-string-starts-ends-with": "error",
       "unicorn/prefer-type-error": "error",
       "unicorn/throw-new-error": "error",
+      "unused-imports/no-unused-imports": "error",
+      "unused-imports/no-unused-vars": [
+        "error",
+        {
+          "args": "after-used",
+          "argsIgnorePattern": "^_",
+          "ignoreRestSiblings": true,
+          "vars": "all",
+          "varsIgnorePattern": "^_",
+        },
+      ],
       "use-isnan": [
         "error",
         {

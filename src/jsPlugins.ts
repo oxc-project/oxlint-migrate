@@ -8,18 +8,6 @@ const ignorePlugins = [
   'local', // ToDo: handle local plugin rules
 ];
 
-const collectEsLintPluginNames = (
-  eslintConfig: Linter.Config
-): [string, string | undefined][] => {
-  const pluginNames: [string, string | undefined][] = [];
-  if (eslintConfig.plugins) {
-    for (const [name, plugin] of Object.entries(eslintConfig.plugins)) {
-      pluginNames.push([name, plugin.meta?.name]);
-    }
-  }
-  return pluginNames;
-};
-
 export const enableJsPluginRule = (
   eslintConfig: Linter.Config,
   targetConfig: OxlintConfigOrOverride,
@@ -36,10 +24,6 @@ export const enableJsPluginRule = (
   if (targetConfig.jsPlugins === undefined) {
     targetConfig.jsPlugins = [];
   }
-  const eslintPlugins = collectEsLintPluginNames(eslintConfig);
-  if (eslintPlugins.length) {
-    // console.log(eslintPlugins);
-  }
   const eslintName = pluginName.startsWith('@')
     ? `${pluginName}/eslint-plugin`
     : `eslint-plugin-${pluginName}`;
@@ -48,6 +32,6 @@ export const enableJsPluginRule = (
   }
 
   targetConfig.rules = targetConfig.rules || {};
-  targetConfig.rules[`${eslintName}/${ruleName}`] = ruleEntry;
+  targetConfig.rules[rule] = ruleEntry;
   return true;
 };

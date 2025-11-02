@@ -390,7 +390,8 @@ exports[`vscode --js-plugins > vscode--js-plugins 1`] = `
           "@stylistic/eslint-plugin",
         ],
         "rules": {
-          "@stylistic/eslint-plugin/ts": "warn",
+          "@stylistic/ts/member-delimiter-style": "warn",
+          "@stylistic/ts/semi": "warn",
         },
       },
       {
@@ -621,7 +622,7 @@ exports[`vscode --js-plugins > vscode--js-plugins 1`] = `
     "rules": {
       "curly": "warn",
       "eqeqeq": "warn",
-      "eslint-plugin-header/header": [
+      "header/header": [
         "warn",
         "block",
         [

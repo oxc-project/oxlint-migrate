@@ -8,22 +8,22 @@ describe('enableJsPluginRule', () => {
     {
       eslintRule: '@stylistic/indent',
       plugin: '@stylistic/eslint-plugin',
-      oxlintRule: '@stylistic/eslint-plugin/indent',
+      oxlintRule: '@stylistic/indent',
     },
     {
       eslintRule: 'tsdoc/syntax',
       plugin: 'eslint-plugin-tsdoc',
-      oxlintRule: 'eslint-plugin-tsdoc/syntax',
+      oxlintRule: 'tsdoc/syntax',
     },
     {
       eslintRule: 'mocha/no-pending-tests',
       plugin: 'eslint-plugin-mocha',
-      oxlintRule: 'eslint-plugin-mocha/no-pending-tests',
+      oxlintRule: 'mocha/no-pending-tests',
     },
     {
       eslintRule: 'perfectionist/sort-exports',
       plugin: 'eslint-plugin-perfectionist',
-      oxlintRule: 'eslint-plugin-perfectionist/sort-exports',
+      oxlintRule: 'perfectionist/sort-exports',
     },
   ];
 
