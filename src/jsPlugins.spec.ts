@@ -37,10 +37,9 @@ describe('enableJsPluginRule', () => {
     },
   ];
 
-  for (const { eslintRule, plugin, oxlintRule, eslintPlugins } of rules) {
+  for (const { eslintRule, plugin, oxlintRule } of rules) {
     test(`should enable js plugin ${plugin} rule for ${eslintRule}`, () => {
       const eslintConfig: Linter.Config = {
-        plugins: eslintPlugins,
         rules: {
           [eslintRule]: 'error',
         },

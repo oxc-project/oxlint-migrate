@@ -8,37 +8,7 @@ const ignorePlugins = new Set<string>([
   'local', // ToDo: handle local plugin rules
 ]);
 
-const collectEsLintPluginNames = (
-  eslintConfig: Linter.Config
-): Map<string, string> => {
-  const pluginNames = new Map<string, string>();
-  if (eslintConfig.plugins) {
-    for (const [name, plugin] of Object.entries(eslintConfig.plugins)) {
-      if (typeof plugin.meta?.name !== 'string') {
-        continue;
-      }
-      // only meta rules where the plugin name includes 'eslint-plugin'
-      // it is not a must for `meta.name` to include 'eslint-plugin', but
-      // in practice most plugins follow this convention.
-      // `@antfu/eslint-plugin` and `eslint-plugin-unused-imports` is an example that not follows this convention.
-      if (!plugin.meta.name.includes('eslint-plugin')) {
-        continue;
-      }
-      pluginNames.set(name, plugin.meta.name);
-    }
-  }
-  return pluginNames;
-};
-
-const guessEslintPluginName = (
-  eslintConfig: Linter.Config,
-  pluginName: string
-): string => {
-  const eslintPlugins = collectEsLintPluginNames(eslintConfig);
-
-  if (eslintPlugins.has(pluginName)) {
-    return eslintPlugins.get(pluginName)!;
-  }
+const guessEslintPluginName = (pluginName: string): string => {
   if (pluginName.startsWith('@')) {
     // Scoped plugin. If it contains a sub-id (e.g. @scope/id), map to @scope/eslint-plugin-id
     const [scope, maybeSub] = pluginName.split('/');
@@ -92,7 +62,7 @@ export const enableJsPluginRule = (
     targetConfig.jsPlugins = [];
   }
 
-  const eslintPluginName = guessEslintPluginName(eslintConfig, pluginName);
+  const eslintPluginName = guessEslintPluginName(pluginName);
 
   if (!targetConfig.jsPlugins.includes(eslintPluginName)) {
     targetConfig.jsPlugins.push(eslintPluginName);
