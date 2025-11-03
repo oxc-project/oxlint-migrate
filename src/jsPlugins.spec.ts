@@ -11,6 +11,11 @@ describe('enableJsPluginRule', () => {
       oxlintRule: '@stylistic/indent',
     },
     {
+      eslintRule: '@stylistic/ts/member-delimiter-style',
+      plugin: '@stylistic/eslint-plugin-ts',
+      oxlintRule: '@stylistic/ts/member-delimiter-style',
+    },
+    {
       eslintRule: 'tsdoc/syntax',
       plugin: 'eslint-plugin-tsdoc',
       oxlintRule: 'tsdoc/syntax',
@@ -27,12 +32,7 @@ describe('enableJsPluginRule', () => {
     },
     {
       eslintRule: '@eslint-community/eslint-comments/disable-enable-pair',
-      eslintPlugins: {
-        '@eslint-community/eslint-comments': {
-          meta: { name: 'eslint-plugin-eslint-comments' },
-        },
-      },
-      plugin: 'eslint-plugin-eslint-comments',
+      plugin: '@eslint-community/eslint-plugin-eslint-comments',
       oxlintRule: '@eslint-community/eslint-comments/disable-enable-pair',
     },
   ];
