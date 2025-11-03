@@ -387,7 +387,7 @@ exports[`vscode --js-plugins > vscode--js-plugins 1`] = `
           "**/*.ts",
         ],
         "jsPlugins": [
-          "@stylistic/eslint-plugin",
+          "@stylistic/eslint-plugin-ts",
         ],
         "rules": {
           "@stylistic/ts/member-delimiter-style": "warn",
