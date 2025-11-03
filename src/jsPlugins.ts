@@ -44,7 +44,6 @@ const extractPluginId = (ruleId: string): string | undefined => {
 };
 
 export const enableJsPluginRule = (
-  eslintConfig: Linter.Config,
   targetConfig: OxlintConfigOrOverride,
   rule: string,
   ruleEntry: Linter.RuleEntry | undefined

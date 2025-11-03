@@ -1,6 +1,5 @@
 import { describe, expect, test } from 'vitest';
 import { enableJsPluginRule } from './jsPlugins.js';
-import { Linter } from 'eslint';
 import { OxlintConfigOrOverride } from './types.js';
 
 describe('enableJsPluginRule', () => {
@@ -39,19 +38,9 @@ describe('enableJsPluginRule', () => {
 
   for (const { eslintRule, plugin, oxlintRule } of rules) {
     test(`should enable js plugin ${plugin} rule for ${eslintRule}`, () => {
-      const eslintConfig: Linter.Config = {
-        rules: {
-          [eslintRule]: 'error',
-        },
-      };
       const targetConfig: OxlintConfigOrOverride = {};
 
-      const result = enableJsPluginRule(
-        eslintConfig,
-        targetConfig,
-        eslintRule,
-        'error'
-      );
+      const result = enableJsPluginRule(targetConfig, eslintRule, 'error');
 
       expect(result).toBe(true);
       expect(targetConfig.jsPlugins).toContain(plugin);
@@ -60,14 +49,8 @@ describe('enableJsPluginRule', () => {
   }
 
   test('should return false for ignored plugins', () => {
-    const eslintConfig: Linter.Config = {
-      rules: {
-        '@typescript-eslint/no-unused-vars': 'warn',
-      },
-    };
     const targetConfig: OxlintConfigOrOverride = {};
     const result = enableJsPluginRule(
-      eslintConfig,
       targetConfig,
       '@typescript-eslint/no-unused-vars',
       'warn'

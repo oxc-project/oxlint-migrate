@@ -110,7 +110,6 @@ export const transformRuleEntry = (
         if (
           isActiveValue(config) &&
           !enableJsPluginRule(
-            eslintConfig,
             targetConfig,
             rule,
             normalizeSeverityValue(config)
