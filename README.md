@@ -21,12 +21,17 @@ When no config file provided, the script searches for the default eslint config 
 | `--merge`                   | \* merge eslint configuration with an existing .oxlintrc.json configuration                                                                 |
 | `--type-aware`              | Include type aware rules, which are supported with `oxlint --type-aware`                                                                    |
 | `--with-nursery`            | Include oxlint rules which are currently under development                                                                                  |
+| `--js-plugins`              | \*\* Include ESLint plugins via `jsPlugins` key.                                                                                            |
 | `--output-file <file>`      | The oxlint configuration file where to eslint v9 rules will be written to, default: `.oxlintrc.json`                                        |
 | `--replace-eslint-comments` | Search in the project files for eslint comments and replaces them with oxlint. Some eslint comments are not supported and will be reported. |
 
 \* WARNING: When some `categories` are enabled, this tools will enable more rules with the combination of `plugins`.
 Else we need to disable each rule `plugin/categories` combination, which is not covered by your eslint configuration.
 This behavior can change in the future.
+
+\*\* WARNING: Tries to guess the plugin name. Should work with most of the plugin names.
+Not every ESLint API is integrated with `oxlint`.
+Tested ESLint Plugins with `oxlint` can be found in this [Oxc Discussion](https://github.com/oxc-project/oxc/discussions/14862).
 
 ### User Flow
 

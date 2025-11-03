@@ -347,6 +347,376 @@ exports[`puppeteer > puppeteer 1`] = `
 }
 `;
 
+exports[`puppeteer --js-plugins > puppeteer--js-plugins 1`] = `
+{
+  "config": {
+    "$schema": "./node_modules/oxlint/configuration_schema.json",
+    "categories": {
+      "correctness": "off",
+    },
+    "env": {
+      "builtin": true,
+      "commonjs": true,
+      "es2026": true,
+      "node": true,
+      "shared-node-browser": true,
+    },
+    "ignorePatterns": [
+      "**/node_modules",
+      "**/build/",
+      "**/lib/",
+      "**/bin/",
+      "**/*.tsbuildinfo",
+      "**/*.api.json",
+      "**/*.tgz",
+      "**/yarn.lock",
+      "**/.docusaurus/",
+      "**/.cache-loader",
+      "test/output-*/",
+      "**/.dev_profile*",
+      "**/coverage/",
+      "**/generated/",
+      "**/.eslintcache",
+      "**/.cache/",
+      "**/.vscode",
+      "!.vscode/extensions.json",
+      "!.vscode/*.template.json",
+      "**/.devcontainer",
+      "**/.DS_Store",
+      "**/.env.local",
+      "**/.env.development.local",
+      "**/.env.test.local",
+      "**/.env.production.local",
+      "**/npm-debug.log*",
+      "**/yarn-debug.log*",
+      "**/yarn-error.log*",
+      "**/.wireit",
+      "**/assets/",
+      "**/third_party/",
+      "packages/ng-schematics/sandbox/**/*",
+      "packages/ng-schematics/multi/**/*",
+      "packages/ng-schematics/src/**/files/",
+      "examples/puppeteer-in-browser/out/**/*",
+      "examples/puppeteer-in-browser/node_modules/**/*",
+      "examples/puppeteer-in-extension/out/**/*",
+      "examples/puppeteer-in-extension/node_modules/**/*",
+    ],
+    "jsPlugins": [
+      "eslint-plugin-prettier",
+      "eslint-plugin-mocha",
+      "@stylistic/eslint-plugin",
+      "@puppeteer/eslint-plugin",
+    ],
+    "overrides": [
+      {
+        "files": [
+          "**/*.ts",
+        ],
+        "rules": {
+          "no-class-assign": "off",
+          "no-const-assign": "off",
+          "no-dupe-class-members": "off",
+          "no-dupe-keys": "off",
+          "no-func-assign": "off",
+          "no-import-assign": "off",
+          "no-new-native-nonconstructor": "off",
+          "no-obj-calls": "off",
+          "no-redeclare": "off",
+          "no-setter-return": "off",
+          "no-this-before-super": "off",
+          "no-unsafe-negation": "off",
+          "no-with": "off",
+          "prefer-rest-params": "error",
+          "prefer-spread": "error",
+        },
+      },
+      {
+        "files": [
+          "**/*.ts",
+        ],
+        "rules": {
+          "no-class-assign": "off",
+          "no-const-assign": "off",
+          "no-dupe-class-members": "off",
+          "no-dupe-keys": "off",
+          "no-func-assign": "off",
+          "no-import-assign": "off",
+          "no-new-native-nonconstructor": "off",
+          "no-obj-calls": "off",
+          "no-redeclare": "off",
+          "no-setter-return": "off",
+          "no-this-before-super": "off",
+          "no-unsafe-negation": "off",
+          "no-with": "off",
+          "prefer-rest-params": "error",
+          "prefer-spread": "error",
+        },
+      },
+      {
+        "files": [
+          "**/*.ts",
+        ],
+        "plugins": [
+          "typescript",
+        ],
+        "rules": {
+          "@typescript-eslint/ban-ts-comment": "error",
+          "@typescript-eslint/no-duplicate-enum-values": "error",
+          "@typescript-eslint/no-empty-object-type": "error",
+          "@typescript-eslint/no-explicit-any": "error",
+          "@typescript-eslint/no-extra-non-null-assertion": "error",
+          "@typescript-eslint/no-misused-new": "error",
+          "@typescript-eslint/no-namespace": "error",
+          "@typescript-eslint/no-non-null-asserted-optional-chain": "error",
+          "@typescript-eslint/no-require-imports": "error",
+          "@typescript-eslint/no-this-alias": "error",
+          "@typescript-eslint/no-unnecessary-type-constraint": "error",
+          "@typescript-eslint/no-unsafe-declaration-merging": "error",
+          "@typescript-eslint/no-unsafe-function-type": "error",
+          "@typescript-eslint/no-wrapper-object-types": "error",
+          "@typescript-eslint/prefer-as-const": "error",
+          "@typescript-eslint/prefer-namespace-keyword": "error",
+          "@typescript-eslint/triple-slash-reference": "error",
+          "no-array-constructor": "error",
+          "no-unused-expressions": "error",
+          "no-unused-vars": "error",
+        },
+      },
+      {
+        "files": [
+          "**/*.ts",
+        ],
+        "rules": {
+          "no-class-assign": "off",
+          "no-const-assign": "off",
+          "no-dupe-class-members": "off",
+          "no-dupe-keys": "off",
+          "no-func-assign": "off",
+          "no-import-assign": "off",
+          "no-new-native-nonconstructor": "off",
+          "no-obj-calls": "off",
+          "no-redeclare": "off",
+          "no-setter-return": "off",
+          "no-this-before-super": "off",
+          "no-unsafe-negation": "off",
+          "no-with": "off",
+          "prefer-rest-params": "error",
+          "prefer-spread": "error",
+        },
+      },
+      {
+        "files": [
+          "**/*.ts",
+        ],
+        "plugins": [
+          "typescript",
+        ],
+        "rules": {
+          "@typescript-eslint/adjacent-overload-signatures": "error",
+          "@typescript-eslint/array-type": "error",
+          "@typescript-eslint/ban-tslint-comment": "error",
+          "@typescript-eslint/consistent-generic-constructors": "error",
+          "@typescript-eslint/consistent-indexed-object-style": "error",
+          "@typescript-eslint/consistent-type-definitions": "error",
+          "@typescript-eslint/no-confusing-non-null-assertion": "error",
+          "@typescript-eslint/no-inferrable-types": "error",
+          "@typescript-eslint/prefer-for-of": "error",
+          "@typescript-eslint/prefer-function-type": "error",
+          "no-empty-function": "error",
+        },
+      },
+      {
+        "files": [
+          "**/*.ts",
+        ],
+        "jsPlugins": [
+          "@puppeteer/eslint-plugin",
+        ],
+        "plugins": [
+          "typescript",
+        ],
+        "rules": {
+          "@puppeteer/use-using": "error",
+          "@typescript-eslint/array-type": [
+            "error",
+            {
+              "default": "array-simple",
+            },
+          ],
+          "@typescript-eslint/consistent-type-definitions": [
+            "error",
+            "interface",
+          ],
+          "@typescript-eslint/consistent-type-imports": "error",
+          "@typescript-eslint/explicit-function-return-type": "off",
+          "@typescript-eslint/explicit-module-boundary-types": "error",
+          "@typescript-eslint/no-explicit-any": "off",
+          "@typescript-eslint/no-import-type-side-effects": "error",
+          "@typescript-eslint/no-non-null-assertion": "off",
+          "@typescript-eslint/no-unsafe-function-type": "error",
+          "@typescript-eslint/no-wrapper-object-types": "error",
+          "@typescript-eslint/prefer-ts-expect-error": "error",
+          "no-empty-function": "off",
+          "no-unused-vars": [
+            "error",
+            {
+              "argsIgnorePattern": "^_",
+              "varsIgnorePattern": "^_",
+            },
+          ],
+        },
+      },
+      {
+        "files": [
+          "packages/puppeteer-core/src/**/*.ts",
+        ],
+        "rules": {
+          "no-restricted-imports": [
+            "error",
+            {
+              "paths": [],
+              "patterns": [
+                "*Events",
+                "*.test.js",
+              ],
+            },
+          ],
+        },
+      },
+      {
+        "files": [
+          "packages/**/*.ts",
+        ],
+        "jsPlugins": [
+          "eslint-plugin-tsdoc",
+        ],
+        "rules": {
+          "tsdoc/syntax": "error",
+        },
+      },
+      {
+        "files": [
+          "test/**/*.ts",
+        ],
+        "rules": {
+          "no-restricted-imports": [
+            "error",
+            {
+              "patterns": [
+                "*src*",
+              ],
+            },
+          ],
+        },
+      },
+      {
+        "files": [
+          "test/**/*.spec.ts",
+        ],
+        "jsPlugins": [
+          "eslint-plugin-mocha",
+          "@puppeteer/eslint-plugin",
+        ],
+        "plugins": [
+          "typescript",
+        ],
+        "rules": {
+          "@puppeteer/no-quirks-mode-set-content": "error",
+          "mocha/no-identical-title": "error",
+          "mocha/no-pending-tests": "error",
+          "no-unused-vars": [
+            "error",
+            {
+              "argsIgnorePattern": "^_",
+              "varsIgnorePattern": "^_",
+            },
+          ],
+        },
+      },
+    ],
+    "plugins": [
+      "unicorn",
+      "import",
+    ],
+    "rules": {
+      "@puppeteer/check-license": "error",
+      "@puppeteer/extensions": "error",
+      "@puppeteer/prettier-comments": "error",
+      "@stylistic/function-call-spacing": "error",
+      "@stylistic/semi": "error",
+      "arrow-body-style": [
+        "error",
+        "always",
+      ],
+      "curly": [
+        "error",
+        "all",
+      ],
+      "eqeqeq": [
+        "error",
+      ],
+      "import/no-cycle": [
+        "error",
+        {
+          "maxDepth": Infinity,
+        },
+      ],
+      "mocha/no-exclusive-tests": "error",
+      "no-caller": "error",
+      "no-cond-assign": "error",
+      "no-debugger": "error",
+      "no-dupe-keys": "error",
+      "no-duplicate-case": "error",
+      "no-empty-character-class": "error",
+      "no-labels": "error",
+      "no-multi-str": "error",
+      "no-self-compare": "error",
+      "no-shadow-restricted-names": "error",
+      "no-unsafe-negation": "error",
+      "no-unused-vars": [
+        "error",
+        {
+          "args": "none",
+          "vars": "local",
+          "varsIgnorePattern": "([fx]?describe|[fx]?it|beforeAll|beforeEach|afterAll|afterEach)",
+        },
+      ],
+      "no-var": "error",
+      "no-with": "error",
+      "prettier/prettier": "error",
+      "radix": "error",
+      "require-yield": "error",
+      "valid-typeof": "error",
+    },
+  },
+  "warnings": [
+    "unsupported rule, but in development: import/named",
+    "unsupported rule: spaced-comment",
+    "unsupported rule: accessor-pairs",
+    "unsupported rule: new-parens",
+    "unsupported rule: prefer-const",
+    "unsupported rule: max-len",
+    "unsupported rule: no-implied-eval",
+    "unsupported rule: no-new-object",
+    "unsupported rule: no-octal-escape",
+    "unsupported rule, but in development: no-unreachable",
+    "unsupported rule: template-curly-spacing",
+    "unsupported rule: import/order",
+    "unsupported rule: import/enforce-node-protocol-usage",
+    "unsupported rule, but in development: constructor-super",
+    "unsupported rule, but in development: getter-return",
+    "unsupported rule, but in development: no-undef",
+    "unsupported rule: @typescript-eslint/class-literal-property-style",
+    "unsupported rule: @typescript-eslint/consistent-type-assertions",
+    "type-aware rule detected, but \`--type-aware\` is not enabled: @typescript-eslint/no-unnecessary-template-expression",
+    "unsupported rule: no-restricted-syntax",
+    "type-aware rule detected, but \`--type-aware\` is not enabled: @typescript-eslint/no-floating-promises",
+    "type-aware rule detected, but \`--type-aware\` is not enabled: @typescript-eslint/return-await",
+    "unsupported rule: @typescript-eslint/consistent-type-exports",
+  ],
+}
+`;
+
 exports[`puppeteer --type-aware > puppeteer--type-aware 1`] = `
 {
   "config": {
