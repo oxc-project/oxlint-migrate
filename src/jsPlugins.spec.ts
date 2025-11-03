@@ -25,13 +25,24 @@ describe('enableJsPluginRule', () => {
       plugin: 'eslint-plugin-perfectionist',
       oxlintRule: 'perfectionist/sort-exports',
     },
+    {
+      eslintRule: '@eslint-community/eslint-comments/disable-enable-pair',
+      eslintPlugins: {
+        '@eslint-community/eslint-comments': {
+          meta: { name: 'eslint-plugin-eslint-comments' },
+        },
+      },
+      plugin: 'eslint-plugin-eslint-comments',
+      oxlintRule: '@eslint-community/eslint-comments/disable-enable-pair',
+    },
   ];
 
-  for (const { eslintRule: rule, plugin, oxlintRule } of rules) {
-    test(`should enable js plugin ${plugin} rule for ${rule}`, () => {
+  for (const { eslintRule, plugin, oxlintRule, eslintPlugins } of rules) {
+    test(`should enable js plugin ${plugin} rule for ${eslintRule}`, () => {
       const eslintConfig: Linter.Config = {
+        plugins: eslintPlugins,
         rules: {
-          [rule]: 'error',
+          [eslintRule]: 'error',
         },
       };
       const targetConfig: OxlintConfigOrOverride = {};
@@ -39,7 +50,7 @@ describe('enableJsPluginRule', () => {
       const result = enableJsPluginRule(
         eslintConfig,
         targetConfig,
-        rule,
+        eslintRule,
         'error'
       );
 
