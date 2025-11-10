@@ -40,7 +40,7 @@
     "@antfu/eslint-config": "^6.0.0",
     "@eslint/js": "^9.29.0",
     "@logux/eslint-config": "^57.0.0",
-    "@oxc-node/core": "^0.0.32",
+    "@oxc-node/core": "^0.0.34",
     "@stylistic/eslint-plugin": "^5.0.0",
     "@stylistic/eslint-plugin-ts": "^4.4.1",
     "@types/eslint-config-prettier": "^6.11.3",
@@ -90,5 +90,5 @@
   "peerDependencies": {
     "jiti": "*"
   },
-  "packageManager": "pnpm@10.20.0"
+  "packageManager": "pnpm@10.21.0"
 }
