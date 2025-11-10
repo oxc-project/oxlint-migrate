@@ -242,6 +242,7 @@ export const styleRules = [
   'unicorn/empty-brace-spaces',
   'unicorn/error-message',
   'unicorn/filename-case',
+  'unicorn/no-useless-collection-argument',
   'unicorn/no-array-method-this-argument',
   'unicorn/no-await-expression-member',
   'unicorn/no-console-spaces',
