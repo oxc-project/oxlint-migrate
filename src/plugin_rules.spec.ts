@@ -40,6 +40,24 @@ describe('rules and plugins', () => {
       expect(config.rules['unknown-rule']).toBe(undefined);
     });
 
+    test('rules with numeric severity', () => {
+      const eslintConfig: Linter.Config = {
+        rules: {
+          'unicorn/prefer-set-has': 1,
+          'no-useless-call': 2,
+          'unknown-rule': 2,
+        },
+      };
+      const config: OxlintConfig = {};
+
+      transformRuleEntry(eslintConfig, config);
+
+      assert(config.rules);
+      expect(config.rules['unicorn/prefer-set-has']).toBe('warn');
+      expect(config.rules['no-useless-call']).toBe('error');
+      expect(config.rules['unknown-rule']).toBe(undefined);
+    });
+
     test('merge', () => {
       const eslintConfig: Linter.Config = {
         rules: {

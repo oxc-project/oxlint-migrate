@@ -25,9 +25,9 @@ const isActiveValue = (value: unknown) =>
 
 const isOffValue = (value: unknown) => isValueInSet(value, ['off', 0]);
 
-const isErrorValue = (value: unknown) => isValueInSet(value, ['error', 1]);
+const isWarnValue = (value: unknown) => isValueInSet(value, ['warn', 1]);
 
-const isWarnValue = (value: unknown) => isValueInSet(value, ['warn', 2]);
+const isErrorValue = (value: unknown) => isValueInSet(value, ['error', 2]);
 
 const normalizeSeverityValue = (
   value: Linter.RuleEntry | undefined

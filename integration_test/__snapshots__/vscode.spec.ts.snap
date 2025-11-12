@@ -623,7 +623,7 @@ exports[`vscode --js-plugins > vscode--js-plugins 1`] = `
       "curly": "warn",
       "eqeqeq": "warn",
       "header/header": [
-        "warn",
+        "error",
         "block",
         [
           "---------------------------------------------------------------------------------------------",
