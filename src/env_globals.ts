@@ -64,7 +64,7 @@ export const removeGlobalsWithAreCoveredByEnv = (
   for (const [env, entries] of Object.entries(globals)) {
     if (config.env[env] === true) {
       for (const entry of Object.keys(entries)) {
-        // @ts-ignore -- filtering makes the key to any
+        // @ts-expect-error -- filtering makes the key to any
         if (normalizeGlobValue(config.globals[entry]) === entries[entry]) {
           delete config.globals[entry];
         }
@@ -113,9 +113,9 @@ export const detectEnvironmentByGlobals = (config: OxlintConfigOrOverride) => {
 
     let matches = search.filter(
       (entry) =>
-        // @ts-ignore -- we already checked for undefined
+        // @ts-expect-error -- we already checked for undefined
         entry in config.globals &&
-        // @ts-ignore -- filtering makes the key to any
+        // @ts-expect-error -- filtering makes the key to any
         normalizeGlobValue(config.globals[entry]) === entries[entry]
     );
     if (search.length === matches.length) {
@@ -138,13 +138,13 @@ export const transformEnvAndGlobals = (
     typeof eslintConfig.languageOptions.parser === 'object' &&
     'meta' in eslintConfig.languageOptions.parser &&
     !(SUPPORTED_ESLINT_PARSERS as (string | undefined)[]).includes(
-      // @ts-ignore
+      // @ts-expect-error
       eslintConfig.languageOptions.parser.meta?.name
     )
   ) {
     options?.reporter?.report(
       'special parser detected: ' +
-        // @ts-ignore
+        // @ts-expect-error
         eslintConfig.languageOptions.parser.meta?.name
     );
   }

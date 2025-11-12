@@ -1,4 +1,4 @@
-// @ts-ignore
+// @ts-expect-error
 import vuejs_core_test from './projects/vuejs-core.eslint.config.js';
 import { testProject } from './utils.js';
 
