@@ -27,6 +27,54 @@ describe('detectEnvironmentByGlobals', () => {
     detectEnvironmentByGlobals(config);
     expect(config.env).toBeUndefined();
   });
+
+  test('detect browser env with >97% match (missing a few keys)', () => {
+    // Create a copy of browser globals and remove a few keys to simulate version differences
+    const browserGlobals: Record<string, boolean | 'readonly' | 'writable'> = {
+      ...globals.browser,
+    };
+    const totalKeys = Object.keys(browserGlobals).length;
+    const keysToRemove = Math.floor(totalKeys * 0.03); // Remove 3% of keys
+
+    let removed = 0;
+    for (const key in browserGlobals) {
+      if (removed < keysToRemove) {
+        delete browserGlobals[key];
+        removed++;
+      }
+    }
+
+    const config: OxlintConfig = {
+      globals: browserGlobals,
+    };
+
+    detectEnvironmentByGlobals(config);
+    expect(config.env?.browser).toBe(true);
+  });
+
+  test('does not detect env when match is <97%', () => {
+    // Create a copy of browser globals and remove >5% of keys
+    const browserGlobals: Record<string, boolean | 'readonly' | 'writable'> = {
+      ...globals.browser,
+    };
+    const totalKeys = Object.keys(browserGlobals).length;
+    const keysToRemove = Math.floor(totalKeys * 0.04); // Remove 4% of keys
+
+    let removed = 0;
+    for (const key in browserGlobals) {
+      if (removed < keysToRemove) {
+        delete browserGlobals[key];
+        removed++;
+      }
+    }
+
+    const config: OxlintConfig = {
+      globals: browserGlobals,
+    };
+
+    detectEnvironmentByGlobals(config);
+    expect(config.env?.browser).toBeUndefined();
+  });
 });
 
 describe('removeGlobalsWithAreCoveredByEnv', () => {

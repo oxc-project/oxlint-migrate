@@ -118,7 +118,18 @@ export const detectEnvironmentByGlobals = (config: OxlintConfigOrOverride) => {
         // @ts-expect-error -- filtering makes the key to any
         normalizeGlobValue(config.globals[entry]) === entries[entry]
     );
-    if (search.length === matches.length) {
+
+    // For browser and node, we allow a match if >97% of keys match
+    // This lets us handle version differences in globals package where
+    // there's a difference of just a few extra/removed keys.
+    // Do not do any other envs, otherwise things like es2024 and es2026
+    // would match each other.
+    const useThreshold = env === 'browser' || env === 'node';
+
+    if (
+      (useThreshold && matches.length / search.length >= 0.97) ||
+      (!useThreshold && matches.length === search.length)
+    ) {
       if (config.env === undefined) {
         config.env = {};
       }
