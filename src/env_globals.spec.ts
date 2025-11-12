@@ -53,7 +53,7 @@ describe('detectEnvironmentByGlobals', () => {
   });
 
   test('does not detect env when match is <97%', () => {
-    // Create a copy of browser globals and remove >5% of keys
+    // Create a copy of browser globals and remove >3% of keys
     const browserGlobals: Record<string, boolean | 'readonly' | 'writable'> = {
       ...globals.browser,
     };
