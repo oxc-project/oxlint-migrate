@@ -147,6 +147,49 @@ describe('rules and plugins', () => {
     });
   });
 
+  test('cleanUpUselessOverridesRules with multiple overrides for same files (last-wins)', () => {
+    const config: OxlintConfig = {
+      rules: {
+        'react/react-in-jsx-scope': 'off',
+      },
+      overrides: [
+        {
+          files: ['**/*.ts', '**/*.tsx'],
+          rules: {
+            'react/foobar': 'error',
+            'react/react-in-jsx-scope': 'error',
+          },
+        },
+        {
+          files: ['**/*.ts', '**/*.tsx'],
+          rules: {
+            'react/react-in-jsx-scope': 'off',
+          },
+        },
+      ],
+    };
+
+    cleanUpUselessOverridesRules(config);
+
+    // The final rule wins over the first, so react-in-jsx-scope should end up as "off".
+    expect(config).toStrictEqual({
+      rules: {
+        'react/react-in-jsx-scope': 'off',
+      },
+      overrides: [
+        {
+          files: ['**/*.ts', '**/*.tsx'],
+          rules: {
+            'react/foobar': 'error',
+          },
+        },
+        {
+          files: ['**/*.ts', '**/*.tsx'],
+        },
+      ],
+    });
+  });
+
   test('cleanUpRulesWhichAreCoveredByCategory', () => {
     const config: OxlintConfig = {
       categories: {
