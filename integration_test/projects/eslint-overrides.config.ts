@@ -1,11 +1,22 @@
 import { globalIgnores } from 'eslint/config';
-import react from 'eslint-plugin-react';
-import tseslint from 'typescript-eslint';
+import tseslint, { type ConfigWithExtends } from 'typescript-eslint';
+
+const config1: ConfigWithExtends = {
+  rules: {
+    'react/react-in-jsx-scope': 'error',
+  },
+};
+
+const config2: ConfigWithExtends = {
+  rules: {
+    'react/react-in-jsx-scope': 'off',
+  },
+};
 
 export default tseslint.config([
   globalIgnores(['node_modules/**/*']),
-  react.configs.flat.recommended,
-  react.configs.flat['jsx-runtime'],
+  config1,
+  config2,
   {
     languageOptions: {
       parser: tseslint.parser,
@@ -25,10 +36,7 @@ export default tseslint.config([
   {
     files: ['**/*.ts', '**/*.tsx'],
 
-    extends: [
-      react.configs.flat.recommended,
-      react.configs.flat['jsx-runtime'],
-    ],
+    extends: [config1, config2],
 
     rules: {
       'react/prop-types': 'off',

@@ -27,31 +27,9 @@ exports[`eslint-overrides > eslint-overrides 1`] = `
     "plugins": [
       "react",
     ],
-    "rules": {
-      "react/jsx-key": "error",
-      "react/jsx-no-comment-textnodes": "error",
-      "react/jsx-no-duplicate-props": "error",
-      "react/jsx-no-target-blank": "error",
-      "react/jsx-no-undef": "error",
-      "react/no-children-prop": "error",
-      "react/no-danger-with-children": "error",
-      "react/no-direct-mutation-state": "error",
-      "react/no-find-dom-node": "error",
-      "react/no-is-mounted": "error",
-      "react/no-render-return-value": "error",
-      "react/no-string-refs": "error",
-      "react/no-unescaped-entities": "error",
-      "react/no-unknown-property": "error",
-    },
+    "rules": {},
   },
-  "warnings": [
-    "unsupported rule: react/display-name",
-    "unsupported rule: react/jsx-uses-react",
-    "unsupported rule: react/jsx-uses-vars",
-    "unsupported rule: react/no-deprecated",
-    "unsupported rule: react/prop-types",
-    "unsupported rule, but in development: react/require-render-return",
-  ],
+  "warnings": [],
 }
 `;
 
@@ -82,31 +60,9 @@ exports[`eslint-overrides --js-plugins > eslint-overrides--js-plugins 1`] = `
     "plugins": [
       "react",
     ],
-    "rules": {
-      "react/jsx-key": "error",
-      "react/jsx-no-comment-textnodes": "error",
-      "react/jsx-no-duplicate-props": "error",
-      "react/jsx-no-target-blank": "error",
-      "react/jsx-no-undef": "error",
-      "react/no-children-prop": "error",
-      "react/no-danger-with-children": "error",
-      "react/no-direct-mutation-state": "error",
-      "react/no-find-dom-node": "error",
-      "react/no-is-mounted": "error",
-      "react/no-render-return-value": "error",
-      "react/no-string-refs": "error",
-      "react/no-unescaped-entities": "error",
-      "react/no-unknown-property": "error",
-    },
+    "rules": {},
   },
-  "warnings": [
-    "unsupported rule: react/display-name",
-    "unsupported rule: react/jsx-uses-react",
-    "unsupported rule: react/jsx-uses-vars",
-    "unsupported rule: react/no-deprecated",
-    "unsupported rule: react/prop-types",
-    "unsupported rule, but in development: react/require-render-return",
-  ],
+  "warnings": [],
 }
 `;
 
@@ -137,31 +93,9 @@ exports[`eslint-overrides --type-aware > eslint-overrides--type-aware 1`] = `
     "plugins": [
       "react",
     ],
-    "rules": {
-      "react/jsx-key": "error",
-      "react/jsx-no-comment-textnodes": "error",
-      "react/jsx-no-duplicate-props": "error",
-      "react/jsx-no-target-blank": "error",
-      "react/jsx-no-undef": "error",
-      "react/no-children-prop": "error",
-      "react/no-danger-with-children": "error",
-      "react/no-direct-mutation-state": "error",
-      "react/no-find-dom-node": "error",
-      "react/no-is-mounted": "error",
-      "react/no-render-return-value": "error",
-      "react/no-string-refs": "error",
-      "react/no-unescaped-entities": "error",
-      "react/no-unknown-property": "error",
-    },
+    "rules": {},
   },
-  "warnings": [
-    "unsupported rule: react/display-name",
-    "unsupported rule: react/jsx-uses-react",
-    "unsupported rule: react/jsx-uses-vars",
-    "unsupported rule: react/no-deprecated",
-    "unsupported rule: react/prop-types",
-    "unsupported rule, but in development: react/require-render-return",
-  ],
+  "warnings": [],
 }
 `;
 
@@ -186,24 +120,6 @@ exports[`eslint-overrides merge > eslint-overrides--merge 1`] = `
           "**/*.tsx",
         ],
         "rules": {
-          "react/jsx-key": "error",
-          "react/jsx-no-duplicate-props": "error",
-          "react/jsx-no-undef": "error",
-          "react/no-children-prop": "error",
-          "react/no-danger-with-children": "error",
-          "react/no-direct-mutation-state": "error",
-          "react/no-find-dom-node": "error",
-          "react/no-is-mounted": "error",
-          "react/no-render-return-value": "error",
-          "react/no-string-refs": "error",
-        },
-      },
-      {
-        "files": [
-          "**/*.ts",
-          "**/*.tsx",
-        ],
-        "rules": {
           "react/react-in-jsx-scope": "off",
         },
       },
@@ -212,20 +128,9 @@ exports[`eslint-overrides merge > eslint-overrides--merge 1`] = `
       "react",
     ],
     "rules": {
-      "react/jsx-no-comment-textnodes": "error",
-      "react/jsx-no-target-blank": "error",
-      "react/no-unescaped-entities": "error",
-      "react/no-unknown-property": "error",
       "react/react-in-jsx-scope": "error",
     },
   },
-  "warnings": [
-    "unsupported rule: react/display-name",
-    "unsupported rule: react/jsx-uses-react",
-    "unsupported rule: react/jsx-uses-vars",
-    "unsupported rule: react/no-deprecated",
-    "unsupported rule: react/prop-types",
-    "unsupported rule, but in development: react/require-render-return",
-  ],
+  "warnings": [],
 }
 `;
