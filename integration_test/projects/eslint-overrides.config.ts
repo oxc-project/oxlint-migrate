@@ -18,17 +18,6 @@ export default tseslint.config([
   config1,
   config2,
   {
-    languageOptions: {
-      parser: tseslint.parser,
-      sourceType: 'module',
-    },
-
-    settings: {
-      react: {
-        version: 'detect',
-      },
-    },
-
     rules: {
       'react/jsx-filename-extension': 'off',
     },
@@ -37,6 +26,8 @@ export default tseslint.config([
     files: ['**/*.ts', '**/*.tsx'],
 
     // The second config should override the first if they have the same rule with the same settings.
+    // And then get deleted entirely in the cleanup step since it becomes redundant (off is the default
+    // in the default config, so the override is pointless).
     extends: [config1, config2],
 
     rules: {
