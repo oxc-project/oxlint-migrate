@@ -13,6 +13,73 @@ exports[`eslint-overrides > eslint-overrides 1`] = `
     "ignorePatterns": [
       "node_modules/**/*",
     ],
+    "plugins": [
+      "react",
+    ],
+    "rules": {},
+  },
+  "warnings": [],
+}
+`;
+
+exports[`eslint-overrides --js-plugins > eslint-overrides--js-plugins 1`] = `
+{
+  "config": {
+    "$schema": "./node_modules/oxlint/configuration_schema.json",
+    "categories": {
+      "correctness": "off",
+    },
+    "env": {
+      "builtin": true,
+    },
+    "ignorePatterns": [
+      "node_modules/**/*",
+    ],
+    "plugins": [
+      "react",
+    ],
+    "rules": {},
+  },
+  "warnings": [],
+}
+`;
+
+exports[`eslint-overrides --type-aware > eslint-overrides--type-aware 1`] = `
+{
+  "config": {
+    "$schema": "./node_modules/oxlint/configuration_schema.json",
+    "categories": {
+      "correctness": "off",
+    },
+    "env": {
+      "builtin": true,
+    },
+    "ignorePatterns": [
+      "node_modules/**/*",
+    ],
+    "plugins": [
+      "react",
+    ],
+    "rules": {},
+  },
+  "warnings": [],
+}
+`;
+
+exports[`eslint-overrides merge > eslint-overrides--merge 1`] = `
+{
+  "config": {
+    "$schema": "./node_modules/oxlint/configuration_schema.json",
+    "categories": {
+      "correctness": "error",
+      "perf": "error",
+    },
+    "env": {
+      "builtin": true,
+    },
+    "ignorePatterns": [
+      "node_modules/**/*",
+    ],
     "overrides": [
       {
         "files": [
@@ -20,14 +87,16 @@ exports[`eslint-overrides > eslint-overrides 1`] = `
           "**/*.tsx",
         ],
         "rules": {
-          "react/react-in-jsx-scope": "error",
+          "react/react-in-jsx-scope": "off",
         },
       },
     ],
     "plugins": [
       "react",
     ],
-    "rules": {},
+    "rules": {
+      "react/react-in-jsx-scope": "error",
+    },
   },
   "warnings": [],
 }
