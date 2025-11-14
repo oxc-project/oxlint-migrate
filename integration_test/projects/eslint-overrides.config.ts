@@ -36,6 +36,7 @@ export default tseslint.config([
   {
     files: ['**/*.ts', '**/*.tsx'],
 
+    // The second config should override the first if they have the same rule with the same settings.
     extends: [config1, config2],
 
     rules: {
