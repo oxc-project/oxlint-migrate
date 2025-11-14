@@ -20,4 +20,16 @@ export default defineConfig([
       'no-unused-vars': 'error',
     },
   },
+  {
+    files: ['**/*.ts'],
+    languageOptions: {
+      globals: {
+        ...globals.worker,
+        ...globals.serviceworker,
+      },
+    },
+    rules: {
+      'arrow-body-style': 'error',
+    },
+  },
 ]);

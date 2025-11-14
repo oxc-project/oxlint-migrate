@@ -91,6 +91,9 @@ export const transformBoolGlobalToString = (config: OxlintConfigOrOverride) => {
   }
 };
 
+// Environments we want to apply a threshold match for, because they're quite large.
+const THRESHOLD_ENVS = ['browser', 'node', 'serviceworker', 'worker'];
+
 export const detectEnvironmentByGlobals = (config: OxlintConfigOrOverride) => {
   if (config.globals === undefined) {
     return;
@@ -119,15 +122,18 @@ export const detectEnvironmentByGlobals = (config: OxlintConfigOrOverride) => {
         normalizeGlobValue(config.globals[entry]) === entries[entry]
     );
 
-    // For browser and node, we allow a match if >97% of keys match
+    // For especially large globals, we allow a match if >=97% of keys match.
     // This lets us handle version differences in globals package where
     // there's a difference of just a few extra/removed keys.
     // Do not do any other envs, otherwise things like es2024 and es2026
     // would match each other.
-    const useThreshold = env === 'browser' || env === 'node';
+    const useThreshold = THRESHOLD_ENVS.includes(env);
+
+    const withinThreshold =
+      useThreshold && matches.length / search.length >= 0.97;
 
     if (
-      (useThreshold && matches.length / search.length >= 0.97) ||
+      withinThreshold ||
       (!useThreshold && matches.length === search.length)
     ) {
       if (config.env === undefined) {
