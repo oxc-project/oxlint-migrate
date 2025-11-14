@@ -64,7 +64,7 @@ export const removeGlobalsWithAreCoveredByEnv = (
   for (const [env, entries] of Object.entries(globals)) {
     if (config.env[env] === true) {
       for (const entry of Object.keys(entries)) {
-        // @ts-ignore -- filtering makes the key to any
+        // @ts-expect-error -- filtering makes the key to any
         if (normalizeGlobValue(config.globals[entry]) === entries[entry]) {
           delete config.globals[entry];
         }
@@ -113,12 +113,23 @@ export const detectEnvironmentByGlobals = (config: OxlintConfigOrOverride) => {
 
     let matches = search.filter(
       (entry) =>
-        // @ts-ignore -- we already checked for undefined
+        // @ts-expect-error -- we already checked for undefined
         entry in config.globals &&
-        // @ts-ignore -- filtering makes the key to any
+        // @ts-expect-error -- filtering makes the key to any
         normalizeGlobValue(config.globals[entry]) === entries[entry]
     );
-    if (search.length === matches.length) {
+
+    // For browser and node, we allow a match if >97% of keys match
+    // This lets us handle version differences in globals package where
+    // there's a difference of just a few extra/removed keys.
+    // Do not do any other envs, otherwise things like es2024 and es2026
+    // would match each other.
+    const useThreshold = env === 'browser' || env === 'node';
+
+    if (
+      (useThreshold && matches.length / search.length >= 0.97) ||
+      (!useThreshold && matches.length === search.length)
+    ) {
       if (config.env === undefined) {
         config.env = {};
       }
@@ -138,13 +149,13 @@ export const transformEnvAndGlobals = (
     typeof eslintConfig.languageOptions.parser === 'object' &&
     'meta' in eslintConfig.languageOptions.parser &&
     !(SUPPORTED_ESLINT_PARSERS as (string | undefined)[]).includes(
-      // @ts-ignore
+      // @ts-expect-error
       eslintConfig.languageOptions.parser.meta?.name
     )
   ) {
     options?.reporter?.report(
       'special parser detected: ' +
-        // @ts-ignore
+        // @ts-expect-error
         eslintConfig.languageOptions.parser.meta?.name
     );
   }

@@ -1,4 +1,4 @@
-// @ts-ignore
+// @ts-expect-error
 import nuxt_auth_test from './projects/nuxt-auth.eslint.config.js';
 import { testProject } from './utils.js';
 

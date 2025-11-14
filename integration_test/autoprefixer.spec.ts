@@ -1,4 +1,4 @@
-// @ts-ignore
+// @ts-expect-error
 import autoprefixer_test from './projects/autoprefixer.eslint.config.mjs';
 import { testProject } from './utils.js';
 
