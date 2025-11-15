@@ -179,13 +179,79 @@ export const cleanUpUselessOverridesPlugins = (config: OxlintConfig): void => {
     }
   }
 };
+
 export const cleanUpUselessOverridesRules = (config: OxlintConfig): void => {
   if (config.rules === undefined || config.overrides === undefined) {
     return;
   }
 
+  // Build a map of files pattern -> {firstOverrideIndex, finalMergedRules}
+  const filesPatternMap = new Map<
+    string,
+    {
+      firstIndex: number;
+      finalRules: Record<string, Linter.RuleEntry>;
+      indicesToRemove: number[];
+    }
+  >();
+
+  // First pass: merge all overrides with same files pattern
+  for (let i = 0; i < config.overrides.length; i++) {
+    const override = config.overrides[i];
+    if (override.files === undefined) {
+      continue;
+    }
+
+    const filesKey = JSON.stringify(override.files);
+    let entry = filesPatternMap.get(filesKey);
+
+    if (!entry) {
+      entry = {
+        firstIndex: i,
+        finalRules: {},
+        indicesToRemove: [],
+      };
+      filesPatternMap.set(filesKey, entry);
+    } else {
+      // Mark this duplicate for removal
+      entry.indicesToRemove.push(i);
+    }
+
+    // Merge rules with last-wins semantics
+    if (override.rules) {
+      Object.assign(entry.finalRules, override.rules);
+    }
+  }
+
+  // Second pass: update first occurrence with merged rules and mark duplicates for deletion
+  for (const [_filesKey, entry] of filesPatternMap.entries()) {
+    const firstOverride = config.overrides[entry.firstIndex];
+
+    // Update the first override with the final merged rules
+    firstOverride.rules = entry.finalRules;
+
+    // Remove rules that match root config
+    if (firstOverride.rules) {
+      for (const [rule, settings] of Object.entries(firstOverride.rules)) {
+        if (config.rules[rule] === settings) {
+          delete firstOverride.rules[rule];
+        }
+      }
+
+      if (Object.keys(firstOverride.rules).length === 0) {
+        delete firstOverride.rules;
+      }
+    }
+
+    // Mark duplicate overrides for removal by clearing their rules
+    for (const indexToRemove of entry.indicesToRemove) {
+      delete config.overrides[indexToRemove].rules;
+    }
+  }
+
+  // Handle overrides that don't have files (just clean up rules matching root)
   for (const override of config.overrides) {
-    if (override.rules === undefined) {
+    if (override.files !== undefined || override.rules === undefined) {
       continue;
     }
 

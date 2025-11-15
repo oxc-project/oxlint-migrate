@@ -133,9 +133,6 @@ exports[`nuxt-auth > nuxt-auth 1`] = `
           "**/*.?([cm])tsx",
           "**/*.vue",
         ],
-        "plugins": [
-          "typescript",
-        ],
         "rules": {
           "@typescript-eslint/ban-ts-comment": [
             "error",
@@ -210,6 +207,16 @@ exports[`nuxt-auth > nuxt-auth 1`] = `
           "no-useless-constructor": "off",
           "no-with": "off",
         },
+      },
+      {
+        "files": [
+          "**/*.?([cm])ts",
+          "**/*.?([cm])tsx",
+          "**/*.vue",
+        ],
+        "plugins": [
+          "typescript",
+        ],
       },
       {
         "files": [
@@ -1004,9 +1011,6 @@ exports[`nuxt-auth --js-plugins > nuxt-auth--js-plugins 1`] = `
           "**/*.?([cm])tsx",
           "**/*.vue",
         ],
-        "plugins": [
-          "typescript",
-        ],
         "rules": {
           "@typescript-eslint/ban-ts-comment": [
             "error",
@@ -1081,6 +1085,16 @@ exports[`nuxt-auth --js-plugins > nuxt-auth--js-plugins 1`] = `
           "no-useless-constructor": "off",
           "no-with": "off",
         },
+      },
+      {
+        "files": [
+          "**/*.?([cm])ts",
+          "**/*.?([cm])tsx",
+          "**/*.vue",
+        ],
+        "plugins": [
+          "typescript",
+        ],
       },
       {
         "files": [
@@ -2260,9 +2274,6 @@ exports[`nuxt-auth --type-aware > nuxt-auth--type-aware 1`] = `
           "**/*.?([cm])tsx",
           "**/*.vue",
         ],
-        "plugins": [
-          "typescript",
-        ],
         "rules": {
           "@typescript-eslint/ban-ts-comment": [
             "error",
@@ -2337,6 +2348,16 @@ exports[`nuxt-auth --type-aware > nuxt-auth--type-aware 1`] = `
           "no-useless-constructor": "off",
           "no-with": "off",
         },
+      },
+      {
+        "files": [
+          "**/*.?([cm])ts",
+          "**/*.?([cm])tsx",
+          "**/*.vue",
+        ],
+        "plugins": [
+          "typescript",
+        ],
       },
       {
         "files": [
@@ -3123,9 +3144,6 @@ exports[`nuxt-auth merge > nuxt-auth--merge 1`] = `
           "**/*.?([cm])tsx",
           "**/*.vue",
         ],
-        "plugins": [
-          "typescript",
-        ],
         "rules": {
           "@typescript-eslint/ban-ts-comment": [
             "error",
@@ -3201,6 +3219,16 @@ exports[`nuxt-auth merge > nuxt-auth--merge 1`] = `
           "no-useless-constructor": "off",
           "no-with": "off",
         },
+      },
+      {
+        "files": [
+          "**/*.?([cm])ts",
+          "**/*.?([cm])tsx",
+          "**/*.vue",
+        ],
+        "plugins": [
+          "typescript",
+        ],
       },
       {
         "files": [

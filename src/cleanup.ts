@@ -73,7 +73,7 @@ const cleanUpUselessOverridesEntries = (config: OxlintConfig): void => {
   }
 
   for (const [overrideIndex, override] of config.overrides.entries()) {
-    // the only key left is
+    // If there's only one key left, it can be deleted. An override needs files+plugins or files+rules to make sense.
     if (Object.keys(override).length === 1) {
       delete config.overrides[overrideIndex];
     }
