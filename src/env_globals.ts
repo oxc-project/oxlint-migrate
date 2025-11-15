@@ -7,7 +7,7 @@ export const ES_VERSIONS = [
   6, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026,
 ];
 
-// <https://github.com/oxc-project/javascript-globals/blob/55be079bd9ac417b7d5007723beb7aa59193dbd0/xtask/src/main.rs#L136-L162>
+// <https://github.com/oxc-project/javascript-globals/blob/705cddede9e1bad081a0e7977aea3d3142e4d60f/xtask/src/main.rs#L153-L182>
 const OTHER_SUPPORTED_ENVS = [
   'browser',
   'node',
@@ -17,6 +17,7 @@ const OTHER_SUPPORTED_ENVS = [
 
   'amd',
   'applescript',
+  'astro',
   'atomtest',
   'commonjs',
   'embertest',
@@ -32,9 +33,11 @@ const OTHER_SUPPORTED_ENVS = [
   'prototypejs',
   'phantomjs',
   'shelljs',
+  'svelte',
   'webextensions',
   'qunit',
   'vitest',
+  'vue',
 ];
 
 // these parsers are supported by oxlint and should not be reported
