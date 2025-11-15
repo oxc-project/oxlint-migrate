@@ -1,5 +1,6 @@
 import { describe, expect, test } from 'vitest';
 import {
+  cleanUpSupersetEnvs,
   cleanUpUselessOverridesEnv,
   detectEnvironmentByGlobals,
   removeGlobalsWithAreCoveredByEnv,
@@ -28,13 +29,13 @@ describe('detectEnvironmentByGlobals', () => {
     expect(config.env).toBeUndefined();
   });
 
-  test('detect browser env with >97% match (missing a few keys)', () => {
+  test('detect browser env with >=97% match (missing a few keys)', () => {
     // Create a copy of browser globals and remove a few keys to simulate version differences
     const browserGlobals: Record<string, boolean | 'readonly' | 'writable'> = {
       ...globals.browser,
     };
     const totalKeys = Object.keys(browserGlobals).length;
-    const keysToRemove = Math.floor(totalKeys * 0.03); // Remove 3% of keys
+    const keysToRemove = Math.floor(totalKeys * 0.02); // Remove 2% of keys
 
     let removed = 0;
     for (const key in browserGlobals) {
@@ -50,6 +51,8 @@ describe('detectEnvironmentByGlobals', () => {
 
     detectEnvironmentByGlobals(config);
     expect(config.env?.browser).toBe(true);
+    // ensure that browser is the only env detected
+    expect(Object.keys(config.env || {}).length).toBe(1);
   });
 
   test('does not detect env when match is <97%', () => {
@@ -152,6 +155,43 @@ describe('transformEnvAndGlobals', () => {
           files: [],
         },
       ],
+    });
+  });
+});
+
+describe('cleanUpSupersetEnvs', () => {
+  test('removes shared-node-browser when node is present', () => {
+    const config: OxlintConfig = {
+      env: {
+        'shared-node-browser': true,
+        node: true,
+      },
+    };
+
+    cleanUpSupersetEnvs(config);
+
+    expect(config).toStrictEqual({
+      env: {
+        node: true,
+      },
+    });
+  });
+
+  test('does not removes shared-node-browser when node has a different value', () => {
+    const config: OxlintConfig = {
+      env: {
+        'shared-node-browser': true,
+        node: false,
+      },
+    };
+
+    cleanUpSupersetEnvs(config);
+
+    expect(config).toStrictEqual({
+      env: {
+        'shared-node-browser': true,
+        node: false,
+      },
     });
   });
 });

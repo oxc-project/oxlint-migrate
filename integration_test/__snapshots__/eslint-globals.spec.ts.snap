@@ -28,6 +28,20 @@ exports[`eslint-globals > eslint-globals 1`] = `
           "no-unused-vars": "error",
         },
       },
+      {
+        "env": {
+          "browser": true,
+          "serviceworker": true,
+          "shared-node-browser": true,
+          "worker": true,
+        },
+        "files": [
+          "**/*.ts",
+        ],
+        "rules": {
+          "arrow-body-style": "error",
+        },
+      },
     ],
     "plugins": [],
   },
@@ -61,6 +75,20 @@ exports[`eslint-globals --js-plugins > eslint-globals--js-plugins 1`] = `
         ],
         "rules": {
           "no-unused-vars": "error",
+        },
+      },
+      {
+        "env": {
+          "browser": true,
+          "serviceworker": true,
+          "shared-node-browser": true,
+          "worker": true,
+        },
+        "files": [
+          "**/*.ts",
+        ],
+        "rules": {
+          "arrow-body-style": "error",
         },
       },
     ],
@@ -98,6 +126,20 @@ exports[`eslint-globals --type-aware > eslint-globals--type-aware 1`] = `
           "no-unused-vars": "error",
         },
       },
+      {
+        "env": {
+          "browser": true,
+          "serviceworker": true,
+          "shared-node-browser": true,
+          "worker": true,
+        },
+        "files": [
+          "**/*.ts",
+        ],
+        "rules": {
+          "arrow-body-style": "error",
+        },
+      },
     ],
     "plugins": [],
   },
@@ -132,6 +174,20 @@ exports[`eslint-globals merge > eslint-globals--merge 1`] = `
         ],
         "rules": {
           "no-unused-vars": "error",
+        },
+      },
+      {
+        "env": {
+          "browser": true,
+          "serviceworker": true,
+          "shared-node-browser": true,
+          "worker": true,
+        },
+        "files": [
+          "**/*.ts",
+        ],
+        "rules": {
+          "arrow-body-style": "error",
         },
       },
     ],

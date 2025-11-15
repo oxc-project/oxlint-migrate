@@ -7,7 +7,7 @@ export const ES_VERSIONS = [
   6, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026,
 ];
 
-// <https://github.com/oxc-project/javascript-globals/blob/55be079bd9ac417b7d5007723beb7aa59193dbd0/xtask/src/main.rs#L136-L162>
+// <https://github.com/oxc-project/javascript-globals/blob/705cddede9e1bad081a0e7977aea3d3142e4d60f/xtask/src/main.rs#L153-L182>
 const OTHER_SUPPORTED_ENVS = [
   'browser',
   'node',
@@ -17,6 +17,7 @@ const OTHER_SUPPORTED_ENVS = [
 
   'amd',
   'applescript',
+  'astro',
   'atomtest',
   'commonjs',
   'embertest',
@@ -32,9 +33,11 @@ const OTHER_SUPPORTED_ENVS = [
   'prototypejs',
   'phantomjs',
   'shelljs',
+  'svelte',
   'webextensions',
   'qunit',
   'vitest',
+  'vue',
 ];
 
 // these parsers are supported by oxlint and should not be reported
@@ -91,6 +94,9 @@ export const transformBoolGlobalToString = (config: OxlintConfigOrOverride) => {
   }
 };
 
+// Environments we want to apply a threshold match for, because they're quite large.
+const THRESHOLD_ENVS = ['browser', 'node', 'serviceworker', 'worker'];
+
 export const detectEnvironmentByGlobals = (config: OxlintConfigOrOverride) => {
   if (config.globals === undefined) {
     return;
@@ -119,15 +125,18 @@ export const detectEnvironmentByGlobals = (config: OxlintConfigOrOverride) => {
         normalizeGlobValue(config.globals[entry]) === entries[entry]
     );
 
-    // For browser and node, we allow a match if >97% of keys match
+    // For especially large globals, we allow a match if >=97% of keys match.
     // This lets us handle version differences in globals package where
     // there's a difference of just a few extra/removed keys.
     // Do not do any other envs, otherwise things like es2024 and es2026
     // would match each other.
-    const useThreshold = env === 'browser' || env === 'node';
+    const useThreshold = THRESHOLD_ENVS.includes(env);
+
+    const withinThreshold =
+      useThreshold && matches.length / search.length >= 0.97;
 
     if (
-      (useThreshold && matches.length / search.length >= 0.97) ||
+      withinThreshold ||
       (!useThreshold && matches.length === search.length)
     ) {
       if (config.env === undefined) {
@@ -230,6 +239,32 @@ export const cleanUpUselessOverridesEnv = (config: OxlintConfig): void => {
 
     if (Object.keys(override.env).length === 0) {
       delete override.env;
+    }
+  }
+};
+
+// These are envs where the key includes all of the globals from the values.
+// So for example, for shared-node-browser, if the user has either `node` or `browser` already in their `env`, we can remove `shared-node-browser`.
+const SUPERSET_ENVS: Record<string, string[]> = {
+  node: ['nodeBuiltin', 'shared-node-browser', 'commonjs'],
+  browser: ['shared-node-browser'],
+};
+
+export const cleanUpSupersetEnvs = (config: OxlintConfig): void => {
+  if (config.env === undefined) {
+    return;
+  }
+
+  // If we have a superset env, remove its subsets
+  for (const [supersetEnv, subsetEnvs] of Object.entries(SUPERSET_ENVS)) {
+    if (!(supersetEnv in config.env)) {
+      continue;
+    }
+
+    for (const subsetEnv of subsetEnvs) {
+      if (config.env[subsetEnv] === config.env[supersetEnv]) {
+        delete config.env[subsetEnv];
+      }
     }
   }
 };
