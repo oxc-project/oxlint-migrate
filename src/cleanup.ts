@@ -1,4 +1,5 @@
 import {
+  cleanUpSupersetEnvs,
   cleanUpUselessOverridesEnv,
   ES_VERSIONS,
   removeGlobalsWithAreCoveredByEnv,
@@ -67,6 +68,7 @@ const cleanUpUselessOverridesEntries = (config: OxlintConfig): void => {
   cleanUpUselessOverridesRules(config);
   cleanUpUselessOverridesPlugins(config);
   cleanUpUselessOverridesEnv(config);
+  cleanUpSupersetEnvs(config);
 
   if (config.overrides === undefined) {
     return;

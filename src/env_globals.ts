@@ -239,3 +239,29 @@ export const cleanUpUselessOverridesEnv = (config: OxlintConfig): void => {
     }
   }
 };
+
+// These are envs where the key includes all of the globals from the values.
+// So for example, for shared-node-browser, if the user has either `node` or `browser` already in their `env`, we can remove `shared-node-browser`.
+const SUPERSET_ENVS: Record<string, string[]> = {
+  node: ['nodeBuiltin', 'shared-node-browser', 'commonjs'],
+  browser: ['shared-node-browser'],
+};
+
+export const cleanUpSupersetEnvs = (config: OxlintConfig): void => {
+  if (config.env === undefined) {
+    return;
+  }
+
+  // If we have a superset env, remove its subsets
+  for (const [supersetEnv, subsetEnvs] of Object.entries(SUPERSET_ENVS)) {
+    if (config.env[supersetEnv] !== true) {
+      continue;
+    }
+
+    for (const subsetEnv of subsetEnvs) {
+      if (config.env[subsetEnv] === true) {
+        delete config.env[subsetEnv];
+      }
+    }
+  }
+};
