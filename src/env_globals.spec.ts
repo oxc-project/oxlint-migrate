@@ -1,5 +1,6 @@
 import { describe, expect, test } from 'vitest';
 import {
+  cleanUpSupersetEnvs,
   cleanUpUselessOverridesEnv,
   detectEnvironmentByGlobals,
   removeGlobalsWithAreCoveredByEnv,
@@ -154,6 +155,43 @@ describe('transformEnvAndGlobals', () => {
           files: [],
         },
       ],
+    });
+  });
+});
+
+describe('cleanUpSupersetEnvs', () => {
+  test('removes shared-node-browser when node is present', () => {
+    const config: OxlintConfig = {
+      env: {
+        'shared-node-browser': true,
+        node: true,
+      },
+    };
+
+    cleanUpSupersetEnvs(config);
+
+    expect(config).toStrictEqual({
+      env: {
+        node: true,
+      },
+    });
+  });
+
+  test('does not removes shared-node-browser when node is false', () => {
+    const config: OxlintConfig = {
+      env: {
+        'shared-node-browser': true,
+        node: false,
+      },
+    };
+
+    cleanUpSupersetEnvs(config);
+
+    expect(config).toStrictEqual({
+      env: {
+        'shared-node-browser': true,
+        node: false,
+      },
     });
   });
 });

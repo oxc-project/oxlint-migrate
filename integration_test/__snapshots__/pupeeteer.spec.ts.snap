@@ -9,10 +9,8 @@ exports[`puppeteer > puppeteer 1`] = `
     },
     "env": {
       "builtin": true,
-      "commonjs": true,
       "es2026": true,
       "node": true,
-      "shared-node-browser": true,
     },
     "ignorePatterns": [
       "**/node_modules",
@@ -299,10 +297,8 @@ exports[`puppeteer --js-plugins > puppeteer--js-plugins 1`] = `
     },
     "env": {
       "builtin": true,
-      "commonjs": true,
       "es2026": true,
       "node": true,
-      "shared-node-browser": true,
     },
     "ignorePatterns": [
       "**/node_modules",
@@ -612,10 +608,8 @@ exports[`puppeteer --type-aware > puppeteer--type-aware 1`] = `
     },
     "env": {
       "builtin": true,
-      "commonjs": true,
       "es2026": true,
       "node": true,
-      "shared-node-browser": true,
     },
     "ignorePatterns": [
       "**/node_modules",
@@ -924,10 +918,8 @@ exports[`puppeteer merge > puppeteer--merge 1`] = `
     },
     "env": {
       "builtin": true,
-      "commonjs": true,
       "es2026": true,
       "node": true,
-      "shared-node-browser": true,
     },
     "ignorePatterns": [
       "**/node_modules",
