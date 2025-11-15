@@ -177,7 +177,7 @@ describe('cleanUpSupersetEnvs', () => {
     });
   });
 
-  test('does not removes shared-node-browser when node is false', () => {
+  test('does not removes shared-node-browser when node has a different value', () => {
     const config: OxlintConfig = {
       env: {
         'shared-node-browser': true,
