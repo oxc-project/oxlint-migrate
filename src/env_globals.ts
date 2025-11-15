@@ -257,12 +257,8 @@ export const cleanUpSupersetEnvs = (config: OxlintConfig): void => {
 
   // If we have a superset env, remove its subsets
   for (const [supersetEnv, subsetEnvs] of Object.entries(SUPERSET_ENVS)) {
-    if (config.env[supersetEnv] !== true) {
-      continue;
-    }
-
     for (const subsetEnv of subsetEnvs) {
-      if (config.env[subsetEnv] === true) {
+      if (config.env[subsetEnv] === config.env[supersetEnv]) {
         delete config.env[subsetEnv];
       }
     }
