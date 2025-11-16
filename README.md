@@ -4,7 +4,7 @@
 [![NPM Version](https://img.shields.io/npm/v/%40oxlint%2Fmigrate)](https://www.npmjs.com/package/@oxlint/migrate)
 [![NPM Downloads](https://img.shields.io/npm/dm/%40oxlint%2Fmigrate)](https://www.npmjs.com/package/@oxlint/migrate)
 
-Generates a `.oxlintrc.json` from a existing eslint flat config.
+Generates a `.oxlintrc.json` from an existing eslint flat config.
 
 ## Usage
 
