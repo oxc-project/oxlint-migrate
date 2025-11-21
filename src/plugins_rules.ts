@@ -179,25 +179,72 @@ export const cleanUpUselessOverridesPlugins = (config: OxlintConfig): void => {
     }
   }
 };
+
 export const cleanUpUselessOverridesRules = (config: OxlintConfig): void => {
   if (config.rules === undefined || config.overrides === undefined) {
     return;
   }
 
-  for (const override of config.overrides) {
-    if (override.rules === undefined) {
+  // Build a map of files pattern -> {firstOverrideIndex, finalMergedRules}
+  const filesPatternMap = new Map<
+    string,
+    {
+      firstIndex: number;
+      finalRules: Record<string, Linter.RuleEntry>;
+      indicesToRemove: number[];
+    }
+  >();
+
+  // First pass: merge all overrides with same files pattern
+  for (const [i, override] of config.overrides.entries()) {
+    if (override.files === undefined) {
       continue;
     }
 
-    for (const [rule, settings] of Object.entries(override.rules)) {
-      // when they are the same, delete inside override
-      if (config.rules[rule] === settings) {
-        delete override.rules[rule];
+    const filesKey = JSON.stringify(override.files);
+    let entry = filesPatternMap.get(filesKey);
+
+    if (!entry) {
+      entry = {
+        firstIndex: i,
+        finalRules: {},
+        indicesToRemove: [],
+      };
+      filesPatternMap.set(filesKey, entry);
+    } else {
+      // Mark this duplicate for removal
+      entry.indicesToRemove.push(i);
+    }
+
+    // Merge rules with last-wins semantics
+    if (override.rules) {
+      Object.assign(entry.finalRules, override.rules);
+    }
+  }
+
+  // Second pass: update first occurrence with merged rules and mark duplicates for deletion
+  for (const entry of filesPatternMap.values()) {
+    const firstOverride = config.overrides[entry.firstIndex];
+
+    // Update the first override with the final merged rules
+    firstOverride.rules = entry.finalRules;
+
+    // Remove rules that match root config
+    if (firstOverride.rules) {
+      for (const [rule, settings] of Object.entries(firstOverride.rules)) {
+        if (config.rules[rule] === settings) {
+          delete firstOverride.rules[rule];
+        }
+      }
+
+      if (Object.keys(firstOverride.rules).length === 0) {
+        delete firstOverride.rules;
       }
     }
 
-    if (Object.keys(override.rules).length === 0) {
-      delete override.rules;
+    // Mark duplicate overrides for removal by clearing their rules
+    for (const indexToRemove of entry.indicesToRemove) {
+      delete config.overrides[indexToRemove].rules;
     }
   }
 };
