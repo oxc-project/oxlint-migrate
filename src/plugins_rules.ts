@@ -196,8 +196,7 @@ export const cleanUpUselessOverridesRules = (config: OxlintConfig): void => {
   >();
 
   // First pass: merge all overrides with same files pattern
-  for (let i = 0; i < config.overrides.length; i++) {
-    const override = config.overrides[i];
+  for (const [i, override] of config.overrides.entries()) {
     if (override.files === undefined) {
       continue;
     }
@@ -224,7 +223,7 @@ export const cleanUpUselessOverridesRules = (config: OxlintConfig): void => {
   }
 
   // Second pass: update first occurrence with merged rules and mark duplicates for deletion
-  for (const [_filesKey, entry] of filesPatternMap.entries()) {
+  for (const entry of filesPatternMap.values()) {
     const firstOverride = config.overrides[entry.firstIndex];
 
     // Update the first override with the final merged rules
@@ -246,24 +245,6 @@ export const cleanUpUselessOverridesRules = (config: OxlintConfig): void => {
     // Mark duplicate overrides for removal by clearing their rules
     for (const indexToRemove of entry.indicesToRemove) {
       delete config.overrides[indexToRemove].rules;
-    }
-  }
-
-  // Handle overrides that don't have files (just clean up rules matching root)
-  for (const override of config.overrides) {
-    if (override.files !== undefined || override.rules === undefined) {
-      continue;
-    }
-
-    for (const [rule, settings] of Object.entries(override.rules)) {
-      // when they are the same, delete inside override
-      if (config.rules[rule] === settings) {
-        delete override.rules[rule];
-      }
-    }
-
-    if (Object.keys(override.rules).length === 0) {
-      delete override.rules;
     }
   }
 };
