@@ -9,7 +9,7 @@ export default function replaceComments(
   const originalComment = comment;
   comment = comment.trim(); // trim the end too, so we can check for standalone "eslint" comments
 
-  // eslint-disable or eslint-enable
+  // "eslint-disable" or "eslint-enable"
   if (comment.startsWith('eslint-')) {
     return replaceRuleDirectiveComment(originalComment, type, options);
   } else if (type === 'Block') {
