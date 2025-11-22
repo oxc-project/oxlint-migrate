@@ -144,6 +144,49 @@ describe('cleanUpOxlintConfig', () => {
       expect(config.overrides?.[0].files).toEqual(['*.ts', '*.tsx']);
     });
 
+    it('should merge consecutive overrides with differing files but identical other settings, including jsPlugins and categories', () => {
+      const config: OxlintConfig = {
+        overrides: [
+          {
+            files: ['*.ts'],
+            plugins: ['typescript'],
+            jsPlugins: ['foobar'],
+            categories: { correctness: 'warn' },
+          },
+          {
+            files: ['*.tsx'],
+            plugins: ['typescript'],
+            jsPlugins: ['foobar'],
+            categories: { correctness: 'warn' },
+          },
+        ],
+      };
+      cleanUpOxlintConfig(config);
+      expect(config.overrides).toHaveLength(1);
+      expect(config.overrides?.[0].files).toEqual(['*.ts', '*.tsx']);
+      expect(config.overrides?.[0].jsPlugins).toEqual(['foobar']);
+      expect(config.overrides?.[0].categories).toEqual({ correctness: 'warn' });
+    });
+
+    it('should not merge consecutive overrides with differing non-file settings like env', () => {
+      const config: OxlintConfig = {
+        overrides: [
+          {
+            files: ['*.ts'],
+            env: { browser: true },
+            rules: { 'no-console': 'error' },
+          },
+          {
+            files: ['*.tsx'],
+            env: { node: true },
+            rules: { 'no-console': 'error' },
+          },
+        ],
+      };
+      cleanUpOxlintConfig(config);
+      expect(config.overrides).toHaveLength(2);
+    });
+
     // We don't currently handle merging for this, as it's not possible to easily
     // determine if the override in the middle is changing the ultimate behavior of the
     // configured lint rules.
