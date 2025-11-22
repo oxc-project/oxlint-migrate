@@ -124,4 +124,48 @@ describe('cleanUpOxlintConfig', () => {
       expect(config.globals?.myGlobal).toBe('readonly');
     });
   });
+
+  describe('duplicate overrides with differing files cleanup', () => {
+    it('should merge consecutive overrides with differing files but identical other settings', () => {
+      const config: OxlintConfig = {
+        overrides: [
+          {
+            files: ['*.ts'],
+            plugins: ['typescript'],
+          },
+          {
+            files: ['*.tsx'],
+            plugins: ['typescript'],
+          },
+        ],
+      };
+      cleanUpOxlintConfig(config);
+      expect(config.overrides).toHaveLength(1);
+      expect(config.overrides?.[0].files).toEqual(['*.ts', '*.tsx']);
+    });
+
+    // We don't currently handle merging for this, as it's not possible to easily
+    // determine if the override in the middle is changing the ultimate behavior of the
+    // configured lint rules.
+    it('should not merge non-consecutive overrides with differing files', () => {
+      const config: OxlintConfig = {
+        overrides: [
+          {
+            files: ['*.ts'],
+            plugins: ['typescript'],
+          },
+          {
+            files: ['*.js'],
+            plugins: ['javascript'],
+          },
+          {
+            files: ['*.tsx'],
+            plugins: ['typescript'],
+          },
+        ],
+      };
+      cleanUpOxlintConfig(config);
+      expect(config.overrides).toHaveLength(3);
+    });
+  });
 });

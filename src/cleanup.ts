@@ -86,7 +86,7 @@ const cleanUpUselessOverridesEntries = (config: OxlintConfig): void => {
   );
 
   // Merge consecutive identical overrides to avoid redundancy
-  mergeConsecutiveIdenticalOverrides(config);
+  mergeConsecutiveOverrides(config);
 
   if (config.overrides.length === 0) {
     delete config.overrides;
@@ -131,6 +131,11 @@ export const cleanUpOxlintConfig = (config: OxlintConfigOrOverride): void => {
     cleanUpDisabledRootRules(config);
   }
 };
+
+function mergeConsecutiveOverrides(config: OxlintConfig) {
+  mergeConsecutiveIdenticalOverrides(config);
+  mergeConsecutiveOverridesWithDifferingFiles(config);
+}
 
 /**
  * Merges consecutive identical overrides in the config's overrides array
@@ -189,6 +194,88 @@ function mergeConsecutiveIdenticalOverrides(config: OxlintConfig) {
       }
 
       i++;
+    }
+
+    config.overrides = mergedOverrides;
+  }
+}
+
+/**
+ * Merge consecutive overrides that have differing files but everything else is identical.
+ *
+ * ```json
+ * "overrides": [
+ *   {
+ *     "files": [
+ *       "*.ts",
+ *     ],
+ *     "rules": {
+ *       "arrow-body-style": "error",
+ *     },
+ *   },
+ *   {
+ *     "files": [
+ *       "*.mts",
+ *       "*.cts",
+ *     ],
+ *     "rules": {
+ *       "arrow-body-style": "error",
+ *     },
+ *   },
+ * ],
+ * ```
+ */
+function mergeConsecutiveOverridesWithDifferingFiles(config: OxlintConfig) {
+  if (config.overrides !== undefined && config.overrides.length > 1) {
+    const mergedOverrides: OxlintConfigOverride[] = [];
+    let i = 0;
+
+    while (i < config.overrides.length) {
+      const current = config.overrides[i];
+      const currentFiles = current.files;
+      const { files: _, ...currentWithoutFiles } = current;
+
+      // Look ahead to find consecutive overrides with same properties (except files)
+      let j = i + 1;
+      const filesToMerge: string[] = Array.isArray(currentFiles)
+        ? [...currentFiles]
+        : currentFiles
+          ? [currentFiles]
+          : [];
+
+      while (j < config.overrides.length) {
+        const next = config.overrides[j];
+        const { files: __, ...nextWithoutFiles } = next;
+
+        // Check if everything except files is identical
+        if (isEqualDeep(currentWithoutFiles, nextWithoutFiles)) {
+          // Merge the files
+          if (Array.isArray(next.files)) {
+            filesToMerge.push(...next.files);
+          } else if (next.files) {
+            filesToMerge.push(next.files);
+          }
+          j++;
+        } else {
+          break;
+        }
+      }
+
+      // Create the merged override
+      if (j > i + 1) {
+        // We found overrides to merge
+        // Deduplicate the files array
+        const uniqueFiles = [...new Set(filesToMerge)];
+        mergedOverrides.push({
+          ...current,
+          files: uniqueFiles,
+        });
+        i = j;
+      } else {
+        // No merge, keep as is
+        mergedOverrides.push(current);
+        i++;
+      }
     }
 
     config.overrides = mergedOverrides;

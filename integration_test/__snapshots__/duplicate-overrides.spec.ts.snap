@@ -24,13 +24,6 @@ exports[`duplicate-overrides > duplicate-overrides 1`] = `
       {
         "files": [
           "**/*.ts",
-        ],
-        "rules": {
-          "arrow-body-style": "error",
-        },
-      },
-      {
-        "files": [
           "**/*.mts",
           "**/*.cts",
         ],
@@ -69,13 +62,6 @@ exports[`duplicate-overrides --js-plugins > duplicate-overrides--js-plugins 1`] 
       {
         "files": [
           "**/*.ts",
-        ],
-        "rules": {
-          "arrow-body-style": "error",
-        },
-      },
-      {
-        "files": [
           "**/*.mts",
           "**/*.cts",
         ],
@@ -114,13 +100,6 @@ exports[`duplicate-overrides --type-aware > duplicate-overrides--type-aware 1`] 
       {
         "files": [
           "**/*.ts",
-        ],
-        "rules": {
-          "arrow-body-style": "error",
-        },
-      },
-      {
-        "files": [
           "**/*.mts",
           "**/*.cts",
         ],
@@ -160,13 +139,6 @@ exports[`duplicate-overrides merge > duplicate-overrides--merge 1`] = `
       {
         "files": [
           "**/*.ts",
-        ],
-        "rules": {
-          "arrow-body-style": "error",
-        },
-      },
-      {
-        "files": [
           "**/*.mts",
           "**/*.cts",
         ],
