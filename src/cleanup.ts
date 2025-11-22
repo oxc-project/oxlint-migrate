@@ -159,7 +159,7 @@ export const cleanUpOxlintConfig = (config: OxlintConfigOrOverride): void => {
  *        "typescript",
  *      ],
  *    },
- *  ]
+ * ]
  * ```
  */
 function mergeConsecutiveIdenticalOverrides(config: OxlintConfig) {
