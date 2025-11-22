@@ -70,7 +70,7 @@
     "lint-staged": "^16.1.2",
     "next": "^16.0.0",
     "oxlint": "^1.29.0",
-    "oxlint-tsgolint": "^0.5.1",
+    "oxlint-tsgolint": "^0.8.0",
     "prettier": "^3.6.1",
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.35.0",

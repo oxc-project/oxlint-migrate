@@ -10,10 +10,8 @@ exports[`nuxt-auth > nuxt-auth 1`] = `
     "env": {
       "browser": true,
       "builtin": true,
-      "commonjs": true,
       "es2026": true,
       "node": true,
-      "shared-node-browser": true,
     },
     "globals": {
       "computed": "readonly",
@@ -879,10 +877,8 @@ exports[`nuxt-auth --js-plugins > nuxt-auth--js-plugins 1`] = `
     "env": {
       "browser": true,
       "builtin": true,
-      "commonjs": true,
       "es2026": true,
       "node": true,
-      "shared-node-browser": true,
     },
     "globals": {
       "computed": "readonly",
@@ -2151,10 +2147,8 @@ exports[`nuxt-auth --type-aware > nuxt-auth--type-aware 1`] = `
     "env": {
       "browser": true,
       "builtin": true,
-      "commonjs": true,
       "es2026": true,
       "node": true,
-      "shared-node-browser": true,
     },
     "globals": {
       "computed": "readonly",
@@ -3021,10 +3015,8 @@ exports[`nuxt-auth merge > nuxt-auth--merge 1`] = `
     "env": {
       "browser": true,
       "builtin": true,
-      "commonjs": true,
       "es2026": true,
       "node": true,
-      "shared-node-browser": true,
     },
     "globals": {
       "computed": "readonly",

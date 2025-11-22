@@ -9,8 +9,6 @@ import url from 'url';
 const __filename = url.fileURLToPath(new URL(import.meta.url));
 const __dirname = path.dirname(__filename);
 
-// const rulesDir = path.join(__dirname, 'scripts', 'eslint', 'rules');
-// const ruleFiles = fs.readdirSync(rulesDir).filter((p) => p.endsWith(ext));
 const ruleFiles = [];
 
 export default tseslint.config(
@@ -145,7 +143,6 @@ export default tseslint.config(
           leadingUnderscore: 'allow',
           filter: { regex: '^[A-Za-z]+_[A-Za-z]+$', match: false },
         },
-        // eslint-disable-next-line no-restricted-syntax
         { selector: 'property', format: null },
       ],
 
