@@ -14,10 +14,8 @@ exports[`eslint-globals > eslint-globals 1`] = `
       {
         "env": {
           "browser": true,
-          "commonjs": true,
           "es2026": true,
           "node": true,
-          "shared-node-browser": true,
         },
         "files": [
           "**/*.js",
@@ -32,7 +30,6 @@ exports[`eslint-globals > eslint-globals 1`] = `
         "env": {
           "browser": true,
           "serviceworker": true,
-          "shared-node-browser": true,
           "worker": true,
         },
         "files": [
@@ -63,10 +60,8 @@ exports[`eslint-globals --js-plugins > eslint-globals--js-plugins 1`] = `
       {
         "env": {
           "browser": true,
-          "commonjs": true,
           "es2026": true,
           "node": true,
-          "shared-node-browser": true,
         },
         "files": [
           "**/*.js",
@@ -81,7 +76,6 @@ exports[`eslint-globals --js-plugins > eslint-globals--js-plugins 1`] = `
         "env": {
           "browser": true,
           "serviceworker": true,
-          "shared-node-browser": true,
           "worker": true,
         },
         "files": [
@@ -112,10 +106,8 @@ exports[`eslint-globals --type-aware > eslint-globals--type-aware 1`] = `
       {
         "env": {
           "browser": true,
-          "commonjs": true,
           "es2026": true,
           "node": true,
-          "shared-node-browser": true,
         },
         "files": [
           "**/*.js",
@@ -130,7 +122,6 @@ exports[`eslint-globals --type-aware > eslint-globals--type-aware 1`] = `
         "env": {
           "browser": true,
           "serviceworker": true,
-          "shared-node-browser": true,
           "worker": true,
         },
         "files": [
@@ -162,10 +153,8 @@ exports[`eslint-globals merge > eslint-globals--merge 1`] = `
       {
         "env": {
           "browser": true,
-          "commonjs": true,
           "es2026": true,
           "node": true,
-          "shared-node-browser": true,
         },
         "files": [
           "**/*.js",
@@ -180,7 +169,6 @@ exports[`eslint-globals merge > eslint-globals--merge 1`] = `
         "env": {
           "browser": true,
           "serviceworker": true,
-          "shared-node-browser": true,
           "worker": true,
         },
         "files": [

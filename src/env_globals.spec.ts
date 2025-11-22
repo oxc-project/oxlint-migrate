@@ -194,4 +194,235 @@ describe('cleanUpSupersetEnvs', () => {
       },
     });
   });
+
+  test('removes subset env from override when superset is in same override', () => {
+    const config: OxlintConfig = {
+      env: {
+        es2024: true,
+      },
+      overrides: [
+        {
+          files: ['*.test.js'],
+          env: {
+            'shared-node-browser': true,
+            node: true,
+          },
+        },
+      ],
+    };
+
+    cleanUpSupersetEnvs(config);
+
+    expect(config).toStrictEqual({
+      env: {
+        es2024: true,
+      },
+      overrides: [
+        {
+          files: ['*.test.js'],
+          env: {
+            node: true,
+          },
+        },
+      ],
+    });
+  });
+
+  test('removes subset env from override when superset is in main config', () => {
+    const config: OxlintConfig = {
+      env: {
+        node: true,
+      },
+      overrides: [
+        {
+          files: ['*.test.js'],
+          env: {
+            'shared-node-browser': true,
+          },
+        },
+      ],
+    };
+
+    cleanUpSupersetEnvs(config);
+
+    expect(config).toStrictEqual({
+      env: {
+        node: true,
+      },
+      overrides: [
+        {
+          files: ['*.test.js'],
+        },
+      ],
+    });
+  });
+
+  test('keeps subset env in override when it differs from superset in main', () => {
+    const config: OxlintConfig = {
+      env: {
+        node: false,
+      },
+      overrides: [
+        {
+          files: ['*.test.js'],
+          env: {
+            'shared-node-browser': true,
+          },
+        },
+      ],
+    };
+
+    cleanUpSupersetEnvs(config);
+
+    expect(config).toStrictEqual({
+      env: {
+        node: false,
+      },
+      overrides: [
+        {
+          files: ['*.test.js'],
+          env: {
+            'shared-node-browser': true,
+          },
+        },
+      ],
+    });
+  });
+
+  test('keeps subset env in override when superset is also in override with different value', () => {
+    const config: OxlintConfig = {
+      env: {
+        es2024: true,
+      },
+      overrides: [
+        {
+          files: ['*.test.js'],
+          env: {
+            'shared-node-browser': true,
+            node: false,
+          },
+        },
+      ],
+    };
+
+    cleanUpSupersetEnvs(config);
+
+    expect(config).toStrictEqual({
+      env: {
+        es2024: true,
+      },
+      overrides: [
+        {
+          files: ['*.test.js'],
+          env: {
+            'shared-node-browser': true,
+            node: false,
+          },
+        },
+      ],
+    });
+  });
+
+  test('handles multiple overrides independently', () => {
+    const config: OxlintConfig = {
+      env: {
+        node: true,
+      },
+      overrides: [
+        {
+          files: ['*.test.js'],
+          env: {
+            'shared-node-browser': true,
+          },
+        },
+        {
+          files: ['*.spec.js'],
+          env: {
+            commonjs: true,
+            node: true,
+          },
+        },
+      ],
+    };
+
+    cleanUpSupersetEnvs(config);
+
+    expect(config).toStrictEqual({
+      env: {
+        node: true,
+      },
+      overrides: [
+        {
+          files: ['*.test.js'],
+        },
+        {
+          files: ['*.spec.js'],
+          env: {
+            node: true,
+          },
+        },
+      ],
+    });
+  });
+
+  test('handles browser superset env in overrides', () => {
+    const config: OxlintConfig = {
+      env: {
+        browser: true,
+      },
+      overrides: [
+        {
+          files: ['*.worker.js'],
+          env: {
+            'shared-node-browser': true,
+          },
+        },
+      ],
+    };
+
+    cleanUpSupersetEnvs(config);
+
+    expect(config).toStrictEqual({
+      env: {
+        browser: true,
+      },
+      overrides: [
+        {
+          files: ['*.worker.js'],
+        },
+      ],
+    });
+  });
+
+  test('does not remove anything when no superset envs are present', () => {
+    const config: OxlintConfig = {
+      env: {
+        es2024: true,
+      },
+      overrides: [
+        {
+          files: ['*.test.js'],
+          env: {
+            'shared-node-browser': true,
+          },
+        },
+      ],
+    };
+
+    cleanUpSupersetEnvs(config);
+
+    expect(config).toStrictEqual({
+      env: {
+        es2024: true,
+      },
+      overrides: [
+        {
+          files: ['*.test.js'],
+          env: {
+            'shared-node-browser': true,
+          },
+        },
+      ],
+    });
+  });
 });

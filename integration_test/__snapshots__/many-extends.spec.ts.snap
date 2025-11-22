@@ -14,9 +14,7 @@ exports[`many-extends.spec.ts > many-extends.spec.ts 1`] = `
     "overrides": [
       {
         "env": {
-          "commonjs": true,
           "node": true,
-          "shared-node-browser": true,
         },
         "files": [
           "foo.js",
@@ -345,9 +343,7 @@ exports[`many-extends.spec.ts --js-plugins > many-extends.spec.ts--js-plugins 1`
     "overrides": [
       {
         "env": {
-          "commonjs": true,
           "node": true,
-          "shared-node-browser": true,
         },
         "files": [
           "foo.js",
@@ -676,9 +672,7 @@ exports[`many-extends.spec.ts --type-aware > many-extends.spec.ts--type-aware 1`
     "overrides": [
       {
         "env": {
-          "commonjs": true,
           "node": true,
-          "shared-node-browser": true,
         },
         "files": [
           "foo.js",
@@ -1030,9 +1024,7 @@ exports[`many-extends.spec.ts merge > many-extends.spec.ts--merge 1`] = `
     "overrides": [
       {
         "env": {
-          "commonjs": true,
           "node": true,
-          "shared-node-browser": true,
         },
         "files": [
           "foo.js",

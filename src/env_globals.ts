@@ -250,20 +250,73 @@ const SUPERSET_ENVS: Record<string, string[]> = {
   browser: ['shared-node-browser'],
 };
 
+/**
+ * Cleans up superset environments in the config and its overrides.
+ * If a superset environment is present, its subset environments are removed, e.g. all globals from `shared-node-browser` are also in `browser` and `node`.
+ *
+ * This also applies for overrides, where if a superset env is defined in the override or main config,
+ * the subset envs can be removed from the override if the override has the same value as the superset.
+ */
 export const cleanUpSupersetEnvs = (config: OxlintConfig): void => {
-  if (config.env === undefined) {
-    return;
+  // Clean up main config env
+  if (config.env !== undefined) {
+    // If we have a superset env, remove its subsets
+    for (const [supersetEnv, subsetEnvs] of Object.entries(SUPERSET_ENVS)) {
+      if (!(supersetEnv in config.env)) {
+        continue;
+      }
+
+      for (const subsetEnv of subsetEnvs) {
+        if (config.env[subsetEnv] === config.env[supersetEnv]) {
+          delete config.env[subsetEnv];
+        }
+      }
+    }
   }
 
-  // If we have a superset env, remove its subsets
-  for (const [supersetEnv, subsetEnvs] of Object.entries(SUPERSET_ENVS)) {
-    if (!(supersetEnv in config.env)) {
-      continue;
-    }
+  // Clean up overrides
+  if (config.overrides !== undefined) {
+    for (const override of config.overrides) {
+      if (override.env === undefined) {
+        continue;
+      }
 
-    for (const subsetEnv of subsetEnvs) {
-      if (config.env[subsetEnv] === config.env[supersetEnv]) {
-        delete config.env[subsetEnv];
+      for (const [supersetEnv, subsetEnvs] of Object.entries(SUPERSET_ENVS)) {
+        // Check if the superset env is in the override
+        const supersetInOverride = supersetEnv in override.env;
+        const supersetInMain =
+          config.env !== undefined && supersetEnv in config.env;
+
+        for (const subsetEnv of subsetEnvs) {
+          if (!(subsetEnv in override.env)) {
+            continue;
+          }
+
+          // Case 1: Both superset and subset are in the override with the same value
+          // We can safely remove the subset
+          if (
+            supersetInOverride &&
+            override.env[subsetEnv] === override.env[supersetEnv]
+          ) {
+            delete override.env[subsetEnv];
+            continue;
+          }
+
+          // Case 2: Superset is in main config, subset is in override
+          // If they have the same value, the subset is redundant
+          if (
+            supersetInMain &&
+            !supersetInOverride &&
+            config.env![supersetEnv] === override.env[subsetEnv]
+          ) {
+            delete override.env[subsetEnv];
+          }
+        }
+      }
+
+      // Clean up empty env object
+      if (Object.keys(override.env).length === 0) {
+        delete override.env;
       }
     }
   }
