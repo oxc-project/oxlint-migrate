@@ -20,9 +20,7 @@ exports[`next-eslint-config-project > next-eslint-config-project 1`] = `
       {
         "env": {
           "browser": true,
-          "commonjs": true,
           "node": true,
-          "shared-node-browser": true,
         },
         "files": [
           "**/*.{js,jsx,mjs,ts,tsx,mts,cts}",
@@ -141,9 +139,7 @@ exports[`next-eslint-config-project --js-plugins > next-eslint-config-project--j
       {
         "env": {
           "browser": true,
-          "commonjs": true,
           "node": true,
-          "shared-node-browser": true,
         },
         "files": [
           "**/*.{js,jsx,mjs,ts,tsx,mts,cts}",
@@ -262,9 +258,7 @@ exports[`next-eslint-config-project --type-aware > next-eslint-config-project--t
       {
         "env": {
           "browser": true,
-          "commonjs": true,
           "node": true,
-          "shared-node-browser": true,
         },
         "files": [
           "**/*.{js,jsx,mjs,ts,tsx,mts,cts}",
@@ -384,9 +378,7 @@ exports[`next-eslint-config-project merge > next-eslint-config-project--merge 1`
       {
         "env": {
           "browser": true,
-          "commonjs": true,
           "node": true,
-          "shared-node-browser": true,
         },
         "files": [
           "**/*.{js,jsx,mjs,ts,tsx,mts,cts}",

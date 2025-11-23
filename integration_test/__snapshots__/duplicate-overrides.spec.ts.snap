@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`eslint-globals > eslint-globals 1`] = `
+exports[`duplicate-overrides > duplicate-overrides 1`] = `
 {
   "config": {
     "$schema": "./node_modules/oxlint/configuration_schema.json",
@@ -12,11 +12,6 @@ exports[`eslint-globals > eslint-globals 1`] = `
     },
     "overrides": [
       {
-        "env": {
-          "browser": true,
-          "es2026": true,
-          "node": true,
-        },
         "files": [
           "**/*.js",
           "**/*.cjs",
@@ -27,13 +22,10 @@ exports[`eslint-globals > eslint-globals 1`] = `
         },
       },
       {
-        "env": {
-          "browser": true,
-          "serviceworker": true,
-          "worker": true,
-        },
         "files": [
           "**/*.ts",
+          "**/*.mts",
+          "**/*.cts",
         ],
         "rules": {
           "arrow-body-style": "error",
@@ -46,7 +38,7 @@ exports[`eslint-globals > eslint-globals 1`] = `
 }
 `;
 
-exports[`eslint-globals --js-plugins > eslint-globals--js-plugins 1`] = `
+exports[`duplicate-overrides --js-plugins > duplicate-overrides--js-plugins 1`] = `
 {
   "config": {
     "$schema": "./node_modules/oxlint/configuration_schema.json",
@@ -58,11 +50,6 @@ exports[`eslint-globals --js-plugins > eslint-globals--js-plugins 1`] = `
     },
     "overrides": [
       {
-        "env": {
-          "browser": true,
-          "es2026": true,
-          "node": true,
-        },
         "files": [
           "**/*.js",
           "**/*.cjs",
@@ -73,13 +60,10 @@ exports[`eslint-globals --js-plugins > eslint-globals--js-plugins 1`] = `
         },
       },
       {
-        "env": {
-          "browser": true,
-          "serviceworker": true,
-          "worker": true,
-        },
         "files": [
           "**/*.ts",
+          "**/*.mts",
+          "**/*.cts",
         ],
         "rules": {
           "arrow-body-style": "error",
@@ -92,7 +76,7 @@ exports[`eslint-globals --js-plugins > eslint-globals--js-plugins 1`] = `
 }
 `;
 
-exports[`eslint-globals --type-aware > eslint-globals--type-aware 1`] = `
+exports[`duplicate-overrides --type-aware > duplicate-overrides--type-aware 1`] = `
 {
   "config": {
     "$schema": "./node_modules/oxlint/configuration_schema.json",
@@ -104,11 +88,6 @@ exports[`eslint-globals --type-aware > eslint-globals--type-aware 1`] = `
     },
     "overrides": [
       {
-        "env": {
-          "browser": true,
-          "es2026": true,
-          "node": true,
-        },
         "files": [
           "**/*.js",
           "**/*.cjs",
@@ -119,13 +98,10 @@ exports[`eslint-globals --type-aware > eslint-globals--type-aware 1`] = `
         },
       },
       {
-        "env": {
-          "browser": true,
-          "serviceworker": true,
-          "worker": true,
-        },
         "files": [
           "**/*.ts",
+          "**/*.mts",
+          "**/*.cts",
         ],
         "rules": {
           "arrow-body-style": "error",
@@ -138,7 +114,7 @@ exports[`eslint-globals --type-aware > eslint-globals--type-aware 1`] = `
 }
 `;
 
-exports[`eslint-globals merge > eslint-globals--merge 1`] = `
+exports[`duplicate-overrides merge > duplicate-overrides--merge 1`] = `
 {
   "config": {
     "$schema": "./node_modules/oxlint/configuration_schema.json",
@@ -151,11 +127,6 @@ exports[`eslint-globals merge > eslint-globals--merge 1`] = `
     },
     "overrides": [
       {
-        "env": {
-          "browser": true,
-          "es2026": true,
-          "node": true,
-        },
         "files": [
           "**/*.js",
           "**/*.cjs",
@@ -166,13 +137,10 @@ exports[`eslint-globals merge > eslint-globals--merge 1`] = `
         },
       },
       {
-        "env": {
-          "browser": true,
-          "serviceworker": true,
-          "worker": true,
-        },
         "files": [
           "**/*.ts",
+          "**/*.mts",
+          "**/*.cts",
         ],
         "rules": {
           "arrow-body-style": "error",

@@ -20,4 +20,19 @@ export default defineConfig([
       'no-unused-vars': 'error',
     },
   },
+  {
+    files: ['**/*.ts'],
+    languageOptions: {
+      globals: {
+        ...globals.browser,
+        ...globals.worker,
+        ...Object.fromEntries(
+          Object.entries(globals.serviceworker).slice(0, -5)
+        ),
+      },
+    },
+    rules: {
+      'arrow-body-style': 'error',
+    },
+  },
 ]);

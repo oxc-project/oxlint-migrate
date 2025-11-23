@@ -9,10 +9,8 @@ exports[`puppeteer > puppeteer 1`] = `
     },
     "env": {
       "builtin": true,
-      "commonjs": true,
       "es2026": true,
       "node": true,
-      "shared-node-browser": true,
     },
     "ignorePatterns": [
       "**/node_modules",
@@ -127,22 +125,6 @@ exports[`puppeteer > puppeteer 1`] = `
           "prefer-rest-params": "error",
           "prefer-spread": "error",
         },
-      },
-      {
-        "files": [
-          "**/*.ts",
-        ],
-        "plugins": [
-          "typescript",
-        ],
-      },
-      {
-        "files": [
-          "**/*.ts",
-        ],
-        "plugins": [
-          "typescript",
-        ],
       },
       {
         "files": [
@@ -299,10 +281,8 @@ exports[`puppeteer --js-plugins > puppeteer--js-plugins 1`] = `
     },
     "env": {
       "builtin": true,
-      "commonjs": true,
       "es2026": true,
       "node": true,
-      "shared-node-browser": true,
     },
     "ignorePatterns": [
       "**/node_modules",
@@ -424,14 +404,6 @@ exports[`puppeteer --js-plugins > puppeteer--js-plugins 1`] = `
           "prefer-rest-params": "error",
           "prefer-spread": "error",
         },
-      },
-      {
-        "files": [
-          "**/*.ts",
-        ],
-        "plugins": [
-          "typescript",
-        ],
       },
       {
         "files": [
@@ -612,10 +584,8 @@ exports[`puppeteer --type-aware > puppeteer--type-aware 1`] = `
     },
     "env": {
       "builtin": true,
-      "commonjs": true,
       "es2026": true,
       "node": true,
-      "shared-node-browser": true,
     },
     "ignorePatterns": [
       "**/node_modules",
@@ -742,22 +712,6 @@ exports[`puppeteer --type-aware > puppeteer--type-aware 1`] = `
           "prefer-rest-params": "error",
           "prefer-spread": "error",
         },
-      },
-      {
-        "files": [
-          "**/*.ts",
-        ],
-        "plugins": [
-          "typescript",
-        ],
-      },
-      {
-        "files": [
-          "**/*.ts",
-        ],
-        "plugins": [
-          "typescript",
-        ],
       },
       {
         "files": [
@@ -924,10 +878,8 @@ exports[`puppeteer merge > puppeteer--merge 1`] = `
     },
     "env": {
       "builtin": true,
-      "commonjs": true,
       "es2026": true,
       "node": true,
-      "shared-node-browser": true,
     },
     "ignorePatterns": [
       "**/node_modules",
@@ -1042,22 +994,6 @@ exports[`puppeteer merge > puppeteer--merge 1`] = `
           "prefer-rest-params": "error",
           "prefer-spread": "error",
         },
-      },
-      {
-        "files": [
-          "**/*.ts",
-        ],
-        "plugins": [
-          "typescript",
-        ],
-      },
-      {
-        "files": [
-          "**/*.ts",
-        ],
-        "plugins": [
-          "typescript",
-        ],
       },
       {
         "files": [
