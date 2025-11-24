@@ -255,6 +255,7 @@ export const styleRules = [
   'unicorn/numeric-separators-style',
   'unicorn/prefer-classlist-toggle',
   'unicorn/prefer-class-fields',
+  'unicorn/prefer-bigint-literals',
   'unicorn/prefer-response-static-json',
   'unicorn/prefer-global-this',
   'unicorn/prefer-object-from-entries',
