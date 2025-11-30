@@ -2,7 +2,7 @@
 // only used for the scopes where the directory structure doesn't reflect the eslint scope
 // such as `typescript` vs `@typescript-eslint` or others. Eslint as a scope is an exception,
 // as eslint doesn't have a scope.
-// look here: <https://github.com/oxc-project/oxc/blob/0b329516372a0353e9eb18e5bc0fbe63bce21fee/crates/oxc_linter/src/config/rules.rs#L285>
+// Basically the reverse of this: <https://github.com/oxc-project/oxc/blob/94320ab6f60ef6aaedeb901b04ccb57e953f66bf/crates/oxc_linter/src/config/rules.rs#L246>
 export const aliasPluginNames: Record<string, string> = {
   // for scripts/generate and src/build-from-oxlint-config
   eslint: '',
