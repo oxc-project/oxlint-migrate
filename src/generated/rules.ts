@@ -319,6 +319,7 @@ export const styleRules = [
   'vitest/prefer-lowercase-title',
   'vitest/prefer-mock-promise-shorthand',
   'vitest/prefer-strict-equal',
+  'vitest/prefer-to-be',
   'vitest/prefer-to-have-length',
   'vitest/prefer-todo',
   'vitest/require-top-level-describe',
