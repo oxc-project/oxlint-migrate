@@ -59,7 +59,26 @@ export const unicornRulesExtendEslintRules = ['no-negated-condition'];
 
 // All rules from `eslint-plugin-react-hooks`
 // Since oxlint supports these rules under react/*, we need to remap them.
+// See https://react.dev/reference/eslint-plugin-react-hooks#recommended for the full list
+// (React Compiler-related rules are sourced in an odd way, so there's no good source code location to find them all)
 export const reactHookRulesInsideReactScope = [
   'rules-of-hooks',
   'exhaustive-deps',
+
+  // Compiler-related rules
+  'component-hook-factories',
+  'config',
+  'error-boundaries',
+  'gating',
+  'globals',
+  'immutability',
+  'incompatible-library',
+  'preserve-manual-memoization',
+  'purity',
+  'refs',
+  'set-state-in-effect',
+  'set-state-in-render',
+  'static-components',
+  'unsupported-syntax',
+  'use-memo',
 ];

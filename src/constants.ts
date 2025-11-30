@@ -20,7 +20,7 @@ export const rulesPrefixesForPlugins: Record<string, string> = {
 // Some typescript-eslint rules are re-implemented version of eslint rules.
 // Since oxlint supports these rules under eslint/* and it also supports TS,
 // we should override these to make implementation status up-to-date.
-// remapping in source-code: <https://github.com/oxc-project/oxc/blob/814eab656291a7d809de808bf4a717bcfa483430/crates/oxc_linter/src/utils/mod.rs>
+// remapping in source-code: <https://github.com/oxc-project/oxc/blob/94320ab6f60ef6aaedeb901b04ccb57e953f66bf/crates/oxc_linter/src/utils/mod.rs#L77>
 export const typescriptRulesExtendEslintRules = [
   'class-methods-use-this',
   'default-param-last',
