@@ -79,7 +79,7 @@
     "vitest": "^4.0.0"
   },
   "lint-staged": {
-    "*": "oxfmt --check ."
+    "*": "oxfmt ."
   },
   "dependencies": {
     "commander": "^14.0.0",
