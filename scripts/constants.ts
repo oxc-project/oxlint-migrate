@@ -16,7 +16,7 @@ export const aliasPluginNames: Record<string, string> = {
 
 // Some vitest rules are re-implemented version of jest rules.
 // Since oxlint supports these rules under jest/*, we need to remap them.
-// remapping in source-code: <https://github.com/oxc-project/oxc/blob/814eab656291a7d809de808bf4a717bcfa483430/crates/oxc_linter/src/utils/mod.rs>
+// remapping in source-code: <https://github.com/oxc-project/oxc/blob/94320ab6f60ef6aaedeb901b04ccb57e953f66bf/crates/oxc_linter/src/utils/mod.rs>
 export const viteTestCompatibleRules = [
   'consistent-test-it',
   'expect-expect',
@@ -46,6 +46,7 @@ export const viteTestCompatibleRules = [
   'prefer-lowercase-title',
   'prefer-mock-promise-shorthand',
   'prefer-strict-equal',
+  'prefer-to-be',
   'prefer-to-have-length',
   'prefer-todo',
   'require-to-throw-message',
