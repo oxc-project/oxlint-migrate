@@ -432,6 +432,7 @@ export const restrictionRules = [
   '@typescript-eslint/no-non-null-asserted-nullish-coalescing',
   '@typescript-eslint/no-non-null-assertion',
   '@typescript-eslint/no-require-imports',
+  '@typescript-eslint/no-restricted-types',
   '@typescript-eslint/no-var-requires',
   '@typescript-eslint/non-nullable-type-assertion-style',
   '@typescript-eslint/prefer-literal-enum-member',
