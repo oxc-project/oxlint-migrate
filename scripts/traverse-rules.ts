@@ -28,7 +28,7 @@ function readRulesFromCommand(): Rule[] {
 }
 
 /**
- * Some rules are in a different scope then in eslint
+ * Some rules are in a different scope than in eslint
  */
 function fixScopeOfRule(rule: Rule): void {
   if (
