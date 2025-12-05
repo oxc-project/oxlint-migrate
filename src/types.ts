@@ -32,6 +32,7 @@ export type OxlintConfigOrOverride = OxlintConfig | OxlintConfigOverride;
 
 export type Reporter = {
   report(message: string): void;
+  remove(message: string): void;
   getReports(): string[];
 };
 
