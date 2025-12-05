@@ -38,7 +38,6 @@ exports[`react-project > react-project 1`] = `
   },
   "warnings": [
     "unsupported rule: react/display-name",
-    "unsupported rule: react/jsx-uses-react",
     "unsupported rule: react/jsx-uses-vars",
     "unsupported rule: react/no-deprecated",
     "unsupported rule: react/prop-types",
@@ -101,7 +100,6 @@ exports[`react-project --js-plugins > react-project--js-plugins 1`] = `
   },
   "warnings": [
     "unsupported rule: react/display-name",
-    "unsupported rule: react/jsx-uses-react",
     "unsupported rule: react/jsx-uses-vars",
     "unsupported rule: react/no-deprecated",
     "unsupported rule: react/prop-types",
@@ -164,7 +162,6 @@ exports[`react-project --type-aware > react-project--type-aware 1`] = `
   },
   "warnings": [
     "unsupported rule: react/display-name",
-    "unsupported rule: react/jsx-uses-react",
     "unsupported rule: react/jsx-uses-vars",
     "unsupported rule: react/no-deprecated",
     "unsupported rule: react/prop-types",
@@ -216,7 +213,6 @@ exports[`react-project merge > react-project--merge 1`] = `
   },
   "warnings": [
     "unsupported rule: react/display-name",
-    "unsupported rule: react/jsx-uses-react",
     "unsupported rule: react/jsx-uses-vars",
     "unsupported rule: react/no-deprecated",
     "unsupported rule: react/prop-types",
