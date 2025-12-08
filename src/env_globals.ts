@@ -88,8 +88,8 @@ export const transformBoolGlobalToString = (config: OxlintConfigOrOverride) => {
   for (const [entry, value] of Object.entries(config.globals)) {
     if (value === false || value === 'readable') {
       config.globals[entry] = 'readonly';
-    } else if (value === true || value === 'writable') {
-      config.globals[entry] = 'writeable';
+    } else if (value === true || value === 'writeable') {
+      config.globals[entry] = 'writable';
     }
   }
 };
