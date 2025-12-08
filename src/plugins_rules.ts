@@ -78,6 +78,9 @@ export const transformRuleEntry = (
   }
 
   for (const [rule, config] of Object.entries(eslintConfig.rules)) {
+    const normalizedConfig = normalizeSeverityValue(config);
+    const unsupportedRuleMessage = `unsupported rule: ${rule}`;
+
     // ToDo: check if the rule is really supported by oxlint
     // when not ask the user if this is ok
     // maybe put it still into the jsonc file but commented out
@@ -100,25 +103,26 @@ export const transformRuleEntry = (
         // when merge only override if not exists
         // for non merge override it because eslint/typescript rules
         if (!(rule in targetConfig.rules)) {
-          targetConfig.rules[rule] = normalizeSeverityValue(config);
+          targetConfig.rules[rule] = normalizedConfig;
         }
       } else {
-        targetConfig.rules[rule] = normalizeSeverityValue(config);
+        targetConfig.rules[rule] = normalizedConfig;
       }
     } else {
-      if (options?.jsPlugins) {
-        if (
-          isActiveValue(config) &&
-          !enableJsPluginRule(
-            targetConfig,
-            rule,
-            normalizeSeverityValue(config)
-          )
-        ) {
-          options?.reporter?.report(`unsupported rule: ${rule}`);
+      if (!isActiveValue(normalizedConfig)) {
+        // only remove the reporter diagnostics when it is not inside an override
+        if (eslintConfig.files === undefined) {
+          options?.reporter?.remove(unsupportedRuleMessage);
         }
-      } else if (isActiveValue(config)) {
-        options?.reporter?.report(`unsupported rule: ${rule}`);
+        continue;
+      }
+
+      if (options?.jsPlugins) {
+        if (!enableJsPluginRule(targetConfig, rule, normalizedConfig)) {
+          options?.reporter?.report(unsupportedRuleMessage);
+        }
+      } else {
+        options?.reporter?.report(unsupportedRuleMessage);
       }
     }
   }

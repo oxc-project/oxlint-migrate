@@ -257,7 +257,6 @@ exports[`eslint-plugin-oxlint > eslint-plugin-oxlint 1`] = `
     "unsupported rule: unicorn/prevent-abbreviations",
     "unsupported rule: unicorn/relative-url-style",
     "unsupported rule: unicorn/require-module-attributes",
-    "unsupported rule: unicorn/template-indent",
     "unsupported rule: prefer-const",
   ],
 }
@@ -520,7 +519,6 @@ exports[`eslint-plugin-oxlint --js-plugins > eslint-plugin-oxlint--js-plugins 1`
     "unsupported rule: unicorn/prevent-abbreviations",
     "unsupported rule: unicorn/relative-url-style",
     "unsupported rule: unicorn/require-module-attributes",
-    "unsupported rule: unicorn/template-indent",
     "unsupported rule: prefer-const",
   ],
 }
@@ -783,7 +781,6 @@ exports[`eslint-plugin-oxlint --type-aware > eslint-plugin-oxlint--type-aware 1`
     "unsupported rule: unicorn/prevent-abbreviations",
     "unsupported rule: unicorn/relative-url-style",
     "unsupported rule: unicorn/require-module-attributes",
-    "unsupported rule: unicorn/template-indent",
     "unsupported rule: prefer-const",
   ],
 }
@@ -978,7 +975,6 @@ exports[`eslint-plugin-oxlint merge > eslint-plugin-oxlint--merge 1`] = `
     "unsupported rule: unicorn/prevent-abbreviations",
     "unsupported rule: unicorn/relative-url-style",
     "unsupported rule: unicorn/require-module-attributes",
-    "unsupported rule: unicorn/template-indent",
     "unsupported rule: prefer-const",
   ],
 }

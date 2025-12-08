@@ -10,6 +10,7 @@ import {
   transformRuleEntry,
 } from './plugins_rules.js';
 import type { Linter } from 'eslint';
+import { DefaultReporter } from './reporter.js';
 
 describe('rules and plugins', () => {
   test('detectNeededRulesPlugins', () => {
@@ -119,6 +120,38 @@ describe('rules and plugins', () => {
       expect(
         configWithTypeAware.rules['@typescript-eslint/no-floating-promises']
       ).toBe('error');
+    });
+
+    test('does not report unsupported rules that are disabled', () => {
+      const enabledConfig: Linter.Config = {
+        rules: {
+          'unknown-rule': 'error',
+        },
+      };
+      const disabledConfig: Linter.Config = {
+        rules: {
+          'unknown-rule': 'off',
+        },
+      };
+
+      const enabledInOverrideConfig: Linter.Config = {
+        files: ['**/*.ts'],
+        rules: {
+          'unknown-rule': 'off',
+        },
+      };
+      const config: OxlintConfig = {};
+      const reporter = new DefaultReporter();
+
+      transformRuleEntry(enabledConfig, config, { reporter });
+      transformRuleEntry(disabledConfig, config, { reporter });
+      expect(reporter.getReports()).toStrictEqual([]);
+
+      transformRuleEntry(enabledConfig, config, { reporter });
+      transformRuleEntry(enabledInOverrideConfig, config, { reporter });
+      expect(reporter.getReports()).toStrictEqual([
+        'unsupported rule: unknown-rule',
+      ]);
     });
   });
 

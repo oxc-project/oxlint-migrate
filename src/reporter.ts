@@ -7,6 +7,10 @@ export class DefaultReporter implements Reporter {
     this.reports.add(message);
   }
 
+  public remove(message: string): void {
+    this.reports.delete(message);
+  }
+
   public getReports(): string[] {
     return Array.from(this.reports);
   }
@@ -14,6 +18,10 @@ export class DefaultReporter implements Reporter {
 
 export class SilentReporter implements Reporter {
   public report(_message: string): void {
+    // Do nothing
+  }
+
+  public remove(_message: string): void {
     // Do nothing
   }
 
