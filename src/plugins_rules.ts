@@ -114,10 +114,6 @@ export const transformRuleEntry = (
         continue;
       }
 
-      if (!isActiveValue(normalizedConfig)) {
-        continue;
-      }
-
       if (options?.jsPlugins) {
         if (!enableJsPluginRule(targetConfig, rule, normalizedConfig)) {
           options?.reporter?.report(unsupportedRuleMessage);
