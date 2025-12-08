@@ -22,6 +22,7 @@ export const pedanticRules = [
   'no-redeclare',
   'no-self-compare',
   'no-throw-literal',
+  'no-useless-return',
   'no-warning-comments',
   'radix',
   'require-await',
