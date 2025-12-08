@@ -123,12 +123,19 @@ describe('rules and plugins', () => {
     });
 
     test('does not report unsupported rules that are disabled', () => {
-      const firstConfig: Linter.Config = {
+      const enabledConfig: Linter.Config = {
         rules: {
           'unknown-rule': 'error',
         },
       };
-      const secondConfig: Linter.Config = {
+      const disabledConfig: Linter.Config = {
+        rules: {
+          'unknown-rule': 'off',
+        },
+      };
+
+      const enabledInOverrideConfig: Linter.Config = {
+        files: ['**/*.ts'],
         rules: {
           'unknown-rule': 'off',
         },
@@ -136,10 +143,15 @@ describe('rules and plugins', () => {
       const config: OxlintConfig = {};
       const reporter = new DefaultReporter();
 
-      transformRuleEntry(firstConfig, config, { reporter });
-      transformRuleEntry(secondConfig, config, { reporter });
-
+      transformRuleEntry(enabledConfig, config, { reporter });
+      transformRuleEntry(disabledConfig, config, { reporter });
       expect(reporter.getReports()).toStrictEqual([]);
+
+      transformRuleEntry(enabledConfig, config, { reporter });
+      transformRuleEntry(enabledInOverrideConfig, config, { reporter });
+      expect(reporter.getReports()).toStrictEqual([
+        'unsupported rule: unknown-rule',
+      ]);
     });
   });
 

@@ -236,6 +236,7 @@ exports[`eslint-plugin-oxlint > eslint-plugin-oxlint 1`] = `
   "warnings": [
     "unsupported rule, but in development: constructor-super",
     "unsupported rule, but in development: getter-return",
+    "unsupported rule: no-dupe-args",
     "unsupported rule, but in development: no-misleading-character-class",
     "unsupported rule: no-octal",
     "unsupported rule, but in development: no-undef",
@@ -497,6 +498,7 @@ exports[`eslint-plugin-oxlint --js-plugins > eslint-plugin-oxlint--js-plugins 1`
   "warnings": [
     "unsupported rule, but in development: constructor-super",
     "unsupported rule, but in development: getter-return",
+    "unsupported rule: no-dupe-args",
     "unsupported rule, but in development: no-misleading-character-class",
     "unsupported rule: no-octal",
     "unsupported rule, but in development: no-undef",
@@ -758,6 +760,7 @@ exports[`eslint-plugin-oxlint --type-aware > eslint-plugin-oxlint--type-aware 1`
   "warnings": [
     "unsupported rule, but in development: constructor-super",
     "unsupported rule, but in development: getter-return",
+    "unsupported rule: no-dupe-args",
     "unsupported rule, but in development: no-misleading-character-class",
     "unsupported rule: no-octal",
     "unsupported rule, but in development: no-undef",
@@ -951,6 +954,7 @@ exports[`eslint-plugin-oxlint merge > eslint-plugin-oxlint--merge 1`] = `
   "warnings": [
     "unsupported rule, but in development: constructor-super",
     "unsupported rule, but in development: getter-return",
+    "unsupported rule: no-dupe-args",
     "unsupported rule, but in development: no-misleading-character-class",
     "unsupported rule: no-octal",
     "unsupported rule, but in development: no-undef",

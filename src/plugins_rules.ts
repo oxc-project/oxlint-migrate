@@ -109,8 +109,11 @@ export const transformRuleEntry = (
         targetConfig.rules[rule] = normalizedConfig;
       }
     } else {
-      if (isOffValue(normalizedConfig)) {
-        options?.reporter?.remove(unsupportedRuleMessage);
+      if (!isActiveValue(normalizedConfig)) {
+        // only remove the reporter diagnostics when it is not inside an override
+        if (eslintConfig.files === undefined) {
+          options?.reporter?.remove(unsupportedRuleMessage);
+        }
         continue;
       }
 
