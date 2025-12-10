@@ -32,6 +32,7 @@ export const viteTestCompatibleRules = [
   'no-hooks',
   'no-identical-title',
   'no-interpolation-in-snapshots',
+  'no-mocks-import',
   'no-restricted-jest-methods',
   'no-restricted-matchers',
   'no-standalone-expect',
