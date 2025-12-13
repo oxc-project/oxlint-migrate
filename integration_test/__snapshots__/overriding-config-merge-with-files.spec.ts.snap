@@ -1,0 +1,83 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`overriding-config-merge-with-files > overriding-config-merge-with-files 1`] = `
+{
+  "config": {
+    "$schema": "./node_modules/oxlint/configuration_schema.json",
+    "categories": {
+      "correctness": "off",
+    },
+    "env": {
+      "builtin": true,
+    },
+    "plugins": [],
+  },
+  "warnings": [
+    "unsupported rule: regexp/no-lazy-ends",
+  ],
+}
+`;
+
+exports[`overriding-config-merge-with-files --js-plugins > overriding-config-merge-with-files--js-plugins 1`] = `
+{
+  "config": {
+    "$schema": "./node_modules/oxlint/configuration_schema.json",
+    "categories": {
+      "correctness": "off",
+    },
+    "env": {
+      "builtin": true,
+    },
+    "jsPlugins": [
+      "eslint-plugin-regexp",
+    ],
+    "plugins": [],
+    "rules": {
+      "regexp/no-lazy-ends": [
+        "error",
+        {
+          "ignorePartial": false,
+        },
+      ],
+    },
+  },
+  "warnings": [],
+}
+`;
+
+exports[`overriding-config-merge-with-files --type-aware > overriding-config-merge-with-files--type-aware 1`] = `
+{
+  "config": {
+    "$schema": "./node_modules/oxlint/configuration_schema.json",
+    "categories": {
+      "correctness": "off",
+    },
+    "env": {
+      "builtin": true,
+    },
+    "plugins": [],
+  },
+  "warnings": [
+    "unsupported rule: regexp/no-lazy-ends",
+  ],
+}
+`;
+
+exports[`overriding-config-merge-with-files merge > overriding-config-merge-with-files--merge 1`] = `
+{
+  "config": {
+    "$schema": "./node_modules/oxlint/configuration_schema.json",
+    "categories": {
+      "correctness": "error",
+      "perf": "error",
+    },
+    "env": {
+      "builtin": true,
+    },
+    "plugins": [],
+  },
+  "warnings": [
+    "unsupported rule: regexp/no-lazy-ends",
+  ],
+}
+`;
