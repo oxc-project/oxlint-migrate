@@ -88,7 +88,7 @@ export const transformRuleEntry = (
     if (allRules.includes(rule)) {
       if (!options?.withNursery && rules.nurseryRules.includes(rule)) {
         options?.reporter?.report(
-          `unsupported rule, but in development: ${rule}`
+          `unsupported rule, but available as a nursery rule: ${rule}`
         );
         continue;
       }
