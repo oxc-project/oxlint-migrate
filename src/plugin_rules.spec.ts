@@ -1,5 +1,5 @@
 import { assert, describe, expect, test } from 'vitest';
-import type { OxlintConfig } from './types.js';
+import type { OxlintConfig, OxlintConfigOverride } from './types.js';
 import {
   cleanUpDisabledRootRules,
   cleanUpRulesWhichAreCoveredByCategory,
@@ -220,6 +220,50 @@ describe('rules and plugins', () => {
         { ignorePartial: false },
       ]);
       expect(config.jsPlugins).toContain('eslint-plugin-regexp');
+      expect(reporter.getReports()).toStrictEqual([]);
+    });
+
+    test('jsPlugin rule disabled in override keeps base enabled', () => {
+      const baseConfig: Linter.Config = {
+        plugins: { regexp: {} },
+        rules: {
+          'regexp/no-lazy-ends': ['error', { ignorePartial: false }],
+        },
+      };
+
+      const overrideConfig: Linter.Config = {
+        plugins: { regexp: {} },
+        files: ['**/*.js'],
+        rules: {
+          'regexp/no-lazy-ends': ['off'],
+        },
+      };
+
+      const baseTarget: OxlintConfig = {};
+      const overrideTarget: OxlintConfigOverride = { files: ['**/*.js'] };
+      const reporter = new DefaultReporter();
+
+      transformRuleEntry(baseConfig, baseTarget, {
+        reporter,
+        jsPlugins: true,
+      });
+
+      transformRuleEntry(overrideConfig, overrideTarget, {
+        reporter,
+        jsPlugins: true,
+      });
+
+      expect(baseTarget.rules?.['regexp/no-lazy-ends']).toStrictEqual([
+        'error',
+        { ignorePartial: false },
+      ]);
+      expect(baseTarget.jsPlugins).toContain('eslint-plugin-regexp');
+
+      expect(overrideTarget.rules?.['regexp/no-lazy-ends']).toStrictEqual([
+        'off',
+      ]);
+      expect(overrideTarget.jsPlugins).toContain('eslint-plugin-regexp');
+
       expect(reporter.getReports()).toStrictEqual([]);
     });
   });
