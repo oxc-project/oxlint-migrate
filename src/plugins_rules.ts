@@ -111,7 +111,6 @@ export const transformRuleEntry = (
     } else {
       if (!isActiveValue(normalizedConfig)) {
         // if rule is disabled, remove it.
-        // TODO: What if we have it off in one place and then on in another? Does this still remove it?
         if (isOffValue(normalizedConfig)) {
           delete targetConfig.rules[rule];
         }
