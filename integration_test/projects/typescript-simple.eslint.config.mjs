@@ -9,10 +9,7 @@ export default tseslint.config(
   {
     files: ['**/*.ts', '**/*.tsx'],
 
-    extends: [
-      tseslint.configs.strictTypeChecked,
-      tseslint.configs.stylisticTypeChecked,
-    ],
+    extends: [tseslint.configs.strictTypeChecked],
 
     rules: {
       '@typescript-eslint/no-deprecated': 'error',
