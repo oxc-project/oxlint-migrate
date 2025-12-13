@@ -318,6 +318,23 @@ const isRuleInEnabledCategory = (
   return false;
 };
 
+/**
+ * TODO: Avoid removing rules that are enabled and then separately *disabled*.
+ * e.g.:
+ *
+ * ```js
+ * export default [
+ *   {
+ *     rules: {
+ *       "rulename": [
+ *         "error", { optionFoo: "bar" }
+ *       ],
+ *       'rulename': 'off',
+ *     }
+ *   }
+ * ];
+ * ```
+ */
 export const cleanUpDisabledRootRules = (config: OxlintConfig): void => {
   if (config.rules === undefined) {
     return;
