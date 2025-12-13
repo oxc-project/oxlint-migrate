@@ -276,16 +276,6 @@ exports[`eslint-plugin-oxlint --js-plugins > eslint-plugin-oxlint--js-plugins 1`
     "ignorePatterns": [
       "dist/",
     ],
-    "jsPlugins": [
-      "@stylistic/eslint-plugin",
-      "@stylistic/eslint-plugin-js",
-      "@stylistic/eslint-plugin-ts",
-      "eslint-plugin-babel",
-      "@babel/eslint-plugin",
-      "@stylistic/eslint-plugin-jsx",
-      "eslint-plugin-flowtype",
-      "eslint-plugin-standard",
-    ],
     "overrides": [
       {
         "files": [

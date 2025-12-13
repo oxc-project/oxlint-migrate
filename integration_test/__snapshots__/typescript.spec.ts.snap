@@ -477,9 +477,6 @@ exports[`typescript --js-plugins > typescript--js-plugins 1`] = `
           "src/harness/**",
           "src/testRunner/**",
         ],
-        "jsPlugins": [
-          "eslint-plugin-regexp",
-        ],
         "rules": {
           "no-restricted-globals": "off",
           "regexp/no-super-linear-backtracking": "off",

@@ -325,16 +325,9 @@ exports[`puppeteer --js-plugins > puppeteer--js-plugins 1`] = `
       "examples/puppeteer-in-extension/node_modules/**/*",
     ],
     "jsPlugins": [
-      "@stylistic/eslint-plugin",
-      "@stylistic/eslint-plugin-js",
-      "@stylistic/eslint-plugin-ts",
-      "eslint-plugin-babel",
-      "@babel/eslint-plugin",
-      "@stylistic/eslint-plugin-jsx",
-      "eslint-plugin-flowtype",
-      "eslint-plugin-standard",
       "eslint-plugin-prettier",
       "eslint-plugin-mocha",
+      "@stylistic/eslint-plugin",
       "@puppeteer/eslint-plugin",
     ],
     "overrides": [

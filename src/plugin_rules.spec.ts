@@ -262,7 +262,8 @@ describe('rules and plugins', () => {
       expect(overrideTarget.rules?.['regexp/no-lazy-ends']).toStrictEqual([
         'off',
       ]);
-      expect(overrideTarget.jsPlugins).toContain('eslint-plugin-regexp');
+      // plugin should not be added for a disabled rule in an override
+      expect(overrideTarget.jsPlugins).toBeUndefined();
 
       expect(reporter.getReports()).toStrictEqual([]);
     });

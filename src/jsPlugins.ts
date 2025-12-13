@@ -43,6 +43,16 @@ const extractPluginId = (ruleId: string): string | undefined => {
   return ruleId.substring(0, firstSlash);
 };
 
+export const isIgnoredPluginRule = (ruleId: string): boolean => {
+  const pluginName = extractPluginId(ruleId);
+  // Return true because the rule comes from core ESLint, and so
+  // should not be considered a plugin rule.
+  if (pluginName === undefined) {
+    return true;
+  }
+  return ignorePlugins.has(pluginName);
+};
+
 // Enables the given rule in the target configuration, ensuring that the
 // corresponding ESLint plugin is included in the `jsPlugins` array.
 //

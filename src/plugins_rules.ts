@@ -11,7 +11,7 @@ import {
   typescriptRulesExtendEslintRules,
   typescriptTypeAwareRules,
 } from './constants.js';
-import { enableJsPluginRule } from './jsPlugins.js';
+import { enableJsPluginRule, isIgnoredPluginRule } from './jsPlugins.js';
 
 const allRules = Object.values(rules).flat();
 
@@ -123,9 +123,22 @@ export const transformRuleEntry = (
       // For unsupported rules, when jsPlugins is enabled, always try to map
       // them to a JS plugin rule, regardless of severity (including 'off').
       if (options.jsPlugins) {
-        // For base config, delete disabled rules
-        if (eslintConfig.files === undefined && isOffValue(normalizedConfig)) {
-          delete targetConfig.rules[rule];
+        // If the rule is disabled, avoid enabling the jsPlugin to prevent noise.
+        if (isOffValue(normalizedConfig)) {
+          if (eslintConfig.files === undefined) {
+            // base config: drop disabled rule entirely
+            delete targetConfig.rules[rule];
+          } else {
+            // override: keep the disabled setting without adding jsPlugin, unless plugin is ignored
+            if (!isIgnoredPluginRule(rule)) {
+              targetConfig.rules[rule] = normalizedConfig;
+            }
+          }
+          // also remove any previously queued unsupported report for base
+          if (eslintConfig.files === undefined) {
+            options.reporter?.remove(unsupportedRuleMessage);
+          }
+          continue;
         }
 
         if (enableJsPluginRule(targetConfig, rule, normalizedConfig)) {
