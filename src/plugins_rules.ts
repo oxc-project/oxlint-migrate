@@ -114,6 +114,26 @@ export const transformRuleEntry = (
         targetConfig.rules[rule] = normalizedConfig;
       }
     } else {
+      // For unsupported rules, when jsPlugins is enabled, always try to map
+      // them to a JS plugin rule, regardless of severity (including 'off').
+      if (options?.jsPlugins) {
+        if (enableJsPluginRule(targetConfig, rule, normalizedConfig)) {
+          // handled by jsPlugins (rule may be 'off' or active)
+          // Special-case: for base configs (no files), remove disabled rules to avoid
+          // retaining redundant 'off' entries at root. Overrides should keep 'off'.
+          if (
+            eslintConfig.files === undefined &&
+            !isActiveValue(normalizedConfig) &&
+            isOffValue(normalizedConfig)
+          ) {
+            delete targetConfig.rules[rule];
+          }
+          continue;
+        }
+        // fall through to unsupported handling if plugin couldn't be enabled
+      }
+
+      // Non-jsPlugins path or failed jsPlugin mapping: handle disabled rules
       if (!isActiveValue(normalizedConfig)) {
         // if rule is disabled, remove it.
         if (isOffValue(normalizedConfig)) {
@@ -126,13 +146,8 @@ export const transformRuleEntry = (
         continue;
       }
 
-      if (options?.jsPlugins) {
-        if (!enableJsPluginRule(targetConfig, rule, normalizedConfig)) {
-          options?.reporter?.report(unsupportedRuleMessage);
-        }
-      } else {
-        options?.reporter?.report(unsupportedRuleMessage);
-      }
+      // Active unsupported rule: report
+      options?.reporter?.report(unsupportedRuleMessage);
     }
   }
 };

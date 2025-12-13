@@ -1099,12 +1099,16 @@ exports[`nuxt-auth --js-plugins > nuxt-auth--js-plugins 1`] = `
           "**/*.bench.?([cm])[jt]s?(x)",
           "**/*.benchmark.?([cm])[jt]s?(x)",
         ],
+        "jsPlugins": [
+          "eslint-plugin-antfu",
+        ],
         "plugins": [
           "vitest",
           "typescript",
         ],
         "rules": {
           "@typescript-eslint/explicit-function-return-type": "off",
+          "antfu/no-top-level-await": "off",
           "no-unused-expressions": "off",
           "vitest/consistent-test-it": [
             "error",
@@ -1123,12 +1127,16 @@ exports[`nuxt-auth --js-plugins > nuxt-auth--js-plugins 1`] = `
         "files": [
           "**/*.vue",
         ],
+        "jsPlugins": [
+          "eslint-plugin-antfu",
+        ],
         "plugins": [
           "vue",
           "typescript",
         ],
         "rules": {
           "@typescript-eslint/explicit-function-return-type": "off",
+          "antfu/no-top-level-await": "off",
           "vue/no-export-in-script-setup": "error",
           "vue/no-multiple-slot-args": "warn",
           "vue/no-required-prop-with-default": "warn",
@@ -1142,9 +1150,11 @@ exports[`nuxt-auth --js-plugins > nuxt-auth--js-plugins 1`] = `
           "**/*.toml",
         ],
         "jsPlugins": [
+          "@stylistic/eslint-plugin",
           "eslint-plugin-toml",
         ],
         "rules": {
+          "@stylistic/spaced-comment": "off",
           "toml/array-bracket-newline": "error",
           "toml/array-bracket-spacing": "error",
           "toml/array-element-newline": "error",
@@ -1174,14 +1184,23 @@ exports[`nuxt-auth --js-plugins > nuxt-auth--js-plugins 1`] = `
           "**/*.md/**/*.?([cm])[jt]s?(x)",
           "**/*.md/**/*.vue",
         ],
+        "jsPlugins": [
+          "eslint-plugin-antfu",
+          "@stylistic/eslint-plugin",
+          "eslint-plugin-unused-imports",
+        ],
         "plugins": [
           "typescript",
         ],
         "rules": {
+          "@stylistic/comma-dangle": "off",
+          "@stylistic/eol-last": "off",
+          "@stylistic/padding-line-between-statements": "off",
           "@typescript-eslint/consistent-type-imports": "off",
           "@typescript-eslint/explicit-function-return-type": "off",
           "@typescript-eslint/no-namespace": "off",
           "@typescript-eslint/no-require-imports": "off",
+          "antfu/no-top-level-await": "off",
           "no-alert": "off",
           "no-labels": "off",
           "no-lone-blocks": "off",
@@ -1190,17 +1209,61 @@ exports[`nuxt-auth --js-plugins > nuxt-auth--js-plugins 1`] = `
           "no-unused-labels": "off",
           "no-unused-vars": "off",
           "unicode-bom": "off",
+          "unused-imports/no-unused-imports": "off",
+          "unused-imports/no-unused-vars": "off",
         },
       },
       {
         "files": [
           "**/scripts/**/*.?([cm])[jt]s?(x)",
         ],
+        "jsPlugins": [
+          "eslint-plugin-antfu",
+        ],
         "plugins": [
           "typescript",
         ],
         "rules": {
           "@typescript-eslint/explicit-function-return-type": "off",
+          "antfu/no-top-level-await": "off",
+        },
+      },
+      {
+        "files": [
+          "**/cli/**/*.?([cm])[jt]s?(x)",
+          "**/cli.?([cm])[jt]s?(x)",
+        ],
+        "jsPlugins": [
+          "eslint-plugin-antfu",
+        ],
+        "rules": {
+          "antfu/no-top-level-await": "off",
+        },
+      },
+      {
+        "files": [
+          "**/bin/**/*",
+          "**/bin.?([cm])[jt]s?(x)",
+        ],
+        "jsPlugins": [
+          "eslint-plugin-antfu",
+        ],
+        "rules": {
+          "antfu/no-import-dist": "off",
+          "antfu/no-import-node-modules-by-path": "off",
+        },
+      },
+      {
+        "files": [
+          "**/*.d.?([cm])ts",
+        ],
+        "jsPlugins": [
+          "eslint-plugin-eslint-comments",
+          "eslint-plugin-unused-imports",
+        ],
+        "rules": {
+          "eslint-comments/no-unlimited-disable": "off",
+          "unused-imports/no-unused-vars": "off",
         },
       },
       {
@@ -1220,11 +1283,15 @@ exports[`nuxt-auth --js-plugins > nuxt-auth--js-plugins 1`] = `
           "**/*.config.?([cm])[jt]s?(x)",
           "**/*.config.*.?([cm])[jt]s?(x)",
         ],
+        "jsPlugins": [
+          "eslint-plugin-antfu",
+        ],
         "plugins": [
           "typescript",
         ],
         "rules": {
           "@typescript-eslint/explicit-function-return-type": "off",
+          "antfu/no-top-level-await": "off",
         },
       },
     ],
