@@ -43,6 +43,10 @@ const extractPluginId = (ruleId: string): string | undefined => {
   return ruleId.substring(0, firstSlash);
 };
 
+// Enables the given rule in the target configuration, ensuring that the
+// corresponding ESLint plugin is included in the `jsPlugins` array.
+//
+// This will add the jsPlugin if it is not already present.
 export const enableJsPluginRule = (
   targetConfig: OxlintConfigOrOverride,
   rule: string,

@@ -72,7 +72,12 @@ const normalizeSeverityValue = (
 export const transformRuleEntry = (
   eslintConfig: Linter.Config,
   targetConfig: OxlintConfigOrOverride,
-  options?: Options
+  options: Options = {
+    withNursery: false,
+    typeAware: false,
+    merge: false,
+    jsPlugins: false,
+  }
 ): void => {
   if (eslintConfig.rules === undefined) {
     return;
@@ -91,21 +96,22 @@ export const transformRuleEntry = (
     // maybe put it still into the jsonc file but commented out
 
     if (allRules.includes(rule)) {
-      if (!options?.withNursery && rules.nurseryRules.includes(rule)) {
+      if (!options.withNursery && rules.nurseryRules.includes(rule)) {
         options?.reporter?.report(
           `unsupported rule, but available as a nursery rule: ${rule}`
         );
         continue;
       }
 
-      if (!options?.typeAware && typescriptTypeAwareRules.includes(rule)) {
+      if (!options.typeAware && typescriptTypeAwareRules.includes(rule)) {
         options?.reporter?.report(
           `type-aware rule detected, but \`--type-aware\` is not enabled: ${rule}`
         );
         continue;
       }
-      if (options?.merge) {
-        // when merge only override if not exists
+
+      if (options.merge) {
+        // when merge, only override if not exists
         // for non merge override it because eslint/typescript rules
         if (!(rule in targetConfig.rules)) {
           targetConfig.rules[rule] = normalizedConfig;
@@ -116,18 +122,13 @@ export const transformRuleEntry = (
     } else {
       // For unsupported rules, when jsPlugins is enabled, always try to map
       // them to a JS plugin rule, regardless of severity (including 'off').
-      if (options?.jsPlugins) {
+      if (options.jsPlugins) {
+        // For base config, delete disabled rules
+        if (eslintConfig.files === undefined && isOffValue(normalizedConfig)) {
+          delete targetConfig.rules[rule];
+        }
+
         if (enableJsPluginRule(targetConfig, rule, normalizedConfig)) {
-          // handled by jsPlugins (rule may be 'off' or active)
-          // Special-case: for base configs (no files), remove disabled rules to avoid
-          // retaining redundant 'off' entries at root. Overrides should keep 'off'.
-          if (
-            eslintConfig.files === undefined &&
-            !isActiveValue(normalizedConfig) &&
-            isOffValue(normalizedConfig)
-          ) {
-            delete targetConfig.rules[rule];
-          }
           continue;
         }
         // fall through to unsupported handling if plugin couldn't be enabled
@@ -139,15 +140,15 @@ export const transformRuleEntry = (
         if (isOffValue(normalizedConfig)) {
           delete targetConfig.rules[rule];
         }
-        // only remove the reporter diagnostics when it is not inside an override
+        // only remove the reporter diagnostics when it is in a base config.
         if (eslintConfig.files === undefined) {
-          options?.reporter?.remove(unsupportedRuleMessage);
+          options.reporter?.remove(unsupportedRuleMessage);
         }
         continue;
       }
 
       // Active unsupported rule: report
-      options?.reporter?.report(unsupportedRuleMessage);
+      options.reporter?.report(unsupportedRuleMessage);
     }
   }
 };
