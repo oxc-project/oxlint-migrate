@@ -10,7 +10,14 @@ import { typescriptRulesExtendEslintRules } from '../src/constants.js';
 export type Rule = {
   value: string;
   scope: string;
-  category: string;
+  category:
+    | 'correctness'
+    | 'perf'
+    | 'restriction'
+    | 'suspicious'
+    | 'pedantic'
+    | 'style'
+    | 'nursery';
 };
 
 /**
