@@ -153,6 +153,39 @@ describe('rules and plugins', () => {
         'unsupported rule: unknown-rule',
       ]);
     });
+
+    test('ensure jsPlugin rule is disabled if the last config object disables it', () => {
+      const initialConfig: Linter.Config = {
+        plugins: { regexp: {} },
+        rules: {
+          'regexp/no-lazy-ends': ['error', { ignorePartial: false }],
+        },
+      };
+
+      const disablingConfig: Linter.Config = {
+        plugins: { regexp: {} },
+        rules: {
+          'regexp/no-lazy-ends': 'off',
+        },
+      };
+
+      const config: OxlintConfig = {};
+      const reporter = new DefaultReporter();
+
+      transformRuleEntry(initialConfig, config, {
+        reporter,
+        jsPlugins: true,
+      });
+      transformRuleEntry(disablingConfig, config, {
+        reporter,
+        jsPlugins: true,
+      });
+
+      // the rule should not be present in the config anymore
+      expect(config.rules?.['regexp/no-lazy-ends']).toBeUndefined();
+      expect(config.jsPlugins).toContain('eslint-plugin-regexp');
+      expect(reporter.getReports()).toStrictEqual([]);
+    });
   });
 
   test('cleanUpUselessOverridesRules', () => {
