@@ -267,6 +267,64 @@ describe('rules and plugins', () => {
 
       expect(reporter.getReports()).toStrictEqual([]);
     });
+
+    test('includes jsPlugin in base config when plugin rule is used', () => {
+      const baseConfig: Linter.Config = {
+        plugins: { mocha: {} },
+        rules: {
+          'mocha/no-pending-tests': 'error',
+        },
+      };
+
+      const target: OxlintConfig = {};
+      const reporter = new DefaultReporter();
+
+      transformRuleEntry(baseConfig, target, { reporter, jsPlugins: true });
+
+      expect(target.rules?.['mocha/no-pending-tests']).toBe('error');
+      expect(target.jsPlugins).toContain('eslint-plugin-mocha');
+      expect(reporter.getReports()).toStrictEqual([]);
+    });
+
+    test('does not include jsPlugin in base config when plugin rule is used but set to off', () => {
+      const baseConfig: Linter.Config = {
+        plugins: { mocha: {} },
+        rules: {
+          'mocha/no-pending-tests': 'off',
+        },
+      };
+
+      const target: OxlintConfig = {};
+      const reporter = new DefaultReporter();
+
+      transformRuleEntry(baseConfig, target, { reporter, jsPlugins: true });
+
+      expect(target.rules?.['mocha/no-pending-tests']).toBeUndefined();
+      expect(target.jsPlugins).toBeUndefined();
+      expect(reporter.getReports()).toStrictEqual([]);
+    });
+
+    test('does include jsPlugin in base config when one rule is off and another is error', () => {
+      const baseConfig: Linter.Config = {
+        plugins: { mocha: {} },
+        rules: {
+          'mocha/no-pending-tests': 'off',
+          'mocha/no-skip-tests': 'error',
+        },
+      };
+
+      const target: OxlintConfig = {};
+      const reporter = new DefaultReporter();
+
+      transformRuleEntry(baseConfig, target, { reporter, jsPlugins: true });
+
+      expect(target.rules?.['mocha/no-pending-tests']).toBeUndefined();
+      expect(target.rules?.['mocha/no-skip-tests']).toBe('error');
+      expect(target.jsPlugins).toContain('eslint-plugin-mocha');
+      expect(reporter.getReports()).toStrictEqual([]);
+    });
+
+    // TODO: Add a test to verify that the behavior works correctly when the base config sets the rule to `off` and then an override enables it?
   });
 
   test('cleanUpUselessOverridesRules', () => {
