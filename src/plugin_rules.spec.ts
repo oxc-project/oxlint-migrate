@@ -323,8 +323,6 @@ describe('rules and plugins', () => {
       expect(target.jsPlugins).toContain('eslint-plugin-mocha');
       expect(reporter.getReports()).toStrictEqual([]);
     });
-
-    // TODO: Add a test to verify that the behavior works correctly when the base config sets the rule to `off` and then an override enables it?
   });
 
   test('cleanUpUselessOverridesRules', () => {
