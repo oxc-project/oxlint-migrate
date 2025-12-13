@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import replaceRuleDirectiveComment from './replaceRuleDirectiveComment.js';
-import { correctnessRules, nurseryRules } from '../../generated/rules.js';
+import rules from '../../generated/rules.js';
 
 const eslintCommentsLines = ['eslint-disable-line', 'eslint-disable-next-line'];
 
@@ -40,11 +40,11 @@ describe('replaceRuleDirectiveComment', () => {
 
     it('should ignore comment of the directive', () => {
       const blockComments = eslintCommentsBlock.map(
-        (prefix) => `${prefix} ${correctnessRules[0]} -- eslint-disable`
+        (prefix) => `${prefix} ${rules.correctness[0]} -- eslint-disable`
       );
       const lineComments = eslintCommentsLines.map(
         (prefix) =>
-          `${prefix} ${correctnessRules[0]} -- eslint-disable-next-line`
+          `${prefix} ${rules.correctness[0]} -- eslint-disable-next-line`
       );
 
       for (const comment of blockComments) {
@@ -94,11 +94,11 @@ describe('replaceRuleDirectiveComment', () => {
 
     it('should keep eslint comments with multiple rules, where one of them is not supported', () => {
       const blockComments = eslintCommentsBlock.map(
-        (prefix) => `${prefix} ${correctnessRules[0]}, unknown-rule`
+        (prefix) => `${prefix} ${rules.correctness[0]}, unknown-rule`
       );
 
       const lineComments = eslintCommentsLines.map(
-        (prefix) => `${prefix} ${correctnessRules[0]}, unknown-rule`
+        (prefix) => `${prefix} ${rules.correctness[0]}, unknown-rule`
       );
 
       for (const comment of blockComments) {
@@ -114,11 +114,11 @@ describe('replaceRuleDirectiveComment', () => {
       const blockComments = eslintCommentsBlock.map(
         // the comma is missing here, it will not count as an valid comment
         // __________________________________________v
-        (prefix) => `${prefix} ${correctnessRules[0]} ${correctnessRules[1]}`
+        (prefix) => `${prefix} ${rules.correctness[0]} ${rules.correctness[1]}`
       );
 
       const lineComments = eslintCommentsLines.map(
-        (prefix) => `${prefix} ${correctnessRules[0]} ${correctnessRules[1]}`
+        (prefix) => `${prefix} ${rules.correctness[0]} ${rules.correctness[1]}`
       );
 
       for (const comment of blockComments) {
@@ -134,11 +134,11 @@ describe('replaceRuleDirectiveComment', () => {
   describe('touched comments', () => {
     it('should replace single rule', () => {
       const blockComment = eslintCommentsBlock.map(
-        (prefix) => `${prefix} ${correctnessRules[0]}`
+        (prefix) => `${prefix} ${rules.correctness[0]}`
       );
 
       const lineComment = eslintCommentsLines.map(
-        (prefix) => `${prefix} ${correctnessRules[0]}`
+        (prefix) => `${prefix} ${rules.correctness[0]}`
       );
 
       for (const comment of blockComment) {
@@ -156,11 +156,11 @@ describe('replaceRuleDirectiveComment', () => {
 
     it('should replace multiple rules', () => {
       const blockComments = eslintCommentsBlock.map(
-        (prefix) => `${prefix} ${correctnessRules[0]}, ${correctnessRules[1]}`
+        (prefix) => `${prefix} ${rules.correctness[0]}, ${rules.correctness[1]}`
       );
 
       const lineComments = eslintCommentsLines.map(
-        (prefix) => `${prefix} ${correctnessRules[0]}, ${correctnessRules[1]}`
+        (prefix) => `${prefix} ${rules.correctness[0]}, ${rules.correctness[1]}`
       );
 
       for (const comment of blockComments) {
@@ -180,7 +180,7 @@ describe('replaceRuleDirectiveComment', () => {
   describe('withNurseryCheck', () => {
     it('should ignore nursery rules on default', () => {
       const blockComments = eslintCommentsBlock.map(
-        (prefix) => `${prefix} ${nurseryRules[0]}`
+        (prefix) => `${prefix} ${rules.nursery[0]}`
       );
       for (const comment of blockComments) {
         expect(replaceRuleDirectiveComment(comment, 'Block', {})).toBe(comment);
@@ -189,7 +189,7 @@ describe('replaceRuleDirectiveComment', () => {
 
     it('should respect nursery rules with `options.withNursery`', () => {
       const blockComments = eslintCommentsBlock.map(
-        (prefix) => `${prefix} ${nurseryRules[0]}`
+        (prefix) => `${prefix} ${rules.nursery[0]}`
       );
 
       for (const comment of blockComments) {

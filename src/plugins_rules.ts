@@ -1,5 +1,5 @@
 import type { Linter } from 'eslint';
-import * as rules from './generated/rules.js';
+import rules from './generated/rules.js';
 import { Options, OxlintConfig, OxlintConfigOrOverride } from './types.js';
 import {
   rulesPrefixesForPlugins,
@@ -86,7 +86,7 @@ export const transformRuleEntry = (
     // maybe put it still into the jsonc file but commented out
 
     if (allRules.includes(rule)) {
-      if (!options?.withNursery && rules.nurseryRules.includes(rule)) {
+      if (!options?.withNursery && rules.nursery.includes(rule)) {
         options?.reporter?.report(
           `unsupported rule, but in development: ${rule}`
         );
@@ -253,6 +253,26 @@ export const cleanUpUselessOverridesRules = (config: OxlintConfig): void => {
   }
 };
 
+type Category =
+  | 'correctness'
+  | 'perf'
+  | 'restriction'
+  | 'suspicious'
+  | 'pedantic'
+  | 'style'
+  | 'nursery';
+
+// extracts the category names from a config object
+const extractCategoryNames = (config: OxlintConfig): Category[] => {
+  if (config.categories === undefined) {
+    return ['correctness'];
+  }
+
+  return Object.entries(config.categories)
+    .filter(([, severity]) => severity === 'warn' || severity === 'error')
+    .map(([category]) => category as Category);
+};
+
 export const cleanUpRulesWhichAreCoveredByCategory = (
   config: OxlintConfigOrOverride
 ): void => {
@@ -260,18 +280,12 @@ export const cleanUpRulesWhichAreCoveredByCategory = (
     return;
   }
 
-  const enabledCategories = Object.entries(config.categories)
-    .filter(([, severity]) => severity === 'warn' || severity === 'error')
-    .map(([category]) => category);
+  const enabledCategories = extractCategoryNames(config);
 
   for (const [rule, settings] of Object.entries(config.rules)) {
     for (const category of enabledCategories) {
       // check if the rule is inside the enabled category
-      if (
-        `${category}Rules` in rules &&
-        // @ts-expect-error -- ts can not resolve the type
-        (rules[`${category}Rules`] as string[]).includes(rule)
-      ) {
+      if (rules[category] && rules[category].includes(rule)) {
         // check if the severity is the same. only check when no custom config is passed
         if (
           settings === config.categories[category] ||
@@ -286,13 +300,11 @@ export const cleanUpRulesWhichAreCoveredByCategory = (
   }
 };
 
-const getEnabledCategories = (config: OxlintConfig): string[] => {
+const getEnabledCategories = (config: OxlintConfig): Category[] => {
   if (config.categories === undefined) {
     return ['correctness'];
   }
-  const categories = Object.entries(config.categories)
-    .filter(([, severity]) => severity === 'warn' || severity === 'error')
-    .map(([category]) => category);
+  const categories = extractCategoryNames(config);
 
   // special case: when correctness is not defined, we consider it enabled
   if (Object.keys(config.categories).includes('correctness')) {
@@ -304,14 +316,10 @@ const getEnabledCategories = (config: OxlintConfig): string[] => {
 
 const isRuleInEnabledCategory = (
   rule: string,
-  enabledCategories: string[]
+  enabledCategories: Category[]
 ): boolean => {
   for (const category of enabledCategories) {
-    if (
-      `${category}Rules` in rules &&
-      // @ts-expect-error -- ts can not resolve the type
-      rules[`${category}Rules`].includes(rule)
-    ) {
+    if (category in rules && (rules[category] as string[]).includes(rule)) {
       return true;
     }
   }

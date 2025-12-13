@@ -1,4 +1,4 @@
-import * as rules from '../../generated/rules.js';
+import rules from '../../generated/rules.js';
 import { Options } from '../../types.js';
 
 const allRules = Object.values(rules).flat();
@@ -52,7 +52,7 @@ export default function replaceRuleDirectiveComment(
     for (const rule of allRules) {
       if (comment.startsWith(rule)) {
         // skip nursery rules when not enabled
-        if (!options.withNursery && rules.nurseryRules.includes(rule)) {
+        if (!options.withNursery && rules.nursery.includes(rule)) {
           continue;
         }
         foundRule = true;
