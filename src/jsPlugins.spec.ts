@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest';
-import { enableJsPluginRule } from './jsPlugins.js';
+import { enableJsPluginRule, isIgnoredPluginRule } from './jsPlugins.js';
 import { OxlintConfigOrOverride } from './types.js';
 
 describe('enableJsPluginRule', () => {
@@ -59,5 +59,33 @@ describe('enableJsPluginRule', () => {
     expect(result).toBe(false);
     expect(targetConfig.jsPlugins).toBeUndefined();
     expect(targetConfig.rules).toBeUndefined();
+  });
+});
+
+describe('isIgnoredPluginRule', () => {
+  test('returns true for core ESLint rule (no plugin)', () => {
+    expect(isIgnoredPluginRule('no-unused-vars')).toBe(true);
+    expect(isIgnoredPluginRule('eqeqeq')).toBe(true);
+  });
+
+  test('returns true for ignored plugin rules', () => {
+    // @typescript-eslint is treated as ignored
+    expect(isIgnoredPluginRule('@typescript-eslint/no-unused-vars')).toBe(true);
+    // local plugin rules should be ignored (TODO: implement proper handling later)
+    expect(isIgnoredPluginRule('local/some-rule')).toBe(true);
+  });
+
+  test('returns false for non-ignored plugin rules', () => {
+    expect(isIgnoredPluginRule('mocha/no-pending-tests')).toBe(false);
+    expect(isIgnoredPluginRule('tsdoc/syntax')).toBe(false);
+    expect(
+      isIgnoredPluginRule(
+        '@eslint-community/eslint-comments/disable-enable-pair'
+      )
+    ).toBe(false);
+    expect(isIgnoredPluginRule('@stylistic/indent')).toBe(false);
+    expect(isIgnoredPluginRule('@stylistic/ts/member-delimiter-style')).toBe(
+      false
+    );
   });
 });
