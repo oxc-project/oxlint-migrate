@@ -30,14 +30,6 @@ exports[`overriding-config-merge --js-plugins > overriding-config-merge--js-plug
       "eslint-plugin-regexp",
     ],
     "plugins": [],
-    "rules": {
-      "regexp/no-lazy-ends": [
-        "error",
-        {
-          "ignorePartial": false,
-        },
-      ],
-    },
   },
   "warnings": [],
 }

@@ -110,6 +110,11 @@ export const transformRuleEntry = (
       }
     } else {
       if (!isActiveValue(normalizedConfig)) {
+        // if rule is disabled, remove it.
+        // TODO: What if we have it off in one place and then on in another? Does this still remove it?
+        if (isOffValue(normalizedConfig)) {
+          delete targetConfig.rules[rule];
+        }
         // only remove the reporter diagnostics when it is not inside an override
         if (eslintConfig.files === undefined) {
           options?.reporter?.remove(unsupportedRuleMessage);
@@ -318,23 +323,6 @@ const isRuleInEnabledCategory = (
   return false;
 };
 
-/**
- * TODO: Avoid removing rules that are enabled and then separately *disabled*.
- * e.g.:
- *
- * ```js
- * export default [
- *   {
- *     rules: {
- *       "rulename": [
- *         "error", { optionFoo: "bar" }
- *       ],
- *       'rulename': 'off',
- *     }
- *   }
- * ];
- * ```
- */
 export const cleanUpDisabledRootRules = (config: OxlintConfig): void => {
   if (config.rules === undefined) {
     return;

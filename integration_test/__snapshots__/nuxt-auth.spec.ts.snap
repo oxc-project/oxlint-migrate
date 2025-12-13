@@ -1264,10 +1264,6 @@ exports[`nuxt-auth --js-plugins > nuxt-auth--js-plugins 1`] = `
           "allowSingleLine": true,
         },
       ],
-      "@stylistic/comma-dangle": [
-        "error",
-        "always-multiline",
-      ],
       "@stylistic/comma-spacing": [
         "error",
         {
