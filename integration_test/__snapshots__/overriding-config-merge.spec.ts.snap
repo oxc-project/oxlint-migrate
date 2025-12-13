@@ -1,0 +1,77 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`overriding-config-merge > overriding-config-merge 1`] = `
+{
+  "config": {
+    "$schema": "./node_modules/oxlint/configuration_schema.json",
+    "categories": {
+      "correctness": "off",
+    },
+    "env": {
+      "builtin": true,
+    },
+    "plugins": [],
+  },
+  "warnings": [],
+}
+`;
+
+exports[`overriding-config-merge --js-plugins > overriding-config-merge--js-plugins 1`] = `
+{
+  "config": {
+    "$schema": "./node_modules/oxlint/configuration_schema.json",
+    "categories": {
+      "correctness": "off",
+    },
+    "env": {
+      "builtin": true,
+    },
+    "jsPlugins": [
+      "eslint-plugin-regexp",
+    ],
+    "plugins": [],
+    "rules": {
+      "regexp/no-lazy-ends": [
+        "error",
+        {
+          "ignorePartial": false,
+        },
+      ],
+    },
+  },
+  "warnings": [],
+}
+`;
+
+exports[`overriding-config-merge --type-aware > overriding-config-merge--type-aware 1`] = `
+{
+  "config": {
+    "$schema": "./node_modules/oxlint/configuration_schema.json",
+    "categories": {
+      "correctness": "off",
+    },
+    "env": {
+      "builtin": true,
+    },
+    "plugins": [],
+  },
+  "warnings": [],
+}
+`;
+
+exports[`overriding-config-merge merge > overriding-config-merge--merge 1`] = `
+{
+  "config": {
+    "$schema": "./node_modules/oxlint/configuration_schema.json",
+    "categories": {
+      "correctness": "error",
+      "perf": "error",
+    },
+    "env": {
+      "builtin": true,
+    },
+    "plugins": [],
+  },
+  "warnings": [],
+}
+`;
