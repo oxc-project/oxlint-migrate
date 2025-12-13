@@ -2,7 +2,7 @@ import type { Linter } from 'eslint';
 
 type OxlintConfigPlugins = string[];
 type OxlintConfigJsPlugins = string[];
-type OxlintConfigCategories = Record<string, unknown>;
+type OxlintConfigCategories = Partial<Record<Category, unknown>>;
 type OxlintConfigEnv = Record<string, boolean>;
 type OxlintConfigIgnorePatterns = string[];
 
@@ -43,3 +43,12 @@ export type Options = {
   typeAware?: boolean;
   jsPlugins?: boolean;
 };
+
+export type Category =
+  | 'style'
+  | 'correctness'
+  | 'nursery'
+  | 'suspicious'
+  | 'pedantic'
+  | 'perf'
+  | 'restriction';

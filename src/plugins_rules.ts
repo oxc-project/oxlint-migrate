@@ -1,6 +1,11 @@
 import type { Linter } from 'eslint';
 import * as rules from './generated/rules.js';
-import { Options, OxlintConfig, OxlintConfigOrOverride } from './types.js';
+import {
+  Options,
+  OxlintConfig,
+  OxlintConfigOrOverride,
+  type Category,
+} from './types.js';
 import {
   rulesPrefixesForPlugins,
   typescriptRulesExtendEslintRules,
@@ -264,16 +269,15 @@ export const cleanUpRulesWhichAreCoveredByCategory = (
     return;
   }
 
-  const enabledCategories = Object.entries(config.categories)
+  const enabledCategories: Category[] = Object.entries(config.categories)
     .filter(([, severity]) => severity === 'warn' || severity === 'error')
-    .map(([category]) => category);
+    .map(([category]) => category as Category);
 
   for (const [rule, settings] of Object.entries(config.rules)) {
     for (const category of enabledCategories) {
       // check if the rule is inside the enabled category
       if (
         `${category}Rules` in rules &&
-        // @ts-expect-error -- ts can not resolve the type
         (rules[`${category}Rules`] as string[]).includes(rule)
       ) {
         // check if the severity is the same. only check when no custom config is passed
@@ -290,13 +294,13 @@ export const cleanUpRulesWhichAreCoveredByCategory = (
   }
 };
 
-const getEnabledCategories = (config: OxlintConfig): string[] => {
+const getEnabledCategories = (config: OxlintConfig): Category[] => {
   if (config.categories === undefined) {
     return ['correctness'];
   }
-  const categories = Object.entries(config.categories)
+  const categories: Category[] = Object.entries(config.categories)
     .filter(([, severity]) => severity === 'warn' || severity === 'error')
-    .map(([category]) => category);
+    .map(([category]) => category as Category);
 
   // special case: when correctness is not defined, we consider it enabled
   if (Object.keys(config.categories).includes('correctness')) {
@@ -308,12 +312,11 @@ const getEnabledCategories = (config: OxlintConfig): string[] => {
 
 const isRuleInEnabledCategory = (
   rule: string,
-  enabledCategories: string[]
+  enabledCategories: Category[]
 ): boolean => {
   for (const category of enabledCategories) {
     if (
       `${category}Rules` in rules &&
-      // @ts-expect-error -- ts can not resolve the type
       rules[`${category}Rules`].includes(rule)
     ) {
       return true;
