@@ -1,5 +1,5 @@
 import { assert, describe, expect, test } from 'vitest';
-import type { OxlintConfig } from './types.js';
+import type { OxlintConfig, OxlintConfigOverride } from './types.js';
 import {
   cleanUpDisabledRootRules,
   cleanUpRulesWhichAreCoveredByCategory,
@@ -152,6 +152,176 @@ describe('rules and plugins', () => {
       expect(reporter.getReports()).toStrictEqual([
         'unsupported rule: unknown-rule',
       ]);
+    });
+
+    test('ensure jsPlugin rule is disabled if the last config object disables it', () => {
+      const initialConfig: Linter.Config = {
+        plugins: { regexp: {} },
+        rules: {
+          'regexp/no-lazy-ends': ['error', { ignorePartial: false }],
+        },
+      };
+
+      const disablingConfig: Linter.Config = {
+        plugins: { regexp: {} },
+        rules: {
+          'regexp/no-lazy-ends': 'off',
+        },
+      };
+
+      const config: OxlintConfig = {};
+      const reporter = new DefaultReporter();
+
+      transformRuleEntry(initialConfig, config, {
+        reporter,
+        jsPlugins: true,
+      });
+      transformRuleEntry(disablingConfig, config, {
+        reporter,
+        jsPlugins: true,
+      });
+
+      // the rule should not be present in the config anymore
+      expect(config.rules?.['regexp/no-lazy-ends']).toBeUndefined();
+      expect(config.jsPlugins).toContain('eslint-plugin-regexp');
+      expect(reporter.getReports()).toStrictEqual([]);
+    });
+
+    test('ensure jsPlugin rule is enabled if the last config object enables it', () => {
+      const initialConfig: Linter.Config = {
+        plugins: { regexp: {} },
+        rules: {
+          'regexp/no-lazy-ends': ['off'],
+        },
+      };
+
+      const enablingConfig: Linter.Config = {
+        plugins: { regexp: {} },
+        rules: {
+          'regexp/no-lazy-ends': ['error', { ignorePartial: false }],
+        },
+      };
+
+      const config: OxlintConfig = {};
+      const reporter = new DefaultReporter();
+
+      transformRuleEntry(initialConfig, config, {
+        reporter,
+        jsPlugins: true,
+      });
+      transformRuleEntry(enablingConfig, config, {
+        reporter,
+        jsPlugins: true,
+      });
+
+      // the rule should be set to error in the config
+      expect(config.rules?.['regexp/no-lazy-ends']).toStrictEqual([
+        'error',
+        { ignorePartial: false },
+      ]);
+      expect(config.jsPlugins).toContain('eslint-plugin-regexp');
+      expect(reporter.getReports()).toStrictEqual([]);
+    });
+
+    test('jsPlugin rule disabled in override keeps base enabled', () => {
+      const baseConfig: Linter.Config = {
+        plugins: { regexp: {} },
+        rules: {
+          'regexp/no-lazy-ends': ['error', { ignorePartial: false }],
+        },
+      };
+
+      const overrideConfig: Linter.Config = {
+        plugins: { regexp: {} },
+        files: ['**/*.js'],
+        rules: {
+          'regexp/no-lazy-ends': ['off'],
+        },
+      };
+
+      const baseTarget: OxlintConfig = {};
+      const overrideTarget: OxlintConfigOverride = { files: ['**/*.js'] };
+      const reporter = new DefaultReporter();
+
+      transformRuleEntry(baseConfig, baseTarget, {
+        reporter,
+        jsPlugins: true,
+      });
+
+      transformRuleEntry(overrideConfig, overrideTarget, {
+        reporter,
+        jsPlugins: true,
+      });
+
+      expect(baseTarget.rules?.['regexp/no-lazy-ends']).toStrictEqual([
+        'error',
+        { ignorePartial: false },
+      ]);
+      expect(baseTarget.jsPlugins).toContain('eslint-plugin-regexp');
+
+      expect(overrideTarget.rules?.['regexp/no-lazy-ends']).toStrictEqual([
+        'off',
+      ]);
+      // plugin should not be added for a disabled rule in an override
+      expect(overrideTarget.jsPlugins).toBeUndefined();
+
+      expect(reporter.getReports()).toStrictEqual([]);
+    });
+
+    test('includes jsPlugin in base config when plugin rule is used', () => {
+      const baseConfig: Linter.Config = {
+        plugins: { mocha: {} },
+        rules: {
+          'mocha/no-pending-tests': 'error',
+        },
+      };
+
+      const target: OxlintConfig = {};
+      const reporter = new DefaultReporter();
+
+      transformRuleEntry(baseConfig, target, { reporter, jsPlugins: true });
+
+      expect(target.rules?.['mocha/no-pending-tests']).toBe('error');
+      expect(target.jsPlugins).toContain('eslint-plugin-mocha');
+      expect(reporter.getReports()).toStrictEqual([]);
+    });
+
+    test('does not include jsPlugin in base config when plugin rule is used but set to off', () => {
+      const baseConfig: Linter.Config = {
+        plugins: { mocha: {} },
+        rules: {
+          'mocha/no-pending-tests': 'off',
+        },
+      };
+
+      const target: OxlintConfig = {};
+      const reporter = new DefaultReporter();
+
+      transformRuleEntry(baseConfig, target, { reporter, jsPlugins: true });
+
+      expect(target.rules?.['mocha/no-pending-tests']).toBeUndefined();
+      expect(target.jsPlugins).toBeUndefined();
+      expect(reporter.getReports()).toStrictEqual([]);
+    });
+
+    test('does include jsPlugin in base config when one rule is off and another is error', () => {
+      const baseConfig: Linter.Config = {
+        plugins: { mocha: {} },
+        rules: {
+          'mocha/no-pending-tests': 'off',
+          'mocha/no-skip-tests': 'error',
+        },
+      };
+
+      const target: OxlintConfig = {};
+      const reporter = new DefaultReporter();
+
+      transformRuleEntry(baseConfig, target, { reporter, jsPlugins: true });
+
+      expect(target.rules?.['mocha/no-pending-tests']).toBeUndefined();
+      expect(target.rules?.['mocha/no-skip-tests']).toBe('error');
+      expect(target.jsPlugins).toContain('eslint-plugin-mocha');
+      expect(reporter.getReports()).toStrictEqual([]);
     });
   });
 

@@ -1,12 +1,17 @@
 import type { Linter } from 'eslint';
 import * as rules from './generated/rules.js';
-import { Options, OxlintConfig, OxlintConfigOrOverride } from './types.js';
+import {
+  Options,
+  OxlintConfig,
+  OxlintConfigOrOverride,
+  type Category,
+} from './types.js';
 import {
   rulesPrefixesForPlugins,
   typescriptRulesExtendEslintRules,
   typescriptTypeAwareRules,
 } from './constants.js';
-import { enableJsPluginRule } from './jsPlugins.js';
+import { enableJsPluginRule, isIgnoredPluginRule } from './jsPlugins.js';
 
 const allRules = Object.values(rules).flat();
 
@@ -99,8 +104,9 @@ export const transformRuleEntry = (
         );
         continue;
       }
+
       if (options?.merge) {
-        // when merge only override if not exists
+        // when merge, only override if not exists
         // for non merge override it because eslint/typescript rules
         if (!(rule in targetConfig.rules)) {
           targetConfig.rules[rule] = normalizedConfig;
@@ -109,21 +115,48 @@ export const transformRuleEntry = (
         targetConfig.rules[rule] = normalizedConfig;
       }
     } else {
+      // For unsupported rules, when jsPlugins is enabled, always try to map
+      // them to a JS plugin rule, regardless of severity (including 'off').
+      if (options?.jsPlugins) {
+        // If the rule is disabled, avoid enabling the jsPlugin to prevent noise.
+        if (isOffValue(normalizedConfig)) {
+          if (eslintConfig.files === undefined) {
+            // base config: drop disabled rule entirely
+            delete targetConfig.rules[rule];
+          } else {
+            // override: keep the disabled setting without adding jsPlugin, unless plugin is ignored
+            if (!isIgnoredPluginRule(rule)) {
+              targetConfig.rules[rule] = normalizedConfig;
+            }
+          }
+          // also remove any previously queued unsupported report for base
+          if (eslintConfig.files === undefined) {
+            options.reporter?.remove(unsupportedRuleMessage);
+          }
+          continue;
+        }
+
+        if (enableJsPluginRule(targetConfig, rule, normalizedConfig)) {
+          continue;
+        }
+        // fall through to unsupported handling if plugin couldn't be enabled
+      }
+
+      // Non-jsPlugins path or failed jsPlugin mapping: handle disabled rules
       if (!isActiveValue(normalizedConfig)) {
-        // only remove the reporter diagnostics when it is not inside an override
+        // if rule is disabled, remove it.
+        if (isOffValue(normalizedConfig)) {
+          delete targetConfig.rules[rule];
+        }
+        // only remove the reporter diagnostics when it is in a base config.
         if (eslintConfig.files === undefined) {
           options?.reporter?.remove(unsupportedRuleMessage);
         }
         continue;
       }
 
-      if (options?.jsPlugins) {
-        if (!enableJsPluginRule(targetConfig, rule, normalizedConfig)) {
-          options?.reporter?.report(unsupportedRuleMessage);
-        }
-      } else {
-        options?.reporter?.report(unsupportedRuleMessage);
-      }
+      // Active unsupported rule: report
+      options?.reporter?.report(unsupportedRuleMessage);
     }
   }
 };
@@ -260,16 +293,15 @@ export const cleanUpRulesWhichAreCoveredByCategory = (
     return;
   }
 
-  const enabledCategories = Object.entries(config.categories)
+  const enabledCategories: Category[] = Object.entries(config.categories)
     .filter(([, severity]) => severity === 'warn' || severity === 'error')
-    .map(([category]) => category);
+    .map(([category]) => category as Category);
 
   for (const [rule, settings] of Object.entries(config.rules)) {
     for (const category of enabledCategories) {
       // check if the rule is inside the enabled category
       if (
         `${category}Rules` in rules &&
-        // @ts-expect-error -- ts can not resolve the type
         (rules[`${category}Rules`] as string[]).includes(rule)
       ) {
         // check if the severity is the same. only check when no custom config is passed
@@ -286,13 +318,13 @@ export const cleanUpRulesWhichAreCoveredByCategory = (
   }
 };
 
-const getEnabledCategories = (config: OxlintConfig): string[] => {
+const getEnabledCategories = (config: OxlintConfig): Category[] => {
   if (config.categories === undefined) {
     return ['correctness'];
   }
-  const categories = Object.entries(config.categories)
+  const categories: Category[] = Object.entries(config.categories)
     .filter(([, severity]) => severity === 'warn' || severity === 'error')
-    .map(([category]) => category);
+    .map(([category]) => category as Category);
 
   // special case: when correctness is not defined, we consider it enabled
   if (Object.keys(config.categories).includes('correctness')) {
@@ -304,12 +336,11 @@ const getEnabledCategories = (config: OxlintConfig): string[] => {
 
 const isRuleInEnabledCategory = (
   rule: string,
-  enabledCategories: string[]
+  enabledCategories: Category[]
 ): boolean => {
   for (const category of enabledCategories) {
     if (
       `${category}Rules` in rules &&
-      // @ts-expect-error -- ts can not resolve the type
       rules[`${category}Rules`].includes(rule)
     ) {
       return true;

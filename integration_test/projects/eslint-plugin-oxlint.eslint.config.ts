@@ -9,7 +9,7 @@ export default [
     ignores: ['dist/'],
   },
   eslint.configs.recommended,
-  unicorn.configs['flat/recommended'],
+  unicorn.configs['recommended'],
   ...tseslint.configs.recommended,
   eslintConfigPrettier,
   ...oxlint.buildFromOxlintConfig({}),
