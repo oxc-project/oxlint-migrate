@@ -322,6 +322,7 @@ export const styleRules = [
   'vitest/prefer-mock-promise-shorthand',
   'vitest/prefer-strict-equal',
   'vitest/prefer-to-be',
+  'vitest/prefer-to-contain',
   'vitest/prefer-to-have-length',
   'vitest/prefer-todo',
   'vitest/require-top-level-describe',
