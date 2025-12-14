@@ -307,6 +307,7 @@ export const styleRules = [
   'vitest/no-hooks',
   'vitest/no-identical-title',
   'vitest/no-interpolation-in-snapshots',
+  'vitest/no-large-snapshots',
   'vitest/no-mocks-import',
   'vitest/no-restricted-jest-methods',
   'vitest/no-restricted-matchers',
