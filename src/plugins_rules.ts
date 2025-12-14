@@ -218,98 +218,70 @@ export const cleanUpUselessOverridesPlugins = (config: OxlintConfig): void => {
 };
 
 export const cleanUpUselessOverridesRules = (config: OxlintConfig): void => {
-  if (config.overrides === undefined) {
+  if (config.rules === undefined || config.overrides === undefined) {
     return;
   }
 
+  // Build a map of files pattern -> {firstOverrideIndex, finalMergedRules}
+  const filesPatternMap = new Map<
+    string,
+    {
+      firstIndex: number;
+      finalRules: Record<string, Linter.RuleEntry>;
+      indicesToRemove: number[];
+    }
+  >();
+
   // First pass: merge all overrides with same files pattern
-  for (const [_i, override] of config.overrides.entries()) {
+  for (const [i, override] of config.overrides.entries()) {
     if (override.files === undefined) {
       continue;
     }
 
-    // Merge only consecutive overrides that share the same `files` array.
-    // Non-consecutive duplicates should not be merged because intervening
-    // overrides might change the effective behavior.
-    const overrides = config.overrides;
-    const indicesToRemove = new Set<number>();
-    for (let i = 0; i < overrides.length; i++) {
-      const current = overrides[i];
-      if (current.files === undefined) continue;
+    const filesKey = JSON.stringify(override.files);
+    let entry = filesPatternMap.get(filesKey);
 
-      let j = i + 1;
-      while (
-        j < overrides.length &&
-        overrides[j].files !== undefined &&
-        JSON.stringify(overrides[j].files) === JSON.stringify(current.files)
-      ) {
-        const other = overrides[j];
+    if (!entry) {
+      entry = {
+        firstIndex: i,
+        finalRules: {},
+        indicesToRemove: [],
+      };
+      filesPatternMap.set(filesKey, entry);
+    } else {
+      // Mark this duplicate for removal
+      entry.indicesToRemove.push(i);
+    }
 
-        // Merge rules: later overrides win
-        if (other.rules) {
-          if (!current.rules) current.rules = {};
-          Object.assign(current.rules, other.rules);
-        }
+    // Merge rules with last-wins semantics
+    if (override.rules) {
+      Object.assign(entry.finalRules, override.rules);
+    }
+  }
 
-        // Merge plugins
-        if (other.plugins) {
-          if (!current.plugins) current.plugins = [];
-          current.plugins = [
-            ...new Set([...(current.plugins ?? []), ...other.plugins]),
-          ];
-        }
+  // Second pass: update first occurrence with merged rules and mark duplicates for deletion
+  for (const entry of filesPatternMap.values()) {
+    const firstOverride = config.overrides[entry.firstIndex];
 
-        // Merge env/globals shallowly
-        for (const key of ['env', 'globals'] as const) {
-          if ((other as any)[key]) {
-            if (!(current as any)[key]) {
-              (current as any)[key] = (other as any)[key];
-            } else {
-              (current as any)[key] = {
-                ...(current as any)[key],
-                ...(other as any)[key],
-              };
-            }
-          }
-        }
+    // Update the first override with the final merged rules
+    firstOverride.rules = entry.finalRules;
 
-        // Clear merged properties on the duplicate so it can be removed later
-        for (const prop of Object.keys(other)) {
-          // Only delete keys that were merged
-          if (['rules', 'plugins', 'env', 'globals'].includes(prop)) {
-            delete (other as any)[prop];
-          }
-        }
-        // mark this index for removal
-        indicesToRemove.add(j);
-
-        j++;
-      }
-
-      // Remove rules that match root config (only when root rules exist)
-      if (current.rules && config.rules) {
-        for (const [rule, settings] of Object.entries(current.rules)) {
-          if (config.rules[rule] === settings) {
-            delete current.rules[rule];
-          }
-        }
-
-        if (Object.keys(current.rules).length === 0) {
-          delete current.rules;
+    // Remove rules that match root config
+    if (firstOverride.rules) {
+      for (const [rule, settings] of Object.entries(firstOverride.rules)) {
+        if (config.rules[rule] === settings) {
+          delete firstOverride.rules[rule];
         }
       }
 
-      // Skip to the last merged index
-      if (j > i + 1) {
-        i = j - 1;
+      if (Object.keys(firstOverride.rules).length === 0) {
+        delete firstOverride.rules;
       }
     }
 
-    // Remove duplicate overrides which were cleared (only 'files' left)
-    if (indicesToRemove.size > 0) {
-      config.overrides = config.overrides.filter(
-        (_, idx) => !indicesToRemove.has(idx)
-      );
+    // Mark duplicate overrides for removal by clearing their rules
+    for (const indexToRemove of entry.indicesToRemove) {
+      delete config.overrides[indexToRemove].rules;
     }
   }
 };

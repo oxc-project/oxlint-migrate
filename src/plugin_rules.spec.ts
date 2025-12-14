@@ -386,35 +386,8 @@ describe('rules and plugins', () => {
             'react/foobar': 'error',
           },
         },
-      ],
-    });
-  });
-
-  test('cleanUpUselessOverridesRules merges plugins from duplicate file overrides', () => {
-    const config: OxlintConfig = {
-      overrides: [
         {
           files: ['**/*.ts', '**/*.tsx'],
-          rules: {
-            '@typescript-eslint/no-deprecated': 'error',
-          },
-        },
-        {
-          files: ['**/*.ts', '**/*.tsx'],
-          plugins: ['typescript'],
-        },
-      ],
-    };
-
-    cleanUpUselessOverridesRules(config);
-    expect(config).toStrictEqual({
-      overrides: [
-        {
-          files: ['**/*.ts', '**/*.tsx'],
-          rules: {
-            '@typescript-eslint/no-deprecated': 'error',
-          },
-          plugins: ['typescript'],
         },
       ],
     });
