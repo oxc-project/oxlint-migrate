@@ -72,12 +72,7 @@ const normalizeSeverityValue = (
 export const transformRuleEntry = (
   eslintConfig: Linter.Config,
   targetConfig: OxlintConfigOrOverride,
-  options: Options = {
-    withNursery: false,
-    typeAware: false,
-    merge: false,
-    jsPlugins: false,
-  }
+  options?: Options
 ): void => {
   if (eslintConfig.rules === undefined) {
     return;
@@ -96,21 +91,21 @@ export const transformRuleEntry = (
     // maybe put it still into the jsonc file but commented out
 
     if (allRules.includes(rule)) {
-      if (!options.withNursery && rules.nurseryRules.includes(rule)) {
+      if (!options?.withNursery && rules.nurseryRules.includes(rule)) {
         options?.reporter?.report(
           `unsupported rule, but available as a nursery rule: ${rule}`
         );
         continue;
       }
 
-      if (!options.typeAware && typescriptTypeAwareRules.includes(rule)) {
+      if (!options?.typeAware && typescriptTypeAwareRules.includes(rule)) {
         options?.reporter?.report(
           `type-aware rule detected, but \`--type-aware\` is not enabled: ${rule}`
         );
         continue;
       }
 
-      if (options.merge) {
+      if (options?.merge) {
         // when merge, only override if not exists
         // for non merge override it because eslint/typescript rules
         if (!(rule in targetConfig.rules)) {
@@ -122,7 +117,7 @@ export const transformRuleEntry = (
     } else {
       // For unsupported rules, when jsPlugins is enabled, always try to map
       // them to a JS plugin rule, regardless of severity (including 'off').
-      if (options.jsPlugins) {
+      if (options?.jsPlugins) {
         // If the rule is disabled, avoid enabling the jsPlugin to prevent noise.
         if (isOffValue(normalizedConfig)) {
           if (eslintConfig.files === undefined) {
@@ -155,13 +150,13 @@ export const transformRuleEntry = (
         }
         // only remove the reporter diagnostics when it is in a base config.
         if (eslintConfig.files === undefined) {
-          options.reporter?.remove(unsupportedRuleMessage);
+          options?.reporter?.remove(unsupportedRuleMessage);
         }
         continue;
       }
 
       // Active unsupported rule: report
-      options.reporter?.report(unsupportedRuleMessage);
+      options?.reporter?.report(unsupportedRuleMessage);
     }
   }
 };
