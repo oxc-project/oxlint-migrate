@@ -89,6 +89,9 @@ const cleanUpUselessOverridesEntries = (config: OxlintConfig): void => {
   mergeConsecutiveIdenticalOverrides(config);
   mergeConsecutiveOverridesWithDifferingFiles(config);
 
+  // Merge overrides which have identical files arrays (must be consecutive).
+  mergeOverridesByFiles(config);
+
   if (config.overrides.length === 0) {
     delete config.overrides;
   }
@@ -278,4 +281,100 @@ function mergeConsecutiveOverridesWithDifferingFiles(config: OxlintConfig) {
   }
 
   config.overrides = mergedOverrides;
+}
+
+/**
+ * Merge overrides that have identical files arrays, even if they are not consecutive.
+ * This will merge rules, plugins and other keys from later occurrences into the
+ * first occurrence and clear them on duplicates so later cleanup deletes them.
+ */
+export function mergeOverridesByFiles(config: OxlintConfig) {
+  if (config.overrides === undefined) {
+    return;
+  }
+
+  const groups = new Map<string, number[]>();
+
+  for (const [i, override] of config.overrides.entries()) {
+    if (override.files === undefined) {
+      continue;
+    }
+
+    const key = JSON.stringify(override.files);
+    const arr = groups.get(key) ?? [];
+    arr.push(i);
+    groups.set(key, arr);
+  }
+
+  for (const indices of groups.values()) {
+    if (indices.length <= 1) continue;
+
+    // Only merge indices that form consecutive runs. Non-consecutive duplicates
+    // are not merged because intervening overrides might change behavior.
+    indices.sort((a, b) => a - b);
+    let runStart = indices[0];
+    let runPrev = runStart;
+
+    const flushRun = (start: number, end: number) => {
+      const firstIndex = start;
+      const first = config.overrides![firstIndex];
+      for (let k = start + 1; k <= end; k++) {
+        const other = config.overrides![k];
+
+        // Merge rules with last-wins (later overrides take precedence)
+        if (other.rules) {
+          if (!first.rules) first.rules = {};
+          Object.assign(first.rules, other.rules);
+        }
+
+        // Merge plugins as a set
+        if (other.plugins) {
+          if (!first.plugins) first.plugins = [];
+          first.plugins = [...new Set([...first.plugins, ...other.plugins])];
+        }
+
+        // Merge simple objects like env and globals by shallow merge
+        for (const key of ['env', 'globals'] as const) {
+          if ((other as any)[key]) {
+            if (!(first as any)[key]) {
+              (first as any)[key] = (other as any)[key];
+            } else {
+              (first as any)[key] = {
+                ...(first as any)[key],
+                ...(other as any)[key],
+              };
+            }
+          }
+        }
+
+        // Clear merged keys on the duplicate so it can be removed later
+        for (const prop of Object.keys(other)) {
+          // Only delete keys that were merged
+          if (['rules', 'plugins', 'env', 'globals'].includes(prop)) {
+            delete (other as any)[prop];
+          }
+        }
+      }
+    };
+
+    for (let idxi = 1; idxi < indices.length; idxi++) {
+      const idx = indices[idxi];
+      if (idx === runPrev + 1) {
+        // extend run
+        runPrev = idx;
+      } else {
+        // flush previous run if it had >1 item
+        if (runPrev > runStart) {
+          flushRun(runStart, runPrev);
+        }
+        runStart = idx;
+        runPrev = idx;
+      }
+    }
+
+    // flush last run
+    if (runPrev > runStart) {
+      flushRun(runStart, runPrev);
+    }
+  }
 }

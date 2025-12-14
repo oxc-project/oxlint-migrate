@@ -16,6 +16,9 @@ exports[`typescript-simple > typescript-simple 1`] = `
           "**/*.ts",
           "**/*.tsx",
         ],
+        "plugins": [
+          "typescript",
+        ],
         "rules": {
           "@typescript-eslint/ban-ts-comment": [
             "error",
@@ -68,15 +71,6 @@ exports[`typescript-simple > typescript-simple 1`] = `
           "prefer-spread": "error",
           "require-await": "off",
         },
-      },
-      {
-        "files": [
-          "**/*.ts",
-          "**/*.tsx",
-        ],
-        "plugins": [
-          "typescript",
-        ],
       },
     ],
     "plugins": [],
@@ -151,6 +145,9 @@ exports[`typescript-simple --js-plugins > typescript-simple--js-plugins 1`] = `
           "**/*.ts",
           "**/*.tsx",
         ],
+        "plugins": [
+          "typescript",
+        ],
         "rules": {
           "@typescript-eslint/ban-ts-comment": [
             "error",
@@ -203,15 +200,6 @@ exports[`typescript-simple --js-plugins > typescript-simple--js-plugins 1`] = `
           "prefer-spread": "error",
           "require-await": "off",
         },
-      },
-      {
-        "files": [
-          "**/*.ts",
-          "**/*.tsx",
-        ],
-        "plugins": [
-          "typescript",
-        ],
       },
     ],
     "plugins": [],
@@ -285,6 +273,9 @@ exports[`typescript-simple --type-aware > typescript-simple--type-aware 1`] = `
         "files": [
           "**/*.ts",
           "**/*.tsx",
+        ],
+        "plugins": [
+          "typescript",
         ],
         "rules": {
           "@typescript-eslint/await-thenable": "error",
@@ -397,15 +388,6 @@ exports[`typescript-simple --type-aware > typescript-simple--type-aware 1`] = `
           "require-await": "off",
         },
       },
-      {
-        "files": [
-          "**/*.ts",
-          "**/*.tsx",
-        ],
-        "plugins": [
-          "typescript",
-        ],
-      },
     ],
     "plugins": [],
     "rules": {
@@ -443,6 +425,9 @@ exports[`typescript-simple merge > typescript-simple--merge 1`] = `
         "files": [
           "**/*.ts",
           "**/*.tsx",
+        ],
+        "plugins": [
+          "typescript",
         ],
         "rules": {
           "@typescript-eslint/ban-ts-comment": [
@@ -496,15 +481,6 @@ exports[`typescript-simple merge > typescript-simple--merge 1`] = `
           "prefer-spread": "error",
           "require-await": "off",
         },
-      },
-      {
-        "files": [
-          "**/*.ts",
-          "**/*.tsx",
-        ],
-        "plugins": [
-          "typescript",
-        ],
       },
     ],
     "plugins": [],

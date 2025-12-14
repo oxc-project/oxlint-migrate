@@ -33,14 +33,12 @@ const eslintConfig = tseslint.config(
  *   plugins: ['typescript'],
  * }
  * ```
- */
+ **/
 describe('override-merging-with-plugins', () => {
   test('should merge the plugins into the prior override config correctly', async () => {
     const oxlintConfig = await migrateConfig(eslintConfig as any, undefined, {
       typeAware: true,
     });
-
-    console.log(JSON.stringify(oxlintConfig, null, 2));
 
     // Should have overrides
     expect(oxlintConfig.overrides).toBeDefined();
