@@ -48,6 +48,7 @@ export const viteTestCompatibleRules = [
   'prefer-mock-promise-shorthand',
   'prefer-strict-equal',
   'prefer-to-be',
+  'prefer-to-contain',
   'prefer-to-have-length',
   'prefer-todo',
   'require-to-throw-message',
