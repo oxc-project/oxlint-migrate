@@ -88,10 +88,6 @@ const buildConfig = (
       }
     }
 
-    // ToDo: for what?
-    if (config.settings !== undefined) {
-    }
-
     transformIgnorePatterns(config, targetConfig, options);
     transformRuleEntry(config, targetConfig, options);
     transformEnvAndGlobals(config, targetConfig, options);
