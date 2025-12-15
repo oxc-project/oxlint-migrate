@@ -44,6 +44,7 @@ exports[`typescript-simple > typescript-simple 1`] = `
           "@typescript-eslint/prefer-literal-enum-member": "error",
           "@typescript-eslint/prefer-namespace-keyword": "error",
           "@typescript-eslint/triple-slash-reference": "error",
+          "constructor-super": "off",
           "no-array-constructor": "error",
           "no-class-assign": "off",
           "no-const-assign": "off",
@@ -85,7 +86,6 @@ exports[`typescript-simple > typescript-simple 1`] = `
     },
   },
   "warnings": [
-    "unsupported rule, but available as a nursery rule: constructor-super",
     "unsupported rule, but available as a nursery rule: getter-return",
     "unsupported rule, but available as a nursery rule: no-undef",
     "unsupported rule, but available as a nursery rule: no-unreachable",
@@ -179,6 +179,7 @@ exports[`typescript-simple --js-plugins > typescript-simple--js-plugins 1`] = `
           "@typescript-eslint/prefer-literal-enum-member": "error",
           "@typescript-eslint/prefer-namespace-keyword": "error",
           "@typescript-eslint/triple-slash-reference": "error",
+          "constructor-super": "off",
           "no-array-constructor": "error",
           "no-class-assign": "off",
           "no-const-assign": "off",
@@ -220,7 +221,6 @@ exports[`typescript-simple --js-plugins > typescript-simple--js-plugins 1`] = `
     },
   },
   "warnings": [
-    "unsupported rule, but available as a nursery rule: constructor-super",
     "unsupported rule, but available as a nursery rule: getter-return",
     "unsupported rule, but available as a nursery rule: no-undef",
     "unsupported rule, but available as a nursery rule: no-unreachable",
@@ -372,6 +372,7 @@ exports[`typescript-simple --type-aware > typescript-simple--type-aware 1`] = `
           "@typescript-eslint/triple-slash-reference": "error",
           "@typescript-eslint/unbound-method": "error",
           "@typescript-eslint/use-unknown-in-catch-callback-variable": "error",
+          "constructor-super": "off",
           "no-array-constructor": "error",
           "no-class-assign": "off",
           "no-const-assign": "off",
@@ -413,7 +414,6 @@ exports[`typescript-simple --type-aware > typescript-simple--type-aware 1`] = `
     },
   },
   "warnings": [
-    "unsupported rule, but available as a nursery rule: constructor-super",
     "unsupported rule, but available as a nursery rule: getter-return",
     "unsupported rule, but available as a nursery rule: no-undef",
     "unsupported rule, but available as a nursery rule: no-unreachable",
@@ -472,6 +472,7 @@ exports[`typescript-simple merge > typescript-simple--merge 1`] = `
           "@typescript-eslint/prefer-literal-enum-member": "error",
           "@typescript-eslint/prefer-namespace-keyword": "error",
           "@typescript-eslint/triple-slash-reference": "error",
+          "constructor-super": "off",
           "no-array-constructor": "error",
           "no-class-assign": "off",
           "no-const-assign": "off",
@@ -511,7 +512,6 @@ exports[`typescript-simple merge > typescript-simple--merge 1`] = `
     "rules": {},
   },
   "warnings": [
-    "unsupported rule, but available as a nursery rule: constructor-super",
     "unsupported rule, but available as a nursery rule: getter-return",
     "unsupported rule, but available as a nursery rule: no-undef",
     "unsupported rule, but available as a nursery rule: no-unreachable",
