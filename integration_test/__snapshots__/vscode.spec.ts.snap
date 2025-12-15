@@ -277,6 +277,7 @@ exports[`vscode > vscode 1`] = `
     ],
     "plugins": [],
     "rules": {
+      "constructor-super": "warn",
       "curly": "warn",
       "eqeqeq": "warn",
       "no-async-promise-executor": "warn",
@@ -307,7 +308,6 @@ exports[`vscode > vscode 1`] = `
     },
   },
   "warnings": [
-    "unsupported rule, but available as a nursery rule: constructor-super",
     "unsupported rule: prefer-const",
     "unsupported rule: no-buffer-constructor",
     "unsupported rule: no-extra-semi",
@@ -620,6 +620,7 @@ exports[`vscode --js-plugins > vscode--js-plugins 1`] = `
     ],
     "plugins": [],
     "rules": {
+      "constructor-super": "warn",
       "curly": "warn",
       "eqeqeq": "warn",
       "header/header": [
@@ -660,7 +661,6 @@ exports[`vscode --js-plugins > vscode--js-plugins 1`] = `
     },
   },
   "warnings": [
-    "unsupported rule, but available as a nursery rule: constructor-super",
     "unsupported rule: prefer-const",
     "unsupported rule: no-buffer-constructor",
     "unsupported rule: no-extra-semi",
@@ -955,6 +955,7 @@ exports[`vscode --type-aware > vscode--type-aware 1`] = `
     ],
     "plugins": [],
     "rules": {
+      "constructor-super": "warn",
       "curly": "warn",
       "eqeqeq": "warn",
       "no-async-promise-executor": "warn",
@@ -985,7 +986,6 @@ exports[`vscode --type-aware > vscode--type-aware 1`] = `
     },
   },
   "warnings": [
-    "unsupported rule, but available as a nursery rule: constructor-super",
     "unsupported rule: prefer-const",
     "unsupported rule: no-buffer-constructor",
     "unsupported rule: no-extra-semi",
@@ -1284,6 +1284,7 @@ exports[`vscode merge > vscode--merge 1`] = `
     ],
     "plugins": [],
     "rules": {
+      "constructor-super": "warn",
       "curly": "warn",
       "eqeqeq": "warn",
       "no-async-promise-executor": "warn",
@@ -1314,7 +1315,6 @@ exports[`vscode merge > vscode--merge 1`] = `
     },
   },
   "warnings": [
-    "unsupported rule, but available as a nursery rule: constructor-super",
     "unsupported rule: prefer-const",
     "unsupported rule: no-buffer-constructor",
     "unsupported rule: no-extra-semi",

@@ -66,6 +66,7 @@ exports[`many-extends.spec.ts > many-extends.spec.ts 1`] = `
           "@typescript-eslint/prefer-literal-enum-member": "error",
           "@typescript-eslint/prefer-namespace-keyword": "error",
           "@typescript-eslint/triple-slash-reference": "error",
+          "constructor-super": "off",
           "import/consistent-type-specifier-style": [
             "error",
             "prefer-top-level",
@@ -124,6 +125,7 @@ exports[`many-extends.spec.ts > many-extends.spec.ts 1`] = `
       "react",
     ],
     "rules": {
+      "constructor-super": "error",
       "for-direction": "error",
       "import/default": "error",
       "import/namespace": "error",
@@ -220,7 +222,6 @@ exports[`many-extends.spec.ts > many-extends.spec.ts 1`] = `
     },
   },
   "warnings": [
-    "unsupported rule, but available as a nursery rule: constructor-super",
     "unsupported rule, but available as a nursery rule: getter-return",
     "unsupported rule: no-dupe-args",
     "unsupported rule, but available as a nursery rule: no-misleading-character-class",
@@ -317,7 +318,7 @@ exports[`many-extends.spec.ts > many-extends.spec.ts 1`] = `
     "type-aware rule detected, but \`--type-aware\` is not enabled: @typescript-eslint/non-nullable-type-assertion-style",
     "unsupported rule: @typescript-eslint/prefer-find",
     "type-aware rule detected, but \`--type-aware\` is not enabled: @typescript-eslint/prefer-includes",
-    "unsupported rule: @typescript-eslint/prefer-nullish-coalescing",
+    "type-aware rule detected, but \`--type-aware\` is not enabled: @typescript-eslint/prefer-nullish-coalescing",
     "unsupported rule: @typescript-eslint/prefer-optional-chain",
     "unsupported rule: @typescript-eslint/prefer-regexp-exec",
     "unsupported rule: @typescript-eslint/prefer-string-starts-ends-with",
@@ -395,6 +396,7 @@ exports[`many-extends.spec.ts --js-plugins > many-extends.spec.ts--js-plugins 1`
           "@typescript-eslint/prefer-literal-enum-member": "error",
           "@typescript-eslint/prefer-namespace-keyword": "error",
           "@typescript-eslint/triple-slash-reference": "error",
+          "constructor-super": "off",
           "import/consistent-type-specifier-style": [
             "error",
             "prefer-top-level",
@@ -453,6 +455,7 @@ exports[`many-extends.spec.ts --js-plugins > many-extends.spec.ts--js-plugins 1`
       "react",
     ],
     "rules": {
+      "constructor-super": "error",
       "for-direction": "error",
       "import/default": "error",
       "import/namespace": "error",
@@ -549,7 +552,6 @@ exports[`many-extends.spec.ts --js-plugins > many-extends.spec.ts--js-plugins 1`
     },
   },
   "warnings": [
-    "unsupported rule, but available as a nursery rule: constructor-super",
     "unsupported rule, but available as a nursery rule: getter-return",
     "unsupported rule: no-dupe-args",
     "unsupported rule, but available as a nursery rule: no-misleading-character-class",
@@ -646,7 +648,7 @@ exports[`many-extends.spec.ts --js-plugins > many-extends.spec.ts--js-plugins 1`
     "type-aware rule detected, but \`--type-aware\` is not enabled: @typescript-eslint/non-nullable-type-assertion-style",
     "unsupported rule: @typescript-eslint/prefer-find",
     "type-aware rule detected, but \`--type-aware\` is not enabled: @typescript-eslint/prefer-includes",
-    "unsupported rule: @typescript-eslint/prefer-nullish-coalescing",
+    "type-aware rule detected, but \`--type-aware\` is not enabled: @typescript-eslint/prefer-nullish-coalescing",
     "unsupported rule: @typescript-eslint/prefer-optional-chain",
     "unsupported rule: @typescript-eslint/prefer-regexp-exec",
     "unsupported rule: @typescript-eslint/prefer-string-starts-ends-with",
@@ -751,6 +753,7 @@ exports[`many-extends.spec.ts --type-aware > many-extends.spec.ts--type-aware 1`
           "@typescript-eslint/prefer-includes": "error",
           "@typescript-eslint/prefer-literal-enum-member": "error",
           "@typescript-eslint/prefer-namespace-keyword": "error",
+          "@typescript-eslint/prefer-nullish-coalescing": "error",
           "@typescript-eslint/prefer-promise-reject-errors": "error",
           "@typescript-eslint/prefer-reduce-type-parameter": "error",
           "@typescript-eslint/prefer-return-this-type": "error",
@@ -784,6 +787,7 @@ exports[`many-extends.spec.ts --type-aware > many-extends.spec.ts--type-aware 1`
           "@typescript-eslint/triple-slash-reference": "error",
           "@typescript-eslint/unbound-method": "error",
           "@typescript-eslint/use-unknown-in-catch-callback-variable": "error",
+          "constructor-super": "off",
           "import/consistent-type-specifier-style": [
             "error",
             "prefer-top-level",
@@ -842,6 +846,7 @@ exports[`many-extends.spec.ts --type-aware > many-extends.spec.ts--type-aware 1`
       "react",
     ],
     "rules": {
+      "constructor-super": "error",
       "for-direction": "error",
       "import/default": "error",
       "import/namespace": "error",
@@ -938,7 +943,6 @@ exports[`many-extends.spec.ts --type-aware > many-extends.spec.ts--type-aware 1`
     },
   },
   "warnings": [
-    "unsupported rule, but available as a nursery rule: constructor-super",
     "unsupported rule, but available as a nursery rule: getter-return",
     "unsupported rule: no-dupe-args",
     "unsupported rule, but available as a nursery rule: no-misleading-character-class",
@@ -997,7 +1001,6 @@ exports[`many-extends.spec.ts --type-aware > many-extends.spec.ts--type-aware 1`
     "unsupported rule: @typescript-eslint/consistent-type-assertions",
     "unsupported rule: @typescript-eslint/dot-notation",
     "unsupported rule: @typescript-eslint/prefer-find",
-    "unsupported rule: @typescript-eslint/prefer-nullish-coalescing",
     "unsupported rule: @typescript-eslint/prefer-optional-chain",
     "unsupported rule: @typescript-eslint/prefer-regexp-exec",
     "unsupported rule: @typescript-eslint/prefer-string-starts-ends-with",
@@ -1076,6 +1079,7 @@ exports[`many-extends.spec.ts merge > many-extends.spec.ts--merge 1`] = `
           "@typescript-eslint/prefer-literal-enum-member": "error",
           "@typescript-eslint/prefer-namespace-keyword": "error",
           "@typescript-eslint/triple-slash-reference": "error",
+          "constructor-super": "off",
           "import/consistent-type-specifier-style": [
             "error",
             "prefer-top-level",
@@ -1184,7 +1188,6 @@ exports[`many-extends.spec.ts merge > many-extends.spec.ts--merge 1`] = `
     },
   },
   "warnings": [
-    "unsupported rule, but available as a nursery rule: constructor-super",
     "unsupported rule, but available as a nursery rule: getter-return",
     "unsupported rule: no-dupe-args",
     "unsupported rule, but available as a nursery rule: no-misleading-character-class",
@@ -1281,7 +1284,7 @@ exports[`many-extends.spec.ts merge > many-extends.spec.ts--merge 1`] = `
     "type-aware rule detected, but \`--type-aware\` is not enabled: @typescript-eslint/non-nullable-type-assertion-style",
     "unsupported rule: @typescript-eslint/prefer-find",
     "type-aware rule detected, but \`--type-aware\` is not enabled: @typescript-eslint/prefer-includes",
-    "unsupported rule: @typescript-eslint/prefer-nullish-coalescing",
+    "type-aware rule detected, but \`--type-aware\` is not enabled: @typescript-eslint/prefer-nullish-coalescing",
     "unsupported rule: @typescript-eslint/prefer-optional-chain",
     "unsupported rule: @typescript-eslint/prefer-regexp-exec",
     "unsupported rule: @typescript-eslint/prefer-string-starts-ends-with",

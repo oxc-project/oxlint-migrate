@@ -99,6 +99,7 @@ exports[`puppeteer > puppeteer 1`] = `
           "@typescript-eslint/prefer-namespace-keyword": "error",
           "@typescript-eslint/prefer-ts-expect-error": "error",
           "@typescript-eslint/triple-slash-reference": "error",
+          "constructor-super": "off",
           "no-array-constructor": "error",
           "no-class-assign": "off",
           "no-const-assign": "off",
@@ -189,6 +190,13 @@ exports[`puppeteer > puppeteer 1`] = `
       "import",
     ],
     "rules": {
+      "accessor-pairs": [
+        "error",
+        {
+          "getWithoutSet": false,
+          "setWithoutGet": false,
+        },
+      ],
       "arrow-body-style": [
         "error",
         "always",
@@ -236,7 +244,6 @@ exports[`puppeteer > puppeteer 1`] = `
     "unsupported rule: prettier/prettier",
     "unsupported rule, but available as a nursery rule: import/named",
     "unsupported rule: spaced-comment",
-    "unsupported rule: accessor-pairs",
     "unsupported rule: new-parens",
     "unsupported rule: prefer-const",
     "unsupported rule: max-len",
@@ -253,7 +260,6 @@ exports[`puppeteer > puppeteer 1`] = `
     "unsupported rule: @puppeteer/prettier-comments",
     "unsupported rule: @puppeteer/extensions",
     "unsupported rule: @puppeteer/check-license",
-    "unsupported rule, but available as a nursery rule: constructor-super",
     "unsupported rule, but available as a nursery rule: getter-return",
     "unsupported rule, but available as a nursery rule: no-undef",
     "unsupported rule: @typescript-eslint/class-literal-property-style",
@@ -378,6 +384,7 @@ exports[`puppeteer --js-plugins > puppeteer--js-plugins 1`] = `
           "@typescript-eslint/prefer-namespace-keyword": "error",
           "@typescript-eslint/prefer-ts-expect-error": "error",
           "@typescript-eslint/triple-slash-reference": "error",
+          "constructor-super": "off",
           "no-array-constructor": "error",
           "no-class-assign": "off",
           "no-const-assign": "off",
@@ -502,6 +509,13 @@ exports[`puppeteer --js-plugins > puppeteer--js-plugins 1`] = `
       "@puppeteer/prettier-comments": "error",
       "@stylistic/function-call-spacing": "error",
       "@stylistic/semi": "error",
+      "accessor-pairs": [
+        "error",
+        {
+          "getWithoutSet": false,
+          "setWithoutGet": false,
+        },
+      ],
       "arrow-body-style": [
         "error",
         "always",
@@ -550,7 +564,6 @@ exports[`puppeteer --js-plugins > puppeteer--js-plugins 1`] = `
   "warnings": [
     "unsupported rule, but available as a nursery rule: import/named",
     "unsupported rule: spaced-comment",
-    "unsupported rule: accessor-pairs",
     "unsupported rule: new-parens",
     "unsupported rule: prefer-const",
     "unsupported rule: max-len",
@@ -561,7 +574,6 @@ exports[`puppeteer --js-plugins > puppeteer--js-plugins 1`] = `
     "unsupported rule: template-curly-spacing",
     "unsupported rule: import/order",
     "unsupported rule: import/enforce-node-protocol-usage",
-    "unsupported rule, but available as a nursery rule: constructor-super",
     "unsupported rule, but available as a nursery rule: getter-return",
     "unsupported rule, but available as a nursery rule: no-undef",
     "unsupported rule: @typescript-eslint/class-literal-property-style",
@@ -686,6 +698,7 @@ exports[`puppeteer --type-aware > puppeteer--type-aware 1`] = `
             "always",
           ],
           "@typescript-eslint/triple-slash-reference": "error",
+          "constructor-super": "off",
           "no-array-constructor": "error",
           "no-class-assign": "off",
           "no-const-assign": "off",
@@ -788,6 +801,13 @@ exports[`puppeteer --type-aware > puppeteer--type-aware 1`] = `
       "import",
     ],
     "rules": {
+      "accessor-pairs": [
+        "error",
+        {
+          "getWithoutSet": false,
+          "setWithoutGet": false,
+        },
+      ],
       "arrow-body-style": [
         "error",
         "always",
@@ -835,7 +855,6 @@ exports[`puppeteer --type-aware > puppeteer--type-aware 1`] = `
     "unsupported rule: prettier/prettier",
     "unsupported rule, but available as a nursery rule: import/named",
     "unsupported rule: spaced-comment",
-    "unsupported rule: accessor-pairs",
     "unsupported rule: new-parens",
     "unsupported rule: prefer-const",
     "unsupported rule: max-len",
@@ -852,7 +871,6 @@ exports[`puppeteer --type-aware > puppeteer--type-aware 1`] = `
     "unsupported rule: @puppeteer/prettier-comments",
     "unsupported rule: @puppeteer/extensions",
     "unsupported rule: @puppeteer/check-license",
-    "unsupported rule, but available as a nursery rule: constructor-super",
     "unsupported rule, but available as a nursery rule: getter-return",
     "unsupported rule, but available as a nursery rule: no-undef",
     "unsupported rule: @typescript-eslint/class-literal-property-style",
@@ -968,6 +986,7 @@ exports[`puppeteer merge > puppeteer--merge 1`] = `
           "@typescript-eslint/prefer-namespace-keyword": "error",
           "@typescript-eslint/prefer-ts-expect-error": "error",
           "@typescript-eslint/triple-slash-reference": "error",
+          "constructor-super": "off",
           "no-array-constructor": "error",
           "no-class-assign": "off",
           "no-const-assign": "off",
@@ -1058,6 +1077,13 @@ exports[`puppeteer merge > puppeteer--merge 1`] = `
       "import",
     ],
     "rules": {
+      "accessor-pairs": [
+        "error",
+        {
+          "getWithoutSet": false,
+          "setWithoutGet": false,
+        },
+      ],
       "eqeqeq": [
         "error",
       ],
@@ -1086,7 +1112,6 @@ exports[`puppeteer merge > puppeteer--merge 1`] = `
     "unsupported rule: prettier/prettier",
     "unsupported rule, but available as a nursery rule: import/named",
     "unsupported rule: spaced-comment",
-    "unsupported rule: accessor-pairs",
     "unsupported rule: new-parens",
     "unsupported rule: prefer-const",
     "unsupported rule: max-len",
@@ -1103,7 +1128,6 @@ exports[`puppeteer merge > puppeteer--merge 1`] = `
     "unsupported rule: @puppeteer/prettier-comments",
     "unsupported rule: @puppeteer/extensions",
     "unsupported rule: @puppeteer/check-license",
-    "unsupported rule, but available as a nursery rule: constructor-super",
     "unsupported rule, but available as a nursery rule: getter-return",
     "unsupported rule, but available as a nursery rule: no-undef",
     "unsupported rule: @typescript-eslint/class-literal-property-style",
