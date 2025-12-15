@@ -43,6 +43,7 @@ export const viteTestCompatibleRules = [
   'prefer-each',
   'prefer-equality-matcher',
   'prefer-expect-resolves',
+  'require-hook',
   'prefer-hooks-in-order',
   'prefer-hooks-on-top',
   'prefer-lowercase-title',
