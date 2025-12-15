@@ -2,18 +2,30 @@
   "name": "@oxlint/migrate",
   "version": "1.33.0",
   "description": "Generates a `.oxlintrc.json` from a existing eslint flat config",
-  "type": "module",
-  "bin": {
-    "@oxlint/migrate": "./dist/bin/oxlint-migrate.mjs"
-  },
-  "exports": {
-    "import": "./dist/src/index.mjs",
-    "types": "./dist/src/index.d.ts"
-  },
+  "keywords": [
+    "eslint",
+    "oxc",
+    "oxlint",
+    "rules"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/oxc-project/oxlint-migrate"
   },
+  "author": "Sysix <sysix@sysix-coding.de>",
+  "license": "MIT",
+  "type": "module",
+  "exports": {
+    "types": "./dist/src/index.d.ts",
+    "import": "./dist/src/index.mjs"
+  },
+  "bin": {
+    "@oxlint/migrate": "./dist/bin/oxlint-migrate.mjs"
+  },
+  "files": [
+    "README.md",
+    "dist/*"
+  ],
   "scripts": {
     "prepare": "husky",
     "generate": "node --import @oxc-node/core/register ./scripts/generate.ts",
@@ -24,18 +36,15 @@
     "build": "vite build",
     "manual-test": "pnpm build; chmod +x dist/bin/oxlint-migrate.mjs; npx ."
   },
-  "files": [
-    "dist/*",
-    "README.md"
-  ],
-  "keywords": [
-    "oxc",
-    "oxlint",
-    "eslint",
-    "rules"
-  ],
-  "author": "Sysix <sysix@sysix-coding.de>",
-  "license": "MIT",
+  "lint-staged": {
+    "*": "oxfmt --no-error-on-unmatched-pattern"
+  },
+  "dependencies": {
+    "commander": "^14.0.0",
+    "globals": "^16.3.0",
+    "oxc-parser": "^0.102.0",
+    "tinyglobby": "^0.2.14"
+  },
   "devDependencies": {
     "@antfu/eslint-config": "^6.0.0",
     "@eslint/js": "^9.29.0",
@@ -69,7 +78,7 @@
     "jiti": "^2.4.2",
     "lint-staged": "^16.1.2",
     "next": "^16.0.0",
-    "oxfmt": "^0.17.0",
+    "oxfmt": "^0.18.0",
     "oxlint": "^1.33.0",
     "oxlint-tsgolint": "^0.8.3",
     "typescript": "^5.8.3",
@@ -77,15 +86,6 @@
     "vite": "^7.0.0",
     "vite-plugin-dts": "^4.5.4",
     "vitest": "^4.0.0"
-  },
-  "lint-staged": {
-    "*": "oxfmt --no-error-on-unmatched-pattern"
-  },
-  "dependencies": {
-    "commander": "^14.0.0",
-    "globals": "^16.3.0",
-    "oxc-parser": "^0.102.0",
-    "tinyglobby": "^0.2.14"
   },
   "peerDependencies": {
     "jiti": "*"
