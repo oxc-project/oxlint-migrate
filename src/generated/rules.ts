@@ -331,6 +331,7 @@ export const styleRules = [
   'vitest/prefer-hooks-on-top',
   'vitest/prefer-lowercase-title',
   'vitest/prefer-mock-promise-shorthand',
+  'vitest/prefer-spy-on',
   'vitest/prefer-strict-equal',
   'vitest/prefer-to-be',
   'vitest/prefer-to-contain',
