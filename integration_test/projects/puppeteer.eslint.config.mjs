@@ -204,6 +204,7 @@ export default defineConfig([
     typescriptEslint.configs.stylistic,
   ]
     .flat()
+    // oxlint-disable-next-line oxc/no-map-spread
     .map((config) => {
       return {
         ...config,

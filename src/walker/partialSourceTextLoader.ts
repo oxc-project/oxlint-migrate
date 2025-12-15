@@ -235,11 +235,12 @@ export function partialAstroSourceTextLoader(
 
   results.push(
     ...extractScriptBlocks(sourceText, pos, Number.MAX_SAFE_INTEGER, false).map(
-      (sourceText) => ({
-        ...sourceText,
-        lang: 'ts' as const,
-        sourceType: 'module' as const,
-      })
+      (sourceText) => {
+        return Object.assign(sourceText, {
+          lang: `ts` as const,
+          sourceType: `module` as const,
+        });
+      }
     )
   );
 
