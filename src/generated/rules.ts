@@ -336,6 +336,7 @@ export const styleRules = [
   'vitest/prefer-to-contain',
   'vitest/prefer-to-have-length',
   'vitest/prefer-todo',
+  'vitest/require-hook',
   'vitest/require-top-level-describe',
 ];
 
