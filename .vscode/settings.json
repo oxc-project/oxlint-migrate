@@ -8,5 +8,5 @@
     "source.organizeImports": "never"
   },
   "oxc.typeAware": true,
-  "editor.defaultFormatter": "esbenp.prettier-vscode"
+  "editor.defaultFormatter": "oxc.oxc-vscode"
 }

@@ -7,7 +7,7 @@ export const ES_VERSIONS = [
   6, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026,
 ];
 
-// <https://github.com/oxc-project/javascript-globals/blob/55be079bd9ac417b7d5007723beb7aa59193dbd0/xtask/src/main.rs#L136-L162>
+// <https://github.com/oxc-project/javascript-globals/blob/705cddede9e1bad081a0e7977aea3d3142e4d60f/xtask/src/main.rs#L153-L182>
 const OTHER_SUPPORTED_ENVS = [
   'browser',
   'node',
@@ -17,6 +17,7 @@ const OTHER_SUPPORTED_ENVS = [
 
   'amd',
   'applescript',
+  'astro',
   'atomtest',
   'commonjs',
   'embertest',
@@ -32,9 +33,11 @@ const OTHER_SUPPORTED_ENVS = [
   'prototypejs',
   'phantomjs',
   'shelljs',
+  'svelte',
   'webextensions',
   'qunit',
   'vitest',
+  'vue',
 ];
 
 // these parsers are supported by oxlint and should not be reported
@@ -64,7 +67,7 @@ export const removeGlobalsWithAreCoveredByEnv = (
   for (const [env, entries] of Object.entries(globals)) {
     if (config.env[env] === true) {
       for (const entry of Object.keys(entries)) {
-        // @ts-ignore -- filtering makes the key to any
+        // @ts-expect-error -- filtering makes the key to any
         if (normalizeGlobValue(config.globals[entry]) === entries[entry]) {
           delete config.globals[entry];
         }
@@ -85,11 +88,14 @@ export const transformBoolGlobalToString = (config: OxlintConfigOrOverride) => {
   for (const [entry, value] of Object.entries(config.globals)) {
     if (value === false || value === 'readable') {
       config.globals[entry] = 'readonly';
-    } else if (value === true || value === 'writable') {
-      config.globals[entry] = 'writeable';
+    } else if (value === true || value === 'writeable') {
+      config.globals[entry] = 'writable';
     }
   }
 };
+
+// Environments we want to apply a threshold match for, because they're quite large.
+const THRESHOLD_ENVS = ['browser', 'node', 'serviceworker', 'worker'];
 
 export const detectEnvironmentByGlobals = (config: OxlintConfigOrOverride) => {
   if (config.globals === undefined) {
@@ -113,12 +119,26 @@ export const detectEnvironmentByGlobals = (config: OxlintConfigOrOverride) => {
 
     let matches = search.filter(
       (entry) =>
-        // @ts-ignore -- we already checked for undefined
+        // @ts-expect-error -- we already checked for undefined
         entry in config.globals &&
-        // @ts-ignore -- filtering makes the key to any
+        // @ts-expect-error -- filtering makes the key to any
         normalizeGlobValue(config.globals[entry]) === entries[entry]
     );
-    if (search.length === matches.length) {
+
+    // For especially large globals, we allow a match if >=97% of keys match.
+    // This lets us handle version differences in globals package where
+    // there's a difference of just a few extra/removed keys.
+    // Do not do any other envs, otherwise things like es2024 and es2026
+    // would match each other.
+    const useThreshold = THRESHOLD_ENVS.includes(env);
+
+    const withinThreshold =
+      useThreshold && matches.length / search.length >= 0.97;
+
+    if (
+      withinThreshold ||
+      (!useThreshold && matches.length === search.length)
+    ) {
       if (config.env === undefined) {
         config.env = {};
       }
@@ -138,16 +158,15 @@ export const transformEnvAndGlobals = (
     typeof eslintConfig.languageOptions.parser === 'object' &&
     'meta' in eslintConfig.languageOptions.parser &&
     !(SUPPORTED_ESLINT_PARSERS as (string | undefined)[]).includes(
-      // @ts-ignore
+      // @ts-expect-error
       eslintConfig.languageOptions.parser.meta?.name
     )
   ) {
-    options?.reporter !== undefined &&
-      options.reporter(
-        'special parser detected: ' +
-          // @ts-ignore
-          eslintConfig.languageOptions.parser.meta?.name
-      );
+    options?.reporter?.report(
+      'special parser detected: ' +
+        // @ts-expect-error
+        eslintConfig.languageOptions.parser.meta?.name
+    );
   }
 
   if (
@@ -220,6 +239,85 @@ export const cleanUpUselessOverridesEnv = (config: OxlintConfig): void => {
 
     if (Object.keys(override.env).length === 0) {
       delete override.env;
+    }
+  }
+};
+
+// These are envs where the key includes all of the globals from the values.
+// So for example, for shared-node-browser, if the user has either `node` or `browser` already in their `env`, we can remove `shared-node-browser`.
+const SUPERSET_ENVS: Record<string, string[]> = {
+  node: ['nodeBuiltin', 'shared-node-browser', 'commonjs'],
+  browser: ['shared-node-browser'],
+};
+
+/**
+ * Cleans up superset environments in the config and its overrides.
+ * If a superset environment is present, its subset environments are removed, e.g. all globals from `shared-node-browser` are also in `browser` and `node`.
+ *
+ * This also applies for overrides, where if a superset env is defined in the override or main config,
+ * the subset envs can be removed from the override if the override has the same value as the superset.
+ */
+export const cleanUpSupersetEnvs = (config: OxlintConfig): void => {
+  // Clean up main config env
+  if (config.env !== undefined) {
+    // If we have a superset env, remove its subsets
+    for (const [supersetEnv, subsetEnvs] of Object.entries(SUPERSET_ENVS)) {
+      if (!(supersetEnv in config.env)) {
+        continue;
+      }
+
+      for (const subsetEnv of subsetEnvs) {
+        if (config.env[subsetEnv] === config.env[supersetEnv]) {
+          delete config.env[subsetEnv];
+        }
+      }
+    }
+  }
+
+  // Clean up overrides
+  if (config.overrides !== undefined) {
+    for (const override of config.overrides) {
+      if (override.env === undefined) {
+        continue;
+      }
+
+      for (const [supersetEnv, subsetEnvs] of Object.entries(SUPERSET_ENVS)) {
+        // Check if the superset env is in the override
+        const supersetInOverride = supersetEnv in override.env;
+        const supersetInMain =
+          config.env !== undefined && supersetEnv in config.env;
+
+        for (const subsetEnv of subsetEnvs) {
+          if (!(subsetEnv in override.env)) {
+            continue;
+          }
+
+          // Case 1: Both superset and subset are in the override with the same value
+          // We can safely remove the subset
+          if (
+            supersetInOverride &&
+            override.env[subsetEnv] === override.env[supersetEnv]
+          ) {
+            delete override.env[subsetEnv];
+            continue;
+          }
+
+          // Case 2: Superset is in main config, subset is in override
+          // If they have the same value, the subset is redundant
+          if (
+            supersetInMain &&
+            !supersetInOverride &&
+            config.env![supersetEnv] === override.env[subsetEnv]
+          ) {
+            delete override.env[subsetEnv];
+          }
+        }
+      }
+
+      // Clean up empty env object
+      if (Object.keys(override.env).length === 0) {
+        delete override.env;
+      }
     }
   }
 };

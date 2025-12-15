@@ -14,6 +14,7 @@ import { walkAndReplaceProjectFiles } from '../src/walker/index.js';
 import { getAllProjectFiles } from './project-loader.js';
 import { writeFile } from 'node:fs/promises';
 import { preFixForJsPlugins } from '../src/js_plugin_fixes.js';
+import { DefaultReporter } from '../src/reporter.js';
 
 const cwd = process.cwd();
 
@@ -52,15 +53,21 @@ program
     '--type-aware',
     'Includes supported type-aware rules. Needs the same flag in `oxlint` to enable it.'
   )
+  .option(
+    '--js-plugins',
+    'Tries to convert unsupported oxlint plugins with `jsPlugins`.'
+  )
   .action(async (filePath: string | undefined) => {
     const cliOptions = program.opts();
     const oxlintFilePath = path.join(cwd, cliOptions.outputFile);
+    const reporter = new DefaultReporter();
 
     const options: Options = {
-      reporter: console.warn,
+      reporter,
       merge: !!cliOptions.merge,
       withNursery: !!cliOptions.withNursery,
       typeAware: !!cliOptions.typeAware,
+      jsPlugins: !!cliOptions.jsPlugins,
     };
 
     if (cliOptions.replaceEslintComments) {
@@ -108,6 +115,10 @@ program
     }
 
     writeFileSync(oxlintFilePath, JSON.stringify(oxlintConfig, null, 2));
+
+    for (const report of reporter.getReports()) {
+      console.warn(report);
+    }
   });
 
 program.parse();

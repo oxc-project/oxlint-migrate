@@ -1,0 +1,153 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`duplicate-overrides > duplicate-overrides 1`] = `
+{
+  "config": {
+    "$schema": "./node_modules/oxlint/configuration_schema.json",
+    "categories": {
+      "correctness": "off",
+    },
+    "env": {
+      "builtin": true,
+    },
+    "overrides": [
+      {
+        "files": [
+          "**/*.js",
+          "**/*.cjs",
+          "**/*.mjs",
+        ],
+        "rules": {
+          "no-unused-vars": "error",
+        },
+      },
+      {
+        "files": [
+          "**/*.ts",
+          "**/*.mts",
+          "**/*.cts",
+        ],
+        "rules": {
+          "arrow-body-style": "error",
+        },
+      },
+    ],
+    "plugins": [],
+  },
+  "warnings": [],
+}
+`;
+
+exports[`duplicate-overrides --js-plugins > duplicate-overrides--js-plugins 1`] = `
+{
+  "config": {
+    "$schema": "./node_modules/oxlint/configuration_schema.json",
+    "categories": {
+      "correctness": "off",
+    },
+    "env": {
+      "builtin": true,
+    },
+    "overrides": [
+      {
+        "files": [
+          "**/*.js",
+          "**/*.cjs",
+          "**/*.mjs",
+        ],
+        "rules": {
+          "no-unused-vars": "error",
+        },
+      },
+      {
+        "files": [
+          "**/*.ts",
+          "**/*.mts",
+          "**/*.cts",
+        ],
+        "rules": {
+          "arrow-body-style": "error",
+        },
+      },
+    ],
+    "plugins": [],
+  },
+  "warnings": [],
+}
+`;
+
+exports[`duplicate-overrides --type-aware > duplicate-overrides--type-aware 1`] = `
+{
+  "config": {
+    "$schema": "./node_modules/oxlint/configuration_schema.json",
+    "categories": {
+      "correctness": "off",
+    },
+    "env": {
+      "builtin": true,
+    },
+    "overrides": [
+      {
+        "files": [
+          "**/*.js",
+          "**/*.cjs",
+          "**/*.mjs",
+        ],
+        "rules": {
+          "no-unused-vars": "error",
+        },
+      },
+      {
+        "files": [
+          "**/*.ts",
+          "**/*.mts",
+          "**/*.cts",
+        ],
+        "rules": {
+          "arrow-body-style": "error",
+        },
+      },
+    ],
+    "plugins": [],
+  },
+  "warnings": [],
+}
+`;
+
+exports[`duplicate-overrides merge > duplicate-overrides--merge 1`] = `
+{
+  "config": {
+    "$schema": "./node_modules/oxlint/configuration_schema.json",
+    "categories": {
+      "correctness": "error",
+      "perf": "error",
+    },
+    "env": {
+      "builtin": true,
+    },
+    "overrides": [
+      {
+        "files": [
+          "**/*.js",
+          "**/*.cjs",
+          "**/*.mjs",
+        ],
+        "rules": {
+          "no-unused-vars": "error",
+        },
+      },
+      {
+        "files": [
+          "**/*.ts",
+          "**/*.mts",
+          "**/*.cts",
+        ],
+        "rules": {
+          "arrow-body-style": "error",
+        },
+      },
+    ],
+  },
+  "warnings": [],
+}
+`;

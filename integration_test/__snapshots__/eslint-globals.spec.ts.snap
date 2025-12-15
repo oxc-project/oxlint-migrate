@@ -1,0 +1,185 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`eslint-globals > eslint-globals 1`] = `
+{
+  "config": {
+    "$schema": "./node_modules/oxlint/configuration_schema.json",
+    "categories": {
+      "correctness": "off",
+    },
+    "env": {
+      "builtin": true,
+    },
+    "overrides": [
+      {
+        "env": {
+          "browser": true,
+          "es2026": true,
+          "node": true,
+        },
+        "files": [
+          "**/*.js",
+          "**/*.cjs",
+          "**/*.mjs",
+        ],
+        "rules": {
+          "no-unused-vars": "error",
+        },
+      },
+      {
+        "env": {
+          "browser": true,
+          "serviceworker": true,
+          "worker": true,
+        },
+        "files": [
+          "**/*.ts",
+        ],
+        "rules": {
+          "arrow-body-style": "error",
+        },
+      },
+    ],
+    "plugins": [],
+  },
+  "warnings": [],
+}
+`;
+
+exports[`eslint-globals --js-plugins > eslint-globals--js-plugins 1`] = `
+{
+  "config": {
+    "$schema": "./node_modules/oxlint/configuration_schema.json",
+    "categories": {
+      "correctness": "off",
+    },
+    "env": {
+      "builtin": true,
+    },
+    "overrides": [
+      {
+        "env": {
+          "browser": true,
+          "es2026": true,
+          "node": true,
+        },
+        "files": [
+          "**/*.js",
+          "**/*.cjs",
+          "**/*.mjs",
+        ],
+        "rules": {
+          "no-unused-vars": "error",
+        },
+      },
+      {
+        "env": {
+          "browser": true,
+          "serviceworker": true,
+          "worker": true,
+        },
+        "files": [
+          "**/*.ts",
+        ],
+        "rules": {
+          "arrow-body-style": "error",
+        },
+      },
+    ],
+    "plugins": [],
+  },
+  "warnings": [],
+}
+`;
+
+exports[`eslint-globals --type-aware > eslint-globals--type-aware 1`] = `
+{
+  "config": {
+    "$schema": "./node_modules/oxlint/configuration_schema.json",
+    "categories": {
+      "correctness": "off",
+    },
+    "env": {
+      "builtin": true,
+    },
+    "overrides": [
+      {
+        "env": {
+          "browser": true,
+          "es2026": true,
+          "node": true,
+        },
+        "files": [
+          "**/*.js",
+          "**/*.cjs",
+          "**/*.mjs",
+        ],
+        "rules": {
+          "no-unused-vars": "error",
+        },
+      },
+      {
+        "env": {
+          "browser": true,
+          "serviceworker": true,
+          "worker": true,
+        },
+        "files": [
+          "**/*.ts",
+        ],
+        "rules": {
+          "arrow-body-style": "error",
+        },
+      },
+    ],
+    "plugins": [],
+  },
+  "warnings": [],
+}
+`;
+
+exports[`eslint-globals merge > eslint-globals--merge 1`] = `
+{
+  "config": {
+    "$schema": "./node_modules/oxlint/configuration_schema.json",
+    "categories": {
+      "correctness": "error",
+      "perf": "error",
+    },
+    "env": {
+      "builtin": true,
+    },
+    "overrides": [
+      {
+        "env": {
+          "browser": true,
+          "es2026": true,
+          "node": true,
+        },
+        "files": [
+          "**/*.js",
+          "**/*.cjs",
+          "**/*.mjs",
+        ],
+        "rules": {
+          "no-unused-vars": "error",
+        },
+      },
+      {
+        "env": {
+          "browser": true,
+          "serviceworker": true,
+          "worker": true,
+        },
+        "files": [
+          "**/*.ts",
+        ],
+        "rules": {
+          "arrow-body-style": "error",
+        },
+      },
+    ],
+  },
+  "warnings": [],
+}
+`;

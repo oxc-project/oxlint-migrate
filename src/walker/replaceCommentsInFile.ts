@@ -19,8 +19,8 @@ const getComments = (
     }
   );
 
-  if (parserResult.errors.length > 0 && options.reporter) {
-    options.reporter(`${absoluteFilePath}: failed to parse`);
+  if (parserResult.errors.length > 0) {
+    options.reporter?.report(`${absoluteFilePath}: failed to parse`);
   }
 
   return parserResult.comments;
@@ -49,8 +49,8 @@ function replaceCommentsInSourceText(
           sourceText.slice(comment.end);
       }
     } catch (error: unknown) {
-      if (error instanceof Error && options.reporter) {
-        options.reporter(
+      if (error instanceof Error) {
+        options.reporter?.report(
           `${absoluteFilePath}, char offset ${comment.start + partialSourceText.offset}: ${error.message}`
         );
         continue;

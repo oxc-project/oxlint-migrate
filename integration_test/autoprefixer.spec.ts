@@ -1,26 +1,5 @@
-import { expect, test } from 'vitest';
-// @ts-ignore
+// @ts-expect-error
 import autoprefixer_test from './projects/autoprefixer.eslint.config.mjs';
-import { getSnapshotResult, getSnapShotMergeResult } from './utils.js';
+import { testProject } from './utils.js';
 
-test('autoprefixer', async () => {
-  const result = await getSnapshotResult(autoprefixer_test);
-  expect(result).toMatchSnapshot('autoprefixer');
-});
-
-test('autoprefixer --type-aware', async () => {
-  const result = await getSnapshotResult(autoprefixer_test, undefined, {
-    typeAware: true,
-  });
-  expect(result).toMatchSnapshot('autoprefixer--type-aware');
-});
-
-test('autoprefixer merge', async () => {
-  const result = await getSnapShotMergeResult(autoprefixer_test, {
-    categories: {
-      correctness: 'error',
-      perf: 'error',
-    },
-  });
-  expect(result).toMatchSnapshot('autoprefixer--merge');
-});
+testProject('autoprefixer', autoprefixer_test);

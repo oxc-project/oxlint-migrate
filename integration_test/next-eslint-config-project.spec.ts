@@ -14,7 +14,7 @@ afterAll(() => {
 
 test('next-eslint-config-project', async () => {
   const next_config_test = await import(
-    // @ts-ignore
+    // @ts-expect-error
     './projects/next-eslint-config-project.config.mjs'
   );
   const result = await getSnapshotResult(next_config_test.default);
@@ -23,7 +23,7 @@ test('next-eslint-config-project', async () => {
 
 test('next-eslint-config-project --type-aware', async () => {
   const next_config_test = await import(
-    // @ts-ignore
+    // @ts-expect-error
     './projects/next-eslint-config-project.config.mjs'
   );
   const result = await getSnapshotResult(next_config_test.default, undefined, {
@@ -34,7 +34,7 @@ test('next-eslint-config-project --type-aware', async () => {
 
 test('next-eslint-config-project merge', async () => {
   const next_config_test = await import(
-    // @ts-ignore
+    // @ts-expect-error
     './projects/next-eslint-config-project.config.mjs'
   );
   const result = await getSnapShotMergeResult(next_config_test.default, {
@@ -44,4 +44,15 @@ test('next-eslint-config-project merge', async () => {
     },
   });
   expect(result).toMatchSnapshot('next-eslint-config-project--merge');
+});
+
+test(`next-eslint-config-project --js-plugins`, async () => {
+  const next_config_test = await import(
+    // @ts-expect-error
+    './projects/next-eslint-config-project.config.mjs'
+  );
+  const result = await getSnapshotResult(next_config_test.default, undefined, {
+    jsPlugins: true,
+  });
+  expect(result).toMatchSnapshot('next-eslint-config-project--js-plugins');
 });

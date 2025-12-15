@@ -1,77 +1,69 @@
-// https://github.com/puppeteer/puppeteer/blob/4e5ec3c9b8484104617d68a18dd02bfbed70837e/eslint.config.mjs
+// https://github.com/puppeteer/puppeteer/blob/784d5ad02aa475d6c9deedd658552d156e8c6a69/eslint.config.mjs
 /**
  * @license
  * Copyright 2024 Google Inc.
  * SPDX-License-Identifier: Apache-2.0
  */
-
-import { FlatCompat } from '@eslint/eslintrc';
-import js from '@eslint/js';
+// import puppeteerPlugin from '@puppeteer/eslint';
 import stylisticPlugin from '@stylistic/eslint-plugin';
-import typescriptEslint from '@typescript-eslint/eslint-plugin';
-import tsParser from '@typescript-eslint/parser';
+import { defineConfig, globalIgnores } from 'eslint/config';
 import importPlugin from 'eslint-plugin-import';
+import mocha from 'eslint-plugin-mocha';
+import eslintPrettierPluginRecommended from 'eslint-plugin-prettier/recommended';
+import tsdoc from 'eslint-plugin-tsdoc';
 import globals from 'globals';
+import typescriptEslint from 'typescript-eslint';
 
-const compat = new FlatCompat({
-  baseDirectory: import.meta.dirname,
-  recommendedConfig: js.configs.recommended,
-  allConfig: js.configs.all,
-});
-
-/**
- * @type {import('eslint').Linter.Config[]}
- */
-export default [
-  {
-    ignores: [
-      '**/node_modules',
-      '**/build/',
-      '**/lib/',
-      '**/bin/',
-      '**/*.tsbuildinfo',
-      '**/*.api.json',
-      '**/*.tgz',
-      '**/yarn.lock',
-      '**/.docusaurus/',
-      '**/.cache-loader',
-      'test/output-*/',
-      '**/.dev_profile*',
-      '**/coverage/',
-      '**/generated/',
-      '**/.eslintcache',
-      '**/.cache/',
-      '**/.vscode',
-      '!.vscode/extensions.json',
-      '!.vscode/*.template.json',
-      '**/.devcontainer',
-      '**/.DS_Store',
-      '**/.env.local',
-      '**/.env.development.local',
-      '**/.env.test.local',
-      '**/.env.production.local',
-      '**/npm-debug.log*',
-      '**/yarn-debug.log*',
-      '**/yarn-error.log*',
-      '**/.wireit',
-      '**/assets/',
-      '**/third_party/',
-      'packages/ng-schematics/sandbox/**/*',
-      'packages/ng-schematics/multi/**/*',
-      'packages/ng-schematics/src/**/files/',
-      'examples/puppeteer-in-browser/out/**/*',
-      'examples/puppeteer-in-browser/node_modules/**/*',
-      'examples/puppeteer-in-extension/out/**/*',
-      'examples/puppeteer-in-extension/node_modules/**/*',
-    ],
-  },
+export default defineConfig([
+  globalIgnores([
+    '**/node_modules',
+    '**/build/',
+    '**/lib/',
+    '**/bin/',
+    '**/*.tsbuildinfo',
+    '**/*.api.json',
+    '**/*.tgz',
+    '**/yarn.lock',
+    '**/.docusaurus/',
+    '**/.cache-loader',
+    'test/output-*/',
+    '**/.dev_profile*',
+    '**/coverage/',
+    '**/generated/',
+    '**/.eslintcache',
+    '**/.cache/',
+    '**/.vscode',
+    '!.vscode/extensions.json',
+    '!.vscode/*.template.json',
+    '**/.devcontainer',
+    '**/.DS_Store',
+    '**/.env.local',
+    '**/.env.development.local',
+    '**/.env.test.local',
+    '**/.env.production.local',
+    '**/npm-debug.log*',
+    '**/yarn-debug.log*',
+    '**/yarn-error.log*',
+    '**/.wireit',
+    '**/assets/',
+    '**/third_party/',
+    'packages/ng-schematics/sandbox/**/*',
+    'packages/ng-schematics/multi/**/*',
+    'packages/ng-schematics/src/**/files/',
+    'examples/puppeteer-in-browser/out/**/*',
+    'examples/puppeteer-in-browser/node_modules/**/*',
+    'examples/puppeteer-in-extension/out/**/*',
+    'examples/puppeteer-in-extension/node_modules/**/*',
+  ]),
+  eslintPrettierPluginRecommended,
   importPlugin.flatConfigs.typescript,
   {
     name: 'JavaScript rules',
     plugins: {
-      '@typescript-eslint': typescriptEslint,
-      import: importPlugin,
+      mocha,
+      '@typescript-eslint': typescriptEslint.plugin,
       '@stylistic': stylisticPlugin,
+      // '@puppeteer': puppeteerPlugin,
     },
 
     languageOptions: {
@@ -82,7 +74,7 @@ export default [
         ...globals.node,
       },
 
-      parser: tsParser,
+      parser: typescriptEslint.parser,
     },
 
     settings: {
@@ -193,26 +185,26 @@ export default [
         },
       ],
 
-      // TODO: enable with next version
-      // 'import/enforce-node-protocol-usage': 'error',
+      'import/enforce-node-protocol-usage': ['error', 'always'],
 
-      '@stylistic/func-call-spacing': 'error',
+      '@stylistic/function-call-spacing': 'error',
       '@stylistic/semi': 'error',
 
       // Keeps comments formatted.
-      'rulesdir/prettier-comments': 'error',
+      '@puppeteer/prettier-comments': 'error',
       // Enforces consistent file extension
-      'rulesdir/extensions': 'error',
+      '@puppeteer/extensions': 'error',
       // Enforces license headers on files
-      'rulesdir/check-license': 'error',
+      '@puppeteer/check-license': 'error',
     },
   },
-  ...compat
-    .extends(
-      'plugin:@typescript-eslint/eslint-recommended',
-      'plugin:@typescript-eslint/recommended',
-      'plugin:@typescript-eslint/stylistic'
-    )
+  ...[
+    typescriptEslint.configs.eslintRecommended,
+    typescriptEslint.configs.recommended,
+    typescriptEslint.configs.stylistic,
+  ]
+    .flat()
+    // oxlint-disable-next-line oxc/no-map-spread
     .map((config) => {
       return {
         ...config,
@@ -222,6 +214,10 @@ export default [
   {
     name: 'TypeScript rules',
     files: ['**/*.ts'],
+
+    plugins: {
+      tsdoc,
+    },
 
     languageOptions: {
       ecmaVersion: 'latest',
@@ -235,7 +231,7 @@ export default [
 
     rules: {
       // Enforces clean up of used resources.
-      'rulesdir/use-using': 'error',
+      '@puppeteer/use-using': 'error',
 
       '@typescript-eslint/array-type': [
         'error',
@@ -394,8 +390,9 @@ export default [
         },
       ],
 
-      'mocha/no-skipped-tests': 'error',
+      'mocha/no-pending-tests': 'error',
       'mocha/no-identical-title': 'error',
+      '@puppeteer/no-quirks-mode-set-content': 'error',
     },
   },
-];
+]);

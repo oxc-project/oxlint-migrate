@@ -1,7 +1,8 @@
 import type { Linter } from 'eslint';
 
 type OxlintConfigPlugins = string[];
-type OxlintConfigCategories = Record<string, unknown>;
+type OxlintConfigJsPlugins = string[];
+type OxlintConfigCategories = Partial<Record<Category, unknown>>;
 type OxlintConfigEnv = Record<string, boolean>;
 type OxlintConfigIgnorePatterns = string[];
 
@@ -10,6 +11,7 @@ export type OxlintConfigOverride = {
   env?: OxlintConfigEnv;
   globals?: Linter.Globals;
   plugins?: OxlintConfigPlugins;
+  jsPlugins?: OxlintConfigJsPlugins;
   categories?: OxlintConfigCategories;
   rules?: Partial<Linter.RulesRecord>;
 };
@@ -19,6 +21,7 @@ export type OxlintConfig = {
   env?: OxlintConfigEnv;
   globals?: Linter.Globals;
   plugins?: OxlintConfigPlugins;
+  jsPlugins?: OxlintConfigJsPlugins;
   categories?: OxlintConfigCategories;
   rules?: Partial<Linter.RulesRecord>;
   overrides?: OxlintConfigOverride[];
@@ -27,11 +30,25 @@ export type OxlintConfig = {
 
 export type OxlintConfigOrOverride = OxlintConfig | OxlintConfigOverride;
 
-type Reporter = (warning: string) => void;
+export type Reporter = {
+  report(message: string): void;
+  remove(message: string): void;
+  getReports(): string[];
+};
 
 export type Options = {
   reporter?: Reporter;
   merge?: boolean;
   withNursery?: boolean;
   typeAware?: boolean;
+  jsPlugins?: boolean;
 };
+
+export type Category =
+  | 'style'
+  | 'correctness'
+  | 'nursery'
+  | 'suspicious'
+  | 'pedantic'
+  | 'perf'
+  | 'restriction';

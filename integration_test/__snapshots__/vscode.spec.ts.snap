@@ -277,6 +277,7 @@ exports[`vscode > vscode 1`] = `
     ],
     "plugins": [],
     "rules": {
+      "constructor-super": "warn",
       "curly": "warn",
       "eqeqeq": "warn",
       "no-async-promise-executor": "warn",
@@ -287,7 +288,6 @@ exports[`vscode > vscode 1`] = `
       "no-duplicate-imports": "warn",
       "no-eval": "warn",
       "no-new-wrappers": "warn",
-      "no-redeclare": "off",
       "no-restricted-globals": [
         "warn",
         "name",
@@ -308,11 +308,10 @@ exports[`vscode > vscode 1`] = `
     },
   },
   "warnings": [
-    "unsupported rule, but in development: constructor-super",
     "unsupported rule: prefer-const",
     "unsupported rule: no-buffer-constructor",
     "unsupported rule: no-extra-semi",
-    "unsupported rule, but in development: no-misleading-character-class",
+    "unsupported rule, but available as a nursery rule: no-misleading-character-class",
     "unsupported rule: header/header",
     "unsupported rule: @stylistic/ts/semi",
     "unsupported rule: @stylistic/ts/member-delimiter-style",
@@ -322,10 +321,357 @@ exports[`vscode > vscode 1`] = `
     "unsupported rule: jsdoc/no-multi-asterisks",
     "unsupported rule: jsdoc/require-jsdoc",
     "unsupported rule: jsdoc/check-param-names",
-    "unsupported rule: no-restricted-syntax",
-    "unsupported rule: @typescript-eslint/naming-convention",
     "unsupported rule: comma-dangle",
+    "unsupported rule: @typescript-eslint/prefer-optional-chain",
+    "unsupported rule: @typescript-eslint/prefer-readonly",
+  ],
+}
+`;
+
+exports[`vscode --js-plugins > vscode--js-plugins 1`] = `
+{
+  "config": {
+    "$schema": "./node_modules/oxlint/configuration_schema.json",
+    "categories": {
+      "correctness": "off",
+    },
+    "env": {
+      "builtin": true,
+    },
+    "ignorePatterns": [
+      "**/build/*/**/*.js",
+      "**/dist/**/*.js",
+      "**/extensions/**/*.d.ts",
+      "**/extensions/**/build/**",
+      "**/extensions/**/colorize-fixtures/**",
+      "**/extensions/css-language-features/server/test/pathCompletionFixtures/**",
+      "**/extensions/html-language-features/server/lib/jquery.d.ts",
+      "**/extensions/html-language-features/server/src/test/pathCompletionFixtures/**",
+      "**/extensions/ipynb/notebook-out/**",
+      "**/extensions/markdown-language-features/media/**",
+      "**/extensions/markdown-language-features/notebook-out/**",
+      "**/extensions/markdown-math/notebook-out/**",
+      "**/extensions/notebook-renderers/renderer-out/index.js",
+      "**/extensions/simple-browser/media/index.js",
+      "**/extensions/terminal-suggest/src/completions/upstream/**",
+      "**/extensions/terminal-suggest/third_party/**",
+      "**/extensions/typescript-language-features/test-workspace/**",
+      "**/extensions/typescript-language-features/extension.webpack.config.js",
+      "**/extensions/typescript-language-features/extension-browser.webpack.config.js",
+      "**/extensions/typescript-language-features/package-manager/node-maintainer/**",
+      "**/extensions/vscode-api-tests/testWorkspace/**",
+      "**/extensions/vscode-api-tests/testWorkspace2/**",
+      "**/fixtures/**",
+      "**/node_modules/**",
+      "**/out-*/**/*.js",
+      "**/out-editor-*/**",
+      "**/out/**/*.js",
+      "**/src/**/dompurify.js",
+      "**/src/**/marked.js",
+      "**/src/**/semver.js",
+      "**/src/typings/**/*.d.ts",
+      "**/src/vs/*/**/*.d.ts",
+      "**/src/vs/base/test/common/filters.perf.data.js",
+      "**/src/vs/loader.js",
+      "**/test/unit/assert.js",
+      "**/test/automation/out/**",
+      "**/typings/**",
+      "!.vscode",
+    ],
+    "jsPlugins": [
+      "eslint-plugin-header",
+    ],
+    "overrides": [
+      {
+        "files": [
+          "**/*.ts",
+        ],
+        "jsPlugins": [
+          "@stylistic/eslint-plugin-ts",
+        ],
+        "rules": {
+          "@stylistic/ts/member-delimiter-style": "warn",
+          "@stylistic/ts/semi": "warn",
+        },
+      },
+      {
+        "files": [
+          "**/vscode.d.ts",
+        ],
+        "plugins": [
+          "jsdoc",
+        ],
+        "rules": {
+          "jsdoc/require-returns": "warn",
+        },
+      },
+      {
+        "files": [
+          "src/*.ts",
+          "src/**/{node,electron-main,electron-utility}/**/*.ts",
+        ],
+        "rules": {
+          "no-restricted-globals": [
+            "warn",
+            "name",
+            "length",
+            "event",
+            "closed",
+            "external",
+            "status",
+            "origin",
+            "orientation",
+            "context",
+            "__dirname",
+            "__filename",
+            "require",
+          ],
+        },
+      },
+      {
+        "files": [
+          "src/**/{browser,electron-sandbox}/**/*.ts",
+        ],
+        "rules": {
+          "no-restricted-globals": [
+            "warn",
+            "name",
+            "length",
+            "event",
+            "closed",
+            "external",
+            "status",
+            "origin",
+            "orientation",
+            "context",
+            {
+              "message": "Use <targetWindow>.setInterval to support multi-window scenarios. Resolve targetWindow with DOM.getWindow(element) or DOM.getActiveWindow() or use the predefined mainWindow constant.",
+              "name": "setInterval",
+            },
+            {
+              "message": "Use <targetWindow>.clearInterval to support multi-window scenarios. Resolve targetWindow with DOM.getWindow(element) or DOM.getActiveWindow() or use the predefined mainWindow constant.",
+              "name": "clearInterval",
+            },
+            {
+              "message": "Use <targetWindow>.requestAnimationFrame to support multi-window scenarios. Resolve targetWindow with DOM.getWindow(element) or DOM.getActiveWindow() or use the predefined mainWindow constant.",
+              "name": "requestAnimationFrame",
+            },
+            {
+              "message": "Use <targetWindow>.cancelAnimationFrame to support multi-window scenarios. Resolve targetWindow with DOM.getWindow(element) or DOM.getActiveWindow() or use the predefined mainWindow constant.",
+              "name": "cancelAnimationFrame",
+            },
+            {
+              "message": "Use <targetWindow>.requestIdleCallback to support multi-window scenarios. Resolve targetWindow with DOM.getWindow(element) or DOM.getActiveWindow() or use the predefined mainWindow constant.",
+              "name": "requestIdleCallback",
+            },
+            {
+              "message": "Use <targetWindow>.cancelIdleCallback to support multi-window scenarios. Resolve targetWindow with DOM.getWindow(element) or DOM.getActiveWindow() or use the predefined mainWindow constant.",
+              "name": "cancelIdleCallback",
+            },
+            {
+              "message": "Use <targetWindow> to support multi-window scenarios. Resolve targetWindow with DOM.getWindow(element) or DOM.getActiveWindow() or use the predefined mainWindow constant.",
+              "name": "window",
+            },
+            {
+              "message": "Use <targetWindow>.addEventListener to support multi-window scenarios. Resolve targetWindow with DOM.getWindow(element) or DOM.getActiveWindow() or use the predefined mainWindow constant.",
+              "name": "addEventListener",
+            },
+            {
+              "message": "Use <targetWindow>.removeEventListener to support multi-window scenarios. Resolve targetWindow with DOM.getWindow(element) or DOM.getActiveWindow() or use the predefined mainWindow constant.",
+              "name": "removeEventListener",
+            },
+            {
+              "message": "Use <targetWindow>.getComputedStyle to support multi-window scenarios. Resolve targetWindow with DOM.getWindow(element) or DOM.getActiveWindow() or use the predefined mainWindow constant.",
+              "name": "getComputedStyle",
+            },
+            {
+              "message": "Use <targetWindow>.focus to support multi-window scenarios. Resolve targetWindow with DOM.getWindow(element) or DOM.getActiveWindow() or use the predefined mainWindow constant.",
+              "name": "focus",
+            },
+            {
+              "message": "Use <targetWindow>.blur to support multi-window scenarios. Resolve targetWindow with DOM.getWindow(element) or DOM.getActiveWindow() or use the predefined mainWindow constant.",
+              "name": "blur",
+            },
+            {
+              "message": "Use <targetWindow>.close to support multi-window scenarios. Resolve targetWindow with DOM.getWindow(element) or DOM.getActiveWindow() or use the predefined mainWindow constant.",
+              "name": "close",
+            },
+            {
+              "message": "Use <targetWindow>.dispatchEvent to support multi-window scenarios. Resolve targetWindow with DOM.getWindow(element) or DOM.getActiveWindow() or use the predefined mainWindow constant.",
+              "name": "dispatchEvent",
+            },
+            {
+              "message": "Use <targetWindow>.getSelection to support multi-window scenarios. Resolve targetWindow with DOM.getWindow(element) or DOM.getActiveWindow() or use the predefined mainWindow constant.",
+              "name": "getSelection",
+            },
+            {
+              "message": "Use <targetWindow>.matchMedia to support multi-window scenarios. Resolve targetWindow with DOM.getWindow(element) or DOM.getActiveWindow() or use the predefined mainWindow constant.",
+              "name": "matchMedia",
+            },
+            {
+              "message": "Use <targetWindow>.open to support multi-window scenarios. Resolve targetWindow with DOM.getWindow(element) or DOM.getActiveWindow() or use the predefined mainWindow constant.",
+              "name": "open",
+            },
+            {
+              "message": "Use <targetWindow>.parent to support multi-window scenarios. Resolve targetWindow with DOM.getWindow(element) or DOM.getActiveWindow() or use the predefined mainWindow constant.",
+              "name": "parent",
+            },
+            {
+              "message": "Use <targetWindow>.postMessage to support multi-window scenarios. Resolve targetWindow with DOM.getWindow(element) or DOM.getActiveWindow() or use the predefined mainWindow constant.",
+              "name": "postMessage",
+            },
+            {
+              "message": "Use <targetWindow>.devicePixelRatio to support multi-window scenarios. Resolve targetWindow with DOM.getWindow(element) or DOM.getActiveWindow() or use the predefined mainWindow constant.",
+              "name": "devicePixelRatio",
+            },
+            {
+              "message": "Use <targetWindow>.frames to support multi-window scenarios. Resolve targetWindow with DOM.getWindow(element) or DOM.getActiveWindow() or use the predefined mainWindow constant.",
+              "name": "frames",
+            },
+            {
+              "message": "Use <targetWindow>.frameElement to support multi-window scenarios. Resolve targetWindow with DOM.getWindow(element) or DOM.getActiveWindow() or use the predefined mainWindow constant.",
+              "name": "frameElement",
+            },
+            {
+              "message": "Use <targetWindow>.innerHeight to support multi-window scenarios. Resolve targetWindow with DOM.getWindow(element) or DOM.getActiveWindow() or use the predefined mainWindow constant.",
+              "name": "innerHeight",
+            },
+            {
+              "message": "Use <targetWindow>.innerWidth to support multi-window scenarios. Resolve targetWindow with DOM.getWindow(element) or DOM.getActiveWindow() or use the predefined mainWindow constant.",
+              "name": "innerWidth",
+            },
+            {
+              "message": "Use <targetWindow>.outerHeight to support multi-window scenarios. Resolve targetWindow with DOM.getWindow(element) or DOM.getActiveWindow() or use the predefined mainWindow constant.",
+              "name": "outerHeight",
+            },
+            {
+              "message": "Use <targetWindow>.outerWidth to support multi-window scenarios. Resolve targetWindow with DOM.getWindow(element) or DOM.getActiveWindow() or use the predefined mainWindow constant.",
+              "name": "outerWidth",
+            },
+            {
+              "message": "Use <targetWindow>.opener to support multi-window scenarios. Resolve targetWindow with DOM.getWindow(element) or DOM.getActiveWindow() or use the predefined mainWindow constant.",
+              "name": "opener",
+            },
+            {
+              "message": "Use <targetWindow>.origin to support multi-window scenarios. Resolve targetWindow with DOM.getWindow(element) or DOM.getActiveWindow() or use the predefined mainWindow constant.",
+              "name": "origin",
+            },
+            {
+              "message": "Use <targetWindow>.screen to support multi-window scenarios. Resolve targetWindow with DOM.getWindow(element) or DOM.getActiveWindow() or use the predefined mainWindow constant.",
+              "name": "screen",
+            },
+            {
+              "message": "Use <targetWindow>.screenLeft to support multi-window scenarios. Resolve targetWindow with DOM.getWindow(element) or DOM.getActiveWindow() or use the predefined mainWindow constant.",
+              "name": "screenLeft",
+            },
+            {
+              "message": "Use <targetWindow>.screenTop to support multi-window scenarios. Resolve targetWindow with DOM.getWindow(element) or DOM.getActiveWindow() or use the predefined mainWindow constant.",
+              "name": "screenTop",
+            },
+            {
+              "message": "Use <targetWindow>.screenX to support multi-window scenarios. Resolve targetWindow with DOM.getWindow(element) or DOM.getActiveWindow() or use the predefined mainWindow constant.",
+              "name": "screenX",
+            },
+            {
+              "message": "Use <targetWindow>.screenY to support multi-window scenarios. Resolve targetWindow with DOM.getWindow(element) or DOM.getActiveWindow() or use the predefined mainWindow constant.",
+              "name": "screenY",
+            },
+            {
+              "message": "Use <targetWindow>.scrollX to support multi-window scenarios. Resolve targetWindow with DOM.getWindow(element) or DOM.getActiveWindow() or use the predefined mainWindow constant.",
+              "name": "scrollX",
+            },
+            {
+              "message": "Use <targetWindow>.scrollY to support multi-window scenarios. Resolve targetWindow with DOM.getWindow(element) or DOM.getActiveWindow() or use the predefined mainWindow constant.",
+              "name": "scrollY",
+            },
+            {
+              "message": "Use <targetWindow>.top to support multi-window scenarios. Resolve targetWindow with DOM.getWindow(element) or DOM.getActiveWindow() or use the predefined mainWindow constant.",
+              "name": "top",
+            },
+            {
+              "message": "Use <targetWindow>.visualViewport to support multi-window scenarios. Resolve targetWindow with DOM.getWindow(element) or DOM.getActiveWindow() or use the predefined mainWindow constant.",
+              "name": "visualViewport",
+            },
+          ],
+        },
+      },
+      {
+        "files": [
+          "src/**/electron-utility/**/*.ts",
+        ],
+        "rules": {
+          "no-restricted-imports": [
+            "warn",
+            {
+              "paths": [
+                {
+                  "allowImportNames": [
+                    "net",
+                    "system-preferences",
+                  ],
+                  "message": "Only net and system-preferences are allowed to be imported from electron",
+                  "name": "electron",
+                },
+              ],
+            },
+          ],
+        },
+      },
+    ],
+    "plugins": [],
+    "rules": {
+      "constructor-super": "warn",
+      "curly": "warn",
+      "eqeqeq": "warn",
+      "header/header": [
+        "error",
+        "block",
+        [
+          "---------------------------------------------------------------------------------------------",
+          " *  Copyright (c) Microsoft Corporation. All rights reserved.",
+          " *  Licensed under the MIT License. See License.txt in the project root for license information.",
+          " *--------------------------------------------------------------------------------------------",
+        ],
+      ],
+      "no-async-promise-executor": "warn",
+      "no-caller": "warn",
+      "no-case-declarations": "warn",
+      "no-debugger": "warn",
+      "no-duplicate-case": "warn",
+      "no-duplicate-imports": "warn",
+      "no-eval": "warn",
+      "no-new-wrappers": "warn",
+      "no-restricted-globals": [
+        "warn",
+        "name",
+        "length",
+        "event",
+        "closed",
+        "external",
+        "status",
+        "origin",
+        "orientation",
+        "context",
+      ],
+      "no-sparse-arrays": "warn",
+      "no-throw-literal": "warn",
+      "no-unsafe-finally": "warn",
+      "no-unused-labels": "warn",
+      "no-var": "warn",
+    },
+  },
+  "warnings": [
+    "unsupported rule: prefer-const",
+    "unsupported rule: no-buffer-constructor",
+    "unsupported rule: no-extra-semi",
+    "unsupported rule, but available as a nursery rule: no-misleading-character-class",
+    "unsupported rule: jsdoc/no-types",
     "unsupported rule: @typescript-eslint/naming-convention",
+    "unsupported rule: no-restricted-syntax",
+    "unsupported rule: jsdoc/no-multi-asterisks",
+    "unsupported rule: jsdoc/require-jsdoc",
+    "unsupported rule: jsdoc/check-param-names",
+    "unsupported rule: comma-dangle",
     "unsupported rule: @typescript-eslint/prefer-optional-chain",
     "unsupported rule: @typescript-eslint/prefer-readonly",
   ],
@@ -609,6 +955,7 @@ exports[`vscode --type-aware > vscode--type-aware 1`] = `
     ],
     "plugins": [],
     "rules": {
+      "constructor-super": "warn",
       "curly": "warn",
       "eqeqeq": "warn",
       "no-async-promise-executor": "warn",
@@ -619,7 +966,6 @@ exports[`vscode --type-aware > vscode--type-aware 1`] = `
       "no-duplicate-imports": "warn",
       "no-eval": "warn",
       "no-new-wrappers": "warn",
-      "no-redeclare": "off",
       "no-restricted-globals": [
         "warn",
         "name",
@@ -640,11 +986,10 @@ exports[`vscode --type-aware > vscode--type-aware 1`] = `
     },
   },
   "warnings": [
-    "unsupported rule, but in development: constructor-super",
     "unsupported rule: prefer-const",
     "unsupported rule: no-buffer-constructor",
     "unsupported rule: no-extra-semi",
-    "unsupported rule, but in development: no-misleading-character-class",
+    "unsupported rule, but available as a nursery rule: no-misleading-character-class",
     "unsupported rule: header/header",
     "unsupported rule: @stylistic/ts/semi",
     "unsupported rule: @stylistic/ts/member-delimiter-style",
@@ -654,10 +999,7 @@ exports[`vscode --type-aware > vscode--type-aware 1`] = `
     "unsupported rule: jsdoc/no-multi-asterisks",
     "unsupported rule: jsdoc/require-jsdoc",
     "unsupported rule: jsdoc/check-param-names",
-    "unsupported rule: no-restricted-syntax",
-    "unsupported rule: @typescript-eslint/naming-convention",
     "unsupported rule: comma-dangle",
-    "unsupported rule: @typescript-eslint/naming-convention",
     "unsupported rule: @typescript-eslint/prefer-optional-chain",
     "unsupported rule: @typescript-eslint/prefer-readonly",
   ],
@@ -942,6 +1284,7 @@ exports[`vscode merge > vscode--merge 1`] = `
     ],
     "plugins": [],
     "rules": {
+      "constructor-super": "warn",
       "curly": "warn",
       "eqeqeq": "warn",
       "no-async-promise-executor": "warn",
@@ -952,7 +1295,6 @@ exports[`vscode merge > vscode--merge 1`] = `
       "no-duplicate-imports": "warn",
       "no-eval": "warn",
       "no-new-wrappers": "warn",
-      "no-redeclare": "off",
       "no-restricted-globals": [
         "warn",
         "name",
@@ -973,11 +1315,10 @@ exports[`vscode merge > vscode--merge 1`] = `
     },
   },
   "warnings": [
-    "unsupported rule, but in development: constructor-super",
     "unsupported rule: prefer-const",
     "unsupported rule: no-buffer-constructor",
     "unsupported rule: no-extra-semi",
-    "unsupported rule, but in development: no-misleading-character-class",
+    "unsupported rule, but available as a nursery rule: no-misleading-character-class",
     "unsupported rule: header/header",
     "unsupported rule: @stylistic/ts/semi",
     "unsupported rule: @stylistic/ts/member-delimiter-style",
@@ -987,10 +1328,7 @@ exports[`vscode merge > vscode--merge 1`] = `
     "unsupported rule: jsdoc/no-multi-asterisks",
     "unsupported rule: jsdoc/require-jsdoc",
     "unsupported rule: jsdoc/check-param-names",
-    "unsupported rule: no-restricted-syntax",
-    "unsupported rule: @typescript-eslint/naming-convention",
     "unsupported rule: comma-dangle",
-    "unsupported rule: @typescript-eslint/naming-convention",
     "unsupported rule: @typescript-eslint/prefer-optional-chain",
     "unsupported rule: @typescript-eslint/prefer-readonly",
   ],
