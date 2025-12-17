@@ -39,6 +39,7 @@ export const viteTestCompatibleRules = [
   'no-standalone-expect',
   'no-test-prefixes',
   'no-test-return-statement',
+  'prefer-called-with',
   'prefer-comparison-matcher',
   'prefer-each',
   'prefer-equality-matcher',
