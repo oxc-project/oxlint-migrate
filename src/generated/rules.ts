@@ -324,6 +324,7 @@ export const styleRules = [
   'vitest/no-test-prefixes',
   'vitest/no-test-return-statement',
   'vitest/prefer-each',
+  'vitest/prefer-called-with',
   'vitest/prefer-comparison-matcher',
   'vitest/prefer-equality-matcher',
   'vitest/prefer-expect-resolves',
