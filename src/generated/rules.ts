@@ -9,6 +9,7 @@ export const pedanticRules = [
   'max-lines-per-function',
   'max-lines',
   'max-nested-callbacks',
+  'no-inline-comments',
   'no-loop-func',
   'no-array-constructor',
   'no-case-declarations',
@@ -122,6 +123,7 @@ export const pedanticRules = [
 
 export const styleRules = [
   'arrow-body-style',
+  'capitalized-comments',
   'curly',
   'default-case-last',
   'default-param-last',
@@ -209,6 +211,8 @@ export const styleRules = [
   'jest/prefer-strict-equal',
   'jest/prefer-to-be',
   'jest/prefer-to-contain',
+  'jest/prefer-to-have-been-called',
+  'jest/prefer-to-have-been-called-times',
   'jest/prefer-to-have-length',
   'jest/prefer-todo',
   'jest/require-hook',
