@@ -208,6 +208,7 @@ exports[`react-project merge > react-project--merge 1`] = `
       "react/jsx-no-target-blank": "error",
       "react/no-unescaped-entities": "error",
       "react/no-unknown-property": "error",
+      "react/no-unsafe": "off",
       "react/react-in-jsx-scope": "error",
     },
   },

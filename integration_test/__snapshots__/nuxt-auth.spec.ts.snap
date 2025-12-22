@@ -255,6 +255,7 @@ exports[`nuxt-auth > nuxt-auth 1`] = `
         ],
         "rules": {
           "@typescript-eslint/explicit-function-return-type": "off",
+          "vue/no-deprecated-destroyed-lifecycle": "error",
           "vue/no-export-in-script-setup": "error",
           "vue/no-multiple-slot-args": "warn",
           "vue/no-required-prop-with-default": "warn",
@@ -729,7 +730,6 @@ exports[`nuxt-auth > nuxt-auth 1`] = `
     "unsupported rule: vue/no-computed-properties-in-data",
     "unsupported rule: vue/no-deprecated-data-object-declaration",
     "unsupported rule: vue/no-deprecated-delete-set",
-    "unsupported rule: vue/no-deprecated-destroyed-lifecycle",
     "unsupported rule: vue/no-deprecated-dollar-listeners-api",
     "unsupported rule: vue/no-deprecated-dollar-scopedslots-api",
     "unsupported rule: vue/no-deprecated-events-api",
@@ -1139,6 +1139,7 @@ exports[`nuxt-auth --js-plugins > nuxt-auth--js-plugins 1`] = `
         "rules": {
           "@typescript-eslint/explicit-function-return-type": "off",
           "antfu/no-top-level-await": "off",
+          "vue/no-deprecated-destroyed-lifecycle": "error",
           "vue/no-export-in-script-setup": "error",
           "vue/no-multiple-slot-args": "warn",
           "vue/no-required-prop-with-default": "warn",
@@ -2041,7 +2042,6 @@ exports[`nuxt-auth --js-plugins > nuxt-auth--js-plugins 1`] = `
     "unsupported rule: vue/no-computed-properties-in-data",
     "unsupported rule: vue/no-deprecated-data-object-declaration",
     "unsupported rule: vue/no-deprecated-delete-set",
-    "unsupported rule: vue/no-deprecated-destroyed-lifecycle",
     "unsupported rule: vue/no-deprecated-dollar-listeners-api",
     "unsupported rule: vue/no-deprecated-dollar-scopedslots-api",
     "unsupported rule: vue/no-deprecated-events-api",
@@ -2440,6 +2440,7 @@ exports[`nuxt-auth --type-aware > nuxt-auth--type-aware 1`] = `
         ],
         "rules": {
           "@typescript-eslint/explicit-function-return-type": "off",
+          "vue/no-deprecated-destroyed-lifecycle": "error",
           "vue/no-export-in-script-setup": "error",
           "vue/no-multiple-slot-args": "warn",
           "vue/no-required-prop-with-default": "warn",
@@ -2914,7 +2915,6 @@ exports[`nuxt-auth --type-aware > nuxt-auth--type-aware 1`] = `
     "unsupported rule: vue/no-computed-properties-in-data",
     "unsupported rule: vue/no-deprecated-data-object-declaration",
     "unsupported rule: vue/no-deprecated-delete-set",
-    "unsupported rule: vue/no-deprecated-destroyed-lifecycle",
     "unsupported rule: vue/no-deprecated-dollar-listeners-api",
     "unsupported rule: vue/no-deprecated-dollar-scopedslots-api",
     "unsupported rule: vue/no-deprecated-events-api",
@@ -3315,6 +3315,7 @@ exports[`nuxt-auth merge > nuxt-auth--merge 1`] = `
         ],
         "rules": {
           "@typescript-eslint/explicit-function-return-type": "off",
+          "vue/no-deprecated-destroyed-lifecycle": "error",
           "vue/no-export-in-script-setup": "error",
           "vue/no-multiple-slot-args": "warn",
           "vue/no-required-prop-with-default": "warn",
@@ -3776,7 +3777,6 @@ exports[`nuxt-auth merge > nuxt-auth--merge 1`] = `
     "unsupported rule: vue/no-computed-properties-in-data",
     "unsupported rule: vue/no-deprecated-data-object-declaration",
     "unsupported rule: vue/no-deprecated-delete-set",
-    "unsupported rule: vue/no-deprecated-destroyed-lifecycle",
     "unsupported rule: vue/no-deprecated-dollar-listeners-api",
     "unsupported rule: vue/no-deprecated-dollar-scopedslots-api",
     "unsupported rule: vue/no-deprecated-events-api",
