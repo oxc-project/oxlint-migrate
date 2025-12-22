@@ -8,16 +8,11 @@
     "oxlint",
     "rules"
   ],
+  "license": "MIT",
+  "author": "Sysix <sysix@sysix-coding.de>",
   "repository": {
     "type": "git",
     "url": "https://github.com/oxc-project/oxlint-migrate"
-  },
-  "author": "Sysix <sysix@sysix-coding.de>",
-  "license": "MIT",
-  "type": "module",
-  "exports": {
-    "types": "./dist/src/index.d.mts",
-    "import": "./dist/src/index.mjs"
   },
   "bin": {
     "@oxlint/migrate": "./dist/bin/oxlint-migrate.mjs"
@@ -26,6 +21,11 @@
     "README.md",
     "dist/*"
   ],
+  "type": "module",
+  "exports": {
+    "types": "./dist/src/index.d.mts",
+    "import": "./dist/src/index.mjs"
+  },
   "scripts": {
     "prepare": "husky",
     "generate": "node --import @oxc-node/core/register ./scripts/generate.ts",
@@ -35,9 +35,6 @@
     "test": "vitest",
     "build": "tsdown",
     "manual-test": "pnpm build; chmod +x dist/bin/oxlint-migrate.mjs; npx ."
-  },
-  "lint-staged": {
-    "*": "oxfmt --no-error-on-unmatched-pattern"
   },
   "dependencies": {
     "commander": "^14.0.0",
@@ -88,6 +85,9 @@
   },
   "peerDependencies": {
     "jiti": "*"
+  },
+  "lint-staged": {
+    "*": "oxfmt --no-error-on-unmatched-pattern"
   },
   "packageManager": "pnpm@10.26.1"
 }
