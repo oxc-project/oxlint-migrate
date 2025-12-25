@@ -334,6 +334,7 @@ export const styleRules = [
   'vitest/prefer-each',
   'vitest/prefer-called-with',
   'vitest/prefer-comparison-matcher',
+  'vitest/prefer-describe-function-title',
   'vitest/prefer-equality-matcher',
   'vitest/prefer-expect-resolves',
   'vitest/prefer-hooks-in-order',
