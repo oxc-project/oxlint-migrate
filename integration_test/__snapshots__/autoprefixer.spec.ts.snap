@@ -236,6 +236,8 @@ exports[`autoprefixer > autoprefixer 1`] = `
   "warnings": [
     "unsupported rule: perfectionist/sort-variable-declarations",
     "unsupported rule: perfectionist/sort-intersection-types",
+    "unsupported rule: perfectionist/sort-import-attributes",
+    "unsupported rule: perfectionist/sort-export-attributes",
     "unsupported rule: perfectionist/sort-heritage-clauses",
     "unsupported rule: perfectionist/sort-array-includes",
     "unsupported rule: perfectionist/sort-named-imports",
@@ -531,6 +533,13 @@ exports[`autoprefixer --js-plugins > autoprefixer--js-plugins 1`] = `
           "type": "alphabetical",
         },
       ],
+      "perfectionist/sort-export-attributes": [
+        "warn",
+        {
+          "order": "asc",
+          "type": "alphabetical",
+        },
+      ],
       "perfectionist/sort-exports": [
         "warn",
         {
@@ -545,6 +554,13 @@ exports[`autoprefixer --js-plugins > autoprefixer--js-plugins 1`] = `
           "type": "alphabetical",
         },
       ],
+      "perfectionist/sort-import-attributes": [
+        "warn",
+        {
+          "order": "asc",
+          "type": "alphabetical",
+        },
+      ],
       "perfectionist/sort-imports": [
         "warn",
         {
@@ -553,27 +569,18 @@ exports[`autoprefixer --js-plugins > autoprefixer--js-plugins 1`] = `
             "side-effect-style",
             "style",
             [
-              "builtin-type",
-              "type",
               "builtin",
               "external",
               "unknown",
             ],
             [
-              "internal-type",
-              "parent-type",
-              "sibling-type",
-              "index-type",
               "internal",
               "parent",
               "sibling",
               "index",
             ],
-            [
-              "object",
-            ],
           ],
-          "newlinesBetween": "always",
+          "newlinesBetween": 1,
           "order": "asc",
           "type": "alphabetical",
         },
@@ -966,6 +973,8 @@ exports[`autoprefixer --type-aware > autoprefixer--type-aware 1`] = `
   "warnings": [
     "unsupported rule: perfectionist/sort-variable-declarations",
     "unsupported rule: perfectionist/sort-intersection-types",
+    "unsupported rule: perfectionist/sort-import-attributes",
+    "unsupported rule: perfectionist/sort-export-attributes",
     "unsupported rule: perfectionist/sort-heritage-clauses",
     "unsupported rule: perfectionist/sort-array-includes",
     "unsupported rule: perfectionist/sort-named-imports",
@@ -1218,6 +1227,8 @@ exports[`autoprefixer merge > autoprefixer--merge 1`] = `
   "warnings": [
     "unsupported rule: perfectionist/sort-variable-declarations",
     "unsupported rule: perfectionist/sort-intersection-types",
+    "unsupported rule: perfectionist/sort-import-attributes",
+    "unsupported rule: perfectionist/sort-export-attributes",
     "unsupported rule: perfectionist/sort-heritage-clauses",
     "unsupported rule: perfectionist/sort-array-includes",
     "unsupported rule: perfectionist/sort-named-imports",
