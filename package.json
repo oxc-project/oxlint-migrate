@@ -39,7 +39,7 @@
   "dependencies": {
     "commander": "^14.0.0",
     "globals": "^16.3.0",
-    "oxc-parser": "^0.105.0",
+    "oxc-parser": "^0.106.0",
     "tinyglobby": "^0.2.14"
   },
   "devDependencies": {
@@ -75,7 +75,7 @@
     "jiti": "^2.4.2",
     "lint-staged": "^16.1.2",
     "next": "^16.0.0",
-    "oxfmt": "^0.20.0",
+    "oxfmt": "^0.21.0",
     "oxlint": "^1.36.0",
     "oxlint-tsgolint": "^0.8.3",
     "tsdown": "^0.18.0",
