@@ -30,8 +30,7 @@
     "prepare": "husky",
     "generate": "node --import @oxc-node/core/register ./scripts/generate.ts",
     "format": "oxfmt",
-    "type-check": "tsc --noEmit",
-    "lint": "oxlint --type-aware",
+    "lint": "oxlint --type-aware --type-check",
     "test": "vitest",
     "build": "tsdown",
     "manual-test": "pnpm build; chmod +x dist/bin/oxlint-migrate.mjs; npx ."
@@ -79,7 +78,6 @@
     "oxlint": "^1.36.0",
     "oxlint-tsgolint": "^0.8.3",
     "tsdown": "^0.18.0",
-    "typescript": "^5.8.3",
     "typescript-eslint": "^8.35.0",
     "vitest": "^4.0.0"
   },
