@@ -129,9 +129,6 @@ importers:
       tsdown:
         specifier: ^0.18.0
         version: 0.18.4(synckit@0.11.11)(typescript@5.9.3)
-      typescript:
-        specifier: ^5.8.3
-        version: 5.9.3
       typescript-eslint:
         specifier: ^8.35.0
         version: 8.50.1(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3)
