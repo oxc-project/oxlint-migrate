@@ -74,7 +74,7 @@
     "jiti": "^2.4.2",
     "lint-staged": "^16.1.2",
     "next": "^16.0.0",
-    "oxfmt": "^0.22.0",
+    "oxfmt": "^0.23.0",
     "oxlint": "^1.38.0",
     "oxlint-tsgolint": "^0.8.3",
     "tsdown": "^0.18.0",
