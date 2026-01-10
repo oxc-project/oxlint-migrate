@@ -706,6 +706,7 @@ export const correctnessRules = [
   'vitest/require-to-throw-message',
   'vitest/valid-describe-callback',
   'vitest/valid-expect',
+  'vitest/valid-title',
 ];
 
 export const nurseryRules = [
