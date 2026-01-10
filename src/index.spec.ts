@@ -186,4 +186,46 @@ describe('main', () => {
       plugins: [],
     });
   });
+
+  test('flattens nested arrays in files field', async () => {
+    const result = await main([
+      {
+        rules: {
+          'no-magic-numbers': 'error',
+        },
+      },
+      {
+        // ESLint flat config can have nested arrays in files
+        files: [
+          ['**/*.ts', '**/*.tsx'],
+          ['**/*.js', '**/*.jsx'],
+        ],
+        rules: {
+          'no-loss-of-precision': 'error',
+        },
+      },
+    ]);
+
+    expect(result).toStrictEqual({
+      $schema: './node_modules/oxlint/configuration_schema.json',
+      categories: {
+        correctness: 'off',
+      },
+      env: {
+        builtin: true,
+      },
+      overrides: [
+        {
+          files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
+          rules: {
+            'no-loss-of-precision': 'error',
+          },
+        },
+      ],
+      plugins: [],
+      rules: {
+        'no-magic-numbers': 'error',
+      },
+    });
+  });
 });
