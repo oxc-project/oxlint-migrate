@@ -78,7 +78,7 @@ const buildConfig = (
     } else {
       targetConfig = {
         files: (Array.isArray(config.files)
-          ? config.files
+          ? config.files.flat()
           : [config.files]) as string[],
       };
       const [push, result] = detectSameOverride(oxlintConfig, targetConfig);
