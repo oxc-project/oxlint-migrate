@@ -12,6 +12,7 @@ import {
 } from './plugins_rules.js';
 import { detectSameOverride } from './overrides.js';
 import fixForJsPlugins from './js_plugin_fixes.js';
+import { processConfigFiles } from './files.js';
 
 const buildConfig = (
   configs: Linter.Config[],
@@ -76,37 +77,18 @@ const buildConfig = (
     if (config.files === undefined) {
       targetConfig = oxlintConfig;
     } else {
-      // Normalize files to an array
-      const filesArray = Array.isArray(config.files)
-        ? config.files
-        : [config.files];
-
-      // Separate nested arrays (AND patterns) from simple strings
-      const simpleFiles: string[] = [];
-      const nestedArrays: string[][] = [];
-
-      for (const file of filesArray) {
-        if (Array.isArray(file)) {
-          nestedArrays.push(file);
-        } else {
-          simpleFiles.push(file);
-        }
-      }
-
-      // Report nested arrays (AND glob patterns) as unsupported
-      if (nestedArrays.length > 0) {
-        options?.reporter?.report(
-          `ESLint AND glob patterns (nested arrays in files) are not supported in oxlint: ${JSON.stringify(nestedArrays)}`
-        );
-      }
+      const { validFiles, shouldSkip } = processConfigFiles(
+        config.files,
+        options?.reporter
+      );
 
       // If no valid files remain after filtering nested arrays, skip this config
-      if (simpleFiles.length === 0) {
+      if (shouldSkip) {
         continue;
       }
 
       targetConfig = {
-        files: simpleFiles,
+        files: validFiles,
       };
       const [push, result] = detectSameOverride(oxlintConfig, targetConfig);
 
