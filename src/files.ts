@@ -1,4 +1,4 @@
-import type { Linter } from 'eslint';
+import type { Reporter } from './types.js';
 
 /**
  * Process ESLint config files field, separating simple string patterns
