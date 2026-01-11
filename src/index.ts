@@ -77,13 +77,10 @@ const buildConfig = (
     if (config.files === undefined) {
       targetConfig = oxlintConfig;
     } else {
-      const { validFiles, shouldSkip } = processConfigFiles(
-        config.files,
-        options?.reporter
-      );
+      const validFiles = processConfigFiles(config.files, options?.reporter);
 
       // If no valid files remain after filtering nested arrays, skip this config
-      if (shouldSkip) {
+      if (validFiles.length === 0) {
         continue;
       }
 

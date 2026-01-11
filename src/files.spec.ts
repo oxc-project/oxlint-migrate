@@ -2,31 +2,22 @@ import { describe, expect, test } from 'vitest';
 import { processConfigFiles } from './files.js';
 
 describe('processConfigFiles', () => {
-  test('returns empty array and shouldSkip false when files is undefined', () => {
+  test('returns empty array when files is undefined', () => {
     const result = processConfigFiles(undefined);
 
-    expect(result).toStrictEqual({
-      validFiles: [],
-      shouldSkip: false,
-    });
+    expect(result).toStrictEqual([]);
   });
 
   test('handles single string by wrapping it in an array', () => {
     const result = processConfigFiles('**/*.js');
 
-    expect(result).toStrictEqual({
-      validFiles: ['**/*.js'],
-      shouldSkip: false,
-    });
+    expect(result).toStrictEqual(['**/*.js']);
   });
 
   test('handles array of strings without modification', () => {
     const result = processConfigFiles(['**/*.js', '**/*.ts']);
 
-    expect(result).toStrictEqual({
-      validFiles: ['**/*.js', '**/*.ts'],
-      shouldSkip: false,
-    });
+    expect(result).toStrictEqual(['**/*.js', '**/*.ts']);
   });
 
   test('separates nested arrays from simple strings and reports them', () => {
@@ -51,10 +42,7 @@ describe('processConfigFiles', () => {
       reporter
     );
 
-    expect(result).toStrictEqual({
-      validFiles: ['**/*.js'],
-      shouldSkip: false,
-    });
+    expect(result).toStrictEqual(['**/*.js']);
 
     expect(reporter.reports).toHaveLength(1);
     expect(reporter.reports[0]).toContain('AND glob patterns');
@@ -62,7 +50,7 @@ describe('processConfigFiles', () => {
     expect(reporter.reports[0]).toContain('**/*.ts');
   });
 
-  test('returns shouldSkip true when all files are nested arrays', () => {
+  test('returns empty array when all files are nested arrays', () => {
     const reporter = {
       reports: [] as string[],
       report(message: string): void {
@@ -84,13 +72,11 @@ describe('processConfigFiles', () => {
       reporter
     );
 
-    expect(result).toStrictEqual({
-      validFiles: [],
-      shouldSkip: true,
-    });
+    expect(result).toStrictEqual([]);
 
-    expect(reporter.reports).toHaveLength(1);
+    expect(reporter.reports).toHaveLength(2);
     expect(reporter.reports[0]).toContain('AND glob patterns');
+    expect(reporter.reports[1]).toContain('AND glob patterns');
   });
 
   test('handles multiple nested arrays correctly', () => {
@@ -117,14 +103,11 @@ describe('processConfigFiles', () => {
       reporter
     );
 
-    expect(result).toStrictEqual({
-      validFiles: ['**/*.js', '**/*.jsx'],
-      shouldSkip: false,
-    });
+    expect(result).toStrictEqual(['**/*.js', '**/*.jsx']);
 
-    expect(reporter.reports).toHaveLength(1);
+    expect(reporter.reports).toHaveLength(2);
     expect(reporter.reports[0]).toContain('**/*.ts');
-    expect(reporter.reports[0]).toContain('**/*.mjs');
+    expect(reporter.reports[1]).toContain('**/*.mjs');
   });
 
   test('does not report when no nested arrays present', () => {
@@ -143,10 +126,7 @@ describe('processConfigFiles', () => {
 
     const result = processConfigFiles(['**/*.js', '**/*.ts'], reporter);
 
-    expect(result).toStrictEqual({
-      validFiles: ['**/*.js', '**/*.ts'],
-      shouldSkip: false,
-    });
+    expect(result).toStrictEqual(['**/*.js', '**/*.ts']);
 
     expect(reporter.reports).toHaveLength(0);
   });
