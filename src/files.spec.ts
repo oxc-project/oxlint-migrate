@@ -1,5 +1,6 @@
 import { describe, expect, test } from 'vitest';
 import { processConfigFiles } from './files.js';
+import { DefaultReporter } from './reporter.js';
 
 describe('processConfigFiles', () => {
   test('handles single string by wrapping it in an array', () => {
@@ -15,18 +16,7 @@ describe('processConfigFiles', () => {
   });
 
   test('separates nested arrays from simple strings and reports them', () => {
-    const reporter = {
-      reports: [] as string[],
-      report(message: string): void {
-        this.reports.push(message);
-      },
-      remove(_message: string): void {
-        // Not used in this test
-      },
-      getReports(): string[] {
-        return this.reports;
-      },
-    };
+    const reporter = new DefaultReporter();
 
     const result = processConfigFiles(
       [
@@ -38,25 +28,15 @@ describe('processConfigFiles', () => {
 
     expect(result).toStrictEqual(['**/*.js']);
 
-    expect(reporter.reports).toHaveLength(1);
-    expect(reporter.reports[0]).toContain('AND glob patterns');
-    expect(reporter.reports[0]).toContain('nested arrays');
-    expect(reporter.reports[0]).toContain('**/*.ts');
+    const reports = reporter.getReports();
+    expect(reports).toHaveLength(1);
+    expect(reports[0]).toContain('AND glob patterns');
+    expect(reports[0]).toContain('nested arrays');
+    expect(reports[0]).toContain('**/*.ts');
   });
 
   test('returns empty array when all files are nested arrays', () => {
-    const reporter = {
-      reports: [] as string[],
-      report(message: string): void {
-        this.reports.push(message);
-      },
-      remove(_message: string): void {
-        // Not used in this test
-      },
-      getReports(): string[] {
-        return this.reports;
-      },
-    };
+    const reporter = new DefaultReporter();
 
     const result = processConfigFiles(
       [
@@ -68,24 +48,14 @@ describe('processConfigFiles', () => {
 
     expect(result).toStrictEqual([]);
 
-    expect(reporter.reports).toHaveLength(2);
-    expect(reporter.reports[0]).toContain('AND glob patterns');
-    expect(reporter.reports[1]).toContain('AND glob patterns');
+    const reports = reporter.getReports();
+    expect(reports).toHaveLength(2);
+    expect(reports[0]).toContain('AND glob patterns');
+    expect(reports[1]).toContain('AND glob patterns');
   });
 
   test('handles multiple nested arrays correctly', () => {
-    const reporter = {
-      reports: [] as string[],
-      report(message: string): void {
-        this.reports.push(message);
-      },
-      remove(_message: string): void {
-        // Not used in this test
-      },
-      getReports(): string[] {
-        return this.reports;
-      },
-    };
+    const reporter = new DefaultReporter();
 
     const result = processConfigFiles(
       [
@@ -99,29 +69,19 @@ describe('processConfigFiles', () => {
 
     expect(result).toStrictEqual(['**/*.js', '**/*.jsx']);
 
-    expect(reporter.reports).toHaveLength(2);
-    expect(reporter.reports[0]).toContain('**/*.ts');
-    expect(reporter.reports[1]).toContain('**/*.mjs');
+    const reports = reporter.getReports();
+    expect(reports).toHaveLength(2);
+    expect(reports[0]).toContain('**/*.ts');
+    expect(reports[1]).toContain('**/*.mjs');
   });
 
   test('does not report when no nested arrays present', () => {
-    const reporter = {
-      reports: [] as string[],
-      report(message: string): void {
-        this.reports.push(message);
-      },
-      remove(_message: string): void {
-        // Not used in this test
-      },
-      getReports(): string[] {
-        return this.reports;
-      },
-    };
+    const reporter = new DefaultReporter();
 
     const result = processConfigFiles(['**/*.js', '**/*.ts'], reporter);
 
     expect(result).toStrictEqual(['**/*.js', '**/*.ts']);
 
-    expect(reporter.reports).toHaveLength(0);
+    expect(reporter.getReports()).toHaveLength(0);
   });
 });
