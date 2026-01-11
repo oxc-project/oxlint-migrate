@@ -76,10 +76,37 @@ const buildConfig = (
     if (config.files === undefined) {
       targetConfig = oxlintConfig;
     } else {
+      // Normalize files to an array
+      const filesArray = Array.isArray(config.files)
+        ? config.files
+        : [config.files];
+
+      // Separate nested arrays (AND patterns) from simple strings
+      const simpleFiles: string[] = [];
+      const nestedArrays: string[][] = [];
+
+      for (const file of filesArray) {
+        if (Array.isArray(file)) {
+          nestedArrays.push(file);
+        } else {
+          simpleFiles.push(file);
+        }
+      }
+
+      // Report nested arrays (AND glob patterns) as unsupported
+      if (nestedArrays.length > 0) {
+        options?.reporter?.report(
+          `ESLint AND glob patterns (nested arrays in files) are not supported in oxlint: ${JSON.stringify(nestedArrays)}`
+        );
+      }
+
+      // If no valid files remain after filtering nested arrays, skip this config
+      if (simpleFiles.length === 0) {
+        continue;
+      }
+
       targetConfig = {
-        files: Array.isArray(config.files)
-          ? config.files.flat()
-          : [config.files],
+        files: simpleFiles,
       };
       const [push, result] = detectSameOverride(oxlintConfig, targetConfig);
 

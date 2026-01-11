@@ -187,25 +187,43 @@ describe('main', () => {
     });
   });
 
-  test('flattens nested arrays in files field', async () => {
-    const result = await main([
-      {
-        rules: {
-          'no-magic-numbers': 'error',
-        },
+  test('detects and reports nested arrays in files field as unsupported', async () => {
+    const reporter = {
+      reports: [] as string[],
+      report(message: string): void {
+        this.reports.push(message);
       },
-      {
-        // ESLint flat config can have nested arrays in files
-        files: [
-          ['**/*.ts', '**/*.tsx'],
-          ['**/*.js', '**/*.jsx'],
-        ],
-        rules: {
-          'no-loss-of-precision': 'error',
-        },
+      remove(_message: string): void {
+        // Not used in this test
       },
-    ]);
+      getReports(): string[] {
+        return this.reports;
+      },
+    };
 
+    const result = await main(
+      [
+        {
+          rules: {
+            'no-magic-numbers': 'error',
+          },
+        },
+        {
+          // ESLint flat config with nested arrays (AND glob patterns)
+          files: [
+            ['**/*.ts', '**/*.tsx'], // AND pattern - unsupported
+            '**/*.js', // Simple pattern - supported
+          ],
+          rules: {
+            'no-loss-of-precision': 'error',
+          },
+        },
+      ],
+      undefined,
+      { reporter }
+    );
+
+    // Should only include the simple string pattern, not the nested array
     expect(result).toStrictEqual({
       $schema: './node_modules/oxlint/configuration_schema.json',
       categories: {
@@ -216,7 +234,7 @@ describe('main', () => {
       },
       overrides: [
         {
-          files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
+          files: ['**/*.js'],
           rules: {
             'no-loss-of-precision': 'error',
           },
@@ -227,5 +245,66 @@ describe('main', () => {
         'no-magic-numbers': 'error',
       },
     });
+
+    // Should report the nested array as unsupported
+    expect(reporter.reports).toHaveLength(1);
+    expect(reporter.reports[0]).toContain('AND glob patterns');
+    expect(reporter.reports[0]).toContain('nested arrays');
+  });
+
+  test('skips config when all files are nested arrays', async () => {
+    const reporter = {
+      reports: [] as string[],
+      report(message: string): void {
+        this.reports.push(message);
+      },
+      remove(_message: string): void {
+        // Not used in this test
+      },
+      getReports(): string[] {
+        return this.reports;
+      },
+    };
+
+    const result = await main(
+      [
+        {
+          rules: {
+            'no-magic-numbers': 'error',
+          },
+        },
+        {
+          // Only nested arrays (AND patterns) - all unsupported
+          files: [
+            ['**/*.ts', '**/*.tsx'],
+            ['**/*.js', '**/*.jsx'],
+          ],
+          rules: {
+            'no-loss-of-precision': 'error',
+          },
+        },
+      ],
+      undefined,
+      { reporter }
+    );
+
+    // Should not create an override since all files were nested arrays
+    expect(result).toStrictEqual({
+      $schema: './node_modules/oxlint/configuration_schema.json',
+      categories: {
+        correctness: 'off',
+      },
+      env: {
+        builtin: true,
+      },
+      plugins: [],
+      rules: {
+        'no-magic-numbers': 'error',
+      },
+    });
+
+    // Should report the nested arrays as unsupported
+    expect(reporter.reports).toHaveLength(1);
+    expect(reporter.reports[0]).toContain('AND glob patterns');
   });
 });
