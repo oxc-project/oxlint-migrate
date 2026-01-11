@@ -10,13 +10,9 @@ import type { Reporter } from './types.js';
  * @returns Array of simple string patterns (valid files)
  */
 export function processConfigFiles(
-  files: Linter.Config['files'],
+  files: string | (string | string[])[],
   reporter?: Reporter
 ): string[] {
-  if (files === undefined) {
-    return [];
-  }
-
   // Normalize files to an array
   const filesArray = Array.isArray(files) ? files : [files];
 

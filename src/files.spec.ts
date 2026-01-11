@@ -2,12 +2,6 @@ import { describe, expect, test } from 'vitest';
 import { processConfigFiles } from './files.js';
 
 describe('processConfigFiles', () => {
-  test('returns empty array when files is undefined', () => {
-    const result = processConfigFiles(undefined);
-
-    expect(result).toStrictEqual([]);
-  });
-
   test('handles single string by wrapping it in an array', () => {
     const result = processConfigFiles('**/*.js');
 
