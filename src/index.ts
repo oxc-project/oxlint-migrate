@@ -12,6 +12,7 @@ import {
 } from './plugins_rules.js';
 import { detectSameOverride } from './overrides.js';
 import fixForJsPlugins from './js_plugin_fixes.js';
+import { processConfigFiles } from './files.js';
 
 const buildConfig = (
   configs: Linter.Config[],
@@ -76,10 +77,15 @@ const buildConfig = (
     if (config.files === undefined) {
       targetConfig = oxlintConfig;
     } else {
+      const validFiles = processConfigFiles(config.files, options?.reporter);
+
+      // If no valid files remain after filtering nested arrays, skip this config
+      if (validFiles.length === 0) {
+        continue;
+      }
+
       targetConfig = {
-        files: (Array.isArray(config.files)
-          ? config.files
-          : [config.files]) as string[],
+        files: validFiles,
       };
       const [push, result] = detectSameOverride(oxlintConfig, targetConfig);
 
