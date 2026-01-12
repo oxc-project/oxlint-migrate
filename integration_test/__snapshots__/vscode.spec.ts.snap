@@ -322,7 +322,7 @@ exports[`vscode > vscode 1`] = `
     "unsupported rule: jsdoc/require-jsdoc",
     "unsupported rule: jsdoc/check-param-names",
     "unsupported rule: comma-dangle",
-    "unsupported rule: @typescript-eslint/prefer-optional-chain",
+    "type-aware rule detected, but \`--type-aware\` is not enabled: @typescript-eslint/prefer-optional-chain",
     "unsupported rule: @typescript-eslint/prefer-readonly",
   ],
 }
@@ -672,7 +672,7 @@ exports[`vscode --js-plugins > vscode--js-plugins 1`] = `
     "unsupported rule: jsdoc/require-jsdoc",
     "unsupported rule: jsdoc/check-param-names",
     "unsupported rule: comma-dangle",
-    "unsupported rule: @typescript-eslint/prefer-optional-chain",
+    "type-aware rule detected, but \`--type-aware\` is not enabled: @typescript-eslint/prefer-optional-chain",
     "unsupported rule: @typescript-eslint/prefer-readonly",
   ],
 }
@@ -952,6 +952,17 @@ exports[`vscode --type-aware > vscode--type-aware 1`] = `
           ],
         },
       },
+      {
+        "files": [
+          "extensions/typescript-language-features/**/*.ts",
+        ],
+        "plugins": [
+          "typescript",
+        ],
+        "rules": {
+          "@typescript-eslint/prefer-optional-chain": "warn",
+        },
+      },
     ],
     "plugins": [],
     "rules": {
@@ -1000,7 +1011,6 @@ exports[`vscode --type-aware > vscode--type-aware 1`] = `
     "unsupported rule: jsdoc/require-jsdoc",
     "unsupported rule: jsdoc/check-param-names",
     "unsupported rule: comma-dangle",
-    "unsupported rule: @typescript-eslint/prefer-optional-chain",
     "unsupported rule: @typescript-eslint/prefer-readonly",
   ],
 }
@@ -1329,7 +1339,7 @@ exports[`vscode merge > vscode--merge 1`] = `
     "unsupported rule: jsdoc/require-jsdoc",
     "unsupported rule: jsdoc/check-param-names",
     "unsupported rule: comma-dangle",
-    "unsupported rule: @typescript-eslint/prefer-optional-chain",
+    "type-aware rule detected, but \`--type-aware\` is not enabled: @typescript-eslint/prefer-optional-chain",
     "unsupported rule: @typescript-eslint/prefer-readonly",
   ],
 }
