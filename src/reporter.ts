@@ -1,20 +1,20 @@
 import { Reporter, SkippedRule, RuleSkipCategory } from './types.js';
 
 export class DefaultReporter implements Reporter {
-  private reports = new Set<string>();
+  private warnings = new Set<string>();
   private skippedRules = new Set<string>();
   private enabledRulesCount = 0;
 
-  public report(message: string): void {
-    this.reports.add(message);
+  public addWarning(message: string): void {
+    this.warnings.add(message);
   }
 
-  public remove(message: string): void {
-    this.reports.delete(message);
+  public removeWarning(message: string): void {
+    this.warnings.delete(message);
   }
 
-  public getReports(): string[] {
-    return Array.from(this.reports);
+  public getWarnings(): string[] {
+    return Array.from(this.warnings);
   }
 
   public markSkipped(rule: string, category: RuleSkipCategory): void {
@@ -42,15 +42,15 @@ export class DefaultReporter implements Reporter {
 }
 
 export class SilentReporter implements Reporter {
-  public report(_message: string): void {
+  public addWarning(_message: string): void {
     // Do nothing
   }
 
-  public remove(_message: string): void {
+  public removeWarning(_message: string): void {
     // Do nothing
   }
 
-  public getReports(): string[] {
+  public getWarnings(): string[] {
     return [];
   }
 

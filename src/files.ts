@@ -21,7 +21,7 @@ export function processConfigFiles(
   for (const file of filesArray) {
     if (Array.isArray(file)) {
       // Report nested array (AND glob pattern) as unsupported
-      reporter?.report(
+      reporter?.addWarning(
         `ESLint AND glob patterns (nested arrays in files) are not supported in oxlint: ${JSON.stringify(file)}`
       );
     } else {

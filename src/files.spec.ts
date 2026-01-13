@@ -28,7 +28,7 @@ describe('processConfigFiles', () => {
 
     expect(result).toStrictEqual(['**/*.js']);
 
-    const reports = reporter.getReports();
+    const reports = reporter.getWarnings();
     expect(reports).toHaveLength(1);
     expect(reports[0]).toContain('AND glob patterns');
     expect(reports[0]).toContain('nested arrays');
@@ -48,7 +48,7 @@ describe('processConfigFiles', () => {
 
     expect(result).toStrictEqual([]);
 
-    const reports = reporter.getReports();
+    const reports = reporter.getWarnings();
     expect(reports).toHaveLength(2);
     expect(reports[0]).toContain('AND glob patterns');
     expect(reports[1]).toContain('AND glob patterns');
@@ -69,7 +69,7 @@ describe('processConfigFiles', () => {
 
     expect(result).toStrictEqual(['**/*.js', '**/*.jsx']);
 
-    const reports = reporter.getReports();
+    const reports = reporter.getWarnings();
     expect(reports).toHaveLength(2);
     expect(reports[0]).toContain('**/*.ts');
     expect(reports[1]).toContain('**/*.mjs');
@@ -82,6 +82,6 @@ describe('processConfigFiles', () => {
 
     expect(result).toStrictEqual(['**/*.js', '**/*.ts']);
 
-    expect(reporter.getReports()).toHaveLength(0);
+    expect(reporter.getWarnings()).toHaveLength(0);
   });
 });

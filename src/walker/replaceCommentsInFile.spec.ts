@@ -81,7 +81,7 @@ describe('replaceCommentsInFile', () => {
         reporter: reporter,
       });
       expect(newSourceText).toBe(sourceText);
-      expect(reporter.getReports()).toStrictEqual([
+      expect(reporter.getWarnings()).toStrictEqual([
         '/tmp/fake-path.ts, char offset 9: changing eslint rules with inline comment is not supported',
         '/tmp/fake-path.ts, char offset 62: changing eslint rules with inline comment is not supported',
       ]);
@@ -99,7 +99,7 @@ describe('replaceCommentsInFile', () => {
         reporter: reporter,
       });
       expect(newSourceText).toBe(sourceText);
-      expect(reporter.getReports()).toStrictEqual([
+      expect(reporter.getWarnings()).toStrictEqual([
         '/tmp/fake-path.ts, char offset 9: changing globals with inline comment is not supported',
         '/tmp/fake-path.ts, char offset 55: changing globals with inline comment is not supported',
       ]);
@@ -115,7 +115,7 @@ describe('replaceCommentsInFile', () => {
         reporter: reporter,
       });
       expect(newSourceText).toBe(sourceText);
-      expect(reporter.getReports()).toStrictEqual([]);
+      expect(reporter.getWarnings()).toStrictEqual([]);
     });
   });
 

@@ -134,7 +134,7 @@ program
       eslintConfigPath: filePath,
     });
 
-    displayMigrationResult(outputMessage, reporter.getReports());
+    displayMigrationResult(outputMessage, reporter.getWarnings());
   });
 
 program.parse();

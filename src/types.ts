@@ -38,9 +38,9 @@ export type SkippedRule = {
 };
 
 export type Reporter = {
-  report(message: string): void;
-  remove(message: string): void;
-  getReports(): string[];
+  addWarning(message: string): void;
+  removeWarning(message: string): void;
+  getWarnings(): string[];
   markSkipped(rule: string, category: RuleSkipCategory): void;
   getSkippedRules(): SkippedRule[];
   setEnabledRulesCount(count: number): void;
