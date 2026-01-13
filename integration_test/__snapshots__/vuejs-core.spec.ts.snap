@@ -182,10 +182,6 @@ exports[`vuejs/core > vuejs/core 1`] = `
     "typeAware": [],
     "unsupported": [
       "import-x/no-nodejs-modules",
-      "import-x/no-nodejs-modules",
-      "no-restricted-syntax",
-      "no-restricted-syntax",
-      "no-restricted-syntax",
       "no-restricted-syntax",
     ],
   },
@@ -375,10 +371,6 @@ exports[`vuejs/core --js-plugins > vuejs/core--js-plugins 1`] = `
     "typeAware": [],
     "unsupported": [
       "import-x/no-nodejs-modules",
-      "import-x/no-nodejs-modules",
-      "no-restricted-syntax",
-      "no-restricted-syntax",
-      "no-restricted-syntax",
       "no-restricted-syntax",
     ],
   },
@@ -568,10 +560,6 @@ exports[`vuejs/core --type-aware > vuejs/core--type-aware 1`] = `
     "typeAware": [],
     "unsupported": [
       "import-x/no-nodejs-modules",
-      "import-x/no-nodejs-modules",
-      "no-restricted-syntax",
-      "no-restricted-syntax",
-      "no-restricted-syntax",
       "no-restricted-syntax",
     ],
   },
@@ -761,10 +749,6 @@ exports[`vuejs/core merge > vuejs/core--merge 1`] = `
     "typeAware": [],
     "unsupported": [
       "import-x/no-nodejs-modules",
-      "import-x/no-nodejs-modules",
-      "no-restricted-syntax",
-      "no-restricted-syntax",
-      "no-restricted-syntax",
       "no-restricted-syntax",
     ],
   },

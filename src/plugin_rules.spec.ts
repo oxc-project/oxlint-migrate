@@ -152,9 +152,8 @@ describe('rules and plugins', () => {
 
       transformRuleEntry(enabledConfig, config, { reporter });
       transformRuleEntry(enabledInOverrideConfig, config, { reporter });
-      // Second enabled call adds another, disabled override doesn't add
+      // Second enabled call is deduplicated, disabled override doesn't add
       expect(reporter.getSkippedRules()).toStrictEqual([
-        { ruleName: 'unknown-rule', category: 'unsupported' },
         { ruleName: 'unknown-rule', category: 'unsupported' },
       ]);
     });

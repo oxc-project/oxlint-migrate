@@ -242,11 +242,8 @@ exports[`eslint-plugin-oxlint > eslint-plugin-oxlint 1`] = `
   "skipped": {
     "nursery": [
       "getter-return",
-      "getter-return",
       "no-misleading-character-class",
       "no-undef",
-      "no-undef",
-      "no-unreachable",
       "no-unreachable",
     ],
     "typeAware": [],
@@ -515,11 +512,8 @@ exports[`eslint-plugin-oxlint --js-plugins > eslint-plugin-oxlint--js-plugins 1`
   "skipped": {
     "nursery": [
       "getter-return",
-      "getter-return",
       "no-misleading-character-class",
       "no-undef",
-      "no-undef",
-      "no-unreachable",
       "no-unreachable",
     ],
     "typeAware": [],
@@ -788,11 +782,8 @@ exports[`eslint-plugin-oxlint --type-aware > eslint-plugin-oxlint--type-aware 1`
   "skipped": {
     "nursery": [
       "getter-return",
-      "getter-return",
       "no-misleading-character-class",
       "no-undef",
-      "no-undef",
-      "no-unreachable",
       "no-unreachable",
     ],
     "typeAware": [],
@@ -992,11 +983,8 @@ exports[`eslint-plugin-oxlint merge > eslint-plugin-oxlint--merge 1`] = `
   "skipped": {
     "nursery": [
       "getter-return",
-      "getter-return",
       "no-misleading-character-class",
       "no-undef",
-      "no-undef",
-      "no-unreachable",
       "no-unreachable",
     ],
     "typeAware": [],
