@@ -84,7 +84,6 @@ export const transformRuleEntry = (
 
   for (const [rule, config] of Object.entries(eslintConfig.rules)) {
     const normalizedConfig = normalizeSeverityValue(config);
-    const unsupportedRuleMessage = `unsupported rule: ${rule}`;
 
     // ToDo: check if the rule is really supported by oxlint
     // when not ask the user if this is ok
