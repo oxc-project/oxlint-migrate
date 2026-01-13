@@ -15,6 +15,8 @@ export const getSnapshotResult = async (
     ...options,
   });
 
+  const skippedRules = reporter.getSkippedRules();
+
   return {
     config: result,
     warnings: reporter
@@ -24,6 +26,24 @@ export const getSnapshotResult = async (
       // .filter((error) => !error.startsWith('unsupported rule: perfectionist/'))
       .filter((error) => !error.startsWith('unsupported rule: toml/'))
       .filter((error) => !error.startsWith('unsupported rule: style/')),
+    skipped: {
+      nursery: skippedRules
+        .filter((r) => r.category === 'nursery')
+        .map((r) => r.ruleName)
+        .sort(),
+      typeAware: skippedRules
+        .filter((r) => r.category === 'type-aware')
+        .map((r) => r.ruleName)
+        .sort(),
+      unsupported: skippedRules
+        .filter((r) => r.category === 'unsupported')
+        .map((r) => r.ruleName)
+        // filter out specific unsupported rules like we do for warnings
+        .filter((rule) => !rule.startsWith('local/'))
+        .filter((rule) => !rule.startsWith('toml/'))
+        .filter((rule) => !rule.startsWith('style/'))
+        .sort(),
+    },
   };
 };
 

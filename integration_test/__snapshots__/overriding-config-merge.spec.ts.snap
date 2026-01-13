@@ -12,6 +12,13 @@ exports[`overriding-config-merge > overriding-config-merge 1`] = `
     },
     "plugins": [],
   },
+  "skipped": {
+    "nursery": [],
+    "typeAware": [],
+    "unsupported": [
+      "regexp/no-lazy-ends",
+    ],
+  },
   "warnings": [],
 }
 `;
@@ -31,6 +38,11 @@ exports[`overriding-config-merge --js-plugins > overriding-config-merge--js-plug
     ],
     "plugins": [],
   },
+  "skipped": {
+    "nursery": [],
+    "typeAware": [],
+    "unsupported": [],
+  },
   "warnings": [],
 }
 `;
@@ -46,6 +58,13 @@ exports[`overriding-config-merge --type-aware > overriding-config-merge--type-aw
       "builtin": true,
     },
     "plugins": [],
+  },
+  "skipped": {
+    "nursery": [],
+    "typeAware": [],
+    "unsupported": [
+      "regexp/no-lazy-ends",
+    ],
   },
   "warnings": [],
 }
@@ -63,6 +82,13 @@ exports[`overriding-config-merge merge > overriding-config-merge--merge 1`] = `
       "builtin": true,
     },
     "plugins": [],
+  },
+  "skipped": {
+    "nursery": [],
+    "typeAware": [],
+    "unsupported": [
+      "regexp/no-lazy-ends",
+    ],
   },
   "warnings": [],
 }

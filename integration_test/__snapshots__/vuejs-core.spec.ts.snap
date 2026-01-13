@@ -177,10 +177,19 @@ exports[`vuejs/core > vuejs/core 1`] = `
     ],
     "plugins": [],
   },
-  "warnings": [
-    "unsupported rule: no-restricted-syntax",
-    "unsupported rule: import-x/no-nodejs-modules",
-  ],
+  "skipped": {
+    "nursery": [],
+    "typeAware": [],
+    "unsupported": [
+      "import-x/no-nodejs-modules",
+      "import-x/no-nodejs-modules",
+      "no-restricted-syntax",
+      "no-restricted-syntax",
+      "no-restricted-syntax",
+      "no-restricted-syntax",
+    ],
+  },
+  "warnings": [],
 }
 `;
 
@@ -361,10 +370,19 @@ exports[`vuejs/core --js-plugins > vuejs/core--js-plugins 1`] = `
     ],
     "plugins": [],
   },
-  "warnings": [
-    "unsupported rule: no-restricted-syntax",
-    "unsupported rule: import-x/no-nodejs-modules",
-  ],
+  "skipped": {
+    "nursery": [],
+    "typeAware": [],
+    "unsupported": [
+      "import-x/no-nodejs-modules",
+      "import-x/no-nodejs-modules",
+      "no-restricted-syntax",
+      "no-restricted-syntax",
+      "no-restricted-syntax",
+      "no-restricted-syntax",
+    ],
+  },
+  "warnings": [],
 }
 `;
 
@@ -545,10 +563,19 @@ exports[`vuejs/core --type-aware > vuejs/core--type-aware 1`] = `
     ],
     "plugins": [],
   },
-  "warnings": [
-    "unsupported rule: no-restricted-syntax",
-    "unsupported rule: import-x/no-nodejs-modules",
-  ],
+  "skipped": {
+    "nursery": [],
+    "typeAware": [],
+    "unsupported": [
+      "import-x/no-nodejs-modules",
+      "import-x/no-nodejs-modules",
+      "no-restricted-syntax",
+      "no-restricted-syntax",
+      "no-restricted-syntax",
+      "no-restricted-syntax",
+    ],
+  },
+  "warnings": [],
 }
 `;
 
@@ -729,9 +756,18 @@ exports[`vuejs/core merge > vuejs/core--merge 1`] = `
       },
     ],
   },
-  "warnings": [
-    "unsupported rule: no-restricted-syntax",
-    "unsupported rule: import-x/no-nodejs-modules",
-  ],
+  "skipped": {
+    "nursery": [],
+    "typeAware": [],
+    "unsupported": [
+      "import-x/no-nodejs-modules",
+      "import-x/no-nodejs-modules",
+      "no-restricted-syntax",
+      "no-restricted-syntax",
+      "no-restricted-syntax",
+      "no-restricted-syntax",
+    ],
+  },
+  "warnings": [],
 }
 `;
