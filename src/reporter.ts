@@ -2,8 +2,7 @@ import { Reporter, SkippedRule, RuleSkipCategory } from './types.js';
 
 export class DefaultReporter implements Reporter {
   private reports = new Set<string>();
-  private skippedRulesSet = new Set<string>();
-  private skippedRules: SkippedRule[] = [];
+  private skippedRules = new Set<string>();
   private enabledRulesCount = 0;
 
   public report(message: string): void {
@@ -20,14 +19,17 @@ export class DefaultReporter implements Reporter {
 
   public markSkipped(rule: string, category: RuleSkipCategory): void {
     const key = `${category}:${rule}`;
-    if (!this.skippedRulesSet.has(key)) {
-      this.skippedRulesSet.add(key);
-      this.skippedRules.push({ ruleName: rule, category });
-    }
+    this.skippedRules.add(key);
   }
 
   public getSkippedRules(): SkippedRule[] {
-    return this.skippedRules;
+    return Array.from(this.skippedRules).map((key) => {
+      const [category, ...ruleNameParts] = key.split(':');
+      return {
+        ruleName: ruleNameParts.join(':'),
+        category: category as RuleSkipCategory,
+      };
+    });
   }
 
   public setEnabledRulesCount(count: number): void {
