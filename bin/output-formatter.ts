@@ -24,9 +24,10 @@ export function aggregateSkippedRulesByCategory(
 ): SkippedRulesByCategory {
   const byCategory: SkippedRulesByCategory = {};
   for (const rule of skippedRules) {
-    // Use ??= instead of if-check: TypeScript can't narrow the type with if (!byCategory[...])
-    byCategory[rule.category] ??= [];
-    byCategory[rule.category].push(rule.ruleName);
+    // TypeScript does not narrow indexed access after `??=`.
+    // so store the result in a local variable to get a non-undefined `string[]`.
+    const list = (byCategory[rule.category] ??= []);
+    list.push(rule.ruleName);
   }
   return byCategory;
 }
