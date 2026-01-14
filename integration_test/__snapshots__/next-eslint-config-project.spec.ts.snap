@@ -25,6 +25,15 @@ exports[`next-eslint-config-project > next-eslint-config-project 1`] = `
         "files": [
           "**/*.{js,jsx,mjs,ts,tsx,mts,cts}",
         ],
+        "globals": {
+          "AudioWorkletGlobalScope": "readonly",
+          "AudioWorkletProcessor": "readonly",
+          "WorkletGlobalScope": "readonly",
+          "currentFrame": "readonly",
+          "currentTime": "readonly",
+          "registerProcessor": "readonly",
+          "sampleRate": "readonly",
+        },
         "plugins": [
           "react",
           "nextjs",
@@ -145,6 +154,15 @@ exports[`next-eslint-config-project --js-plugins > next-eslint-config-project--j
         "files": [
           "**/*.{js,jsx,mjs,ts,tsx,mts,cts}",
         ],
+        "globals": {
+          "AudioWorkletGlobalScope": "readonly",
+          "AudioWorkletProcessor": "readonly",
+          "WorkletGlobalScope": "readonly",
+          "currentFrame": "readonly",
+          "currentTime": "readonly",
+          "registerProcessor": "readonly",
+          "sampleRate": "readonly",
+        },
         "plugins": [
           "react",
           "nextjs",
@@ -265,6 +283,15 @@ exports[`next-eslint-config-project --type-aware > next-eslint-config-project--t
         "files": [
           "**/*.{js,jsx,mjs,ts,tsx,mts,cts}",
         ],
+        "globals": {
+          "AudioWorkletGlobalScope": "readonly",
+          "AudioWorkletProcessor": "readonly",
+          "WorkletGlobalScope": "readonly",
+          "currentFrame": "readonly",
+          "currentTime": "readonly",
+          "registerProcessor": "readonly",
+          "sampleRate": "readonly",
+        },
         "plugins": [
           "react",
           "nextjs",
@@ -386,6 +413,15 @@ exports[`next-eslint-config-project merge > next-eslint-config-project--merge 1`
         "files": [
           "**/*.{js,jsx,mjs,ts,tsx,mts,cts}",
         ],
+        "globals": {
+          "AudioWorkletGlobalScope": "readonly",
+          "AudioWorkletProcessor": "readonly",
+          "WorkletGlobalScope": "readonly",
+          "currentFrame": "readonly",
+          "currentTime": "readonly",
+          "registerProcessor": "readonly",
+          "sampleRate": "readonly",
+        },
         "plugins": [
           "react",
           "nextjs",
