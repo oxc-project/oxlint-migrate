@@ -19,6 +19,7 @@ const OTHER_SUPPORTED_ENVS = [
   'applescript',
   'astro',
   'atomtest',
+  'audioworklet',
   'commonjs',
   'embertest',
   'greasemonkey',
