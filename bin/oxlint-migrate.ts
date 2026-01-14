@@ -30,6 +30,37 @@ const getFileContent = (absoluteFilePath: string): string | undefined => {
   }
 };
 
+/**
+ * Count enabled rules (excluding "off" rules) from both rules and overrides
+ * @param config The oxlint configuration object
+ * @returns The total number of enabled rules
+ */
+const countEnabledRules = (config: any): number => {
+  const enabledRules = new Set<string>();
+
+  if (config.rules) {
+    Object.entries(config.rules).forEach(([ruleName, ruleValue]) => {
+      if (ruleValue !== 'off') {
+        enabledRules.add(ruleName);
+      }
+    });
+  }
+
+  if (config.overrides && Array.isArray(config.overrides)) {
+    config.overrides.forEach((override: any) => {
+      if (override.rules) {
+        Object.entries(override.rules).forEach(([ruleName, ruleValue]) => {
+          if (ruleValue !== 'off') {
+            enabledRules.add(ruleName);
+          }
+        });
+      }
+    });
+  }
+
+  return enabledRules.size;
+};
+
 program
   .name('oxlint-migrate')
   .version(packageJson.version)
@@ -120,7 +151,7 @@ program
 
     writeFileSync(oxlintFilePath, JSON.stringify(oxlintConfig, null, 2));
 
-    const enabledRulesCount = Object.keys(oxlintConfig.rules || {}).length;
+    const enabledRulesCount = countEnabledRules(oxlintConfig);
     reporter.setEnabledRulesCount(enabledRulesCount);
 
     const outputMessage = formatMigrationOutput({
