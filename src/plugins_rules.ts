@@ -126,7 +126,7 @@ export const transformRuleEntry = (
           }
           // also remove any previously queued unsupported report for base
           if (eslintConfig.files === undefined) {
-            options.reporter?.removeSkipped(rule, 'unsupported');
+            options?.reporter?.removeSkipped(rule, 'unsupported');
           }
           continue;
         }
