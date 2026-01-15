@@ -164,8 +164,8 @@ describe('formatMigrationOutput', () => {
 
     const result = formatMigrationOutput(data);
 
-    expect(result).toContain('✨ .oxlintrc.json created with 24 rules.');
-    expect(result).toContain('⚠️  5 rules skipped:');
+    expect(result).toContain('.oxlintrc.json created with 24 rules.');
+    expect(result).toContain('5 rules skipped:');
     expect(result).toContain('3 Nursery');
     expect(result).toContain(
       'Experimental: getter-return, no-undef, no-unreachable'
@@ -174,11 +174,11 @@ describe('formatMigrationOutput', () => {
     expect(result).toContain('Requires TS info: await-thenable');
     expect(result).toContain('1 Unsupported');
     expect(result).toContain('prefer-const');
-    expect(result).toContain('👉 Re-run with flags to include more:');
+    expect(result).toContain('Re-run with flags to include more:');
     expect(result).toContain(
       'npx @oxlint/migrate eslint.config.mjs --with-nursery --type-aware'
     );
-    expect(result).toContain('🚀 Next:');
+    expect(result).toContain('Next:');
     expect(result).toContain('npx oxlint .');
   });
 
@@ -192,9 +192,8 @@ describe('formatMigrationOutput', () => {
 
     const result = formatMigrationOutput(data);
 
-    expect(result).not.toContain('✨');
-    expect(result).not.toContain('🚀 Next:');
-    expect(result).toContain('⚠️  1 rules skipped:');
+    expect(result).not.toContain('Next:');
+    expect(result).toContain('1 rules skipped:');
   });
 
   it('should handle no skipped rules', () => {
@@ -207,9 +206,9 @@ describe('formatMigrationOutput', () => {
 
     const result = formatMigrationOutput(data);
 
-    expect(result).toContain('✨ .oxlintrc.json created with 10 rules.');
-    expect(result).not.toContain('⚠️');
-    expect(result).toContain('🚀 Next:');
+    expect(result).toContain('.oxlintrc.json created with 10 rules.');
+    expect(result).not.toContain('skipped');
+    expect(result).toContain('Next:');
   });
 
   it('should not show missing flags section when flags are enabled', () => {
@@ -225,7 +224,7 @@ describe('formatMigrationOutput', () => {
 
     const result = formatMigrationOutput(data);
 
-    expect(result).not.toContain('👉 Re-run with flags');
+    expect(result).not.toContain('Re-run with flags');
   });
 
   it('should handle eslintConfigPath being undefined', () => {
@@ -289,7 +288,7 @@ describe('displayMigrationResult', () => {
       .spyOn(console, 'warn')
       .mockImplementation(() => {});
 
-    const outputMessage = '✨ Success message';
+    const outputMessage = 'Success message';
     const warnings: string[] = [];
 
     displayMigrationResult(outputMessage, warnings);
@@ -308,7 +307,7 @@ describe('displayMigrationResult', () => {
       .spyOn(console, 'warn')
       .mockImplementation(() => {});
 
-    const outputMessage = '✨ Success message';
+    const outputMessage = 'Success message';
     const warnings = [
       'warning 1: parse failed',
       'warning 2: unsupported config',
