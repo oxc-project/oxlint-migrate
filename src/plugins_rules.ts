@@ -28,7 +28,7 @@ const isValueInSet = (value: unknown, validSet: unknown[]) =>
 const isActiveValue = (value: unknown) =>
   isValueInSet(value, ['error', 'warn', 1, 2]);
 
-const isOffValue = (value: unknown) => isValueInSet(value, ['off', 0]);
+export const isOffValue = (value: unknown) => isValueInSet(value, ['off', 0]);
 
 const isWarnValue = (value: unknown) => isValueInSet(value, ['warn', 1]);
 

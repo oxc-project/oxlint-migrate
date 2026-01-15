@@ -9,12 +9,13 @@ import {
 } from './config-loader.js';
 import main from '../src/index.js';
 import packageJson from '../package.json' with { type: 'json' };
-import { Options } from '../src/types.js';
+import { Options, OxlintConfig, OxlintConfigOverride } from '../src/types.js';
 import { walkAndReplaceProjectFiles } from '../src/walker/index.js';
 import { getAllProjectFiles } from './project-loader.js';
 import { writeFile } from 'node:fs/promises';
 import { preFixForJsPlugins } from '../src/js_plugin_fixes.js';
 import { DefaultReporter } from '../src/reporter.js';
+import { isOffValue } from '../src/plugins_rules.js';
 import {
   formatMigrationOutput,
   displayMigrationResult,
@@ -35,22 +36,22 @@ const getFileContent = (absoluteFilePath: string): string | undefined => {
  * @param config The oxlint configuration object
  * @returns The total number of enabled rules
  */
-const countEnabledRules = (config: any): number => {
+const countEnabledRules = (config: OxlintConfig): number => {
   const enabledRules = new Set<string>();
 
   if (config.rules) {
     Object.entries(config.rules).forEach(([ruleName, ruleValue]) => {
-      if (ruleValue !== 'off') {
+      if (!isOffValue(ruleValue)) {
         enabledRules.add(ruleName);
       }
     });
   }
 
   if (config.overrides && Array.isArray(config.overrides)) {
-    config.overrides.forEach((override: any) => {
+    config.overrides.forEach((override: OxlintConfigOverride) => {
       if (override.rules) {
         Object.entries(override.rules).forEach(([ruleName, ruleValue]) => {
-          if (ruleValue !== 'off') {
+          if (!isOffValue(ruleValue)) {
             enabledRules.add(ruleName);
           }
         });
