@@ -15,9 +15,7 @@ exports[`overriding-config-merge > overriding-config-merge 1`] = `
   "skipped": {
     "nursery": [],
     "typeAware": [],
-    "unsupported": [
-      "regexp/no-lazy-ends",
-    ],
+    "unsupported": [],
   },
   "warnings": [],
 }
@@ -62,9 +60,7 @@ exports[`overriding-config-merge --type-aware > overriding-config-merge--type-aw
   "skipped": {
     "nursery": [],
     "typeAware": [],
-    "unsupported": [
-      "regexp/no-lazy-ends",
-    ],
+    "unsupported": [],
   },
   "warnings": [],
 }
@@ -86,9 +82,7 @@ exports[`overriding-config-merge merge > overriding-config-merge--merge 1`] = `
   "skipped": {
     "nursery": [],
     "typeAware": [],
-    "unsupported": [
-      "regexp/no-lazy-ends",
-    ],
+    "unsupported": [],
   },
   "warnings": [],
 }

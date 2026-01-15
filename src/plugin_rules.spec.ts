@@ -145,10 +145,7 @@ describe('rules and plugins', () => {
 
       transformRuleEntry(enabledConfig, config, { reporter });
       transformRuleEntry(disabledConfig, config, { reporter });
-      // Disabled rules don't call markSkipped, so we have 1 from enabled
-      expect(reporter.getSkippedRules()).toStrictEqual([
-        { ruleName: 'unknown-rule', category: 'unsupported' },
-      ]);
+      expect(reporter.getSkippedRules()).toStrictEqual([]);
 
       transformRuleEntry(enabledConfig, config, { reporter });
       transformRuleEntry(enabledInOverrideConfig, config, { reporter });

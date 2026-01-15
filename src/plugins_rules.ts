@@ -124,6 +124,10 @@ export const transformRuleEntry = (
               targetConfig.rules[rule] = normalizedConfig;
             }
           }
+          // also remove any previously queued unsupported report for base
+          if (eslintConfig.files === undefined) {
+            options.reporter?.removeSkipped(rule, 'unsupported');
+          }
           continue;
         }
 
@@ -138,6 +142,10 @@ export const transformRuleEntry = (
         // if rule is disabled, remove it.
         if (isOffValue(normalizedConfig)) {
           delete targetConfig.rules[rule];
+        }
+        // only remove the reporter diagnostics when it is in a base config.
+        if (eslintConfig.files === undefined) {
+          options?.reporter?.removeSkipped(rule, 'unsupported');
         }
         continue;
       }

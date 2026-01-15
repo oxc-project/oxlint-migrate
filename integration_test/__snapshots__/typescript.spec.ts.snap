@@ -296,7 +296,6 @@ exports[`typescript > typescript 1`] = `
       "@typescript-eslint/use-unknown-in-catch-callback-variable",
     ],
     "unsupported": [
-      "@typescript-eslint/class-literal-property-style",
       "@typescript-eslint/consistent-type-assertions",
       "@typescript-eslint/naming-convention",
       "@typescript-eslint/unified-signatures",
@@ -735,7 +734,6 @@ exports[`typescript --js-plugins > typescript--js-plugins 1`] = `
       "@typescript-eslint/use-unknown-in-catch-callback-variable",
     ],
     "unsupported": [
-      "@typescript-eslint/class-literal-property-style",
       "@typescript-eslint/consistent-type-assertions",
       "@typescript-eslint/naming-convention",
       "@typescript-eslint/unified-signatures",
@@ -1049,7 +1047,6 @@ exports[`typescript --type-aware > typescript--type-aware 1`] = `
     ],
     "typeAware": [],
     "unsupported": [
-      "@typescript-eslint/class-literal-property-style",
       "@typescript-eslint/consistent-type-assertions",
       "@typescript-eslint/naming-convention",
       "@typescript-eslint/unified-signatures",
@@ -1367,7 +1364,6 @@ exports[`typescript merge > typescript--merge 1`] = `
       "@typescript-eslint/use-unknown-in-catch-callback-variable",
     ],
     "unsupported": [
-      "@typescript-eslint/class-literal-property-style",
       "@typescript-eslint/consistent-type-assertions",
       "@typescript-eslint/naming-convention",
       "@typescript-eslint/unified-signatures",
