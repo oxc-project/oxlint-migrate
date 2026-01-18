@@ -177,6 +177,14 @@ exports[`vuejs/core > vuejs/core 1`] = `
     ],
     "plugins": [],
   },
+  "skipped": {
+    "nursery": [],
+    "type-aware": [],
+    "unsupported": [
+      "no-restricted-syntax",
+      "import-x/no-nodejs-modules",
+    ],
+  },
   "warnings": [
     "unsupported rule: no-restricted-syntax",
     "unsupported rule: import-x/no-nodejs-modules",
@@ -360,6 +368,14 @@ exports[`vuejs/core --js-plugins > vuejs/core--js-plugins 1`] = `
       },
     ],
     "plugins": [],
+  },
+  "skipped": {
+    "nursery": [],
+    "type-aware": [],
+    "unsupported": [
+      "no-restricted-syntax",
+      "import-x/no-nodejs-modules",
+    ],
   },
   "warnings": [
     "unsupported rule: no-restricted-syntax",
@@ -545,6 +561,14 @@ exports[`vuejs/core --type-aware > vuejs/core--type-aware 1`] = `
     ],
     "plugins": [],
   },
+  "skipped": {
+    "nursery": [],
+    "type-aware": [],
+    "unsupported": [
+      "no-restricted-syntax",
+      "import-x/no-nodejs-modules",
+    ],
+  },
   "warnings": [
     "unsupported rule: no-restricted-syntax",
     "unsupported rule: import-x/no-nodejs-modules",
@@ -727,6 +751,14 @@ exports[`vuejs/core merge > vuejs/core--merge 1`] = `
           "no-restricted-globals": "off",
         },
       },
+    ],
+  },
+  "skipped": {
+    "nursery": [],
+    "type-aware": [],
+    "unsupported": [
+      "no-restricted-syntax",
+      "import-x/no-nodejs-modules",
     ],
   },
   "warnings": [
