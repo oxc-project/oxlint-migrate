@@ -95,6 +95,7 @@ export const transformRuleEntry = (
         options?.reporter?.report(
           `unsupported rule, but available as a nursery rule: ${rule}`
         );
+        options?.reporter?.markSkipped(rule, 'nursery');
         continue;
       }
 
@@ -102,6 +103,7 @@ export const transformRuleEntry = (
         options?.reporter?.report(
           `type-aware rule detected, but \`--type-aware\` is not enabled: ${rule}`
         );
+        options?.reporter?.markSkipped(rule, 'type-aware');
         continue;
       }
 
@@ -132,6 +134,7 @@ export const transformRuleEntry = (
           // also remove any previously queued unsupported report for base
           if (eslintConfig.files === undefined) {
             options.reporter?.remove(unsupportedRuleMessage);
+            options?.reporter?.removeSkipped(rule, 'unsupported');
           }
           continue;
         }
@@ -151,12 +154,14 @@ export const transformRuleEntry = (
         // only remove the reporter diagnostics when it is in a base config.
         if (eslintConfig.files === undefined) {
           options?.reporter?.remove(unsupportedRuleMessage);
+          options?.reporter?.removeSkipped(rule, 'unsupported');
         }
         continue;
       }
 
       // Active unsupported rule: report
       options?.reporter?.report(unsupportedRuleMessage);
+      options?.reporter?.markSkipped(rule, 'unsupported');
     }
   }
 };
