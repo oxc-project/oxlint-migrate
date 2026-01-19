@@ -252,7 +252,6 @@ export const styleRules = [
   '@typescript-eslint/prefer-for-of',
   '@typescript-eslint/prefer-function-type',
   '@typescript-eslint/prefer-namespace-keyword',
-  '@typescript-eslint/prefer-optional-chain',
   '@typescript-eslint/prefer-reduce-type-parameter',
   '@typescript-eslint/prefer-return-this-type',
   'unicorn/catch-error-name',
@@ -725,6 +724,7 @@ export const nurseryRules = [
   'jsx-a11y/no-static-element-interactions',
   'promise/no-return-in-finally',
   'react/require-render-return',
+  '@typescript-eslint/prefer-optional-chain',
   'import-x/export',
   'import-x/named',
 ];
