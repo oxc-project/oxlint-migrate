@@ -230,6 +230,7 @@ exports[`many-extends.spec.ts > many-extends.spec.ts 1`] = `
       "import/named",
       "import/export",
       "react/require-render-return",
+      "@typescript-eslint/prefer-optional-chain",
     ],
     "type-aware": [
       "@typescript-eslint/await-thenable",
@@ -271,7 +272,6 @@ exports[`many-extends.spec.ts > many-extends.spec.ts 1`] = `
       "@typescript-eslint/non-nullable-type-assertion-style",
       "@typescript-eslint/prefer-includes",
       "@typescript-eslint/prefer-nullish-coalescing",
-      "@typescript-eslint/prefer-optional-chain",
     ],
     "unsupported": [
       "no-dupe-args",
@@ -674,6 +674,7 @@ exports[`many-extends.spec.ts --js-plugins > many-extends.spec.ts--js-plugins 1`
       "import/named",
       "import/export",
       "react/require-render-return",
+      "@typescript-eslint/prefer-optional-chain",
     ],
     "type-aware": [
       "@typescript-eslint/await-thenable",
@@ -715,7 +716,6 @@ exports[`many-extends.spec.ts --js-plugins > many-extends.spec.ts--js-plugins 1`
       "@typescript-eslint/non-nullable-type-assertion-style",
       "@typescript-eslint/prefer-includes",
       "@typescript-eslint/prefer-nullish-coalescing",
-      "@typescript-eslint/prefer-optional-chain",
     ],
     "unsupported": [
       "no-dupe-args",
@@ -1179,6 +1179,7 @@ exports[`many-extends.spec.ts --type-aware > many-extends.spec.ts--type-aware 1`
       "import/named",
       "import/export",
       "react/require-render-return",
+      "@typescript-eslint/prefer-optional-chain",
     ],
     "type-aware": [],
     "unsupported": [
@@ -1498,6 +1499,7 @@ exports[`many-extends.spec.ts merge > many-extends.spec.ts--merge 1`] = `
       "import/named",
       "import/export",
       "react/require-render-return",
+      "@typescript-eslint/prefer-optional-chain",
     ],
     "type-aware": [
       "@typescript-eslint/await-thenable",
@@ -1539,7 +1541,6 @@ exports[`many-extends.spec.ts merge > many-extends.spec.ts--merge 1`] = `
       "@typescript-eslint/non-nullable-type-assertion-style",
       "@typescript-eslint/prefer-includes",
       "@typescript-eslint/prefer-nullish-coalescing",
-      "@typescript-eslint/prefer-optional-chain",
     ],
     "unsupported": [
       "no-dupe-args",

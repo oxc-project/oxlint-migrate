@@ -247,9 +247,9 @@ exports[`typescript > typescript 1`] = `
       "no-misleading-character-class",
       "no-undef",
       "no-unreachable",
+      "@typescript-eslint/prefer-optional-chain",
     ],
     "type-aware": [
-      "@typescript-eslint/prefer-optional-chain",
       "@typescript-eslint/no-unnecessary-type-assertion",
       "@typescript-eslint/await-thenable",
       "@typescript-eslint/no-array-delete",
@@ -816,9 +816,9 @@ exports[`typescript --js-plugins > typescript--js-plugins 1`] = `
       "no-misleading-character-class",
       "no-undef",
       "no-unreachable",
+      "@typescript-eslint/prefer-optional-chain",
     ],
     "type-aware": [
-      "@typescript-eslint/prefer-optional-chain",
       "@typescript-eslint/no-unnecessary-type-assertion",
       "@typescript-eslint/await-thenable",
       "@typescript-eslint/no-array-delete",
@@ -1246,6 +1246,7 @@ exports[`typescript --type-aware > typescript--type-aware 1`] = `
       "no-misleading-character-class",
       "no-undef",
       "no-unreachable",
+      "@typescript-eslint/prefer-optional-chain",
     ],
     "type-aware": [],
     "unsupported": [
@@ -1604,9 +1605,9 @@ exports[`typescript merge > typescript--merge 1`] = `
       "no-misleading-character-class",
       "no-undef",
       "no-unreachable",
+      "@typescript-eslint/prefer-optional-chain",
     ],
     "type-aware": [
-      "@typescript-eslint/prefer-optional-chain",
       "@typescript-eslint/no-unnecessary-type-assertion",
       "@typescript-eslint/await-thenable",
       "@typescript-eslint/no-array-delete",
