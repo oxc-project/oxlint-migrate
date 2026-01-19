@@ -34,6 +34,11 @@ exports[`duplicate-overrides > duplicate-overrides 1`] = `
     ],
     "plugins": [],
   },
+  "skipped": {
+    "nursery": [],
+    "type-aware": [],
+    "unsupported": [],
+  },
   "warnings": [],
 }
 `;
@@ -71,6 +76,11 @@ exports[`duplicate-overrides --js-plugins > duplicate-overrides--js-plugins 1`] 
       },
     ],
     "plugins": [],
+  },
+  "skipped": {
+    "nursery": [],
+    "type-aware": [],
+    "unsupported": [],
   },
   "warnings": [],
 }
@@ -110,6 +120,11 @@ exports[`duplicate-overrides --type-aware > duplicate-overrides--type-aware 1`] 
     ],
     "plugins": [],
   },
+  "skipped": {
+    "nursery": [],
+    "type-aware": [],
+    "unsupported": [],
+  },
   "warnings": [],
 }
 `;
@@ -147,6 +162,11 @@ exports[`duplicate-overrides merge > duplicate-overrides--merge 1`] = `
         },
       },
     ],
+  },
+  "skipped": {
+    "nursery": [],
+    "type-aware": [],
+    "unsupported": [],
   },
   "warnings": [],
 }

@@ -24,6 +24,7 @@ export const getSnapshotResult = async (
       // .filter((error) => !error.startsWith('unsupported rule: perfectionist/'))
       .filter((error) => !error.startsWith('unsupported rule: toml/'))
       .filter((error) => !error.startsWith('unsupported rule: style/')),
+    skipped: reporter.getSkippedRulesByCategory(),
   };
 };
 

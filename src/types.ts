@@ -30,10 +30,17 @@ export type OxlintConfig = {
 
 export type OxlintConfigOrOverride = OxlintConfig | OxlintConfigOverride;
 
+export type RuleSkippedCategory = 'nursery' | 'type-aware' | 'unsupported';
+
+export type SkippedCategoryGroup = Record<RuleSkippedCategory, string[]>;
+
 export type Reporter = {
   report(message: string): void;
   remove(message: string): void;
   getReports(): string[];
+  markSkipped(rule: string, category: RuleSkippedCategory): void;
+  removeSkipped(rule: string, category: RuleSkippedCategory): void;
+  getSkippedRulesByCategory(): SkippedCategoryGroup;
 };
 
 export type Options = {
