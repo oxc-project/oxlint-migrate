@@ -38,11 +38,11 @@
   "dependencies": {
     "commander": "^14.0.0",
     "globals": "^17.0.0",
-    "oxc-parser": "^0.109.0",
+    "oxc-parser": "^0.110.0",
     "tinyglobby": "^0.2.14"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^6.0.0",
+    "@antfu/eslint-config": "^7.0.0",
     "@eslint/js": "^9.29.0",
     "@logux/eslint-config": "^57.0.0",
     "@oxc-node/core": "^0.0.35",
