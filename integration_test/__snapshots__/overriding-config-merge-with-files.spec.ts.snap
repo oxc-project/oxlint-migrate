@@ -19,9 +19,7 @@ exports[`overriding-config-merge-with-files > overriding-config-merge-with-files
       "regexp/no-lazy-ends",
     ],
   },
-  "warnings": [
-    "unsupported rule: regexp/no-lazy-ends",
-  ],
+  "warnings": [],
 }
 `;
 
@@ -88,9 +86,7 @@ exports[`overriding-config-merge-with-files --type-aware > overriding-config-mer
       "regexp/no-lazy-ends",
     ],
   },
-  "warnings": [
-    "unsupported rule: regexp/no-lazy-ends",
-  ],
+  "warnings": [],
 }
 `;
 
@@ -114,8 +110,6 @@ exports[`overriding-config-merge-with-files merge > overriding-config-merge-with
       "regexp/no-lazy-ends",
     ],
   },
-  "warnings": [
-    "unsupported rule: regexp/no-lazy-ends",
-  ],
+  "warnings": [],
 }
 `;

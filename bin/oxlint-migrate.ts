@@ -9,12 +9,17 @@ import {
 } from './config-loader.js';
 import main from '../src/index.js';
 import packageJson from '../package.json' with { type: 'json' };
-import { Options } from '../src/types.js';
+import { Options, OxlintConfig, OxlintConfigOverride } from '../src/types.js';
 import { walkAndReplaceProjectFiles } from '../src/walker/index.js';
 import { getAllProjectFiles } from './project-loader.js';
 import { writeFile } from 'node:fs/promises';
 import { preFixForJsPlugins } from '../src/js_plugin_fixes.js';
 import { DefaultReporter } from '../src/reporter.js';
+import { isOffValue } from '../src/plugins_rules.js';
+import {
+  formatMigrationOutput,
+  displayMigrationResult,
+} from './output-formatter.js';
 
 const cwd = process.cwd();
 
@@ -24,6 +29,37 @@ const getFileContent = (absoluteFilePath: string): string | undefined => {
   } catch {
     return undefined;
   }
+};
+
+/**
+ * Count enabled rules (excluding "off" rules) from both rules and overrides
+ * @param config The oxlint configuration object
+ * @returns The total number of enabled rules
+ */
+const countEnabledRules = (config: OxlintConfig): number => {
+  const enabledRules = new Set<string>();
+
+  if (config.rules) {
+    Object.entries(config.rules).forEach(([ruleName, ruleValue]) => {
+      if (!isOffValue(ruleValue)) {
+        enabledRules.add(ruleName);
+      }
+    });
+  }
+
+  if (config.overrides && Array.isArray(config.overrides)) {
+    config.overrides.forEach((override: OxlintConfigOverride) => {
+      if (override.rules) {
+        Object.entries(override.rules).forEach(([ruleName, ruleValue]) => {
+          if (!isOffValue(ruleValue)) {
+            enabledRules.add(ruleName);
+          }
+        });
+      }
+    });
+  }
+
+  return enabledRules.size;
 };
 
 program
@@ -56,6 +92,11 @@ program
   .option(
     '--js-plugins',
     'Tries to convert unsupported oxlint plugins with `jsPlugins`.'
+  )
+  .option(
+    '--details',
+    'Show comprehensive output with all skipped rules (default: summary with limited examples)',
+    false
   )
   .action(async (filePath: string | undefined) => {
     const cliOptions = program.opts();
@@ -116,9 +157,22 @@ program
 
     writeFileSync(oxlintFilePath, JSON.stringify(oxlintConfig, null, 2));
 
-    for (const report of reporter.getReports()) {
-      console.warn(report);
-    }
+    const enabledRulesCount = countEnabledRules(oxlintConfig);
+    reporter.setEnabledRulesCount(enabledRulesCount);
+
+    const outputMessage = formatMigrationOutput({
+      outputFileName: cliOptions.outputFile,
+      enabledRulesCount,
+      skippedRulesByCategory: reporter.getSkippedRulesByCategory(),
+      cliOptions: {
+        withNursery: !!cliOptions.withNursery,
+        typeAware: !!cliOptions.typeAware,
+        details: !!cliOptions.details,
+      },
+      eslintConfigPath: filePath,
+    });
+
+    displayMigrationResult(outputMessage, reporter.getWarnings());
   });
 
 program.parse();

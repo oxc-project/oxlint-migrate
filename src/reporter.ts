@@ -5,23 +5,20 @@ import {
 } from './types.js';
 
 export class DefaultReporter implements Reporter {
-  private reports = new Set<string>();
+  private warnings = new Set<string>();
   private skippedRules = new Map<RuleSkippedCategory, Set<string>>([
     ['nursery', new Set<string>()],
     ['type-aware', new Set<string>()],
     ['unsupported', new Set<string>()],
   ]);
+  private enabledRulesCount = 0;
 
-  public report(message: string): void {
-    this.reports.add(message);
+  public addWarning(message: string): void {
+    this.warnings.add(message);
   }
 
-  public remove(message: string): void {
-    this.reports.delete(message);
-  }
-
-  public getReports(): string[] {
-    return Array.from(this.reports);
+  public getWarnings(): string[] {
+    return Array.from(this.warnings);
   }
 
   public markSkipped(rule: string, category: RuleSkippedCategory): void {
@@ -43,18 +40,22 @@ export class DefaultReporter implements Reporter {
     }
     return result;
   }
+
+  public setEnabledRulesCount(count: number): void {
+    this.enabledRulesCount = count;
+  }
+
+  public getEnabledRulesCount(): number {
+    return this.enabledRulesCount;
+  }
 }
 
 export class SilentReporter implements Reporter {
-  public report(_message: string): void {
+  public addWarning(_message: string): void {
     // Do nothing
   }
 
-  public remove(_message: string): void {
-    // Do nothing
-  }
-
-  public getReports(): string[] {
+  public getWarnings(): string[] {
     return [];
   }
 
@@ -72,5 +73,13 @@ export class SilentReporter implements Reporter {
       'type-aware': [],
       unsupported: [],
     };
+  }
+
+  public setEnabledRulesCount(_count: number): void {
+    // Do nothing
+  }
+
+  public getEnabledRulesCount(): number {
+    return 0;
   }
 }

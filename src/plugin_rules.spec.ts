@@ -145,13 +145,19 @@ describe('rules and plugins', () => {
 
       transformRuleEntry(enabledConfig, config, { reporter });
       transformRuleEntry(disabledConfig, config, { reporter });
-      expect(reporter.getReports()).toStrictEqual([]);
+      expect(reporter.getSkippedRulesByCategory()).toStrictEqual({
+        nursery: [],
+        'type-aware': [],
+        unsupported: [],
+      });
 
       transformRuleEntry(enabledConfig, config, { reporter });
       transformRuleEntry(enabledInOverrideConfig, config, { reporter });
-      expect(reporter.getReports()).toStrictEqual([
-        'unsupported rule: unknown-rule',
-      ]);
+      expect(reporter.getSkippedRulesByCategory()).toStrictEqual({
+        nursery: [],
+        'type-aware': [],
+        unsupported: ['unknown-rule'],
+      });
     });
 
     test('ensure jsPlugin rule is disabled if the last config object disables it', () => {
@@ -184,7 +190,7 @@ describe('rules and plugins', () => {
       // the rule should not be present in the config anymore
       expect(config.rules?.['regexp/no-lazy-ends']).toBeUndefined();
       expect(config.jsPlugins).toContain('eslint-plugin-regexp');
-      expect(reporter.getReports()).toStrictEqual([]);
+      expect(reporter.getWarnings()).toStrictEqual([]);
     });
 
     test('ensure jsPlugin rule is enabled if the last config object enables it', () => {
@@ -220,7 +226,7 @@ describe('rules and plugins', () => {
         { ignorePartial: false },
       ]);
       expect(config.jsPlugins).toContain('eslint-plugin-regexp');
-      expect(reporter.getReports()).toStrictEqual([]);
+      expect(reporter.getWarnings()).toStrictEqual([]);
     });
 
     test('jsPlugin rule disabled in override keeps base enabled', () => {
@@ -265,7 +271,7 @@ describe('rules and plugins', () => {
       // plugin should not be added for a disabled rule in an override
       expect(overrideTarget.jsPlugins).toBeUndefined();
 
-      expect(reporter.getReports()).toStrictEqual([]);
+      expect(reporter.getWarnings()).toStrictEqual([]);
     });
 
     test('includes jsPlugin in base config when plugin rule is used', () => {
@@ -283,7 +289,7 @@ describe('rules and plugins', () => {
 
       expect(target.rules?.['mocha/no-pending-tests']).toBe('error');
       expect(target.jsPlugins).toContain('eslint-plugin-mocha');
-      expect(reporter.getReports()).toStrictEqual([]);
+      expect(reporter.getWarnings()).toStrictEqual([]);
     });
 
     test('does not include jsPlugin in base config when plugin rule is used but set to off', () => {
@@ -301,7 +307,7 @@ describe('rules and plugins', () => {
 
       expect(target.rules?.['mocha/no-pending-tests']).toBeUndefined();
       expect(target.jsPlugins).toBeUndefined();
-      expect(reporter.getReports()).toStrictEqual([]);
+      expect(reporter.getWarnings()).toStrictEqual([]);
     });
 
     test('does include jsPlugin in base config when one rule is off and another is error', () => {
@@ -321,7 +327,7 @@ describe('rules and plugins', () => {
       expect(target.rules?.['mocha/no-pending-tests']).toBeUndefined();
       expect(target.rules?.['mocha/no-skip-tests']).toBe('error');
       expect(target.jsPlugins).toContain('eslint-plugin-mocha');
-      expect(reporter.getReports()).toStrictEqual([]);
+      expect(reporter.getWarnings()).toStrictEqual([]);
     });
   });
 

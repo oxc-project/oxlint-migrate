@@ -18,7 +18,7 @@ export const getSnapshotResult = async (
   return {
     config: result,
     warnings: reporter
-      .getReports()
+      .getWarnings()
       // filter out unsupported rules
       .filter((error) => !error.startsWith('unsupported rule: local/'))
       // .filter((error) => !error.startsWith('unsupported rule: perfectionist/'))
