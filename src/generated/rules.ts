@@ -499,6 +499,7 @@ export const restrictionRules = [
   'import-x/no-dynamic-require',
   'import-x/no-webpack-loader-syntax',
   'import-x/unambiguous',
+  'react-refresh/only-export-components',
 ];
 
 export const correctnessRules = [

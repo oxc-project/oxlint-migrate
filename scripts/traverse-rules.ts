@@ -54,8 +54,9 @@ function fixValueOfRule(rule: Rule): void {
 }
 
 /**
- * some rules are reimplemented in another scope
- * remap them so we can disable all the reimplemented too
+ * Some rules are reimplemented in another scope,
+ * we need to set up their aliases so we can discover
+ * them in the list of rules.
  */
 function getAliasRules(rule: Rule): Rule | undefined {
   if (
@@ -81,6 +82,19 @@ function getAliasRules(rule: Rule): Rule | undefined {
     return {
       value: `import-x/${rule.value}`,
       scope: 'import-x',
+      category: rule.category,
+    };
+  }
+
+  // This rule comes from eslint-plugin-react-refresh but is namespaced under `react/`.
+  // When generating the list of rules that can be ported, we need to create
+  // `react-refresh/only-export-components` as the supported rule name.
+  // It will be renamed back to `react/only-export-components` for the
+  // `.oxlintrc.json`.
+  if (rule.scope === 'react' && rule.value === 'only-export-components') {
+    return {
+      value: `react-refresh/${rule.value}`,
+      scope: 'react-refresh',
       category: rule.category,
     };
   }

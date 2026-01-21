@@ -10,18 +10,19 @@ exports[`eslint-plugin-react-refresh > eslint-plugin-react-refresh 1`] = `
     "env": {
       "builtin": true,
     },
-    "plugins": [],
+    "plugins": [
+      "react",
+    ],
+    "rules": {
+      "react-refresh/only-export-components": "error",
+    },
   },
   "skipped": {
     "nursery": [],
     "type-aware": [],
-    "unsupported": [
-      "react-refresh/only-export-components",
-    ],
+    "unsupported": [],
   },
-  "warnings": [
-    "unsupported rule: react-refresh/only-export-components",
-  ],
+  "warnings": [],
 }
 `;
 
@@ -35,18 +36,19 @@ exports[`eslint-plugin-react-refresh --js-plugins > eslint-plugin-react-refresh-
     "env": {
       "builtin": true,
     },
-    "plugins": [],
+    "plugins": [
+      "react",
+    ],
+    "rules": {
+      "react-refresh/only-export-components": "error",
+    },
   },
   "skipped": {
     "nursery": [],
     "type-aware": [],
-    "unsupported": [
-      "react-refresh/only-export-components",
-    ],
+    "unsupported": [],
   },
-  "warnings": [
-    "unsupported rule: react-refresh/only-export-components",
-  ],
+  "warnings": [],
 }
 `;
 
@@ -60,18 +62,19 @@ exports[`eslint-plugin-react-refresh --type-aware > eslint-plugin-react-refresh-
     "env": {
       "builtin": true,
     },
-    "plugins": [],
+    "plugins": [
+      "react",
+    ],
+    "rules": {
+      "react-refresh/only-export-components": "error",
+    },
   },
   "skipped": {
     "nursery": [],
     "type-aware": [],
-    "unsupported": [
-      "react-refresh/only-export-components",
-    ],
+    "unsupported": [],
   },
-  "warnings": [
-    "unsupported rule: react-refresh/only-export-components",
-  ],
+  "warnings": [],
 }
 `;
 
@@ -86,17 +89,18 @@ exports[`eslint-plugin-react-refresh merge > eslint-plugin-react-refresh--merge 
     "env": {
       "builtin": true,
     },
-    "plugins": [],
+    "plugins": [
+      "react",
+    ],
+    "rules": {
+      "react-refresh/only-export-components": "error",
+    },
   },
   "skipped": {
     "nursery": [],
     "type-aware": [],
-    "unsupported": [
-      "react-refresh/only-export-components",
-    ],
+    "unsupported": [],
   },
-  "warnings": [
-    "unsupported rule: react-refresh/only-export-components",
-  ],
+  "warnings": [],
 }
 `;
