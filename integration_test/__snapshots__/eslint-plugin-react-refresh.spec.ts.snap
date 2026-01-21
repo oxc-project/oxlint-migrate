@@ -1,0 +1,104 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`eslint-plugin-react-refresh > eslint-plugin-react-refresh 1`] = `
+{
+  "config": {
+    "$schema": "./node_modules/oxlint/configuration_schema.json",
+    "categories": {
+      "correctness": "off",
+    },
+    "env": {
+      "builtin": true,
+    },
+    "plugins": [],
+  },
+  "skipped": {
+    "nursery": [],
+    "type-aware": [],
+    "unsupported": [
+      "react-refresh/only-export-components",
+    ],
+  },
+  "warnings": [
+    "unsupported rule: react-refresh/only-export-components",
+  ],
+}
+`;
+
+exports[`eslint-plugin-react-refresh --js-plugins > eslint-plugin-react-refresh--js-plugins 1`] = `
+{
+  "config": {
+    "$schema": "./node_modules/oxlint/configuration_schema.json",
+    "categories": {
+      "correctness": "off",
+    },
+    "env": {
+      "builtin": true,
+    },
+    "jsPlugins": [
+      "eslint-plugin-react-refresh",
+    ],
+    "plugins": [],
+    "rules": {
+      "react-refresh/only-export-components": "error",
+    },
+  },
+  "skipped": {
+    "nursery": [],
+    "type-aware": [],
+    "unsupported": [],
+  },
+  "warnings": [],
+}
+`;
+
+exports[`eslint-plugin-react-refresh --type-aware > eslint-plugin-react-refresh--type-aware 1`] = `
+{
+  "config": {
+    "$schema": "./node_modules/oxlint/configuration_schema.json",
+    "categories": {
+      "correctness": "off",
+    },
+    "env": {
+      "builtin": true,
+    },
+    "plugins": [],
+  },
+  "skipped": {
+    "nursery": [],
+    "type-aware": [],
+    "unsupported": [
+      "react-refresh/only-export-components",
+    ],
+  },
+  "warnings": [
+    "unsupported rule: react-refresh/only-export-components",
+  ],
+}
+`;
+
+exports[`eslint-plugin-react-refresh merge > eslint-plugin-react-refresh--merge 1`] = `
+{
+  "config": {
+    "$schema": "./node_modules/oxlint/configuration_schema.json",
+    "categories": {
+      "correctness": "error",
+      "perf": "error",
+    },
+    "env": {
+      "builtin": true,
+    },
+    "plugins": [],
+  },
+  "skipped": {
+    "nursery": [],
+    "type-aware": [],
+    "unsupported": [
+      "react-refresh/only-export-components",
+    ],
+  },
+  "warnings": [
+    "unsupported rule: react-refresh/only-export-components",
+  ],
+}
+`;
