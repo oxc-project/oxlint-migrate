@@ -11,6 +11,7 @@ import {
   cleanUpUselessOverridesPlugins,
   cleanUpUselessOverridesRules,
   replaceNodePluginName,
+  replaceReactRefreshPluginName,
   replaceTypescriptAliasRules,
 } from './plugins_rules.js';
 import {
@@ -99,6 +100,7 @@ export const cleanUpOxlintConfig = (config: OxlintConfigOrOverride): void => {
   transformBoolGlobalToString(config);
   replaceTypescriptAliasRules(config);
   replaceNodePluginName(config);
+  replaceReactRefreshPluginName(config);
   cleanUpRulesWhichAreCoveredByCategory(config);
 
   // no entries in globals, we can remove the globals key

@@ -11,6 +11,7 @@ export const rulesPrefixesForPlugins: Record<string, string> = {
   react: 'react',
   'react-perf': 'react-perf',
   'react-hooks': 'react',
+  'react-refresh': 'react',
   '@typescript-eslint': 'typescript',
   unicorn: 'unicorn',
   vitest: 'vitest',
