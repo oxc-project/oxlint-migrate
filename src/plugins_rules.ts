@@ -402,7 +402,7 @@ export const replaceTypescriptAliasRules = (
 };
 
 /**
- * Oxlint support them only under the node plugin name
+ * Oxlint supports eslint-plugin-n rules only under the `node` plugin name
  */
 export const replaceNodePluginName = (config: OxlintConfigOrOverride): void => {
   if (config.rules === undefined) {
