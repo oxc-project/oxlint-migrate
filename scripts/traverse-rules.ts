@@ -86,6 +86,15 @@ function getAliasRules(rule: Rule): Rule | undefined {
     };
   }
 
+  // Oxlint supports eslint-plugin-n rules only under the `node` plugin name.
+  if (rule.scope === 'node') {
+    return {
+      value: `n/${rule.value}`,
+      scope: 'n',
+      category: rule.category,
+    };
+  }
+
   // This rule comes from eslint-plugin-react-refresh but is namespaced under `react/`.
   // When generating the list of rules that can be ported, we need to create
   // `react-refresh/only-export-components` as the supported rule name.
