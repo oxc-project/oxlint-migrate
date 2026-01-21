@@ -14,7 +14,7 @@ exports[`eslint-plugin-react-refresh > eslint-plugin-react-refresh 1`] = `
       "react",
     ],
     "rules": {
-      "react-refresh/only-export-components": "error",
+      "react/only-export-components": "error",
     },
   },
   "skipped": {
@@ -40,7 +40,7 @@ exports[`eslint-plugin-react-refresh --js-plugins > eslint-plugin-react-refresh-
       "react",
     ],
     "rules": {
-      "react-refresh/only-export-components": "error",
+      "react/only-export-components": "error",
     },
   },
   "skipped": {
@@ -66,7 +66,7 @@ exports[`eslint-plugin-react-refresh --type-aware > eslint-plugin-react-refresh-
       "react",
     ],
     "rules": {
-      "react-refresh/only-export-components": "error",
+      "react/only-export-components": "error",
     },
   },
   "skipped": {
@@ -93,7 +93,7 @@ exports[`eslint-plugin-react-refresh merge > eslint-plugin-react-refresh--merge 
       "react",
     ],
     "rules": {
-      "react-refresh/only-export-components": "error",
+      "react/only-export-components": "error",
     },
   },
   "skipped": {

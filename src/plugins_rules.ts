@@ -422,3 +422,28 @@ export const replaceNodePluginName = (config: OxlintConfigOrOverride): void => {
     delete config.rules[rule];
   }
 };
+
+/**
+ * Oxlint supports the eslint-plugin-react-refresh/only-export-components rule
+ * under the `react` plugin name.
+ */
+export const replaceReactRefreshPluginName = (
+  config: OxlintConfigOrOverride
+): void => {
+  if (config.rules === undefined) {
+    return;
+  }
+
+  for (const rule of Object.keys(config.rules)) {
+    const prefix = 'react-refresh/';
+    if (!rule.startsWith(prefix)) {
+      continue;
+    }
+
+    const reactRefreshRule = `react/${rule.slice(prefix.length)}`;
+
+    config.rules[reactRefreshRule] = config.rules[rule];
+    // delete old rule
+    delete config.rules[rule];
+  }
+};
