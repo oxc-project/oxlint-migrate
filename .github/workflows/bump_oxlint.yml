@@ -30,8 +30,7 @@ jobs:
           OXLINT_VERSION: ${{ inputs.version }}
         run: |
           pnpm install oxlint@${OXLINT_VERSION}
-          pnpm run generate # Generate rules
-          pnpm run format # run oxfmt over it
+          pnpm run generate --version=${OXLINT_VERSION} # Generate rules
 
       - name: Test and update snapshot
         continue-on-error: true # we check in PR why it fails

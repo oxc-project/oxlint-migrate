@@ -12,10 +12,22 @@ if (!fs.existsSync(generateFolder)) {
   fs.mkdirSync(generateFolder);
 }
 
-// Generate the vitest-compatible-jest-rules.json file by pulling it from the main oxc repository.
+// Generate the vitest-compatible-jest-rules.json file by pulling it from the oxc repository.
 // This keeps the two in sync.
-// my commit on my branch, TODO: change to main
-const gitRef = '7ece6ab1f325d419741c92980d65418c9222009f';
+// Default to 'main' but allow overriding with --version (either --version=<ref> or --version <ref>)
+let gitRef = 'main';
+const versionArgIndex = process.argv.findIndex(
+  (a) => a === '--version' || a.startsWith('--version=')
+);
+if (versionArgIndex !== -1) {
+  const arg = process.argv[versionArgIndex];
+  if (arg.startsWith('--version=')) {
+    gitRef = arg.split('=')[1] || 'main';
+  } else {
+    gitRef = process.argv[versionArgIndex + 1] || 'main';
+  }
+}
+
 const githubURL = `https://raw.githubusercontent.com/oxc-project/oxc/${gitRef}/crates/oxc_linter/data/vitest_compatible_jest_rules.json`;
 const response = await fetch(githubURL);
 
