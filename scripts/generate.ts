@@ -14,3 +14,29 @@ if (!fs.existsSync(generateFolder)) {
 
 const generator = new RulesGenerator(result);
 await generator.generateRules(generateFolder);
+
+console.log('Rules generated successfully.');
+
+// Generate the vitest-compatible-jest-rules.json file by pulling it from the main oxc repository.
+// This keeps the two in sync.
+// my commit on my branch, TODO: change to main
+const gitRef = '7ece6ab1f325d419741c92980d65418c9222009f';
+const githubURL = `https://raw.githubusercontent.com/oxc-project/oxc/${gitRef}/crates/oxc_linter/data/vitest_compatible_jest_rules.json`;
+const response = await fetch(githubURL);
+
+if (!response.ok) {
+  throw new Error(
+    `Failed to fetch vitest-compatible-jest-rules.json: ${response.status} ${response.statusText}`
+  );
+}
+
+const vitestRules = await response.text();
+const vitestRulesPath = path.resolve(
+  generateFolder,
+  'vitest-compatible-jest-rules.json'
+);
+fs.writeFileSync(vitestRulesPath, vitestRules, 'utf-8');
+
+console.log(
+  'vitest-compatible-jest-rules.json copied successfully from the oxc repo.'
+);
