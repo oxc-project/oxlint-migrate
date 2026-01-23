@@ -14,53 +14,6 @@ export const aliasPluginNames: Record<string, string> = {
   jsx_a11y: 'jsx-a11y',
 };
 
-// Some vitest rules are re-implemented version of jest rules.
-// Since oxlint supports these rules under jest/*, we need to remap them.
-// remapping in source-code: <https://github.com/oxc-project/oxc/blob/94320ab6f60ef6aaedeb901b04ccb57e953f66bf/crates/oxc_linter/src/utils/mod.rs>
-export const viteTestCompatibleRules = [
-  'consistent-test-it',
-  'expect-expect',
-  'max-expects',
-  'max-nested-describe',
-  'no-alias-methods',
-  'no-commented-out-tests',
-  'no-conditional-expect',
-  'no-conditional-in-test',
-  'no-disabled-tests',
-  'no-duplicate-hooks',
-  'no-focused-tests',
-  'no-hooks',
-  'no-identical-title',
-  'no-interpolation-in-snapshots',
-  'no-large-snapshots',
-  'no-mocks-import',
-  'no-restricted-jest-methods',
-  'no-restricted-matchers',
-  'no-standalone-expect',
-  'no-test-prefixes',
-  'no-test-return-statement',
-  'prefer-called-with',
-  'prefer-comparison-matcher',
-  'prefer-each',
-  'prefer-equality-matcher',
-  'prefer-expect-resolves',
-  'require-hook',
-  'prefer-hooks-in-order',
-  'prefer-hooks-on-top',
-  'prefer-lowercase-title',
-  'prefer-mock-promise-shorthand',
-  'prefer-spy-on',
-  'prefer-strict-equal',
-  'prefer-to-be',
-  'prefer-to-contain',
-  'prefer-to-have-length',
-  'prefer-todo',
-  'require-to-throw-message',
-  'require-top-level-describe',
-  'valid-describe-callback',
-  'valid-expect',
-];
-
 export const unicornRulesExtendEslintRules = ['no-negated-condition'];
 
 // All rules from `eslint-plugin-react-hooks`

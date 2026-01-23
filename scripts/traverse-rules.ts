@@ -3,8 +3,9 @@ import {
   aliasPluginNames,
   reactHookRulesInsideReactScope,
   unicornRulesExtendEslintRules,
-  viteTestCompatibleRules,
 } from './constants.js';
+
+import vitestCompatibleRules from '../src/generated/vitest-compatible-jest-rules.json' with { type: 'json' };
 import { typescriptRulesExtendEslintRules } from '../src/constants.js';
 
 export type Rule = {
@@ -70,7 +71,7 @@ function getAliasRules(rule: Rule): Rule | undefined {
     };
   }
 
-  if (rule.scope === 'jest' && viteTestCompatibleRules.includes(rule.value)) {
+  if (rule.scope === 'jest' && vitestCompatibleRules.includes(rule.value)) {
     return {
       value: `vitest/${rule.value}`,
       scope: 'vitest',

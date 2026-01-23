@@ -12,11 +12,6 @@ if (!fs.existsSync(generateFolder)) {
   fs.mkdirSync(generateFolder);
 }
 
-const generator = new RulesGenerator(result);
-await generator.generateRules(generateFolder);
-
-console.log('Rules generated successfully.');
-
 // Generate the vitest-compatible-jest-rules.json file by pulling it from the main oxc repository.
 // This keeps the two in sync.
 // my commit on my branch, TODO: change to main
@@ -40,3 +35,8 @@ fs.writeFileSync(vitestRulesPath, vitestRules, 'utf-8');
 console.log(
   'vitest-compatible-jest-rules.json copied successfully from the oxc repo.'
 );
+
+const generator = new RulesGenerator(result);
+await generator.generateRules(generateFolder);
+
+console.log('Rules generated successfully.');
