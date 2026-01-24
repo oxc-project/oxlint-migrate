@@ -16,7 +16,7 @@ if (!fs.existsSync(generateFolder)) {
 // Generate the vitest-compatible-jest-rules.json file by pulling it from the oxc repository.
 // This keeps the two in sync.
 // Use the version of the package to determine which git ref to pull from.
-const gitRef = `v${packageJson.version}`;
+const gitRef = `oxlint_v${packageJson.version}`;
 
 const githubURL = `https://raw.githubusercontent.com/oxc-project/oxc/${gitRef}/crates/oxc_linter/data/vitest_compatible_jest_rules.json`;
 const response = await fetch(githubURL);
