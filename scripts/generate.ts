@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { RulesGenerator } from './generator.js';
 import { traverseRules } from './traverse-rules.js';
+import packageJson from '../package.json' with { type: 'json' };
 
 const result = traverseRules();
 
@@ -14,19 +15,8 @@ if (!fs.existsSync(generateFolder)) {
 
 // Generate the vitest-compatible-jest-rules.json file by pulling it from the oxc repository.
 // This keeps the two in sync.
-// Default to 'main' but allow overriding with --version (either --version=<ref> or --version <ref>)
-let gitRef = 'main';
-const versionArgIndex = process.argv.findIndex(
-  (a) => a === '--version' || a.startsWith('--version=')
-);
-if (versionArgIndex !== -1) {
-  const arg = process.argv[versionArgIndex];
-  if (arg.startsWith('--version=')) {
-    gitRef = arg.split('=')[1] || 'main';
-  } else {
-    gitRef = process.argv[versionArgIndex + 1] || 'main';
-  }
-}
+// Use the version of the package to determine which git ref to pull from.
+const gitRef = `v${packageJson.version}`;
 
 const githubURL = `https://raw.githubusercontent.com/oxc-project/oxc/${gitRef}/crates/oxc_linter/data/vitest_compatible_jest_rules.json`;
 const response = await fetch(githubURL);
