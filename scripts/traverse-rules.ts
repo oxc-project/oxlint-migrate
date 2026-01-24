@@ -5,7 +5,7 @@ import {
   unicornRulesExtendEslintRules,
 } from './constants.js';
 
-import vitestCompatibleRules from '../src/generated/vitest-compatible-jest-rules.json' with { type: 'json' };
+import vitestCompatibleRules from './generated/vitest-compatible-jest-rules.json' with { type: 'json' };
 import { typescriptRulesExtendEslintRules } from '../src/constants.js';
 
 export type Rule = {

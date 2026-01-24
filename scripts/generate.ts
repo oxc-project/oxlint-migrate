@@ -7,7 +7,7 @@ import packageJson from '../package.json' with { type: 'json' };
 const result = traverseRules();
 
 const __dirname = new URL('.', import.meta.url).pathname;
-const generateFolder = path.resolve(__dirname, '..', `src/generated`);
+const generateFolder = path.resolve(__dirname, `generated`);
 
 if (!fs.existsSync(generateFolder)) {
   fs.mkdirSync(generateFolder);
