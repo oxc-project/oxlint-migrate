@@ -6,6 +6,8 @@
 
 Generates a `.oxlintrc.json` from an existing ESLint flat config.
 
+See [the Migration Guide in the Oxlint docs](https://oxc.rs/docs/guide/usage/linter/migrate-from-eslint.html) for more information on migrating from ESLint to Oxlint.
+
 ## Usage
 
 ```shell
