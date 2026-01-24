@@ -77,7 +77,7 @@ Here are some known caveats to be aware of:
 
 The `settings` field (e.g. for setting the React version) is not migrated to the oxlint config yet. You may need to copy it over manually if you have any settings specified.
 
-Not all `settings` options are supported by oxlint and so rule behavior in certain edge-cases may differ.
+Not all `settings` options are supported by oxlint and so rule behavior in certain edge-cases may differ. See [the Settings docs](https://oxc.rs/docs/guide/usage/linter/config-file-reference.html#settings) for more info.
 
 **Local ESLint Plugins imported via path are not migrated**
 
