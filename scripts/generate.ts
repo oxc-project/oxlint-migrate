@@ -4,13 +4,14 @@ import { RulesGenerator } from './generator.js';
 import { traverseRules } from './traverse-rules.js';
 // import packageJson from '../package.json' with { type: 'json' };
 
-const result = traverseRules();
+// --- Generate the vitest rules file ---
 
 const __dirname = new URL('.', import.meta.url).pathname;
-const generateFolder = path.resolve(__dirname, `generated`);
+// `<repo>/scripts/generated/`
+const scriptsGenerateFolder = path.resolve(__dirname, `generated`);
 
-if (!fs.existsSync(generateFolder)) {
-  fs.mkdirSync(generateFolder);
+if (!fs.existsSync(scriptsGenerateFolder)) {
+  fs.mkdirSync(scriptsGenerateFolder);
 }
 
 // Generate the vitest-compatible-jest-rules.json file by pulling it from the oxc repository.
@@ -30,7 +31,7 @@ if (!response.ok) {
 
 const vitestRules = await response.text();
 const vitestRulesPath = path.resolve(
-  generateFolder,
+  scriptsGenerateFolder,
   'vitest-compatible-jest-rules.json'
 );
 fs.writeFileSync(vitestRulesPath, vitestRules, 'utf-8');
@@ -39,7 +40,17 @@ console.log(
   'vitest-compatible-jest-rules.json copied successfully from the oxc repo.'
 );
 
+// --- Generate the rules files ---
+
+const result = traverseRules();
 const generator = new RulesGenerator(result);
+
+// `<repo>/src/generated/`
+const generateFolder = path.resolve(__dirname, '..', `src/generated`);
+if (!fs.existsSync(generateFolder)) {
+  fs.mkdirSync(generateFolder);
+}
+
 await generator.generateRules(generateFolder);
 
 console.log('Rules generated successfully.');
