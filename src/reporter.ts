@@ -39,7 +39,6 @@ export class DefaultReporter implements Reporter {
     }
     return result;
   }
-
 }
 
 export class SilentReporter implements Reporter {
@@ -66,5 +65,4 @@ export class SilentReporter implements Reporter {
       unsupported: [],
     };
   }
-
 }
