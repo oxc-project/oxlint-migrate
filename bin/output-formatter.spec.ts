@@ -45,11 +45,11 @@ describe('formatCategorySummary', () => {
 
     expect(result).toBe(
       '     - 5 Type-aware \n' +
-        '     - rule1\n' +
-        '     - rule2\n' +
-        '     - rule3\n' +
-        '     - rule4\n' +
-        '     - rule5\n'
+      '       - rule1\n' +
+      '       - rule2\n' +
+      '       - rule3\n' +
+      '       - rule4\n' +
+      '       - rule5\n'
     );
   });
 
@@ -362,7 +362,7 @@ describe('formatMigrationOutput', () => {
 
     const result = formatMigrationOutput(data);
 
-    expect(result).not.toContain('💡 Use --details');
+    expect(result).not.toContain('Use --details');
   });
 
   it('should NOT show --details hint when details=true', () => {

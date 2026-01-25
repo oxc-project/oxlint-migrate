@@ -12,7 +12,7 @@ const CATEGORY_METADATA: Record<RuleSkippedCategory, CategoryMetadata> = {
   unsupported: { label: 'Unsupported' },
 };
 const MAX_LABEL_LENGTH = Math.max(
-  ...Object.values(CATEGORY_METADATA).map(meta => meta.label.length)
+  ...Object.values(CATEGORY_METADATA).map((meta) => meta.label.length)
 );
 
 export type MigrationOutputData = {
@@ -43,7 +43,7 @@ export function formatCategorySummary(
     // vertical list format
     let output = `     - ${count} ${paddedLabel}\n`;
     for (const rule of examples) {
-      output += `     - ${rule}\n`;
+      output += `       - ${rule}\n`;
     }
     return output;
   } else {
@@ -84,7 +84,9 @@ export function formatMigrationOutput(data: MigrationOutputData): string {
   let output = '';
   const showAll = data.cliOptions.details || false;
 
-  if (data.enabledRulesCount > 0) {
+  if (data.enabledRulesCount === 0) {
+    output += `\n⚠️ ${data.outputFileName} created with no rules enabled.\n`;
+  } else {
     output += `\n✨ ${data.outputFileName} created with ${data.enabledRulesCount} rules.\n`;
   }
 
