@@ -9,7 +9,7 @@ import {
 } from './config-loader.js';
 import main from '../src/index.js';
 import packageJson from '../package.json' with { type: 'json' };
-import { Options, OxlintConfig, OxlintConfigOverride } from '../src/types.js';
+import { Options, OxlintConfig } from '../src/types.js';
 import { walkAndReplaceProjectFiles } from '../src/walker/index.js';
 import { getAllProjectFiles } from './project-loader.js';
 import { writeFile } from 'node:fs/promises';
@@ -38,23 +38,23 @@ const countEnabledRules = (config: OxlintConfig): number => {
   const enabledRules = new Set<string>();
 
   if (config.rules) {
-    Object.entries(config.rules).forEach(([ruleName, ruleValue]) => {
+    for (const [ruleName, ruleValue] of Object.entries(config.rules)) {
       if (!isOffValue(ruleValue)) {
         enabledRules.add(ruleName);
       }
-    });
+    }
   }
 
   if (config.overrides && Array.isArray(config.overrides)) {
-    config.overrides.forEach((override: OxlintConfigOverride) => {
+    for (const override of config.overrides) {
       if (override.rules) {
-        Object.entries(override.rules).forEach(([ruleName, ruleValue]) => {
+        for (const [ruleName, ruleValue] of Object.entries(override.rules)) {
           if (!isOffValue(ruleValue)) {
             enabledRules.add(ruleName);
           }
-        });
+        }
       }
-    });
+    }
   }
 
   return enabledRules.size;
