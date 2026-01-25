@@ -5,9 +5,9 @@ exports[`formatMigrationOutput > should NOT show --details hint when all categor
 ✨ .oxlintrc.json created with 10 rules.
 
    Skipped 6 rules:
-     - 3 Nursery     (Experimental: rule1, rule2, rule3)
-     - 1 Type-aware  (Requires TS info: rule4)
-     - 2 Unsupported (rule5, rule6)
+     -   3 Nursery     (Experimental: rule1, rule2, rule3)
+     -   1 Type-aware  (Requires TS info: rule4)
+     -   2 Unsupported (rule5, rule6)
 
 👉 Re-run with flags to include more:
      npx @oxlint/migrate --with-nursery --type-aware
@@ -41,9 +41,9 @@ exports[`formatMigrationOutput > should format complete output with all sections
 ✨ .oxlintrc.json created with 24 rules.
 
    Skipped 5 rules:
-     - 3 Nursery     (Experimental: getter-return, no-undef, no-unreachable)
-     - 1 Type-aware  (Requires TS info: await-thenable)
-     - 1 Unsupported (prefer-const)
+     -   3 Nursery     (Experimental: getter-return, no-undef, no-unreachable)
+     -   1 Type-aware  (Requires TS info: await-thenable)
+     -   1 Unsupported (prefer-const)
 
 👉 Re-run with flags to include more:
      npx @oxlint/migrate eslint.config.mjs --with-nursery --type-aware
@@ -58,7 +58,7 @@ exports[`formatMigrationOutput > should handle eslintConfigPath being undefined 
 ✨ .oxlintrc.json created with 10 rules.
 
    Skipped 1 rules:
-     - 1 Nursery     (Experimental: rule1)
+     -   1 Nursery     (Experimental: rule1)
 
 👉 Re-run with flags to include more:
      npx @oxlint/migrate --with-nursery
@@ -73,7 +73,7 @@ exports[`formatMigrationOutput > should handle more than 3 rules with "etc." in 
 ✨ .oxlintrc.json created with 10 rules.
 
    Skipped 4 rules:
-     - 4 Nursery     (Experimental: rule1, rule2, rule3, etc.)
+     -   4 Nursery     (Experimental: rule1, rule2, rule3, etc.)
 
      Tip: Use --details to see the full list.
 
@@ -90,7 +90,7 @@ exports[`formatMigrationOutput > should handle no enabled rules 1`] = `
 ⚠️ .oxlintrc.json created with no rules enabled.
 
    Skipped 1 rules:
-     - 1 Unsupported (rule1)
+     -   1 Unsupported (rule1)
 "
 `;
 
@@ -114,8 +114,8 @@ exports[`formatMigrationOutput > should not show missing flags section when flag
 ✨ .oxlintrc.json created with 24 rules.
 
    Skipped 2 rules:
-     - 1 Nursery     (Experimental: getter-return)
-     - 1 Type-aware  (Requires TS info: await-thenable)
+     -   1 Nursery     (Experimental: getter-return)
+     -   1 Type-aware  (Requires TS info: await-thenable)
 
 🚀 Next:
      npx oxlint .
@@ -127,9 +127,9 @@ exports[`formatMigrationOutput > should show --details hint when any category ha
 ✨ .oxlintrc.json created with 10 rules.
 
    Skipped 8 rules:
-     - 5 Nursery     (Experimental: rule1, rule2, rule3, etc.)
-     - 1 Type-aware  (Requires TS info: rule6)
-     - 2 Unsupported (rule7, rule8)
+     -   5 Nursery     (Experimental: rule1, rule2, rule3, etc.)
+     -   1 Type-aware  (Requires TS info: rule6)
+     -   2 Unsupported (rule7, rule8)
 
      Tip: Use --details to see the full list.
 
@@ -165,7 +165,7 @@ exports[`formatMigrationOutput > should show only nursery rules when type-aware 
 ✨ .oxlintrc.json created with 10 rules.
 
    Skipped 2 rules:
-     - 2 Nursery     (Experimental: getter-return, no-undef)
+     -   2 Nursery     (Experimental: getter-return, no-undef)
 
 👉 Re-run with flags to include more:
      npx @oxlint/migrate --with-nursery

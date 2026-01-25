@@ -37,6 +37,7 @@ export function formatCategorySummary(
   showAll: boolean
 ): string {
   const meta = CATEGORY_METADATA[category];
+  const paddedCount = String(count).padStart(3);
   const paddedLabel = meta.label.padEnd(MAX_LABEL_LENGTH);
 
   if (showAll) {
@@ -53,7 +54,7 @@ export function formatCategorySummary(
     const exampleList = displayExamples.join(', ');
     const suffix = count > maxExamples ? ', etc.' : '';
     const prefix = meta.description ? `${meta.description} ` : '';
-    return `     - ${count} ${paddedLabel} (${prefix}${exampleList}${suffix})\n`;
+    return `     - ${paddedCount} ${paddedLabel} (${prefix}${exampleList}${suffix})\n`;
   }
 }
 

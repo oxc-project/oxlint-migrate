@@ -17,7 +17,7 @@ describe('formatCategorySummary', () => {
     );
 
     expect(result).toBe(
-      '     - 2 Nursery     (Experimental: getter-return, no-undef)\n'
+      '     -   2 Nursery     (Experimental: getter-return, no-undef)\n'
     );
   });
 
@@ -30,7 +30,7 @@ describe('formatCategorySummary', () => {
     );
 
     expect(result).toBe(
-      '     - 5 Type-aware  (Requires TS info: rule1, rule2, rule3, etc.)\n'
+      '     -   5 Type-aware  (Requires TS info: rule1, rule2, rule3, etc.)\n'
     );
   });
 
@@ -60,7 +60,7 @@ describe('formatCategorySummary', () => {
       false
     );
 
-    expect(result).toBe('     - 1 Unsupported (prefer-const)\n');
+    expect(result).toBe('     -   1 Unsupported (prefer-const)\n');
   });
 });
 
