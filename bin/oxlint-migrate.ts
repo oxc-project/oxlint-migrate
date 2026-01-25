@@ -95,7 +95,7 @@ program
   )
   .option(
     '--details',
-    'Show comprehensive output with all skipped rules (default: summary with limited examples)',
+    'List rules that could not be migrated to oxlint.',
     false
   )
   .action(async (filePath: string | undefined) => {
