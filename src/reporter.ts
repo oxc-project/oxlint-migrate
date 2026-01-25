@@ -11,7 +11,6 @@ export class DefaultReporter implements Reporter {
     ['type-aware', new Set<string>()],
     ['unsupported', new Set<string>()],
   ]);
-  private enabledRulesCount = 0;
 
   public addWarning(message: string): void {
     this.warnings.add(message);
@@ -41,13 +40,6 @@ export class DefaultReporter implements Reporter {
     return result;
   }
 
-  public setEnabledRulesCount(count: number): void {
-    this.enabledRulesCount = count;
-  }
-
-  public getEnabledRulesCount(): number {
-    return this.enabledRulesCount;
-  }
 }
 
 export class SilentReporter implements Reporter {
@@ -75,11 +67,4 @@ export class SilentReporter implements Reporter {
     };
   }
 
-  public setEnabledRulesCount(_count: number): void {
-    // Do nothing
-  }
-
-  public getEnabledRulesCount(): number {
-    return 0;
-  }
 }

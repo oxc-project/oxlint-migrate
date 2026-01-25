@@ -40,8 +40,6 @@ export type Reporter = {
   markSkipped(rule: string, category: RuleSkippedCategory): void;
   removeSkipped(rule: string, category: RuleSkippedCategory): void;
   getSkippedRulesByCategory(): SkippedCategoryGroup;
-  setEnabledRulesCount(count: number): void;
-  getEnabledRulesCount(): number;
 };
 
 export type Options = {

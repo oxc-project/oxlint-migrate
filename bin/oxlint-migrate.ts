@@ -156,7 +156,6 @@ program
     writeFileSync(oxlintFilePath, JSON.stringify(oxlintConfig, null, 2));
 
     const enabledRulesCount = countEnabledRules(oxlintConfig);
-    reporter.setEnabledRulesCount(enabledRulesCount);
 
     const outputMessage = formatMigrationOutput({
       outputFileName: cliOptions.outputFile,
