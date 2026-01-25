@@ -1,0 +1,198 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`formatMigrationOutput > should NOT show --details hint when all categories have <= 3 rules 1`] = `
+"
+✨ .oxlintrc.json created with 10 rules.
+
+   Skipped 6 rules:
+     - 3 Nursery     (Experimental: rule1, rule2, rule3)
+     - 1 Type-aware  (Requires TS info: rule4)
+     - 2 Unsupported (rule5, rule6)
+
+👉 Re-run with flags to include more:
+     npx @oxlint/migrate --with-nursery --type-aware
+
+🚀 Next:
+     npx oxlint .
+"
+`;
+
+exports[`formatMigrationOutput > should NOT show --details hint when details=true 1`] = `
+"
+✨ .oxlintrc.json created with 10 rules.
+
+   Skipped 4 rules:
+     - 4 Nursery    
+       - rule1
+       - rule2
+       - rule3
+       - rule4
+
+👉 Re-run with flags to include more:
+     npx @oxlint/migrate --with-nursery
+
+🚀 Next:
+     npx oxlint .
+"
+`;
+
+exports[`formatMigrationOutput > should format complete output with all sections 1`] = `
+"
+✨ .oxlintrc.json created with 24 rules.
+
+   Skipped 5 rules:
+     - 3 Nursery     (Experimental: getter-return, no-undef, no-unreachable)
+     - 1 Type-aware  (Requires TS info: await-thenable)
+     - 1 Unsupported (prefer-const)
+
+👉 Re-run with flags to include more:
+     npx @oxlint/migrate eslint.config.mjs --with-nursery --type-aware
+
+🚀 Next:
+     npx oxlint .
+"
+`;
+
+exports[`formatMigrationOutput > should handle eslintConfigPath being undefined 1`] = `
+"
+✨ .oxlintrc.json created with 10 rules.
+
+   Skipped 1 rules:
+     - 1 Nursery     (Experimental: rule1)
+
+👉 Re-run with flags to include more:
+     npx @oxlint/migrate --with-nursery
+
+🚀 Next:
+     npx oxlint .
+"
+`;
+
+exports[`formatMigrationOutput > should handle more than 3 rules with "etc." in summary mode 1`] = `
+"
+✨ .oxlintrc.json created with 10 rules.
+
+   Skipped 4 rules:
+     - 4 Nursery     (Experimental: rule1, rule2, rule3, etc.)
+
+     Tip: Use --details to see the full list.
+
+👉 Re-run with flags to include more:
+     npx @oxlint/migrate --with-nursery
+
+🚀 Next:
+     npx oxlint .
+"
+`;
+
+exports[`formatMigrationOutput > should handle no enabled rules 1`] = `
+"
+⚠️ .oxlintrc.json created with no rules enabled.
+
+   Skipped 1 rules:
+     - 1 Unsupported (rule1)
+"
+`;
+
+exports[`formatMigrationOutput > should handle no enabled rules and no skipped rules 1`] = `
+"
+⚠️ .oxlintrc.json created with no rules enabled.
+"
+`;
+
+exports[`formatMigrationOutput > should handle no skipped rules 1`] = `
+"
+✨ .oxlintrc.json created with 10 rules.
+
+🚀 Next:
+     npx oxlint .
+"
+`;
+
+exports[`formatMigrationOutput > should not show missing flags section when flags are enabled 1`] = `
+"
+✨ .oxlintrc.json created with 24 rules.
+
+   Skipped 2 rules:
+     - 1 Nursery     (Experimental: getter-return)
+     - 1 Type-aware  (Requires TS info: await-thenable)
+
+🚀 Next:
+     npx oxlint .
+"
+`;
+
+exports[`formatMigrationOutput > should show --details hint when any category has > 3 rules 1`] = `
+"
+✨ .oxlintrc.json created with 10 rules.
+
+   Skipped 8 rules:
+     - 5 Nursery     (Experimental: rule1, rule2, rule3, etc.)
+     - 1 Type-aware  (Requires TS info: rule6)
+     - 2 Unsupported (rule7, rule8)
+
+     Tip: Use --details to see the full list.
+
+👉 Re-run with flags to include more:
+     npx @oxlint/migrate --with-nursery --type-aware
+
+🚀 Next:
+     npx oxlint .
+"
+`;
+
+exports[`formatMigrationOutput > should show all rules in vertical list when details=true 1`] = `
+"
+✨ .oxlintrc.json created with 10 rules.
+
+   Skipped 4 rules:
+     - 4 Nursery    
+       - rule1
+       - rule2
+       - rule3
+       - rule4
+
+👉 Re-run with flags to include more:
+     npx @oxlint/migrate --with-nursery
+
+🚀 Next:
+     npx oxlint .
+"
+`;
+
+exports[`formatMigrationOutput > should show only nursery rules when type-aware is empty 1`] = `
+"
+✨ .oxlintrc.json created with 10 rules.
+
+   Skipped 2 rules:
+     - 2 Nursery     (Experimental: getter-return, no-undef)
+
+👉 Re-run with flags to include more:
+     npx @oxlint/migrate --with-nursery
+
+🚀 Next:
+     npx oxlint .
+"
+`;
+
+exports[`formatMigrationOutput > should show vertical list for multiple categories when details=true 1`] = `
+"
+✨ .oxlintrc.json created with 24 rules.
+
+   Skipped 5 rules:
+     - 2 Nursery    
+       - getter-return
+       - no-undef
+     - 1 Type-aware 
+       - await-thenable
+     - 2 Unsupported
+       - prefer-const
+       - camelcase
+
+👉 Re-run with flags to include more:
+     npx @oxlint/migrate --with-nursery --type-aware
+
+🚀 Next:
+     npx oxlint .
+"
+`;

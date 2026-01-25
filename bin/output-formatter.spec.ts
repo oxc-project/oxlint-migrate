@@ -1,9 +1,8 @@
-import { describe, expect, it, vi } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import {
   formatCategorySummary,
   detectMissingFlags,
   formatMigrationOutput,
-  displayMigrationResult,
   type MigrationOutputData,
 } from './output-formatter.js';
 import { SkippedCategoryGroup } from '../src/types.js';
@@ -45,11 +44,11 @@ describe('formatCategorySummary', () => {
 
     expect(result).toBe(
       '     - 5 Type-aware \n' +
-      '       - rule1\n' +
-      '       - rule2\n' +
-      '       - rule3\n' +
-      '       - rule4\n' +
-      '       - rule5\n'
+        '       - rule1\n' +
+        '       - rule2\n' +
+        '       - rule3\n' +
+        '       - rule4\n' +
+        '       - rule5\n'
     );
   });
 
@@ -146,24 +145,7 @@ describe('formatMigrationOutput', () => {
       eslintConfigPath: 'eslint.config.mjs',
     };
 
-    const result = formatMigrationOutput(data);
-
-    expect(result).toContain('.oxlintrc.json created with 24 rules.');
-    expect(result).toContain('Skipped 5 rules:');
-    expect(result).toContain('3 Nursery');
-    expect(result).toContain(
-      'Experimental: getter-return, no-undef, no-unreachable'
-    );
-    expect(result).toContain('1 Type-aware');
-    expect(result).toContain('Requires TS info: await-thenable');
-    expect(result).toContain('1 Unsupported');
-    expect(result).toContain('prefer-const');
-    expect(result).toContain('Re-run with flags to include more:');
-    expect(result).toContain(
-      'npx @oxlint/migrate eslint.config.mjs --with-nursery --type-aware'
-    );
-    expect(result).toContain('Next:');
-    expect(result).toContain('npx oxlint .');
+    expect(formatMigrationOutput(data)).toMatchSnapshot();
   });
 
   it('should handle no enabled rules', () => {
@@ -178,10 +160,22 @@ describe('formatMigrationOutput', () => {
       cliOptions: { withNursery: false, typeAware: false },
     };
 
-    const result = formatMigrationOutput(data);
+    expect(formatMigrationOutput(data)).toMatchSnapshot();
+  });
 
-    expect(result).not.toContain('Next:');
-    expect(result).toContain('Skipped 1 rules:');
+  it('should handle no enabled rules and no skipped rules', () => {
+    const data: MigrationOutputData = {
+      outputFileName: '.oxlintrc.json',
+      enabledRulesCount: 0,
+      skippedRulesByCategory: {
+        nursery: [],
+        'type-aware': [],
+        unsupported: [],
+      },
+      cliOptions: { withNursery: false, typeAware: false },
+    };
+
+    expect(formatMigrationOutput(data)).toMatchSnapshot();
   });
 
   it('should handle no skipped rules', () => {
@@ -196,11 +190,7 @@ describe('formatMigrationOutput', () => {
       cliOptions: { withNursery: false, typeAware: false },
     };
 
-    const result = formatMigrationOutput(data);
-
-    expect(result).toContain('.oxlintrc.json created with 10 rules.');
-    expect(result).not.toContain('skipped');
-    expect(result).toContain('Next:');
+    expect(formatMigrationOutput(data)).toMatchSnapshot();
   });
 
   it('should not show missing flags section when flags are enabled', () => {
@@ -215,9 +205,7 @@ describe('formatMigrationOutput', () => {
       cliOptions: { withNursery: true, typeAware: true },
     };
 
-    const result = formatMigrationOutput(data);
-
-    expect(result).not.toContain('Re-run with flags');
+    expect(formatMigrationOutput(data)).toMatchSnapshot();
   });
 
   it('should handle eslintConfigPath being undefined', () => {
@@ -233,10 +221,7 @@ describe('formatMigrationOutput', () => {
       eslintConfigPath: undefined,
     };
 
-    const result = formatMigrationOutput(data);
-
-    expect(result).toContain('npx @oxlint/migrate --with-nursery');
-    expect(result).not.toContain('eslint.config');
+    expect(formatMigrationOutput(data)).toMatchSnapshot();
   });
 
   it('should show only nursery rules when type-aware is empty', () => {
@@ -251,11 +236,7 @@ describe('formatMigrationOutput', () => {
       cliOptions: { withNursery: false, typeAware: false },
     };
 
-    const result = formatMigrationOutput(data);
-
-    expect(result).toContain('2 Nursery');
-    expect(result).not.toContain('Type-aware');
-    expect(result).not.toContain('Unsupported');
+    expect(formatMigrationOutput(data)).toMatchSnapshot();
   });
 
   it('should handle more than 3 rules with "etc." in summary mode', () => {
@@ -270,11 +251,7 @@ describe('formatMigrationOutput', () => {
       cliOptions: { withNursery: false, typeAware: false },
     };
 
-    const result = formatMigrationOutput(data);
-
-    expect(result).toContain('4 Nursery');
-    expect(result).toContain('rule1, rule2, rule3, etc.');
-    expect(result).not.toContain('rule4');
+    expect(formatMigrationOutput(data)).toMatchSnapshot();
   });
 
   it('should show all rules in vertical list when details=true', () => {
@@ -289,15 +266,7 @@ describe('formatMigrationOutput', () => {
       cliOptions: { withNursery: false, typeAware: false, details: true },
     };
 
-    const result = formatMigrationOutput(data);
-
-    expect(result).toContain('4 Nursery');
-    expect(result).toContain('     - rule1');
-    expect(result).toContain('     - rule2');
-    expect(result).toContain('     - rule3');
-    expect(result).toContain('     - rule4');
-    expect(result).not.toContain('etc.');
-    expect(result).not.toContain('Experimental:');
+    expect(formatMigrationOutput(data)).toMatchSnapshot();
   });
 
   it('should show vertical list for multiple categories when details=true', () => {
@@ -312,23 +281,7 @@ describe('formatMigrationOutput', () => {
       cliOptions: { withNursery: false, typeAware: false, details: true },
     };
 
-    const result = formatMigrationOutput(data);
-
-    // Check Nursery section
-    expect(result).toContain('2 Nursery');
-    expect(result).toContain('     - getter-return');
-    expect(result).toContain('     - no-undef');
-    expect(result).not.toContain('Experimental:');
-
-    // Check Type-aware section
-    expect(result).toContain('1 Type-aware');
-    expect(result).toContain('     - await-thenable');
-    expect(result).not.toContain('Requires TS info:');
-
-    // Check Unsupported section
-    expect(result).toContain('2 Unsupported');
-    expect(result).toContain('     - prefer-const');
-    expect(result).toContain('     - camelcase');
+    expect(formatMigrationOutput(data)).toMatchSnapshot();
   });
 
   it('should show --details hint when any category has > 3 rules', () => {
@@ -336,16 +289,14 @@ describe('formatMigrationOutput', () => {
       outputFileName: '.oxlintrc.json',
       enabledRulesCount: 10,
       skippedRulesByCategory: {
-        nursery: ['rule1', 'rule2', 'rule3', 'rule4', 'rule5'], // > 3
+        nursery: ['rule1', 'rule2', 'rule3', 'rule4', 'rule5'],
         'type-aware': ['rule6'],
         unsupported: ['rule7', 'rule8'],
       },
       cliOptions: { withNursery: false, typeAware: false },
     };
 
-    const result = formatMigrationOutput(data);
-
-    expect(result).toContain('Tip: Use --details to see the full list.');
+    expect(formatMigrationOutput(data)).toMatchSnapshot();
   });
 
   it('should NOT show --details hint when all categories have <= 3 rules', () => {
@@ -353,16 +304,14 @@ describe('formatMigrationOutput', () => {
       outputFileName: '.oxlintrc.json',
       enabledRulesCount: 10,
       skippedRulesByCategory: {
-        nursery: ['rule1', 'rule2', 'rule3'], // exactly 3
+        nursery: ['rule1', 'rule2', 'rule3'],
         'type-aware': ['rule4'],
         unsupported: ['rule5', 'rule6'],
       },
       cliOptions: { withNursery: false, typeAware: false },
     };
 
-    const result = formatMigrationOutput(data);
-
-    expect(result).not.toContain('Use --details');
+    expect(formatMigrationOutput(data)).toMatchSnapshot();
   });
 
   it('should NOT show --details hint when details=true', () => {
@@ -370,76 +319,13 @@ describe('formatMigrationOutput', () => {
       outputFileName: '.oxlintrc.json',
       enabledRulesCount: 10,
       skippedRulesByCategory: {
-        nursery: ['rule1', 'rule2', 'rule3', 'rule4'], // > 3 but details=true
+        nursery: ['rule1', 'rule2', 'rule3', 'rule4'],
         'type-aware': [],
         unsupported: [],
       },
       cliOptions: { withNursery: false, typeAware: false, details: true },
     };
 
-    const result = formatMigrationOutput(data);
-
-    expect(result).not.toContain('💡 Use --details');
-  });
-});
-
-describe('displayMigrationResult', () => {
-  it('should call console.log with output message', () => {
-    const consoleLogSpy = vi.spyOn(console, 'log').mockImplementation(() => {});
-    const consoleWarnSpy = vi
-      .spyOn(console, 'warn')
-      .mockImplementation(() => {});
-
-    const outputMessage = 'Success message';
-    const warnings: string[] = [];
-
-    displayMigrationResult(outputMessage, warnings);
-
-    expect(consoleLogSpy).toHaveBeenCalledWith(outputMessage);
-    expect(consoleLogSpy).toHaveBeenCalledTimes(1);
-    expect(consoleWarnSpy).not.toHaveBeenCalled();
-
-    consoleLogSpy.mockRestore();
-    consoleWarnSpy.mockRestore();
-  });
-
-  it('should call console.warn for each warning', () => {
-    const consoleLogSpy = vi.spyOn(console, 'log').mockImplementation(() => {});
-    const consoleWarnSpy = vi
-      .spyOn(console, 'warn')
-      .mockImplementation(() => {});
-
-    const outputMessage = 'Success message';
-    const warnings = [
-      'warning 1: parse failed',
-      'warning 2: unsupported config',
-    ];
-
-    displayMigrationResult(outputMessage, warnings);
-
-    expect(consoleLogSpy).toHaveBeenCalledWith(outputMessage);
-    expect(consoleWarnSpy).toHaveBeenCalledWith('warning 1: parse failed');
-    expect(consoleWarnSpy).toHaveBeenCalledWith(
-      'warning 2: unsupported config'
-    );
-    expect(consoleWarnSpy).toHaveBeenCalledTimes(2);
-
-    consoleLogSpy.mockRestore();
-    consoleWarnSpy.mockRestore();
-  });
-
-  it('should handle empty warnings array', () => {
-    const consoleLogSpy = vi.spyOn(console, 'log').mockImplementation(() => {});
-    const consoleWarnSpy = vi
-      .spyOn(console, 'warn')
-      .mockImplementation(() => {});
-
-    displayMigrationResult('message', []);
-
-    expect(consoleLogSpy).toHaveBeenCalledTimes(1);
-    expect(consoleWarnSpy).not.toHaveBeenCalled();
-
-    consoleLogSpy.mockRestore();
-    consoleWarnSpy.mockRestore();
+    expect(formatMigrationOutput(data)).toMatchSnapshot();
   });
 });
