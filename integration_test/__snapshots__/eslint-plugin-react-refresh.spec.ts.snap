@@ -1,0 +1,106 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`eslint-plugin-react-refresh > eslint-plugin-react-refresh 1`] = `
+{
+  "config": {
+    "$schema": "./node_modules/oxlint/configuration_schema.json",
+    "categories": {
+      "correctness": "off",
+    },
+    "env": {
+      "builtin": true,
+    },
+    "plugins": [
+      "react",
+    ],
+    "rules": {
+      "react/only-export-components": "error",
+    },
+  },
+  "skipped": {
+    "nursery": [],
+    "type-aware": [],
+    "unsupported": [],
+  },
+  "warnings": [],
+}
+`;
+
+exports[`eslint-plugin-react-refresh --js-plugins > eslint-plugin-react-refresh--js-plugins 1`] = `
+{
+  "config": {
+    "$schema": "./node_modules/oxlint/configuration_schema.json",
+    "categories": {
+      "correctness": "off",
+    },
+    "env": {
+      "builtin": true,
+    },
+    "plugins": [
+      "react",
+    ],
+    "rules": {
+      "react/only-export-components": "error",
+    },
+  },
+  "skipped": {
+    "nursery": [],
+    "type-aware": [],
+    "unsupported": [],
+  },
+  "warnings": [],
+}
+`;
+
+exports[`eslint-plugin-react-refresh --type-aware > eslint-plugin-react-refresh--type-aware 1`] = `
+{
+  "config": {
+    "$schema": "./node_modules/oxlint/configuration_schema.json",
+    "categories": {
+      "correctness": "off",
+    },
+    "env": {
+      "builtin": true,
+    },
+    "plugins": [
+      "react",
+    ],
+    "rules": {
+      "react/only-export-components": "error",
+    },
+  },
+  "skipped": {
+    "nursery": [],
+    "type-aware": [],
+    "unsupported": [],
+  },
+  "warnings": [],
+}
+`;
+
+exports[`eslint-plugin-react-refresh merge > eslint-plugin-react-refresh--merge 1`] = `
+{
+  "config": {
+    "$schema": "./node_modules/oxlint/configuration_schema.json",
+    "categories": {
+      "correctness": "error",
+      "perf": "error",
+    },
+    "env": {
+      "builtin": true,
+    },
+    "plugins": [
+      "react",
+    ],
+    "rules": {
+      "react/only-export-components": "error",
+    },
+  },
+  "skipped": {
+    "nursery": [],
+    "type-aware": [],
+    "unsupported": [],
+  },
+  "warnings": [],
+}
+`;

@@ -355,6 +355,8 @@ export const styleRules = [
   'vitest/prefer-todo',
   'vitest/require-hook',
   'vitest/require-top-level-describe',
+  'n/global-require',
+  'n/no-exports-assign',
 ];
 
 export const suspiciousRules = [
@@ -499,6 +501,9 @@ export const restrictionRules = [
   'import-x/no-dynamic-require',
   'import-x/no-webpack-loader-syntax',
   'import-x/unambiguous',
+  'n/no-process-env',
+  'n/no-new-require',
+  'react-refresh/only-export-components',
 ];
 
 export const correctnessRules = [
