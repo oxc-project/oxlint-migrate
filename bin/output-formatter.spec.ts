@@ -12,29 +12,33 @@ describe('formatCategorySummary', () => {
   it('should format with examples when count <= maxExamples', () => {
     const result = formatCategorySummary(
       2,
-      'Nursery',
+      'nursery',
       ['getter-return', 'no-undef'],
       false
     );
 
-    expect(result).toBe('   - 2 Nursery (getter-return, no-undef)\n');
+    expect(result).toBe(
+      '   - 2 Nursery    (Experimental: getter-return, no-undef)\n'
+    );
   });
 
   it('should add "etc." when count > maxExamples and showAll=false', () => {
     const result = formatCategorySummary(
       5,
-      'Type-aware',
+      'type-aware',
       ['rule1', 'rule2', 'rule3', 'rule4', 'rule5'],
       false
     );
 
-    expect(result).toBe('   - 5 Type-aware (rule1, rule2, rule3, etc.)\n');
+    expect(result).toBe(
+      '   - 5 Type-aware (Requires TS info: rule1, rule2, rule3, etc.)\n'
+    );
   });
 
   it('should show all rules in vertical list when showAll=true', () => {
     const result = formatCategorySummary(
       5,
-      'Type-aware',
+      'type-aware',
       ['rule1', 'rule2', 'rule3', 'rule4', 'rule5'],
       true
     );
@@ -52,7 +56,7 @@ describe('formatCategorySummary', () => {
   it('should handle single rule', () => {
     const result = formatCategorySummary(
       1,
-      'Unsupported',
+      'unsupported',
       ['prefer-const'],
       false
     );

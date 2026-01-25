@@ -1,5 +1,16 @@
 import path from 'node:path';
-import { SkippedCategoryGroup } from '../src/types.js';
+import { SkippedCategoryGroup, RuleSkippedCategory } from '../src/types.js';
+
+type CategoryMetadata = {
+  label: string;
+  description?: string;
+};
+
+const CATEGORY_METADATA: Record<RuleSkippedCategory, CategoryMetadata> = {
+  nursery: { label: 'Nursery   ', description: 'Experimental:' },
+  'type-aware': { label: 'Type-aware', description: 'Requires TS info:' },
+  unsupported: { label: 'Unsupported' },
+};
 
 export type MigrationOutputData = {
   outputFileName: string;
@@ -18,13 +29,15 @@ export type MigrationOutputData = {
  */
 export function formatCategorySummary(
   count: number,
-  label: string,
+  category: RuleSkippedCategory,
   examples: string[],
   showAll: boolean
 ): string {
+  const meta = CATEGORY_METADATA[category];
+
   if (showAll) {
     // vertical list format
-    let output = `   - ${count} ${label}\n`;
+    let output = `   - ${count} ${meta.label}\n`;
     for (const rule of examples) {
       output += `     - ${rule}\n`;
     }
@@ -35,7 +48,8 @@ export function formatCategorySummary(
     const displayExamples = examples.slice(0, maxExamples);
     const exampleList = displayExamples.join(', ');
     const suffix = count > maxExamples ? ', etc.' : '';
-    return `   - ${count} ${label} (${exampleList}${suffix})\n`;
+    const prefix = meta.description ? `${meta.description} ` : '';
+    return `   - ${count} ${meta.label} (${prefix}${exampleList}${suffix})\n`;
   }
 }
 
@@ -85,29 +99,27 @@ export function formatMigrationOutput(data: MigrationOutputData): string {
     output += `\n⚠️  ${totalSkipped} rules skipped:\n`;
 
     if (nurseryCount > 0) {
-      const formatted = formatCategorySummary(
+      output += formatCategorySummary(
         nurseryCount,
-        'Nursery   ',
+        'nursery',
         byCategory.nursery,
         showAll
       );
-      output += showAll ? formatted : formatted.replace('(', '(Experimental: ');
     }
 
     if (typeAwareCount > 0) {
-      const formatted = formatCategorySummary(
+      output += formatCategorySummary(
         typeAwareCount,
-        'Type-aware',
+        'type-aware',
         byCategory['type-aware'],
         showAll
       );
-      output += showAll ? formatted : formatted.replace('(', '(Requires TS info: ');
     }
 
     if (unsupportedCount > 0) {
       output += formatCategorySummary(
         unsupportedCount,
-        'Unsupported',
+        'unsupported',
         byCategory.unsupported,
         showAll
       );
