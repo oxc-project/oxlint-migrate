@@ -20,8 +20,7 @@ export function formatCategorySummary(
   count: number,
   label: string,
   examples: string[],
-  showAll: boolean = false,
-  maxExamples: number = 3
+  showAll: boolean
 ): string {
   if (showAll) {
     // vertical list format
@@ -32,6 +31,7 @@ export function formatCategorySummary(
     return output;
   } else {
     // inline format with examples
+    const maxExamples = 3;
     const displayExamples = examples.slice(0, maxExamples);
     const exampleList = displayExamples.join(', ');
     const suffix = count > maxExamples ? ', etc.' : '';
@@ -77,7 +77,6 @@ export function formatMigrationOutput(data: MigrationOutputData): string {
 
   if (totalSkipped > 0) {
     const byCategory = data.skippedRulesByCategory;
-    const maxExamples = 3;
 
     const nurseryCount = byCategory.nursery.length;
     const typeAwareCount = byCategory['type-aware'].length;
@@ -90,8 +89,7 @@ export function formatMigrationOutput(data: MigrationOutputData): string {
         nurseryCount,
         'Nursery   ',
         byCategory.nursery,
-        showAll,
-        maxExamples
+        showAll
       );
       output += showAll ? formatted : formatted.replace('(', '(Experimental: ');
     }
@@ -101,8 +99,7 @@ export function formatMigrationOutput(data: MigrationOutputData): string {
         typeAwareCount,
         'Type-aware',
         byCategory['type-aware'],
-        showAll,
-        maxExamples
+        showAll
       );
       output += showAll ? formatted : formatted.replace('(', '(Requires TS info: ');
     }
@@ -112,12 +109,12 @@ export function formatMigrationOutput(data: MigrationOutputData): string {
         unsupportedCount,
         'Unsupported',
         byCategory.unsupported,
-        showAll,
-        maxExamples
+        showAll
       );
     }
 
     if (!showAll) {
+      const maxExamples = 3;
       const hasOmittedRules =
         nurseryCount > maxExamples ||
         typeAwareCount > maxExamples ||

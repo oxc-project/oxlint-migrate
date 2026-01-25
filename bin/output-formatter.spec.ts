@@ -14,8 +14,7 @@ describe('formatCategorySummary', () => {
       2,
       'Nursery',
       ['getter-return', 'no-undef'],
-      false,
-      3
+      false
     );
 
     expect(result).toBe('   - 2 Nursery (getter-return, no-undef)\n');
@@ -26,8 +25,7 @@ describe('formatCategorySummary', () => {
       5,
       'Type-aware',
       ['rule1', 'rule2', 'rule3', 'rule4', 'rule5'],
-      false,
-      3
+      false
     );
 
     expect(result).toBe('   - 5 Type-aware (rule1, rule2, rule3, etc.)\n');
@@ -38,8 +36,7 @@ describe('formatCategorySummary', () => {
       5,
       'Type-aware',
       ['rule1', 'rule2', 'rule3', 'rule4', 'rule5'],
-      true,
-      3
+      true
     );
 
     expect(result).toBe(
@@ -53,21 +50,14 @@ describe('formatCategorySummary', () => {
   });
 
   it('should handle single rule', () => {
-    const result = formatCategorySummary(1, 'Unsupported', ['prefer-const']);
-
-    expect(result).toBe('   - 1 Unsupported (prefer-const)\n');
-  });
-
-  it('should use custom maxExamples', () => {
     const result = formatCategorySummary(
-      3,
-      'Nursery',
-      ['rule1', 'rule2', 'rule3'],
-      false,
-      2
+      1,
+      'Unsupported',
+      ['prefer-const'],
+      false
     );
 
-    expect(result).toBe('   - 3 Nursery (rule1, rule2, etc.)\n');
+    expect(result).toBe('   - 1 Unsupported (prefer-const)\n');
   });
 });
 
