@@ -14,13 +14,7 @@ export type MigrationOutputData = {
 };
 
 /**
- * Formats a single category summary line with count and examples
- * @param count Number of rules in this category
- * @param label Display label for the category
- * @param examples Array of rule names to show as examples
- * @param showAll Whether to show all rules (--details mode)
- * @param maxExamples Maximum number of examples to show in summary mode (default: 3)
- * @returns Formatted string line
+ * Formats a category summary as either inline (with example) or vertical list
  */
 export function formatCategorySummary(
   count: number,
@@ -30,14 +24,14 @@ export function formatCategorySummary(
   maxExamples: number = 3
 ): string {
   if (showAll) {
-    // Details mode: vertical list format
+    // vertical list format
     let output = `   - ${count} ${label}\n`;
     for (const rule of examples) {
       output += `     - ${rule}\n`;
     }
     return output;
   } else {
-    // Summary mode: inline format with examples
+    // inline format with examples
     const displayExamples = examples.slice(0, maxExamples);
     const exampleList = displayExamples.join(', ');
     const suffix = count > maxExamples ? ', etc.' : '';
@@ -47,9 +41,6 @@ export function formatCategorySummary(
 
 /**
  * Detects which CLI flags are missing and could enable more rules
- * @param byCategory Skipped rules aggregated by category
- * @param cliOptions Current CLI options
- * @returns Array of flag strings to suggest
  */
 export function detectMissingFlags(
   byCategory: SkippedCategoryGroup,
@@ -70,25 +61,20 @@ export function detectMissingFlags(
 
 /**
  * Formats the complete migration output message
- * @param data Migration output data
- * @returns Formatted output string ready for display
  */
 export function formatMigrationOutput(data: MigrationOutputData): string {
   let output = '';
   const showAll = data.cliOptions.details || false;
 
-  // Success message with enabled rules count
   if (data.enabledRulesCount > 0) {
     output += `\n✨ ${data.outputFileName} created with ${data.enabledRulesCount} rules.\n`;
   }
 
-  // Calculate total skipped rules
   const totalSkipped =
     data.skippedRulesByCategory.nursery.length +
     data.skippedRulesByCategory['type-aware'].length +
     data.skippedRulesByCategory.unsupported.length;
 
-  // Skipped rules summary
   if (totalSkipped > 0) {
     const byCategory = data.skippedRulesByCategory;
     const maxExamples = 3;
@@ -131,7 +117,6 @@ export function formatMigrationOutput(data: MigrationOutputData): string {
       );
     }
 
-    // Show hint if any category has omitted rules
     if (!showAll) {
       const hasOmittedRules =
         nurseryCount > maxExamples ||
@@ -154,7 +139,6 @@ export function formatMigrationOutput(data: MigrationOutputData): string {
     }
   }
 
-  // Next steps
   if (data.enabledRulesCount > 0) {
     output += `\n🚀 Next:\n`;
     output += `npx oxlint .\n`;
@@ -163,11 +147,6 @@ export function formatMigrationOutput(data: MigrationOutputData): string {
   return output;
 }
 
-/**
- * Displays the migration result to the console
- * @param outputMessage Formatted output message
- * @param warnings Additional warnings to display
- */
 export function displayMigrationResult(
   outputMessage: string,
   warnings: string[]
