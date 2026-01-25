@@ -33,29 +33,33 @@ export type MigrationOutputData = {
 export function formatCategorySummary(
   count: number,
   category: RuleSkippedCategory,
-  examples: string[],
+  rules: string[],
   showAll: boolean
 ): string {
   const meta = CATEGORY_METADATA[category];
-  const paddedCount = String(count).padStart(3);
-  const paddedLabel = meta.label.padEnd(MAX_LABEL_LENGTH);
 
-  if (showAll) {
-    // vertical list format
-    let output = `     - ${count} ${paddedLabel}\n`;
-    for (const rule of examples) {
-      output += `       - ${rule}\n`;
-    }
-    return output;
-  } else {
-    // inline format with examples
-    const maxExamples = 3;
-    const displayExamples = examples.slice(0, maxExamples);
-    const exampleList = displayExamples.join(', ');
-    const suffix = count > maxExamples ? ', etc.' : '';
+  if (!showAll) {
+    // inline format with rules
+    const maxRules = 3;
+    const displayRules = rules.slice(0, maxRules);
+    const exampleList = displayRules.join(', ');
+    const suffix = count > maxRules ? ', etc.' : '';
     const prefix = meta.description ? `${meta.description} ` : '';
+
+    // pad for vertical alignment
+    const paddedCount = String(count).padStart(3);
+    const paddedLabel = meta.label.padEnd(MAX_LABEL_LENGTH);
+
     return `     - ${paddedCount} ${paddedLabel} (${prefix}${exampleList}${suffix})\n`;
   }
+
+  // vertical list format
+  // Padding is unnecessary here as vertical alignment is interrupted by the example list.
+  let output = `     - ${count} ${meta.label}\n`;
+  for (const rule of rules) {
+    output += `       - ${rule}\n`;
+  }
+  return output;
 }
 
 /**

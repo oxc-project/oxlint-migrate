@@ -22,7 +22,7 @@ exports[`formatMigrationOutput > should NOT show --details hint when details=tru
 ✨ .oxlintrc.json created with 10 rules.
 
    Skipped 4 rules:
-     - 4 Nursery    
+     - 4 Nursery
        - rule1
        - rule2
        - rule3
@@ -146,7 +146,7 @@ exports[`formatMigrationOutput > should show all rules in vertical list when det
 ✨ .oxlintrc.json created with 10 rules.
 
    Skipped 4 rules:
-     - 4 Nursery    
+     - 4 Nursery
        - rule1
        - rule2
        - rule3
@@ -180,10 +180,10 @@ exports[`formatMigrationOutput > should show vertical list for multiple categori
 ✨ .oxlintrc.json created with 24 rules.
 
    Skipped 5 rules:
-     - 2 Nursery    
+     - 2 Nursery
        - getter-return
        - no-undef
-     - 1 Type-aware 
+     - 1 Type-aware
        - await-thenable
      - 2 Unsupported
        - prefer-const
