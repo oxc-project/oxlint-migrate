@@ -95,18 +95,13 @@ export function formatMigrationOutput(data: MigrationOutputData): string {
     output += `\n✨ ${data.outputFileName} created with ${data.enabledRulesCount} rules.\n`;
   }
 
-  const totalSkipped =
-    data.skippedRulesByCategory.nursery.length +
-    data.skippedRulesByCategory['type-aware'].length +
-    data.skippedRulesByCategory.unsupported.length;
+  const byCategory = data.skippedRulesByCategory;
+  const nurseryCount = byCategory.nursery.length;
+  const typeAwareCount = byCategory['type-aware'].length;
+  const unsupportedCount = byCategory.unsupported.length;
+  const totalSkipped = nurseryCount + typeAwareCount + unsupportedCount;
 
   if (totalSkipped > 0) {
-    const byCategory = data.skippedRulesByCategory;
-
-    const nurseryCount = byCategory.nursery.length;
-    const typeAwareCount = byCategory['type-aware'].length;
-    const unsupportedCount = byCategory.unsupported.length;
-
     output += `\n   Skipped ${totalSkipped} rules:\n`;
 
     if (nurseryCount > 0) {
