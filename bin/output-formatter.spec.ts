@@ -18,7 +18,7 @@ describe('formatCategorySummary', () => {
     );
 
     expect(result).toBe(
-      '   - 2 Nursery    (Experimental: getter-return, no-undef)\n'
+      '     - 2 Nursery     (Experimental: getter-return, no-undef)\n'
     );
   });
 
@@ -31,7 +31,7 @@ describe('formatCategorySummary', () => {
     );
 
     expect(result).toBe(
-      '   - 5 Type-aware (Requires TS info: rule1, rule2, rule3, etc.)\n'
+      '     - 5 Type-aware (Requires TS info: rule1, rule2, rule3, etc.)\n'
     );
   });
 
@@ -61,7 +61,7 @@ describe('formatCategorySummary', () => {
       false
     );
 
-    expect(result).toBe('   - 1 Unsupported (prefer-const)\n');
+    expect(result).toBe('     - 1 Unsupported (prefer-const)\n');
   });
 });
 
@@ -149,7 +149,7 @@ describe('formatMigrationOutput', () => {
     const result = formatMigrationOutput(data);
 
     expect(result).toContain('.oxlintrc.json created with 24 rules.');
-    expect(result).toContain('5 rules skipped:');
+    expect(result).toContain('Skipped 5 rules:');
     expect(result).toContain('3 Nursery');
     expect(result).toContain(
       'Experimental: getter-return, no-undef, no-unreachable'
@@ -181,7 +181,7 @@ describe('formatMigrationOutput', () => {
     const result = formatMigrationOutput(data);
 
     expect(result).not.toContain('Next:');
-    expect(result).toContain('1 rules skipped:');
+    expect(result).toContain('Skipped 1 rules:');
   });
 
   it('should handle no skipped rules', () => {
@@ -345,7 +345,7 @@ describe('formatMigrationOutput', () => {
 
     const result = formatMigrationOutput(data);
 
-    expect(result).toContain('💡 Use --details to see all skipped rules');
+    expect(result).toContain('Tip: Use --details to see the full list.');
   });
 
   it('should NOT show --details hint when all categories have <= 3 rules', () => {

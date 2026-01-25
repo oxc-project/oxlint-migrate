@@ -7,7 +7,7 @@ type CategoryMetadata = {
 };
 
 const CATEGORY_METADATA: Record<RuleSkippedCategory, CategoryMetadata> = {
-  nursery: { label: 'Nursery   ', description: 'Experimental:' },
+  nursery: { label: 'Nursery    ', description: 'Experimental:' },
   'type-aware': { label: 'Type-aware', description: 'Requires TS info:' },
   unsupported: { label: 'Unsupported' },
 };
@@ -49,7 +49,7 @@ export function formatCategorySummary(
     const exampleList = displayExamples.join(', ');
     const suffix = count > maxExamples ? ', etc.' : '';
     const prefix = meta.description ? `${meta.description} ` : '';
-    return `   - ${count} ${meta.label} (${prefix}${exampleList}${suffix})\n`;
+    return `     - ${count} ${meta.label} (${prefix}${exampleList}${suffix})\n`;
   }
 }
 
@@ -96,7 +96,7 @@ export function formatMigrationOutput(data: MigrationOutputData): string {
     const typeAwareCount = byCategory['type-aware'].length;
     const unsupportedCount = byCategory.unsupported.length;
 
-    output += `\n⚠️  ${totalSkipped} rules skipped:\n`;
+    output += `\n   Skipped ${totalSkipped} rules:\n`;
 
     if (nurseryCount > 0) {
       output += formatCategorySummary(
@@ -133,7 +133,7 @@ export function formatMigrationOutput(data: MigrationOutputData): string {
         unsupportedCount > maxExamples;
 
       if (hasOmittedRules) {
-        output += `\n💡 Use --details to see all skipped rules\n`;
+        output += `\n     Tip: Use --details to see the full list.\n`;
       }
     }
 
@@ -144,13 +144,13 @@ export function formatMigrationOutput(data: MigrationOutputData): string {
         ? ` ${path.basename(data.eslintConfigPath)}`
         : '';
       output += `\n👉 Re-run with flags to include more:\n`;
-      output += `npx @oxlint/migrate${eslintConfigArg} ${missingFlags.join(' ')}\n`;
+      output += `     npx @oxlint/migrate${eslintConfigArg} ${missingFlags.join(' ')}\n`;
     }
   }
 
   if (data.enabledRulesCount > 0) {
     output += `\n🚀 Next:\n`;
-    output += `npx oxlint .\n`;
+    output += `     npx oxlint .\n`;
   }
 
   return output;
