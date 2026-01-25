@@ -31,7 +31,7 @@ describe('formatCategorySummary', () => {
     );
 
     expect(result).toBe(
-      '     - 5 Type-aware (Requires TS info: rule1, rule2, rule3, etc.)\n'
+      '     - 5 Type-aware  (Requires TS info: rule1, rule2, rule3, etc.)\n'
     );
   });
 
@@ -44,7 +44,7 @@ describe('formatCategorySummary', () => {
     );
 
     expect(result).toBe(
-      '   - 5 Type-aware\n' +
+      '     - 5 Type-aware \n' +
         '     - rule1\n' +
         '     - rule2\n' +
         '     - rule3\n' +

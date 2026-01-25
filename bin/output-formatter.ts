@@ -7,10 +7,13 @@ type CategoryMetadata = {
 };
 
 const CATEGORY_METADATA: Record<RuleSkippedCategory, CategoryMetadata> = {
-  nursery: { label: 'Nursery    ', description: 'Experimental:' },
+  nursery: { label: 'Nursery', description: 'Experimental:' },
   'type-aware': { label: 'Type-aware', description: 'Requires TS info:' },
   unsupported: { label: 'Unsupported' },
 };
+const MAX_LABEL_LENGTH = Math.max(
+  ...Object.values(CATEGORY_METADATA).map(meta => meta.label.length)
+);
 
 export type MigrationOutputData = {
   outputFileName: string;
@@ -34,10 +37,11 @@ export function formatCategorySummary(
   showAll: boolean
 ): string {
   const meta = CATEGORY_METADATA[category];
+  const paddedLabel = meta.label.padEnd(MAX_LABEL_LENGTH);
 
   if (showAll) {
     // vertical list format
-    let output = `   - ${count} ${meta.label}\n`;
+    let output = `     - ${count} ${paddedLabel}\n`;
     for (const rule of examples) {
       output += `     - ${rule}\n`;
     }
@@ -49,7 +53,7 @@ export function formatCategorySummary(
     const exampleList = displayExamples.join(', ');
     const suffix = count > maxExamples ? ', etc.' : '';
     const prefix = meta.description ? `${meta.description} ` : '';
-    return `     - ${count} ${meta.label} (${prefix}${exampleList}${suffix})\n`;
+    return `     - ${count} ${paddedLabel} (${prefix}${exampleList}${suffix})\n`;
   }
 }
 
