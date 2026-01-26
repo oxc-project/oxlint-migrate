@@ -20,6 +20,7 @@ exports[`react-project > react-project 1`] = `
       "react-perf/jsx-no-new-array-as-prop": "error",
       "react-perf/jsx-no-new-function-as-prop": "error",
       "react-perf/jsx-no-new-object-as-prop": "error",
+      "react/display-name": "error",
       "react/jsx-key": "error",
       "react/jsx-no-comment-textnodes": "error",
       "react/jsx-no-duplicate-props": "error",
@@ -42,7 +43,6 @@ exports[`react-project > react-project 1`] = `
     ],
     "type-aware": [],
     "unsupported": [
-      "react/display-name",
       "react/jsx-uses-vars",
       "react/no-deprecated",
       "react/prop-types",
@@ -65,7 +65,6 @@ exports[`react-project > react-project 1`] = `
     ],
   },
   "warnings": [
-    "unsupported rule: react/display-name",
     "unsupported rule: react/jsx-uses-vars",
     "unsupported rule: react/no-deprecated",
     "unsupported rule: react/prop-types",
@@ -110,6 +109,7 @@ exports[`react-project --js-plugins > react-project--js-plugins 1`] = `
       "react-perf/jsx-no-new-array-as-prop": "error",
       "react-perf/jsx-no-new-function-as-prop": "error",
       "react-perf/jsx-no-new-object-as-prop": "error",
+      "react/display-name": "error",
       "react/jsx-key": "error",
       "react/jsx-no-comment-textnodes": "error",
       "react/jsx-no-duplicate-props": "error",
@@ -132,7 +132,6 @@ exports[`react-project --js-plugins > react-project--js-plugins 1`] = `
     ],
     "type-aware": [],
     "unsupported": [
-      "react/display-name",
       "react/jsx-uses-vars",
       "react/no-deprecated",
       "react/prop-types",
@@ -155,7 +154,6 @@ exports[`react-project --js-plugins > react-project--js-plugins 1`] = `
     ],
   },
   "warnings": [
-    "unsupported rule: react/display-name",
     "unsupported rule: react/jsx-uses-vars",
     "unsupported rule: react/no-deprecated",
     "unsupported rule: react/prop-types",
@@ -200,6 +198,7 @@ exports[`react-project --type-aware > react-project--type-aware 1`] = `
       "react-perf/jsx-no-new-array-as-prop": "error",
       "react-perf/jsx-no-new-function-as-prop": "error",
       "react-perf/jsx-no-new-object-as-prop": "error",
+      "react/display-name": "error",
       "react/jsx-key": "error",
       "react/jsx-no-comment-textnodes": "error",
       "react/jsx-no-duplicate-props": "error",
@@ -222,7 +221,6 @@ exports[`react-project --type-aware > react-project--type-aware 1`] = `
     ],
     "type-aware": [],
     "unsupported": [
-      "react/display-name",
       "react/jsx-uses-vars",
       "react/no-deprecated",
       "react/prop-types",
@@ -245,7 +243,6 @@ exports[`react-project --type-aware > react-project--type-aware 1`] = `
     ],
   },
   "warnings": [
-    "unsupported rule: react/display-name",
     "unsupported rule: react/jsx-uses-vars",
     "unsupported rule: react/no-deprecated",
     "unsupported rule: react/prop-types",
@@ -288,6 +285,7 @@ exports[`react-project merge > react-project--merge 1`] = `
     "rules": {
       "react-hooks/exhaustive-deps": "warn",
       "react-hooks/rules-of-hooks": "error",
+      "react/display-name": "error",
       "react/jsx-no-comment-textnodes": "error",
       "react/jsx-no-target-blank": "error",
       "react/no-unescaped-entities": "error",
@@ -302,7 +300,6 @@ exports[`react-project merge > react-project--merge 1`] = `
     ],
     "type-aware": [],
     "unsupported": [
-      "react/display-name",
       "react/jsx-uses-vars",
       "react/no-deprecated",
       "react/prop-types",
@@ -325,7 +322,6 @@ exports[`react-project merge > react-project--merge 1`] = `
     ],
   },
   "warnings": [
-    "unsupported rule: react/display-name",
     "unsupported rule: react/jsx-uses-vars",
     "unsupported rule: react/no-deprecated",
     "unsupported rule: react/prop-types",
