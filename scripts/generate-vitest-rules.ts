@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
-// import packageJson from '../package.json' with { type: 'json' };
+import packageJson from '../package.json' with { type: 'json' };
 
 // --- Generate the vitest rules file ---
 
@@ -15,8 +15,7 @@ if (!fs.existsSync(scriptsGenerateFolder)) {
 // Generate the vitest-compatible-jest-rules.json file by pulling it from the oxc repository.
 // This keeps the two in sync.
 // Use the version of the package to determine which git ref to pull from.
-// const gitRef = `oxlint_v${packageJson.version}`;
-const gitRef = `main`; // temp so we can test that this works. DO NOT LEAVE THIS AS MAIN!
+const gitRef = `oxlint_v${packageJson.version}`;
 
 const githubURL = `https://raw.githubusercontent.com/oxc-project/oxc/${gitRef}/crates/oxc_linter/data/vitest_compatible_jest_rules.json`;
 const response = await fetch(githubURL);
