@@ -3,14 +3,17 @@ import path from 'node:path';
 import { RulesGenerator } from './generator.js';
 import { traverseRules } from './traverse-rules.js';
 
-const result = traverseRules();
-
 const __dirname = new URL('.', import.meta.url).pathname;
-const generateFolder = path.resolve(__dirname, '..', `src/generated`);
 
+const result = traverseRules();
+const generator = new RulesGenerator(result);
+
+// `<repo>/src/generated/`
+const generateFolder = path.resolve(__dirname, '..', `src/generated`);
 if (!fs.existsSync(generateFolder)) {
   fs.mkdirSync(generateFolder);
 }
 
-const generator = new RulesGenerator(result);
 await generator.generateRules(generateFolder);
+
+console.log('Rules generated successfully.');

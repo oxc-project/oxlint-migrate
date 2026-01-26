@@ -23,6 +23,11 @@ jobs:
         with:
           persist-credentials: false # should be fine, we give another token for PR creation
 
+      - name: Bump Version
+        env:
+          OXLINT_VERSION: ${{ inputs.version }}
+        run: npm version ${OXLINT_VERSION} --no-git-tag-version
+
       - uses: ./.github/actions/pnpm
 
       - name: Generate version ${{ inputs.version }}
@@ -31,16 +36,10 @@ jobs:
         run: |
           pnpm install oxlint@${OXLINT_VERSION}
           pnpm run generate # Generate rules
-          pnpm run format # run oxfmt over it
 
       - name: Test and update snapshot
         continue-on-error: true # we check in PR why it fails
         run: pnpm run test -u # Update test snapshots
-
-      - name: Bump Version
-        env:
-          OXLINT_VERSION: ${{ inputs.version }}
-        run: npm version ${OXLINT_VERSION} --no-git-tag-version
 
       - uses: peter-evans/create-pull-request@c0f553fe549906ede9cf27b5156039d195d2ece0 # v8.1.0
         with:

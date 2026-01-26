@@ -30,13 +30,10 @@ jobs:
       - uses: ./.github/actions/pnpm
 
       - name: Remove current generated code
-        run: rm -r ./src/generated/
+        run: rm -r ./src/generated/ && rm -r ./scripts/generated/
 
       - name: Generate from source code
         run: pnpm run generate
-
-      - name: Format generated code
-        run: pnpm run format
 
       - name: Check for git diff
         run: git diff --exit-code
