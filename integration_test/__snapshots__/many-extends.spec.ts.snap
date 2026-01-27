@@ -223,6 +223,7 @@ exports[`many-extends.spec.ts > many-extends.spec.ts 1`] = `
     },
   },
   "skipped": {
+    "js-plugins": [],
     "nursery": [
       "getter-return",
       "no-misleading-character-class",
@@ -561,6 +562,7 @@ exports[`many-extends.spec.ts --js-plugins > many-extends.spec.ts--js-plugins 1`
     },
   },
   "skipped": {
+    "js-plugins": [],
     "nursery": [
       "getter-return",
       "no-misleading-character-class",
@@ -960,6 +962,7 @@ exports[`many-extends.spec.ts --type-aware > many-extends.spec.ts--type-aware 1`
     },
   },
   "skipped": {
+    "js-plugins": [],
     "nursery": [
       "getter-return",
       "no-misleading-character-class",
@@ -1213,6 +1216,7 @@ exports[`many-extends.spec.ts merge > many-extends.spec.ts--merge 1`] = `
     },
   },
   "skipped": {
+    "js-plugins": [],
     "nursery": [
       "getter-return",
       "no-misleading-character-class",

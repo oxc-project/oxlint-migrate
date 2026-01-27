@@ -104,6 +104,7 @@ exports[`next-eslint-config-project > next-eslint-config-project 1`] = `
     "plugins": [],
   },
   "skipped": {
+    "js-plugins": [],
     "nursery": [
       "react/require-render-return",
     ],
@@ -240,6 +241,7 @@ exports[`next-eslint-config-project --js-plugins > next-eslint-config-project--j
     "plugins": [],
   },
   "skipped": {
+    "js-plugins": [],
     "nursery": [
       "react/require-render-return",
     ],
@@ -376,6 +378,7 @@ exports[`next-eslint-config-project --type-aware > next-eslint-config-project--t
     "plugins": [],
   },
   "skipped": {
+    "js-plugins": [],
     "nursery": [
       "react/require-render-return",
     ],
@@ -513,6 +516,7 @@ exports[`next-eslint-config-project merge > next-eslint-config-project--merge 1`
     "plugins": [],
   },
   "skipped": {
+    "js-plugins": [],
     "nursery": [
       "react/require-render-return",
     ],

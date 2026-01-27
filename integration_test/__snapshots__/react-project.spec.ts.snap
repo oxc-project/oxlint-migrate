@@ -38,6 +38,7 @@ exports[`react-project > react-project 1`] = `
     },
   },
   "skipped": {
+    "js-plugins": [],
     "nursery": [
       "react/require-render-return",
     ],
@@ -106,6 +107,7 @@ exports[`react-project --js-plugins > react-project--js-plugins 1`] = `
     },
   },
   "skipped": {
+    "js-plugins": [],
     "nursery": [
       "react/require-render-return",
     ],
@@ -174,6 +176,7 @@ exports[`react-project --type-aware > react-project--type-aware 1`] = `
     },
   },
   "skipped": {
+    "js-plugins": [],
     "nursery": [
       "react/require-render-return",
     ],
@@ -232,6 +235,7 @@ exports[`react-project merge > react-project--merge 1`] = `
     },
   },
   "skipped": {
+    "js-plugins": [],
     "nursery": [
       "react/require-render-return",
     ],

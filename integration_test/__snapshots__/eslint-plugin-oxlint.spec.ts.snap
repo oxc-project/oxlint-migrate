@@ -240,6 +240,7 @@ exports[`eslint-plugin-oxlint > eslint-plugin-oxlint 1`] = `
     },
   },
   "skipped": {
+    "js-plugins": [],
     "nursery": [
       "getter-return",
       "no-misleading-character-class",
@@ -509,6 +510,7 @@ exports[`eslint-plugin-oxlint --js-plugins > eslint-plugin-oxlint--js-plugins 1`
     },
   },
   "skipped": {
+    "js-plugins": [],
     "nursery": [
       "getter-return",
       "no-misleading-character-class",
@@ -778,6 +780,7 @@ exports[`eslint-plugin-oxlint --type-aware > eslint-plugin-oxlint--type-aware 1`
     },
   },
   "skipped": {
+    "js-plugins": [],
     "nursery": [
       "getter-return",
       "no-misleading-character-class",
@@ -978,6 +981,7 @@ exports[`eslint-plugin-oxlint merge > eslint-plugin-oxlint--merge 1`] = `
     },
   },
   "skipped": {
+    "js-plugins": [],
     "nursery": [
       "getter-return",
       "no-misleading-character-class",

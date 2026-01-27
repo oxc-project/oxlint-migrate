@@ -9,6 +9,7 @@ type CategoryMetadata = {
 const CATEGORY_METADATA: Record<RuleSkippedCategory, CategoryMetadata> = {
   nursery: { label: 'Nursery', description: 'Experimental:' },
   'type-aware': { label: 'Type-aware', description: 'Requires TS info:' },
+  'js-plugins': { label: 'JS Plugins', description: 'Requires JS plugins:' },
   unsupported: { label: 'Unsupported' },
 };
 const MAX_LABEL_LENGTH = Math.max(
@@ -22,7 +23,8 @@ export type MigrationOutputData = {
   cliOptions: {
     withNursery: boolean;
     typeAware: boolean;
-    details?: boolean;
+    details: boolean;
+    jsPlugins: boolean;
   };
   eslintConfigPath?: string;
 };
@@ -67,7 +69,7 @@ export function formatCategorySummary(
  */
 export function detectMissingFlags(
   byCategory: SkippedCategoryGroup,
-  cliOptions: { withNursery: boolean; typeAware: boolean }
+  cliOptions: { withNursery: boolean; typeAware: boolean; jsPlugins?: boolean }
 ): string[] {
   const missingFlags: string[] = [];
 
@@ -77,6 +79,10 @@ export function detectMissingFlags(
 
   if (byCategory['type-aware'].length > 0 && !cliOptions.typeAware) {
     missingFlags.push('--type-aware');
+  }
+
+  if (byCategory['js-plugins'].length > 0 && !cliOptions.jsPlugins) {
+    missingFlags.push('--js-plugins');
   }
 
   return missingFlags;
@@ -99,7 +105,9 @@ export function formatMigrationOutput(data: MigrationOutputData): string {
   const nurseryCount = byCategory.nursery.length;
   const typeAwareCount = byCategory['type-aware'].length;
   const unsupportedCount = byCategory.unsupported.length;
-  const totalSkipped = nurseryCount + typeAwareCount + unsupportedCount;
+  const jsPluginsCount = byCategory['js-plugins'].length;
+  const totalSkipped =
+    nurseryCount + typeAwareCount + unsupportedCount + jsPluginsCount;
 
   if (totalSkipped > 0) {
     output += `\n   Skipped ${totalSkipped} rules:\n`;
@@ -122,6 +130,15 @@ export function formatMigrationOutput(data: MigrationOutputData): string {
       );
     }
 
+    if (jsPluginsCount > 0) {
+      output += formatCategorySummary(
+        jsPluginsCount,
+        'js-plugins',
+        byCategory['js-plugins'],
+        showAll
+      );
+    }
+
     if (unsupportedCount > 0) {
       output += formatCategorySummary(
         unsupportedCount,
@@ -136,7 +153,8 @@ export function formatMigrationOutput(data: MigrationOutputData): string {
       const hasOmittedRules =
         nurseryCount > maxExamples ||
         typeAwareCount > maxExamples ||
-        unsupportedCount > maxExamples;
+        unsupportedCount > maxExamples ||
+        jsPluginsCount > maxExamples;
 
       if (hasOmittedRules) {
         output += `\n     Tip: Use --details to see the full list.\n`;

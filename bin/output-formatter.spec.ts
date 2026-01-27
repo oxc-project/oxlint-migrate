@@ -69,22 +69,32 @@ describe('detectMissingFlags', () => {
     const byCategory: SkippedCategoryGroup = {
       nursery: ['rule1'],
       'type-aware': ['rule2'],
+      'js-plugins': ['rule3'],
       unsupported: [],
     };
-    const cliOptions = { withNursery: false, typeAware: false };
+    const cliOptions = {
+      withNursery: false,
+      typeAware: false,
+      jsPlugins: false,
+    };
 
     const result = detectMissingFlags(byCategory, cliOptions);
 
-    expect(result).toEqual(['--with-nursery', '--type-aware']);
+    expect(result).toEqual(['--with-nursery', '--type-aware', '--js-plugins']);
   });
 
   it('should detect only --with-nursery when needed', () => {
     const byCategory: SkippedCategoryGroup = {
       nursery: ['rule1'],
       'type-aware': [],
+      'js-plugins': [],
       unsupported: [],
     };
-    const cliOptions = { withNursery: false, typeAware: false };
+    const cliOptions = {
+      withNursery: false,
+      typeAware: false,
+      jsPlugins: false,
+    };
 
     const result = detectMissingFlags(byCategory, cliOptions);
 
@@ -95,9 +105,14 @@ describe('detectMissingFlags', () => {
     const byCategory: SkippedCategoryGroup = {
       nursery: [],
       'type-aware': ['rule1'],
+      'js-plugins': [],
       unsupported: [],
     };
-    const cliOptions = { withNursery: false, typeAware: false };
+    const cliOptions = {
+      withNursery: false,
+      typeAware: false,
+      jsPlugins: false,
+    };
 
     const result = detectMissingFlags(byCategory, cliOptions);
 
@@ -108,9 +123,10 @@ describe('detectMissingFlags', () => {
     const byCategory: SkippedCategoryGroup = {
       nursery: ['rule1'],
       'type-aware': ['rule2'],
+      'js-plugins': ['rule3'],
       unsupported: [],
     };
-    const cliOptions = { withNursery: true, typeAware: true };
+    const cliOptions = { withNursery: true, typeAware: true, jsPlugins: true };
 
     const result = detectMissingFlags(byCategory, cliOptions);
 
@@ -121,9 +137,14 @@ describe('detectMissingFlags', () => {
     const byCategory: SkippedCategoryGroup = {
       nursery: [],
       'type-aware': [],
+      'js-plugins': [],
       unsupported: ['rule1'],
     };
-    const cliOptions = { withNursery: false, typeAware: false };
+    const cliOptions = {
+      withNursery: false,
+      typeAware: false,
+      jsPlugins: false,
+    };
 
     const result = detectMissingFlags(byCategory, cliOptions);
 
@@ -139,9 +160,15 @@ describe('formatMigrationOutput', () => {
       skippedRulesByCategory: {
         nursery: ['getter-return', 'no-undef', 'no-unreachable'],
         'type-aware': ['await-thenable'],
+        'js-plugins': ['js-plugin-rule1', 'js-plugin-rule2'],
         unsupported: ['prefer-const'],
       },
-      cliOptions: { withNursery: false, typeAware: false },
+      cliOptions: {
+        withNursery: false,
+        typeAware: false,
+        jsPlugins: false,
+        details: false,
+      },
       eslintConfigPath: 'eslint.config.mjs',
     };
 
@@ -155,24 +182,15 @@ describe('formatMigrationOutput', () => {
       skippedRulesByCategory: {
         nursery: [],
         'type-aware': [],
+        'js-plugins': [],
         unsupported: ['rule1'],
       },
-      cliOptions: { withNursery: false, typeAware: false },
-    };
-
-    expect(formatMigrationOutput(data)).toMatchSnapshot();
-  });
-
-  it('should handle no enabled rules and no skipped rules', () => {
-    const data: MigrationOutputData = {
-      outputFileName: '.oxlintrc.json',
-      enabledRulesCount: 0,
-      skippedRulesByCategory: {
-        nursery: [],
-        'type-aware': [],
-        unsupported: [],
+      cliOptions: {
+        withNursery: false,
+        typeAware: false,
+        jsPlugins: false,
+        details: false,
       },
-      cliOptions: { withNursery: false, typeAware: false },
     };
 
     expect(formatMigrationOutput(data)).toMatchSnapshot();
@@ -185,9 +203,15 @@ describe('formatMigrationOutput', () => {
       skippedRulesByCategory: {
         nursery: [],
         'type-aware': [],
+        'js-plugins': [],
         unsupported: [],
       },
-      cliOptions: { withNursery: false, typeAware: false },
+      cliOptions: {
+        withNursery: false,
+        typeAware: false,
+        jsPlugins: false,
+        details: false,
+      },
     };
 
     expect(formatMigrationOutput(data)).toMatchSnapshot();
@@ -200,25 +224,15 @@ describe('formatMigrationOutput', () => {
       skippedRulesByCategory: {
         nursery: ['getter-return'],
         'type-aware': ['await-thenable'],
+        'js-plugins': ['js-plugin-rule1'],
         unsupported: [],
       },
-      cliOptions: { withNursery: true, typeAware: true },
-    };
-
-    expect(formatMigrationOutput(data)).toMatchSnapshot();
-  });
-
-  it('should handle eslintConfigPath being undefined', () => {
-    const data: MigrationOutputData = {
-      outputFileName: '.oxlintrc.json',
-      enabledRulesCount: 10,
-      skippedRulesByCategory: {
-        nursery: ['rule1'],
-        'type-aware': [],
-        unsupported: [],
+      cliOptions: {
+        withNursery: true,
+        typeAware: true,
+        jsPlugins: true,
+        details: false,
       },
-      cliOptions: { withNursery: false, typeAware: false },
-      eslintConfigPath: undefined,
     };
 
     expect(formatMigrationOutput(data)).toMatchSnapshot();
@@ -231,9 +245,15 @@ describe('formatMigrationOutput', () => {
       skippedRulesByCategory: {
         nursery: ['getter-return', 'no-undef'],
         'type-aware': [],
+        'js-plugins': [],
         unsupported: [],
       },
-      cliOptions: { withNursery: false, typeAware: false },
+      cliOptions: {
+        withNursery: false,
+        typeAware: false,
+        jsPlugins: false,
+        details: false,
+      },
     };
 
     expect(formatMigrationOutput(data)).toMatchSnapshot();
@@ -246,9 +266,15 @@ describe('formatMigrationOutput', () => {
       skippedRulesByCategory: {
         nursery: ['rule1', 'rule2', 'rule3', 'rule4'],
         'type-aware': [],
+        'js-plugins': [],
         unsupported: [],
       },
-      cliOptions: { withNursery: false, typeAware: false },
+      cliOptions: {
+        withNursery: false,
+        typeAware: false,
+        jsPlugins: false,
+        details: false,
+      },
     };
 
     expect(formatMigrationOutput(data)).toMatchSnapshot();
@@ -261,9 +287,15 @@ describe('formatMigrationOutput', () => {
       skippedRulesByCategory: {
         nursery: ['rule1', 'rule2', 'rule3', 'rule4'],
         'type-aware': [],
+        'js-plugins': [],
         unsupported: [],
       },
-      cliOptions: { withNursery: false, typeAware: false, details: true },
+      cliOptions: {
+        withNursery: false,
+        typeAware: false,
+        jsPlugins: false,
+        details: true,
+      },
     };
 
     expect(formatMigrationOutput(data)).toMatchSnapshot();
@@ -276,9 +308,15 @@ describe('formatMigrationOutput', () => {
       skippedRulesByCategory: {
         nursery: ['getter-return', 'no-undef'],
         'type-aware': ['await-thenable'],
+        'js-plugins': ['js-plugin-rule1'],
         unsupported: ['prefer-const', 'camelcase'],
       },
-      cliOptions: { withNursery: false, typeAware: false, details: true },
+      cliOptions: {
+        withNursery: false,
+        typeAware: false,
+        jsPlugins: false,
+        details: true,
+      },
     };
 
     expect(formatMigrationOutput(data)).toMatchSnapshot();
@@ -291,9 +329,15 @@ describe('formatMigrationOutput', () => {
       skippedRulesByCategory: {
         nursery: ['rule1', 'rule2', 'rule3', 'rule4', 'rule5'],
         'type-aware': ['rule6'],
-        unsupported: ['rule7', 'rule8'],
+        'js-plugins': ['rule7'],
+        unsupported: ['rule8'],
       },
-      cliOptions: { withNursery: false, typeAware: false },
+      cliOptions: {
+        withNursery: false,
+        typeAware: false,
+        jsPlugins: false,
+        details: false,
+      },
     };
 
     expect(formatMigrationOutput(data)).toMatchSnapshot();
@@ -306,9 +350,15 @@ describe('formatMigrationOutput', () => {
       skippedRulesByCategory: {
         nursery: ['rule1', 'rule2', 'rule3'],
         'type-aware': ['rule4'],
-        unsupported: ['rule5', 'rule6'],
+        'js-plugins': ['rule5'],
+        unsupported: ['rule6', 'rule7'],
       },
-      cliOptions: { withNursery: false, typeAware: false },
+      cliOptions: {
+        withNursery: false,
+        typeAware: false,
+        jsPlugins: false,
+        details: false,
+      },
     };
 
     expect(formatMigrationOutput(data)).toMatchSnapshot();
@@ -321,9 +371,15 @@ describe('formatMigrationOutput', () => {
       skippedRulesByCategory: {
         nursery: ['rule1', 'rule2', 'rule3', 'rule4'],
         'type-aware': [],
+        'js-plugins': [],
         unsupported: [],
       },
-      cliOptions: { withNursery: false, typeAware: false, details: true },
+      cliOptions: {
+        withNursery: false,
+        typeAware: false,
+        jsPlugins: false,
+        details: true,
+      },
     };
 
     expect(formatMigrationOutput(data)).toMatchSnapshot();

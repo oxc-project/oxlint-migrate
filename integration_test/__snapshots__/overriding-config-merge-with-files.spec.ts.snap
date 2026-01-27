@@ -13,11 +13,12 @@ exports[`overriding-config-merge-with-files > overriding-config-merge-with-files
     "plugins": [],
   },
   "skipped": {
-    "nursery": [],
-    "type-aware": [],
-    "unsupported": [
+    "js-plugins": [
       "regexp/no-lazy-ends",
     ],
+    "nursery": [],
+    "type-aware": [],
+    "unsupported": [],
   },
   "warnings": [],
 }
@@ -59,6 +60,7 @@ exports[`overriding-config-merge-with-files --js-plugins > overriding-config-mer
     },
   },
   "skipped": {
+    "js-plugins": [],
     "nursery": [],
     "type-aware": [],
     "unsupported": [],
@@ -80,11 +82,12 @@ exports[`overriding-config-merge-with-files --type-aware > overriding-config-mer
     "plugins": [],
   },
   "skipped": {
-    "nursery": [],
-    "type-aware": [],
-    "unsupported": [
+    "js-plugins": [
       "regexp/no-lazy-ends",
     ],
+    "nursery": [],
+    "type-aware": [],
+    "unsupported": [],
   },
   "warnings": [],
 }
@@ -104,11 +107,12 @@ exports[`overriding-config-merge-with-files merge > overriding-config-merge-with
     "plugins": [],
   },
   "skipped": {
-    "nursery": [],
-    "type-aware": [],
-    "unsupported": [
+    "js-plugins": [
       "regexp/no-lazy-ends",
     ],
+    "nursery": [],
+    "type-aware": [],
+    "unsupported": [],
   },
   "warnings": [],
 }

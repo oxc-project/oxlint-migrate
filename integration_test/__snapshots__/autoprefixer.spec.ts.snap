@@ -247,15 +247,7 @@ exports[`autoprefixer > autoprefixer 1`] = `
     },
   },
   "skipped": {
-    "nursery": [
-      "getter-return",
-      "import-x/export",
-      "no-misleading-character-class",
-      "no-undef",
-      "no-unreachable",
-    ],
-    "type-aware": [],
-    "unsupported": [
+    "js-plugins": [
       "perfectionist/sort-variable-declarations",
       "perfectionist/sort-intersection-types",
       "perfectionist/sort-import-attributes",
@@ -277,6 +269,17 @@ exports[`autoprefixer > autoprefixer 1`] = `
       "perfectionist/sort-enums",
       "perfectionist/sort-sets",
       "perfectionist/sort-maps",
+      "prefer-let/prefer-let",
+    ],
+    "nursery": [
+      "getter-return",
+      "import-x/export",
+      "no-misleading-character-class",
+      "no-undef",
+      "no-unreachable",
+    ],
+    "type-aware": [],
+    "unsupported": [
       "camelcase",
       "dot-notation",
       "func-name-matching",
@@ -303,7 +306,6 @@ exports[`autoprefixer > autoprefixer 1`] = `
       "object-shorthand",
       "one-var",
       "prefer-arrow-callback",
-      "prefer-let/prefer-let",
       "prefer-regex-literals",
     ],
   },
@@ -727,6 +729,7 @@ exports[`autoprefixer --js-plugins > autoprefixer--js-plugins 1`] = `
     },
   },
   "skipped": {
+    "js-plugins": [],
     "nursery": [
       "getter-return",
       "import-x/export",
@@ -1016,15 +1019,7 @@ exports[`autoprefixer --type-aware > autoprefixer--type-aware 1`] = `
     },
   },
   "skipped": {
-    "nursery": [
-      "getter-return",
-      "import-x/export",
-      "no-misleading-character-class",
-      "no-undef",
-      "no-unreachable",
-    ],
-    "type-aware": [],
-    "unsupported": [
+    "js-plugins": [
       "perfectionist/sort-variable-declarations",
       "perfectionist/sort-intersection-types",
       "perfectionist/sort-import-attributes",
@@ -1046,6 +1041,17 @@ exports[`autoprefixer --type-aware > autoprefixer--type-aware 1`] = `
       "perfectionist/sort-enums",
       "perfectionist/sort-sets",
       "perfectionist/sort-maps",
+      "prefer-let/prefer-let",
+    ],
+    "nursery": [
+      "getter-return",
+      "import-x/export",
+      "no-misleading-character-class",
+      "no-undef",
+      "no-unreachable",
+    ],
+    "type-aware": [],
+    "unsupported": [
       "camelcase",
       "dot-notation",
       "func-name-matching",
@@ -1072,7 +1078,6 @@ exports[`autoprefixer --type-aware > autoprefixer--type-aware 1`] = `
       "object-shorthand",
       "one-var",
       "prefer-arrow-callback",
-      "prefer-let/prefer-let",
       "prefer-regex-literals",
     ],
   },
@@ -1286,15 +1291,7 @@ exports[`autoprefixer merge > autoprefixer--merge 1`] = `
     },
   },
   "skipped": {
-    "nursery": [
-      "getter-return",
-      "import-x/export",
-      "no-misleading-character-class",
-      "no-undef",
-      "no-unreachable",
-    ],
-    "type-aware": [],
-    "unsupported": [
+    "js-plugins": [
       "perfectionist/sort-variable-declarations",
       "perfectionist/sort-intersection-types",
       "perfectionist/sort-import-attributes",
@@ -1316,6 +1313,17 @@ exports[`autoprefixer merge > autoprefixer--merge 1`] = `
       "perfectionist/sort-enums",
       "perfectionist/sort-sets",
       "perfectionist/sort-maps",
+      "prefer-let/prefer-let",
+    ],
+    "nursery": [
+      "getter-return",
+      "import-x/export",
+      "no-misleading-character-class",
+      "no-undef",
+      "no-unreachable",
+    ],
+    "type-aware": [],
+    "unsupported": [
       "camelcase",
       "dot-notation",
       "func-name-matching",
@@ -1342,7 +1350,6 @@ exports[`autoprefixer merge > autoprefixer--merge 1`] = `
       "object-shorthand",
       "one-var",
       "prefer-arrow-callback",
-      "prefer-let/prefer-let",
       "prefer-regex-literals",
     ],
   },

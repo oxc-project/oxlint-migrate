@@ -125,15 +125,16 @@ export const transformRuleEntry = (
           }
           // also remove any previously queued unsupported report for base
           if (eslintConfig.files === undefined) {
+            options?.reporter?.removeSkipped(rule, 'js-plugins');
             options?.reporter?.removeSkipped(rule, 'unsupported');
           }
           continue;
         }
 
-        if (enableJsPluginRule(targetConfig, rule, normalizedConfig)) {
-          continue;
+        if (!enableJsPluginRule(targetConfig, rule, normalizedConfig)) {
+          options?.reporter?.markSkipped(rule, 'unsupported');
         }
-        // fall through to unsupported handling if plugin couldn't be enabled
+        continue;
       }
 
       // Non-jsPlugins path or failed jsPlugin mapping: handle disabled rules
@@ -146,6 +147,11 @@ export const transformRuleEntry = (
         if (eslintConfig.files === undefined) {
           options?.reporter?.removeSkipped(rule, 'unsupported');
         }
+        continue;
+      }
+
+      if (!options?.jsPlugins && !isIgnoredPluginRule(rule)) {
+        options?.reporter?.markSkipped(rule, 'js-plugins');
         continue;
       }
 

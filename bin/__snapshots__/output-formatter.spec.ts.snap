@@ -4,13 +4,14 @@ exports[`formatMigrationOutput > should NOT show --details hint when all categor
 "
 ✨ .oxlintrc.json created with 10 rules.
 
-   Skipped 6 rules:
+   Skipped 7 rules:
      -   3 Nursery     (Experimental: rule1, rule2, rule3)
      -   1 Type-aware  (Requires TS info: rule4)
-     -   2 Unsupported (rule5, rule6)
+     -   1 JS Plugins  (Requires JS plugins: rule5)
+     -   2 Unsupported (rule6, rule7)
 
 👉 Re-run with flags to include more:
-     npx @oxlint/migrate --with-nursery --type-aware
+     npx @oxlint/migrate --with-nursery --type-aware --js-plugins
 
 🚀 Next:
      npx oxlint .
@@ -40,28 +41,14 @@ exports[`formatMigrationOutput > should format complete output with all sections
 "
 ✨ .oxlintrc.json created with 24 rules.
 
-   Skipped 5 rules:
+   Skipped 7 rules:
      -   3 Nursery     (Experimental: getter-return, no-undef, no-unreachable)
      -   1 Type-aware  (Requires TS info: await-thenable)
+     -   2 JS Plugins  (Requires JS plugins: js-plugin-rule1, js-plugin-rule2)
      -   1 Unsupported (prefer-const)
 
 👉 Re-run with flags to include more:
-     npx @oxlint/migrate eslint.config.mjs --with-nursery --type-aware
-
-🚀 Next:
-     npx oxlint .
-"
-`;
-
-exports[`formatMigrationOutput > should handle eslintConfigPath being undefined 1`] = `
-"
-✨ .oxlintrc.json created with 10 rules.
-
-   Skipped 1 rules:
-     -   1 Nursery     (Experimental: rule1)
-
-👉 Re-run with flags to include more:
-     npx @oxlint/migrate --with-nursery
+     npx @oxlint/migrate eslint.config.mjs --with-nursery --type-aware --js-plugins
 
 🚀 Next:
      npx oxlint .
@@ -94,12 +81,6 @@ exports[`formatMigrationOutput > should handle no enabled rules 1`] = `
 "
 `;
 
-exports[`formatMigrationOutput > should handle no enabled rules and no skipped rules 1`] = `
-"
-⚠️ .oxlintrc.json created with no rules enabled.
-"
-`;
-
 exports[`formatMigrationOutput > should handle no skipped rules 1`] = `
 "
 ✨ .oxlintrc.json created with 10 rules.
@@ -113,9 +94,10 @@ exports[`formatMigrationOutput > should not show missing flags section when flag
 "
 ✨ .oxlintrc.json created with 24 rules.
 
-   Skipped 2 rules:
+   Skipped 3 rules:
      -   1 Nursery     (Experimental: getter-return)
      -   1 Type-aware  (Requires TS info: await-thenable)
+     -   1 JS Plugins  (Requires JS plugins: js-plugin-rule1)
 
 🚀 Next:
      npx oxlint .
@@ -129,12 +111,13 @@ exports[`formatMigrationOutput > should show --details hint when any category ha
    Skipped 8 rules:
      -   5 Nursery     (Experimental: rule1, rule2, rule3, etc.)
      -   1 Type-aware  (Requires TS info: rule6)
-     -   2 Unsupported (rule7, rule8)
+     -   1 JS Plugins  (Requires JS plugins: rule7)
+     -   1 Unsupported (rule8)
 
      Tip: Use --details to see the full list.
 
 👉 Re-run with flags to include more:
-     npx @oxlint/migrate --with-nursery --type-aware
+     npx @oxlint/migrate --with-nursery --type-aware --js-plugins
 
 🚀 Next:
      npx oxlint .
@@ -179,18 +162,20 @@ exports[`formatMigrationOutput > should show vertical list for multiple categori
 "
 ✨ .oxlintrc.json created with 24 rules.
 
-   Skipped 5 rules:
+   Skipped 6 rules:
      - 2 Nursery
        - getter-return
        - no-undef
      - 1 Type-aware
        - await-thenable
+     - 1 JS Plugins
+       - js-plugin-rule1
      - 2 Unsupported
        - prefer-const
        - camelcase
 
 👉 Re-run with flags to include more:
-     npx @oxlint/migrate --with-nursery --type-aware
+     npx @oxlint/migrate --with-nursery --type-aware --js-plugins
 
 🚀 Next:
      npx oxlint .

@@ -10,6 +10,7 @@ export class DefaultReporter implements Reporter {
     ['nursery', new Set<string>()],
     ['type-aware', new Set<string>()],
     ['unsupported', new Set<string>()],
+    ['js-plugins', new Set<string>()],
   ]);
 
   public addWarning(message: string): void {
@@ -32,6 +33,7 @@ export class DefaultReporter implements Reporter {
     const result: SkippedCategoryGroup = {
       nursery: [],
       'type-aware': [],
+      'js-plugins': [],
       unsupported: [],
     };
     for (const [category, rules] of this.skippedRules) {
@@ -62,6 +64,7 @@ export class SilentReporter implements Reporter {
     return {
       nursery: [],
       'type-aware': [],
+      'js-plugins': [],
       unsupported: [],
     };
   }

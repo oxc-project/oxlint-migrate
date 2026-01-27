@@ -13,6 +13,9 @@ exports[`overriding-config-merge > overriding-config-merge 1`] = `
     "plugins": [],
   },
   "skipped": {
+    "js-plugins": [
+      "regexp/no-lazy-ends",
+    ],
     "nursery": [],
     "type-aware": [],
     "unsupported": [],
@@ -37,6 +40,7 @@ exports[`overriding-config-merge --js-plugins > overriding-config-merge--js-plug
     "plugins": [],
   },
   "skipped": {
+    "js-plugins": [],
     "nursery": [],
     "type-aware": [],
     "unsupported": [],
@@ -58,6 +62,9 @@ exports[`overriding-config-merge --type-aware > overriding-config-merge--type-aw
     "plugins": [],
   },
   "skipped": {
+    "js-plugins": [
+      "regexp/no-lazy-ends",
+    ],
     "nursery": [],
     "type-aware": [],
     "unsupported": [],
@@ -80,6 +87,9 @@ exports[`overriding-config-merge merge > overriding-config-merge--merge 1`] = `
     "plugins": [],
   },
   "skipped": {
+    "js-plugins": [
+      "regexp/no-lazy-ends",
+    ],
     "nursery": [],
     "type-aware": [],
     "unsupported": [],

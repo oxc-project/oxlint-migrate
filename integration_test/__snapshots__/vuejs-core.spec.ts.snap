@@ -178,6 +178,7 @@ exports[`vuejs/core > vuejs/core 1`] = `
     "plugins": [],
   },
   "skipped": {
+    "js-plugins": [],
     "nursery": [],
     "type-aware": [],
     "unsupported": [
@@ -367,6 +368,7 @@ exports[`vuejs/core --js-plugins > vuejs/core--js-plugins 1`] = `
     "plugins": [],
   },
   "skipped": {
+    "js-plugins": [],
     "nursery": [],
     "type-aware": [],
     "unsupported": [
@@ -556,6 +558,7 @@ exports[`vuejs/core --type-aware > vuejs/core--type-aware 1`] = `
     "plugins": [],
   },
   "skipped": {
+    "js-plugins": [],
     "nursery": [],
     "type-aware": [],
     "unsupported": [
@@ -745,6 +748,7 @@ exports[`vuejs/core merge > vuejs/core--merge 1`] = `
     ],
   },
   "skipped": {
+    "js-plugins": [],
     "nursery": [],
     "type-aware": [],
     "unsupported": [

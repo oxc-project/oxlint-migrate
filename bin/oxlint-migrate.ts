@@ -165,6 +165,7 @@ program
         withNursery: !!cliOptions.withNursery,
         typeAware: !!cliOptions.typeAware,
         details: !!cliOptions.details,
+        jsPlugins: !!cliOptions.jsPlugins,
       },
       eslintConfigPath: filePath,
     });

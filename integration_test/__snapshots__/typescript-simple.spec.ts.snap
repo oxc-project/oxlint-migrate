@@ -86,6 +86,7 @@ exports[`typescript-simple > typescript-simple 1`] = `
     },
   },
   "skipped": {
+    "js-plugins": [],
     "nursery": [
       "getter-return",
       "no-undef",
@@ -229,6 +230,7 @@ exports[`typescript-simple --js-plugins > typescript-simple--js-plugins 1`] = `
     },
   },
   "skipped": {
+    "js-plugins": [],
     "nursery": [
       "getter-return",
       "no-undef",
@@ -430,6 +432,7 @@ exports[`typescript-simple --type-aware > typescript-simple--type-aware 1`] = `
     },
   },
   "skipped": {
+    "js-plugins": [],
     "nursery": [
       "getter-return",
       "no-undef",
@@ -535,6 +538,7 @@ exports[`typescript-simple merge > typescript-simple--merge 1`] = `
     "rules": {},
   },
   "skipped": {
+    "js-plugins": [],
     "nursery": [
       "getter-return",
       "no-undef",

@@ -308,6 +308,11 @@ exports[`vscode > vscode 1`] = `
     },
   },
   "skipped": {
+    "js-plugins": [
+      "header/header",
+      "@stylistic/ts/semi",
+      "@stylistic/ts/member-delimiter-style",
+    ],
     "nursery": [
       "no-misleading-character-class",
       "@typescript-eslint/prefer-optional-chain",
@@ -328,9 +333,6 @@ exports[`vscode > vscode 1`] = `
       "local/code-must-use-super-dispose",
       "local/code-declare-service-brand",
       "local/code-layering",
-      "header/header",
-      "@stylistic/ts/semi",
-      "@stylistic/ts/member-delimiter-style",
       "local/code-no-unused-expressions",
       "jsdoc/no-types",
       "local/code-no-static-self-ref",
@@ -699,6 +701,7 @@ exports[`vscode --js-plugins > vscode--js-plugins 1`] = `
     },
   },
   "skipped": {
+    "js-plugins": [],
     "nursery": [
       "no-misleading-character-class",
       "@typescript-eslint/prefer-optional-chain",
@@ -1062,6 +1065,11 @@ exports[`vscode --type-aware > vscode--type-aware 1`] = `
     },
   },
   "skipped": {
+    "js-plugins": [
+      "header/header",
+      "@stylistic/ts/semi",
+      "@stylistic/ts/member-delimiter-style",
+    ],
     "nursery": [
       "no-misleading-character-class",
       "@typescript-eslint/prefer-optional-chain",
@@ -1082,9 +1090,6 @@ exports[`vscode --type-aware > vscode--type-aware 1`] = `
       "local/code-must-use-super-dispose",
       "local/code-declare-service-brand",
       "local/code-layering",
-      "header/header",
-      "@stylistic/ts/semi",
-      "@stylistic/ts/member-delimiter-style",
       "local/code-no-unused-expressions",
       "jsdoc/no-types",
       "local/code-no-static-self-ref",
@@ -1429,6 +1434,11 @@ exports[`vscode merge > vscode--merge 1`] = `
     },
   },
   "skipped": {
+    "js-plugins": [
+      "header/header",
+      "@stylistic/ts/semi",
+      "@stylistic/ts/member-delimiter-style",
+    ],
     "nursery": [
       "no-misleading-character-class",
       "@typescript-eslint/prefer-optional-chain",
@@ -1449,9 +1459,6 @@ exports[`vscode merge > vscode--merge 1`] = `
       "local/code-must-use-super-dispose",
       "local/code-declare-service-brand",
       "local/code-layering",
-      "header/header",
-      "@stylistic/ts/semi",
-      "@stylistic/ts/member-delimiter-style",
       "local/code-no-unused-expressions",
       "jsdoc/no-types",
       "local/code-no-static-self-ref",
