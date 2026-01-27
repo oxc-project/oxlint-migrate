@@ -240,6 +240,7 @@ exports[`eslint-plugin-oxlint > eslint-plugin-oxlint 1`] = `
     },
   },
   "skipped": {
+    "js-plugins": [],
     "nursery": [
       "getter-return",
       "no-misleading-character-class",
@@ -265,27 +266,7 @@ exports[`eslint-plugin-oxlint > eslint-plugin-oxlint 1`] = `
       "prefer-const",
     ],
   },
-  "warnings": [
-    "unsupported rule, but available as a nursery rule: getter-return",
-    "unsupported rule: no-dupe-args",
-    "unsupported rule, but available as a nursery rule: no-misleading-character-class",
-    "unsupported rule: no-octal",
-    "unsupported rule, but available as a nursery rule: no-undef",
-    "unsupported rule, but available as a nursery rule: no-unreachable",
-    "unsupported rule: unicorn/expiring-todo-comments",
-    "unsupported rule: unicorn/import-style",
-    "unsupported rule: unicorn/no-for-loop",
-    "unsupported rule: unicorn/no-named-default",
-    "unsupported rule: unicorn/no-unnecessary-polyfills",
-    "unsupported rule: unicorn/prefer-export-from",
-    "unsupported rule: unicorn/prefer-module",
-    "unsupported rule: unicorn/prefer-single-call",
-    "unsupported rule: unicorn/prefer-switch",
-    "unsupported rule: unicorn/prefer-ternary",
-    "unsupported rule: unicorn/prevent-abbreviations",
-    "unsupported rule: unicorn/relative-url-style",
-    "unsupported rule: prefer-const",
-  ],
+  "warnings": [],
 }
 `;
 
@@ -529,6 +510,7 @@ exports[`eslint-plugin-oxlint --js-plugins > eslint-plugin-oxlint--js-plugins 1`
     },
   },
   "skipped": {
+    "js-plugins": [],
     "nursery": [
       "getter-return",
       "no-misleading-character-class",
@@ -554,27 +536,7 @@ exports[`eslint-plugin-oxlint --js-plugins > eslint-plugin-oxlint--js-plugins 1`
       "prefer-const",
     ],
   },
-  "warnings": [
-    "unsupported rule, but available as a nursery rule: getter-return",
-    "unsupported rule: no-dupe-args",
-    "unsupported rule, but available as a nursery rule: no-misleading-character-class",
-    "unsupported rule: no-octal",
-    "unsupported rule, but available as a nursery rule: no-undef",
-    "unsupported rule, but available as a nursery rule: no-unreachable",
-    "unsupported rule: unicorn/expiring-todo-comments",
-    "unsupported rule: unicorn/import-style",
-    "unsupported rule: unicorn/no-for-loop",
-    "unsupported rule: unicorn/no-named-default",
-    "unsupported rule: unicorn/no-unnecessary-polyfills",
-    "unsupported rule: unicorn/prefer-export-from",
-    "unsupported rule: unicorn/prefer-module",
-    "unsupported rule: unicorn/prefer-single-call",
-    "unsupported rule: unicorn/prefer-switch",
-    "unsupported rule: unicorn/prefer-ternary",
-    "unsupported rule: unicorn/prevent-abbreviations",
-    "unsupported rule: unicorn/relative-url-style",
-    "unsupported rule: prefer-const",
-  ],
+  "warnings": [],
 }
 `;
 
@@ -818,6 +780,7 @@ exports[`eslint-plugin-oxlint --type-aware > eslint-plugin-oxlint--type-aware 1`
     },
   },
   "skipped": {
+    "js-plugins": [],
     "nursery": [
       "getter-return",
       "no-misleading-character-class",
@@ -843,27 +806,7 @@ exports[`eslint-plugin-oxlint --type-aware > eslint-plugin-oxlint--type-aware 1`
       "prefer-const",
     ],
   },
-  "warnings": [
-    "unsupported rule, but available as a nursery rule: getter-return",
-    "unsupported rule: no-dupe-args",
-    "unsupported rule, but available as a nursery rule: no-misleading-character-class",
-    "unsupported rule: no-octal",
-    "unsupported rule, but available as a nursery rule: no-undef",
-    "unsupported rule, but available as a nursery rule: no-unreachable",
-    "unsupported rule: unicorn/expiring-todo-comments",
-    "unsupported rule: unicorn/import-style",
-    "unsupported rule: unicorn/no-for-loop",
-    "unsupported rule: unicorn/no-named-default",
-    "unsupported rule: unicorn/no-unnecessary-polyfills",
-    "unsupported rule: unicorn/prefer-export-from",
-    "unsupported rule: unicorn/prefer-module",
-    "unsupported rule: unicorn/prefer-single-call",
-    "unsupported rule: unicorn/prefer-switch",
-    "unsupported rule: unicorn/prefer-ternary",
-    "unsupported rule: unicorn/prevent-abbreviations",
-    "unsupported rule: unicorn/relative-url-style",
-    "unsupported rule: prefer-const",
-  ],
+  "warnings": [],
 }
 `;
 
@@ -1038,6 +981,7 @@ exports[`eslint-plugin-oxlint merge > eslint-plugin-oxlint--merge 1`] = `
     },
   },
   "skipped": {
+    "js-plugins": [],
     "nursery": [
       "getter-return",
       "no-misleading-character-class",
@@ -1063,26 +1007,6 @@ exports[`eslint-plugin-oxlint merge > eslint-plugin-oxlint--merge 1`] = `
       "prefer-const",
     ],
   },
-  "warnings": [
-    "unsupported rule, but available as a nursery rule: getter-return",
-    "unsupported rule: no-dupe-args",
-    "unsupported rule, but available as a nursery rule: no-misleading-character-class",
-    "unsupported rule: no-octal",
-    "unsupported rule, but available as a nursery rule: no-undef",
-    "unsupported rule, but available as a nursery rule: no-unreachable",
-    "unsupported rule: unicorn/expiring-todo-comments",
-    "unsupported rule: unicorn/import-style",
-    "unsupported rule: unicorn/no-for-loop",
-    "unsupported rule: unicorn/no-named-default",
-    "unsupported rule: unicorn/no-unnecessary-polyfills",
-    "unsupported rule: unicorn/prefer-export-from",
-    "unsupported rule: unicorn/prefer-module",
-    "unsupported rule: unicorn/prefer-single-call",
-    "unsupported rule: unicorn/prefer-switch",
-    "unsupported rule: unicorn/prefer-ternary",
-    "unsupported rule: unicorn/prevent-abbreviations",
-    "unsupported rule: unicorn/relative-url-style",
-    "unsupported rule: prefer-const",
-  ],
+  "warnings": [],
 }
 `;

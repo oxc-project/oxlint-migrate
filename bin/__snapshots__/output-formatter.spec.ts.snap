@@ -1,0 +1,183 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`formatMigrationOutput > should NOT show --details hint when all categories have <= 3 rules 1`] = `
+"
+✨ .oxlintrc.json created with 10 rules.
+
+   Skipped 7 rules:
+     -   3 Nursery     (Experimental: rule1, rule2, rule3)
+     -   1 Type-aware  (Requires TS info: rule4)
+     -   1 JS Plugins  (Requires JS plugins: rule5)
+     -   2 Unsupported (rule6, rule7)
+
+👉 Re-run with flags to include more:
+     npx @oxlint/migrate --with-nursery --type-aware --js-plugins
+
+🚀 Next:
+     npx oxlint .
+"
+`;
+
+exports[`formatMigrationOutput > should NOT show --details hint when details=true 1`] = `
+"
+✨ .oxlintrc.json created with 10 rules.
+
+   Skipped 4 rules:
+     - 4 Nursery
+       - rule1
+       - rule2
+       - rule3
+       - rule4
+
+👉 Re-run with flags to include more:
+     npx @oxlint/migrate --with-nursery
+
+🚀 Next:
+     npx oxlint .
+"
+`;
+
+exports[`formatMigrationOutput > should format complete output with all sections 1`] = `
+"
+✨ .oxlintrc.json created with 24 rules.
+
+   Skipped 7 rules:
+     -   3 Nursery     (Experimental: getter-return, no-undef, no-unreachable)
+     -   1 Type-aware  (Requires TS info: await-thenable)
+     -   2 JS Plugins  (Requires JS plugins: js-plugin-rule1, js-plugin-rule2)
+     -   1 Unsupported (prefer-const)
+
+👉 Re-run with flags to include more:
+     npx @oxlint/migrate eslint.config.mjs --with-nursery --type-aware --js-plugins
+
+🚀 Next:
+     npx oxlint .
+"
+`;
+
+exports[`formatMigrationOutput > should handle more than 3 rules with "and more" in summary mode 1`] = `
+"
+✨ .oxlintrc.json created with 10 rules.
+
+   Skipped 4 rules:
+     -   4 Nursery     (Experimental: rule1, rule2, rule3, and more)
+
+     Tip: Use --details to see the full list.
+
+👉 Re-run with flags to include more:
+     npx @oxlint/migrate --with-nursery
+
+🚀 Next:
+     npx oxlint .
+"
+`;
+
+exports[`formatMigrationOutput > should handle no enabled rules 1`] = `
+"
+⚠️ .oxlintrc.json created with no rules enabled.
+
+   Skipped 1 rules:
+     -   1 Unsupported (rule1)
+"
+`;
+
+exports[`formatMigrationOutput > should handle no skipped rules 1`] = `
+"
+✨ .oxlintrc.json created with 10 rules.
+
+🚀 Next:
+     npx oxlint .
+"
+`;
+
+exports[`formatMigrationOutput > should not show missing flags section when flags are enabled 1`] = `
+"
+✨ .oxlintrc.json created with 24 rules.
+
+   Skipped 3 rules:
+     -   1 Nursery     (Experimental: getter-return)
+     -   1 Type-aware  (Requires TS info: await-thenable)
+     -   1 JS Plugins  (Requires JS plugins: js-plugin-rule1)
+
+🚀 Next:
+     npx oxlint .
+"
+`;
+
+exports[`formatMigrationOutput > should show --details hint when any category has > 3 rules 1`] = `
+"
+✨ .oxlintrc.json created with 10 rules.
+
+   Skipped 8 rules:
+     -   5 Nursery     (Experimental: rule1, rule2, rule3, and more)
+     -   1 Type-aware  (Requires TS info: rule6)
+     -   1 JS Plugins  (Requires JS plugins: rule7)
+     -   1 Unsupported (rule8)
+
+     Tip: Use --details to see the full list.
+
+👉 Re-run with flags to include more:
+     npx @oxlint/migrate --with-nursery --type-aware --js-plugins
+
+🚀 Next:
+     npx oxlint .
+"
+`;
+
+exports[`formatMigrationOutput > should show all rules in vertical list when details=true 1`] = `
+"
+✨ .oxlintrc.json created with 10 rules.
+
+   Skipped 4 rules:
+     - 4 Nursery
+       - rule1
+       - rule2
+       - rule3
+       - rule4
+
+👉 Re-run with flags to include more:
+     npx @oxlint/migrate --with-nursery
+
+🚀 Next:
+     npx oxlint .
+"
+`;
+
+exports[`formatMigrationOutput > should show only nursery rules when type-aware is empty 1`] = `
+"
+✨ .oxlintrc.json created with 10 rules.
+
+   Skipped 2 rules:
+     -   2 Nursery     (Experimental: getter-return, no-undef)
+
+👉 Re-run with flags to include more:
+     npx @oxlint/migrate --with-nursery
+
+🚀 Next:
+     npx oxlint .
+"
+`;
+
+exports[`formatMigrationOutput > should show vertical list for multiple categories when details=true 1`] = `
+"
+✨ .oxlintrc.json created with 24 rules.
+
+   Skipped 6 rules:
+     - 2 Nursery
+       - getter-return
+       - no-undef
+     - 1 Type-aware
+       - await-thenable
+     - 1 JS Plugins
+       - js-plugin-rule1
+     - 2 Unsupported
+       - prefer-const
+       - camelcase
+
+👉 Re-run with flags to include more:
+     npx @oxlint/migrate --with-nursery --type-aware --js-plugins
+
+🚀 Next:
+     npx oxlint .
+"
+`;

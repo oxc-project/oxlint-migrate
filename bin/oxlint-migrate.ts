@@ -9,12 +9,17 @@ import {
 } from './config-loader.js';
 import main from '../src/index.js';
 import packageJson from '../package.json' with { type: 'json' };
-import { Options } from '../src/types.js';
+import { Options, OxlintConfig } from '../src/types.js';
 import { walkAndReplaceProjectFiles } from '../src/walker/index.js';
 import { getAllProjectFiles } from './project-loader.js';
 import { writeFile } from 'node:fs/promises';
 import { preFixForJsPlugins } from '../src/js_plugin_fixes.js';
 import { DefaultReporter } from '../src/reporter.js';
+import { isOffValue } from '../src/plugins_rules.js';
+import {
+  formatMigrationOutput,
+  displayMigrationResult,
+} from './output-formatter.js';
 
 const cwd = process.cwd();
 
@@ -24,6 +29,35 @@ const getFileContent = (absoluteFilePath: string): string | undefined => {
   } catch {
     return undefined;
   }
+};
+
+/**
+ * Count enabled rules (excluding "off" rules) from both rules and overrides
+ */
+const countEnabledRules = (config: OxlintConfig): number => {
+  const enabledRules = new Set<string>();
+
+  if (config.rules) {
+    for (const [ruleName, ruleValue] of Object.entries(config.rules)) {
+      if (!isOffValue(ruleValue)) {
+        enabledRules.add(ruleName);
+      }
+    }
+  }
+
+  if (config.overrides && Array.isArray(config.overrides)) {
+    for (const override of config.overrides) {
+      if (override.rules) {
+        for (const [ruleName, ruleValue] of Object.entries(override.rules)) {
+          if (!isOffValue(ruleValue)) {
+            enabledRules.add(ruleName);
+          }
+        }
+      }
+    }
+  }
+
+  return enabledRules.size;
 };
 
 program
@@ -56,6 +90,11 @@ program
   .option(
     '--js-plugins',
     'Tries to convert unsupported oxlint plugins with `jsPlugins`.'
+  )
+  .option(
+    '--details',
+    'List rules that could not be migrated to oxlint.',
+    false
   )
   .action(async (filePath: string | undefined) => {
     const cliOptions = program.opts();
@@ -116,9 +155,22 @@ program
 
     writeFileSync(oxlintFilePath, JSON.stringify(oxlintConfig, null, 2));
 
-    for (const report of reporter.getReports()) {
-      console.warn(report);
-    }
+    const enabledRulesCount = countEnabledRules(oxlintConfig);
+
+    const outputMessage = formatMigrationOutput({
+      outputFileName: cliOptions.outputFile,
+      enabledRulesCount,
+      skippedRulesByCategory: reporter.getSkippedRulesByCategory(),
+      cliOptions: {
+        withNursery: !!cliOptions.withNursery,
+        typeAware: !!cliOptions.typeAware,
+        details: !!cliOptions.details,
+        jsPlugins: !!cliOptions.jsPlugins,
+      },
+      eslintConfigPath: filePath,
+    });
+
+    displayMigrationResult(outputMessage, reporter.getWarnings());
   });
 
 program.parse();

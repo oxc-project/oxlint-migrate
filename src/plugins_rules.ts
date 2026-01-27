@@ -27,7 +27,7 @@ const isValueInSet = (value: unknown, validSet: unknown[]) =>
 const isActiveValue = (value: unknown) =>
   isValueInSet(value, ['error', 'warn', 1, 2]);
 
-const isOffValue = (value: unknown) => isValueInSet(value, ['off', 0]);
+export const isOffValue = (value: unknown) => isValueInSet(value, ['off', 0]);
 
 const isWarnValue = (value: unknown) => isValueInSet(value, ['warn', 1]);
 
@@ -83,7 +83,6 @@ export const transformRuleEntry = (
 
   for (const [rule, config] of Object.entries(eslintConfig.rules)) {
     const normalizedConfig = normalizeSeverityValue(config);
-    const unsupportedRuleMessage = `unsupported rule: ${rule}`;
 
     // ToDo: check if the rule is really supported by oxlint
     // when not ask the user if this is ok
@@ -91,17 +90,11 @@ export const transformRuleEntry = (
 
     if (allRules.includes(rule)) {
       if (!options?.withNursery && rules.nurseryRules.includes(rule)) {
-        options?.reporter?.report(
-          `unsupported rule, but available as a nursery rule: ${rule}`
-        );
         options?.reporter?.markSkipped(rule, 'nursery');
         continue;
       }
 
       if (!options?.typeAware && rules.typeAwareRules.includes(rule)) {
-        options?.reporter?.report(
-          `type-aware rule detected, but \`--type-aware\` is not enabled: ${rule}`
-        );
         options?.reporter?.markSkipped(rule, 'type-aware');
         continue;
       }
@@ -132,16 +125,16 @@ export const transformRuleEntry = (
           }
           // also remove any previously queued unsupported report for base
           if (eslintConfig.files === undefined) {
-            options.reporter?.remove(unsupportedRuleMessage);
+            options?.reporter?.removeSkipped(rule, 'js-plugins');
             options?.reporter?.removeSkipped(rule, 'unsupported');
           }
           continue;
         }
 
-        if (enableJsPluginRule(targetConfig, rule, normalizedConfig)) {
-          continue;
+        if (!enableJsPluginRule(targetConfig, rule, normalizedConfig)) {
+          options?.reporter?.markSkipped(rule, 'unsupported');
         }
-        // fall through to unsupported handling if plugin couldn't be enabled
+        continue;
       }
 
       // Non-jsPlugins path or failed jsPlugin mapping: handle disabled rules
@@ -152,14 +145,17 @@ export const transformRuleEntry = (
         }
         // only remove the reporter diagnostics when it is in a base config.
         if (eslintConfig.files === undefined) {
-          options?.reporter?.remove(unsupportedRuleMessage);
           options?.reporter?.removeSkipped(rule, 'unsupported');
         }
         continue;
       }
 
-      // Active unsupported rule: report
-      options?.reporter?.report(unsupportedRuleMessage);
+      if (!options?.jsPlugins && !isIgnoredPluginRule(rule)) {
+        options?.reporter?.markSkipped(rule, 'js-plugins');
+        continue;
+      }
+
+      // Active unsupported rule: mark as skipped
       options?.reporter?.markSkipped(rule, 'unsupported');
     }
   }

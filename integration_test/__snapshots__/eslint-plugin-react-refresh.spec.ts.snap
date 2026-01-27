@@ -18,6 +18,7 @@ exports[`eslint-plugin-react-refresh > eslint-plugin-react-refresh 1`] = `
     },
   },
   "skipped": {
+    "js-plugins": [],
     "nursery": [],
     "type-aware": [],
     "unsupported": [],
@@ -44,6 +45,7 @@ exports[`eslint-plugin-react-refresh --js-plugins > eslint-plugin-react-refresh-
     },
   },
   "skipped": {
+    "js-plugins": [],
     "nursery": [],
     "type-aware": [],
     "unsupported": [],
@@ -70,6 +72,7 @@ exports[`eslint-plugin-react-refresh --type-aware > eslint-plugin-react-refresh-
     },
   },
   "skipped": {
+    "js-plugins": [],
     "nursery": [],
     "type-aware": [],
     "unsupported": [],
@@ -97,6 +100,7 @@ exports[`eslint-plugin-react-refresh merge > eslint-plugin-react-refresh--merge 
     },
   },
   "skipped": {
+    "js-plugins": [],
     "nursery": [],
     "type-aware": [],
     "unsupported": [],

@@ -308,6 +308,11 @@ exports[`vscode > vscode 1`] = `
     },
   },
   "skipped": {
+    "js-plugins": [
+      "header/header",
+      "@stylistic/ts/semi",
+      "@stylistic/ts/member-delimiter-style",
+    ],
     "nursery": [
       "no-misleading-character-class",
       "@typescript-eslint/prefer-optional-chain",
@@ -328,9 +333,6 @@ exports[`vscode > vscode 1`] = `
       "local/code-must-use-super-dispose",
       "local/code-declare-service-brand",
       "local/code-layering",
-      "header/header",
-      "@stylistic/ts/semi",
-      "@stylistic/ts/member-delimiter-style",
       "local/code-no-unused-expressions",
       "jsdoc/no-types",
       "local/code-no-static-self-ref",
@@ -362,24 +364,7 @@ exports[`vscode > vscode 1`] = `
       "@typescript-eslint/prefer-readonly",
     ],
   },
-  "warnings": [
-    "unsupported rule: prefer-const",
-    "unsupported rule: no-buffer-constructor",
-    "unsupported rule: no-extra-semi",
-    "unsupported rule, but available as a nursery rule: no-misleading-character-class",
-    "unsupported rule: header/header",
-    "unsupported rule: @stylistic/ts/semi",
-    "unsupported rule: @stylistic/ts/member-delimiter-style",
-    "unsupported rule: jsdoc/no-types",
-    "unsupported rule: @typescript-eslint/naming-convention",
-    "unsupported rule: no-restricted-syntax",
-    "unsupported rule: jsdoc/no-multi-asterisks",
-    "unsupported rule: jsdoc/require-jsdoc",
-    "unsupported rule: jsdoc/check-param-names",
-    "unsupported rule: comma-dangle",
-    "unsupported rule, but available as a nursery rule: @typescript-eslint/prefer-optional-chain",
-    "unsupported rule: @typescript-eslint/prefer-readonly",
-  ],
+  "warnings": [],
 }
 `;
 
@@ -716,6 +701,7 @@ exports[`vscode --js-plugins > vscode--js-plugins 1`] = `
     },
   },
   "skipped": {
+    "js-plugins": [],
     "nursery": [
       "no-misleading-character-class",
       "@typescript-eslint/prefer-optional-chain",
@@ -767,21 +753,7 @@ exports[`vscode --js-plugins > vscode--js-plugins 1`] = `
       "@typescript-eslint/prefer-readonly",
     ],
   },
-  "warnings": [
-    "unsupported rule: prefer-const",
-    "unsupported rule: no-buffer-constructor",
-    "unsupported rule: no-extra-semi",
-    "unsupported rule, but available as a nursery rule: no-misleading-character-class",
-    "unsupported rule: jsdoc/no-types",
-    "unsupported rule: @typescript-eslint/naming-convention",
-    "unsupported rule: no-restricted-syntax",
-    "unsupported rule: jsdoc/no-multi-asterisks",
-    "unsupported rule: jsdoc/require-jsdoc",
-    "unsupported rule: jsdoc/check-param-names",
-    "unsupported rule: comma-dangle",
-    "unsupported rule, but available as a nursery rule: @typescript-eslint/prefer-optional-chain",
-    "unsupported rule: @typescript-eslint/prefer-readonly",
-  ],
+  "warnings": [],
 }
 `;
 
@@ -1093,6 +1065,11 @@ exports[`vscode --type-aware > vscode--type-aware 1`] = `
     },
   },
   "skipped": {
+    "js-plugins": [
+      "header/header",
+      "@stylistic/ts/semi",
+      "@stylistic/ts/member-delimiter-style",
+    ],
     "nursery": [
       "no-misleading-character-class",
       "@typescript-eslint/prefer-optional-chain",
@@ -1113,9 +1090,6 @@ exports[`vscode --type-aware > vscode--type-aware 1`] = `
       "local/code-must-use-super-dispose",
       "local/code-declare-service-brand",
       "local/code-layering",
-      "header/header",
-      "@stylistic/ts/semi",
-      "@stylistic/ts/member-delimiter-style",
       "local/code-no-unused-expressions",
       "jsdoc/no-types",
       "local/code-no-static-self-ref",
@@ -1147,24 +1121,7 @@ exports[`vscode --type-aware > vscode--type-aware 1`] = `
       "@typescript-eslint/prefer-readonly",
     ],
   },
-  "warnings": [
-    "unsupported rule: prefer-const",
-    "unsupported rule: no-buffer-constructor",
-    "unsupported rule: no-extra-semi",
-    "unsupported rule, but available as a nursery rule: no-misleading-character-class",
-    "unsupported rule: header/header",
-    "unsupported rule: @stylistic/ts/semi",
-    "unsupported rule: @stylistic/ts/member-delimiter-style",
-    "unsupported rule: jsdoc/no-types",
-    "unsupported rule: @typescript-eslint/naming-convention",
-    "unsupported rule: no-restricted-syntax",
-    "unsupported rule: jsdoc/no-multi-asterisks",
-    "unsupported rule: jsdoc/require-jsdoc",
-    "unsupported rule: jsdoc/check-param-names",
-    "unsupported rule: comma-dangle",
-    "unsupported rule, but available as a nursery rule: @typescript-eslint/prefer-optional-chain",
-    "unsupported rule: @typescript-eslint/prefer-readonly",
-  ],
+  "warnings": [],
 }
 `;
 
@@ -1477,6 +1434,11 @@ exports[`vscode merge > vscode--merge 1`] = `
     },
   },
   "skipped": {
+    "js-plugins": [
+      "header/header",
+      "@stylistic/ts/semi",
+      "@stylistic/ts/member-delimiter-style",
+    ],
     "nursery": [
       "no-misleading-character-class",
       "@typescript-eslint/prefer-optional-chain",
@@ -1497,9 +1459,6 @@ exports[`vscode merge > vscode--merge 1`] = `
       "local/code-must-use-super-dispose",
       "local/code-declare-service-brand",
       "local/code-layering",
-      "header/header",
-      "@stylistic/ts/semi",
-      "@stylistic/ts/member-delimiter-style",
       "local/code-no-unused-expressions",
       "jsdoc/no-types",
       "local/code-no-static-self-ref",
@@ -1531,23 +1490,6 @@ exports[`vscode merge > vscode--merge 1`] = `
       "@typescript-eslint/prefer-readonly",
     ],
   },
-  "warnings": [
-    "unsupported rule: prefer-const",
-    "unsupported rule: no-buffer-constructor",
-    "unsupported rule: no-extra-semi",
-    "unsupported rule, but available as a nursery rule: no-misleading-character-class",
-    "unsupported rule: header/header",
-    "unsupported rule: @stylistic/ts/semi",
-    "unsupported rule: @stylistic/ts/member-delimiter-style",
-    "unsupported rule: jsdoc/no-types",
-    "unsupported rule: @typescript-eslint/naming-convention",
-    "unsupported rule: no-restricted-syntax",
-    "unsupported rule: jsdoc/no-multi-asterisks",
-    "unsupported rule: jsdoc/require-jsdoc",
-    "unsupported rule: jsdoc/check-param-names",
-    "unsupported rule: comma-dangle",
-    "unsupported rule, but available as a nursery rule: @typescript-eslint/prefer-optional-chain",
-    "unsupported rule: @typescript-eslint/prefer-readonly",
-  ],
+  "warnings": [],
 }
 `;

@@ -178,6 +178,7 @@ exports[`vuejs/core > vuejs/core 1`] = `
     "plugins": [],
   },
   "skipped": {
+    "js-plugins": [],
     "nursery": [],
     "type-aware": [],
     "unsupported": [
@@ -185,10 +186,7 @@ exports[`vuejs/core > vuejs/core 1`] = `
       "import-x/no-nodejs-modules",
     ],
   },
-  "warnings": [
-    "unsupported rule: no-restricted-syntax",
-    "unsupported rule: import-x/no-nodejs-modules",
-  ],
+  "warnings": [],
 }
 `;
 
@@ -370,6 +368,7 @@ exports[`vuejs/core --js-plugins > vuejs/core--js-plugins 1`] = `
     "plugins": [],
   },
   "skipped": {
+    "js-plugins": [],
     "nursery": [],
     "type-aware": [],
     "unsupported": [
@@ -377,10 +376,7 @@ exports[`vuejs/core --js-plugins > vuejs/core--js-plugins 1`] = `
       "import-x/no-nodejs-modules",
     ],
   },
-  "warnings": [
-    "unsupported rule: no-restricted-syntax",
-    "unsupported rule: import-x/no-nodejs-modules",
-  ],
+  "warnings": [],
 }
 `;
 
@@ -562,6 +558,7 @@ exports[`vuejs/core --type-aware > vuejs/core--type-aware 1`] = `
     "plugins": [],
   },
   "skipped": {
+    "js-plugins": [],
     "nursery": [],
     "type-aware": [],
     "unsupported": [
@@ -569,10 +566,7 @@ exports[`vuejs/core --type-aware > vuejs/core--type-aware 1`] = `
       "import-x/no-nodejs-modules",
     ],
   },
-  "warnings": [
-    "unsupported rule: no-restricted-syntax",
-    "unsupported rule: import-x/no-nodejs-modules",
-  ],
+  "warnings": [],
 }
 `;
 
@@ -754,6 +748,7 @@ exports[`vuejs/core merge > vuejs/core--merge 1`] = `
     ],
   },
   "skipped": {
+    "js-plugins": [],
     "nursery": [],
     "type-aware": [],
     "unsupported": [
@@ -761,9 +756,6 @@ exports[`vuejs/core merge > vuejs/core--merge 1`] = `
       "import-x/no-nodejs-modules",
     ],
   },
-  "warnings": [
-    "unsupported rule: no-restricted-syntax",
-    "unsupported rule: import-x/no-nodejs-modules",
-  ],
+  "warnings": [],
 }
 `;

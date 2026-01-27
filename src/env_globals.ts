@@ -163,7 +163,7 @@ export const transformEnvAndGlobals = (
       eslintConfig.languageOptions.parser.meta?.name
     )
   ) {
-    options?.reporter?.report(
+    options?.reporter?.addWarning(
       'special parser detected: ' +
         // @ts-expect-error
         eslintConfig.languageOptions.parser.meta?.name

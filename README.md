@@ -24,6 +24,7 @@ When no config file is provided, the script searches for the default ESLint conf
 | `--type-aware`              | Include type aware rules, which are supported with `oxlint --type-aware` and [oxlint-tsgolint](https://github.com/oxc-project/tsgolint)     |
 | `--with-nursery`            | Include oxlint rules which are currently under development                                                                                  |
 | `--js-plugins`              | \*\* Include ESLint plugins via `jsPlugins` key.                                                                                            |
+| `--details`                 | List rules that could not be migrated to oxlint                                                                                             |
 | `--output-file <file>`      | The oxlint configuration file where ESLint v9 rules will be written to, default: `.oxlintrc.json`                                           |
 | `--replace-eslint-comments` | Search in the project files for ESLint comments and replaces them with oxlint. Some ESLint comments are not supported and will be reported. |
 

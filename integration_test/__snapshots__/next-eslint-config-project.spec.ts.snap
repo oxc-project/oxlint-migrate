@@ -104,6 +104,7 @@ exports[`next-eslint-config-project > next-eslint-config-project 1`] = `
     "plugins": [],
   },
   "skipped": {
+    "js-plugins": [],
     "nursery": [
       "react/require-render-return",
     ],
@@ -131,27 +132,7 @@ exports[`next-eslint-config-project > next-eslint-config-project 1`] = `
     ],
   },
   "warnings": [
-    "unsupported rule: react/jsx-uses-react",
-    "unsupported rule: react/jsx-uses-vars",
-    "unsupported rule: react/no-deprecated",
-    "unsupported rule, but available as a nursery rule: react/require-render-return",
-    "unsupported rule: react-hooks/static-components",
-    "unsupported rule: react-hooks/use-memo",
-    "unsupported rule: react-hooks/component-hook-factories",
-    "unsupported rule: react-hooks/preserve-manual-memoization",
-    "unsupported rule: react-hooks/incompatible-library",
-    "unsupported rule: react-hooks/immutability",
-    "unsupported rule: react-hooks/globals",
-    "unsupported rule: react-hooks/refs",
-    "unsupported rule: react-hooks/set-state-in-effect",
-    "unsupported rule: react-hooks/error-boundaries",
-    "unsupported rule: react-hooks/purity",
-    "unsupported rule: react-hooks/set-state-in-render",
-    "unsupported rule: react-hooks/unsupported-syntax",
-    "unsupported rule: react-hooks/config",
-    "unsupported rule: react-hooks/gating",
     "special parser detected: eslint-config-next/parser",
-    "unsupported rule: node/prefer-global/process",
   ],
 }
 `;
@@ -260,6 +241,7 @@ exports[`next-eslint-config-project --js-plugins > next-eslint-config-project--j
     "plugins": [],
   },
   "skipped": {
+    "js-plugins": [],
     "nursery": [
       "react/require-render-return",
     ],
@@ -287,27 +269,7 @@ exports[`next-eslint-config-project --js-plugins > next-eslint-config-project--j
     ],
   },
   "warnings": [
-    "unsupported rule: react/jsx-uses-react",
-    "unsupported rule: react/jsx-uses-vars",
-    "unsupported rule: react/no-deprecated",
-    "unsupported rule, but available as a nursery rule: react/require-render-return",
-    "unsupported rule: react-hooks/static-components",
-    "unsupported rule: react-hooks/use-memo",
-    "unsupported rule: react-hooks/component-hook-factories",
-    "unsupported rule: react-hooks/preserve-manual-memoization",
-    "unsupported rule: react-hooks/incompatible-library",
-    "unsupported rule: react-hooks/immutability",
-    "unsupported rule: react-hooks/globals",
-    "unsupported rule: react-hooks/refs",
-    "unsupported rule: react-hooks/set-state-in-effect",
-    "unsupported rule: react-hooks/error-boundaries",
-    "unsupported rule: react-hooks/purity",
-    "unsupported rule: react-hooks/set-state-in-render",
-    "unsupported rule: react-hooks/unsupported-syntax",
-    "unsupported rule: react-hooks/config",
-    "unsupported rule: react-hooks/gating",
     "special parser detected: eslint-config-next/parser",
-    "unsupported rule: node/prefer-global/process",
   ],
 }
 `;
@@ -416,6 +378,7 @@ exports[`next-eslint-config-project --type-aware > next-eslint-config-project--t
     "plugins": [],
   },
   "skipped": {
+    "js-plugins": [],
     "nursery": [
       "react/require-render-return",
     ],
@@ -443,27 +406,7 @@ exports[`next-eslint-config-project --type-aware > next-eslint-config-project--t
     ],
   },
   "warnings": [
-    "unsupported rule: react/jsx-uses-react",
-    "unsupported rule: react/jsx-uses-vars",
-    "unsupported rule: react/no-deprecated",
-    "unsupported rule, but available as a nursery rule: react/require-render-return",
-    "unsupported rule: react-hooks/static-components",
-    "unsupported rule: react-hooks/use-memo",
-    "unsupported rule: react-hooks/component-hook-factories",
-    "unsupported rule: react-hooks/preserve-manual-memoization",
-    "unsupported rule: react-hooks/incompatible-library",
-    "unsupported rule: react-hooks/immutability",
-    "unsupported rule: react-hooks/globals",
-    "unsupported rule: react-hooks/refs",
-    "unsupported rule: react-hooks/set-state-in-effect",
-    "unsupported rule: react-hooks/error-boundaries",
-    "unsupported rule: react-hooks/purity",
-    "unsupported rule: react-hooks/set-state-in-render",
-    "unsupported rule: react-hooks/unsupported-syntax",
-    "unsupported rule: react-hooks/config",
-    "unsupported rule: react-hooks/gating",
     "special parser detected: eslint-config-next/parser",
-    "unsupported rule: node/prefer-global/process",
   ],
 }
 `;
@@ -573,6 +516,7 @@ exports[`next-eslint-config-project merge > next-eslint-config-project--merge 1`
     "plugins": [],
   },
   "skipped": {
+    "js-plugins": [],
     "nursery": [
       "react/require-render-return",
     ],
@@ -600,27 +544,7 @@ exports[`next-eslint-config-project merge > next-eslint-config-project--merge 1`
     ],
   },
   "warnings": [
-    "unsupported rule: react/jsx-uses-react",
-    "unsupported rule: react/jsx-uses-vars",
-    "unsupported rule: react/no-deprecated",
-    "unsupported rule, but available as a nursery rule: react/require-render-return",
-    "unsupported rule: react-hooks/static-components",
-    "unsupported rule: react-hooks/use-memo",
-    "unsupported rule: react-hooks/component-hook-factories",
-    "unsupported rule: react-hooks/preserve-manual-memoization",
-    "unsupported rule: react-hooks/incompatible-library",
-    "unsupported rule: react-hooks/immutability",
-    "unsupported rule: react-hooks/globals",
-    "unsupported rule: react-hooks/refs",
-    "unsupported rule: react-hooks/set-state-in-effect",
-    "unsupported rule: react-hooks/error-boundaries",
-    "unsupported rule: react-hooks/purity",
-    "unsupported rule: react-hooks/set-state-in-render",
-    "unsupported rule: react-hooks/unsupported-syntax",
-    "unsupported rule: react-hooks/config",
-    "unsupported rule: react-hooks/gating",
     "special parser detected: eslint-config-next/parser",
-    "unsupported rule: node/prefer-global/process",
   ],
 }
 `;
