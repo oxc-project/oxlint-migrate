@@ -45,7 +45,7 @@ export function formatCategorySummary(
     const maxRules = 3;
     const displayRules = rules.slice(0, maxRules);
     const exampleList = displayRules.join(', ');
-    const suffix = count > maxRules ? ', etc.' : '';
+    const suffix = count > maxRules ? ', and more' : '';
     const prefix = meta.description ? `${meta.description} ` : '';
 
     // pad for vertical alignment

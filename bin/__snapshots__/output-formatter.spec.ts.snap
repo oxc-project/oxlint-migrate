@@ -55,12 +55,12 @@ exports[`formatMigrationOutput > should format complete output with all sections
 "
 `;
 
-exports[`formatMigrationOutput > should handle more than 3 rules with "etc." in summary mode 1`] = `
+exports[`formatMigrationOutput > should handle more than 3 rules with "and more" in summary mode 1`] = `
 "
 ✨ .oxlintrc.json created with 10 rules.
 
    Skipped 4 rules:
-     -   4 Nursery     (Experimental: rule1, rule2, rule3, etc.)
+     -   4 Nursery     (Experimental: rule1, rule2, rule3, and more)
 
      Tip: Use --details to see the full list.
 
@@ -109,7 +109,7 @@ exports[`formatMigrationOutput > should show --details hint when any category ha
 ✨ .oxlintrc.json created with 10 rules.
 
    Skipped 8 rules:
-     -   5 Nursery     (Experimental: rule1, rule2, rule3, etc.)
+     -   5 Nursery     (Experimental: rule1, rule2, rule3, and more)
      -   1 Type-aware  (Requires TS info: rule6)
      -   1 JS Plugins  (Requires JS plugins: rule7)
      -   1 Unsupported (rule8)

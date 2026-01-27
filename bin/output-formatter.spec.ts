@@ -21,7 +21,7 @@ describe('formatCategorySummary', () => {
     );
   });
 
-  it('should add "etc." when count > maxExamples and showAll=false', () => {
+  it('should add "and more" when count > maxExamples and showAll=false', () => {
     const result = formatCategorySummary(
       5,
       'type-aware',
@@ -30,7 +30,7 @@ describe('formatCategorySummary', () => {
     );
 
     expect(result).toBe(
-      '     -   5 Type-aware  (Requires TS info: rule1, rule2, rule3, etc.)\n'
+      '     -   5 Type-aware  (Requires TS info: rule1, rule2, rule3, and more)\n'
     );
   });
 
@@ -259,7 +259,7 @@ describe('formatMigrationOutput', () => {
     expect(formatMigrationOutput(data)).toMatchSnapshot();
   });
 
-  it('should handle more than 3 rules with "etc." in summary mode', () => {
+  it('should handle more than 3 rules with "and more" in summary mode', () => {
     const data: MigrationOutputData = {
       outputFileName: '.oxlintrc.json',
       enabledRulesCount: 10,
