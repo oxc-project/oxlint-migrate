@@ -81,6 +81,7 @@ exports[`next-eslint-config-project > next-eslint-config-project 1`] = `
           "jsx-a11y/role-supports-aria-props": "warn",
           "react-hooks/exhaustive-deps": "warn",
           "react-hooks/rules-of-hooks": "error",
+          "react/display-name": "error",
           "react/jsx-key": "error",
           "react/jsx-no-comment-textnodes": "error",
           "react/jsx-no-duplicate-props": "error",
@@ -108,7 +109,6 @@ exports[`next-eslint-config-project > next-eslint-config-project 1`] = `
     ],
     "type-aware": [],
     "unsupported": [
-      "react/display-name",
       "react/jsx-uses-react",
       "react/jsx-uses-vars",
       "react/no-deprecated",
@@ -217,6 +217,7 @@ exports[`next-eslint-config-project --js-plugins > next-eslint-config-project--j
           "jsx-a11y/role-supports-aria-props": "warn",
           "react-hooks/exhaustive-deps": "warn",
           "react-hooks/rules-of-hooks": "error",
+          "react/display-name": "error",
           "react/jsx-key": "error",
           "react/jsx-no-comment-textnodes": "error",
           "react/jsx-no-duplicate-props": "error",
@@ -244,7 +245,6 @@ exports[`next-eslint-config-project --js-plugins > next-eslint-config-project--j
     ],
     "type-aware": [],
     "unsupported": [
-      "react/display-name",
       "react/jsx-uses-react",
       "react/jsx-uses-vars",
       "react/no-deprecated",
@@ -353,6 +353,7 @@ exports[`next-eslint-config-project --type-aware > next-eslint-config-project--t
           "jsx-a11y/role-supports-aria-props": "warn",
           "react-hooks/exhaustive-deps": "warn",
           "react-hooks/rules-of-hooks": "error",
+          "react/display-name": "error",
           "react/jsx-key": "error",
           "react/jsx-no-comment-textnodes": "error",
           "react/jsx-no-duplicate-props": "error",
@@ -380,7 +381,6 @@ exports[`next-eslint-config-project --type-aware > next-eslint-config-project--t
     ],
     "type-aware": [],
     "unsupported": [
-      "react/display-name",
       "react/jsx-uses-react",
       "react/jsx-uses-vars",
       "react/no-deprecated",
@@ -490,6 +490,7 @@ exports[`next-eslint-config-project merge > next-eslint-config-project--merge 1`
           "jsx-a11y/role-supports-aria-props": "warn",
           "react-hooks/exhaustive-deps": "warn",
           "react-hooks/rules-of-hooks": "error",
+          "react/display-name": "error",
           "react/jsx-key": "error",
           "react/jsx-no-comment-textnodes": "error",
           "react/jsx-no-duplicate-props": "error",
@@ -517,7 +518,6 @@ exports[`next-eslint-config-project merge > next-eslint-config-project--merge 1`
     ],
     "type-aware": [],
     "unsupported": [
-      "react/display-name",
       "react/jsx-uses-react",
       "react/jsx-uses-vars",
       "react/no-deprecated",

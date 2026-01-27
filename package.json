@@ -1,6 +1,6 @@
 {
   "name": "@oxlint/migrate",
-  "version": "1.41.0",
+  "version": "1.42.0",
   "description": "Generates a `.oxlintrc.json` from a existing eslint flat config",
   "keywords": [
     "eslint",
@@ -28,7 +28,7 @@
   },
   "scripts": {
     "prepare": "husky",
-    "generate": "node --import @oxc-node/core/register ./scripts/generate.ts",
+    "generate": "node --import @oxc-node/core/register ./scripts/generate-vitest-rules.ts && node --import @oxc-node/core/register ./scripts/generate.ts && pnpm format",
     "format": "oxfmt",
     "lint": "oxlint --type-aware --type-check",
     "test": "vitest",
@@ -68,7 +68,7 @@
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-perf": "^3.3.3",
     "eslint-plugin-react-refresh": "^0.4.26",
-    "eslint-plugin-regexp": "^2.9.0",
+    "eslint-plugin-regexp": "^3.0.0",
     "eslint-plugin-tsdoc": "^0.5.0",
     "eslint-plugin-unicorn": "^62.0.0",
     "husky": "^9.1.7",
@@ -76,9 +76,9 @@
     "lint-staged": "^16.1.2",
     "next": "^16.0.0",
     "oxfmt": "^0.26.0",
-    "oxlint": "^1.41.0",
+    "oxlint": "^1.42.0",
     "oxlint-tsgolint": "^0.8.3",
-    "tsdown": "^0.19.0",
+    "tsdown": "^0.20.0",
     "typescript-eslint": "^8.35.0",
     "vitest": "^4.0.0"
   },
@@ -88,5 +88,5 @@
   "lint-staged": {
     "*": "oxfmt --no-error-on-unmatched-pattern"
   },
-  "packageManager": "pnpm@10.28.0"
+  "packageManager": "pnpm@10.28.1"
 }

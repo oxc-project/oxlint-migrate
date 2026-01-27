@@ -9,7 +9,6 @@ import {
 import {
   rulesPrefixesForPlugins,
   typescriptRulesExtendEslintRules,
-  typescriptTypeAwareRules,
 } from './constants.js';
 import { enableJsPluginRule, isIgnoredPluginRule } from './jsPlugins.js';
 
@@ -95,7 +94,7 @@ export const transformRuleEntry = (
         continue;
       }
 
-      if (!options?.typeAware && typescriptTypeAwareRules.includes(rule)) {
+      if (!options?.typeAware && rules.typeAwareRules.includes(rule)) {
         options?.reporter?.markSkipped(rule, 'type-aware');
         continue;
       }

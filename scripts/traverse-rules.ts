@@ -3,14 +3,16 @@ import {
   aliasPluginNames,
   reactHookRulesInsideReactScope,
   unicornRulesExtendEslintRules,
-  viteTestCompatibleRules,
 } from './constants.js';
+
+import vitestCompatibleRules from './generated/vitest-compatible-jest-rules.json' with { type: 'json' };
 import { typescriptRulesExtendEslintRules } from '../src/constants.js';
 
 export type Rule = {
   value: string;
   scope: string;
   category: string;
+  type_aware: boolean;
 };
 
 /**
@@ -67,14 +69,16 @@ function getAliasRules(rule: Rule): Rule | undefined {
       value: `@typescript-eslint/${rule.value}`,
       scope: 'typescript',
       category: rule.category,
+      type_aware: rule.type_aware,
     };
   }
 
-  if (rule.scope === 'jest' && viteTestCompatibleRules.includes(rule.value)) {
+  if (rule.scope === 'jest' && vitestCompatibleRules.includes(rule.value)) {
     return {
       value: `vitest/${rule.value}`,
       scope: 'vitest',
       category: rule.category,
+      type_aware: rule.type_aware,
     };
   }
 
@@ -83,6 +87,7 @@ function getAliasRules(rule: Rule): Rule | undefined {
       value: `import-x/${rule.value}`,
       scope: 'import-x',
       category: rule.category,
+      type_aware: rule.type_aware,
     };
   }
 
@@ -92,6 +97,7 @@ function getAliasRules(rule: Rule): Rule | undefined {
       value: `n/${rule.value}`,
       scope: 'n',
       category: rule.category,
+      type_aware: rule.type_aware,
     };
   }
 
@@ -105,6 +111,7 @@ function getAliasRules(rule: Rule): Rule | undefined {
       value: `react-refresh/${rule.value}`,
       scope: 'react-refresh',
       category: rule.category,
+      type_aware: rule.type_aware,
     };
   }
 
@@ -116,6 +123,7 @@ function getAliasRules(rule: Rule): Rule | undefined {
       value: `unicorn/${rule.value}`,
       scope: 'unicorn',
       category: rule.category,
+      type_aware: rule.type_aware,
     };
   }
 }
