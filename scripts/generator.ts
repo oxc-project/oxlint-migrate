@@ -30,6 +30,16 @@ export class RulesGenerator {
       code += '\n]\n\n';
     }
 
+    // Generate type-aware rules list
+    const typeAwareRules = this.rulesArray.filter((rule) => rule.type_aware);
+    code += `export const typeAwareRules = [\n`;
+    code += typeAwareRules
+      .map((rule) => {
+        return `  '${rule.value.replaceAll('_', '-')}'`;
+      })
+      .join(',\n');
+    code += '\n]\n';
+
     return code;
   }
 
