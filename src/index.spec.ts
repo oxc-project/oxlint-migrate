@@ -171,6 +171,33 @@ describe('main', () => {
     });
   });
 
+  test('rule with options then same rule turned off should not preserve options', async () => {
+    const result = await main([
+      {
+        rules: {
+          'no-magic-numbers': ['error', { ignoreArrayIndexes: true }],
+        },
+      },
+      {
+        rules: {
+          'no-magic-numbers': 'off',
+        },
+      },
+    ]);
+
+    expect(result).toStrictEqual({
+      $schema: './node_modules/oxlint/configuration_schema.json',
+      categories: {
+        correctness: 'off',
+      },
+      env: {
+        builtin: true,
+      },
+      plugins: [],
+      rules: {}, // Rule is removed when turned off
+    });
+  });
+
   test('1 basic config, 1 file config', async () => {
     const result = await main([
       {
