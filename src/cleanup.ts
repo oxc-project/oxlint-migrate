@@ -250,7 +250,7 @@ function mergeConsecutiveOverridesWithDifferingFiles(config: OxlintConfig) {
 
     while (j < config.overrides.length) {
       const next = config.overrides[j];
-      const { files: __, ...nextWithoutFiles } = next;
+      const { files: _, ...nextWithoutFiles } = next;
 
       // Check if everything except files is identical
       if (isEqualDeep(currentWithoutFiles, nextWithoutFiles)) {

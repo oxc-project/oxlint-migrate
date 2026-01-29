@@ -116,9 +116,9 @@ export const detectEnvironmentByGlobals = (config: OxlintConfigOrOverride) => {
       continue;
     }
 
-    let search = Object.keys(entries);
+    const search = Object.keys(entries);
 
-    let matches = search.filter(
+    const matches = search.filter(
       (entry) =>
         // @ts-expect-error -- we already checked for undefined
         entry in config.globals &&

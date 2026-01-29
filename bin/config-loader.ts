@@ -33,7 +33,7 @@ export const loadESLintConfig = async (filePath: string): Promise<any> => {
 
   // windows allows only file:// prefix to be imported, reported Error:
   // Only URLs with a scheme in: file, data, and node are supported by the default ESM loader. On Windows, absolute paths must be valid file:// URLs. Received protocol 'c:'
-  let url = pathToFileURL(filePath).toString();
+  const url = pathToFileURL(filePath).toString();
 
   // report when file does not exists
   if (!existsSync(filePath)) {

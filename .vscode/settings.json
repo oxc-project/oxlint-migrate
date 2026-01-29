@@ -1,4 +1,5 @@
 {
+  "oxc.path.oxlint": "/home/sysix/dev/oxc/apps/oxlint/dist/cli.js",
   // Editor values
   "editor.formatOnSave": true,
   // Eslint Configuration

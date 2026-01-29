@@ -4,10 +4,13 @@
     "correctness": "error",
     "perf": "error"
   },
+  "jsPlugins": ["./plugins/oxlint-plugin.ts"],
   "rules": {
     "unicorn/prefer-set-has": "off",
     "no-unused-expressions": ["error", { "allowShortCircuit": true }],
-    "eqeqeq": ["error", "always"],
-    "@typescript-eslint/no-array-delete": "off" // FIXME
+    // "eqeqeq": ["error", "always"],
+    "@typescript-eslint/no-array-delete": "off", // FIXME
+    "eslint-js/eqeqeq": ["error", "always"],
+    "eslint-js/prefer-const": ["error", { "destructuring": "all" }]
   }
 }
