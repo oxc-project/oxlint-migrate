@@ -84,6 +84,93 @@ describe('main', () => {
     });
   });
 
+  test('rule with options then same rule without options should preserve options', async () => {
+    const result = await main([
+      {
+        rules: {
+          'no-magic-numbers': ['error', { ignoreArrayIndexes: true }],
+        },
+      },
+      {
+        rules: {
+          'no-magic-numbers': 'error',
+        },
+      },
+    ]);
+
+    expect(result).toStrictEqual({
+      $schema: './node_modules/oxlint/configuration_schema.json',
+      categories: {
+        correctness: 'off',
+      },
+      env: {
+        builtin: true,
+      },
+      plugins: [],
+      rules: {
+        'no-magic-numbers': ['error', { ignoreArrayIndexes: true }],
+      },
+    });
+  });
+
+  test('rule with options then same rule with different severity but no options should preserve options', async () => {
+    const result = await main([
+      {
+        rules: {
+          'no-magic-numbers': ['error', { ignoreArrayIndexes: true }],
+        },
+      },
+      {
+        rules: {
+          'no-magic-numbers': 'warn',
+        },
+      },
+    ]);
+
+    expect(result).toStrictEqual({
+      $schema: './node_modules/oxlint/configuration_schema.json',
+      categories: {
+        correctness: 'off',
+      },
+      env: {
+        builtin: true,
+      },
+      plugins: [],
+      rules: {
+        'no-magic-numbers': ['warn', { ignoreArrayIndexes: true }],
+      },
+    });
+  });
+
+  test('rule with options then same rule with different options should override', async () => {
+    const result = await main([
+      {
+        rules: {
+          'no-magic-numbers': ['error', { ignoreArrayIndexes: true }],
+        },
+      },
+      {
+        rules: {
+          'no-magic-numbers': ['error', { ignoreArrayIndexes: false }],
+        },
+      },
+    ]);
+
+    expect(result).toStrictEqual({
+      $schema: './node_modules/oxlint/configuration_schema.json',
+      categories: {
+        correctness: 'off',
+      },
+      env: {
+        builtin: true,
+      },
+      plugins: [],
+      rules: {
+        'no-magic-numbers': ['error', { ignoreArrayIndexes: false }],
+      },
+    });
+  });
+
   test('1 basic config, 1 file config', async () => {
     const result = await main([
       {
