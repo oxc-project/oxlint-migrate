@@ -111,9 +111,6 @@ importers:
       husky:
         specifier: ^9.1.7
         version: 9.1.7
-      jiti:
-        specifier: ^2.4.2
-        version: 2.6.1
       lint-staged:
         specifier: ^16.1.2
         version: 16.2.7
@@ -6634,7 +6631,8 @@ snapshots:
       has-symbols: 1.1.0
       set-function-name: 2.0.2
 
-  jiti@2.6.1: {}
+  jiti@2.6.1:
+    optional: true
 
   jju@1.4.0: {}
 
