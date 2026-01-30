@@ -1,0 +1,130 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`options-merging-eslint > options-merging-eslint 1`] = `
+{
+  "config": {
+    "$schema": "./node_modules/oxlint/configuration_schema.json",
+    "categories": {
+      "correctness": "off",
+    },
+    "env": {
+      "builtin": true,
+    },
+    "plugins": [
+      "jsx-a11y",
+    ],
+    "rules": {
+      "jsx-a11y/no-autofocus": [
+        "error",
+        {
+          "ignoreNonDOM": true,
+        },
+      ],
+    },
+  },
+  "skipped": {
+    "js-plugins": [],
+    "nursery": [],
+    "type-aware": [],
+    "unsupported": [],
+  },
+  "warnings": [],
+}
+`;
+
+exports[`options-merging-eslint --js-plugins > options-merging-eslint--js-plugins 1`] = `
+{
+  "config": {
+    "$schema": "./node_modules/oxlint/configuration_schema.json",
+    "categories": {
+      "correctness": "off",
+    },
+    "env": {
+      "builtin": true,
+    },
+    "plugins": [
+      "jsx-a11y",
+    ],
+    "rules": {
+      "jsx-a11y/no-autofocus": [
+        "error",
+        {
+          "ignoreNonDOM": true,
+        },
+      ],
+    },
+  },
+  "skipped": {
+    "js-plugins": [],
+    "nursery": [],
+    "type-aware": [],
+    "unsupported": [],
+  },
+  "warnings": [],
+}
+`;
+
+exports[`options-merging-eslint --type-aware > options-merging-eslint--type-aware 1`] = `
+{
+  "config": {
+    "$schema": "./node_modules/oxlint/configuration_schema.json",
+    "categories": {
+      "correctness": "off",
+    },
+    "env": {
+      "builtin": true,
+    },
+    "plugins": [
+      "jsx-a11y",
+    ],
+    "rules": {
+      "jsx-a11y/no-autofocus": [
+        "error",
+        {
+          "ignoreNonDOM": true,
+        },
+      ],
+    },
+  },
+  "skipped": {
+    "js-plugins": [],
+    "nursery": [],
+    "type-aware": [],
+    "unsupported": [],
+  },
+  "warnings": [],
+}
+`;
+
+exports[`options-merging-eslint merge > options-merging-eslint--merge 1`] = `
+{
+  "config": {
+    "$schema": "./node_modules/oxlint/configuration_schema.json",
+    "categories": {
+      "correctness": "error",
+      "perf": "error",
+    },
+    "env": {
+      "builtin": true,
+    },
+    "plugins": [
+      "jsx-a11y",
+    ],
+    "rules": {
+      "jsx-a11y/no-autofocus": [
+        "error",
+        {
+          "ignoreNonDOM": true,
+        },
+      ],
+    },
+  },
+  "skipped": {
+    "js-plugins": [],
+    "nursery": [],
+    "type-aware": [],
+    "unsupported": [],
+  },
+  "warnings": [],
+}
+`;
