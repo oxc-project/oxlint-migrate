@@ -26,9 +26,6 @@
     "types": "./dist/src/index.d.mts",
     "import": "./dist/src/index.mjs"
   },
-  "engines": {
-    "node": ">=22.18.0"
-  },
   "scripts": {
     "prepare": "husky",
     "generate": "node --import @oxc-node/core/register ./scripts/generate-vitest-rules.ts && node --import @oxc-node/core/register ./scripts/generate.ts && pnpm format",

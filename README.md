@@ -44,9 +44,14 @@ Tested ESLint Plugins with `oxlint` can be found in this [Oxc Discussion](https:
 
 ### TypeScript ESLint Configuration Files
 
-TypeScript configuration files, like `eslint.config.mts`, are supported natively in Node.js >=22.18.0 (which includes built-in type-stripping support).
+TypeScript configuration files, like `eslint.config.mts`, are supported in the following environments:
 
-For Deno and Bun, TypeScript configuration files are also natively supported.
+- **Deno and Bun**: TypeScript configuration files are natively supported.
+- **Node.js >=22.18.0**: TypeScript configuration files are supported natively with built-in type-stripping enabled by default.
+- **Node.js >=22.6.0**: TypeScript configuration files can be used by setting the `NODE_OPTIONS=--experimental-strip-types` environment variable.
+- **Node.js <22.6.0**: You must install [jiti](https://www.npmjs.com/package/jiti) as a dev dependency to use TypeScript configuration files.
+
+If you attempt to use a TypeScript configuration file without meeting these requirements, you will receive an error message with instructions on how to proceed.
 
 ## Contributing
 
