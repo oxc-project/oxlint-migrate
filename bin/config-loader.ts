@@ -23,6 +23,24 @@ export const getAutodetectedEslintConfigName = (
   }
 };
 
+const getNodeVersion = (): string => {
+  return process.versions.node;
+};
+
+const isNodeVersionSupported = (minVersion: string): boolean => {
+  const currentVersion = getNodeVersion();
+  const [currentMajor, currentMinor, currentPatch] = currentVersion
+    .split('.')
+    .map(Number);
+  const [minMajor, minMinor, minPatch] = minVersion.split('.').map(Number);
+
+  if (currentMajor > minMajor) return true;
+  if (currentMajor < minMajor) return false;
+  if (currentMinor > minMinor) return true;
+  if (currentMinor < minMinor) return false;
+  return currentPatch >= minPatch;
+};
+
 export const loadESLintConfig = async (filePath: string): Promise<any> => {
   // report when json file is found
   if (filePath.endsWith('json')) {
@@ -45,19 +63,23 @@ export const loadESLintConfig = async (filePath: string): Promise<any> => {
     return import(url);
   }
 
-  // jiti is used to load TypeScript files in a Node.js environment
+  // Check if TypeScript config file and Node version
   if (
     filePath.endsWith('.ts') ||
     filePath.endsWith('.mts') ||
     filePath.endsWith('.cts')
   ) {
-    const { createJiti } = await import('jiti');
-    const jitiInstance = createJiti(filePath, {
-      interopDefault: false,
-      moduleCache: false,
-    });
+    // Node.js >=22.18.0 supports type-stripping natively
+    if (!isNodeVersionSupported('22.18.0')) {
+      const currentVersion = getNodeVersion();
+      throw new Error(
+        `TypeScript ESLint config files require Node.js >=22.18.0 (current version: ${currentVersion}). ` +
+          `Please upgrade Node.js or use a JavaScript config file (.js, .mjs, .cjs) instead.`
+      );
+    }
 
-    return jitiInstance.import(url);
+    // Use native import with --experimental-strip-types (enabled by default in >=22.18.0)
+    return import(url);
   }
 
   // for .js, .mjs, .cjs files we can use the native import
