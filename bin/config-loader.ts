@@ -58,7 +58,8 @@ export const loadESLintConfig = async (filePath: string): Promise<any> => {
     throw new Error(`eslint config file not found: ${filePath}`);
   }
 
-  // Bun and Deno supports TS import natively, only Node needs a custom loader
+  // Bun and Deno supports TS import natively, Node with `--experimental-strip-types`, which is enabled by default in version >=22.18.0
+  // see: https://nodejs.org/en/learn/typescript/run-natively
   if ('Bun' in globalThis || 'Deno' in globalThis) {
     return import(url);
   }
