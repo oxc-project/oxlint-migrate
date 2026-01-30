@@ -15,6 +15,8 @@ exports[`formatMigrationOutput > should NOT show --details hint when all categor
 
 🚀 Next:
      npx oxlint .
+
+💡 Tip: You no longer need @oxlint/migrate installed.
 "
 `;
 
@@ -34,6 +36,8 @@ exports[`formatMigrationOutput > should NOT show --details hint when details=tru
 
 🚀 Next:
      npx oxlint .
+
+💡 Tip: You no longer need @oxlint/migrate installed.
 "
 `;
 
@@ -52,6 +56,8 @@ exports[`formatMigrationOutput > should format complete output with all sections
 
 🚀 Next:
      npx oxlint .
+
+💡 Tip: You no longer need @oxlint/migrate installed.
 "
 `;
 
@@ -69,6 +75,8 @@ exports[`formatMigrationOutput > should handle more than 3 rules with "and more"
 
 🚀 Next:
      npx oxlint .
+
+💡 Tip: You no longer need @oxlint/migrate installed.
 "
 `;
 
@@ -78,6 +86,8 @@ exports[`formatMigrationOutput > should handle no enabled rules 1`] = `
 
    Skipped 1 rules:
      -   1 Unsupported (rule1)
+
+💡 Tip: You no longer need @oxlint/migrate installed.
 "
 `;
 
@@ -87,6 +97,8 @@ exports[`formatMigrationOutput > should handle no skipped rules 1`] = `
 
 🚀 Next:
      npx oxlint .
+
+💡 Tip: You no longer need @oxlint/migrate installed.
 "
 `;
 
@@ -101,6 +113,8 @@ exports[`formatMigrationOutput > should not show missing flags section when flag
 
 🚀 Next:
      npx oxlint .
+
+💡 Tip: You no longer need @oxlint/migrate installed.
 "
 `;
 
@@ -121,6 +135,8 @@ exports[`formatMigrationOutput > should show --details hint when any category ha
 
 🚀 Next:
      npx oxlint .
+
+💡 Tip: You no longer need @oxlint/migrate installed.
 "
 `;
 
@@ -140,6 +156,8 @@ exports[`formatMigrationOutput > should show all rules in vertical list when det
 
 🚀 Next:
      npx oxlint .
+
+💡 Tip: You no longer need @oxlint/migrate installed.
 "
 `;
 
@@ -155,6 +173,8 @@ exports[`formatMigrationOutput > should show only nursery rules when type-aware 
 
 🚀 Next:
      npx oxlint .
+
+💡 Tip: You no longer need @oxlint/migrate installed.
 "
 `;
 
@@ -179,5 +199,7 @@ exports[`formatMigrationOutput > should show vertical list for multiple categori
 
 🚀 Next:
      npx oxlint .
+
+💡 Tip: You no longer need @oxlint/migrate installed.
 "
 `;
