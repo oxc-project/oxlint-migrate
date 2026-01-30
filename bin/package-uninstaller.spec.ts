@@ -35,7 +35,7 @@ describe('detectPackageManager', () => {
         }
       }
       rmdirSync(testDir);
-    } catch (error) {
+    } catch {
       // Ignore cleanup errors
     }
   });

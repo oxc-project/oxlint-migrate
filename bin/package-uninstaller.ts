@@ -110,7 +110,7 @@ export async function handleUninstall(
     const packageManager = detectPackageManager(cwd);
     try {
       await uninstallPackage(packageManager);
-    } catch (error) {
+    } catch {
       // Error already logged, just continue
     }
   }
