@@ -27,6 +27,7 @@ When no config file is provided, the script searches for the default ESLint conf
 | `--details`                 | List rules that could not be migrated to oxlint                                                                                             |
 | `--output-file <file>`      | The oxlint configuration file where ESLint v9 rules will be written to, default: `.oxlintrc.json`                                           |
 | `--replace-eslint-comments` | Search in the project files for ESLint comments and replaces them with oxlint. Some ESLint comments are not supported and will be reported. |
+| `--no-uninstall-prompt`     | Skip the prompt to uninstall `@oxlint/migrate` after migration (useful for CI/automation)                                                   |
 
 \* WARNING: When some `categories` are enabled, this tools will enable more rules with the combination of `plugins`.
 Else we need to disable each rule `plugin/categories` combination, which is not covered by your ESLint configuration.
