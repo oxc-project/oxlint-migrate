@@ -95,7 +95,12 @@ const buildConfig = (
     }
 
     transformIgnorePatterns(config, targetConfig, options);
-    transformRuleEntry(config, targetConfig, options);
+    transformRuleEntry(
+      config,
+      targetConfig,
+      config.files !== undefined ? oxlintConfig : undefined,
+      options
+    );
     transformEnvAndGlobals(config, targetConfig, options);
 
     // clean up overrides

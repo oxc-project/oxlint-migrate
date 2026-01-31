@@ -68,9 +68,73 @@ const normalizeSeverityValue = (
   return undefined;
 };
 
+/**
+ * Merges a new rule configuration with an existing one, preserving options when
+ * the new config only specifies a severity level.
+ *
+ * ESLint flat config behavior: When a rule is redefined with only a severity
+ * (e.g., 'error'), the existing options should be preserved. Only when new
+ * options are explicitly provided should they override the existing ones.
+ *
+ * Special case: When severity is 'off', options are not preserved since the
+ * rule is disabled and options don't matter.
+ *
+ * @param existingConfig - The current rule configuration
+ * @param newConfig - The new rule configuration to merge
+ * @returns The merged rule configuration
+ */
+const mergeRuleConfig = (
+  existingConfig: Linter.RuleEntry | undefined,
+  newConfig: Linter.RuleEntry | undefined
+): Linter.RuleEntry | undefined => {
+  if (newConfig === undefined) {
+    return existingConfig;
+  }
+
+  if (existingConfig === undefined) {
+    return newConfig;
+  }
+
+  // If the new config turns the rule off, don't preserve options
+  if (isOffValue(newConfig)) {
+    return newConfig;
+  }
+
+  // If the new config is just a severity string/number and the existing config has options,
+  // preserve the existing options and update the severity
+  const newIsSimple = !Array.isArray(newConfig);
+  const existingIsArray = Array.isArray(existingConfig);
+
+  if (newIsSimple && existingIsArray && existingConfig.length > 1) {
+    // New config is just a severity, existing has options
+    // Return array with new severity but keep existing options
+    return [newConfig, ...existingConfig.slice(1)];
+  }
+
+  // If new config is an array with only severity (length 1) and existing has options
+  if (
+    Array.isArray(newConfig) &&
+    newConfig.length === 1 &&
+    existingIsArray &&
+    existingConfig.length > 1
+  ) {
+    // New config has severity only, existing has options
+    // Return array with new severity but keep existing options
+    return [newConfig[0], ...existingConfig.slice(1)];
+  }
+
+  // Otherwise, new config completely replaces the old one
+  // This handles cases where:
+  // - New config has explicit options (array with length > 1)
+  // - Both are simple severity values
+  // - Existing config is simple (no options to preserve)
+  return newConfig;
+};
+
 export const transformRuleEntry = (
   eslintConfig: Linter.Config,
   targetConfig: OxlintConfigOrOverride,
+  baseConfig?: OxlintConfig,
   options?: Options
 ): void => {
   if (eslintConfig.rules === undefined) {
@@ -83,10 +147,6 @@ export const transformRuleEntry = (
 
   for (const [rule, config] of Object.entries(eslintConfig.rules)) {
     const normalizedConfig = normalizeSeverityValue(config);
-
-    // ToDo: check if the rule is really supported by oxlint
-    // when not ask the user if this is ok
-    // maybe put it still into the jsonc file but commented out
 
     if (allRules.includes(rule)) {
       if (!options?.withNursery && rules.nurseryRules.includes(rule)) {
@@ -106,7 +166,16 @@ export const transformRuleEntry = (
           targetConfig.rules[rule] = normalizedConfig;
         }
       } else {
-        targetConfig.rules[rule] = normalizedConfig;
+        // Merge the new config with the existing one to preserve options
+        // For file overrides, also check the base config for existing rules
+        const existingConfig =
+          rule in targetConfig.rules
+            ? targetConfig.rules[rule]
+            : baseConfig?.rules?.[rule];
+        targetConfig.rules[rule] = mergeRuleConfig(
+          existingConfig,
+          normalizedConfig
+        );
       }
     } else {
       // For unsupported rules, when jsPlugins is enabled, always try to map
