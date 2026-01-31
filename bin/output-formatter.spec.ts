@@ -384,4 +384,67 @@ describe('formatMigrationOutput', () => {
 
     expect(formatMigrationOutput(data)).toMatchSnapshot();
   });
+
+  it('should show js-plugins tip when js-plugins rules exist and jsPlugins=false', () => {
+    const data: MigrationOutputData = {
+      outputFileName: '.oxlintrc.json',
+      enabledRulesCount: 10,
+      skippedRulesByCategory: {
+        nursery: [],
+        'type-aware': [],
+        'js-plugins': ['mocha/no-pending-tests', 'mocha/no-skipped-tests'],
+        unsupported: [],
+      },
+      cliOptions: {
+        withNursery: false,
+        typeAware: false,
+        jsPlugins: false,
+        details: false,
+      },
+    };
+
+    expect(formatMigrationOutput(data)).toMatchSnapshot();
+  });
+
+  it('should NOT show js-plugins tip when jsPlugins=true', () => {
+    const data: MigrationOutputData = {
+      outputFileName: '.oxlintrc.json',
+      enabledRulesCount: 10,
+      skippedRulesByCategory: {
+        nursery: [],
+        'type-aware': [],
+        'js-plugins': ['mocha/no-pending-tests'],
+        unsupported: [],
+      },
+      cliOptions: {
+        withNursery: false,
+        typeAware: false,
+        jsPlugins: true,
+        details: false,
+      },
+    };
+
+    expect(formatMigrationOutput(data)).toMatchSnapshot();
+  });
+
+  it('should NOT show js-plugins tip when no js-plugins rules exist', () => {
+    const data: MigrationOutputData = {
+      outputFileName: '.oxlintrc.json',
+      enabledRulesCount: 10,
+      skippedRulesByCategory: {
+        nursery: ['rule1'],
+        'type-aware': [],
+        'js-plugins': [],
+        unsupported: [],
+      },
+      cliOptions: {
+        withNursery: false,
+        typeAware: false,
+        jsPlugins: false,
+        details: false,
+      },
+    };
+
+    expect(formatMigrationOutput(data)).toMatchSnapshot();
+  });
 });

@@ -13,6 +13,8 @@ exports[`formatMigrationOutput > should NOT show --details hint when all categor
 👉 Re-run with flags to include more:
      npx @oxlint/migrate --with-nursery --type-aware --js-plugins
 
+💡 Tip: Use --js-plugins to run unsupported rules via their original ESLint plugins.
+
 🚀 Next:
      npx oxlint .
 "
@@ -37,6 +39,33 @@ exports[`formatMigrationOutput > should NOT show --details hint when details=tru
 "
 `;
 
+exports[`formatMigrationOutput > should NOT show js-plugins tip when jsPlugins=true 1`] = `
+"
+✨ .oxlintrc.json created with 10 rules.
+
+   Skipped 1 rules:
+     -   1 JS Plugins  (Requires JS plugins: mocha/no-pending-tests)
+
+🚀 Next:
+     npx oxlint .
+"
+`;
+
+exports[`formatMigrationOutput > should NOT show js-plugins tip when no js-plugins rules exist 1`] = `
+"
+✨ .oxlintrc.json created with 10 rules.
+
+   Skipped 1 rules:
+     -   1 Nursery     (Experimental: rule1)
+
+👉 Re-run with flags to include more:
+     npx @oxlint/migrate --with-nursery
+
+🚀 Next:
+     npx oxlint .
+"
+`;
+
 exports[`formatMigrationOutput > should format complete output with all sections 1`] = `
 "
 ✨ .oxlintrc.json created with 24 rules.
@@ -49,6 +78,8 @@ exports[`formatMigrationOutput > should format complete output with all sections
 
 👉 Re-run with flags to include more:
      npx @oxlint/migrate eslint.config.mjs --with-nursery --type-aware --js-plugins
+
+💡 Tip: Use --js-plugins to run unsupported rules via their original ESLint plugins.
 
 🚀 Next:
      npx oxlint .
@@ -119,6 +150,8 @@ exports[`formatMigrationOutput > should show --details hint when any category ha
 👉 Re-run with flags to include more:
      npx @oxlint/migrate --with-nursery --type-aware --js-plugins
 
+💡 Tip: Use --js-plugins to run unsupported rules via their original ESLint plugins.
+
 🚀 Next:
      npx oxlint .
 "
@@ -137,6 +170,23 @@ exports[`formatMigrationOutput > should show all rules in vertical list when det
 
 👉 Re-run with flags to include more:
      npx @oxlint/migrate --with-nursery
+
+🚀 Next:
+     npx oxlint .
+"
+`;
+
+exports[`formatMigrationOutput > should show js-plugins tip when js-plugins rules exist and jsPlugins=false 1`] = `
+"
+✨ .oxlintrc.json created with 10 rules.
+
+   Skipped 2 rules:
+     -   2 JS Plugins  (Requires JS plugins: mocha/no-pending-tests, mocha/no-skipped-tests)
+
+👉 Re-run with flags to include more:
+     npx @oxlint/migrate --js-plugins
+
+💡 Tip: Use --js-plugins to run unsupported rules via their original ESLint plugins.
 
 🚀 Next:
      npx oxlint .
@@ -176,6 +226,8 @@ exports[`formatMigrationOutput > should show vertical list for multiple categori
 
 👉 Re-run with flags to include more:
      npx @oxlint/migrate --with-nursery --type-aware --js-plugins
+
+💡 Tip: Use --js-plugins to run unsupported rules via their original ESLint plugins.
 
 🚀 Next:
      npx oxlint .
