@@ -82,9 +82,11 @@ The migration tool has been tested to work quite well for simple ESLint flat con
 
 Here are some known caveats to be aware of:
 
-**`settings` field not migrated**
+**`settings` field migration**
 
-The `settings` field (e.g. for setting the React version) is not migrated to the oxlint config yet. You may need to copy it over manually if you have any settings specified.
+The `settings` field (e.g. for setting the React version) is migrated for known oxlint-supported plugins: `jsx-a11y`, `next`, `react`, `jsdoc`, and `vitest`. Other settings keys are skipped since they aren't supported by oxlint.
+
+Note: Oxlint does not support `settings` in override configs. If your ESLint config has settings in configs with `files` patterns, those settings will be skipped and a warning will be shown.
 
 Not all `settings` options are supported by oxlint, and so rule behavior in certain edge-cases may differ. See [the Settings docs](https://oxc.rs/docs/guide/usage/linter/config-file-reference.html#settings) for more info.
 
