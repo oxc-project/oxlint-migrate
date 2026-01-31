@@ -170,6 +170,11 @@ export function formatMigrationOutput(data: MigrationOutputData): string {
       output += `\n👉 Re-run with flags to include more:\n`;
       output += `     npx @oxlint/migrate${eslintConfigArg} ${missingFlags.join(' ')}\n`;
     }
+
+    // Special help message for js-plugins
+    if (jsPluginsCount > 0 && !data.cliOptions.jsPlugins) {
+      output += `\n💡 Tip: Use --js-plugins to run unsupported rules via their original ESLint plugins.\n`;
+    }
   }
 
   if (data.enabledRulesCount > 0) {
