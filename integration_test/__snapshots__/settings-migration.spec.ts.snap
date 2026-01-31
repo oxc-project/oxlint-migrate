@@ -1,0 +1,270 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`settings-migration > settings-migration 1`] = `
+{
+  "config": {
+    "$schema": "./node_modules/oxlint/configuration_schema.json",
+    "categories": {
+      "correctness": "off",
+    },
+    "env": {
+      "builtin": true,
+    },
+    "plugins": [],
+    "settings": {
+      "jsdoc": {
+        "ignoreInternal": true,
+        "ignorePrivate": true,
+        "tagNamePreference": {
+          "returns": "return",
+        },
+      },
+      "jsx-a11y": {
+        "components": {
+          "CustomImage": "img",
+          "IconButton": "button",
+          "Link": "a",
+        },
+        "polymorphicPropName": "as",
+      },
+      "next": {
+        "rootDir": "apps/web/",
+      },
+      "react": {
+        "formComponents": [
+          "CustomForm",
+          {
+            "formAttribute": "endpoint",
+            "name": "Form",
+          },
+        ],
+        "linkComponents": [
+          "Hyperlink",
+          {
+            "linkAttribute": "to",
+            "name": "MyLink",
+          },
+        ],
+        "version": "18.2.0",
+      },
+      "vitest": {
+        "typecheck": true,
+      },
+    },
+  },
+  "skipped": {
+    "js-plugins": [],
+    "nursery": [],
+    "type-aware": [],
+    "unsupported": [
+      "react/jsx-uses-react",
+      "react/jsx-uses-vars",
+    ],
+  },
+  "warnings": [
+    "Settings not migrated (not supported by oxlint): import/resolver, my-custom-plugin.",
+  ],
+}
+`;
+
+exports[`settings-migration --js-plugins > settings-migration--js-plugins 1`] = `
+{
+  "config": {
+    "$schema": "./node_modules/oxlint/configuration_schema.json",
+    "categories": {
+      "correctness": "off",
+    },
+    "env": {
+      "builtin": true,
+    },
+    "plugins": [],
+    "settings": {
+      "jsdoc": {
+        "ignoreInternal": true,
+        "ignorePrivate": true,
+        "tagNamePreference": {
+          "returns": "return",
+        },
+      },
+      "jsx-a11y": {
+        "components": {
+          "CustomImage": "img",
+          "IconButton": "button",
+          "Link": "a",
+        },
+        "polymorphicPropName": "as",
+      },
+      "next": {
+        "rootDir": "apps/web/",
+      },
+      "react": {
+        "formComponents": [
+          "CustomForm",
+          {
+            "formAttribute": "endpoint",
+            "name": "Form",
+          },
+        ],
+        "linkComponents": [
+          "Hyperlink",
+          {
+            "linkAttribute": "to",
+            "name": "MyLink",
+          },
+        ],
+        "version": "18.2.0",
+      },
+      "vitest": {
+        "typecheck": true,
+      },
+    },
+  },
+  "skipped": {
+    "js-plugins": [],
+    "nursery": [],
+    "type-aware": [],
+    "unsupported": [
+      "react/jsx-uses-react",
+      "react/jsx-uses-vars",
+    ],
+  },
+  "warnings": [
+    "Settings not migrated (not supported by oxlint): import/resolver, my-custom-plugin.",
+  ],
+}
+`;
+
+exports[`settings-migration --type-aware > settings-migration--type-aware 1`] = `
+{
+  "config": {
+    "$schema": "./node_modules/oxlint/configuration_schema.json",
+    "categories": {
+      "correctness": "off",
+    },
+    "env": {
+      "builtin": true,
+    },
+    "plugins": [],
+    "settings": {
+      "jsdoc": {
+        "ignoreInternal": true,
+        "ignorePrivate": true,
+        "tagNamePreference": {
+          "returns": "return",
+        },
+      },
+      "jsx-a11y": {
+        "components": {
+          "CustomImage": "img",
+          "IconButton": "button",
+          "Link": "a",
+        },
+        "polymorphicPropName": "as",
+      },
+      "next": {
+        "rootDir": "apps/web/",
+      },
+      "react": {
+        "formComponents": [
+          "CustomForm",
+          {
+            "formAttribute": "endpoint",
+            "name": "Form",
+          },
+        ],
+        "linkComponents": [
+          "Hyperlink",
+          {
+            "linkAttribute": "to",
+            "name": "MyLink",
+          },
+        ],
+        "version": "18.2.0",
+      },
+      "vitest": {
+        "typecheck": true,
+      },
+    },
+  },
+  "skipped": {
+    "js-plugins": [],
+    "nursery": [],
+    "type-aware": [],
+    "unsupported": [
+      "react/jsx-uses-react",
+      "react/jsx-uses-vars",
+    ],
+  },
+  "warnings": [
+    "Settings not migrated (not supported by oxlint): import/resolver, my-custom-plugin.",
+  ],
+}
+`;
+
+exports[`settings-migration merge > settings-migration--merge 1`] = `
+{
+  "config": {
+    "$schema": "./node_modules/oxlint/configuration_schema.json",
+    "categories": {
+      "correctness": "error",
+      "perf": "error",
+    },
+    "env": {
+      "builtin": true,
+    },
+    "plugins": [],
+    "settings": {
+      "jsdoc": {
+        "ignoreInternal": true,
+        "ignorePrivate": true,
+        "tagNamePreference": {
+          "returns": "return",
+        },
+      },
+      "jsx-a11y": {
+        "components": {
+          "CustomImage": "img",
+          "IconButton": "button",
+          "Link": "a",
+        },
+        "polymorphicPropName": "as",
+      },
+      "next": {
+        "rootDir": "apps/web/",
+      },
+      "react": {
+        "formComponents": [
+          "CustomForm",
+          {
+            "formAttribute": "endpoint",
+            "name": "Form",
+          },
+        ],
+        "linkComponents": [
+          "Hyperlink",
+          {
+            "linkAttribute": "to",
+            "name": "MyLink",
+          },
+        ],
+        "version": "18.2.0",
+      },
+      "vitest": {
+        "typecheck": true,
+      },
+    },
+  },
+  "skipped": {
+    "js-plugins": [],
+    "nursery": [],
+    "type-aware": [],
+    "unsupported": [
+      "react/jsx-uses-react",
+      "react/jsx-uses-vars",
+    ],
+  },
+  "warnings": [
+    "Settings not migrated (not supported by oxlint): import/resolver, my-custom-plugin.",
+  ],
+}
+`;
