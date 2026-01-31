@@ -237,6 +237,44 @@ describe('main', () => {
     });
   });
 
+  test('base config with options, file override with severity only should preserve options', async () => {
+    const result = await main([
+      {
+        rules: {
+          'no-magic-numbers': ['error', { ignore: [5, 7] }],
+        },
+      },
+      {
+        files: ['**/src/**'],
+        rules: {
+          'no-magic-numbers': ['error'],
+        },
+      },
+    ]);
+
+    expect(result).toStrictEqual({
+      $schema: './node_modules/oxlint/configuration_schema.json',
+      categories: {
+        correctness: 'off',
+      },
+      env: {
+        builtin: true,
+      },
+      overrides: [
+        {
+          files: ['**/src/**'],
+          rules: {
+            'no-magic-numbers': ['error', { ignore: [5, 7] }],
+          },
+        },
+      ],
+      plugins: [],
+      rules: {
+        'no-magic-numbers': ['error', { ignore: [5, 7] }],
+      },
+    });
+  });
+
   test('globals', async () => {
     const result = await main([
       {

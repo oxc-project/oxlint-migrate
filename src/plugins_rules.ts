@@ -134,7 +134,8 @@ const mergeRuleConfig = (
 export const transformRuleEntry = (
   eslintConfig: Linter.Config,
   targetConfig: OxlintConfigOrOverride,
-  options?: Options
+  options?: Options,
+  baseConfig?: OxlintConfigOrOverride
 ): void => {
   if (eslintConfig.rules === undefined) {
     return;
@@ -170,8 +171,12 @@ export const transformRuleEntry = (
         }
       } else {
         // Merge the new config with the existing one to preserve options
+        // For file overrides, also check the base config for existing rules
+        const existingConfig =
+          targetConfig.rules[rule] ||
+          (baseConfig?.rules && baseConfig.rules[rule]);
         targetConfig.rules[rule] = mergeRuleConfig(
-          targetConfig.rules[rule],
+          existingConfig,
           normalizedConfig
         );
       }
