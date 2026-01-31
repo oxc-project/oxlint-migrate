@@ -177,6 +177,8 @@ export function formatMigrationOutput(data: MigrationOutputData): string {
     output += `     npx oxlint .\n`;
   }
 
+  output += `\n💡 Tip: You no longer need @oxlint/migrate installed.\n`;
+
   return output;
 }
 

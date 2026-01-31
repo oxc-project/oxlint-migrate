@@ -20,6 +20,7 @@ import {
   formatMigrationOutput,
   displayMigrationResult,
 } from './output-formatter.js';
+import { handleUninstall } from './package-uninstaller.js';
 
 const cwd = process.cwd();
 
@@ -94,6 +95,11 @@ program
   .option(
     '--details',
     'List rules that could not be migrated to oxlint.',
+    false
+  )
+  .option(
+    '--no-uninstall-prompt',
+    'Skip the prompt to uninstall @oxlint/migrate after migration',
     false
   )
   .action(async (filePath: string | undefined) => {
@@ -171,6 +177,9 @@ program
     });
 
     displayMigrationResult(outputMessage, reporter.getWarnings());
+
+    // Handle uninstallation prompt
+    await handleUninstall(cwd, !cliOptions.uninstallPrompt);
   });
 
 program.parse();
