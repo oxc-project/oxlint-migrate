@@ -72,7 +72,7 @@ describe('rules and plugins', () => {
         },
       };
 
-      transformRuleEntry(eslintConfig, config, {
+      transformRuleEntry(eslintConfig, config, undefined, {
         merge: true,
       });
 
@@ -90,10 +90,10 @@ describe('rules and plugins', () => {
       const configWithNursery: OxlintConfig = {};
       const configWithoutNursery: OxlintConfig = {};
 
-      transformRuleEntry(eslintConfig, configWithoutNursery);
+      transformRuleEntry(eslintConfig, configWithoutNursery, undefined, {});
       expect(configWithoutNursery.rules).toStrictEqual({});
 
-      transformRuleEntry(eslintConfig, configWithNursery, {
+      transformRuleEntry(eslintConfig, configWithNursery, undefined, {
         withNursery: true,
       });
       assert(configWithNursery.rules);
@@ -113,7 +113,7 @@ describe('rules and plugins', () => {
       transformRuleEntry(eslintConfig, configWithoutTypeAware);
       expect(configWithoutTypeAware.rules).toStrictEqual({});
 
-      transformRuleEntry(eslintConfig, configWithTypeAware, {
+      transformRuleEntry(eslintConfig, configWithTypeAware, undefined, {
         typeAware: true,
       });
       assert(configWithTypeAware.rules);
@@ -143,8 +143,8 @@ describe('rules and plugins', () => {
       const config: OxlintConfig = {};
       const reporter = new DefaultReporter();
 
-      transformRuleEntry(enabledConfig, config, { reporter });
-      transformRuleEntry(disabledConfig, config, { reporter });
+      transformRuleEntry(enabledConfig, config, undefined, { reporter });
+      transformRuleEntry(disabledConfig, config, undefined, { reporter });
       expect(reporter.getSkippedRulesByCategory()).toStrictEqual({
         nursery: [],
         'type-aware': [],
@@ -152,8 +152,10 @@ describe('rules and plugins', () => {
         unsupported: [],
       });
 
-      transformRuleEntry(enabledConfig, config, { reporter });
-      transformRuleEntry(enabledInOverrideConfig, config, { reporter });
+      transformRuleEntry(enabledConfig, config, undefined, { reporter });
+      transformRuleEntry(enabledInOverrideConfig, config, undefined, {
+        reporter,
+      });
       expect(reporter.getSkippedRulesByCategory()).toStrictEqual({
         nursery: [],
         'type-aware': [],
@@ -180,11 +182,11 @@ describe('rules and plugins', () => {
       const config: OxlintConfig = {};
       const reporter = new DefaultReporter();
 
-      transformRuleEntry(initialConfig, config, {
+      transformRuleEntry(initialConfig, config, undefined, {
         reporter,
         jsPlugins: true,
       });
-      transformRuleEntry(disablingConfig, config, {
+      transformRuleEntry(disablingConfig, config, undefined, {
         reporter,
         jsPlugins: true,
       });
@@ -213,11 +215,11 @@ describe('rules and plugins', () => {
       const config: OxlintConfig = {};
       const reporter = new DefaultReporter();
 
-      transformRuleEntry(initialConfig, config, {
+      transformRuleEntry(initialConfig, config, undefined, {
         reporter,
         jsPlugins: true,
       });
-      transformRuleEntry(enablingConfig, config, {
+      transformRuleEntry(enablingConfig, config, undefined, {
         reporter,
         jsPlugins: true,
       });
@@ -251,12 +253,12 @@ describe('rules and plugins', () => {
       const overrideTarget: OxlintConfigOverride = { files: ['**/*.js'] };
       const reporter = new DefaultReporter();
 
-      transformRuleEntry(baseConfig, baseTarget, {
+      transformRuleEntry(baseConfig, baseTarget, undefined, {
         reporter,
         jsPlugins: true,
       });
 
-      transformRuleEntry(overrideConfig, overrideTarget, {
+      transformRuleEntry(overrideConfig, overrideTarget, undefined, {
         reporter,
         jsPlugins: true,
       });
@@ -287,7 +289,10 @@ describe('rules and plugins', () => {
       const target: OxlintConfig = {};
       const reporter = new DefaultReporter();
 
-      transformRuleEntry(baseConfig, target, { reporter, jsPlugins: true });
+      transformRuleEntry(baseConfig, target, undefined, {
+        reporter,
+        jsPlugins: true,
+      });
 
       expect(target.rules?.['mocha/no-pending-tests']).toBe('error');
       expect(target.jsPlugins).toContain('eslint-plugin-mocha');
@@ -305,7 +310,10 @@ describe('rules and plugins', () => {
       const target: OxlintConfig = {};
       const reporter = new DefaultReporter();
 
-      transformRuleEntry(baseConfig, target, { reporter, jsPlugins: true });
+      transformRuleEntry(baseConfig, target, undefined, {
+        reporter,
+        jsPlugins: true,
+      });
 
       expect(target.rules?.['mocha/no-pending-tests']).toBeUndefined();
       expect(target.jsPlugins).toBeUndefined();
@@ -324,7 +332,10 @@ describe('rules and plugins', () => {
       const target: OxlintConfig = {};
       const reporter = new DefaultReporter();
 
-      transformRuleEntry(baseConfig, target, { reporter, jsPlugins: true });
+      transformRuleEntry(baseConfig, target, undefined, {
+        reporter,
+        jsPlugins: true,
+      });
 
       expect(target.rules?.['mocha/no-pending-tests']).toBeUndefined();
       expect(target.rules?.['mocha/no-skip-tests']).toBe('error');

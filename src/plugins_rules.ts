@@ -134,8 +134,8 @@ const mergeRuleConfig = (
 export const transformRuleEntry = (
   eslintConfig: Linter.Config,
   targetConfig: OxlintConfigOrOverride,
-  options?: Options,
-  baseConfig?: OxlintConfigOrOverride
+  baseConfig?: OxlintConfig,
+  options?: Options
 ): void => {
   if (eslintConfig.rules === undefined) {
     return;
@@ -147,10 +147,6 @@ export const transformRuleEntry = (
 
   for (const [rule, config] of Object.entries(eslintConfig.rules)) {
     const normalizedConfig = normalizeSeverityValue(config);
-
-    // ToDo: check if the rule is really supported by oxlint
-    // when not ask the user if this is ok
-    // maybe put it still into the jsonc file but commented out
 
     if (allRules.includes(rule)) {
       if (!options?.withNursery && rules.nurseryRules.includes(rule)) {

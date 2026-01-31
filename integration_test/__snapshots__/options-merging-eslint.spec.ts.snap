@@ -10,6 +10,21 @@ exports[`options-merging-eslint > options-merging-eslint 1`] = `
     "env": {
       "builtin": true,
     },
+    "overrides": [
+      {
+        "files": [
+          "**/files/**",
+        ],
+        "rules": {
+          "jsx-a11y/no-autofocus": [
+            "warn",
+            {
+              "ignoreNonDOM": true,
+            },
+          ],
+        },
+      },
+    ],
     "plugins": [
       "jsx-a11y",
     ],
@@ -42,6 +57,21 @@ exports[`options-merging-eslint --js-plugins > options-merging-eslint--js-plugin
     "env": {
       "builtin": true,
     },
+    "overrides": [
+      {
+        "files": [
+          "**/files/**",
+        ],
+        "rules": {
+          "jsx-a11y/no-autofocus": [
+            "warn",
+            {
+              "ignoreNonDOM": true,
+            },
+          ],
+        },
+      },
+    ],
     "plugins": [
       "jsx-a11y",
     ],
@@ -74,6 +104,21 @@ exports[`options-merging-eslint --type-aware > options-merging-eslint--type-awar
     "env": {
       "builtin": true,
     },
+    "overrides": [
+      {
+        "files": [
+          "**/files/**",
+        ],
+        "rules": {
+          "jsx-a11y/no-autofocus": [
+            "warn",
+            {
+              "ignoreNonDOM": true,
+            },
+          ],
+        },
+      },
+    ],
     "plugins": [
       "jsx-a11y",
     ],
@@ -107,6 +152,18 @@ exports[`options-merging-eslint merge > options-merging-eslint--merge 1`] = `
     "env": {
       "builtin": true,
     },
+    "overrides": [
+      {
+        "files": [
+          "**/files/**",
+        ],
+        "rules": {
+          "jsx-a11y/no-autofocus": [
+            "warn",
+          ],
+        },
+      },
+    ],
     "plugins": [
       "jsx-a11y",
     ],

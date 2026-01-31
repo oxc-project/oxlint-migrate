@@ -98,8 +98,8 @@ const buildConfig = (
     transformRuleEntry(
       config,
       targetConfig,
-      options,
-      config.files !== undefined ? oxlintConfig : undefined
+      config.files !== undefined ? oxlintConfig : undefined,
+      options
     );
     transformEnvAndGlobals(config, targetConfig, options);
 

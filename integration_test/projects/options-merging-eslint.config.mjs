@@ -23,8 +23,16 @@ export default [
     },
   },
   {
+    files: ['**/files/**'],
+    plugins: {
+      'jsx-a11y': jsxA11y,
+    },
+    rules: {
+      'jsx-a11y/no-autofocus': ['warn'],
+    },
+  },
+  {
     name: 'general-config',
-
     rules: {
       curly: 'off',
     },
