@@ -173,8 +173,9 @@ export const transformRuleEntry = (
         // Merge the new config with the existing one to preserve options
         // For file overrides, also check the base config for existing rules
         const existingConfig =
-          targetConfig.rules[rule] ||
-          (baseConfig?.rules && baseConfig.rules[rule]);
+          rule in targetConfig.rules
+            ? targetConfig.rules[rule]
+            : baseConfig?.rules?.[rule];
         targetConfig.rules[rule] = mergeRuleConfig(
           existingConfig,
           normalizedConfig
