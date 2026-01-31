@@ -447,4 +447,70 @@ describe('formatMigrationOutput', () => {
 
     expect(formatMigrationOutput(data)).toMatchSnapshot();
   });
+
+  it('should show type-aware tip when type-aware rules exist and typeAware=false', () => {
+    const data: MigrationOutputData = {
+      outputFileName: '.oxlintrc.json',
+      enabledRulesCount: 10,
+      skippedRulesByCategory: {
+        nursery: [],
+        'type-aware': [
+          '@typescript-eslint/await-thenable',
+          '@typescript-eslint/no-floating-promises',
+        ],
+        'js-plugins': [],
+        unsupported: [],
+      },
+      cliOptions: {
+        withNursery: false,
+        typeAware: false,
+        jsPlugins: false,
+        details: false,
+      },
+    };
+
+    expect(formatMigrationOutput(data)).toMatchSnapshot();
+  });
+
+  it('should NOT show type-aware tip when typeAware=true', () => {
+    const data: MigrationOutputData = {
+      outputFileName: '.oxlintrc.json',
+      enabledRulesCount: 10,
+      skippedRulesByCategory: {
+        nursery: [],
+        'type-aware': ['@typescript-eslint/await-thenable'],
+        'js-plugins': [],
+        unsupported: [],
+      },
+      cliOptions: {
+        withNursery: false,
+        typeAware: true,
+        jsPlugins: false,
+        details: false,
+      },
+    };
+
+    expect(formatMigrationOutput(data)).toMatchSnapshot();
+  });
+
+  it('should NOT show type-aware tip when no type-aware rules exist', () => {
+    const data: MigrationOutputData = {
+      outputFileName: '.oxlintrc.json',
+      enabledRulesCount: 10,
+      skippedRulesByCategory: {
+        nursery: [],
+        'type-aware': [],
+        'js-plugins': ['mocha/no-pending-tests'],
+        unsupported: [],
+      },
+      cliOptions: {
+        withNursery: false,
+        typeAware: false,
+        jsPlugins: false,
+        details: false,
+      },
+    };
+
+    expect(formatMigrationOutput(data)).toMatchSnapshot();
+  });
 });

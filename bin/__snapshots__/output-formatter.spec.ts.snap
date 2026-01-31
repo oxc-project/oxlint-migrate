@@ -13,6 +13,8 @@ exports[`formatMigrationOutput > should NOT show --details hint when all categor
 👉 Re-run with flags to include more:
      npx @oxlint/migrate --with-nursery --type-aware --js-plugins
 
+💡 Tip: Use --type-aware to enable rules that require TypeScript type information.
+
 💡 Tip: Use --js-plugins to run unsupported rules via their original ESLint plugins.
 
 🚀 Next:
@@ -66,6 +68,35 @@ exports[`formatMigrationOutput > should NOT show js-plugins tip when no js-plugi
 "
 `;
 
+exports[`formatMigrationOutput > should NOT show type-aware tip when no type-aware rules exist 1`] = `
+"
+✨ .oxlintrc.json created with 10 rules.
+
+   Skipped 1 rules:
+     -   1 JS Plugins  (Requires JS plugins: mocha/no-pending-tests)
+
+👉 Re-run with flags to include more:
+     npx @oxlint/migrate --js-plugins
+
+💡 Tip: Use --js-plugins to run unsupported rules via their original ESLint plugins.
+
+🚀 Next:
+     npx oxlint .
+"
+`;
+
+exports[`formatMigrationOutput > should NOT show type-aware tip when typeAware=true 1`] = `
+"
+✨ .oxlintrc.json created with 10 rules.
+
+   Skipped 1 rules:
+     -   1 Type-aware  (Requires TS info: @typescript-eslint/await-thenable)
+
+🚀 Next:
+     npx oxlint .
+"
+`;
+
 exports[`formatMigrationOutput > should format complete output with all sections 1`] = `
 "
 ✨ .oxlintrc.json created with 24 rules.
@@ -78,6 +109,8 @@ exports[`formatMigrationOutput > should format complete output with all sections
 
 👉 Re-run with flags to include more:
      npx @oxlint/migrate eslint.config.mjs --with-nursery --type-aware --js-plugins
+
+💡 Tip: Use --type-aware to enable rules that require TypeScript type information.
 
 💡 Tip: Use --js-plugins to run unsupported rules via their original ESLint plugins.
 
@@ -150,6 +183,8 @@ exports[`formatMigrationOutput > should show --details hint when any category ha
 👉 Re-run with flags to include more:
      npx @oxlint/migrate --with-nursery --type-aware --js-plugins
 
+💡 Tip: Use --type-aware to enable rules that require TypeScript type information.
+
 💡 Tip: Use --js-plugins to run unsupported rules via their original ESLint plugins.
 
 🚀 Next:
@@ -208,6 +243,23 @@ exports[`formatMigrationOutput > should show only nursery rules when type-aware 
 "
 `;
 
+exports[`formatMigrationOutput > should show type-aware tip when type-aware rules exist and typeAware=false 1`] = `
+"
+✨ .oxlintrc.json created with 10 rules.
+
+   Skipped 2 rules:
+     -   2 Type-aware  (Requires TS info: @typescript-eslint/await-thenable, @typescript-eslint/no-floating-promises)
+
+👉 Re-run with flags to include more:
+     npx @oxlint/migrate --type-aware
+
+💡 Tip: Use --type-aware to enable rules that require TypeScript type information.
+
+🚀 Next:
+     npx oxlint .
+"
+`;
+
 exports[`formatMigrationOutput > should show vertical list for multiple categories when details=true 1`] = `
 "
 ✨ .oxlintrc.json created with 24 rules.
@@ -226,6 +278,8 @@ exports[`formatMigrationOutput > should show vertical list for multiple categori
 
 👉 Re-run with flags to include more:
      npx @oxlint/migrate --with-nursery --type-aware --js-plugins
+
+💡 Tip: Use --type-aware to enable rules that require TypeScript type information.
 
 💡 Tip: Use --js-plugins to run unsupported rules via their original ESLint plugins.
 
