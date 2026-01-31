@@ -91,7 +91,24 @@ export const transformSettings = (
     const isSupported = isSupportedSettingsKey(key);
 
     if (isSupported) {
-      filteredSettings[key] = value as Record<string, unknown>;
+      let settingsValue = value as Record<string, unknown>;
+
+      // Special case: react.version = "detect" is not supported by oxlint
+      if (key === 'react' && settingsValue.version === 'detect') {
+        options?.reporter?.addWarning(
+          `react.version "detect" is not supported by oxlint. ` +
+            `Please specify an explicit version (e.g., "18.2.0") in your oxlint config.`
+        );
+        // Remove the version field but keep other react settings
+        const { version: _, ...restReactSettings } = settingsValue;
+        settingsValue = restReactSettings;
+        // If no other react settings, skip entirely
+        if (Object.keys(settingsValue).length === 0) {
+          continue;
+        }
+      }
+
+      filteredSettings[key] = settingsValue;
     } else {
       skippedKeys.push(key);
     }

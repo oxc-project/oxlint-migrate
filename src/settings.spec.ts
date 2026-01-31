@@ -158,6 +158,72 @@ describe('transformSettings', () => {
     });
   });
 
+  describe('react.version "detect" handling', () => {
+    it('should warn and skip version when react.version is "detect"', () => {
+      const reporter = new DefaultReporter();
+      const eslintConfig: Linter.Config = {
+        settings: {
+          react: {
+            version: 'detect',
+            linkComponents: ['Hyperlink'],
+          },
+        },
+      };
+      const targetConfig: OxlintConfig = {};
+
+      transformSettings(eslintConfig, targetConfig, { reporter });
+
+      // version should be removed but other settings preserved
+      expect(targetConfig.settings).toEqual({
+        react: {
+          linkComponents: ['Hyperlink'],
+        },
+      });
+      const warnings = reporter.getWarnings();
+      expect(warnings).toHaveLength(1);
+      expect(warnings[0]).toContain('react.version "detect" is not supported');
+    });
+
+    it('should skip react settings entirely when only version: "detect" is present', () => {
+      const reporter = new DefaultReporter();
+      const eslintConfig: Linter.Config = {
+        settings: {
+          react: {
+            version: 'detect',
+          },
+        },
+      };
+      const targetConfig: OxlintConfig = {};
+
+      transformSettings(eslintConfig, targetConfig, { reporter });
+
+      // No react settings should be added since only version was present
+      expect(targetConfig.settings).toBeUndefined();
+      const warnings = reporter.getWarnings();
+      expect(warnings).toHaveLength(1);
+      expect(warnings[0]).toContain('react.version "detect" is not supported');
+    });
+
+    it('should migrate react.version when it is an explicit version string', () => {
+      const eslintConfig: Linter.Config = {
+        settings: {
+          react: {
+            version: '18.2.0',
+          },
+        },
+      };
+      const targetConfig: OxlintConfig = {};
+
+      transformSettings(eslintConfig, targetConfig);
+
+      expect(targetConfig.settings).toEqual({
+        react: {
+          version: '18.2.0',
+        },
+      });
+    });
+  });
+
   describe('unsupported settings filtering', () => {
     it('should skip unsupported settings and warn', () => {
       const reporter = new DefaultReporter();
