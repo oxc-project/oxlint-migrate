@@ -342,6 +342,128 @@ describe('rules and plugins', () => {
       expect(target.jsPlugins).toContain('eslint-plugin-mocha');
       expect(reporter.getWarnings()).toStrictEqual([]);
     });
+
+    test('rule with options then same rule without options should preserve options', () => {
+      const eslintConfig1: Linter.Config = {
+        rules: {
+          'no-magic-numbers': ['error', { ignoreArrayIndexes: true }],
+        },
+      };
+      const eslintConfig2: Linter.Config = {
+        rules: {
+          'no-magic-numbers': 'error',
+        },
+      };
+      const config: OxlintConfig = {};
+
+      transformRuleEntry(eslintConfig1, config);
+      transformRuleEntry(eslintConfig2, config);
+
+      assert(config.rules);
+      expect(config.rules['no-magic-numbers']).toStrictEqual([
+        'error',
+        { ignoreArrayIndexes: true },
+      ]);
+    });
+
+    test('rule with options then same rule with different severity but no options should preserve options', () => {
+      const eslintConfig1: Linter.Config = {
+        rules: {
+          'no-magic-numbers': ['error', { ignoreArrayIndexes: true }],
+        },
+      };
+      const eslintConfig2: Linter.Config = {
+        rules: {
+          'no-magic-numbers': 'warn',
+        },
+      };
+      const config: OxlintConfig = {};
+
+      transformRuleEntry(eslintConfig1, config);
+      transformRuleEntry(eslintConfig2, config);
+
+      assert(config.rules);
+      expect(config.rules['no-magic-numbers']).toStrictEqual([
+        'warn',
+        { ignoreArrayIndexes: true },
+      ]);
+    });
+
+    test('rule with options then same rule with different options should override', () => {
+      const eslintConfig1: Linter.Config = {
+        rules: {
+          'no-magic-numbers': ['error', { ignoreArrayIndexes: true }],
+        },
+      };
+      const eslintConfig2: Linter.Config = {
+        rules: {
+          'no-magic-numbers': ['error', { ignoreArrayIndexes: false }],
+        },
+      };
+      const config: OxlintConfig = {};
+
+      transformRuleEntry(eslintConfig1, config);
+      transformRuleEntry(eslintConfig2, config);
+
+      assert(config.rules);
+      expect(config.rules['no-magic-numbers']).toStrictEqual([
+        'error',
+        { ignoreArrayIndexes: false },
+      ]);
+    });
+
+    test('rule with options then same rule turned off should not preserve options', () => {
+      const eslintConfig1: Linter.Config = {
+        rules: {
+          'no-magic-numbers': ['error', { ignoreArrayIndexes: true }],
+        },
+      };
+      const eslintConfig2: Linter.Config = {
+        rules: {
+          'no-magic-numbers': 'off',
+        },
+      };
+      const config: OxlintConfig = {};
+
+      transformRuleEntry(eslintConfig1, config);
+      transformRuleEntry(eslintConfig2, config);
+
+      assert(config.rules);
+      // When turned off, the rule should be set to 'off', not preserving options
+      expect(config.rules['no-magic-numbers']).toBe('off');
+    });
+
+    test('base config with options, file override with severity only should preserve options', () => {
+      const baseConfig: Linter.Config = {
+        rules: {
+          'no-magic-numbers': ['error', { ignore: [5, 7] }],
+        },
+      };
+      const overrideConfig: Linter.Config = {
+        files: ['**/src/**'],
+        rules: {
+          'no-magic-numbers': ['error'],
+        },
+      };
+
+      const baseTarget: OxlintConfig = {};
+      const overrideTarget: OxlintConfigOverride = { files: ['**/src/**'] };
+
+      transformRuleEntry(baseConfig, baseTarget, undefined);
+      transformRuleEntry(overrideConfig, overrideTarget, baseTarget, undefined);
+
+      assert(baseTarget.rules);
+      expect(baseTarget.rules['no-magic-numbers']).toStrictEqual([
+        'error',
+        { ignore: [5, 7] },
+      ]);
+
+      assert(overrideTarget.rules);
+      expect(overrideTarget.rules['no-magic-numbers']).toStrictEqual([
+        'error',
+        { ignore: [5, 7] },
+      ]);
+    });
   });
 
   test('cleanUpUselessOverridesRules', () => {
