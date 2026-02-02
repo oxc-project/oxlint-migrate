@@ -305,6 +305,12 @@ exports[`vscode > vscode 1`] = `
       "no-unsafe-finally": "warn",
       "no-unused-labels": "warn",
       "no-var": "warn",
+      "prefer-const": [
+        "warn",
+        {
+          "destructuring": "all",
+        },
+      ],
     },
   },
   "skipped": {
@@ -319,7 +325,6 @@ exports[`vscode > vscode 1`] = `
     ],
     "type-aware": [],
     "unsupported": [
-      "prefer-const",
       "no-buffer-constructor",
       "no-extra-semi",
       "local/code-translation-remind",
@@ -698,6 +703,12 @@ exports[`vscode --js-plugins > vscode--js-plugins 1`] = `
       "no-unsafe-finally": "warn",
       "no-unused-labels": "warn",
       "no-var": "warn",
+      "prefer-const": [
+        "warn",
+        {
+          "destructuring": "all",
+        },
+      ],
     },
   },
   "skipped": {
@@ -708,7 +719,6 @@ exports[`vscode --js-plugins > vscode--js-plugins 1`] = `
     ],
     "type-aware": [],
     "unsupported": [
-      "prefer-const",
       "no-buffer-constructor",
       "no-extra-semi",
       "local/code-translation-remind",
@@ -1062,6 +1072,12 @@ exports[`vscode --type-aware > vscode--type-aware 1`] = `
       "no-unsafe-finally": "warn",
       "no-unused-labels": "warn",
       "no-var": "warn",
+      "prefer-const": [
+        "warn",
+        {
+          "destructuring": "all",
+        },
+      ],
     },
   },
   "skipped": {
@@ -1076,7 +1092,6 @@ exports[`vscode --type-aware > vscode--type-aware 1`] = `
     ],
     "type-aware": [],
     "unsupported": [
-      "prefer-const",
       "no-buffer-constructor",
       "no-extra-semi",
       "local/code-translation-remind",
@@ -1431,6 +1446,12 @@ exports[`vscode merge > vscode--merge 1`] = `
       "no-unsafe-finally": "warn",
       "no-unused-labels": "warn",
       "no-var": "warn",
+      "prefer-const": [
+        "warn",
+        {
+          "destructuring": "all",
+        },
+      ],
     },
   },
   "skipped": {
@@ -1445,7 +1466,6 @@ exports[`vscode merge > vscode--merge 1`] = `
     ],
     "type-aware": [],
     "unsupported": [
-      "prefer-const",
       "no-buffer-constructor",
       "no-extra-semi",
       "local/code-translation-remind",

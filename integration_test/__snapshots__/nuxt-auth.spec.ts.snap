@@ -205,6 +205,13 @@ exports[`nuxt-auth > nuxt-auth 1`] = `
           "no-unused-vars": "off",
           "no-useless-constructor": "off",
           "no-with": "off",
+          "prefer-const": [
+            "error",
+            {
+              "destructuring": "all",
+              "ignoreReadBeforeAssign": true,
+            },
+          ],
         },
       },
       {
@@ -497,6 +504,13 @@ exports[`nuxt-auth > nuxt-auth 1`] = `
       "no-with": "error",
       "node/no-exports-assign": "error",
       "node/no-new-require": "error",
+      "prefer-const": [
+        "error",
+        {
+          "destructuring": "all",
+          "ignoreReadBeforeAssign": true,
+        },
+      ],
       "prefer-exponentiation-operator": "error",
       "prefer-promise-reject-errors": "error",
       "prefer-rest-params": "error",
@@ -731,7 +745,6 @@ exports[`nuxt-auth > nuxt-auth 1`] = `
       "object-shorthand",
       "one-var",
       "prefer-arrow-callback",
-      "prefer-const",
       "prefer-regex-literals",
       "node/handle-callback-err",
       "node/no-deprecated-api",
@@ -1116,6 +1129,13 @@ exports[`nuxt-auth --js-plugins > nuxt-auth--js-plugins 1`] = `
           "no-unused-vars": "off",
           "no-useless-constructor": "off",
           "no-with": "off",
+          "prefer-const": [
+            "error",
+            {
+              "destructuring": "all",
+              "ignoreReadBeforeAssign": true,
+            },
+          ],
         },
       },
       {
@@ -1912,6 +1932,13 @@ exports[`nuxt-auth --js-plugins > nuxt-auth--js-plugins 1`] = `
           "type": "natural",
         },
       ],
+      "prefer-const": [
+        "error",
+        {
+          "destructuring": "all",
+          "ignoreReadBeforeAssign": true,
+        },
+      ],
       "prefer-exponentiation-operator": "error",
       "prefer-promise-reject-errors": "error",
       "prefer-rest-params": "error",
@@ -2052,7 +2079,6 @@ exports[`nuxt-auth --js-plugins > nuxt-auth--js-plugins 1`] = `
       "object-shorthand",
       "one-var",
       "prefer-arrow-callback",
-      "prefer-const",
       "prefer-regex-literals",
       "node/handle-callback-err",
       "node/no-deprecated-api",
@@ -2428,6 +2454,13 @@ exports[`nuxt-auth --type-aware > nuxt-auth--type-aware 1`] = `
           "no-unused-vars": "off",
           "no-useless-constructor": "off",
           "no-with": "off",
+          "prefer-const": [
+            "error",
+            {
+              "destructuring": "all",
+              "ignoreReadBeforeAssign": true,
+            },
+          ],
         },
       },
       {
@@ -2720,6 +2753,13 @@ exports[`nuxt-auth --type-aware > nuxt-auth--type-aware 1`] = `
       "no-with": "error",
       "node/no-exports-assign": "error",
       "node/no-new-require": "error",
+      "prefer-const": [
+        "error",
+        {
+          "destructuring": "all",
+          "ignoreReadBeforeAssign": true,
+        },
+      ],
       "prefer-exponentiation-operator": "error",
       "prefer-promise-reject-errors": "error",
       "prefer-rest-params": "error",
@@ -2954,7 +2994,6 @@ exports[`nuxt-auth --type-aware > nuxt-auth--type-aware 1`] = `
       "object-shorthand",
       "one-var",
       "prefer-arrow-callback",
-      "prefer-const",
       "prefer-regex-literals",
       "node/handle-callback-err",
       "node/no-deprecated-api",
@@ -3332,6 +3371,7 @@ exports[`nuxt-auth merge > nuxt-auth--merge 1`] = `
           "no-unused-vars": "off",
           "no-useless-constructor": "off",
           "no-with": "off",
+          "prefer-const": "error",
         },
       },
       {
@@ -3613,6 +3653,13 @@ exports[`nuxt-auth merge > nuxt-auth--merge 1`] = `
       "no-var": "error",
       "node/no-exports-assign": "error",
       "node/no-new-require": "error",
+      "prefer-const": [
+        "error",
+        {
+          "destructuring": "all",
+          "ignoreReadBeforeAssign": true,
+        },
+      ],
       "prefer-exponentiation-operator": "error",
       "prefer-promise-reject-errors": "error",
       "prefer-rest-params": "error",
@@ -3845,7 +3892,6 @@ exports[`nuxt-auth merge > nuxt-auth--merge 1`] = `
       "object-shorthand",
       "one-var",
       "prefer-arrow-callback",
-      "prefer-const",
       "prefer-regex-literals",
       "node/handle-callback-err",
       "node/no-deprecated-api",
