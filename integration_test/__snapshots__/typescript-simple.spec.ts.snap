@@ -64,6 +64,7 @@ exports[`typescript-simple > typescript-simple 1`] = `
           "no-useless-constructor": "error",
           "no-var": "error",
           "no-with": "off",
+          "prefer-const": "error",
           "prefer-promise-reject-errors": "off",
           "prefer-rest-params": "error",
           "prefer-spread": "error",
@@ -131,7 +132,6 @@ exports[`typescript-simple > typescript-simple 1`] = `
       "@typescript-eslint/use-unknown-in-catch-callback-variable",
     ],
     "unsupported": [
-      "prefer-const",
       "@typescript-eslint/no-invalid-void-type",
       "@typescript-eslint/no-unnecessary-condition",
       "@typescript-eslint/no-unnecessary-type-conversion",
@@ -208,6 +208,7 @@ exports[`typescript-simple --js-plugins > typescript-simple--js-plugins 1`] = `
           "no-useless-constructor": "error",
           "no-var": "error",
           "no-with": "off",
+          "prefer-const": "error",
           "prefer-promise-reject-errors": "off",
           "prefer-rest-params": "error",
           "prefer-spread": "error",
@@ -275,7 +276,6 @@ exports[`typescript-simple --js-plugins > typescript-simple--js-plugins 1`] = `
       "@typescript-eslint/use-unknown-in-catch-callback-variable",
     ],
     "unsupported": [
-      "prefer-const",
       "@typescript-eslint/no-invalid-void-type",
       "@typescript-eslint/no-unnecessary-condition",
       "@typescript-eslint/no-unnecessary-type-conversion",
@@ -410,6 +410,7 @@ exports[`typescript-simple --type-aware > typescript-simple--type-aware 1`] = `
           "no-useless-constructor": "error",
           "no-var": "error",
           "no-with": "off",
+          "prefer-const": "error",
           "prefer-promise-reject-errors": "off",
           "prefer-rest-params": "error",
           "prefer-spread": "error",
@@ -440,7 +441,6 @@ exports[`typescript-simple --type-aware > typescript-simple--type-aware 1`] = `
     ],
     "type-aware": [],
     "unsupported": [
-      "prefer-const",
       "@typescript-eslint/no-invalid-void-type",
       "@typescript-eslint/no-unnecessary-condition",
       "@typescript-eslint/no-unnecessary-type-conversion",
@@ -518,6 +518,7 @@ exports[`typescript-simple merge > typescript-simple--merge 1`] = `
           "no-useless-constructor": "error",
           "no-var": "error",
           "no-with": "off",
+          "prefer-const": "error",
           "prefer-promise-reject-errors": "off",
           "prefer-rest-params": "error",
           "prefer-spread": "error",
@@ -583,7 +584,6 @@ exports[`typescript-simple merge > typescript-simple--merge 1`] = `
       "@typescript-eslint/use-unknown-in-catch-callback-variable",
     ],
     "unsupported": [
-      "prefer-const",
       "@typescript-eslint/no-invalid-void-type",
       "@typescript-eslint/no-unnecessary-condition",
       "@typescript-eslint/no-unnecessary-type-conversion",
