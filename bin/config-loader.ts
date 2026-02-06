@@ -40,16 +40,12 @@ export const loadESLintConfig = async (filePath: string): Promise<any> => {
     throw new Error(`eslint config file not found: ${filePath}`);
   }
 
-  // Bun and Deno supports TS import natively, Node with `--experimental-strip-types`, which is enabled by default in version >=22.18.0
-  // see: https://nodejs.org/en/learn/typescript/run-natively
-  if ('Bun' in globalThis || 'Deno' in globalThis) {
-    return import(url);
-  }
-
-  // For Node.js with TypeScript files:
+  // TypeScript files are supported in the following environments:
+  // - Bun and Deno: TypeScript is natively supported
   // - Node.js >=22.18.0: type-stripping is enabled by default
   // - Node.js >=22.6.0: use NODE_OPTIONS=--experimental-strip-types
   // - Node.js <22.6.0: use NODE_OPTIONS=--import @oxc-node/core/register (requires @oxc-node/core as dev dependency)
-  // If none of the above are configured, Node.js will throw an error when trying to import the TypeScript file
+  // See: https://nodejs.org/en/learn/typescript/run-natively
+  // If the environment is not properly configured, the runtime will throw an error when trying to import the TypeScript file
   return import(url);
 };
