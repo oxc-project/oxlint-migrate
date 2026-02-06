@@ -48,9 +48,10 @@ TypeScript configuration files, like `eslint.config.mts`, are supported in the f
 
 - **Deno and Bun**: TypeScript configuration files are natively supported.
 - **Node.js >=22.18.0**: TypeScript configuration files are supported natively with built-in type-stripping enabled by default.
-- **Node.js <22.18.0**: TypeScript configuration files can be used by setting `NODE_OPTIONS=--import @oxc-node/core/register` and installing [@oxc-node/core](https://www.npmjs.com/package/@oxc-node/core) as a dev dependency.
+- **Node.js >=22.6.0**: TypeScript configuration files can be used by setting `NODE_OPTIONS=--experimental-strip-types`.
+- **Node.js <22.6.0**: TypeScript configuration files can be used by setting `NODE_OPTIONS=--import @oxc-node/core/register` and installing [@oxc-node/core](https://www.npmjs.com/package/@oxc-node/core) as a dev dependency.
 
-If you attempt to use a TypeScript configuration file on Node.js <22.18.0 without the above setup, you will receive an error message with instructions on how to proceed.
+If you attempt to use a TypeScript configuration file without the proper setup for your Node.js version, Node.js will throw an error when trying to import the file.
 
 ## Contributing
 

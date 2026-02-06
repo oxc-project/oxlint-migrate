@@ -23,24 +23,6 @@ export const getAutodetectedEslintConfigName = (
   }
 };
 
-const getNodeVersion = (): string => {
-  return process.versions.node;
-};
-
-const isNodeVersionSupported = (minVersion: string): boolean => {
-  const currentVersion = getNodeVersion();
-  const [currentMajor, currentMinor, currentPatch] = currentVersion
-    .split('.')
-    .map(Number);
-  const [minMajor, minMinor, minPatch] = minVersion.split('.').map(Number);
-
-  if (currentMajor > minMajor) return true;
-  if (currentMajor < minMajor) return false;
-  if (currentMinor > minMinor) return true;
-  if (currentMinor < minMinor) return false;
-  return currentPatch >= minPatch;
-};
-
 export const loadESLintConfig = async (filePath: string): Promise<any> => {
   // report when json file is found
   if (filePath.endsWith('json')) {
@@ -64,25 +46,10 @@ export const loadESLintConfig = async (filePath: string): Promise<any> => {
     return import(url);
   }
 
-  // Check if TypeScript config file and Node version
-  if (
-    filePath.endsWith('.ts') ||
-    filePath.endsWith('.mts') ||
-    filePath.endsWith('.cts')
-  ) {
-    // Node.js >=22.18.0 supports type-stripping natively
-    if (!isNodeVersionSupported('22.18.0')) {
-      const currentVersion = getNodeVersion();
-      throw new Error(
-        `TypeScript ESLint config files require Node.js >=22.18.0 (current version: ${currentVersion}). ` +
-          `Please upgrade Node.js or use a JavaScript config file (.js, .mjs, .cjs) instead.`
-      );
-    }
-
-    // Use native import with --experimental-strip-types (enabled by default in >=22.18.0)
-    return import(url);
-  }
-
-  // for .js, .mjs, .cjs files we can use the native import
+  // For Node.js with TypeScript files:
+  // - Node.js >=22.18.0: type-stripping is enabled by default
+  // - Node.js >=22.6.0: use NODE_OPTIONS=--experimental-strip-types
+  // - Node.js <22.6.0: use NODE_OPTIONS=--import @oxc-node/core/register (requires @oxc-node/core as dev dependency)
+  // If none of the above are configured, Node.js will throw an error when trying to import the TypeScript file
   return import(url);
 };
