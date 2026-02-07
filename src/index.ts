@@ -13,6 +13,7 @@ import {
 import { detectSameOverride } from './overrides.js';
 import fixForJsPlugins from './js_plugin_fixes.js';
 import { processConfigFiles } from './files.js';
+import { transformSettings, warnSettingsInOverride } from './settings.js';
 
 const buildConfig = (
   configs: Linter.Config[],
@@ -102,6 +103,14 @@ const buildConfig = (
       options
     );
     transformEnvAndGlobals(config, targetConfig, options);
+
+    // Transform settings only for base config (oxlint doesn't support settings in overrides)
+    if (config.files === undefined) {
+      transformSettings(config, oxlintConfig, options);
+    } else {
+      // Warn if settings are found in override configs
+      warnSettingsInOverride(config, options);
+    }
 
     // clean up overrides
     if ('files' in targetConfig) {

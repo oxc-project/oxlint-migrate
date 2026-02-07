@@ -6,6 +6,17 @@ type OxlintConfigCategories = Partial<Record<Category, unknown>>;
 type OxlintConfigEnv = Record<string, boolean>;
 type OxlintConfigIgnorePatterns = string[];
 
+export type OxlintSupportedSettingsKey =
+  | 'jsx-a11y'
+  | 'next'
+  | 'react'
+  | 'jsdoc'
+  | 'vitest';
+
+export type OxlintSettings = {
+  [K in OxlintSupportedSettingsKey]?: Record<string, unknown>;
+} & Record<string, Record<string, unknown> | undefined>;
+
 export type OxlintConfigOverride = {
   files: string[];
   env?: OxlintConfigEnv;
@@ -26,6 +37,7 @@ export type OxlintConfig = {
   rules?: Partial<Linter.RulesRecord>;
   overrides?: OxlintConfigOverride[];
   ignorePatterns?: OxlintConfigIgnorePatterns;
+  settings?: OxlintSettings;
 };
 
 export type OxlintConfigOrOverride = OxlintConfig | OxlintConfigOverride;
