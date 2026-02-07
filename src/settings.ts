@@ -132,22 +132,16 @@ export const transformSettings = (
   }
 
   // Merge or set settings
-  if (options?.merge && targetConfig.settings !== undefined) {
-    // Deep merge at the plugin level
-    for (const [key, value] of Object.entries(filteredSettings)) {
-      if (key in targetConfig.settings && targetConfig.settings[key]) {
-        deepMerge(
-          targetConfig.settings[key] as Record<string, unknown>,
-          value as Record<string, unknown>
-        );
-      } else {
-        targetConfig.settings[key] = value;
-      }
-    }
+  if (targetConfig.settings === undefined) {
+    targetConfig.settings = {};
+  }
+
+  if (options?.merge) {
+    deepMerge(
+      targetConfig.settings as Record<string, unknown>,
+      filteredSettings as Record<string, unknown>
+    );
   } else {
-    if (targetConfig.settings === undefined) {
-      targetConfig.settings = {};
-    }
     Object.assign(targetConfig.settings, filteredSettings);
   }
 };
