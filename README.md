@@ -84,7 +84,7 @@ Here are some known caveats to be aware of:
 
 **`settings` field migration**
 
-The `settings` field (e.g. for setting the React version) is migrated for known oxlint-supported plugins: `jsx-a11y`, `next`, `react`, `jsdoc`, and `vitest`. Other settings keys are skipped since they aren't supported by oxlint.
+The `settings` field (e.g. for setting the React version) is migrated for known oxlint-supported plugins: `jsx-a11y`, `next`, `react`, `jsdoc`, and `vitest`. By default, other settings keys are skipped since they aren't supported by oxlint. If using the `--js-plugins` flag, other settings keys will also be migrated in order to support JS Plugins.
 
 Note: Oxlint does not support `settings` in override configs. If your ESLint config has settings in configs with `files` patterns, those settings will be skipped and a warning will be shown.
 
