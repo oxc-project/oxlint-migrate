@@ -142,6 +142,49 @@ describe('transformSettings', () => {
       });
     });
 
+    it('should strip vitest.vitestImports as unsupported', () => {
+      const reporter = new DefaultReporter();
+      const eslintConfig: Linter.Config = {
+        settings: {
+          vitest: {
+            typecheck: true,
+            vitestImports: ['@/tests/fixtures'],
+          },
+        },
+      };
+      const targetConfig: OxlintConfig = {};
+
+      transformSettings(eslintConfig, targetConfig, { reporter });
+
+      expect(targetConfig.settings).toEqual({
+        vitest: {
+          typecheck: true,
+        },
+      });
+      const warnings = reporter.getWarnings();
+      expect(warnings).toHaveLength(1);
+      expect(warnings[0]).toContain('vitest.vitestImports');
+    });
+
+    it('should skip vitest settings entirely when only vitestImports is present', () => {
+      const reporter = new DefaultReporter();
+      const eslintConfig: Linter.Config = {
+        settings: {
+          vitest: {
+            vitestImports: ['@/tests/fixtures'],
+          },
+        },
+      };
+      const targetConfig: OxlintConfig = {};
+
+      transformSettings(eslintConfig, targetConfig, { reporter });
+
+      expect(targetConfig.settings).toBeUndefined();
+      const warnings = reporter.getWarnings();
+      expect(warnings).toHaveLength(1);
+      expect(warnings[0]).toContain('vitest.vitestImports');
+    });
+
     it('should migrate multiple supported settings', () => {
       const eslintConfig: Linter.Config = {
         settings: {
@@ -206,6 +249,54 @@ describe('transformSettings', () => {
       const warnings = reporter.getWarnings();
       expect(warnings).toHaveLength(1);
       expect(warnings[0]).toContain('react.version "detect" is not supported');
+    });
+
+    it('should strip react.pragma and react.fragment as unsupported', () => {
+      const reporter = new DefaultReporter();
+      const eslintConfig: Linter.Config = {
+        settings: {
+          react: {
+            version: '18.2.0',
+            pragma: 'React',
+            fragment: 'Fragment',
+            linkComponents: ['Hyperlink'],
+          },
+        },
+      };
+      const targetConfig: OxlintConfig = {};
+
+      transformSettings(eslintConfig, targetConfig, { reporter });
+
+      expect(targetConfig.settings).toEqual({
+        react: {
+          version: '18.2.0',
+          linkComponents: ['Hyperlink'],
+        },
+      });
+      const warnings = reporter.getWarnings();
+      expect(warnings).toHaveLength(1);
+      expect(warnings[0]).toContain('react.pragma');
+      expect(warnings[0]).toContain('react.fragment');
+    });
+
+    it('should skip react settings entirely when only unsupported keys remain', () => {
+      const reporter = new DefaultReporter();
+      const eslintConfig: Linter.Config = {
+        settings: {
+          react: {
+            version: 'detect',
+            pragma: 'React',
+            fragment: 'Fragment',
+          },
+        },
+      };
+      const targetConfig: OxlintConfig = {};
+
+      transformSettings(eslintConfig, targetConfig, { reporter });
+
+      expect(targetConfig.settings).toBeUndefined();
+      const warnings = reporter.getWarnings();
+      expect(warnings.length).toBeGreaterThanOrEqual(2);
     });
 
     it('should migrate react.version when it is an explicit version string', () => {

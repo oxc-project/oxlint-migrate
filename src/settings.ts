@@ -16,6 +16,12 @@ export const OXLINT_SUPPORTED_SETTINGS_KEYS: OxlintSupportedSettingsKey[] = [
   'vitest',
 ];
 
+// Sub-keys within supported settings groups that oxlint does not support.
+const UNSUPPORTED_SETTINGS_SUB_KEYS: Record<string, string[]> = {
+  react: ['pragma', 'fragment'],
+  vitest: ['vitestImports'],
+};
+
 /**
  * Deep merge source into target, combining nested objects rather than replacing them.
  * Arrays are replaced, not merged. Mutates `target` in place.
@@ -113,13 +119,32 @@ export const transformSettings = (
         `react.version "detect" is not supported by oxlint. ` +
           `Please specify an explicit version (e.g., "18.2.0") in your oxlint config.`
       );
-      // Remove the version field but keep other react settings
       const { version: _, ...restReactSettings } = settingsValue;
       settingsValue = restReactSettings;
-      // If no other react settings, skip entirely
-      if (Object.keys(settingsValue).length === 0) {
-        continue;
+    }
+
+    // Strip unsupported settings for specific settings groups, e.g. `react.pragma`
+    // or `vitest.vitestImports`, and warn about them.
+    const unsupportedSubKeys = UNSUPPORTED_SETTINGS_SUB_KEYS[key];
+    if (unsupportedSubKeys !== undefined) {
+      const strippedKeys: string[] = [];
+      for (const subKey of unsupportedSubKeys) {
+        if (subKey in settingsValue) {
+          strippedKeys.push(`${key}.${subKey}`);
+          const { [subKey]: _, ...rest } = settingsValue;
+          settingsValue = rest;
+        }
       }
+      if (strippedKeys.length > 0) {
+        options?.reporter?.addWarning(
+          `Settings not migrated (not supported by oxlint): ${strippedKeys.join(', ')}.`
+        );
+      }
+    }
+
+    // If no settings remain after stripping unsupported sub-keys, skip entirely
+    if (Object.keys(settingsValue).length === 0) {
+      continue;
     }
 
     filteredSettings[key] = settingsValue;
