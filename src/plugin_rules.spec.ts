@@ -464,6 +464,74 @@ describe('rules and plugins', () => {
         { ignore: [5, 7] },
       ]);
     });
+
+    test('base config should override earlier overrides (last-wins semantics)', () => {
+      const overrideConfig: Linter.Config = {
+        files: ['**/*.js'],
+        rules: {
+          'react-hooks/exhaustive-deps': 'warn',
+        },
+      };
+
+      const baseConfig: Linter.Config = {
+        rules: {
+          'react-hooks/exhaustive-deps': 'off',
+        },
+      };
+
+      const overrides: OxlintConfigOverride[] = [{ files: ['**/*.js'] }];
+      const baseTarget: OxlintConfig = {};
+
+      transformRuleEntry(overrideConfig, overrides[0], undefined);
+      transformRuleEntry(
+        baseConfig,
+        baseTarget,
+        undefined,
+        undefined,
+        overrides
+      );
+
+      // rule should be set to 'off' in base
+      expect(baseTarget.rules?.['react-hooks/exhaustive-deps']).toBe('off');
+      // rule should be removed from overrides (base config wins)
+      expect(
+        overrides[0].rules?.['react-hooks/exhaustive-deps']
+      ).toBeUndefined();
+    });
+
+    test('unsupported rules disabled in base config should be removed from overrides with jsPlugins', () => {
+      const overrideConfig: Linter.Config = {
+        files: ['**/*.js'],
+        rules: {
+          'some-plugin/some-rule': 'warn',
+        },
+      };
+
+      const baseConfig: Linter.Config = {
+        rules: {
+          'some-plugin/some-rule': 'off',
+        },
+      };
+
+      const overrides: OxlintConfigOverride[] = [{ files: ['**/*.js'] }];
+      const baseTarget: OxlintConfig = {};
+
+      transformRuleEntry(overrideConfig, overrides[0], undefined, {
+        jsPlugins: true,
+      });
+      transformRuleEntry(
+        baseConfig,
+        baseTarget,
+        undefined,
+        { jsPlugins: true },
+        overrides
+      );
+
+      // unsupported rule disabled in base config is dropped entirely
+      expect(baseTarget.rules?.['some-plugin/some-rule']).toBeUndefined();
+      // rule should also be removed from overrides
+      expect(overrides[0].rules?.['some-plugin/some-rule']).toBeUndefined();
+    });
   });
 
   test('cleanUpUselessOverridesRules', () => {

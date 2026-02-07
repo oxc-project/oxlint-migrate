@@ -4,6 +4,7 @@ import {
   Options,
   OxlintConfig,
   OxlintConfigOrOverride,
+  OxlintConfigOverride,
   type Category,
 } from './types.js';
 import {
@@ -135,7 +136,8 @@ export const transformRuleEntry = (
   eslintConfig: Linter.Config,
   targetConfig: OxlintConfigOrOverride,
   baseConfig?: OxlintConfig,
-  options?: Options
+  options?: Options,
+  overrides?: OxlintConfigOverride[]
 ): void => {
   if (eslintConfig.rules === undefined) {
     return;
@@ -176,6 +178,19 @@ export const transformRuleEntry = (
           existingConfig,
           normalizedConfig
         );
+
+        // ESLint flat config: later configs override earlier ones for matching files.
+        // A base config (no files) matches ALL files and comes after earlier overrides,
+        // so it should "win" over any override that set this rule previously.
+        // In oxlint, overrides take precedence over root, so we must remove the rule
+        // from overrides to avoid the override incorrectly winning.
+        if (eslintConfig.files === undefined && overrides) {
+          for (const override of overrides) {
+            if (override.rules?.[rule]) {
+              delete override.rules[rule];
+            }
+          }
+        }
       }
     } else {
       // For unsupported rules, when jsPlugins is enabled, always try to map
@@ -186,6 +201,14 @@ export const transformRuleEntry = (
           if (eslintConfig.files === undefined) {
             // base config: drop disabled rule entirely
             delete targetConfig.rules[rule];
+            // also drop from overrides
+            if (overrides) {
+              for (const override of overrides) {
+                if (override.rules?.[rule]) {
+                  delete override.rules[rule];
+                }
+              }
+            }
           } else {
             // override: keep the disabled setting without adding jsPlugin, unless plugin is ignored
             if (!isIgnoredPluginRule(rule)) {
@@ -203,6 +226,14 @@ export const transformRuleEntry = (
         if (!enableJsPluginRule(targetConfig, rule, normalizedConfig)) {
           options?.reporter?.markSkipped(rule, 'unsupported');
         }
+        // Base config wins over earlier overrides (ESLint flat config last-wins)
+        if (eslintConfig.files === undefined && overrides) {
+          for (const override of overrides) {
+            if (override.rules?.[rule]) {
+              delete override.rules[rule];
+            }
+          }
+        }
         continue;
       }
 
@@ -211,6 +242,14 @@ export const transformRuleEntry = (
         // if rule is disabled, remove it.
         if (isOffValue(normalizedConfig)) {
           delete targetConfig.rules[rule];
+          // also drop from overrides if base config
+          if (eslintConfig.files === undefined && overrides) {
+            for (const override of overrides) {
+              if (override.rules?.[rule]) {
+                delete override.rules[rule];
+              }
+            }
+          }
         }
         // only remove the reporter diagnostics when it is in a base config.
         if (eslintConfig.files === undefined) {

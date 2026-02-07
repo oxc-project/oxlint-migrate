@@ -40,8 +40,6 @@ exports[`next-core-web-vitals > next-core-web-vitals 1`] = `
           "jsx-a11y",
         ],
         "rules": {
-          "@next/next/no-html-link-for-pages": "warn",
-          "@next/next/no-sync-scripts": "warn",
           "import/no-anonymous-default-export": "warn",
           "jsx-a11y/alt-text": [
             "warn",
@@ -181,8 +179,6 @@ exports[`next-core-web-vitals --js-plugins > next-core-web-vitals--js-plugins 1`
           "jsx-a11y",
         ],
         "rules": {
-          "@next/next/no-html-link-for-pages": "warn",
-          "@next/next/no-sync-scripts": "warn",
           "import/no-anonymous-default-export": "warn",
           "jsx-a11y/alt-text": [
             "warn",
@@ -322,8 +318,6 @@ exports[`next-core-web-vitals --type-aware > next-core-web-vitals--type-aware 1`
           "jsx-a11y",
         ],
         "rules": {
-          "@next/next/no-html-link-for-pages": "warn",
-          "@next/next/no-sync-scripts": "warn",
           "import/no-anonymous-default-export": "warn",
           "jsx-a11y/alt-text": [
             "warn",

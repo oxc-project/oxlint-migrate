@@ -1241,7 +1241,6 @@ exports[`nuxt-auth --js-plugins > nuxt-auth--js-plugins 1`] = `
           "typescript",
         ],
         "rules": {
-          "@stylistic/comma-dangle": "off",
           "@stylistic/eol-last": "off",
           "@stylistic/padding-line-between-statements": "off",
           "@typescript-eslint/consistent-type-imports": "off",
