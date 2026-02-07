@@ -40,26 +40,12 @@ export const loadESLintConfig = async (filePath: string): Promise<any> => {
     throw new Error(`eslint config file not found: ${filePath}`);
   }
 
-  // Bun and Deno supports TS import natively, only Node needs a custom loader
-  if ('Bun' in globalThis || 'Deno' in globalThis) {
-    return import(url);
-  }
-
-  // jiti is used to load TypeScript files in a Node.js environment
-  if (
-    filePath.endsWith('.ts') ||
-    filePath.endsWith('.mts') ||
-    filePath.endsWith('.cts')
-  ) {
-    const { createJiti } = await import('jiti');
-    const jitiInstance = createJiti(filePath, {
-      interopDefault: false,
-      moduleCache: false,
-    });
-
-    return jitiInstance.import(url);
-  }
-
-  // for .js, .mjs, .cjs files we can use the native import
+  // TypeScript files are supported in the following environments:
+  // - Bun and Deno: TypeScript is natively supported
+  // - Node.js >=22.18.0: type-stripping is enabled by default
+  // - Node.js >=22.6.0: use NODE_OPTIONS=--experimental-strip-types
+  // - Node.js <22.6.0: use NODE_OPTIONS=--import @oxc-node/core/register (requires @oxc-node/core as dev dependency)
+  // See: https://nodejs.org/en/learn/typescript/run-natively
+  // If the environment is not properly configured, the runtime will throw an error when trying to import the TypeScript file
   return import(url);
 };
