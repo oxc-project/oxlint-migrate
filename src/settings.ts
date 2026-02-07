@@ -17,36 +17,32 @@ export const OXLINT_SUPPORTED_SETTINGS_KEYS: OxlintSupportedSettingsKey[] = [
 ];
 
 /**
- * Deep merge two objects, combining nested objects rather than replacing them.
- * Arrays are replaced, not merged.
+ * Deep merge source into target, combining nested objects rather than replacing them.
+ * Arrays are replaced, not merged. Mutates `target` in place.
  */
 const deepMerge = (
   target: Record<string, unknown>,
   source: Record<string, unknown>
-): Record<string, unknown> => {
-  const result = { ...target };
-
+): void => {
   for (const [key, value] of Object.entries(source)) {
     if (
       value !== null &&
       typeof value === 'object' &&
       !Array.isArray(value) &&
-      key in result &&
-      result[key] !== null &&
-      typeof result[key] === 'object' &&
-      !Array.isArray(result[key])
+      key in target &&
+      target[key] !== null &&
+      typeof target[key] === 'object' &&
+      !Array.isArray(target[key])
     ) {
       // Deep merge nested objects
-      result[key] = deepMerge(
-        result[key] as Record<string, unknown>,
+      deepMerge(
+        target[key] as Record<string, unknown>,
         value as Record<string, unknown>
       );
     } else {
-      result[key] = value;
+      target[key] = value;
     }
   }
-
-  return result;
 };
 
 /**
@@ -140,7 +136,7 @@ export const transformSettings = (
     // Deep merge at the plugin level
     for (const [key, value] of Object.entries(filteredSettings)) {
       if (key in targetConfig.settings && targetConfig.settings[key]) {
-        targetConfig.settings[key] = deepMerge(
+        deepMerge(
           targetConfig.settings[key] as Record<string, unknown>,
           value as Record<string, unknown>
         );
