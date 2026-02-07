@@ -44,7 +44,7 @@ export default [
       'import/resolver': {
         typescript: true,
       },
-      // Unsupported: custom plugin settings (should be skipped with warning)
+      // Supported (for JS Plugins): custom plugin settings (should be skipped with warning if jsPlugins option is not enabled)
       'my-custom-plugin': {
         someOption: 'value',
       },

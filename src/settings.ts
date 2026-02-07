@@ -6,7 +6,7 @@ import type {
   OxlintSupportedSettingsKey,
 } from './types.js';
 
-// Known oxlint-supported settings keys
+// Known oxlint-supported settings keys, for use with native rules.
 // See: https://github.com/oxc-project/oxc/blob/main/crates/oxc_linter/src/config/settings/mod.rs
 export const OXLINT_SUPPORTED_SETTINGS_KEYS: OxlintSupportedSettingsKey[] = [
   'jsx-a11y',
@@ -94,7 +94,13 @@ export const transformSettings = (
       continue;
     }
 
-    if (!isSupportedSettingsKey(key as any)) {
+    if (!options?.jsPlugins && !isSupportedSettingsKey(key as any)) {
+      skippedKeys.push(key);
+      continue;
+    }
+
+    // skip all import settings as they are unsupported by Oxlint.
+    if (key === 'import' || key.startsWith('import/')) {
       skippedKeys.push(key);
       continue;
     }

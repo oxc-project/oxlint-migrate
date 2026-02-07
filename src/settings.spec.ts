@@ -275,8 +275,8 @@ describe('transformSettings', () => {
     });
   });
 
-  describe('jsPlugins mode does not affect settings', () => {
-    it('should still only migrate supported settings when jsPlugins is enabled', () => {
+  describe('jsPlugins mode does imports settings from certain plugins', () => {
+    it('should also migrate unrecognized settings when jsPlugins is enabled', () => {
       const reporter = new DefaultReporter();
       const eslintConfig: Linter.Config = {
         settings: {
@@ -292,14 +292,17 @@ describe('transformSettings', () => {
         jsPlugins: true,
       });
 
+      // Intentionally exclude import-related settings,
+      // they are not supported by Oxlint and would
+      // cause confusion if migrated.
       expect(targetConfig.settings).toEqual({
         react: { version: '18.0.0' },
+        'custom-plugin': { foo: 'bar' },
       });
       // Should still warn about unsupported settings
       const warnings = reporter.getWarnings();
       expect(warnings).toHaveLength(1);
       expect(warnings[0]).toContain('import/resolver');
-      expect(warnings[0]).toContain('custom-plugin');
     });
   });
 

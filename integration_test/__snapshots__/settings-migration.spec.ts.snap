@@ -94,6 +94,9 @@ exports[`settings-migration --js-plugins > settings-migration--js-plugins 1`] = 
         },
         "polymorphicPropName": "as",
       },
+      "my-custom-plugin": {
+        "someOption": "value",
+      },
       "next": {
         "rootDir": "apps/web/",
       },
@@ -129,7 +132,7 @@ exports[`settings-migration --js-plugins > settings-migration--js-plugins 1`] = 
     ],
   },
   "warnings": [
-    "Settings not migrated (not supported by oxlint): import/resolver, my-custom-plugin.",
+    "Settings not migrated (not supported by oxlint): import/resolver.",
   ],
 }
 `;
