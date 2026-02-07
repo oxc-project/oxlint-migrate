@@ -3,8 +3,18 @@ import {
   Options,
   OxlintConfig,
   OxlintSettings,
-  OXLINT_SUPPORTED_SETTINGS_KEYS,
+  type OxlintSupportedSettingsKey,
 } from './types.js';
+
+// Known oxlint-supported settings keys
+// See: https://github.com/oxc-project/oxc/blob/main/crates/oxc_linter/src/config/settings/mod.rs
+export const OXLINT_SUPPORTED_SETTINGS_KEYS: OxlintSupportedSettingsKey[] = [
+  'jsx-a11y',
+  'next',
+  'react',
+  'jsdoc',
+  'vitest',
+];
 
 /**
  * Deep merge two objects, combining nested objects rather than replacing them.
@@ -42,8 +52,8 @@ const deepMerge = (
 /**
  * Check if a settings key is known to be supported by oxlint.
  */
-const isSupportedSettingsKey = (key: string): boolean => {
-  return (OXLINT_SUPPORTED_SETTINGS_KEYS as readonly string[]).includes(key);
+const isSupportedSettingsKey = (key: OxlintSupportedSettingsKey): boolean => {
+  return OXLINT_SUPPORTED_SETTINGS_KEYS.includes(key);
 };
 
 /**
@@ -88,7 +98,7 @@ export const transformSettings = (
       continue;
     }
 
-    const isSupported = isSupportedSettingsKey(key);
+    const isSupported = isSupportedSettingsKey(key as any);
 
     if (isSupported) {
       let settingsValue = value as Record<string, unknown>;

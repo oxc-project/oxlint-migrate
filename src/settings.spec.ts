@@ -1,7 +1,11 @@
 import { describe, it, expect } from 'vitest';
-import { transformSettings, warnSettingsInOverride } from './settings.js';
+import {
+  transformSettings,
+  warnSettingsInOverride,
+  OXLINT_SUPPORTED_SETTINGS_KEYS,
+} from './settings.js';
 import type { Linter } from 'eslint';
-import { OxlintConfig, OXLINT_SUPPORTED_SETTINGS_KEYS } from './types.js';
+import type { OxlintConfig } from './types.js';
 import { DefaultReporter } from './reporter.js';
 
 describe('transformSettings', () => {
