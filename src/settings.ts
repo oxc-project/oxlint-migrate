@@ -1,9 +1,9 @@
 import type { Linter } from 'eslint';
-import {
+import type {
   Options,
   OxlintConfig,
   OxlintSettings,
-  type OxlintSupportedSettingsKey,
+  OxlintSupportedSettingsKey,
 } from './types.js';
 
 // Known oxlint-supported settings keys
