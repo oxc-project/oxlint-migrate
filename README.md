@@ -55,26 +55,7 @@ If you attempt to use a TypeScript configuration file without the proper setup f
 
 ## Contributing
 
-### Generate rules
-
-Generates the rules from installed oxlint version
-
-```shell
-pnpm generate
-pnpm format
-```
-
-### Unit + Integration Test
-
-```shell
-pnpm vitest
-```
-
-### Manual Testing
-
-```shell
-pnpm manual-test
-```
+See [CONTRIBUTING.md](./CONTRIBUTING.md) for details on how to contribute to this project.
 
 ## Caveats
 
