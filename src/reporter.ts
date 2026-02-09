@@ -42,30 +42,3 @@ export class DefaultReporter implements Reporter {
     return result;
   }
 }
-
-export class SilentReporter implements Reporter {
-  public addWarning(_message: string): void {
-    // Do nothing
-  }
-
-  public getWarnings(): string[] {
-    return [];
-  }
-
-  public markSkipped(_rule: string, _category: RuleSkippedCategory): void {
-    // Do nothing
-  }
-
-  public removeSkipped(_rule: string, _category: RuleSkippedCategory): void {
-    // Do nothing
-  }
-
-  public getSkippedRulesByCategory(): SkippedCategoryGroup {
-    return {
-      nursery: [],
-      'type-aware': [],
-      'js-plugins': [],
-      unsupported: [],
-    };
-  }
-}

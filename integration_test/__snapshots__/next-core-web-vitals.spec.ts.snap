@@ -135,6 +135,7 @@ exports[`next-core-web-vitals > next-core-web-vitals 1`] = `
   },
   "warnings": [
     "special parser detected: eslint-config-next/parser",
+    "Settings found in config with 'files' pattern (react, import/parsers, import/resolver). Oxlint does not support settings in overrides, these settings will be skipped.",
   ],
 }
 `;
@@ -274,6 +275,7 @@ exports[`next-core-web-vitals --js-plugins > next-core-web-vitals--js-plugins 1`
   },
   "warnings": [
     "special parser detected: eslint-config-next/parser",
+    "Settings found in config with 'files' pattern (react, import/parsers, import/resolver). Oxlint does not support settings in overrides, these settings will be skipped.",
   ],
 }
 `;
@@ -413,6 +415,7 @@ exports[`next-core-web-vitals --type-aware > next-core-web-vitals--type-aware 1`
   },
   "warnings": [
     "special parser detected: eslint-config-next/parser",
+    "Settings found in config with 'files' pattern (react, import/parsers, import/resolver). Oxlint does not support settings in overrides, these settings will be skipped.",
   ],
 }
 `;
@@ -553,6 +556,7 @@ exports[`next-core-web-vitals merge > next-core-web-vitals--merge 1`] = `
   },
   "warnings": [
     "special parser detected: eslint-config-next/parser",
+    "Settings found in config with 'files' pattern (react, import/parsers, import/resolver). Oxlint does not support settings in overrides, these settings will be skipped.",
   ],
 }
 `;

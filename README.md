@@ -44,31 +44,18 @@ Tested ESLint Plugins with `oxlint` can be found in this [Oxc Discussion](https:
 
 ### TypeScript ESLint Configuration Files
 
-For Deno and Bun, TypeScript configuration files, like `eslint.config.mts`, are natively supported.
-For Node.js, you must install [jiti](https://www.npmjs.com/package/jiti) as a dev dependency.
+TypeScript configuration files, like `eslint.config.mts`, are supported in the following environments:
+
+- **Deno and Bun**: TypeScript configuration files are natively supported.
+- **Node.js >=22.18.0**: TypeScript configuration files are supported natively with built-in type-stripping enabled by default.
+- **Node.js >=22.6.0**: TypeScript configuration files can be used by setting `NODE_OPTIONS=--experimental-strip-types`.
+- **Node.js <22.6.0**: TypeScript configuration files can be used by setting `NODE_OPTIONS=--import @oxc-node/core/register` and installing [@oxc-node/core](https://www.npmjs.com/package/@oxc-node/core) as a dev dependency.
+
+If you attempt to use a TypeScript configuration file without the proper setup for your Node.js version, Node.js will throw an error when trying to import the file.
 
 ## Contributing
 
-### Generate rules
-
-Generates the rules from installed oxlint version
-
-```shell
-pnpm generate
-pnpm format
-```
-
-### Unit + Integration Test
-
-```shell
-pnpm vitest
-```
-
-### Manual Testing
-
-```shell
-pnpm manual-test
-```
+See [CONTRIBUTING.md](./CONTRIBUTING.md) for details on how to contribute to this project.
 
 ## Caveats
 
@@ -76,9 +63,11 @@ The migration tool has been tested to work quite well for simple ESLint flat con
 
 Here are some known caveats to be aware of:
 
-**`settings` field not migrated**
+**`settings` field migration**
 
-The `settings` field (e.g. for setting the React version) is not migrated to the oxlint config yet. You may need to copy it over manually if you have any settings specified.
+The `settings` field (e.g. for setting the React version) is migrated for known oxlint-supported plugins: `jsx-a11y`, `next`, `react`, `jsdoc`, and `vitest`. By default, other settings keys are skipped since they aren't supported by oxlint. If using the `--js-plugins` flag, other settings keys will also be migrated in order to support JS Plugins.
+
+Note: Oxlint does not support `settings` in override configs. If your ESLint config has settings in configs with `files` patterns, those settings will be skipped and a warning will be shown.
 
 Not all `settings` options are supported by oxlint, and so rule behavior in certain edge-cases may differ. See [the Settings docs](https://oxc.rs/docs/guide/usage/linter/config-file-reference.html#settings) for more info.
 
