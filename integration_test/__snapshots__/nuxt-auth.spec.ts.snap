@@ -429,6 +429,7 @@ exports[`nuxt-auth > nuxt-auth 1`] = `
       ],
       "no-lone-blocks": "error",
       "no-loss-of-precision": "error",
+      "no-misleading-character-class": "error",
       "no-multi-str": "error",
       "no-new": "error",
       "no-new-func": "error",
@@ -724,7 +725,6 @@ exports[`nuxt-auth > nuxt-auth 1`] = `
       "toml/table-bracket-spacing",
     ],
     "nursery": [
-      "no-misleading-character-class",
       "no-undef",
       "no-unreachable",
       "getter-return",
@@ -1807,6 +1807,7 @@ exports[`nuxt-auth --js-plugins > nuxt-auth--js-plugins 1`] = `
       ],
       "no-lone-blocks": "error",
       "no-loss-of-precision": "error",
+      "no-misleading-character-class": "error",
       "no-multi-str": "error",
       "no-new": "error",
       "no-new-func": "error",
@@ -2058,7 +2059,6 @@ exports[`nuxt-auth --js-plugins > nuxt-auth--js-plugins 1`] = `
   "skipped": {
     "js-plugins": [],
     "nursery": [
-      "no-misleading-character-class",
       "no-undef",
       "no-unreachable",
       "getter-return",
@@ -2678,6 +2678,7 @@ exports[`nuxt-auth --type-aware > nuxt-auth--type-aware 1`] = `
       ],
       "no-lone-blocks": "error",
       "no-loss-of-precision": "error",
+      "no-misleading-character-class": "error",
       "no-multi-str": "error",
       "no-new": "error",
       "no-new-func": "error",
@@ -2973,7 +2974,6 @@ exports[`nuxt-auth --type-aware > nuxt-auth--type-aware 1`] = `
       "toml/table-bracket-spacing",
     ],
     "nursery": [
-      "no-misleading-character-class",
       "no-undef",
       "no-unreachable",
       "getter-return",
@@ -3580,7 +3580,6 @@ exports[`nuxt-auth merge > nuxt-auth--merge 1`] = `
       "no-extend-native": "error",
       "no-extra-bind": "error",
       "no-fallthrough": "error",
-      "no-iterator": "error",
       "no-labels": [
         "error",
         {
@@ -3871,7 +3870,6 @@ exports[`nuxt-auth merge > nuxt-auth--merge 1`] = `
       "toml/table-bracket-spacing",
     ],
     "nursery": [
-      "no-misleading-character-class",
       "no-undef",
       "no-unreachable",
       "getter-return",
