@@ -1,6 +1,6 @@
 {
   "name": "@oxlint/migrate",
-  "version": "1.43.0",
+  "version": "1.46.0",
   "description": "Generates a `.oxlintrc.json` from a existing eslint flat config",
   "keywords": [
     "eslint",
@@ -76,7 +76,7 @@
     "lint-staged": "^16.1.2",
     "next": "^16.0.0",
     "oxfmt": "^0.28.0",
-    "oxlint": "^1.43.0",
+    "oxlint": "^1.46.0",
     "oxlint-tsgolint": "^0.11.3",
     "tsdown": "^0.20.0",
     "typescript-eslint": "^8.35.0",

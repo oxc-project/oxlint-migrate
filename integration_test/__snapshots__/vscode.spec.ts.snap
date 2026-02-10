@@ -287,6 +287,7 @@ exports[`vscode > vscode 1`] = `
       "no-duplicate-case": "warn",
       "no-duplicate-imports": "warn",
       "no-eval": "warn",
+      "no-misleading-character-class": "warn",
       "no-new-wrappers": "warn",
       "no-restricted-globals": [
         "warn",
@@ -320,7 +321,6 @@ exports[`vscode > vscode 1`] = `
       "@stylistic/ts/member-delimiter-style",
     ],
     "nursery": [
-      "no-misleading-character-class",
       "@typescript-eslint/prefer-optional-chain",
     ],
     "type-aware": [],
@@ -685,6 +685,7 @@ exports[`vscode --js-plugins > vscode--js-plugins 1`] = `
       "no-duplicate-case": "warn",
       "no-duplicate-imports": "warn",
       "no-eval": "warn",
+      "no-misleading-character-class": "warn",
       "no-new-wrappers": "warn",
       "no-restricted-globals": [
         "warn",
@@ -714,7 +715,6 @@ exports[`vscode --js-plugins > vscode--js-plugins 1`] = `
   "skipped": {
     "js-plugins": [],
     "nursery": [
-      "no-misleading-character-class",
       "@typescript-eslint/prefer-optional-chain",
     ],
     "type-aware": [],
@@ -1054,6 +1054,7 @@ exports[`vscode --type-aware > vscode--type-aware 1`] = `
       "no-duplicate-case": "warn",
       "no-duplicate-imports": "warn",
       "no-eval": "warn",
+      "no-misleading-character-class": "warn",
       "no-new-wrappers": "warn",
       "no-restricted-globals": [
         "warn",
@@ -1087,7 +1088,6 @@ exports[`vscode --type-aware > vscode--type-aware 1`] = `
       "@stylistic/ts/member-delimiter-style",
     ],
     "nursery": [
-      "no-misleading-character-class",
       "@typescript-eslint/prefer-optional-chain",
     ],
     "type-aware": [],
@@ -1428,6 +1428,7 @@ exports[`vscode merge > vscode--merge 1`] = `
       "no-duplicate-case": "warn",
       "no-duplicate-imports": "warn",
       "no-eval": "warn",
+      "no-misleading-character-class": "warn",
       "no-new-wrappers": "warn",
       "no-restricted-globals": [
         "warn",
@@ -1461,7 +1462,6 @@ exports[`vscode merge > vscode--merge 1`] = `
       "@stylistic/ts/member-delimiter-style",
     ],
     "nursery": [
-      "no-misleading-character-class",
       "@typescript-eslint/prefer-optional-chain",
     ],
     "type-aware": [],
