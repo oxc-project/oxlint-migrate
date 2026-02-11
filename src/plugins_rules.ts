@@ -4,6 +4,7 @@ import {
   Options,
   OxlintConfig,
   OxlintConfigOrOverride,
+  OxlintConfigOverride,
   type Category,
 } from './types.js';
 import {
@@ -66,6 +67,25 @@ const normalizeSeverityValue = (
   }
 
   return undefined;
+};
+
+// ESLint flat config: later configs override earlier ones for matching files.
+// A base config (no files) matches ALL files and comes after earlier overrides,
+// so it should "win" over any override that set this rule previously.
+// In oxlint, overrides take precedence over root, so we must remove the rule
+// from overrides to avoid the override incorrectly winning.
+const removePreviousOverrideRule = (
+  rule: string,
+  eslintConfig: Linter.Config,
+  overrides?: OxlintConfigOverride[]
+): void => {
+  if (eslintConfig.files === undefined && overrides) {
+    for (const override of overrides) {
+      if (override.rules?.[rule]) {
+        delete override.rules[rule];
+      }
+    }
+  }
 };
 
 /**
@@ -135,7 +155,8 @@ export const transformRuleEntry = (
   eslintConfig: Linter.Config,
   targetConfig: OxlintConfigOrOverride,
   baseConfig?: OxlintConfig,
-  options?: Options
+  options?: Options,
+  overrides?: OxlintConfigOverride[]
 ): void => {
   if (eslintConfig.rules === undefined) {
     return;
@@ -147,6 +168,12 @@ export const transformRuleEntry = (
 
   for (const [rule, config] of Object.entries(eslintConfig.rules)) {
     const normalizedConfig = normalizeSeverityValue(config);
+
+    // removing rules from previous "overrides"
+    // only works on non-merge because `overrides` is already prefilled from previous result.
+    if (!options?.merge) {
+      removePreviousOverrideRule(rule, eslintConfig, overrides);
+    }
 
     if (allRules.includes(rule)) {
       if (!options?.withNursery && rules.nurseryRules.includes(rule)) {

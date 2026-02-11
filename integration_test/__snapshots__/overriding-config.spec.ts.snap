@@ -1,0 +1,106 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`overriding-config > overriding-config 1`] = `
+{
+  "config": {
+    "$schema": "./node_modules/oxlint/configuration_schema.json",
+    "categories": {
+      "correctness": "off",
+    },
+    "env": {
+      "builtin": true,
+    },
+    "plugins": [],
+    "rules": {},
+  },
+  "skipped": {
+    "js-plugins": [],
+    "nursery": [],
+    "type-aware": [],
+    "unsupported": [],
+  },
+  "warnings": [],
+}
+`;
+
+exports[`overriding-config --js-plugins > overriding-config--js-plugins 1`] = `
+{
+  "config": {
+    "$schema": "./node_modules/oxlint/configuration_schema.json",
+    "categories": {
+      "correctness": "off",
+    },
+    "env": {
+      "builtin": true,
+    },
+    "plugins": [],
+    "rules": {},
+  },
+  "skipped": {
+    "js-plugins": [],
+    "nursery": [],
+    "type-aware": [],
+    "unsupported": [],
+  },
+  "warnings": [],
+}
+`;
+
+exports[`overriding-config --type-aware > overriding-config--type-aware 1`] = `
+{
+  "config": {
+    "$schema": "./node_modules/oxlint/configuration_schema.json",
+    "categories": {
+      "correctness": "off",
+    },
+    "env": {
+      "builtin": true,
+    },
+    "plugins": [],
+    "rules": {},
+  },
+  "skipped": {
+    "js-plugins": [],
+    "nursery": [],
+    "type-aware": [],
+    "unsupported": [],
+  },
+  "warnings": [],
+}
+`;
+
+exports[`overriding-config merge > overriding-config--merge 1`] = `
+{
+  "config": {
+    "$schema": "./node_modules/oxlint/configuration_schema.json",
+    "categories": {
+      "correctness": "error",
+      "perf": "error",
+    },
+    "env": {
+      "builtin": true,
+    },
+    "overrides": [
+      {
+        "files": [
+          "**/*.ts",
+        ],
+        "rules": {
+          "prefer-const": "error",
+        },
+      },
+    ],
+    "plugins": [],
+    "rules": {
+      "prefer-const": "warn",
+    },
+  },
+  "skipped": {
+    "js-plugins": [],
+    "nursery": [],
+    "type-aware": [],
+    "unsupported": [],
+  },
+  "warnings": [],
+}
+`;

@@ -100,7 +100,8 @@ const buildConfig = (
       config,
       targetConfig,
       config.files !== undefined ? oxlintConfig : undefined,
-      options
+      options,
+      config.files === undefined ? overrides : undefined
     );
     transformEnvAndGlobals(config, targetConfig, options);
 
