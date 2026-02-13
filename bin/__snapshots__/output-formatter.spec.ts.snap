@@ -8,7 +8,7 @@ exports[`formatMigrationOutput > should NOT show --details hint when all categor
      -   3 Nursery       (Experimental: rule1, rule2, rule3)
      -   1 Type-aware    (Requires TS info: rule4)
      -   1 JS Plugins    (Requires JS plugins: rule5)
-     -   2 Unimplemented (rule6, rule7)
+     -   2 Unimplemented (Not yet in oxlint: rule6, rule7)
 
 👉 Re-run with flags to include more:
      npx @oxlint/migrate --with-nursery --type-aware --js-plugins
@@ -45,7 +45,7 @@ exports[`formatMigrationOutput > should format complete output with all sections
      -   3 Nursery       (Experimental: getter-return, no-undef, no-unreachable)
      -   1 Type-aware    (Requires TS info: await-thenable)
      -   2 JS Plugins    (Requires JS plugins: js-plugin-rule1, js-plugin-rule2)
-     -   1 Unimplemented (prefer-const)
+     -   1 Unimplemented (Not yet in oxlint: prefer-const)
 
 👉 Re-run with flags to include more:
      npx @oxlint/migrate eslint.config.mjs --with-nursery --type-aware --js-plugins
@@ -77,7 +77,7 @@ exports[`formatMigrationOutput > should handle no enabled rules 1`] = `
 ⚠️ .oxlintrc.json created with no rules enabled.
 
    Skipped 1 rules:
-     -   1 Unimplemented (rule1)
+     -   1 Unimplemented (Not yet in oxlint: rule1)
 "
 `;
 
@@ -112,7 +112,7 @@ exports[`formatMigrationOutput > should show --details hint when any category ha
      -   5 Nursery       (Experimental: rule1, rule2, rule3, and more)
      -   1 Type-aware    (Requires TS info: rule6)
      -   1 JS Plugins    (Requires JS plugins: rule7)
-     -   1 Unimplemented (rule8)
+     -   1 Unimplemented (Not yet in oxlint: rule8)
 
      Tip: Use --details to see the full list.
 

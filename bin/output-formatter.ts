@@ -64,17 +64,19 @@ export type MigrationOutputData = {
 function formatInlineRow(
   count: number,
   label: string,
-  rules: string[]
+  rules: string[],
+  description?: string
 ): string {
   const maxRules = 3;
   const displayRules = rules.slice(0, maxRules);
   const exampleList = displayRules.join(', ');
   const suffix = count > maxRules ? ', and more' : '';
+  const prefix = description ? `${description} ` : '';
 
   const paddedCount = String(count).padStart(3);
   const paddedLabel = label.padEnd(MAX_LABEL_LENGTH);
 
-  return `     - ${paddedCount} ${paddedLabel} (${exampleList}${suffix})\n`;
+  return `     - ${paddedCount} ${paddedLabel} (${prefix}${exampleList}${suffix})\n`;
 }
 
 function formatInlineSubCategories(
@@ -87,7 +89,8 @@ function formatInlineSubCategories(
     output += formatInlineRow(
       notYetImplemented.length,
       'Unimplemented',
-      notYetImplemented
+      notYetImplemented,
+      'Not yet in oxlint:'
     );
   }
 
@@ -95,7 +98,8 @@ function formatInlineSubCategories(
     output += formatInlineRow(
       intentionallyUnsupported.length,
       'Unsupported',
-      intentionallyUnsupported
+      intentionallyUnsupported,
+      "Won't be implemented:"
     );
   }
 
