@@ -172,7 +172,7 @@ exports[`formatMigrationOutput > should show vertical list for multiple categori
        - js-plugin-rule1
      - 2 Unsupported
        - prefer-const
-       - camelcase
+       - camelcase: Superseded by \`@typescript-eslint/naming-convention\`, which accomplishes the same behavior with more flexibility.
 
 👉 Re-run with flags to include more:
      npx @oxlint/migrate --with-nursery --type-aware --js-plugins
