@@ -1,10 +1,26 @@
 import path from 'node:path';
 import { SkippedCategoryGroup, RuleSkippedCategory } from '../src/types.js';
+import { rulesPrefixesForPlugins } from '../src/constants.js';
 import unsupportedRulesJson from '../scripts/generated/unsupported-rules.json' with { type: 'json' };
+
+// Build a reverse mapping from oxlint plugin names to all ESLint prefixes that
+// alias to them (e.g. "react" → ["react-hooks", "react-refresh"]).
+// This lets us match unsupported rules against any of the ESLint plugin names
+// that a user might have in their config.
+const oxlintPluginToEslintAliases: Record<string, string[]> = {};
+for (const [eslintPrefix, oxlintPlugin] of Object.entries(
+  rulesPrefixesForPlugins
+)) {
+  if (eslintPrefix !== oxlintPlugin) {
+    (oxlintPluginToEslintAliases[oxlintPlugin] ??= []).push(eslintPrefix);
+  }
+}
 
 // Convert oxc-style rule keys to ESLint-style keys:
 // - "eslint/no-dupe-args" → "no-dupe-args"
 // - "typescript/rule-name" → "@typescript-eslint/rule-name"
+// - For aliased plugins (e.g. react → react-hooks, react-refresh; import → import-x;
+//   node → n), also create entries under the alias prefixes.
 // - Other keys pass through unchanged
 const unsupportedRuleExplanations: Record<string, string> = {};
 for (const [key, value] of Object.entries(
@@ -19,6 +35,19 @@ for (const [key, value] of Object.entries(
     eslintKey = key;
   }
   unsupportedRuleExplanations[eslintKey] = value;
+
+  // Also register under aliased ESLint plugin prefixes.
+  const slashIdx = key.indexOf('/');
+  if (slashIdx !== -1) {
+    const oxlintPlugin = key.slice(0, slashIdx);
+    const ruleName = key.slice(slashIdx + 1);
+    const aliases = oxlintPluginToEslintAliases[oxlintPlugin];
+    if (aliases) {
+      for (const alias of aliases) {
+        unsupportedRuleExplanations[`${alias}/${ruleName}`] = value;
+      }
+    }
+  }
 }
 
 type CategoryMetadata = {
