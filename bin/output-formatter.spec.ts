@@ -17,7 +17,7 @@ describe('formatCategorySummary', () => {
     );
 
     expect(result).toBe(
-      '     -   2 Nursery     (Experimental: getter-return, no-undef)\n'
+      '     -   2 Nursery       (Experimental: getter-return, no-undef)\n'
     );
   });
 
@@ -30,7 +30,7 @@ describe('formatCategorySummary', () => {
     );
 
     expect(result).toBe(
-      '     -   5 Type-aware  (Requires TS info: rule1, rule2, rule3, and more)\n'
+      '     -   5 Type-aware    (Requires TS info: rule1, rule2, rule3, and more)\n'
     );
   });
 
@@ -52,7 +52,7 @@ describe('formatCategorySummary', () => {
     );
   });
 
-  it('should handle single rule', () => {
+  it('should handle single unimplemented rule', () => {
     const result = formatCategorySummary(
       1,
       'unsupported',
@@ -60,7 +60,73 @@ describe('formatCategorySummary', () => {
       false
     );
 
-    expect(result).toBe('     -   1 Unsupported (prefer-const)\n');
+    expect(result).toBe(
+      '     -   1 Unimplemented (Not yet in oxlint: prefer-const)\n'
+    );
+  });
+
+  it('should split unsupported rules into sub-groups in details mode', () => {
+    const result = formatCategorySummary(
+      2,
+      'unsupported',
+      ['camelcase', 'some-unknown-rule'],
+      true
+    );
+
+    expect(result).toBe(
+      '     - 1 Not yet implemented\n' +
+        '       - some-unknown-rule\n' +
+        '     - 1 Intentionally unsupported\n' +
+        '       - camelcase: Superseded by `@typescript-eslint/naming-convention`, which accomplishes the same behavior with more flexibility.\n'
+    );
+  });
+
+  it('should show only intentionally unsupported when all have explanations', () => {
+    const result = formatCategorySummary(1, 'unsupported', ['camelcase'], true);
+
+    expect(result).toBe(
+      '     - 1 Intentionally unsupported\n' +
+        '       - camelcase: Superseded by `@typescript-eslint/naming-convention`, which accomplishes the same behavior with more flexibility.\n'
+    );
+  });
+
+  it('should show only unimplemented when none have explanations', () => {
+    const result = formatCategorySummary(
+      2,
+      'unsupported',
+      ['some-rule', 'another-rule'],
+      true
+    );
+
+    expect(result).toBe(
+      '     - 2 Not yet implemented\n' +
+        '       - some-rule\n' +
+        '       - another-rule\n'
+    );
+  });
+
+  it('should show explanations for react-hooks/ rules aliased from react/', () => {
+    const result = formatCategorySummary(
+      1,
+      'unsupported',
+      ['react-hooks/immutability'],
+      true
+    );
+
+    expect(result).toContain('react-hooks/immutability: ');
+    expect(result).toContain('React Compiler');
+  });
+
+  it('should show explanations for import-x/ rules aliased from import/', () => {
+    const result = formatCategorySummary(
+      1,
+      'unsupported',
+      ['import-x/no-unresolved'],
+      true
+    );
+
+    expect(result).toContain('import-x/no-unresolved: ');
+    expect(result).toContain('false positives');
   });
 });
 

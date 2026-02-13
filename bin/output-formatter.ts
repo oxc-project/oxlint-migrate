@@ -1,5 +1,35 @@
 import path from 'node:path';
 import { SkippedCategoryGroup, RuleSkippedCategory } from '../src/types.js';
+import { rulesPrefixesForPlugins } from '../src/constants.js';
+import unsupportedRulesJson from '../scripts/generated/unsupported-rules.json' with { type: 'json' };
+
+// Convert oxc-style rule keys (e.g. "eslint/no-dupe-args", "react/immutability")
+// to all matching ESLint-style keys, using rulesPrefixesForPlugins for aliases
+// (e.g. react → react-hooks/react-refresh, import → import-x, node → n).
+const unsupportedRuleExplanations: Record<string, string> = {};
+for (const [key, value] of Object.entries(
+  unsupportedRulesJson.unsupportedRules
+)) {
+  const slashIdx = key.indexOf('/');
+  const oxlintPlugin = key.slice(0, slashIdx);
+  const ruleName = key.slice(slashIdx + 1);
+
+  // "eslint/rule-name" → "rule-name" (no prefix in ESLint)
+  if (oxlintPlugin === 'eslint') {
+    unsupportedRuleExplanations[ruleName] = value;
+    continue;
+  }
+
+  // Register under every ESLint prefix that maps to this oxlint plugin.
+  // e.g. for "react/immutability", this registers react/, react-hooks/, react-refresh/.
+  for (const [eslintPrefix, plugin] of Object.entries(
+    rulesPrefixesForPlugins
+  )) {
+    if (plugin === oxlintPlugin) {
+      unsupportedRuleExplanations[`${eslintPrefix}/${ruleName}`] = value;
+    }
+  }
+}
 
 type CategoryMetadata = {
   label: string;
@@ -12,9 +42,11 @@ const CATEGORY_METADATA: Record<RuleSkippedCategory, CategoryMetadata> = {
   'js-plugins': { label: 'JS Plugins', description: 'Requires JS plugins:' },
   unsupported: { label: 'Unsupported' },
 };
-const MAX_LABEL_LENGTH = Math.max(
-  ...Object.values(CATEGORY_METADATA).map((meta) => meta.label.length)
-);
+const ALL_INLINE_LABELS = [
+  ...Object.values(CATEGORY_METADATA).map((meta) => meta.label),
+  'Unimplemented',
+];
+const MAX_LABEL_LENGTH = Math.max(...ALL_INLINE_LABELS.map((l) => l.length));
 
 export type MigrationOutputData = {
   outputFileName: string;
@@ -29,6 +61,51 @@ export type MigrationOutputData = {
   eslintConfigPath?: string;
 };
 
+function formatInlineRow(
+  count: number,
+  label: string,
+  rules: string[],
+  description?: string
+): string {
+  const maxRules = 3;
+  const displayRules = rules.slice(0, maxRules);
+  const exampleList = displayRules.join(', ');
+  const suffix = count > maxRules ? ', and more' : '';
+  const prefix = description ? `${description} ` : '';
+
+  const paddedCount = String(count).padStart(3);
+  const paddedLabel = label.padEnd(MAX_LABEL_LENGTH);
+
+  return `     - ${paddedCount} ${paddedLabel} (${prefix}${exampleList}${suffix})\n`;
+}
+
+function formatInlineSubCategories(
+  notYetImplemented: string[],
+  intentionallyUnsupported: string[]
+): string {
+  let output = '';
+
+  if (notYetImplemented.length > 0) {
+    output += formatInlineRow(
+      notYetImplemented.length,
+      'Unimplemented',
+      notYetImplemented,
+      'Not yet in oxlint:'
+    );
+  }
+
+  if (intentionallyUnsupported.length > 0) {
+    output += formatInlineRow(
+      intentionallyUnsupported.length,
+      'Unsupported',
+      intentionallyUnsupported,
+      "Won't be implemented:"
+    );
+  }
+
+  return output;
+}
+
 /**
  * Formats a category summary as either inline (with example) or vertical list
  */
@@ -41,6 +118,21 @@ export function formatCategorySummary(
   const meta = CATEGORY_METADATA[category];
 
   if (!showAll) {
+    // For unsupported rules, split into two sub-lines when both types exist.
+    if (category === 'unsupported') {
+      const notYetImplemented = rules.filter(
+        (r) => !unsupportedRuleExplanations[r]
+      );
+      const intentionallyUnsupported = rules.filter(
+        (r) => unsupportedRuleExplanations[r]
+      );
+
+      return formatInlineSubCategories(
+        notYetImplemented,
+        intentionallyUnsupported
+      );
+    }
+
     // inline format with rules
     const maxRules = 3;
     const displayRules = rules.slice(0, maxRules);
@@ -57,7 +149,36 @@ export function formatCategorySummary(
 
   // vertical list format
   // Padding is unnecessary here as vertical alignment is interrupted by the example list.
+
+  if (category === 'unsupported') {
+    const notYetImplemented = rules.filter(
+      (r) => !unsupportedRuleExplanations[r]
+    );
+    const intentionallyUnsupported = rules.filter(
+      (r) => unsupportedRuleExplanations[r]
+    );
+
+    let output = '';
+
+    if (notYetImplemented.length > 0) {
+      output += `     - ${notYetImplemented.length} Not yet implemented\n`;
+      for (const rule of notYetImplemented) {
+        output += `       - ${rule}\n`;
+      }
+    }
+
+    if (intentionallyUnsupported.length > 0) {
+      output += `     - ${intentionallyUnsupported.length} Intentionally unsupported\n`;
+      for (const rule of intentionallyUnsupported) {
+        output += `       - ${rule}: ${unsupportedRuleExplanations[rule]}\n`;
+      }
+    }
+
+    return output;
+  }
+
   let output = `     - ${count} ${meta.label}\n`;
+
   for (const rule of rules) {
     output += `       - ${rule}\n`;
   }
