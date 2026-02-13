@@ -77,6 +77,30 @@ describe('formatCategorySummary', () => {
         '       - camelcase: Superseded by `@typescript-eslint/naming-convention`, which accomplishes the same behavior with more flexibility.\n'
     );
   });
+
+  it('should show explanations for react-hooks/ rules aliased from react/', () => {
+    const result = formatCategorySummary(
+      1,
+      'unsupported',
+      ['react-hooks/immutability'],
+      true
+    );
+
+    expect(result).toContain('react-hooks/immutability: ');
+    expect(result).toContain('React Compiler');
+  });
+
+  it('should show explanations for import-x/ rules aliased from import/', () => {
+    const result = formatCategorySummary(
+      1,
+      'unsupported',
+      ['import-x/no-unresolved'],
+      true
+    );
+
+    expect(result).toContain('import-x/no-unresolved: ');
+    expect(result).toContain('false positives');
+  });
 });
 
 describe('detectMissingFlags', () => {
