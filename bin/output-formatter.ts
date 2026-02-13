@@ -3,49 +3,30 @@ import { SkippedCategoryGroup, RuleSkippedCategory } from '../src/types.js';
 import { rulesPrefixesForPlugins } from '../src/constants.js';
 import unsupportedRulesJson from '../scripts/generated/unsupported-rules.json' with { type: 'json' };
 
-// Build a reverse mapping from oxlint plugin names to all ESLint prefixes that
-// alias to them (e.g. "react" → ["react-hooks", "react-refresh"]).
-// This lets us match unsupported rules against any of the ESLint plugin names
-// that a user might have in their config.
-const oxlintPluginToEslintAliases: Record<string, string[]> = {};
-for (const [eslintPrefix, oxlintPlugin] of Object.entries(
-  rulesPrefixesForPlugins
-)) {
-  if (eslintPrefix !== oxlintPlugin) {
-    (oxlintPluginToEslintAliases[oxlintPlugin] ??= []).push(eslintPrefix);
-  }
-}
-
-// Convert oxc-style rule keys to ESLint-style keys:
-// - "eslint/no-dupe-args" → "no-dupe-args"
-// - "typescript/rule-name" → "@typescript-eslint/rule-name"
-// - For aliased plugins (e.g. react → react-hooks, react-refresh; import → import-x;
-//   node → n), also create entries under the alias prefixes.
-// - Other keys pass through unchanged
+// Convert oxc-style rule keys (e.g. "eslint/no-dupe-args", "react/immutability")
+// to all matching ESLint-style keys, using rulesPrefixesForPlugins for aliases
+// (e.g. react → react-hooks/react-refresh, import → import-x, node → n).
 const unsupportedRuleExplanations: Record<string, string> = {};
 for (const [key, value] of Object.entries(
   unsupportedRulesJson.unsupportedRules
 )) {
-  let eslintKey: string;
-  if (key.startsWith('eslint/')) {
-    eslintKey = key.slice('eslint/'.length);
-  } else if (key.startsWith('typescript/')) {
-    eslintKey = `@typescript-eslint/${key.slice('typescript/'.length)}`;
-  } else {
-    eslintKey = key;
-  }
-  unsupportedRuleExplanations[eslintKey] = value;
-
-  // Also register under aliased ESLint plugin prefixes.
   const slashIdx = key.indexOf('/');
-  if (slashIdx !== -1) {
-    const oxlintPlugin = key.slice(0, slashIdx);
-    const ruleName = key.slice(slashIdx + 1);
-    const aliases = oxlintPluginToEslintAliases[oxlintPlugin];
-    if (aliases) {
-      for (const alias of aliases) {
-        unsupportedRuleExplanations[`${alias}/${ruleName}`] = value;
-      }
+  const oxlintPlugin = key.slice(0, slashIdx);
+  const ruleName = key.slice(slashIdx + 1);
+
+  // "eslint/rule-name" → "rule-name" (no prefix in ESLint)
+  if (oxlintPlugin === 'eslint') {
+    unsupportedRuleExplanations[ruleName] = value;
+    continue;
+  }
+
+  // Register under every ESLint prefix that maps to this oxlint plugin.
+  // e.g. for "react/immutability", this registers react/, react-hooks/, react-refresh/.
+  for (const [eslintPrefix, plugin] of Object.entries(
+    rulesPrefixesForPlugins
+  )) {
+    if (plugin === oxlintPlugin) {
+      unsupportedRuleExplanations[`${eslintPrefix}/${ruleName}`] = value;
     }
   }
 }
