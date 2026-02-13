@@ -17,7 +17,7 @@ describe('formatCategorySummary', () => {
     );
 
     expect(result).toBe(
-      '     -   2 Nursery     (Experimental: getter-return, no-undef)\n'
+      '     -   2 Nursery       (Experimental: getter-return, no-undef)\n'
     );
   });
 
@@ -30,7 +30,7 @@ describe('formatCategorySummary', () => {
     );
 
     expect(result).toBe(
-      '     -   5 Type-aware  (Requires TS info: rule1, rule2, rule3, and more)\n'
+      '     -   5 Type-aware    (Requires TS info: rule1, rule2, rule3, and more)\n'
     );
   });
 
@@ -52,7 +52,7 @@ describe('formatCategorySummary', () => {
     );
   });
 
-  it('should handle single rule', () => {
+  it('should handle single unimplemented rule', () => {
     const result = formatCategorySummary(
       1,
       'unsupported',
@@ -60,10 +60,10 @@ describe('formatCategorySummary', () => {
       false
     );
 
-    expect(result).toBe('     -   1 Unsupported (prefer-const)\n');
+    expect(result).toBe('     -   1 Unimplemented (prefer-const)\n');
   });
 
-  it('should show explanations for unsupported rules', () => {
+  it('should split unsupported rules into sub-groups in details mode', () => {
     const result = formatCategorySummary(
       2,
       'unsupported',
@@ -72,9 +72,34 @@ describe('formatCategorySummary', () => {
     );
 
     expect(result).toBe(
-      '     - 2 Unsupported\n' +
+      '     - 1 Not yet implemented\n' +
         '       - some-unknown-rule\n' +
+        '     - 1 Intentionally unsupported\n' +
         '       - camelcase: Superseded by `@typescript-eslint/naming-convention`, which accomplishes the same behavior with more flexibility.\n'
+    );
+  });
+
+  it('should show only intentionally unsupported when all have explanations', () => {
+    const result = formatCategorySummary(1, 'unsupported', ['camelcase'], true);
+
+    expect(result).toBe(
+      '     - 1 Intentionally unsupported\n' +
+        '       - camelcase: Superseded by `@typescript-eslint/naming-convention`, which accomplishes the same behavior with more flexibility.\n'
+    );
+  });
+
+  it('should show only unimplemented when none have explanations', () => {
+    const result = formatCategorySummary(
+      2,
+      'unsupported',
+      ['some-rule', 'another-rule'],
+      true
+    );
+
+    expect(result).toBe(
+      '     - 2 Not yet implemented\n' +
+        '       - some-rule\n' +
+        '       - another-rule\n'
     );
   });
 
