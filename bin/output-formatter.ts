@@ -78,7 +78,18 @@ export function formatCategorySummary(
   // vertical list format
   // Padding is unnecessary here as vertical alignment is interrupted by the example list.
   let output = `     - ${count} ${meta.label}\n`;
-  for (const rule of rules) {
+
+  // Sort rules so that ones with explanations appear at the bottom.
+  const sortedRules =
+    category === 'unsupported'
+      ? [...rules].sort((a, b) => {
+          const aHas = unsupportedRuleExplanations[a] ? 1 : 0;
+          const bHas = unsupportedRuleExplanations[b] ? 1 : 0;
+          return aHas - bHas;
+        })
+      : rules;
+
+  for (const rule of sortedRules) {
     const explanation =
       category === 'unsupported'
         ? unsupportedRuleExplanations[rule]

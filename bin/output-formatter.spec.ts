@@ -73,8 +73,8 @@ describe('formatCategorySummary', () => {
 
     expect(result).toBe(
       '     - 2 Unsupported\n' +
-        '       - camelcase: Superseded by `@typescript-eslint/naming-convention`, which accomplishes the same behavior with more flexibility.\n' +
-        '       - some-unknown-rule\n'
+        '       - some-unknown-rule\n' +
+        '       - camelcase: Superseded by `@typescript-eslint/naming-convention`, which accomplishes the same behavior with more flexibility.\n'
     );
   });
 });
