@@ -1,5 +1,25 @@
 import path from 'node:path';
 import { SkippedCategoryGroup, RuleSkippedCategory } from '../src/types.js';
+import unsupportedRulesJson from '../scripts/generated/unsupported-rules.json' with { type: 'json' };
+
+// Convert oxc-style rule keys to ESLint-style keys:
+// - "eslint/no-dupe-args" → "no-dupe-args"
+// - "typescript/rule-name" → "@typescript-eslint/rule-name"
+// - Other keys pass through unchanged
+const unsupportedRuleExplanations: Record<string, string> = {};
+for (const [key, value] of Object.entries(
+  unsupportedRulesJson.unsupportedRules
+)) {
+  let eslintKey: string;
+  if (key.startsWith('eslint/')) {
+    eslintKey = key.slice('eslint/'.length);
+  } else if (key.startsWith('typescript/')) {
+    eslintKey = `@typescript-eslint/${key.slice('typescript/'.length)}`;
+  } else {
+    eslintKey = key;
+  }
+  unsupportedRuleExplanations[eslintKey] = value;
+}
 
 type CategoryMetadata = {
   label: string;
@@ -59,7 +79,15 @@ export function formatCategorySummary(
   // Padding is unnecessary here as vertical alignment is interrupted by the example list.
   let output = `     - ${count} ${meta.label}\n`;
   for (const rule of rules) {
-    output += `       - ${rule}\n`;
+    const explanation =
+      category === 'unsupported'
+        ? unsupportedRuleExplanations[rule]
+        : undefined;
+    if (explanation) {
+      output += `       - ${rule}: ${explanation}\n`;
+    } else {
+      output += `       - ${rule}\n`;
+    }
   }
   return output;
 }

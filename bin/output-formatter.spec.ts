@@ -62,6 +62,21 @@ describe('formatCategorySummary', () => {
 
     expect(result).toBe('     -   1 Unsupported (prefer-const)\n');
   });
+
+  it('should show explanations for unsupported rules', () => {
+    const result = formatCategorySummary(
+      2,
+      'unsupported',
+      ['camelcase', 'some-unknown-rule'],
+      true
+    );
+
+    expect(result).toBe(
+      '     - 2 Unsupported\n' +
+        '       - camelcase: Superseded by `@typescript-eslint/naming-convention`, which accomplishes the same behavior with more flexibility.\n' +
+        '       - some-unknown-rule\n'
+    );
+  });
 });
 
 describe('detectMissingFlags', () => {
