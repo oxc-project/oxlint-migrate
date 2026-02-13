@@ -60,7 +60,9 @@ describe('formatCategorySummary', () => {
       false
     );
 
-    expect(result).toBe('     -   1 Unimplemented (prefer-const)\n');
+    expect(result).toBe(
+      '     -   1 Unimplemented (Not yet in oxlint: prefer-const)\n'
+    );
   });
 
   it('should split unsupported rules into sub-groups in details mode', () => {
