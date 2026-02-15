@@ -132,7 +132,8 @@ exports[`next-eslint-config-project > next-eslint-config-project 1`] = `
     ],
   },
   "warnings": [
-    "special parser detected: eslint-config-next/parser",
+    "parsers are not yet supported: https://github.com/oxc-project/oxc/issues/14826
+eslint-config-next/parser was not migrated",
     "Settings found in config with 'files' pattern (react, import/parsers, import/resolver). Oxlint does not support settings in overrides, these settings will be skipped.",
   ],
 }
@@ -270,7 +271,8 @@ exports[`next-eslint-config-project --js-plugins > next-eslint-config-project--j
     ],
   },
   "warnings": [
-    "special parser detected: eslint-config-next/parser",
+    "parsers are not yet supported: https://github.com/oxc-project/oxc/issues/14826
+eslint-config-next/parser was not migrated",
     "Settings found in config with 'files' pattern (react, import/parsers, import/resolver). Oxlint does not support settings in overrides, these settings will be skipped.",
   ],
 }
@@ -408,7 +410,8 @@ exports[`next-eslint-config-project --type-aware > next-eslint-config-project--t
     ],
   },
   "warnings": [
-    "special parser detected: eslint-config-next/parser",
+    "parsers are not yet supported: https://github.com/oxc-project/oxc/issues/14826
+eslint-config-next/parser was not migrated",
     "Settings found in config with 'files' pattern (react, import/parsers, import/resolver). Oxlint does not support settings in overrides, these settings will be skipped.",
   ],
 }
@@ -547,7 +550,8 @@ exports[`next-eslint-config-project merge > next-eslint-config-project--merge 1`
     ],
   },
   "warnings": [
-    "special parser detected: eslint-config-next/parser",
+    "parsers are not yet supported: https://github.com/oxc-project/oxc/issues/14826
+eslint-config-next/parser was not migrated",
     "Settings found in config with 'files' pattern (react, import/parsers, import/resolver). Oxlint does not support settings in overrides, these settings will be skipped.",
   ],
 }

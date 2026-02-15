@@ -907,10 +907,13 @@ exports[`nuxt-auth > nuxt-auth 1`] = `
     ],
   },
   "warnings": [
-    "special parser detected: vue-eslint-parser",
-    "special parser detected: toml-eslint-parser",
+    "parsers are not yet supported: https://github.com/oxc-project/oxc/issues/14826
+vue-eslint-parser was not migrated",
+    "parsers are not yet supported: https://github.com/oxc-project/oxc/issues/14826
+toml-eslint-parser was not migrated",
     "ignore list inside overrides is not supported",
-    "special parser detected: parser-plain",
+    "parsers are not yet supported: https://github.com/oxc-project/oxc/issues/14826
+parser-plain was not migrated",
   ],
 }
 `;
@@ -2240,10 +2243,13 @@ exports[`nuxt-auth --js-plugins > nuxt-auth--js-plugins 1`] = `
     ],
   },
   "warnings": [
-    "special parser detected: vue-eslint-parser",
-    "special parser detected: toml-eslint-parser",
+    "parsers are not yet supported: https://github.com/oxc-project/oxc/issues/14826
+vue-eslint-parser was not migrated",
+    "parsers are not yet supported: https://github.com/oxc-project/oxc/issues/14826
+toml-eslint-parser was not migrated",
     "ignore list inside overrides is not supported",
-    "special parser detected: parser-plain",
+    "parsers are not yet supported: https://github.com/oxc-project/oxc/issues/14826
+parser-plain was not migrated",
   ],
 }
 `;
@@ -3155,10 +3161,13 @@ exports[`nuxt-auth --type-aware > nuxt-auth--type-aware 1`] = `
     ],
   },
   "warnings": [
-    "special parser detected: vue-eslint-parser",
-    "special parser detected: toml-eslint-parser",
+    "parsers are not yet supported: https://github.com/oxc-project/oxc/issues/14826
+vue-eslint-parser was not migrated",
+    "parsers are not yet supported: https://github.com/oxc-project/oxc/issues/14826
+toml-eslint-parser was not migrated",
     "ignore list inside overrides is not supported",
-    "special parser detected: parser-plain",
+    "parsers are not yet supported: https://github.com/oxc-project/oxc/issues/14826
+parser-plain was not migrated",
   ],
 }
 `;
@@ -4051,10 +4060,13 @@ exports[`nuxt-auth merge > nuxt-auth--merge 1`] = `
     ],
   },
   "warnings": [
-    "special parser detected: vue-eslint-parser",
-    "special parser detected: toml-eslint-parser",
+    "parsers are not yet supported: https://github.com/oxc-project/oxc/issues/14826
+vue-eslint-parser was not migrated",
+    "parsers are not yet supported: https://github.com/oxc-project/oxc/issues/14826
+toml-eslint-parser was not migrated",
     "ignore list inside overrides is not supported",
-    "special parser detected: parser-plain",
+    "parsers are not yet supported: https://github.com/oxc-project/oxc/issues/14826
+parser-plain was not migrated",
   ],
 }
 `;
