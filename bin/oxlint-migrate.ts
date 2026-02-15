@@ -85,12 +85,16 @@ program
   )
   .option(
     '--type-aware',
-    'Includes supported type-aware rules. Needs the same flag in `oxlint` to enable it.'
+    'Includes supported type-aware rules. Enabled by default; use `--no-type-aware` to disable.',
+    true
   )
+  .option('--no-type-aware', 'Disable type-aware rule migration for this run.')
   .option(
     '--js-plugins',
-    'Tries to convert unsupported oxlint plugins with `jsPlugins`.'
+    'Tries to convert unsupported oxlint plugins with `jsPlugins`. Enabled by default; use `--no-js-plugins` to disable.',
+    true
   )
+  .option('--no-js-plugins', 'Disable JS plugin migration for this run.')
   .option(
     '--details',
     'List rules that could not be migrated to oxlint.',
