@@ -54,7 +54,7 @@ describe('oxlint-migrate CLI defaults', () => {
     }
   });
 
-  it('can disable default behavior with --no-type-aware and --no-js-plugins', () => {
+  it('can disable default behavior with --type-aware=false and --js-plugins=false', () => {
     const cwd = process.cwd();
     const tempDir = mkdtempSync(path.join(cwd, '.tmp-oxlint-migrate-cli-'));
     const configPath = path.join(tempDir, 'eslint.config.mjs');
@@ -77,8 +77,8 @@ describe('oxlint-migrate CLI defaults', () => {
         path.relative(cwd, configPath),
         '--output-file',
         path.relative(cwd, outputPath),
-        '--no-type-aware',
-        '--no-js-plugins',
+        '--type-aware=false',
+        '--js-plugins=false',
       ]);
 
       const output = JSON.parse(readFileSync(outputPath, 'utf8'));

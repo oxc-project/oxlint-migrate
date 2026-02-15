@@ -23,6 +23,9 @@ import {
 
 const cwd = process.cwd();
 
+const parseCliBoolean = (value: unknown): boolean =>
+  value === 'false' ? false : !!value;
+
 const getFileContent = (absoluteFilePath: string): string | undefined => {
   try {
     return readFileSync(absoluteFilePath, 'utf-8');
@@ -84,17 +87,15 @@ program
     'Search in the project files for eslint comments and replaces them with oxlint. Some eslint comments are not supported and will be reported.'
   )
   .option(
-    '--type-aware',
-    'Includes supported type-aware rules. Enabled by default; use `--no-type-aware` to disable.',
+    '--type-aware [bool]',
+    'Includes supported type-aware rules. Enabled by default; pass `--type-aware=false` to disable.',
     true
   )
-  .option('--no-type-aware', 'Disable type-aware rule migration for this run.')
   .option(
-    '--js-plugins',
-    'Tries to convert unsupported oxlint plugins with `jsPlugins`. Enabled by default; use `--no-js-plugins` to disable.',
+    '--js-plugins [bool]',
+    'Tries to convert unsupported oxlint plugins with `jsPlugins`. Enabled by default; pass `--js-plugins=false` to disable.',
     true
   )
-  .option('--no-js-plugins', 'Disable JS plugin migration for this run.')
   .option(
     '--details',
     'List rules that could not be migrated to oxlint.',
@@ -102,6 +103,8 @@ program
   )
   .action(async (filePath: string | undefined) => {
     const cliOptions = program.opts();
+    const typeAware = parseCliBoolean(cliOptions.typeAware);
+    const jsPlugins = parseCliBoolean(cliOptions.jsPlugins);
     const oxlintFilePath = path.join(cwd, cliOptions.outputFile);
     const reporter = new DefaultReporter();
 
@@ -109,8 +112,8 @@ program
       reporter,
       merge: !!cliOptions.merge,
       withNursery: !!cliOptions.withNursery,
-      typeAware: !!cliOptions.typeAware,
-      jsPlugins: !!cliOptions.jsPlugins,
+      typeAware,
+      jsPlugins,
     };
 
     if (cliOptions.replaceEslintComments) {
@@ -167,9 +170,9 @@ program
       skippedRulesByCategory: reporter.getSkippedRulesByCategory(),
       cliOptions: {
         withNursery: !!cliOptions.withNursery,
-        typeAware: !!cliOptions.typeAware,
+        typeAware,
         details: !!cliOptions.details,
-        jsPlugins: !!cliOptions.jsPlugins,
+        jsPlugins,
       },
       eslintConfigPath: filePath,
     });
