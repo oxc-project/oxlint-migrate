@@ -75,9 +75,9 @@
     "husky": "^9.1.7",
     "lint-staged": "^16.1.2",
     "next": "^16.0.0",
-    "oxfmt": "^0.28.0",
+    "oxfmt": "^0.32.0",
     "oxlint": "^1.46.0",
-    "oxlint-tsgolint": "^0.11.3",
+    "oxlint-tsgolint": "^0.13.0",
     "tsdown": "^0.20.0",
     "typescript-eslint": "^8.35.0",
     "vitest": "^4.0.0"
@@ -85,5 +85,5 @@
   "lint-staged": {
     "*": "oxfmt --no-error-on-unmatched-pattern"
   },
-  "packageManager": "pnpm@10.28.2"
+  "packageManager": "pnpm@10.29.3"
 }
