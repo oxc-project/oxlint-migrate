@@ -8,12 +8,12 @@
     {
       "groupName": "npm packages",
       "matchManagers": ["npm"],
-      "ignoreDeps": ["oxlint", "oxlint-tsgolint"]
+      "ignoreDeps": ["oxlint"]
     },
     {
       "groupName": "oxlint",
       "matchManagers": ["npm"],
-      "matchPackageNames": ["oxlint", "oxlint-tsgolint"],
+      "matchPackageNames": ["oxlint"],
       "schedule": ["at any time"]
     }
   ]
