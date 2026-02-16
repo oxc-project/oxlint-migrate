@@ -1,6 +1,6 @@
 {
   "name": "@oxlint/migrate",
-  "version": "1.46.0",
+  "version": "1.48.0",
   "description": "Generates a `.oxlintrc.json` from a existing eslint flat config",
   "keywords": [
     "eslint",
@@ -38,7 +38,7 @@
   "dependencies": {
     "commander": "^14.0.0",
     "globals": "^17.0.0",
-    "oxc-parser": "^0.112.0",
+    "oxc-parser": "^0.114.0",
     "tinyglobby": "^0.2.14"
   },
   "devDependencies": {
@@ -75,9 +75,9 @@
     "husky": "^9.1.7",
     "lint-staged": "^16.1.2",
     "next": "^16.0.0",
-    "oxfmt": "^0.32.0",
-    "oxlint": "^1.46.0",
-    "oxlint-tsgolint": "^0.13.0",
+    "oxfmt": "^0.33.0",
+    "oxlint": "^1.48.0",
+    "oxlint-tsgolint": "^0.14.0",
     "tsdown": "^0.20.0",
     "typescript-eslint": "^8.35.0",
     "vitest": "^4.0.0"
