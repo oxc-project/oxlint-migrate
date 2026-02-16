@@ -604,6 +604,141 @@ describe('rules and plugins', () => {
     });
   });
 
+  test('cleanUpUselessOverridesRules preserves rule needed to re-assert root value', () => {
+    const config: OxlintConfig = {
+      rules: {
+        'accessor-pairs': 'error',
+      },
+      overrides: [
+        {
+          files: ['*.js'],
+          rules: {
+            'accessor-pairs': 'warn',
+          },
+        },
+        {
+          files: ['*.test.js'],
+          rules: {
+            'accessor-pairs': 'error',
+          },
+        },
+      ],
+    };
+
+    cleanUpUselessOverridesRules(config);
+
+    // The `*.test.js` override re-asserts root value against the `*.js` override,
+    // so it must be preserved
+    expect(config).toStrictEqual({
+      rules: {
+        'accessor-pairs': 'error',
+      },
+      overrides: [
+        {
+          files: ['*.js'],
+          rules: {
+            'accessor-pairs': 'warn',
+          },
+        },
+        {
+          files: ['*.test.js'],
+          rules: {
+            'accessor-pairs': 'error',
+          },
+        },
+      ],
+    });
+  });
+
+  test('cleanUpUselessOverridesRules removes redundant rules when no previous conflict', () => {
+    const config: OxlintConfig = {
+      rules: {
+        'accessor-pairs': 'error',
+      },
+      overrides: [
+        {
+          files: ['*.js'],
+          rules: {
+            'accessor-pairs': 'error',
+          },
+        },
+        {
+          files: ['*.ts'],
+          rules: {
+            'accessor-pairs': 'error',
+          },
+        },
+      ],
+    };
+
+    cleanUpUselessOverridesRules(config);
+
+    // Both overrides have the same value as root with no conflicting
+    // previous override, so both rules should be removed
+    expect(config).toStrictEqual({
+      rules: {
+        'accessor-pairs': 'error',
+      },
+      overrides: [{ files: ['*.js'] }, { files: ['*.ts'] }],
+    });
+  });
+
+  test('cleanUpUselessOverridesRules removes redundant rules when no previous conflict, but keeps others with conflicting overrides', () => {
+    const config: OxlintConfig = {
+      rules: {
+        'accessor-pairs': 'error',
+      },
+      overrides: [
+        {
+          files: ['*.js'],
+          rules: {
+            'accessor-pairs': 'error',
+          },
+        },
+        {
+          files: ['*.ts'],
+          rules: {
+            'accessor-pairs': 'off',
+          },
+        },
+        {
+          files: ['*.test.ts'],
+          rules: {
+            'accessor-pairs': 'error',
+          },
+        },
+      ],
+    };
+
+    cleanUpUselessOverridesRules(config);
+
+    // 1st override had same value as root with no conflicting overrides.
+    // 2nd override has different value from root, so must be preserved.
+    // 3rd override has same value as root, but conflicts with 2nd override, so must be preserved too.
+    expect(config).toStrictEqual({
+      rules: {
+        'accessor-pairs': 'error',
+      },
+      overrides: [
+        {
+          files: ['*.js'],
+        },
+        {
+          files: ['*.ts'],
+          rules: {
+            'accessor-pairs': 'off',
+          },
+        },
+        {
+          files: ['*.test.ts'],
+          rules: {
+            'accessor-pairs': 'error',
+          },
+        },
+      ],
+    });
+  });
+
   test('cleanUpRulesWhichAreCoveredByCategory', () => {
     const config: OxlintConfig = {
       categories: {
