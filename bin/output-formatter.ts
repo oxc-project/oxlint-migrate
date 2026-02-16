@@ -40,13 +40,15 @@ const CATEGORY_METADATA: Record<RuleSkippedCategory, CategoryMetadata> = {
   nursery: { label: 'Nursery', description: 'Experimental:' },
   'type-aware': { label: 'Type-aware', description: 'Requires TS info:' },
   'js-plugins': { label: 'JS Plugins', description: 'Requires JS plugins:' },
-  unsupported: { label: 'Unsupported' },
+  'not-implemented': {
+    label: 'Not Implemented',
+    description: 'Not yet in oxlint:',
+  },
+  unsupported: { label: 'Unsupported', description: "Won't be implemented:" },
 };
-const ALL_INLINE_LABELS = [
-  ...Object.values(CATEGORY_METADATA).map((meta) => meta.label),
-  'Unimplemented',
-];
-const MAX_LABEL_LENGTH = Math.max(...ALL_INLINE_LABELS.map((l) => l.length));
+const MAX_LABEL_LENGTH = Math.max(
+  ...Object.values(CATEGORY_METADATA).map((meta) => meta.label.length)
+);
 
 export type MigrationOutputData = {
   outputFileName: string;
@@ -61,51 +63,6 @@ export type MigrationOutputData = {
   eslintConfigPath?: string;
 };
 
-function formatInlineRow(
-  count: number,
-  label: string,
-  rules: string[],
-  description?: string
-): string {
-  const maxRules = 3;
-  const displayRules = rules.slice(0, maxRules);
-  const exampleList = displayRules.join(', ');
-  const suffix = count > maxRules ? ', and more' : '';
-  const prefix = description ? `${description} ` : '';
-
-  const paddedCount = String(count).padStart(3);
-  const paddedLabel = label.padEnd(MAX_LABEL_LENGTH);
-
-  return `     - ${paddedCount} ${paddedLabel} (${prefix}${exampleList}${suffix})\n`;
-}
-
-function formatInlineSubCategories(
-  notYetImplemented: string[],
-  intentionallyUnsupported: string[]
-): string {
-  let output = '';
-
-  if (notYetImplemented.length > 0) {
-    output += formatInlineRow(
-      notYetImplemented.length,
-      'Unimplemented',
-      notYetImplemented,
-      'Not yet in oxlint:'
-    );
-  }
-
-  if (intentionallyUnsupported.length > 0) {
-    output += formatInlineRow(
-      intentionallyUnsupported.length,
-      'Unsupported',
-      intentionallyUnsupported,
-      "Won't be implemented:"
-    );
-  }
-
-  return output;
-}
-
 /**
  * Formats a category summary as either inline (with example) or vertical list
  */
@@ -118,21 +75,6 @@ export function formatCategorySummary(
   const meta = CATEGORY_METADATA[category];
 
   if (!showAll) {
-    // For unsupported rules, split into two sub-lines when both types exist.
-    if (category === 'unsupported') {
-      const notYetImplemented = rules.filter(
-        (r) => !unsupportedRuleExplanations[r]
-      );
-      const intentionallyUnsupported = rules.filter(
-        (r) => unsupportedRuleExplanations[r]
-      );
-
-      return formatInlineSubCategories(
-        notYetImplemented,
-        intentionallyUnsupported
-      );
-    }
-
     // inline format with rules
     const maxRules = 3;
     const displayRules = rules.slice(0, maxRules);
@@ -150,37 +92,15 @@ export function formatCategorySummary(
   // vertical list format
   // Padding is unnecessary here as vertical alignment is interrupted by the example list.
 
-  if (category === 'unsupported') {
-    const notYetImplemented = rules.filter(
-      (r) => !unsupportedRuleExplanations[r]
-    );
-    const intentionallyUnsupported = rules.filter(
-      (r) => unsupportedRuleExplanations[r]
-    );
-
-    let output = '';
-
-    if (notYetImplemented.length > 0) {
-      output += `     - ${notYetImplemented.length} Not yet implemented\n`;
-      for (const rule of notYetImplemented) {
-        output += `       - ${rule}\n`;
-      }
-    }
-
-    if (intentionallyUnsupported.length > 0) {
-      output += `     - ${intentionallyUnsupported.length} Intentionally unsupported\n`;
-      for (const rule of intentionallyUnsupported) {
-        output += `       - ${rule}: ${unsupportedRuleExplanations[rule]}\n`;
-      }
-    }
-
-    return output;
-  }
-
   let output = `     - ${count} ${meta.label}\n`;
 
   for (const rule of rules) {
-    output += `       - ${rule}\n`;
+    // For unsupported rules, include the explanation
+    if (category === 'unsupported' && unsupportedRuleExplanations[rule]) {
+      output += `       - ${rule}: ${unsupportedRuleExplanations[rule]}\n`;
+    } else {
+      output += `       - ${rule}\n`;
+    }
   }
   return output;
 }
@@ -225,10 +145,15 @@ export function formatMigrationOutput(data: MigrationOutputData): string {
   const byCategory = data.skippedRulesByCategory;
   const nurseryCount = byCategory.nursery.length;
   const typeAwareCount = byCategory['type-aware'].length;
+  const notImplementedCount = byCategory['not-implemented'].length;
   const unsupportedCount = byCategory.unsupported.length;
   const jsPluginsCount = byCategory['js-plugins'].length;
   const totalSkipped =
-    nurseryCount + typeAwareCount + unsupportedCount + jsPluginsCount;
+    nurseryCount +
+    typeAwareCount +
+    notImplementedCount +
+    unsupportedCount +
+    jsPluginsCount;
 
   if (totalSkipped > 0) {
     output += `\n   Skipped ${totalSkipped} rules:\n`;
@@ -260,6 +185,15 @@ export function formatMigrationOutput(data: MigrationOutputData): string {
       );
     }
 
+    if (notImplementedCount > 0) {
+      output += formatCategorySummary(
+        notImplementedCount,
+        'not-implemented',
+        byCategory['not-implemented'],
+        showAll
+      );
+    }
+
     if (unsupportedCount > 0) {
       output += formatCategorySummary(
         unsupportedCount,
@@ -274,6 +208,7 @@ export function formatMigrationOutput(data: MigrationOutputData): string {
       const hasOmittedRules =
         nurseryCount > maxExamples ||
         typeAwareCount > maxExamples ||
+        notImplementedCount > maxExamples ||
         unsupportedCount > maxExamples ||
         jsPluginsCount > maxExamples;
 

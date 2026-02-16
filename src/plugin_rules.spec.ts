@@ -148,6 +148,7 @@ describe('rules and plugins', () => {
       expect(reporter.getSkippedRulesByCategory()).toStrictEqual({
         nursery: [],
         'type-aware': [],
+        'not-implemented': [],
         'js-plugins': [],
         unsupported: [],
       });
@@ -159,8 +160,9 @@ describe('rules and plugins', () => {
       expect(reporter.getSkippedRulesByCategory()).toStrictEqual({
         nursery: [],
         'type-aware': [],
+        'not-implemented': ['unknown-rule'],
         'js-plugins': [],
-        unsupported: ['unknown-rule'],
+        unsupported: [],
       });
     });
 

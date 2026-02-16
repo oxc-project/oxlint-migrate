@@ -12,8 +12,37 @@ import {
   typescriptRulesExtendEslintRules,
 } from './constants.js';
 import { enableJsPluginRule, isIgnoredPluginRule } from './jsPlugins.js';
+import unsupportedRulesJson from '../scripts/generated/unsupported-rules.json' with { type: 'json' };
 
 const allRules = Object.values(rules).flat();
+
+// Convert oxc-style rule keys (e.g. "eslint/no-dupe-args", "react/immutability")
+// to all matching ESLint-style keys, using rulesPrefixesForPlugins for aliases
+// (e.g. react → react-hooks/react-refresh, import → import-x, node → n).
+const unsupportedRuleExplanations: Record<string, string> = {};
+for (const [key, value] of Object.entries(
+  unsupportedRulesJson.unsupportedRules
+)) {
+  const slashIdx = key.indexOf('/');
+  const oxlintPlugin = key.slice(0, slashIdx);
+  const ruleName = key.slice(slashIdx + 1);
+
+  // "eslint/rule-name" → "rule-name" (no prefix in ESLint)
+  if (oxlintPlugin === 'eslint') {
+    unsupportedRuleExplanations[ruleName] = value;
+    continue;
+  }
+
+  // Register under every ESLint prefix that maps to this oxlint plugin.
+  // e.g. for "react/immutability", this registers react/, react-hooks/, react-refresh/.
+  for (const [eslintPrefix, plugin] of Object.entries(
+    rulesPrefixesForPlugins
+  )) {
+    if (plugin === oxlintPlugin) {
+      unsupportedRuleExplanations[`${eslintPrefix}/${ruleName}`] = value;
+    }
+  }
+}
 
 /**
  * checks if value is validSet, or if validSet is an array, check if value is first value of it
@@ -222,13 +251,17 @@ export const transformRuleEntry = (
           // also remove any previously queued unsupported report for base
           if (eslintConfig.files === undefined) {
             options?.reporter?.removeSkipped(rule, 'js-plugins');
+            options?.reporter?.removeSkipped(rule, 'not-implemented');
             options?.reporter?.removeSkipped(rule, 'unsupported');
           }
           continue;
         }
 
         if (!enableJsPluginRule(targetConfig, rule, normalizedConfig)) {
-          options?.reporter?.markSkipped(rule, 'unsupported');
+          const category = unsupportedRuleExplanations[rule]
+            ? 'unsupported'
+            : 'not-implemented';
+          options?.reporter?.markSkipped(rule, category);
         }
         continue;
       }
@@ -241,6 +274,7 @@ export const transformRuleEntry = (
         }
         // only remove the reporter diagnostics when it is in a base config.
         if (eslintConfig.files === undefined) {
+          options?.reporter?.removeSkipped(rule, 'not-implemented');
           options?.reporter?.removeSkipped(rule, 'unsupported');
         }
         continue;
@@ -252,7 +286,10 @@ export const transformRuleEntry = (
       }
 
       // Active unsupported rule: mark as skipped
-      options?.reporter?.markSkipped(rule, 'unsupported');
+      const category = unsupportedRuleExplanations[rule]
+        ? 'unsupported'
+        : 'not-implemented';
+      options?.reporter?.markSkipped(rule, category);
     }
   }
 };
