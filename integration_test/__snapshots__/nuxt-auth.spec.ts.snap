@@ -127,6 +127,36 @@ exports[`nuxt-auth > nuxt-auth 1`] = `
     "overrides": [
       {
         "files": [
+          "**/*.?([cm])[jt]s?(x)",
+        ],
+        "plugins": [
+          "node",
+        ],
+        "rules": {
+          "jsdoc/check-access": "warn",
+          "jsdoc/check-property-names": "warn",
+          "jsdoc/empty-tags": "warn",
+          "jsdoc/implements-on-classes": "warn",
+          "jsdoc/no-defaults": "warn",
+          "jsdoc/require-param-name": "warn",
+          "jsdoc/require-property": "warn",
+          "jsdoc/require-property-description": "warn",
+          "jsdoc/require-property-name": "warn",
+          "jsdoc/require-returns-description": "warn",
+          "node/no-exports-assign": "error",
+          "node/no-new-require": "error",
+        },
+      },
+      {
+        "files": [
+          "**/*.?([cm])[jt]s?(x)",
+        ],
+        "plugins": [
+          "jsdoc",
+        ],
+      },
+      {
+        "files": [
           "**/*.?([cm])ts",
           "**/*.?([cm])tsx",
           "**/*.vue",
@@ -344,8 +374,6 @@ exports[`nuxt-auth > nuxt-auth 1`] = `
       },
     ],
     "plugins": [
-      "node",
-      "jsdoc",
       "import",
       "unicorn",
     ],
@@ -377,16 +405,6 @@ exports[`nuxt-auth > nuxt-auth 1`] = `
       "import/no-duplicates": "error",
       "import/no-mutable-exports": "error",
       "import/no-named-default": "error",
-      "jsdoc/check-access": "warn",
-      "jsdoc/check-property-names": "warn",
-      "jsdoc/empty-tags": "warn",
-      "jsdoc/implements-on-classes": "warn",
-      "jsdoc/no-defaults": "warn",
-      "jsdoc/require-param-name": "warn",
-      "jsdoc/require-property": "warn",
-      "jsdoc/require-property-description": "warn",
-      "jsdoc/require-property-name": "warn",
-      "jsdoc/require-returns-description": "warn",
       "new-cap": [
         "error",
         {
@@ -515,8 +533,6 @@ exports[`nuxt-auth > nuxt-auth 1`] = `
       "no-useless-return": "error",
       "no-var": "error",
       "no-with": "error",
-      "node/no-exports-assign": "error",
-      "node/no-new-require": "error",
       "prefer-const": [
         "error",
         {
@@ -1061,6 +1077,36 @@ exports[`nuxt-auth --js-plugins > nuxt-auth--js-plugins 1`] = `
     "overrides": [
       {
         "files": [
+          "**/*.?([cm])[jt]s?(x)",
+        ],
+        "plugins": [
+          "node",
+        ],
+        "rules": {
+          "jsdoc/check-access": "warn",
+          "jsdoc/check-property-names": "warn",
+          "jsdoc/empty-tags": "warn",
+          "jsdoc/implements-on-classes": "warn",
+          "jsdoc/no-defaults": "warn",
+          "jsdoc/require-param-name": "warn",
+          "jsdoc/require-property": "warn",
+          "jsdoc/require-property-description": "warn",
+          "jsdoc/require-property-name": "warn",
+          "jsdoc/require-returns-description": "warn",
+          "node/no-exports-assign": "error",
+          "node/no-new-require": "error",
+        },
+      },
+      {
+        "files": [
+          "**/*.?([cm])[jt]s?(x)",
+        ],
+        "plugins": [
+          "jsdoc",
+        ],
+      },
+      {
+        "files": [
           "**/*.?([cm])ts",
           "**/*.?([cm])tsx",
           "**/*.vue",
@@ -1348,8 +1394,6 @@ exports[`nuxt-auth --js-plugins > nuxt-auth--js-plugins 1`] = `
       },
     ],
     "plugins": [
-      "node",
-      "jsdoc",
       "import",
       "unicorn",
     ],
@@ -1764,16 +1808,6 @@ exports[`nuxt-auth --js-plugins > nuxt-auth--js-plugins 1`] = `
       "import/no-duplicates": "error",
       "import/no-mutable-exports": "error",
       "import/no-named-default": "error",
-      "jsdoc/check-access": "warn",
-      "jsdoc/check-property-names": "warn",
-      "jsdoc/empty-tags": "warn",
-      "jsdoc/implements-on-classes": "warn",
-      "jsdoc/no-defaults": "warn",
-      "jsdoc/require-param-name": "warn",
-      "jsdoc/require-property": "warn",
-      "jsdoc/require-property-description": "warn",
-      "jsdoc/require-property-name": "warn",
-      "jsdoc/require-returns-description": "warn",
       "new-cap": [
         "error",
         {
@@ -1902,8 +1936,6 @@ exports[`nuxt-auth --js-plugins > nuxt-auth--js-plugins 1`] = `
       "no-useless-return": "error",
       "no-var": "error",
       "no-with": "error",
-      "node/no-exports-assign": "error",
-      "node/no-new-require": "error",
       "perfectionist/sort-exports": [
         "error",
         {
@@ -2395,6 +2427,36 @@ exports[`nuxt-auth --type-aware > nuxt-auth--type-aware 1`] = `
     "overrides": [
       {
         "files": [
+          "**/*.?([cm])[jt]s?(x)",
+        ],
+        "plugins": [
+          "node",
+        ],
+        "rules": {
+          "jsdoc/check-access": "warn",
+          "jsdoc/check-property-names": "warn",
+          "jsdoc/empty-tags": "warn",
+          "jsdoc/implements-on-classes": "warn",
+          "jsdoc/no-defaults": "warn",
+          "jsdoc/require-param-name": "warn",
+          "jsdoc/require-property": "warn",
+          "jsdoc/require-property-description": "warn",
+          "jsdoc/require-property-name": "warn",
+          "jsdoc/require-returns-description": "warn",
+          "node/no-exports-assign": "error",
+          "node/no-new-require": "error",
+        },
+      },
+      {
+        "files": [
+          "**/*.?([cm])[jt]s?(x)",
+        ],
+        "plugins": [
+          "jsdoc",
+        ],
+      },
+      {
+        "files": [
           "**/*.?([cm])ts",
           "**/*.?([cm])tsx",
           "**/*.vue",
@@ -2612,8 +2674,6 @@ exports[`nuxt-auth --type-aware > nuxt-auth--type-aware 1`] = `
       },
     ],
     "plugins": [
-      "node",
-      "jsdoc",
       "import",
       "unicorn",
     ],
@@ -2645,16 +2705,6 @@ exports[`nuxt-auth --type-aware > nuxt-auth--type-aware 1`] = `
       "import/no-duplicates": "error",
       "import/no-mutable-exports": "error",
       "import/no-named-default": "error",
-      "jsdoc/check-access": "warn",
-      "jsdoc/check-property-names": "warn",
-      "jsdoc/empty-tags": "warn",
-      "jsdoc/implements-on-classes": "warn",
-      "jsdoc/no-defaults": "warn",
-      "jsdoc/require-param-name": "warn",
-      "jsdoc/require-property": "warn",
-      "jsdoc/require-property-description": "warn",
-      "jsdoc/require-property-name": "warn",
-      "jsdoc/require-returns-description": "warn",
       "new-cap": [
         "error",
         {
@@ -2783,8 +2833,6 @@ exports[`nuxt-auth --type-aware > nuxt-auth--type-aware 1`] = `
       "no-useless-return": "error",
       "no-var": "error",
       "no-with": "error",
-      "node/no-exports-assign": "error",
-      "node/no-new-require": "error",
       "prefer-const": [
         "error",
         {
@@ -3321,6 +3369,36 @@ exports[`nuxt-auth merge > nuxt-auth--merge 1`] = `
     "overrides": [
       {
         "files": [
+          "**/*.?([cm])[jt]s?(x)",
+        ],
+        "plugins": [
+          "node",
+        ],
+        "rules": {
+          "jsdoc/check-access": "warn",
+          "jsdoc/check-property-names": "warn",
+          "jsdoc/empty-tags": "warn",
+          "jsdoc/implements-on-classes": "warn",
+          "jsdoc/no-defaults": "warn",
+          "jsdoc/require-param-name": "warn",
+          "jsdoc/require-property": "warn",
+          "jsdoc/require-property-description": "warn",
+          "jsdoc/require-property-name": "warn",
+          "jsdoc/require-returns-description": "warn",
+          "node/no-exports-assign": "error",
+          "node/no-new-require": "error",
+        },
+      },
+      {
+        "files": [
+          "**/*.?([cm])[jt]s?(x)",
+        ],
+        "plugins": [
+          "jsdoc",
+        ],
+      },
+      {
+        "files": [
           "**/*.?([cm])ts",
           "**/*.?([cm])tsx",
           "**/*.vue",
@@ -3545,8 +3623,6 @@ exports[`nuxt-auth merge > nuxt-auth--merge 1`] = `
       },
     ],
     "plugins": [
-      "node",
-      "jsdoc",
       "import",
       "unicorn",
     ],
@@ -3577,16 +3653,6 @@ exports[`nuxt-auth merge > nuxt-auth--merge 1`] = `
       "import/no-duplicates": "error",
       "import/no-mutable-exports": "error",
       "import/no-named-default": "error",
-      "jsdoc/check-access": "warn",
-      "jsdoc/check-property-names": "warn",
-      "jsdoc/empty-tags": "warn",
-      "jsdoc/implements-on-classes": "warn",
-      "jsdoc/no-defaults": "warn",
-      "jsdoc/require-param-name": "warn",
-      "jsdoc/require-property": "warn",
-      "jsdoc/require-property-description": "warn",
-      "jsdoc/require-property-name": "warn",
-      "jsdoc/require-returns-description": "warn",
       "new-cap": [
         "error",
         {
@@ -3691,8 +3757,6 @@ exports[`nuxt-auth merge > nuxt-auth--merge 1`] = `
       "no-useless-constructor": "error",
       "no-useless-return": "error",
       "no-var": "error",
-      "node/no-exports-assign": "error",
-      "node/no-new-require": "error",
       "prefer-const": [
         "error",
         {
