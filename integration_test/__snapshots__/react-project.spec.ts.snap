@@ -39,14 +39,16 @@ exports[`react-project > react-project 1`] = `
   },
   "skipped": {
     "js-plugins": [],
+    "not-implemented": [
+      "react/no-deprecated",
+      "react/prop-types",
+    ],
     "nursery": [
       "react/require-render-return",
     ],
     "type-aware": [],
     "unsupported": [
       "react/jsx-uses-vars",
-      "react/no-deprecated",
-      "react/prop-types",
       "react-hooks/static-components",
       "react-hooks/use-memo",
       "react-hooks/void-use-memo",
@@ -108,14 +110,16 @@ exports[`react-project --js-plugins > react-project--js-plugins 1`] = `
   },
   "skipped": {
     "js-plugins": [],
+    "not-implemented": [
+      "react/no-deprecated",
+      "react/prop-types",
+    ],
     "nursery": [
       "react/require-render-return",
     ],
     "type-aware": [],
     "unsupported": [
       "react/jsx-uses-vars",
-      "react/no-deprecated",
-      "react/prop-types",
       "react-hooks/static-components",
       "react-hooks/use-memo",
       "react-hooks/void-use-memo",
@@ -177,14 +181,16 @@ exports[`react-project --type-aware > react-project--type-aware 1`] = `
   },
   "skipped": {
     "js-plugins": [],
+    "not-implemented": [
+      "react/no-deprecated",
+      "react/prop-types",
+    ],
     "nursery": [
       "react/require-render-return",
     ],
     "type-aware": [],
     "unsupported": [
       "react/jsx-uses-vars",
-      "react/no-deprecated",
-      "react/prop-types",
       "react-hooks/static-components",
       "react-hooks/use-memo",
       "react-hooks/void-use-memo",
@@ -236,14 +242,16 @@ exports[`react-project merge > react-project--merge 1`] = `
   },
   "skipped": {
     "js-plugins": [],
+    "not-implemented": [
+      "react/no-deprecated",
+      "react/prop-types",
+    ],
     "nursery": [
       "react/require-render-return",
     ],
     "type-aware": [],
     "unsupported": [
       "react/jsx-uses-vars",
-      "react/no-deprecated",
-      "react/prop-types",
       "react-hooks/static-components",
       "react-hooks/use-memo",
       "react-hooks/void-use-memo",

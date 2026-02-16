@@ -340,11 +340,12 @@ exports[`vuejs/core > vuejs/core 1`] = `
   },
   "skipped": {
     "js-plugins": [],
-    "nursery": [],
-    "type-aware": [],
-    "unsupported": [
+    "not-implemented": [
       "no-restricted-syntax",
     ],
+    "nursery": [],
+    "type-aware": [],
+    "unsupported": [],
   },
   "warnings": [],
 }
@@ -690,11 +691,12 @@ exports[`vuejs/core --js-plugins > vuejs/core--js-plugins 1`] = `
   },
   "skipped": {
     "js-plugins": [],
-    "nursery": [],
-    "type-aware": [],
-    "unsupported": [
+    "not-implemented": [
       "no-restricted-syntax",
     ],
+    "nursery": [],
+    "type-aware": [],
+    "unsupported": [],
   },
   "warnings": [],
 }
@@ -1040,11 +1042,12 @@ exports[`vuejs/core --type-aware > vuejs/core--type-aware 1`] = `
   },
   "skipped": {
     "js-plugins": [],
-    "nursery": [],
-    "type-aware": [],
-    "unsupported": [
+    "not-implemented": [
       "no-restricted-syntax",
     ],
+    "nursery": [],
+    "type-aware": [],
+    "unsupported": [],
   },
   "warnings": [],
 }
@@ -1390,11 +1393,12 @@ exports[`vuejs/core merge > vuejs/core--merge 1`] = `
   },
   "skipped": {
     "js-plugins": [],
-    "nursery": [],
-    "type-aware": [],
-    "unsupported": [
+    "not-implemented": [
       "no-restricted-syntax",
     ],
+    "nursery": [],
+    "type-aware": [],
+    "unsupported": [],
   },
   "warnings": [],
 }

@@ -105,6 +105,10 @@ exports[`next-eslint-config-project > next-eslint-config-project 1`] = `
   },
   "skipped": {
     "js-plugins": [],
+    "not-implemented": [
+      "react/no-deprecated",
+      "node/prefer-global/process",
+    ],
     "nursery": [
       "react/require-render-return",
     ],
@@ -112,7 +116,6 @@ exports[`next-eslint-config-project > next-eslint-config-project 1`] = `
     "unsupported": [
       "react/jsx-uses-react",
       "react/jsx-uses-vars",
-      "react/no-deprecated",
       "react-hooks/static-components",
       "react-hooks/use-memo",
       "react-hooks/component-hook-factories",
@@ -128,7 +131,6 @@ exports[`next-eslint-config-project > next-eslint-config-project 1`] = `
       "react-hooks/unsupported-syntax",
       "react-hooks/config",
       "react-hooks/gating",
-      "node/prefer-global/process",
     ],
   },
   "warnings": [
@@ -243,6 +245,10 @@ exports[`next-eslint-config-project --js-plugins > next-eslint-config-project--j
   },
   "skipped": {
     "js-plugins": [],
+    "not-implemented": [
+      "react/no-deprecated",
+      "node/prefer-global/process",
+    ],
     "nursery": [
       "react/require-render-return",
     ],
@@ -250,7 +256,6 @@ exports[`next-eslint-config-project --js-plugins > next-eslint-config-project--j
     "unsupported": [
       "react/jsx-uses-react",
       "react/jsx-uses-vars",
-      "react/no-deprecated",
       "react-hooks/static-components",
       "react-hooks/use-memo",
       "react-hooks/component-hook-factories",
@@ -266,7 +271,6 @@ exports[`next-eslint-config-project --js-plugins > next-eslint-config-project--j
       "react-hooks/unsupported-syntax",
       "react-hooks/config",
       "react-hooks/gating",
-      "node/prefer-global/process",
     ],
   },
   "warnings": [
@@ -381,6 +385,10 @@ exports[`next-eslint-config-project --type-aware > next-eslint-config-project--t
   },
   "skipped": {
     "js-plugins": [],
+    "not-implemented": [
+      "react/no-deprecated",
+      "node/prefer-global/process",
+    ],
     "nursery": [
       "react/require-render-return",
     ],
@@ -388,7 +396,6 @@ exports[`next-eslint-config-project --type-aware > next-eslint-config-project--t
     "unsupported": [
       "react/jsx-uses-react",
       "react/jsx-uses-vars",
-      "react/no-deprecated",
       "react-hooks/static-components",
       "react-hooks/use-memo",
       "react-hooks/component-hook-factories",
@@ -404,7 +411,6 @@ exports[`next-eslint-config-project --type-aware > next-eslint-config-project--t
       "react-hooks/unsupported-syntax",
       "react-hooks/config",
       "react-hooks/gating",
-      "node/prefer-global/process",
     ],
   },
   "warnings": [
@@ -520,6 +526,10 @@ exports[`next-eslint-config-project merge > next-eslint-config-project--merge 1`
   },
   "skipped": {
     "js-plugins": [],
+    "not-implemented": [
+      "react/no-deprecated",
+      "node/prefer-global/process",
+    ],
     "nursery": [
       "react/require-render-return",
     ],
@@ -527,7 +537,6 @@ exports[`next-eslint-config-project merge > next-eslint-config-project--merge 1`
     "unsupported": [
       "react/jsx-uses-react",
       "react/jsx-uses-vars",
-      "react/no-deprecated",
       "react-hooks/static-components",
       "react-hooks/use-memo",
       "react-hooks/component-hook-factories",
@@ -543,7 +552,6 @@ exports[`next-eslint-config-project merge > next-eslint-config-project--merge 1`
       "react-hooks/unsupported-syntax",
       "react-hooks/config",
       "react-hooks/gating",
-      "node/prefer-global/process",
     ],
   },
   "warnings": [

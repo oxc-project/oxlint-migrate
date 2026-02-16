@@ -16,6 +16,7 @@ exports[`overriding-config-merge > overriding-config-merge 1`] = `
     "js-plugins": [
       "regexp/no-lazy-ends",
     ],
+    "not-implemented": [],
     "nursery": [],
     "type-aware": [],
     "unsupported": [],
@@ -41,6 +42,7 @@ exports[`overriding-config-merge --js-plugins > overriding-config-merge--js-plug
   },
   "skipped": {
     "js-plugins": [],
+    "not-implemented": [],
     "nursery": [],
     "type-aware": [],
     "unsupported": [],
@@ -65,6 +67,7 @@ exports[`overriding-config-merge --type-aware > overriding-config-merge--type-aw
     "js-plugins": [
       "regexp/no-lazy-ends",
     ],
+    "not-implemented": [],
     "nursery": [],
     "type-aware": [],
     "unsupported": [],
@@ -90,6 +93,7 @@ exports[`overriding-config-merge merge > overriding-config-merge--merge 1`] = `
     "js-plugins": [
       "regexp/no-lazy-ends",
     ],
+    "not-implemented": [],
     "nursery": [],
     "type-aware": [],
     "unsupported": [],

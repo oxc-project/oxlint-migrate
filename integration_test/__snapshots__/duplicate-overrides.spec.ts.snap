@@ -36,6 +36,7 @@ exports[`duplicate-overrides > duplicate-overrides 1`] = `
   },
   "skipped": {
     "js-plugins": [],
+    "not-implemented": [],
     "nursery": [],
     "type-aware": [],
     "unsupported": [],
@@ -80,6 +81,7 @@ exports[`duplicate-overrides --js-plugins > duplicate-overrides--js-plugins 1`] 
   },
   "skipped": {
     "js-plugins": [],
+    "not-implemented": [],
     "nursery": [],
     "type-aware": [],
     "unsupported": [],
@@ -124,6 +126,7 @@ exports[`duplicate-overrides --type-aware > duplicate-overrides--type-aware 1`] 
   },
   "skipped": {
     "js-plugins": [],
+    "not-implemented": [],
     "nursery": [],
     "type-aware": [],
     "unsupported": [],
@@ -168,6 +171,7 @@ exports[`duplicate-overrides merge > duplicate-overrides--merge 1`] = `
   },
   "skipped": {
     "js-plugins": [],
+    "not-implemented": [],
     "nursery": [],
     "type-aware": [],
     "unsupported": [],

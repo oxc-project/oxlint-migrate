@@ -320,13 +320,7 @@ exports[`vscode > vscode 1`] = `
       "@stylistic/ts/semi",
       "@stylistic/ts/member-delimiter-style",
     ],
-    "nursery": [
-      "@typescript-eslint/prefer-optional-chain",
-    ],
-    "type-aware": [],
-    "unsupported": [
-      "no-buffer-constructor",
-      "no-extra-semi",
+    "not-implemented": [
       "local/code-translation-remind",
       "local/code-no-native-private",
       "local/code-parameter-properties-must-have-explicit-accessibility",
@@ -365,8 +359,16 @@ exports[`vscode > vscode 1`] = `
       "local/code-import-patterns",
       "local/code-no-runtime-import",
       "local/code-limited-top-functions",
-      "comma-dangle",
       "@typescript-eslint/prefer-readonly",
+    ],
+    "nursery": [
+      "@typescript-eslint/prefer-optional-chain",
+    ],
+    "type-aware": [],
+    "unsupported": [
+      "no-buffer-constructor",
+      "no-extra-semi",
+      "comma-dangle",
     ],
   },
   "warnings": [],
@@ -714,13 +716,7 @@ exports[`vscode --js-plugins > vscode--js-plugins 1`] = `
   },
   "skipped": {
     "js-plugins": [],
-    "nursery": [
-      "@typescript-eslint/prefer-optional-chain",
-    ],
-    "type-aware": [],
-    "unsupported": [
-      "no-buffer-constructor",
-      "no-extra-semi",
+    "not-implemented": [
       "local/code-translation-remind",
       "local/code-no-native-private",
       "local/code-parameter-properties-must-have-explicit-accessibility",
@@ -759,8 +755,16 @@ exports[`vscode --js-plugins > vscode--js-plugins 1`] = `
       "local/code-import-patterns",
       "local/code-no-runtime-import",
       "local/code-limited-top-functions",
-      "comma-dangle",
       "@typescript-eslint/prefer-readonly",
+    ],
+    "nursery": [
+      "@typescript-eslint/prefer-optional-chain",
+    ],
+    "type-aware": [],
+    "unsupported": [
+      "no-buffer-constructor",
+      "no-extra-semi",
+      "comma-dangle",
     ],
   },
   "warnings": [],
@@ -1087,13 +1091,7 @@ exports[`vscode --type-aware > vscode--type-aware 1`] = `
       "@stylistic/ts/semi",
       "@stylistic/ts/member-delimiter-style",
     ],
-    "nursery": [
-      "@typescript-eslint/prefer-optional-chain",
-    ],
-    "type-aware": [],
-    "unsupported": [
-      "no-buffer-constructor",
-      "no-extra-semi",
+    "not-implemented": [
       "local/code-translation-remind",
       "local/code-no-native-private",
       "local/code-parameter-properties-must-have-explicit-accessibility",
@@ -1132,8 +1130,16 @@ exports[`vscode --type-aware > vscode--type-aware 1`] = `
       "local/code-import-patterns",
       "local/code-no-runtime-import",
       "local/code-limited-top-functions",
-      "comma-dangle",
       "@typescript-eslint/prefer-readonly",
+    ],
+    "nursery": [
+      "@typescript-eslint/prefer-optional-chain",
+    ],
+    "type-aware": [],
+    "unsupported": [
+      "no-buffer-constructor",
+      "no-extra-semi",
+      "comma-dangle",
     ],
   },
   "warnings": [],
@@ -1461,13 +1467,7 @@ exports[`vscode merge > vscode--merge 1`] = `
       "@stylistic/ts/semi",
       "@stylistic/ts/member-delimiter-style",
     ],
-    "nursery": [
-      "@typescript-eslint/prefer-optional-chain",
-    ],
-    "type-aware": [],
-    "unsupported": [
-      "no-buffer-constructor",
-      "no-extra-semi",
+    "not-implemented": [
       "local/code-translation-remind",
       "local/code-no-native-private",
       "local/code-parameter-properties-must-have-explicit-accessibility",
@@ -1506,8 +1506,16 @@ exports[`vscode merge > vscode--merge 1`] = `
       "local/code-import-patterns",
       "local/code-no-runtime-import",
       "local/code-limited-top-functions",
-      "comma-dangle",
       "@typescript-eslint/prefer-readonly",
+    ],
+    "nursery": [
+      "@typescript-eslint/prefer-optional-chain",
+    ],
+    "type-aware": [],
+    "unsupported": [
+      "no-buffer-constructor",
+      "no-extra-semi",
+      "comma-dangle",
     ],
   },
   "warnings": [],
