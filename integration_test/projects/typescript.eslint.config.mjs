@@ -9,6 +9,9 @@ import url from 'url';
 const __filename = url.fileURLToPath(new URL(import.meta.url));
 const __dirname = path.dirname(__filename);
 
+/**
+ * @type {any[]}
+ */
 const ruleFiles = [];
 
 export default tseslint.config(
