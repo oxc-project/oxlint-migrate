@@ -32,11 +32,11 @@ jobs:
       - name: Remove current generated code
         run: rm -r ./src/generated/ && rm -r ./scripts/generated/
 
-      - name: Generate from source code
-        run: pnpm run generate
-
       - name: Generate Vitest shared rules
         run: pnpm run generate:vitest
+
+      - name: Generate from source code
+        run: pnpm run generate
 
       - name: Generate unsupported rules
         run: pnpm run generate:unsupported
