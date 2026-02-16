@@ -28,7 +28,10 @@
   },
   "scripts": {
     "prepare": "husky",
-    "generate": "node --import @oxc-node/core/register ./scripts/generate-vitest-rules.ts && node --import @oxc-node/core/register ./scripts/fetch-unsupported-rules.ts && node --import @oxc-node/core/register ./scripts/generate.ts && pnpm format",
+    "generate": "node --import @oxc-node/core/register ./scripts/generate.ts",
+    "generate:vitest": "node --import @oxc-node/core/register ./scripts/generate-vitest-rules.ts",
+    "generate:unsupported": "node --import @oxc-node/core/register ./scripts/fetch-unsupported-rules.ts",
+    "generate:all": "pnpm generate && pnpm generate:vitest && pnpm generate:unsupported && pnpm format",
     "format": "oxfmt",
     "lint": "oxlint --type-aware --type-check",
     "test": "vitest",
