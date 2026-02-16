@@ -2,12 +2,12 @@ import fs from 'node:fs';
 import path from 'node:path';
 import packageJson from '../package.json' with { type: 'json' };
 
-const __dirname = new URL('.', import.meta.url).pathname;
-// `<repo>/scripts/generated/`
-const scriptsGenerateFolder = path.resolve(__dirname, `generated`);
+const __dirname = new URL('../', import.meta.url).pathname;
+// `<repo>/src/generated/`
+const srcGeneratedFolder = path.resolve(__dirname, `./src/generated`);
 
-if (!fs.existsSync(scriptsGenerateFolder)) {
-  fs.mkdirSync(scriptsGenerateFolder);
+if (!fs.existsSync(srcGeneratedFolder)) {
+  fs.mkdirSync(srcGeneratedFolder);
 }
 
 // Fetch the unsupported-rules.json file from the oxc repository.
@@ -24,7 +24,7 @@ if (!response.ok) {
 
 const unsupportedRules = await response.text();
 const unsupportedRulesPath = path.resolve(
-  scriptsGenerateFolder,
+  srcGeneratedFolder,
   'unsupported-rules.json'
 );
 fs.writeFileSync(unsupportedRulesPath, unsupportedRules, 'utf-8');

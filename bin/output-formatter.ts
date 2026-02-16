@@ -1,7 +1,7 @@
 import path from 'node:path';
 import { SkippedCategoryGroup, RuleSkippedCategory } from '../src/types.js';
 import { rulesPrefixesForPlugins } from '../src/constants.js';
-import unsupportedRulesJson from '../scripts/generated/unsupported-rules.json' with { type: 'json' };
+import unsupportedRulesJson from '../src/generated/unsupported-rules.json' with { type: 'json' };
 
 // Convert oxc-style rule keys (e.g. "eslint/no-dupe-args", "react/immutability")
 // to all matching ESLint-style keys, using rulesPrefixesForPlugins for aliases

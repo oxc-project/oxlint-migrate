@@ -12,7 +12,7 @@ import {
   typescriptRulesExtendEslintRules,
 } from './constants.js';
 import { enableJsPluginRule, isIgnoredPluginRule } from './jsPlugins.js';
-import unsupportedRulesJson from '../scripts/generated/unsupported-rules.json' with { type: 'json' };
+import unsupportedRulesJson from './generated/unsupported-rules.json' with { type: 'json' };
 
 const allRules = Object.values(rules).flat();
 
