@@ -1,5 +1,5 @@
 import { assert, describe, expect, test } from 'vitest';
-import type { OxlintConfig, OxlintConfigOverride } from './types.js';
+import type { Config, OxlintConfig, OxlintConfigOverride } from './types.js';
 import {
   cleanUpDisabledRootRules,
   cleanUpRulesWhichAreCoveredByCategory,
@@ -9,7 +9,6 @@ import {
   replaceTypescriptAliasRules,
   transformRuleEntry,
 } from './plugins_rules.js';
-import type { Linter } from 'eslint';
 import { DefaultReporter } from './reporter.js';
 
 describe('rules and plugins', () => {
@@ -26,7 +25,7 @@ describe('rules and plugins', () => {
 
   describe('transformRuleEntry', () => {
     test('default', () => {
-      const eslintConfig: Linter.Config = {
+      const eslintConfig: Config = {
         rules: {
           'unicorn/prefer-set-has': 'error',
           'unknown-rule': 'error',
@@ -42,7 +41,7 @@ describe('rules and plugins', () => {
     });
 
     test('rules with numeric severity', () => {
-      const eslintConfig: Linter.Config = {
+      const eslintConfig: Config = {
         rules: {
           'unicorn/prefer-set-has': 1,
           'no-useless-call': 2,
@@ -60,7 +59,7 @@ describe('rules and plugins', () => {
     });
 
     test('merge', () => {
-      const eslintConfig: Linter.Config = {
+      const eslintConfig: Config = {
         rules: {
           'unicorn/prefer-set-has': 'error',
         },
@@ -81,7 +80,7 @@ describe('rules and plugins', () => {
     });
 
     test('withNursery', () => {
-      const eslintConfig: Linter.Config = {
+      const eslintConfig: Config = {
         rules: {
           'getter-return': 'error',
         },
@@ -101,7 +100,7 @@ describe('rules and plugins', () => {
     });
 
     test('typeAware', () => {
-      const eslintConfig: Linter.Config = {
+      const eslintConfig: Config = {
         rules: {
           '@typescript-eslint/no-floating-promises': 'error',
         },
@@ -123,18 +122,18 @@ describe('rules and plugins', () => {
     });
 
     test('does not report unsupported rules that are disabled', () => {
-      const enabledConfig: Linter.Config = {
+      const enabledConfig: Config = {
         rules: {
           'unknown-rule': 'error',
         },
       };
-      const disabledConfig: Linter.Config = {
+      const disabledConfig: Config = {
         rules: {
           'unknown-rule': 'off',
         },
       };
 
-      const enabledInOverrideConfig: Linter.Config = {
+      const enabledInOverrideConfig: Config = {
         files: ['**/*.ts'],
         rules: {
           'unknown-rule': 'off',
@@ -167,14 +166,14 @@ describe('rules and plugins', () => {
     });
 
     test('ensure jsPlugin rule is disabled if the last config object disables it', () => {
-      const initialConfig: Linter.Config = {
+      const initialConfig: Config = {
         plugins: { regexp: {} },
         rules: {
           'regexp/no-lazy-ends': ['error', { ignorePartial: false }],
         },
       };
 
-      const disablingConfig: Linter.Config = {
+      const disablingConfig: Config = {
         plugins: { regexp: {} },
         rules: {
           'regexp/no-lazy-ends': 'off',
@@ -200,14 +199,14 @@ describe('rules and plugins', () => {
     });
 
     test('ensure jsPlugin rule is enabled if the last config object enables it', () => {
-      const initialConfig: Linter.Config = {
+      const initialConfig: Config = {
         plugins: { regexp: {} },
         rules: {
           'regexp/no-lazy-ends': ['off'],
         },
       };
 
-      const enablingConfig: Linter.Config = {
+      const enablingConfig: Config = {
         plugins: { regexp: {} },
         rules: {
           'regexp/no-lazy-ends': ['error', { ignorePartial: false }],
@@ -236,14 +235,14 @@ describe('rules and plugins', () => {
     });
 
     test('jsPlugin rule disabled in override keeps base enabled', () => {
-      const baseConfig: Linter.Config = {
+      const baseConfig: Config = {
         plugins: { regexp: {} },
         rules: {
           'regexp/no-lazy-ends': ['error', { ignorePartial: false }],
         },
       };
 
-      const overrideConfig: Linter.Config = {
+      const overrideConfig: Config = {
         plugins: { regexp: {} },
         files: ['**/*.js'],
         rules: {
@@ -281,7 +280,7 @@ describe('rules and plugins', () => {
     });
 
     test('includes jsPlugin in base config when plugin rule is used', () => {
-      const baseConfig: Linter.Config = {
+      const baseConfig: Config = {
         plugins: { mocha: {} },
         rules: {
           'mocha/no-pending-tests': 'error',
@@ -302,7 +301,7 @@ describe('rules and plugins', () => {
     });
 
     test('does not include jsPlugin in base config when plugin rule is used but set to off', () => {
-      const baseConfig: Linter.Config = {
+      const baseConfig: Config = {
         plugins: { mocha: {} },
         rules: {
           'mocha/no-pending-tests': 'off',
@@ -323,7 +322,7 @@ describe('rules and plugins', () => {
     });
 
     test('does include jsPlugin in base config when one rule is off and another is error', () => {
-      const baseConfig: Linter.Config = {
+      const baseConfig: Config = {
         plugins: { mocha: {} },
         rules: {
           'mocha/no-pending-tests': 'off',
@@ -346,12 +345,12 @@ describe('rules and plugins', () => {
     });
 
     test('rule with options then same rule without options should preserve options', () => {
-      const eslintConfig1: Linter.Config = {
+      const eslintConfig1: Config = {
         rules: {
           'no-magic-numbers': ['error', { ignoreArrayIndexes: true }],
         },
       };
-      const eslintConfig2: Linter.Config = {
+      const eslintConfig2: Config = {
         rules: {
           'no-magic-numbers': 'error',
         },
@@ -369,12 +368,12 @@ describe('rules and plugins', () => {
     });
 
     test('rule with options then same rule with different severity but no options should preserve options', () => {
-      const eslintConfig1: Linter.Config = {
+      const eslintConfig1: Config = {
         rules: {
           'no-magic-numbers': ['error', { ignoreArrayIndexes: true }],
         },
       };
-      const eslintConfig2: Linter.Config = {
+      const eslintConfig2: Config = {
         rules: {
           'no-magic-numbers': 'warn',
         },
@@ -392,12 +391,12 @@ describe('rules and plugins', () => {
     });
 
     test('rule with options then same rule with different options should override', () => {
-      const eslintConfig1: Linter.Config = {
+      const eslintConfig1: Config = {
         rules: {
           'no-magic-numbers': ['error', { ignoreArrayIndexes: true }],
         },
       };
-      const eslintConfig2: Linter.Config = {
+      const eslintConfig2: Config = {
         rules: {
           'no-magic-numbers': ['error', { ignoreArrayIndexes: false }],
         },
@@ -415,12 +414,12 @@ describe('rules and plugins', () => {
     });
 
     test('rule with options then same rule turned off should not preserve options', () => {
-      const eslintConfig1: Linter.Config = {
+      const eslintConfig1: Config = {
         rules: {
           'no-magic-numbers': ['error', { ignoreArrayIndexes: true }],
         },
       };
-      const eslintConfig2: Linter.Config = {
+      const eslintConfig2: Config = {
         rules: {
           'no-magic-numbers': 'off',
         },
@@ -436,12 +435,12 @@ describe('rules and plugins', () => {
     });
 
     test('base config with options, file override with severity only should preserve options', () => {
-      const baseConfig: Linter.Config = {
+      const baseConfig: Config = {
         rules: {
           'no-magic-numbers': ['error', { ignore: [5, 7] }],
         },
       };
-      const overrideConfig: Linter.Config = {
+      const overrideConfig: Config = {
         files: ['**/src/**'],
         rules: {
           'no-magic-numbers': ['error'],
@@ -468,14 +467,14 @@ describe('rules and plugins', () => {
     });
 
     test('base config should override earlier overrides (last-wins semantics)', () => {
-      const overrideConfig: Linter.Config = {
+      const overrideConfig: Config = {
         files: ['**/*.js'],
         rules: {
           'react-hooks/exhaustive-deps': 'warn',
         },
       };
 
-      const baseConfig: Linter.Config = {
+      const baseConfig: Config = {
         rules: {
           'react-hooks/exhaustive-deps': 'off',
         },
@@ -502,14 +501,14 @@ describe('rules and plugins', () => {
     });
 
     test('unsupported rules disabled in base config should be removed from overrides with jsPlugins', () => {
-      const overrideConfig: Linter.Config = {
+      const overrideConfig: Config = {
         files: ['**/*.js'],
         rules: {
           'some-plugin/some-rule': 'warn',
         },
       };
 
-      const baseConfig: Linter.Config = {
+      const baseConfig: Config = {
         rules: {
           'some-plugin/some-rule': 'off',
         },

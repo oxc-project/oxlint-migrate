@@ -1,10 +1,6 @@
-import type { Linter } from 'eslint';
+import type { Config } from './types.js';
 
-type PossibleConfigs =
-  | Linter.Config
-  | Linter.Config[]
-  | Promise<Linter.Config>
-  | Promise<Linter.Config[]>;
+type PossibleConfigs = Config | Config[] | Promise<Config> | Promise<Config[]>;
 
 /**
  * @link https://github.com/antfu/eslint-config?tab=readme-ov-file#plugins-renaming

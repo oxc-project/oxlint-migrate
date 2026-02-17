@@ -1,10 +1,11 @@
-import type { Linter } from 'eslint';
 import * as rules from './generated/rules.js';
 import {
+  Config,
   Options,
   OxlintConfig,
   OxlintConfigOrOverride,
   OxlintConfigOverride,
+  RuleConfig,
   type Category,
 } from './types.js';
 import {
@@ -37,8 +38,8 @@ const isWarnValue = (value: unknown) => isValueInSet(value, ['warn', 1]);
 const isErrorValue = (value: unknown) => isValueInSet(value, ['error', 2]);
 
 const normalizeSeverityValue = (
-  value: Linter.RuleEntry | undefined
-): Linter.RuleEntry | undefined => {
+  value: RuleConfig | undefined
+): RuleConfig | undefined => {
   if (value === undefined) {
     return value;
   }
@@ -78,7 +79,7 @@ const normalizeSeverityValue = (
 // from overrides to avoid the override incorrectly winning.
 const removePreviousOverrideRule = (
   rule: string,
-  eslintConfig: Linter.Config,
+  eslintConfig: Config,
   overrides?: OxlintConfigOverride[]
 ): void => {
   if (eslintConfig.files === undefined && overrides) {
@@ -106,9 +107,9 @@ const removePreviousOverrideRule = (
  * @returns The merged rule configuration
  */
 const mergeRuleConfig = (
-  existingConfig: Linter.RuleEntry | undefined,
-  newConfig: Linter.RuleEntry | undefined
-): Linter.RuleEntry | undefined => {
+  existingConfig: RuleConfig | undefined,
+  newConfig: RuleConfig | undefined
+): RuleConfig | undefined => {
   if (newConfig === undefined) {
     return existingConfig;
   }
@@ -154,7 +155,7 @@ const mergeRuleConfig = (
 };
 
 export const transformRuleEntry = (
-  eslintConfig: Linter.Config,
+  eslintConfig: Config,
   targetConfig: OxlintConfigOrOverride,
   baseConfig?: OxlintConfig,
   options?: Options,
@@ -333,7 +334,7 @@ export const cleanUpUselessOverridesRules = (config: OxlintConfig): void => {
     string,
     {
       firstIndex: number;
-      finalRules: Record<string, Linter.RuleEntry>;
+      finalRules: Record<string, RuleConfig>;
       indicesToRemove: number[];
     }
   >();

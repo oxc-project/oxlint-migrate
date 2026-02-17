@@ -1,5 +1,9 @@
-import type { Linter } from 'eslint';
-import { Options, OxlintConfig, OxlintConfigOverride } from './types.js';
+import {
+  Config,
+  Options,
+  OxlintConfig,
+  OxlintConfigOverride,
+} from './types.js';
 import {
   detectEnvironmentByGlobals,
   transformEnvAndGlobals,
@@ -16,7 +20,7 @@ import { processConfigFiles } from './files.js';
 import { transformSettings, warnSettingsInOverride } from './settings.js';
 
 const buildConfig = (
-  configs: Linter.Config[],
+  configs: Config[],
   oxlintConfig?: OxlintConfig,
   options?: Options
 ): OxlintConfig => {
@@ -131,11 +135,7 @@ const buildConfig = (
 };
 
 const main = async (
-  configs:
-    | Linter.Config
-    | Linter.Config[]
-    | Promise<Linter.Config>
-    | Promise<Linter.Config[]>,
+  configs: Config | Config[] | Promise<Config> | Promise<Config[]>,
   oxlintConfig?: OxlintConfig,
   options?: Options
 ): Promise<OxlintConfig> => {
