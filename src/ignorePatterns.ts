@@ -1,5 +1,4 @@
-import type { ESLint } from './types.js';
-import { Options, OxlintConfigOrOverride } from './types.js';
+import type { ESLint, Options, OxlintConfigOrOverride } from './types.js';
 
 export const transformIgnorePatterns = (
   eslintConfig: ESLint.Config,

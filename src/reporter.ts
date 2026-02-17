@@ -1,7 +1,7 @@
-import {
+import type {
   Reporter,
-  SkippedCategoryGroup,
   RuleSkippedCategory,
+  SkippedCategoryGroup,
 } from './types.js';
 
 export class DefaultReporter implements Reporter {

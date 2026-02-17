@@ -1,4 +1,4 @@
-import { OxlintConfig, OxlintConfigOverride } from './types.js';
+import type { OxlintConfig, OxlintConfigOverride } from './types.js';
 import { isEqualDeep } from './utilities.js';
 
 export const detectSameOverride = (

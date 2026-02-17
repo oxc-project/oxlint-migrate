@@ -1,6 +1,5 @@
 import { rulesPrefixesForPlugins } from './constants.js';
-import type { ESLint } from './types.js';
-import { OxlintConfigOrOverride } from './types.js';
+import type { ESLint, OxlintConfigOrOverride } from './types.js';
 
 const ignorePlugins = new Set<string>([
   ...Object.keys(rulesPrefixesForPlugins),

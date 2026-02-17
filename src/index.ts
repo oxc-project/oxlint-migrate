@@ -1,5 +1,9 @@
-import type { ESLint } from './types.js';
-import { Options, OxlintConfig, OxlintConfigOverride } from './types.js';
+import type {
+  ESLint,
+  Options,
+  OxlintConfig,
+  OxlintConfigOverride,
+} from './types.js';
 import {
   detectEnvironmentByGlobals,
   transformEnvAndGlobals,

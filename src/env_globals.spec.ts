@@ -6,8 +6,7 @@ import {
   removeGlobalsWithAreCoveredByEnv,
   transformEnvAndGlobals,
 } from './env_globals.js';
-import type { ESLint } from './types.js';
-import { OxlintConfig } from './types.js';
+import type { ESLint, OxlintConfig } from './types.js';
 import globals from 'globals';
 
 describe('detectEnvironmentByGlobals', () => {

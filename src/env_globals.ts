@@ -1,6 +1,10 @@
 import globals from 'globals';
-import type { ESLint } from './types.js';
-import { Options, OxlintConfig, OxlintConfigOrOverride } from './types.js';
+import type {
+  ESLint,
+  Options,
+  OxlintConfig,
+  OxlintConfigOrOverride,
+} from './types.js';
 
 // <https://github.com/oxc-project/javascript-globals/blob/55be079bd9ac417b7d5007723beb7aa59193dbd0/xtask/src/main.rs#L121-L136>
 export const ES_VERSIONS = [

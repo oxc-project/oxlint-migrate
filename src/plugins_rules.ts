@@ -1,11 +1,11 @@
 import * as rules from './generated/rules.js';
-import type { ESLint } from './types.js';
-import {
+import type {
+  ESLint,
   Options,
   OxlintConfig,
   OxlintConfigOrOverride,
   OxlintConfigOverride,
-  type Category,
+  Category,
 } from './types.js';
 import {
   rulesPrefixesForPlugins,

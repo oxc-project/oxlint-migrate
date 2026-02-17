@@ -1,5 +1,5 @@
-import type { ESLint } from './types.js';
 import type {
+  ESLint,
   Options,
   OxlintConfig,
   OxlintSettings,
