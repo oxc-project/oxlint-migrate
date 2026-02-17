@@ -28,6 +28,9 @@ exports[`many-extends.spec.ts > many-extends.spec.ts 1`] = `
           "**/*.ts",
           "**/*.tsx",
         ],
+        "plugins": [
+          "typescript",
+        ],
         "rules": {
           "@typescript-eslint/adjacent-overload-signatures": "error",
           "@typescript-eslint/array-type": "error",
@@ -113,15 +116,6 @@ exports[`many-extends.spec.ts > many-extends.spec.ts 1`] = `
           "prefer-spread": "error",
           "require-await": "off",
         },
-      },
-      {
-        "files": [
-          "**/*.ts",
-          "**/*.tsx",
-        ],
-        "plugins": [
-          "typescript",
-        ],
       },
     ],
     "plugins": [
@@ -373,6 +367,9 @@ exports[`many-extends.spec.ts --js-plugins > many-extends.spec.ts--js-plugins 1`
           "**/*.ts",
           "**/*.tsx",
         ],
+        "plugins": [
+          "typescript",
+        ],
         "rules": {
           "@typescript-eslint/adjacent-overload-signatures": "error",
           "@typescript-eslint/array-type": "error",
@@ -458,15 +455,6 @@ exports[`many-extends.spec.ts --js-plugins > many-extends.spec.ts--js-plugins 1`
           "prefer-spread": "error",
           "require-await": "off",
         },
-      },
-      {
-        "files": [
-          "**/*.ts",
-          "**/*.tsx",
-        ],
-        "plugins": [
-          "typescript",
-        ],
       },
     ],
     "plugins": [
@@ -718,6 +706,9 @@ exports[`many-extends.spec.ts --type-aware > many-extends.spec.ts--type-aware 1`
           "**/*.ts",
           "**/*.tsx",
         ],
+        "plugins": [
+          "typescript",
+        ],
         "rules": {
           "@typescript-eslint/adjacent-overload-signatures": "error",
           "@typescript-eslint/array-type": "error",
@@ -864,15 +855,6 @@ exports[`many-extends.spec.ts --type-aware > many-extends.spec.ts--type-aware 1`
           "prefer-spread": "error",
           "require-await": "off",
         },
-      },
-      {
-        "files": [
-          "**/*.ts",
-          "**/*.tsx",
-        ],
-        "plugins": [
-          "typescript",
-        ],
       },
     ],
     "plugins": [
@@ -1085,6 +1067,9 @@ exports[`many-extends.spec.ts merge > many-extends.spec.ts--merge 1`] = `
           "**/*.ts",
           "**/*.tsx",
         ],
+        "plugins": [
+          "typescript",
+        ],
         "rules": {
           "@typescript-eslint/adjacent-overload-signatures": "error",
           "@typescript-eslint/array-type": "error",
@@ -1181,15 +1166,6 @@ exports[`many-extends.spec.ts merge > many-extends.spec.ts--merge 1`] = `
           "react/react-in-jsx-scope": "off",
           "require-await": "off",
         },
-      },
-      {
-        "files": [
-          "**/*.ts",
-          "**/*.tsx",
-        ],
-        "plugins": [
-          "typescript",
-        ],
       },
     ],
     "plugins": [
