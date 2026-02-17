@@ -105,18 +105,6 @@ export namespace ESLint {
   }
 }
 
-// Re-export types for backward compatibility and convenience
-export type SeverityLevel = ESLint.SeverityLevel;
-export type SeverityName = ESLint.SeverityName;
-export type Severity = ESLint.Severity;
-export type RuleConfig<RuleOptions extends unknown[] = unknown[]> =
-  ESLint.RuleConfig<RuleOptions>;
-export type RulesRecord = ESLint.RulesRecord;
-export type GlobalAccess = ESLint.GlobalAccess;
-export type GlobalsConfig = ESLint.GlobalsConfig;
-export type Config<Rules extends RulesRecord = RulesRecord> =
-  ESLint.Config<Rules>;
-
 type OxlintConfigPlugins = string[];
 type OxlintConfigJsPlugins = string[];
 type OxlintConfigCategories = Partial<Record<Category, unknown>>;
@@ -137,21 +125,21 @@ export type OxlintSettings = {
 export type OxlintConfigOverride = {
   files: string[];
   env?: OxlintConfigEnv;
-  globals?: GlobalsConfig;
+  globals?: ESLint.GlobalsConfig;
   plugins?: OxlintConfigPlugins;
   jsPlugins?: OxlintConfigJsPlugins;
   categories?: OxlintConfigCategories;
-  rules?: Partial<RulesRecord>;
+  rules?: Partial<ESLint.RulesRecord>;
 };
 
 export type OxlintConfig = {
   $schema?: string;
   env?: OxlintConfigEnv;
-  globals?: GlobalsConfig;
+  globals?: ESLint.GlobalsConfig;
   plugins?: OxlintConfigPlugins;
   jsPlugins?: OxlintConfigJsPlugins;
   categories?: OxlintConfigCategories;
-  rules?: Partial<RulesRecord>;
+  rules?: Partial<ESLint.RulesRecord>;
   overrides?: OxlintConfigOverride[];
   ignorePatterns?: OxlintConfigIgnorePatterns;
   settings?: OxlintSettings;

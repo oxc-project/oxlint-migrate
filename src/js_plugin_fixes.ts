@@ -1,6 +1,10 @@
-import type { Config } from './types.js';
+import type { ESLint } from './types.js';
 
-type PossibleConfigs = Config | Config[] | Promise<Config> | Promise<Config[]>;
+type PossibleConfigs =
+  | ESLint.Config
+  | ESLint.Config[]
+  | Promise<ESLint.Config>
+  | Promise<ESLint.Config[]>;
 
 /**
  * @link https://github.com/antfu/eslint-config?tab=readme-ov-file#plugins-renaming

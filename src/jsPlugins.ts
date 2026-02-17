@@ -1,5 +1,6 @@
 import { rulesPrefixesForPlugins } from './constants.js';
-import { OxlintConfigOrOverride, RuleConfig } from './types.js';
+import type { ESLint } from './types.js';
+import { OxlintConfigOrOverride } from './types.js';
 
 const ignorePlugins = new Set<string>([
   ...Object.keys(rulesPrefixesForPlugins),
@@ -59,7 +60,7 @@ export const isIgnoredPluginRule = (ruleId: string): boolean => {
 export const enableJsPluginRule = (
   targetConfig: OxlintConfigOrOverride,
   rule: string,
-  ruleEntry: RuleConfig | undefined
+  ruleEntry: ESLint.RuleConfig | undefined
 ): boolean => {
   const pluginName = extractPluginId(rule);
 

@@ -6,7 +6,8 @@ import {
   removeGlobalsWithAreCoveredByEnv,
   transformEnvAndGlobals,
 } from './env_globals.js';
-import { Config, OxlintConfig } from './types.js';
+import type { ESLint } from './types.js';
+import { OxlintConfig } from './types.js';
 import globals from 'globals';
 
 describe('detectEnvironmentByGlobals', () => {
@@ -95,7 +96,7 @@ describe('removeGlobalsWithAreCoveredByEnv', () => {
 
 describe('transformEnvAndGlobals', () => {
   test('transform languageOptions.ecmaVersion 2024 to env', () => {
-    const eslintConfig: Config = {
+    const eslintConfig: ESLint.Config = {
       languageOptions: {
         ecmaVersion: 2024,
       },
@@ -112,7 +113,7 @@ describe('transformEnvAndGlobals', () => {
   });
 
   test('transform latest languageOptions.ecmaVersion to 2026', () => {
-    const eslintConfig: Config = {
+    const eslintConfig: ESLint.Config = {
       languageOptions: {
         ecmaVersion: 'latest',
       },

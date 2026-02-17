@@ -1,9 +1,5 @@
-import {
-  Config,
-  Options,
-  OxlintConfig,
-  OxlintConfigOverride,
-} from './types.js';
+import type { ESLint } from './types.js';
+import { Options, OxlintConfig, OxlintConfigOverride } from './types.js';
 import {
   detectEnvironmentByGlobals,
   transformEnvAndGlobals,
@@ -20,7 +16,7 @@ import { processConfigFiles } from './files.js';
 import { transformSettings, warnSettingsInOverride } from './settings.js';
 
 const buildConfig = (
-  configs: Config[],
+  configs: ESLint.Config[],
   oxlintConfig?: OxlintConfig,
   options?: Options
 ): OxlintConfig => {
@@ -135,7 +131,11 @@ const buildConfig = (
 };
 
 const main = async (
-  configs: Config | Config[] | Promise<Config> | Promise<Config[]>,
+  configs:
+    | ESLint.Config
+    | ESLint.Config[]
+    | Promise<ESLint.Config>
+    | Promise<ESLint.Config[]>,
   oxlintConfig?: OxlintConfig,
   options?: Options
 ): Promise<OxlintConfig> => {

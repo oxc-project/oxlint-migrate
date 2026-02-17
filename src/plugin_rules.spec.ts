@@ -1,5 +1,5 @@
 import { assert, describe, expect, test } from 'vitest';
-import type { Config, OxlintConfig, OxlintConfigOverride } from './types.js';
+import type { ESLint, OxlintConfig, OxlintConfigOverride } from './types.js';
 import {
   cleanUpDisabledRootRules,
   cleanUpRulesWhichAreCoveredByCategory,
@@ -25,7 +25,7 @@ describe('rules and plugins', () => {
 
   describe('transformRuleEntry', () => {
     test('default', () => {
-      const eslintConfig: Config = {
+      const eslintConfig: ESLint.Config = {
         rules: {
           'unicorn/prefer-set-has': 'error',
           'unknown-rule': 'error',
@@ -41,7 +41,7 @@ describe('rules and plugins', () => {
     });
 
     test('rules with numeric severity', () => {
-      const eslintConfig: Config = {
+      const eslintConfig: ESLint.Config = {
         rules: {
           'unicorn/prefer-set-has': 1,
           'no-useless-call': 2,
@@ -59,7 +59,7 @@ describe('rules and plugins', () => {
     });
 
     test('merge', () => {
-      const eslintConfig: Config = {
+      const eslintConfig: ESLint.Config = {
         rules: {
           'unicorn/prefer-set-has': 'error',
         },
@@ -80,7 +80,7 @@ describe('rules and plugins', () => {
     });
 
     test('withNursery', () => {
-      const eslintConfig: Config = {
+      const eslintConfig: ESLint.Config = {
         rules: {
           'getter-return': 'error',
         },
@@ -100,7 +100,7 @@ describe('rules and plugins', () => {
     });
 
     test('typeAware', () => {
-      const eslintConfig: Config = {
+      const eslintConfig: ESLint.Config = {
         rules: {
           '@typescript-eslint/no-floating-promises': 'error',
         },
@@ -122,18 +122,18 @@ describe('rules and plugins', () => {
     });
 
     test('does not report unsupported rules that are disabled', () => {
-      const enabledConfig: Config = {
+      const enabledConfig: ESLint.Config = {
         rules: {
           'unknown-rule': 'error',
         },
       };
-      const disabledConfig: Config = {
+      const disabledConfig: ESLint.Config = {
         rules: {
           'unknown-rule': 'off',
         },
       };
 
-      const enabledInOverrideConfig: Config = {
+      const enabledInOverrideConfig: ESLint.Config = {
         files: ['**/*.ts'],
         rules: {
           'unknown-rule': 'off',
@@ -166,14 +166,14 @@ describe('rules and plugins', () => {
     });
 
     test('ensure jsPlugin rule is disabled if the last config object disables it', () => {
-      const initialConfig: Config = {
+      const initialConfig: ESLint.Config = {
         plugins: { regexp: {} },
         rules: {
           'regexp/no-lazy-ends': ['error', { ignorePartial: false }],
         },
       };
 
-      const disablingConfig: Config = {
+      const disablingConfig: ESLint.Config = {
         plugins: { regexp: {} },
         rules: {
           'regexp/no-lazy-ends': 'off',
@@ -199,14 +199,14 @@ describe('rules and plugins', () => {
     });
 
     test('ensure jsPlugin rule is enabled if the last config object enables it', () => {
-      const initialConfig: Config = {
+      const initialConfig: ESLint.Config = {
         plugins: { regexp: {} },
         rules: {
           'regexp/no-lazy-ends': ['off'],
         },
       };
 
-      const enablingConfig: Config = {
+      const enablingConfig: ESLint.Config = {
         plugins: { regexp: {} },
         rules: {
           'regexp/no-lazy-ends': ['error', { ignorePartial: false }],
@@ -235,14 +235,14 @@ describe('rules and plugins', () => {
     });
 
     test('jsPlugin rule disabled in override keeps base enabled', () => {
-      const baseConfig: Config = {
+      const baseConfig: ESLint.Config = {
         plugins: { regexp: {} },
         rules: {
           'regexp/no-lazy-ends': ['error', { ignorePartial: false }],
         },
       };
 
-      const overrideConfig: Config = {
+      const overrideConfig: ESLint.Config = {
         plugins: { regexp: {} },
         files: ['**/*.js'],
         rules: {
@@ -280,7 +280,7 @@ describe('rules and plugins', () => {
     });
 
     test('includes jsPlugin in base config when plugin rule is used', () => {
-      const baseConfig: Config = {
+      const baseConfig: ESLint.Config = {
         plugins: { mocha: {} },
         rules: {
           'mocha/no-pending-tests': 'error',
@@ -301,7 +301,7 @@ describe('rules and plugins', () => {
     });
 
     test('does not include jsPlugin in base config when plugin rule is used but set to off', () => {
-      const baseConfig: Config = {
+      const baseConfig: ESLint.Config = {
         plugins: { mocha: {} },
         rules: {
           'mocha/no-pending-tests': 'off',
@@ -322,7 +322,7 @@ describe('rules and plugins', () => {
     });
 
     test('does include jsPlugin in base config when one rule is off and another is error', () => {
-      const baseConfig: Config = {
+      const baseConfig: ESLint.Config = {
         plugins: { mocha: {} },
         rules: {
           'mocha/no-pending-tests': 'off',
@@ -345,12 +345,12 @@ describe('rules and plugins', () => {
     });
 
     test('rule with options then same rule without options should preserve options', () => {
-      const eslintConfig1: Config = {
+      const eslintConfig1: ESLint.Config = {
         rules: {
           'no-magic-numbers': ['error', { ignoreArrayIndexes: true }],
         },
       };
-      const eslintConfig2: Config = {
+      const eslintConfig2: ESLint.Config = {
         rules: {
           'no-magic-numbers': 'error',
         },
@@ -368,12 +368,12 @@ describe('rules and plugins', () => {
     });
 
     test('rule with options then same rule with different severity but no options should preserve options', () => {
-      const eslintConfig1: Config = {
+      const eslintConfig1: ESLint.Config = {
         rules: {
           'no-magic-numbers': ['error', { ignoreArrayIndexes: true }],
         },
       };
-      const eslintConfig2: Config = {
+      const eslintConfig2: ESLint.Config = {
         rules: {
           'no-magic-numbers': 'warn',
         },
@@ -391,12 +391,12 @@ describe('rules and plugins', () => {
     });
 
     test('rule with options then same rule with different options should override', () => {
-      const eslintConfig1: Config = {
+      const eslintConfig1: ESLint.Config = {
         rules: {
           'no-magic-numbers': ['error', { ignoreArrayIndexes: true }],
         },
       };
-      const eslintConfig2: Config = {
+      const eslintConfig2: ESLint.Config = {
         rules: {
           'no-magic-numbers': ['error', { ignoreArrayIndexes: false }],
         },
@@ -414,12 +414,12 @@ describe('rules and plugins', () => {
     });
 
     test('rule with options then same rule turned off should not preserve options', () => {
-      const eslintConfig1: Config = {
+      const eslintConfig1: ESLint.Config = {
         rules: {
           'no-magic-numbers': ['error', { ignoreArrayIndexes: true }],
         },
       };
-      const eslintConfig2: Config = {
+      const eslintConfig2: ESLint.Config = {
         rules: {
           'no-magic-numbers': 'off',
         },
@@ -435,12 +435,12 @@ describe('rules and plugins', () => {
     });
 
     test('base config with options, file override with severity only should preserve options', () => {
-      const baseConfig: Config = {
+      const baseConfig: ESLint.Config = {
         rules: {
           'no-magic-numbers': ['error', { ignore: [5, 7] }],
         },
       };
-      const overrideConfig: Config = {
+      const overrideConfig: ESLint.Config = {
         files: ['**/src/**'],
         rules: {
           'no-magic-numbers': ['error'],
@@ -467,14 +467,14 @@ describe('rules and plugins', () => {
     });
 
     test('base config should override earlier overrides (last-wins semantics)', () => {
-      const overrideConfig: Config = {
+      const overrideConfig: ESLint.Config = {
         files: ['**/*.js'],
         rules: {
           'react-hooks/exhaustive-deps': 'warn',
         },
       };
 
-      const baseConfig: Config = {
+      const baseConfig: ESLint.Config = {
         rules: {
           'react-hooks/exhaustive-deps': 'off',
         },
@@ -501,14 +501,14 @@ describe('rules and plugins', () => {
     });
 
     test('unsupported rules disabled in base config should be removed from overrides with jsPlugins', () => {
-      const overrideConfig: Config = {
+      const overrideConfig: ESLint.Config = {
         files: ['**/*.js'],
         rules: {
           'some-plugin/some-rule': 'warn',
         },
       };
 
-      const baseConfig: Config = {
+      const baseConfig: ESLint.Config = {
         rules: {
           'some-plugin/some-rule': 'off',
         },

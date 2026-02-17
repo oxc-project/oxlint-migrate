@@ -1,5 +1,5 @@
+import type { ESLint } from './types.js';
 import type {
-  Config,
   Options,
   OxlintConfig,
   OxlintSettings,
@@ -76,7 +76,7 @@ const isSupportedSettingsKey = (key: OxlintSupportedSettingsKey): boolean => {
  * @param options - Migration options
  */
 export const transformSettings = (
-  eslintConfig: Config,
+  eslintConfig: ESLint.Config,
   targetConfig: OxlintConfig,
   options?: Options
 ): void => {
@@ -185,7 +185,7 @@ export const transformSettings = (
  * @param options - Migration options
  */
 export const warnSettingsInOverride = (
-  eslintConfig: Config,
+  eslintConfig: ESLint.Config,
   options?: Options
 ): void => {
   if (

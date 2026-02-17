@@ -4,13 +4,13 @@ import {
   warnSettingsInOverride,
   OXLINT_SUPPORTED_SETTINGS_KEYS,
 } from './settings.js';
-import type { Config, OxlintConfig } from './types.js';
+import type { ESLint, OxlintConfig } from './types.js';
 import { DefaultReporter } from './reporter.js';
 
 describe('transformSettings', () => {
   describe('basic functionality', () => {
     it('should not modify config when no settings present', () => {
-      const eslintConfig: Config = {};
+      const eslintConfig: ESLint.Config = {};
       const targetConfig: OxlintConfig = {};
 
       transformSettings(eslintConfig, targetConfig);
@@ -19,7 +19,7 @@ describe('transformSettings', () => {
     });
 
     it('should not modify config when settings is null', () => {
-      const eslintConfig: Config = {
+      const eslintConfig: ESLint.Config = {
         settings: null as unknown as Record<string, unknown>,
       };
       const targetConfig: OxlintConfig = {};
@@ -30,7 +30,7 @@ describe('transformSettings', () => {
     });
 
     it('should not modify config when settings is empty object', () => {
-      const eslintConfig: Config = { settings: {} };
+      const eslintConfig: ESLint.Config = { settings: {} };
       const targetConfig: OxlintConfig = {};
 
       transformSettings(eslintConfig, targetConfig);
@@ -41,7 +41,7 @@ describe('transformSettings', () => {
 
   describe('supported settings keys', () => {
     it('should migrate jsx-a11y settings', () => {
-      const eslintConfig: Config = {
+      const eslintConfig: ESLint.Config = {
         settings: {
           'jsx-a11y': {
             polymorphicPropName: 'role',
@@ -62,7 +62,7 @@ describe('transformSettings', () => {
     });
 
     it('should migrate react settings', () => {
-      const eslintConfig: Config = {
+      const eslintConfig: ESLint.Config = {
         settings: {
           react: {
             version: '18.2.0',
@@ -83,7 +83,7 @@ describe('transformSettings', () => {
     });
 
     it('should migrate next settings', () => {
-      const eslintConfig: Config = {
+      const eslintConfig: ESLint.Config = {
         settings: {
           next: {
             rootDir: 'apps/dashboard/',
@@ -102,7 +102,7 @@ describe('transformSettings', () => {
     });
 
     it('should migrate jsdoc settings', () => {
-      const eslintConfig: Config = {
+      const eslintConfig: ESLint.Config = {
         settings: {
           jsdoc: {
             ignorePrivate: true,
@@ -123,7 +123,7 @@ describe('transformSettings', () => {
     });
 
     it('should migrate vitest settings', () => {
-      const eslintConfig: Config = {
+      const eslintConfig: ESLint.Config = {
         settings: {
           vitest: {
             typecheck: true,
@@ -143,7 +143,7 @@ describe('transformSettings', () => {
 
     it('should strip vitest.vitestImports as unsupported', () => {
       const reporter = new DefaultReporter();
-      const eslintConfig: Config = {
+      const eslintConfig: ESLint.Config = {
         settings: {
           vitest: {
             typecheck: true,
@@ -167,7 +167,7 @@ describe('transformSettings', () => {
 
     it('should skip vitest settings entirely when only vitestImports is present', () => {
       const reporter = new DefaultReporter();
-      const eslintConfig: Config = {
+      const eslintConfig: ESLint.Config = {
         settings: {
           vitest: {
             vitestImports: ['@/tests/fixtures'],
@@ -185,7 +185,7 @@ describe('transformSettings', () => {
     });
 
     it('should migrate multiple supported settings', () => {
-      const eslintConfig: Config = {
+      const eslintConfig: ESLint.Config = {
         settings: {
           react: { version: '18.0.0' },
           'jsx-a11y': { polymorphicPropName: 'as' },
@@ -207,7 +207,7 @@ describe('transformSettings', () => {
   describe('react.version "detect" handling', () => {
     it('should warn and skip version when react.version is "detect"', () => {
       const reporter = new DefaultReporter();
-      const eslintConfig: Config = {
+      const eslintConfig: ESLint.Config = {
         settings: {
           react: {
             version: 'detect',
@@ -232,7 +232,7 @@ describe('transformSettings', () => {
 
     it('should skip react settings entirely when only version: "detect" is present', () => {
       const reporter = new DefaultReporter();
-      const eslintConfig: Config = {
+      const eslintConfig: ESLint.Config = {
         settings: {
           react: {
             version: 'detect',
@@ -252,7 +252,7 @@ describe('transformSettings', () => {
 
     it('should strip react.pragma and react.fragment as unsupported', () => {
       const reporter = new DefaultReporter();
-      const eslintConfig: Config = {
+      const eslintConfig: ESLint.Config = {
         settings: {
           react: {
             version: '18.2.0',
@@ -280,7 +280,7 @@ describe('transformSettings', () => {
 
     it('should skip react settings entirely when only unsupported keys remain', () => {
       const reporter = new DefaultReporter();
-      const eslintConfig: Config = {
+      const eslintConfig: ESLint.Config = {
         settings: {
           react: {
             version: 'detect',
@@ -299,7 +299,7 @@ describe('transformSettings', () => {
     });
 
     it('should migrate react.version when it is an explicit version string', () => {
-      const eslintConfig: Config = {
+      const eslintConfig: ESLint.Config = {
         settings: {
           react: {
             version: '18.2.0',
@@ -321,7 +321,7 @@ describe('transformSettings', () => {
   describe('unsupported settings filtering', () => {
     it('should skip unsupported settings and warn', () => {
       const reporter = new DefaultReporter();
-      const eslintConfig: Config = {
+      const eslintConfig: ESLint.Config = {
         settings: {
           react: { version: '18.0.0' },
           'import/resolver': { typescript: true },
@@ -344,7 +344,7 @@ describe('transformSettings', () => {
 
     it('should skip non-object settings values', () => {
       const reporter = new DefaultReporter();
-      const eslintConfig: Config = {
+      const eslintConfig: ESLint.Config = {
         settings: {
           react: { version: '18.0.0' },
           'string-setting': 'value' as unknown as Record<string, unknown>,
@@ -368,7 +368,7 @@ describe('transformSettings', () => {
   describe('jsPlugins mode does imports settings from certain plugins', () => {
     it('should also migrate unrecognized settings when jsPlugins is enabled', () => {
       const reporter = new DefaultReporter();
-      const eslintConfig: Config = {
+      const eslintConfig: ESLint.Config = {
         settings: {
           react: { version: '18.0.0' },
           'import/resolver': { typescript: true },
@@ -398,7 +398,7 @@ describe('transformSettings', () => {
 
   describe('merge mode', () => {
     it('should merge settings with existing config', () => {
-      const eslintConfig: Config = {
+      const eslintConfig: ESLint.Config = {
         settings: {
           react: { version: '18.0.0', linkComponents: ['Link'] },
         },
@@ -421,7 +421,7 @@ describe('transformSettings', () => {
     });
 
     it('should deep merge nested settings objects', () => {
-      const eslintConfig: Config = {
+      const eslintConfig: ESLint.Config = {
         settings: {
           'jsx-a11y': {
             components: { Link: 'a', Button: 'button' },
@@ -448,7 +448,7 @@ describe('transformSettings', () => {
     });
 
     it('should add new settings keys when merging', () => {
-      const eslintConfig: Config = {
+      const eslintConfig: ESLint.Config = {
         settings: {
           vitest: { typecheck: true },
         },
@@ -468,7 +468,7 @@ describe('transformSettings', () => {
     });
 
     it('should replace arrays when merging', () => {
-      const eslintConfig: Config = {
+      const eslintConfig: ESLint.Config = {
         settings: {
           react: { linkComponents: ['NewLink', 'CustomLink'] },
         },
@@ -491,7 +491,7 @@ describe('transformSettings', () => {
 describe('warnSettingsInOverride', () => {
   it('should warn when settings are found in override config', () => {
     const reporter = new DefaultReporter();
-    const eslintConfig: Config = {
+    const eslintConfig: ESLint.Config = {
       files: ['**/*.tsx'],
       settings: {
         react: { version: '18.0.0' },
@@ -510,7 +510,7 @@ describe('warnSettingsInOverride', () => {
 
   it('should not warn when no settings in override config', () => {
     const reporter = new DefaultReporter();
-    const eslintConfig: Config = {
+    const eslintConfig: ESLint.Config = {
       files: ['**/*.tsx'],
     };
 
@@ -521,7 +521,7 @@ describe('warnSettingsInOverride', () => {
 
   it('should not warn when settings is empty', () => {
     const reporter = new DefaultReporter();
-    const eslintConfig: Config = {
+    const eslintConfig: ESLint.Config = {
       files: ['**/*.tsx'],
       settings: {},
     };
