@@ -9,6 +9,7 @@ export class DefaultReporter implements Reporter {
   private skippedRules = new Map<RuleSkippedCategory, Set<string>>([
     ['nursery', new Set<string>()],
     ['type-aware', new Set<string>()],
+    ['not-implemented', new Set<string>()],
     ['unsupported', new Set<string>()],
     ['js-plugins', new Set<string>()],
   ]);
@@ -33,6 +34,7 @@ export class DefaultReporter implements Reporter {
     const result: SkippedCategoryGroup = {
       nursery: [],
       'type-aware': [],
+      'not-implemented': [],
       'js-plugins': [],
       unsupported: [],
     };

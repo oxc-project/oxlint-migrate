@@ -45,6 +45,7 @@ export type OxlintConfigOrOverride = OxlintConfig | OxlintConfigOverride;
 export type RuleSkippedCategory =
   | 'nursery'
   | 'type-aware'
+  | 'not-implemented'
   | 'unsupported'
   | 'js-plugins';
 

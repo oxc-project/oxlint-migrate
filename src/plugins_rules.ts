@@ -12,8 +12,10 @@ import {
   typescriptRulesExtendEslintRules,
 } from './constants.js';
 import { enableJsPluginRule, isIgnoredPluginRule } from './jsPlugins.js';
+import { buildUnsupportedRuleExplanations } from './utilities.js';
 
 const allRules = Object.values(rules).flat();
+const unsupportedRuleExplanations = buildUnsupportedRuleExplanations();
 
 /**
  * checks if value is validSet, or if validSet is an array, check if value is first value of it
@@ -222,13 +224,17 @@ export const transformRuleEntry = (
           // also remove any previously queued unsupported report for base
           if (eslintConfig.files === undefined) {
             options?.reporter?.removeSkipped(rule, 'js-plugins');
+            options?.reporter?.removeSkipped(rule, 'not-implemented');
             options?.reporter?.removeSkipped(rule, 'unsupported');
           }
           continue;
         }
 
         if (!enableJsPluginRule(targetConfig, rule, normalizedConfig)) {
-          options?.reporter?.markSkipped(rule, 'unsupported');
+          const category = unsupportedRuleExplanations[rule]
+            ? 'unsupported'
+            : 'not-implemented';
+          options?.reporter?.markSkipped(rule, category);
         }
         continue;
       }
@@ -241,6 +247,7 @@ export const transformRuleEntry = (
         }
         // only remove the reporter diagnostics when it is in a base config.
         if (eslintConfig.files === undefined) {
+          options?.reporter?.removeSkipped(rule, 'not-implemented');
           options?.reporter?.removeSkipped(rule, 'unsupported');
         }
         continue;
@@ -252,7 +259,10 @@ export const transformRuleEntry = (
       }
 
       // Active unsupported rule: mark as skipped
-      options?.reporter?.markSkipped(rule, 'unsupported');
+      const category = unsupportedRuleExplanations[rule]
+        ? 'unsupported'
+        : 'not-implemented';
+      options?.reporter?.markSkipped(rule, category);
     }
   }
 };

@@ -39,6 +39,7 @@ exports[`options-merging-eslint > options-merging-eslint 1`] = `
   },
   "skipped": {
     "js-plugins": [],
+    "not-implemented": [],
     "nursery": [],
     "type-aware": [],
     "unsupported": [],
@@ -86,6 +87,7 @@ exports[`options-merging-eslint --js-plugins > options-merging-eslint--js-plugin
   },
   "skipped": {
     "js-plugins": [],
+    "not-implemented": [],
     "nursery": [],
     "type-aware": [],
     "unsupported": [],
@@ -133,6 +135,7 @@ exports[`options-merging-eslint --type-aware > options-merging-eslint--type-awar
   },
   "skipped": {
     "js-plugins": [],
+    "not-implemented": [],
     "nursery": [],
     "type-aware": [],
     "unsupported": [],
@@ -178,6 +181,7 @@ exports[`options-merging-eslint merge > options-merging-eslint--merge 1`] = `
   },
   "skipped": {
     "js-plugins": [],
+    "not-implemented": [],
     "nursery": [],
     "type-aware": [],
     "unsupported": [],

@@ -54,6 +54,7 @@ exports[`settings-migration > settings-migration 1`] = `
   },
   "skipped": {
     "js-plugins": [],
+    "not-implemented": [],
     "nursery": [],
     "type-aware": [],
     "unsupported": [
@@ -124,6 +125,7 @@ exports[`settings-migration --js-plugins > settings-migration--js-plugins 1`] = 
   },
   "skipped": {
     "js-plugins": [],
+    "not-implemented": [],
     "nursery": [],
     "type-aware": [],
     "unsupported": [
@@ -191,6 +193,7 @@ exports[`settings-migration --type-aware > settings-migration--type-aware 1`] = 
   },
   "skipped": {
     "js-plugins": [],
+    "not-implemented": [],
     "nursery": [],
     "type-aware": [],
     "unsupported": [
@@ -259,6 +262,7 @@ exports[`settings-migration merge > settings-migration--merge 1`] = `
   },
   "skipped": {
     "js-plugins": [],
+    "not-implemented": [],
     "nursery": [],
     "type-aware": [],
     "unsupported": [

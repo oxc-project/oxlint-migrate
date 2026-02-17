@@ -17,7 +17,7 @@ describe('formatCategorySummary', () => {
     );
 
     expect(result).toBe(
-      '     -   2 Nursery     (Experimental: getter-return, no-undef)\n'
+      '     -   2 Nursery         (Experimental: getter-return, no-undef)\n'
     );
   });
 
@@ -30,7 +30,7 @@ describe('formatCategorySummary', () => {
     );
 
     expect(result).toBe(
-      '     -   5 Type-aware  (Requires TS info: rule1, rule2, rule3, and more)\n'
+      '     -   5 Type-aware      (Requires TS info: rule1, rule2, rule3, and more)\n'
     );
   });
 
@@ -52,15 +52,74 @@ describe('formatCategorySummary', () => {
     );
   });
 
-  it('should handle single rule', () => {
+  it('should handle single not-implemented rule', () => {
     const result = formatCategorySummary(
       1,
-      'unsupported',
+      'not-implemented',
       ['prefer-const'],
       false
     );
 
-    expect(result).toBe('     -   1 Unsupported (prefer-const)\n');
+    expect(result).toBe(
+      '     -   1 Not Implemented (Not yet in oxlint: prefer-const)\n'
+    );
+  });
+
+  it('should show unsupported rules with explanations in details mode', () => {
+    const result = formatCategorySummary(1, 'unsupported', ['camelcase'], true);
+
+    expect(result).toBe(
+      '     - 1 Unsupported\n' +
+        '       - camelcase: Superseded by `@typescript-eslint/naming-convention`, which accomplishes the same behavior with more flexibility.\n'
+    );
+  });
+
+  it('should show unsupported rule with explanation', () => {
+    const result = formatCategorySummary(1, 'unsupported', ['camelcase'], true);
+
+    expect(result).toBe(
+      '     - 1 Unsupported\n' +
+        '       - camelcase: Superseded by `@typescript-eslint/naming-convention`, which accomplishes the same behavior with more flexibility.\n'
+    );
+  });
+
+  it('should show not-implemented rules without explanations', () => {
+    const result = formatCategorySummary(
+      2,
+      'not-implemented',
+      ['some-rule', 'another-rule'],
+      true
+    );
+
+    expect(result).toBe(
+      '     - 2 Not Implemented\n' +
+        '       - some-rule\n' +
+        '       - another-rule\n'
+    );
+  });
+
+  it('should show explanations for react-hooks/ rules aliased from react/', () => {
+    const result = formatCategorySummary(
+      1,
+      'unsupported',
+      ['react-hooks/immutability'],
+      true
+    );
+
+    expect(result).toContain('react-hooks/immutability: ');
+    expect(result).toContain('React Compiler');
+  });
+
+  it('should show explanations for import-x/ rules aliased from import/', () => {
+    const result = formatCategorySummary(
+      1,
+      'unsupported',
+      ['import-x/no-unresolved'],
+      true
+    );
+
+    expect(result).toContain('import-x/no-unresolved: ');
+    expect(result).toContain('false positives');
   });
 });
 
@@ -69,6 +128,7 @@ describe('detectMissingFlags', () => {
     const byCategory: SkippedCategoryGroup = {
       nursery: ['rule1'],
       'type-aware': ['rule2'],
+      'not-implemented': [],
       'js-plugins': ['rule3'],
       unsupported: [],
     };
@@ -87,6 +147,7 @@ describe('detectMissingFlags', () => {
     const byCategory: SkippedCategoryGroup = {
       nursery: ['rule1'],
       'type-aware': [],
+      'not-implemented': [],
       'js-plugins': [],
       unsupported: [],
     };
@@ -105,6 +166,7 @@ describe('detectMissingFlags', () => {
     const byCategory: SkippedCategoryGroup = {
       nursery: [],
       'type-aware': ['rule1'],
+      'not-implemented': [],
       'js-plugins': [],
       unsupported: [],
     };
@@ -123,6 +185,7 @@ describe('detectMissingFlags', () => {
     const byCategory: SkippedCategoryGroup = {
       nursery: ['rule1'],
       'type-aware': ['rule2'],
+      'not-implemented': [],
       'js-plugins': ['rule3'],
       unsupported: [],
     };
@@ -137,6 +200,7 @@ describe('detectMissingFlags', () => {
     const byCategory: SkippedCategoryGroup = {
       nursery: [],
       'type-aware': [],
+      'not-implemented': [],
       'js-plugins': [],
       unsupported: ['rule1'],
     };
@@ -160,8 +224,9 @@ describe('formatMigrationOutput', () => {
       skippedRulesByCategory: {
         nursery: ['getter-return', 'no-undef', 'no-unreachable'],
         'type-aware': ['await-thenable'],
+        'not-implemented': ['prefer-const'],
         'js-plugins': ['js-plugin-rule1', 'js-plugin-rule2'],
-        unsupported: ['prefer-const'],
+        unsupported: [],
       },
       cliOptions: {
         withNursery: false,
@@ -182,6 +247,7 @@ describe('formatMigrationOutput', () => {
       skippedRulesByCategory: {
         nursery: [],
         'type-aware': [],
+        'not-implemented': [],
         'js-plugins': [],
         unsupported: ['rule1'],
       },
@@ -203,6 +269,7 @@ describe('formatMigrationOutput', () => {
       skippedRulesByCategory: {
         nursery: [],
         'type-aware': [],
+        'not-implemented': [],
         'js-plugins': [],
         unsupported: [],
       },
@@ -224,6 +291,7 @@ describe('formatMigrationOutput', () => {
       skippedRulesByCategory: {
         nursery: ['getter-return'],
         'type-aware': ['await-thenable'],
+        'not-implemented': [],
         'js-plugins': ['js-plugin-rule1'],
         unsupported: [],
       },
@@ -245,6 +313,7 @@ describe('formatMigrationOutput', () => {
       skippedRulesByCategory: {
         nursery: ['getter-return', 'no-undef'],
         'type-aware': [],
+        'not-implemented': [],
         'js-plugins': [],
         unsupported: [],
       },
@@ -266,6 +335,7 @@ describe('formatMigrationOutput', () => {
       skippedRulesByCategory: {
         nursery: ['rule1', 'rule2', 'rule3', 'rule4'],
         'type-aware': [],
+        'not-implemented': [],
         'js-plugins': [],
         unsupported: [],
       },
@@ -287,6 +357,7 @@ describe('formatMigrationOutput', () => {
       skippedRulesByCategory: {
         nursery: ['rule1', 'rule2', 'rule3', 'rule4'],
         'type-aware': [],
+        'not-implemented': [],
         'js-plugins': [],
         unsupported: [],
       },
@@ -308,8 +379,9 @@ describe('formatMigrationOutput', () => {
       skippedRulesByCategory: {
         nursery: ['getter-return', 'no-undef'],
         'type-aware': ['await-thenable'],
+        'not-implemented': ['prefer-const'],
         'js-plugins': ['js-plugin-rule1'],
-        unsupported: ['prefer-const', 'camelcase'],
+        unsupported: ['camelcase'],
       },
       cliOptions: {
         withNursery: false,
@@ -329,8 +401,9 @@ describe('formatMigrationOutput', () => {
       skippedRulesByCategory: {
         nursery: ['rule1', 'rule2', 'rule3', 'rule4', 'rule5'],
         'type-aware': ['rule6'],
+        'not-implemented': ['rule8'],
         'js-plugins': ['rule7'],
-        unsupported: ['rule8'],
+        unsupported: [],
       },
       cliOptions: {
         withNursery: false,
@@ -350,8 +423,9 @@ describe('formatMigrationOutput', () => {
       skippedRulesByCategory: {
         nursery: ['rule1', 'rule2', 'rule3'],
         'type-aware': ['rule4'],
+        'not-implemented': ['rule6', 'rule7'],
         'js-plugins': ['rule5'],
-        unsupported: ['rule6', 'rule7'],
+        unsupported: [],
       },
       cliOptions: {
         withNursery: false,
@@ -371,6 +445,7 @@ describe('formatMigrationOutput', () => {
       skippedRulesByCategory: {
         nursery: ['rule1', 'rule2', 'rule3', 'rule4'],
         'type-aware': [],
+        'not-implemented': [],
         'js-plugins': [],
         unsupported: [],
       },

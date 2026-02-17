@@ -35,7 +35,7 @@ jobs:
           OXLINT_VERSION: ${{ inputs.version }}
         run: |
           pnpm install oxlint@${OXLINT_VERSION}
-          pnpm run generate # Generate rules
+          pnpm run generate:all # Generate rules, vitest compatibility and oxlint unsupported rules
 
       - name: Test and update snapshot
         continue-on-error: true # we check in PR why it fails
