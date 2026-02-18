@@ -11,7 +11,11 @@ import {
   rulesPrefixesForPlugins,
   typescriptRulesExtendEslintRules,
 } from './constants.js';
-import { enableJsPluginRule, isIgnoredPluginRule } from './jsPlugins.js';
+import {
+  deduplicateJsPlugins,
+  enableJsPluginRule,
+  isIgnoredPluginRule,
+} from './jsPlugins.js';
 import { buildUnsupportedRuleExplanations, isEqualDeep } from './utilities.js';
 
 const allRules = Object.values(rules).flat();
@@ -367,9 +371,10 @@ const mergeOverrideProperties = (
     ];
   }
   if (source.jsPlugins) {
-    target.jsPlugins = [
-      ...new Set([...(target.jsPlugins ?? []), ...source.jsPlugins]),
-    ];
+    target.jsPlugins = deduplicateJsPlugins([
+      ...(target.jsPlugins ?? []),
+      ...source.jsPlugins,
+    ]);
   }
 
   // Object properties: last-wins per key

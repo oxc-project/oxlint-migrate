@@ -1,7 +1,10 @@
 import type { Linter } from 'eslint';
 
 type OxlintConfigPlugins = string[];
-type OxlintConfigJsPlugins = string[];
+export type OxlintConfigJsPluginEntry =
+  | string
+  | { name: string; specifier: string };
+type OxlintConfigJsPlugins = OxlintConfigJsPluginEntry[];
 type OxlintConfigCategories = Partial<Record<Category, unknown>>;
 type OxlintConfigEnv = Record<string, boolean>;
 type OxlintConfigIgnorePatterns = string[];
