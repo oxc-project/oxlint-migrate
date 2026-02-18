@@ -1,0 +1,325 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`config-with-extends.eslint.spec.ts > config-with-extends.eslint.spec.ts 1`] = `
+{
+  "config": {
+    "$schema": "./node_modules/oxlint/configuration_schema.json",
+    "categories": {
+      "correctness": "off",
+    },
+    "env": {
+      "builtin": true,
+    },
+    "overrides": [
+      {
+        "files": [
+          "**/*.ts",
+        ],
+        "plugins": [
+          "typescript",
+        ],
+        "rules": {
+          "@typescript-eslint/ban-ts-comment": "error",
+          "@typescript-eslint/no-duplicate-enum-values": "error",
+          "@typescript-eslint/no-empty-object-type": "error",
+          "@typescript-eslint/no-explicit-any": "warn",
+          "@typescript-eslint/no-extra-non-null-assertion": "error",
+          "@typescript-eslint/no-misused-new": "error",
+          "@typescript-eslint/no-namespace": "error",
+          "@typescript-eslint/no-non-null-asserted-optional-chain": "error",
+          "@typescript-eslint/no-require-imports": "error",
+          "@typescript-eslint/no-this-alias": "error",
+          "@typescript-eslint/no-unnecessary-type-constraint": "error",
+          "@typescript-eslint/no-unsafe-declaration-merging": "error",
+          "@typescript-eslint/no-unsafe-function-type": "error",
+          "@typescript-eslint/no-wrapper-object-types": "error",
+          "@typescript-eslint/prefer-as-const": "error",
+          "@typescript-eslint/prefer-namespace-keyword": "error",
+          "@typescript-eslint/triple-slash-reference": "error",
+          "constructor-super": "off",
+          "no-array-constructor": "error",
+          "no-class-assign": "off",
+          "no-const-assign": "off",
+          "no-dupe-class-members": "off",
+          "no-dupe-keys": "off",
+          "no-func-assign": "off",
+          "no-import-assign": "off",
+          "no-new-native-nonconstructor": "off",
+          "no-obj-calls": "off",
+          "no-redeclare": "off",
+          "no-setter-return": "off",
+          "no-this-before-super": "off",
+          "no-unsafe-negation": "off",
+          "no-unused-expressions": "error",
+          "no-unused-vars": "error",
+          "no-var": "error",
+          "no-with": "off",
+          "prefer-const": "error",
+          "prefer-rest-params": "error",
+          "prefer-spread": "error",
+        },
+      },
+    ],
+    "plugins": [],
+  },
+  "skipped": {
+    "js-plugins": [],
+    "not-implemented": [],
+    "nursery": [
+      "getter-return",
+      "no-undef",
+      "no-unreachable",
+    ],
+    "type-aware": [],
+    "unsupported": [],
+  },
+  "warnings": [
+    "ESLint AND glob patterns (nested arrays in files) are not supported in oxlint: ["**/*.ts","**/*.tsx"]",
+    "ESLint AND glob patterns (nested arrays in files) are not supported in oxlint: ["**/*.ts","**/*.mts"]",
+    "ESLint AND glob patterns (nested arrays in files) are not supported in oxlint: ["**/*.ts","**/*.cts"]",
+  ],
+}
+`;
+
+exports[`config-with-extends.eslint.spec.ts --js-plugins > config-with-extends.eslint.spec.ts--js-plugins 1`] = `
+{
+  "config": {
+    "$schema": "./node_modules/oxlint/configuration_schema.json",
+    "categories": {
+      "correctness": "off",
+    },
+    "env": {
+      "builtin": true,
+    },
+    "overrides": [
+      {
+        "files": [
+          "**/*.ts",
+        ],
+        "plugins": [
+          "typescript",
+        ],
+        "rules": {
+          "@typescript-eslint/ban-ts-comment": "error",
+          "@typescript-eslint/no-duplicate-enum-values": "error",
+          "@typescript-eslint/no-empty-object-type": "error",
+          "@typescript-eslint/no-explicit-any": "warn",
+          "@typescript-eslint/no-extra-non-null-assertion": "error",
+          "@typescript-eslint/no-misused-new": "error",
+          "@typescript-eslint/no-namespace": "error",
+          "@typescript-eslint/no-non-null-asserted-optional-chain": "error",
+          "@typescript-eslint/no-require-imports": "error",
+          "@typescript-eslint/no-this-alias": "error",
+          "@typescript-eslint/no-unnecessary-type-constraint": "error",
+          "@typescript-eslint/no-unsafe-declaration-merging": "error",
+          "@typescript-eslint/no-unsafe-function-type": "error",
+          "@typescript-eslint/no-wrapper-object-types": "error",
+          "@typescript-eslint/prefer-as-const": "error",
+          "@typescript-eslint/prefer-namespace-keyword": "error",
+          "@typescript-eslint/triple-slash-reference": "error",
+          "constructor-super": "off",
+          "no-array-constructor": "error",
+          "no-class-assign": "off",
+          "no-const-assign": "off",
+          "no-dupe-class-members": "off",
+          "no-dupe-keys": "off",
+          "no-func-assign": "off",
+          "no-import-assign": "off",
+          "no-new-native-nonconstructor": "off",
+          "no-obj-calls": "off",
+          "no-redeclare": "off",
+          "no-setter-return": "off",
+          "no-this-before-super": "off",
+          "no-unsafe-negation": "off",
+          "no-unused-expressions": "error",
+          "no-unused-vars": "error",
+          "no-var": "error",
+          "no-with": "off",
+          "prefer-const": "error",
+          "prefer-rest-params": "error",
+          "prefer-spread": "error",
+        },
+      },
+    ],
+    "plugins": [],
+  },
+  "skipped": {
+    "js-plugins": [],
+    "not-implemented": [],
+    "nursery": [
+      "getter-return",
+      "no-undef",
+      "no-unreachable",
+    ],
+    "type-aware": [],
+    "unsupported": [],
+  },
+  "warnings": [
+    "ESLint AND glob patterns (nested arrays in files) are not supported in oxlint: ["**/*.ts","**/*.tsx"]",
+    "ESLint AND glob patterns (nested arrays in files) are not supported in oxlint: ["**/*.ts","**/*.mts"]",
+    "ESLint AND glob patterns (nested arrays in files) are not supported in oxlint: ["**/*.ts","**/*.cts"]",
+  ],
+}
+`;
+
+exports[`config-with-extends.eslint.spec.ts --type-aware > config-with-extends.eslint.spec.ts--type-aware 1`] = `
+{
+  "config": {
+    "$schema": "./node_modules/oxlint/configuration_schema.json",
+    "categories": {
+      "correctness": "off",
+    },
+    "env": {
+      "builtin": true,
+    },
+    "overrides": [
+      {
+        "files": [
+          "**/*.ts",
+        ],
+        "plugins": [
+          "typescript",
+        ],
+        "rules": {
+          "@typescript-eslint/ban-ts-comment": "error",
+          "@typescript-eslint/no-duplicate-enum-values": "error",
+          "@typescript-eslint/no-empty-object-type": "error",
+          "@typescript-eslint/no-explicit-any": "warn",
+          "@typescript-eslint/no-extra-non-null-assertion": "error",
+          "@typescript-eslint/no-misused-new": "error",
+          "@typescript-eslint/no-namespace": "error",
+          "@typescript-eslint/no-non-null-asserted-optional-chain": "error",
+          "@typescript-eslint/no-require-imports": "error",
+          "@typescript-eslint/no-this-alias": "error",
+          "@typescript-eslint/no-unnecessary-type-constraint": "error",
+          "@typescript-eslint/no-unsafe-declaration-merging": "error",
+          "@typescript-eslint/no-unsafe-function-type": "error",
+          "@typescript-eslint/no-wrapper-object-types": "error",
+          "@typescript-eslint/prefer-as-const": "error",
+          "@typescript-eslint/prefer-namespace-keyword": "error",
+          "@typescript-eslint/triple-slash-reference": "error",
+          "constructor-super": "off",
+          "no-array-constructor": "error",
+          "no-class-assign": "off",
+          "no-const-assign": "off",
+          "no-dupe-class-members": "off",
+          "no-dupe-keys": "off",
+          "no-func-assign": "off",
+          "no-import-assign": "off",
+          "no-new-native-nonconstructor": "off",
+          "no-obj-calls": "off",
+          "no-redeclare": "off",
+          "no-setter-return": "off",
+          "no-this-before-super": "off",
+          "no-unsafe-negation": "off",
+          "no-unused-expressions": "error",
+          "no-unused-vars": "error",
+          "no-var": "error",
+          "no-with": "off",
+          "prefer-const": "error",
+          "prefer-rest-params": "error",
+          "prefer-spread": "error",
+        },
+      },
+    ],
+    "plugins": [],
+  },
+  "skipped": {
+    "js-plugins": [],
+    "not-implemented": [],
+    "nursery": [
+      "getter-return",
+      "no-undef",
+      "no-unreachable",
+    ],
+    "type-aware": [],
+    "unsupported": [],
+  },
+  "warnings": [
+    "ESLint AND glob patterns (nested arrays in files) are not supported in oxlint: ["**/*.ts","**/*.tsx"]",
+    "ESLint AND glob patterns (nested arrays in files) are not supported in oxlint: ["**/*.ts","**/*.mts"]",
+    "ESLint AND glob patterns (nested arrays in files) are not supported in oxlint: ["**/*.ts","**/*.cts"]",
+  ],
+}
+`;
+
+exports[`config-with-extends.eslint.spec.ts merge > config-with-extends.eslint.spec.ts--merge 1`] = `
+{
+  "config": {
+    "$schema": "./node_modules/oxlint/configuration_schema.json",
+    "categories": {
+      "correctness": "error",
+      "perf": "error",
+    },
+    "env": {
+      "builtin": true,
+    },
+    "overrides": [
+      {
+        "files": [
+          "**/*.ts",
+        ],
+        "plugins": [
+          "typescript",
+        ],
+        "rules": {
+          "@typescript-eslint/ban-ts-comment": "error",
+          "@typescript-eslint/no-duplicate-enum-values": "error",
+          "@typescript-eslint/no-empty-object-type": "error",
+          "@typescript-eslint/no-explicit-any": "warn",
+          "@typescript-eslint/no-extra-non-null-assertion": "error",
+          "@typescript-eslint/no-misused-new": "error",
+          "@typescript-eslint/no-namespace": "error",
+          "@typescript-eslint/no-non-null-asserted-optional-chain": "error",
+          "@typescript-eslint/no-require-imports": "error",
+          "@typescript-eslint/no-this-alias": "error",
+          "@typescript-eslint/no-unnecessary-type-constraint": "error",
+          "@typescript-eslint/no-unsafe-declaration-merging": "error",
+          "@typescript-eslint/no-unsafe-function-type": "error",
+          "@typescript-eslint/no-wrapper-object-types": "error",
+          "@typescript-eslint/prefer-as-const": "error",
+          "@typescript-eslint/prefer-namespace-keyword": "error",
+          "@typescript-eslint/triple-slash-reference": "error",
+          "constructor-super": "off",
+          "no-array-constructor": "error",
+          "no-class-assign": "off",
+          "no-const-assign": "off",
+          "no-dupe-class-members": "off",
+          "no-dupe-keys": "off",
+          "no-func-assign": "off",
+          "no-import-assign": "off",
+          "no-new-native-nonconstructor": "off",
+          "no-obj-calls": "off",
+          "no-redeclare": "off",
+          "no-setter-return": "off",
+          "no-this-before-super": "off",
+          "no-unsafe-negation": "off",
+          "no-unused-expressions": "error",
+          "no-unused-vars": "error",
+          "no-var": "error",
+          "no-with": "off",
+          "prefer-const": "error",
+          "prefer-rest-params": "error",
+          "prefer-spread": "error",
+        },
+      },
+    ],
+  },
+  "skipped": {
+    "js-plugins": [],
+    "not-implemented": [],
+    "nursery": [
+      "getter-return",
+      "no-undef",
+      "no-unreachable",
+    ],
+    "type-aware": [],
+    "unsupported": [],
+  },
+  "warnings": [
+    "ESLint AND glob patterns (nested arrays in files) are not supported in oxlint: ["**/*.ts","**/*.tsx"]",
+    "ESLint AND glob patterns (nested arrays in files) are not supported in oxlint: ["**/*.ts","**/*.mts"]",
+    "ESLint AND glob patterns (nested arrays in files) are not supported in oxlint: ["**/*.ts","**/*.cts"]",
+  ],
+}
+`;

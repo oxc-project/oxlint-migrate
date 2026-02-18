@@ -20,10 +20,21 @@ export function processConfigFiles(
 
   for (const file of filesArray) {
     if (Array.isArray(file)) {
-      // Report nested array (AND glob pattern) as unsupported
-      reporter?.addWarning(
-        `ESLint AND glob patterns (nested arrays in files) are not supported in oxlint: ${JSON.stringify(file)}`
-      );
+      const filesSet = new Set<string>(file);
+      if (filesSet.size === 0) {
+        // skip empty nested arrays
+        continue;
+      }
+
+      if (filesSet.size > 1) {
+        // Report if there are multiple patterns in the nested array (AND pattern)
+        reporter?.addWarning(
+          `ESLint AND glob patterns (nested arrays in files) are not supported in oxlint: ${JSON.stringify(file)}`
+        );
+        continue;
+      }
+
+      simpleFiles.push(file[0]);
     } else {
       simpleFiles.push(file);
     }
