@@ -286,6 +286,12 @@ exports[`eslint-plugin-oxlint --js-plugins > eslint-plugin-oxlint--js-plugins 1`
     "ignorePatterns": [
       "dist/",
     ],
+    "jsPlugins": [
+      {
+        "name": "eslint-js",
+        "specifier": "@oxlint/plugin-eslint",
+      },
+    ],
     "overrides": [
       {
         "files": [
@@ -294,8 +300,16 @@ exports[`eslint-plugin-oxlint --js-plugins > eslint-plugin-oxlint--js-plugins 1`
           "**/*.mts",
           "**/*.cts",
         ],
+        "jsPlugins": [
+          {
+            "name": "eslint-js",
+            "specifier": "@oxlint/plugin-eslint",
+          },
+        ],
         "rules": {
           "constructor-super": "off",
+          "eslint-js/no-dupe-args": "off",
+          "eslint-js/no-new-symbol": "off",
           "no-class-assign": "off",
           "no-const-assign": "off",
           "no-dupe-class-members": "off",
@@ -339,6 +353,8 @@ exports[`eslint-plugin-oxlint --js-plugins > eslint-plugin-oxlint--js-plugins 1`
       "@typescript-eslint/prefer-namespace-keyword": "error",
       "@typescript-eslint/triple-slash-reference": "error",
       "constructor-super": "error",
+      "eslint-js/no-dupe-args": "error",
+      "eslint-js/no-octal": "error",
       "for-direction": "error",
       "no-array-constructor": "error",
       "no-async-promise-executor": "error",
@@ -534,8 +550,6 @@ exports[`eslint-plugin-oxlint --js-plugins > eslint-plugin-oxlint--js-plugins 1`
     ],
     "type-aware": [],
     "unsupported": [
-      "no-dupe-args",
-      "no-octal",
       "unicorn/no-for-loop",
       "unicorn/no-named-default",
     ],

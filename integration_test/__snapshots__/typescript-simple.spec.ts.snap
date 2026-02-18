@@ -155,6 +155,12 @@ exports[`typescript-simple --js-plugins > typescript-simple--js-plugins 1`] = `
           "**/*.ts",
           "**/*.tsx",
         ],
+        "jsPlugins": [
+          {
+            "name": "eslint-js",
+            "specifier": "@oxlint/plugin-eslint",
+          },
+        ],
         "plugins": [
           "typescript",
         ],
@@ -189,6 +195,10 @@ exports[`typescript-simple --js-plugins > typescript-simple--js-plugins 1`] = `
           "@typescript-eslint/triple-slash-reference": "error",
           "@typescript-eslint/unified-signatures": "error",
           "constructor-super": "off",
+          "eslint-js/no-dupe-args": "off",
+          "eslint-js/no-implied-eval": "off",
+          "eslint-js/no-new-symbol": "off",
+          "eslint-js/no-return-await": "off",
           "no-array-constructor": "error",
           "no-class-assign": "off",
           "no-const-assign": "off",

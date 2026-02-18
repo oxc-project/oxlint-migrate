@@ -3,6 +3,7 @@ import * as rules from './generated/rules.js';
 import {
   Options,
   OxlintConfig,
+  OxlintConfigJsPluginEntry,
   OxlintConfigOrOverride,
   OxlintConfigOverride,
   type Category,
@@ -172,8 +173,18 @@ export const transformRuleEntry = (
     targetConfig.rules = {};
   }
 
-  for (const [rule, config] of Object.entries(eslintConfig.rules)) {
+  for (let [rule, config] of Object.entries(eslintConfig.rules)) {
     const normalizedConfig = normalizeSeverityValue(config);
+
+    const isSupported = allRules.includes(rule);
+
+    // When --js-plugins is enabled, rename unsupported core ESLint rules to
+    // `eslint-js/<rule>` so they flow through the JS plugin path naturally.
+    let jsPluginEntry: OxlintConfigJsPluginEntry | undefined;
+    if (!isSupported && options?.jsPlugins && !rule.includes('/')) {
+      rule = `eslint-js/${rule}`;
+      jsPluginEntry = { name: 'eslint-js', specifier: '@oxlint/plugin-eslint' };
+    }
 
     // removing rules from previous "overrides"
     // only works on non-merge because `overrides` is already prefilled from previous result.
@@ -181,7 +192,7 @@ export const transformRuleEntry = (
       removePreviousOverrideRule(rule, eslintConfig, overrides);
     }
 
-    if (allRules.includes(rule)) {
+    if (isSupported) {
       if (!options?.withNursery && rules.nurseryRules.includes(rule)) {
         options?.reporter?.markSkipped(rule, 'nursery');
         continue;
@@ -223,7 +234,12 @@ export const transformRuleEntry = (
             // override: keep the disabled rule and add the jsPlugin
             // so oxlint can resolve the rule name
             if (!isIgnoredPluginRule(rule)) {
-              enableJsPluginRule(targetConfig, rule, normalizedConfig);
+              enableJsPluginRule(
+                targetConfig,
+                rule,
+                normalizedConfig,
+                jsPluginEntry
+              );
             }
           }
           // also remove any previously queued unsupported report for base
@@ -235,7 +251,14 @@ export const transformRuleEntry = (
           continue;
         }
 
-        if (!enableJsPluginRule(targetConfig, rule, normalizedConfig)) {
+        if (
+          !enableJsPluginRule(
+            targetConfig,
+            rule,
+            normalizedConfig,
+            jsPluginEntry
+          )
+        ) {
           const category = unsupportedRuleExplanations[rule]
             ? 'unsupported'
             : 'not-implemented';

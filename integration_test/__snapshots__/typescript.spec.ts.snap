@@ -424,6 +424,10 @@ exports[`typescript --js-plugins > typescript--js-plugins 1`] = `
       "coverage/**",
     ],
     "jsPlugins": [
+      {
+        "name": "eslint-js",
+        "specifier": "@oxlint/plugin-eslint",
+      },
       "eslint-plugin-regexp",
     ],
     "overrides": [
@@ -434,8 +438,16 @@ exports[`typescript --js-plugins > typescript--js-plugins 1`] = `
           "**/*.mts",
           "**/*.cts",
         ],
+        "jsPlugins": [
+          {
+            "name": "eslint-js",
+            "specifier": "@oxlint/plugin-eslint",
+          },
+        ],
         "rules": {
           "constructor-super": "off",
+          "eslint-js/no-dupe-args": "off",
+          "eslint-js/no-new-symbol": "off",
           "no-class-assign": "off",
           "no-const-assign": "off",
           "no-dupe-class-members": "off",
@@ -527,11 +539,18 @@ exports[`typescript --js-plugins > typescript--js-plugins 1`] = `
         "files": [
           "src/lib/*.d.ts",
         ],
+        "jsPlugins": [
+          {
+            "name": "eslint-js",
+            "specifier": "@oxlint/plugin-eslint",
+          },
+        ],
         "rules": {
           "@typescript-eslint/no-unsafe-function-type": "off",
           "@typescript-eslint/no-wrapper-object-types": "off",
           "@typescript-eslint/prefer-function-type": "off",
           "@typescript-eslint/unified-signatures": "off",
+          "eslint-js/no-restricted-syntax": "off",
           "no-restricted-globals": "off",
           "no-shadow-restricted-names": "off",
           "no-unused-vars": "off",
@@ -572,6 +591,24 @@ exports[`typescript --js-plugins > typescript--js-plugins 1`] = `
       "@typescript-eslint/unified-signatures": "error",
       "constructor-super": "error",
       "eqeqeq": "error",
+      "eslint-js/dot-notation": "error",
+      "eslint-js/no-dupe-args": "error",
+      "eslint-js/no-octal": "error",
+      "eslint-js/no-restricted-syntax": [
+        "error",
+        {
+          "message": "Avoid using null; use undefined instead.",
+          "selector": "Literal[raw=null]",
+        },
+        {
+          "message": "Avoid using null; use undefined instead.",
+          "selector": "TSNullKeyword",
+        },
+      ],
+      "eslint-js/no-return-await": "error",
+      "eslint-js/no-undef-init": "error",
+      "eslint-js/object-shorthand": "error",
+      "eslint-js/prefer-regex-literals": "error",
       "for-direction": "error",
       "no-array-constructor": "error",
       "no-async-promise-executor": "error",
@@ -717,9 +754,6 @@ exports[`typescript --js-plugins > typescript--js-plugins 1`] = `
   "skipped": {
     "js-plugins": [],
     "not-implemented": [
-      "prefer-regex-literals",
-      "object-shorthand",
-      "no-restricted-syntax",
       "@typescript-eslint/naming-convention",
       "local/only-arrow-functions",
       "local/argument-trivia",
@@ -796,13 +830,7 @@ exports[`typescript --js-plugins > typescript--js-plugins 1`] = `
       "@typescript-eslint/unbound-method",
       "@typescript-eslint/use-unknown-in-catch-callback-variable",
     ],
-    "unsupported": [
-      "no-dupe-args",
-      "no-octal",
-      "dot-notation",
-      "no-return-await",
-      "no-undef-init",
-    ],
+    "unsupported": [],
   },
   "warnings": [],
 }

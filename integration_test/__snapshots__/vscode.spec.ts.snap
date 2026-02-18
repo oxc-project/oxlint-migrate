@@ -426,6 +426,10 @@ exports[`vscode --js-plugins > vscode--js-plugins 1`] = `
       "!.vscode",
     ],
     "jsPlugins": [
+      {
+        "name": "eslint-js",
+        "specifier": "@oxlint/plugin-eslint",
+      },
       "eslint-plugin-header",
     ],
     "overrides": [
@@ -439,6 +443,27 @@ exports[`vscode --js-plugins > vscode--js-plugins 1`] = `
         "rules": {
           "@stylistic/ts/member-delimiter-style": "warn",
           "@stylistic/ts/semi": "warn",
+        },
+      },
+      {
+        "files": [
+          "**/vscode.d.ts",
+          "**/vscode.proposed.*.d.ts",
+        ],
+        "jsPlugins": [
+          {
+            "name": "eslint-js",
+            "specifier": "@oxlint/plugin-eslint",
+          },
+        ],
+        "rules": {
+          "eslint-js/no-restricted-syntax": [
+            "warn",
+            {
+              "message": "Use Array<...> for arrays of union types.",
+              "selector": "TSArrayType > TSUnionType",
+            },
+          ],
         },
       },
       {
@@ -479,7 +504,156 @@ exports[`vscode --js-plugins > vscode--js-plugins 1`] = `
         "files": [
           "src/**/{browser,electron-sandbox}/**/*.ts",
         ],
+        "jsPlugins": [
+          {
+            "name": "eslint-js",
+            "specifier": "@oxlint/plugin-eslint",
+          },
+        ],
         "rules": {
+          "eslint-js/no-restricted-syntax": [
+            "warn",
+            {
+              "message": "Use DOM.isMouseEvent() to support multi-window scenarios.",
+              "selector": "BinaryExpression[operator='instanceof'][right.name='MouseEvent']",
+            },
+            {
+              "message": "Use DOM.isHTMLElement() and related methods to support multi-window scenarios.",
+              "selector": "BinaryExpression[operator='instanceof'][right.name=/^HTML\\w+/]",
+            },
+            {
+              "message": "Use DOM.isSVGElement() and related methods to support multi-window scenarios.",
+              "selector": "BinaryExpression[operator='instanceof'][right.name=/^SVG\\w+/]",
+            },
+            {
+              "message": "Use DOM.isKeyboardEvent() to support multi-window scenarios.",
+              "selector": "BinaryExpression[operator='instanceof'][right.name='KeyboardEvent']",
+            },
+            {
+              "message": "Use DOM.isPointerEvent() to support multi-window scenarios.",
+              "selector": "BinaryExpression[operator='instanceof'][right.name='PointerEvent']",
+            },
+            {
+              "message": "Use DOM.isDragEvent() to support multi-window scenarios.",
+              "selector": "BinaryExpression[operator='instanceof'][right.name='DragEvent']",
+            },
+            {
+              "message": "Use <targetWindow>.document.activeElement to support multi-window scenarios. Resolve targetWindow with DOM.getWindow(element) or DOM.getActiveWindow() or use the predefined mainWindow constant.",
+              "selector": "MemberExpression[object.name='document'][property.name='activeElement']",
+            },
+            {
+              "message": "Use <targetWindow>.document.contains to support multi-window scenarios. Resolve targetWindow with DOM.getWindow(element) or DOM.getActiveWindow() or use the predefined mainWindow constant.",
+              "selector": "MemberExpression[object.name='document'][property.name='contains']",
+            },
+            {
+              "message": "Use <targetWindow>.document.styleSheets to support multi-window scenarios. Resolve targetWindow with DOM.getWindow(element) or DOM.getActiveWindow() or use the predefined mainWindow constant.",
+              "selector": "MemberExpression[object.name='document'][property.name='styleSheets']",
+            },
+            {
+              "message": "Use <targetWindow>.document.fullscreenElement to support multi-window scenarios. Resolve targetWindow with DOM.getWindow(element) or DOM.getActiveWindow() or use the predefined mainWindow constant.",
+              "selector": "MemberExpression[object.name='document'][property.name='fullscreenElement']",
+            },
+            {
+              "message": "Use <targetWindow>.document.body to support multi-window scenarios. Resolve targetWindow with DOM.getWindow(element) or DOM.getActiveWindow() or use the predefined mainWindow constant.",
+              "selector": "MemberExpression[object.name='document'][property.name='body']",
+            },
+            {
+              "message": "Use <targetWindow>.document.addEventListener to support multi-window scenarios. Resolve targetWindow with DOM.getWindow(element) or DOM.getActiveWindow() or use the predefined mainWindow constant.",
+              "selector": "MemberExpression[object.name='document'][property.name='addEventListener']",
+            },
+            {
+              "message": "Use <targetWindow>.document.removeEventListener to support multi-window scenarios. Resolve targetWindow with DOM.getWindow(element) or DOM.getActiveWindow() or use the predefined mainWindow constant.",
+              "selector": "MemberExpression[object.name='document'][property.name='removeEventListener']",
+            },
+            {
+              "message": "Use <targetWindow>.document.hasFocus to support multi-window scenarios. Resolve targetWindow with DOM.getWindow(element) or DOM.getActiveWindow() or use the predefined mainWindow constant.",
+              "selector": "MemberExpression[object.name='document'][property.name='hasFocus']",
+            },
+            {
+              "message": "Use <targetWindow>.document.head to support multi-window scenarios. Resolve targetWindow with DOM.getWindow(element) or DOM.getActiveWindow() or use the predefined mainWindow constant.",
+              "selector": "MemberExpression[object.name='document'][property.name='head']",
+            },
+            {
+              "message": "Use <targetWindow>.document.exitFullscreen to support multi-window scenarios. Resolve targetWindow with DOM.getWindow(element) or DOM.getActiveWindow() or use the predefined mainWindow constant.",
+              "selector": "MemberExpression[object.name='document'][property.name='exitFullscreen']",
+            },
+            {
+              "message": "Use <targetWindow>.document.getElementById to support multi-window scenarios. Resolve targetWindow with DOM.getWindow(element) or DOM.getActiveWindow() or use the predefined mainWindow constant.",
+              "selector": "MemberExpression[object.name='document'][property.name='getElementById']",
+            },
+            {
+              "message": "Use <targetWindow>.document.getElementsByClassName to support multi-window scenarios. Resolve targetWindow with DOM.getWindow(element) or DOM.getActiveWindow() or use the predefined mainWindow constant.",
+              "selector": "MemberExpression[object.name='document'][property.name='getElementsByClassName']",
+            },
+            {
+              "message": "Use <targetWindow>.document.getElementsByName to support multi-window scenarios. Resolve targetWindow with DOM.getWindow(element) or DOM.getActiveWindow() or use the predefined mainWindow constant.",
+              "selector": "MemberExpression[object.name='document'][property.name='getElementsByName']",
+            },
+            {
+              "message": "Use <targetWindow>.document.getElementsByTagName to support multi-window scenarios. Resolve targetWindow with DOM.getWindow(element) or DOM.getActiveWindow() or use the predefined mainWindow constant.",
+              "selector": "MemberExpression[object.name='document'][property.name='getElementsByTagName']",
+            },
+            {
+              "message": "Use <targetWindow>.document.getElementsByTagNameNS to support multi-window scenarios. Resolve targetWindow with DOM.getWindow(element) or DOM.getActiveWindow() or use the predefined mainWindow constant.",
+              "selector": "MemberExpression[object.name='document'][property.name='getElementsByTagNameNS']",
+            },
+            {
+              "message": "Use <targetWindow>.document.getSelection to support multi-window scenarios. Resolve targetWindow with DOM.getWindow(element) or DOM.getActiveWindow() or use the predefined mainWindow constant.",
+              "selector": "MemberExpression[object.name='document'][property.name='getSelection']",
+            },
+            {
+              "message": "Use <targetWindow>.document.open to support multi-window scenarios. Resolve targetWindow with DOM.getWindow(element) or DOM.getActiveWindow() or use the predefined mainWindow constant.",
+              "selector": "MemberExpression[object.name='document'][property.name='open']",
+            },
+            {
+              "message": "Use <targetWindow>.document.close to support multi-window scenarios. Resolve targetWindow with DOM.getWindow(element) or DOM.getActiveWindow() or use the predefined mainWindow constant.",
+              "selector": "MemberExpression[object.name='document'][property.name='close']",
+            },
+            {
+              "message": "Use <targetWindow>.document.documentElement to support multi-window scenarios. Resolve targetWindow with DOM.getWindow(element) or DOM.getActiveWindow() or use the predefined mainWindow constant.",
+              "selector": "MemberExpression[object.name='document'][property.name='documentElement']",
+            },
+            {
+              "message": "Use <targetWindow>.document.visibilityState to support multi-window scenarios. Resolve targetWindow with DOM.getWindow(element) or DOM.getActiveWindow() or use the predefined mainWindow constant.",
+              "selector": "MemberExpression[object.name='document'][property.name='visibilityState']",
+            },
+            {
+              "message": "Use <targetWindow>.document.querySelector to support multi-window scenarios. Resolve targetWindow with DOM.getWindow(element) or DOM.getActiveWindow() or use the predefined mainWindow constant.",
+              "selector": "MemberExpression[object.name='document'][property.name='querySelector']",
+            },
+            {
+              "message": "Use <targetWindow>.document.querySelectorAll to support multi-window scenarios. Resolve targetWindow with DOM.getWindow(element) or DOM.getActiveWindow() or use the predefined mainWindow constant.",
+              "selector": "MemberExpression[object.name='document'][property.name='querySelectorAll']",
+            },
+            {
+              "message": "Use <targetWindow>.document.elementFromPoint to support multi-window scenarios. Resolve targetWindow with DOM.getWindow(element) or DOM.getActiveWindow() or use the predefined mainWindow constant.",
+              "selector": "MemberExpression[object.name='document'][property.name='elementFromPoint']",
+            },
+            {
+              "message": "Use <targetWindow>.document.elementsFromPoint to support multi-window scenarios. Resolve targetWindow with DOM.getWindow(element) or DOM.getActiveWindow() or use the predefined mainWindow constant.",
+              "selector": "MemberExpression[object.name='document'][property.name='elementsFromPoint']",
+            },
+            {
+              "message": "Use <targetWindow>.document.onkeydown to support multi-window scenarios. Resolve targetWindow with DOM.getWindow(element) or DOM.getActiveWindow() or use the predefined mainWindow constant.",
+              "selector": "MemberExpression[object.name='document'][property.name='onkeydown']",
+            },
+            {
+              "message": "Use <targetWindow>.document.onkeyup to support multi-window scenarios. Resolve targetWindow with DOM.getWindow(element) or DOM.getActiveWindow() or use the predefined mainWindow constant.",
+              "selector": "MemberExpression[object.name='document'][property.name='onkeyup']",
+            },
+            {
+              "message": "Use <targetWindow>.document.onmousedown to support multi-window scenarios. Resolve targetWindow with DOM.getWindow(element) or DOM.getActiveWindow() or use the predefined mainWindow constant.",
+              "selector": "MemberExpression[object.name='document'][property.name='onmousedown']",
+            },
+            {
+              "message": "Use <targetWindow>.document.onmouseup to support multi-window scenarios. Resolve targetWindow with DOM.getWindow(element) or DOM.getActiveWindow() or use the predefined mainWindow constant.",
+              "selector": "MemberExpression[object.name='document'][property.name='onmouseup']",
+            },
+            {
+              "message": "Use <targetWindow>.document.execCommand to support multi-window scenarios. Resolve targetWindow with DOM.getWindow(element) or DOM.getActiveWindow() or use the predefined mainWindow constant.",
+              "selector": "MemberExpression[object.name='document'][property.name='execCommand']",
+            },
+          ],
           "no-restricted-globals": [
             "warn",
             "name",
@@ -664,12 +838,32 @@ exports[`vscode --js-plugins > vscode--js-plugins 1`] = `
           ],
         },
       },
+      {
+        "files": [
+          "src/vs/workbench/contrib/terminal/**/*.ts",
+          "src/vs/workbench/contrib/terminalContrib/**/*.ts",
+        ],
+        "jsPlugins": [
+          {
+            "name": "eslint-js",
+            "specifier": "@oxlint/plugin-eslint",
+          },
+        ],
+        "rules": {
+          "eslint-js/comma-dangle": [
+            "warn",
+            "only-multiline",
+          ],
+        },
+      },
     ],
     "plugins": [],
     "rules": {
       "constructor-super": "warn",
       "curly": "warn",
       "eqeqeq": "warn",
+      "eslint-js/no-buffer-constructor": "warn",
+      "eslint-js/no-extra-semi": "warn",
       "header/header": [
         "error",
         "block",
@@ -736,7 +930,6 @@ exports[`vscode --js-plugins > vscode--js-plugins 1`] = `
       "local/code-no-test-async-suite",
       "local/code-must-use-result",
       "local/code-ensure-no-disposables-leak-in-test",
-      "no-restricted-syntax",
       "local/vscode-dts-create-func",
       "local/vscode-dts-literal-or-types",
       "local/vscode-dts-string-type-literals",
@@ -761,11 +954,7 @@ exports[`vscode --js-plugins > vscode--js-plugins 1`] = `
       "@typescript-eslint/prefer-readonly",
     ],
     "type-aware": [],
-    "unsupported": [
-      "no-buffer-constructor",
-      "no-extra-semi",
-      "comma-dangle",
-    ],
+    "unsupported": [],
   },
   "warnings": [],
 }

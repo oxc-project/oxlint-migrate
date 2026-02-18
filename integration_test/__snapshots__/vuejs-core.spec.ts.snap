@@ -376,6 +376,12 @@ exports[`vuejs/core --js-plugins > vuejs/core--js-plugins 1`] = `
           "**/*.ts",
           "**/*.tsx",
         ],
+        "jsPlugins": [
+          {
+            "name": "eslint-js",
+            "specifier": "@oxlint/plugin-eslint",
+          },
+        ],
         "plugins": [
           "import",
           "typescript",
@@ -390,6 +396,30 @@ exports[`vuejs/core --js-plugins > vuejs/core--js-plugins 1`] = `
           ],
           "@typescript-eslint/no-import-type-side-effects": "error",
           "@typescript-eslint/prefer-ts-expect-error": "error",
+          "eslint-js/no-restricted-syntax": [
+            "error",
+            {
+              "message": "Please use non-const enums. This project automatically inlines enums.",
+              "selector": "TSEnumDeclaration[const=true]",
+            },
+            {
+              "message": "Our output target is ES2016, and object rest spread results in verbose helpers and should be avoided.",
+              "selector": "ObjectPattern > RestElement",
+            },
+            {
+              "message": "esbuild transpiles object spread into very verbose inline helpers.
+Please use the \`extend\` helper from @vue/shared instead.",
+              "selector": "ObjectExpression > SpreadElement",
+            },
+            {
+              "message": "Our output target is ES2016, so async/await syntax should be avoided.",
+              "selector": "AwaitExpression",
+            },
+            {
+              "message": "Our output target is ES2016, and optional chaining results in verbose helpers and should be avoided.",
+              "selector": "ChainExpression",
+            },
+          ],
           "import-x/no-nodejs-modules": [
             "error",
             {
@@ -516,10 +546,17 @@ exports[`vuejs/core --js-plugins > vuejs/core--js-plugins 1`] = `
           "vi": "writable",
           "vitest": "writable",
         },
+        "jsPlugins": [
+          {
+            "name": "eslint-js",
+            "specifier": "@oxlint/plugin-eslint",
+          },
+        ],
         "plugins": [
           "vitest",
         ],
         "rules": {
+          "eslint-js/no-restricted-syntax": "off",
           "no-console": "off",
           "no-restricted-globals": "off",
           "vitest/no-disabled-tests": "error",
@@ -551,7 +588,20 @@ exports[`vuejs/core --js-plugins > vuejs/core--js-plugins 1`] = `
         "files": [
           "packages/{compiler-sfc,compiler-ssr,server-renderer}/**",
         ],
+        "jsPlugins": [
+          {
+            "name": "eslint-js",
+            "specifier": "@oxlint/plugin-eslint",
+          },
+        ],
         "rules": {
+          "eslint-js/no-restricted-syntax": [
+            "error",
+            {
+              "message": "Please use non-const enums. This project automatically inlines enums.",
+              "selector": "TSEnumDeclaration[const=true]",
+            },
+          ],
           "no-restricted-globals": [
             "error",
             "window",
@@ -564,7 +614,20 @@ exports[`vuejs/core --js-plugins > vuejs/core--js-plugins 1`] = `
           "packages-private/template-explorer/**",
           "packages-private/sfc-playground/**",
         ],
+        "jsPlugins": [
+          {
+            "name": "eslint-js",
+            "specifier": "@oxlint/plugin-eslint",
+          },
+        ],
         "rules": {
+          "eslint-js/no-restricted-syntax": [
+            "error",
+            {
+              "message": "Please use non-const enums. This project automatically inlines enums.",
+              "selector": "TSEnumDeclaration[const=true]",
+            },
+          ],
           "no-console": "off",
           "no-restricted-globals": [
             "error",
@@ -596,7 +659,20 @@ exports[`vuejs/core --js-plugins > vuejs/core--js-plugins 1`] = `
           "packages/*/*.js",
           "packages/vue/*/*.js",
         ],
+        "jsPlugins": [
+          {
+            "name": "eslint-js",
+            "specifier": "@oxlint/plugin-eslint",
+          },
+        ],
         "rules": {
+          "eslint-js/no-restricted-syntax": [
+            "error",
+            {
+              "message": "Please use non-const enums. This project automatically inlines enums.",
+              "selector": "TSEnumDeclaration[const=true]",
+            },
+          ],
           "no-console": "off",
           "no-restricted-globals": "off",
         },
@@ -691,9 +767,7 @@ exports[`vuejs/core --js-plugins > vuejs/core--js-plugins 1`] = `
   },
   "skipped": {
     "js-plugins": [],
-    "not-implemented": [
-      "no-restricted-syntax",
-    ],
+    "not-implemented": [],
     "nursery": [],
     "type-aware": [],
     "unsupported": [],

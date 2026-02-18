@@ -350,6 +350,12 @@ exports[`many-extends.spec.ts --js-plugins > many-extends.spec.ts--js-plugins 1`
       "builtin": true,
       "es2018": true,
     },
+    "jsPlugins": [
+      {
+        "name": "eslint-js",
+        "specifier": "@oxlint/plugin-eslint",
+      },
+    ],
     "overrides": [
       {
         "env": {
@@ -366,6 +372,12 @@ exports[`many-extends.spec.ts --js-plugins > many-extends.spec.ts--js-plugins 1`
         "files": [
           "**/*.ts",
           "**/*.tsx",
+        ],
+        "jsPlugins": [
+          {
+            "name": "eslint-js",
+            "specifier": "@oxlint/plugin-eslint",
+          },
         ],
         "plugins": [
           "typescript",
@@ -413,6 +425,11 @@ exports[`many-extends.spec.ts --js-plugins > many-extends.spec.ts--js-plugins 1`
           "@typescript-eslint/triple-slash-reference": "error",
           "@typescript-eslint/unified-signatures": "error",
           "constructor-super": "off",
+          "eslint-js/dot-notation": "off",
+          "eslint-js/no-dupe-args": "off",
+          "eslint-js/no-implied-eval": "off",
+          "eslint-js/no-new-symbol": "off",
+          "eslint-js/no-return-await": "off",
           "import/consistent-type-specifier-style": [
             "error",
             "prefer-top-level",
@@ -464,6 +481,8 @@ exports[`many-extends.spec.ts --js-plugins > many-extends.spec.ts--js-plugins 1`
     ],
     "rules": {
       "constructor-super": "error",
+      "eslint-js/no-dupe-args": "error",
+      "eslint-js/no-octal": "error",
       "for-direction": "error",
       "import/default": "error",
       "import/namespace": "error",
@@ -648,8 +667,6 @@ exports[`many-extends.spec.ts --js-plugins > many-extends.spec.ts--js-plugins 1`
       "@typescript-eslint/prefer-nullish-coalescing",
     ],
     "unsupported": [
-      "no-dupe-args",
-      "no-octal",
       "import/no-unresolved",
       "react/jsx-uses-vars",
       "react-hooks/static-components",

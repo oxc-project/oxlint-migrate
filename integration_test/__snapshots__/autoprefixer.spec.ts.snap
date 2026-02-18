@@ -343,6 +343,10 @@ exports[`autoprefixer --js-plugins > autoprefixer--js-plugins 1`] = `
     ],
     "jsPlugins": [
       "eslint-plugin-perfectionist",
+      {
+        "name": "eslint-js",
+        "specifier": "@oxlint/plugin-eslint",
+      },
       "eslint-plugin-prefer-let",
     ],
     "overrides": [
@@ -397,6 +401,44 @@ exports[`autoprefixer --js-plugins > autoprefixer--js-plugins 1`] = `
         "always",
         {
           "null": "ignore",
+        },
+      ],
+      "eslint-js/camelcase": [
+        "error",
+        {
+          "allow": [
+            "^UNSAFE_",
+          ],
+          "ignoreGlobals": true,
+          "properties": "never",
+        },
+      ],
+      "eslint-js/dot-notation": [
+        "error",
+        {
+          "allowKeywords": true,
+        },
+      ],
+      "eslint-js/func-name-matching": "error",
+      "eslint-js/no-dupe-args": "error",
+      "eslint-js/no-implied-eval": "error",
+      "eslint-js/no-invalid-this": "error",
+      "eslint-js/no-octal": "error",
+      "eslint-js/no-octal-escape": "error",
+      "eslint-js/no-undef-init": "error",
+      "eslint-js/no-unreachable-loop": "error",
+      "eslint-js/object-shorthand": "error",
+      "eslint-js/one-var": [
+        "error",
+        {
+          "initialized": "never",
+        },
+      ],
+      "eslint-js/prefer-arrow-callback": "error",
+      "eslint-js/prefer-regex-literals": [
+        "error",
+        {
+          "disallowRedundantWrapping": true,
         },
       ],
       "for-direction": "error",
@@ -752,7 +794,6 @@ exports[`autoprefixer --js-plugins > autoprefixer--js-plugins 1`] = `
   "skipped": {
     "js-plugins": [],
     "not-implemented": [
-      "func-name-matching",
       "n/handle-callback-err",
       "n/no-deprecated-api",
       "n/no-extraneous-require",
@@ -762,12 +803,6 @@ exports[`autoprefixer --js-plugins > autoprefixer--js-plugins 1`] = `
       "n/no-unsupported-features/es-syntax",
       "n/no-unsupported-features/node-builtins",
       "n/process-exit-as-throw",
-      "no-implied-eval",
-      "no-unreachable-loop",
-      "object-shorthand",
-      "one-var",
-      "prefer-arrow-callback",
-      "prefer-regex-literals",
     ],
     "nursery": [
       "getter-return",
@@ -776,15 +811,7 @@ exports[`autoprefixer --js-plugins > autoprefixer--js-plugins 1`] = `
       "no-unreachable",
     ],
     "type-aware": [],
-    "unsupported": [
-      "camelcase",
-      "dot-notation",
-      "no-dupe-args",
-      "no-invalid-this",
-      "no-octal",
-      "no-octal-escape",
-      "no-undef-init",
-    ],
+    "unsupported": [],
   },
   "warnings": [],
 }

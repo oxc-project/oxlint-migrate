@@ -535,6 +535,116 @@ describe('rules and plugins', () => {
       // rule should also be removed from overrides
       expect(overrides[0].rules?.['some-plugin/some-rule']).toBeUndefined();
     });
+
+    test('active unsupported core rule is mapped to eslint-js/ prefix', () => {
+      const eslintConfig: Linter.Config = {
+        rules: {
+          'no-restricted-syntax': ['error', 'WithStatement'],
+        },
+      };
+
+      const config: OxlintConfig = {};
+
+      transformRuleEntry(eslintConfig, config, undefined, {
+        jsPlugins: true,
+      });
+
+      expect(config.rules?.['eslint-js/no-restricted-syntax']).toStrictEqual([
+        'error',
+        'WithStatement',
+      ]);
+      expect(config.rules?.['no-restricted-syntax']).toBeUndefined();
+      expect(config.jsPlugins).toContainEqual({
+        name: 'eslint-js',
+        specifier: '@oxlint/plugin-eslint',
+      });
+    });
+
+    test('off core rule in base config deletes eslint-js/ prefixed key', () => {
+      const enablingConfig: Linter.Config = {
+        rules: {
+          'no-restricted-syntax': ['error', 'WithStatement'],
+        },
+      };
+
+      const disablingConfig: Linter.Config = {
+        rules: {
+          'no-restricted-syntax': 'off',
+        },
+      };
+
+      const config: OxlintConfig = {};
+
+      transformRuleEntry(enablingConfig, config, undefined, {
+        jsPlugins: true,
+      });
+      transformRuleEntry(disablingConfig, config, undefined, {
+        jsPlugins: true,
+      });
+
+      expect(config.rules?.['eslint-js/no-restricted-syntax']).toBeUndefined();
+      expect(config.rules?.['no-restricted-syntax']).toBeUndefined();
+    });
+
+    test('off core rule in override is kept with eslint-js/ prefix', () => {
+      const eslintConfig: Linter.Config = {
+        files: ['**/*.test.js'],
+        rules: {
+          'no-restricted-syntax': 'off',
+        },
+      };
+
+      const override: OxlintConfigOverride = { files: ['**/*.test.js'] };
+
+      transformRuleEntry(eslintConfig, override, undefined, {
+        jsPlugins: true,
+      });
+
+      expect(override.rules?.['eslint-js/no-restricted-syntax']).toBe('off');
+      expect(override.rules?.['no-restricted-syntax']).toBeUndefined();
+    });
+
+    test('base config removes eslint-js/ prefixed core rule from earlier override', () => {
+      const overrideConfig: Linter.Config = {
+        files: ['**/*.js'],
+        rules: {
+          'no-restricted-syntax': ['error', 'WithStatement'],
+        },
+      };
+
+      const baseConfig: Linter.Config = {
+        rules: {
+          'no-restricted-syntax': ['error', 'ForInStatement'],
+        },
+      };
+
+      const overrides: OxlintConfigOverride[] = [{ files: ['**/*.js'] }];
+      const baseTarget: OxlintConfig = {};
+
+      transformRuleEntry(overrideConfig, overrides[0], undefined, {
+        jsPlugins: true,
+      });
+      transformRuleEntry(
+        baseConfig,
+        baseTarget,
+        undefined,
+        { jsPlugins: true },
+        overrides
+      );
+
+      // Base config wins: override's rule is removed
+      expect(
+        overrides[0].rules?.['eslint-js/no-restricted-syntax']
+      ).toBeUndefined();
+      // Base config has the rule with new value
+      expect(
+        baseTarget.rules?.['eslint-js/no-restricted-syntax']
+      ).toStrictEqual(['error', 'ForInStatement']);
+      expect(baseTarget.jsPlugins).toContainEqual({
+        name: 'eslint-js',
+        specifier: '@oxlint/plugin-eslint',
+      });
+    });
   });
 
   test('cleanUpUselessOverridesRules', () => {
