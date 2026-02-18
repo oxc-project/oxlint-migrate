@@ -62,12 +62,13 @@ describe('processConfigFiles', () => {
         ['**/*.ts', '**/*.tsx'],
         '**/*.js',
         ['**/*.mjs', '**/*.cjs'],
+        ['**/*.vue', '**/*.vue'],
         '**/*.jsx',
       ],
       reporter
     );
 
-    expect(result).toStrictEqual(['**/*.js', '**/*.jsx']);
+    expect(result).toStrictEqual(['**/*.js', '**/*.vue', '**/*.jsx']);
 
     const reports = reporter.getWarnings();
     expect(reports).toHaveLength(2);
