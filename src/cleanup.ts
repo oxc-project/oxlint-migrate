@@ -86,8 +86,7 @@ const cleanUpUselessOverridesEntries = (config: OxlintConfig): void => {
     (overrides) => Object.keys(overrides).length > 0
   );
 
-  // Merge consecutive identical overrides to avoid redundancy
-  mergeConsecutiveIdenticalOverrides(config);
+  // Merge consecutive overrides that are identical except for their `files` property, to avoid repetition
   mergeConsecutiveOverridesWithDifferingFiles(config);
 
   if (config.overrides.length === 0) {
@@ -134,74 +133,6 @@ export const cleanUpOxlintConfig = (config: OxlintConfigOrOverride): void => {
     cleanUpDisabledRootRules(config);
   }
 };
-
-/**
- * Merges consecutive identical overrides in the config's overrides array
- * Merges only if the overrides are directly next to each other
- * (otherwise they could be overriden in between one another).
- *
- * Example:
- *
- * ```json
- * overrides: [
- *   {
- *     "files": [
- *       "*.ts",
- *       "*.tsx",
- *     ],
- *     "plugins": [
- *       "typescript",
- *     ],
- *   },
- *    {
- *      "files": [
- *        "*.ts",
- *        "*.tsx",
- *      ],
- *      "plugins": [
- *        "typescript",
- *      ],
- *    },
- * ]
- * ```
- */
-function mergeConsecutiveIdenticalOverrides(config: OxlintConfig) {
-  if (config.overrides === undefined) {
-    return;
-  }
-  if (config.overrides.length <= 1) {
-    return;
-  }
-
-  const mergedOverrides: OxlintConfigOverride[] = [];
-  let i = 0;
-
-  while (i < config.overrides.length) {
-    const current = config.overrides[i];
-
-    // Check if the next override is identical to the current one
-    if (
-      i + 1 < config.overrides.length &&
-      isEqualDeep(current, config.overrides[i + 1])
-    ) {
-      // Skip duplicates - just add the first one
-      mergedOverrides.push(current);
-      // Skip all consecutive duplicates
-      while (
-        i + 1 < config.overrides.length &&
-        isEqualDeep(current, config.overrides[i + 1])
-      ) {
-        i++;
-      }
-    } else {
-      mergedOverrides.push(current);
-    }
-
-    i++;
-  }
-
-  config.overrides = mergedOverrides;
-}
 
 /**
  * Merge consecutive overrides that have differing files but everything else is identical.
