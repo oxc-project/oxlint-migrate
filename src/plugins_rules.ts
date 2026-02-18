@@ -10,11 +10,13 @@ import {
 } from './types.js';
 import {
   rulesPrefixesForPlugins,
+  rulesPrefixSpecifiers,
   typescriptRulesExtendEslintRules,
 } from './constants.js';
 import {
   deduplicateJsPlugins,
   enableJsPluginRule,
+  extractPluginId,
   isIgnoredPluginRule,
 } from './jsPlugins.js';
 import { buildUnsupportedRuleExplanations, isEqualDeep } from './utilities.js';
@@ -178,12 +180,27 @@ export const transformRuleEntry = (
 
     const isSupported = allRules.includes(rule);
 
-    // When --js-plugins is enabled, rename unsupported core ESLint rules to
-    // `eslint-js/<rule>` so they flow through the JS plugin path naturally.
+    // When --js-plugins is enabled, rename unsupported rules so they flow
+    // through the JS plugin path. Core ESLint rules become `eslint-js/<rule>`;
+    // native Oxlint plugin rules become `<prefix>-js/<rule>`.
     let jsPluginEntry: OxlintConfigJsPluginEntry | undefined;
-    if (!isSupported && options?.jsPlugins && !rule.includes('/')) {
-      rule = `eslint-js/${rule}`;
-      jsPluginEntry = { name: 'eslint-js', specifier: '@oxlint/plugin-eslint' };
+    if (!isSupported && options?.jsPlugins) {
+      const prefix = extractPluginId(rule);
+      if (prefix === undefined) {
+        // Core ESLint rule (no plugin prefix)
+        rule = `eslint-js/${rule}`;
+        jsPluginEntry = {
+          name: 'eslint-js',
+          specifier: '@oxlint/plugin-eslint',
+        };
+      } else if (Object.hasOwn(rulesPrefixSpecifiers, prefix)) {
+        const ruleName = rule.slice(prefix.length + 1);
+        rule = `${prefix}-js/${ruleName}`;
+        jsPluginEntry = {
+          name: `${prefix}-js`,
+          specifier: rulesPrefixSpecifiers[prefix],
+        };
+      }
     }
 
     // removing rules from previous "overrides"

@@ -439,10 +439,37 @@ exports[`vscode --js-plugins > vscode--js-plugins 1`] = `
         ],
         "jsPlugins": [
           "@stylistic/eslint-plugin-ts",
+          {
+            "name": "jsdoc-js",
+            "specifier": "eslint-plugin-jsdoc",
+          },
         ],
         "rules": {
           "@stylistic/ts/member-delimiter-style": "warn",
           "@stylistic/ts/semi": "warn",
+          "jsdoc-js/no-types": "warn",
+        },
+      },
+      {
+        "files": [
+          "src/**/*.ts",
+        ],
+        "jsPlugins": [
+          {
+            "name": "@typescript-eslint-js",
+            "specifier": "@typescript-eslint/eslint-plugin",
+          },
+        ],
+        "rules": {
+          "@typescript-eslint-js/naming-convention": [
+            "warn",
+            {
+              "format": [
+                "PascalCase",
+              ],
+              "selector": "class",
+            },
+          ],
         },
       },
       {
@@ -470,10 +497,49 @@ exports[`vscode --js-plugins > vscode--js-plugins 1`] = `
         "files": [
           "**/vscode.d.ts",
         ],
+        "jsPlugins": [
+          {
+            "name": "jsdoc-js",
+            "specifier": "eslint-plugin-jsdoc",
+          },
+        ],
         "plugins": [
           "jsdoc",
         ],
         "rules": {
+          "jsdoc-js/check-param-names": [
+            "warn",
+            {
+              "checkDestructured": false,
+              "enableFixer": false,
+            },
+          ],
+          "jsdoc-js/no-multi-asterisks": [
+            "warn",
+            {
+              "allowWhitespace": true,
+            },
+          ],
+          "jsdoc-js/require-jsdoc": [
+            "warn",
+            {
+              "contexts": [
+                "TSInterfaceDeclaration",
+                "TSPropertySignature",
+                "TSMethodSignature",
+                "TSDeclareFunction",
+                "ClassDeclaration",
+                "MethodDefinition",
+                "PropertyDeclaration",
+                "TSEnumDeclaration",
+                "TSEnumMember",
+                "ExportNamedDeclaration",
+              ],
+              "enableFixer": false,
+            },
+          ],
+          "jsdoc-js/tag-lines": "off",
+          "jsdoc-js/valid-types": "off",
           "jsdoc/require-returns": "warn",
         },
       },
@@ -845,14 +911,119 @@ exports[`vscode --js-plugins > vscode--js-plugins 1`] = `
         ],
         "jsPlugins": [
           {
+            "name": "@typescript-eslint-js",
+            "specifier": "@typescript-eslint/eslint-plugin",
+          },
+          {
             "name": "eslint-js",
             "specifier": "@oxlint/plugin-eslint",
           },
         ],
         "rules": {
+          "@typescript-eslint-js/naming-convention": [
+            "warn",
+            {
+              "format": [
+                "camelCase",
+                "UPPER_CASE",
+                "PascalCase",
+              ],
+              "selector": "variable",
+            },
+            {
+              "filter": "^I.+Service$",
+              "format": [
+                "PascalCase",
+              ],
+              "prefix": [
+                "I",
+              ],
+              "selector": "variable",
+            },
+            {
+              "format": [
+                "camelCase",
+              ],
+              "leadingUnderscore": "require",
+              "modifiers": [
+                "private",
+              ],
+              "selector": "memberLike",
+            },
+            {
+              "format": [
+                "camelCase",
+              ],
+              "leadingUnderscore": "require",
+              "modifiers": [
+                "protected",
+              ],
+              "selector": "memberLike",
+            },
+            {
+              "format": [
+                "PascalCase",
+              ],
+              "selector": "enumMember",
+            },
+            {
+              "format": [
+                "camelCase",
+                "UPPER_CASE",
+              ],
+              "modifiers": [
+                "public",
+              ],
+              "selector": "method",
+            },
+            {
+              "format": [
+                "PascalCase",
+              ],
+              "selector": "typeLike",
+            },
+            {
+              "format": [
+                "PascalCase",
+              ],
+              "selector": "interface",
+            },
+          ],
           "eslint-js/comma-dangle": [
             "warn",
             "only-multiline",
+          ],
+        },
+      },
+      {
+        "files": [
+          "extensions/markdown-language-features/**/*.ts",
+        ],
+        "jsPlugins": [
+          {
+            "name": "@typescript-eslint-js",
+            "specifier": "@typescript-eslint/eslint-plugin",
+          },
+        ],
+        "rules": {
+          "@typescript-eslint-js/naming-convention": [
+            "warn",
+            {
+              "format": null,
+              "leadingUnderscore": "require",
+              "modifiers": [
+                "private",
+              ],
+              "selector": "default",
+            },
+            {
+              "format": null,
+              "leadingUnderscore": "forbid",
+              "modifiers": [
+                "public",
+              ],
+              "selector": "default",
+            },
           ],
         },
       },
@@ -923,9 +1094,7 @@ exports[`vscode --js-plugins > vscode--js-plugins 1`] = `
       "local/code-declare-service-brand",
       "local/code-layering",
       "local/code-no-unused-expressions",
-      "jsdoc/no-types",
       "local/code-no-static-self-ref",
-      "@typescript-eslint/naming-convention",
       "local/code-no-test-only",
       "local/code-no-test-async-suite",
       "local/code-must-use-result",
@@ -940,9 +1109,6 @@ exports[`vscode --js-plugins > vscode--js-plugins 1`] = `
       "local/vscode-dts-vscode-in-comments",
       "local/vscode-dts-provider-naming",
       "local/vscode-dts-event-naming",
-      "jsdoc/no-multi-asterisks",
-      "jsdoc/require-jsdoc",
-      "jsdoc/check-param-names",
       "local/code-amd-node-module",
       "local/code-no-global-document-listener",
       "local/code-import-patterns",

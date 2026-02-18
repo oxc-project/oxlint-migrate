@@ -291,6 +291,10 @@ exports[`eslint-plugin-oxlint --js-plugins > eslint-plugin-oxlint--js-plugins 1`
         "name": "eslint-js",
         "specifier": "@oxlint/plugin-eslint",
       },
+      {
+        "name": "unicorn-js",
+        "specifier": "eslint-plugin-unicorn",
+      },
     ],
     "overrides": [
       {
@@ -409,6 +413,17 @@ exports[`eslint-plugin-oxlint --js-plugins > eslint-plugin-oxlint--js-plugins 1`
       "no-useless-escape": "error",
       "no-with": "error",
       "require-yield": "error",
+      "unicorn-js/expiring-todo-comments": "error",
+      "unicorn-js/import-style": "error",
+      "unicorn-js/no-for-loop": "error",
+      "unicorn-js/no-named-default": "error",
+      "unicorn-js/no-unnecessary-polyfills": "error",
+      "unicorn-js/prefer-export-from": "error",
+      "unicorn-js/prefer-module": "error",
+      "unicorn-js/prefer-single-call": "error",
+      "unicorn-js/prefer-switch": "error",
+      "unicorn-js/prefer-ternary": "error",
+      "unicorn-js/prevent-abbreviations": "error",
       "unicorn/catch-error-name": "error",
       "unicorn/consistent-assert": "error",
       "unicorn/consistent-date-clone": "error",
@@ -532,27 +547,14 @@ exports[`eslint-plugin-oxlint --js-plugins > eslint-plugin-oxlint--js-plugins 1`
   },
   "skipped": {
     "js-plugins": [],
-    "not-implemented": [
-      "unicorn/expiring-todo-comments",
-      "unicorn/import-style",
-      "unicorn/no-unnecessary-polyfills",
-      "unicorn/prefer-export-from",
-      "unicorn/prefer-module",
-      "unicorn/prefer-single-call",
-      "unicorn/prefer-switch",
-      "unicorn/prefer-ternary",
-      "unicorn/prevent-abbreviations",
-    ],
+    "not-implemented": [],
     "nursery": [
       "getter-return",
       "no-undef",
       "no-unreachable",
     ],
     "type-aware": [],
-    "unsupported": [
-      "unicorn/no-for-loop",
-      "unicorn/no-named-default",
-    ],
+    "unsupported": [],
   },
   "warnings": [],
 }

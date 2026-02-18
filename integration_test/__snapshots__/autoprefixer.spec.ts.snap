@@ -347,9 +347,28 @@ exports[`autoprefixer --js-plugins > autoprefixer--js-plugins 1`] = `
         "name": "eslint-js",
         "specifier": "@oxlint/plugin-eslint",
       },
+      {
+        "name": "n-js",
+        "specifier": "eslint-plugin-n",
+      },
       "eslint-plugin-prefer-let",
     ],
     "overrides": [
+      {
+        "files": [
+          "**/test/*",
+        ],
+        "jsPlugins": [
+          {
+            "name": "n-js",
+            "specifier": "eslint-plugin-n",
+          },
+        ],
+        "rules": {
+          "n-js/no-unpublished-require": "off",
+          "n-js/no-unsupported-features/node-builtins": "off",
+        },
+      },
       {
         "files": [
           "**/*.test.{js,jsx}",
@@ -364,8 +383,29 @@ exports[`autoprefixer --js-plugins > autoprefixer--js-plugins 1`] = `
         "files": [
           "bin/autoprefixer",
         ],
+        "jsPlugins": [
+          {
+            "name": "n-js",
+            "specifier": "eslint-plugin-n",
+          },
+        ],
         "rules": {
+          "n-js/no-unsupported-features/es-syntax": "off",
           "node/global-require": "off",
+        },
+      },
+      {
+        "files": [
+          "data/prefixes.js",
+        ],
+        "jsPlugins": [
+          {
+            "name": "import-js",
+            "specifier": "eslint-plugin-import",
+          },
+        ],
+        "rules": {
+          "import-js/order": "off",
         },
       },
     ],
@@ -454,6 +494,33 @@ exports[`autoprefixer --js-plugins > autoprefixer--js-plugins 1`] = `
       "import-x/no-duplicates": "error",
       "import-x/no-named-default": "error",
       "import-x/no-webpack-loader-syntax": "error",
+      "n-js/handle-callback-err": [
+        "error",
+        "^(err|error)$",
+      ],
+      "n-js/no-deprecated-api": "error",
+      "n-js/no-extraneous-require": "error",
+      "n-js/no-missing-require": "error",
+      "n-js/no-unpublished-require": "error",
+      "n-js/no-unsupported-features/es-builtins": "error",
+      "n-js/no-unsupported-features/es-syntax": [
+        "error",
+        {
+          "ignores": [
+            "modules",
+            "dynamicImport",
+          ],
+        },
+      ],
+      "n-js/no-unsupported-features/node-builtins": [
+        "error",
+        {
+          "ignores": [
+            "worker_threads",
+          ],
+        },
+      ],
+      "n-js/process-exit-as-throw": "error",
       "new-cap": [
         "error",
         {
@@ -793,17 +860,7 @@ exports[`autoprefixer --js-plugins > autoprefixer--js-plugins 1`] = `
   },
   "skipped": {
     "js-plugins": [],
-    "not-implemented": [
-      "n/handle-callback-err",
-      "n/no-deprecated-api",
-      "n/no-extraneous-require",
-      "n/no-missing-require",
-      "n/no-unpublished-require",
-      "n/no-unsupported-features/es-builtins",
-      "n/no-unsupported-features/es-syntax",
-      "n/no-unsupported-features/node-builtins",
-      "n/process-exit-as-throw",
-    ],
+    "not-implemented": [],
     "nursery": [
       "getter-return",
       "import-x/export",

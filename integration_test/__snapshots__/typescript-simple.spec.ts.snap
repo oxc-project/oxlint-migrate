@@ -160,11 +160,16 @@ exports[`typescript-simple --js-plugins > typescript-simple--js-plugins 1`] = `
             "name": "eslint-js",
             "specifier": "@oxlint/plugin-eslint",
           },
+          {
+            "name": "@typescript-eslint-js",
+            "specifier": "@typescript-eslint/eslint-plugin",
+          },
         ],
         "plugins": [
           "typescript",
         ],
         "rules": {
+          "@typescript-eslint-js/no-unnecessary-type-conversion": "error",
           "@typescript-eslint/ban-ts-comment": [
             "error",
             {
@@ -233,9 +238,7 @@ exports[`typescript-simple --js-plugins > typescript-simple--js-plugins 1`] = `
   },
   "skipped": {
     "js-plugins": [],
-    "not-implemented": [
-      "@typescript-eslint/no-unnecessary-type-conversion",
-    ],
+    "not-implemented": [],
     "nursery": [
       "getter-return",
       "no-undef",
