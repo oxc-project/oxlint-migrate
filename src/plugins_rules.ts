@@ -372,11 +372,21 @@ export const cleanUpUselessOverridesRules = (config: OxlintConfig): void => {
     // Update the first override with the final merged rules
     firstOverride.rules = entry.finalRules;
 
-    // Remove rules that match root config
+    // Remove rules that match root config.
+    // Exception is if a previous override has the same rule, in which case this override needs
+    // to re-assert the root value.
+    // Note that if previous override had same value as root, it would have been removed already.
     if (firstOverride.rules) {
       for (const [rule, settings] of Object.entries(firstOverride.rules)) {
         if (config.rules[rule] === settings) {
-          delete firstOverride.rules[rule];
+          // The override has same rule as root with same setting.
+          // Check if any previous override potentially overrides root.
+          const previousOverrideHasRule = config.overrides
+            .slice(0, entry.firstIndex)
+            .some((prev) => prev.rules?.[rule] !== undefined);
+          if (!previousOverrideHasRule) {
+            delete firstOverride.rules[rule];
+          }
         }
       }
 
