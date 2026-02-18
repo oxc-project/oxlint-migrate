@@ -18,6 +18,9 @@ const guessEslintPluginName = (pluginName: string): string => {
     // Plain scoped plugin (e.g. @stylistic)
     return `${scope}/eslint-plugin`;
   }
+
+  if (pluginName === 'eslint-js') return 'oxlint-plugin-eslint';
+
   return `eslint-plugin-${pluginName}`;
 };
 
