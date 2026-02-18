@@ -12,7 +12,7 @@ import {
   typescriptRulesExtendEslintRules,
 } from './constants.js';
 import { enableJsPluginRule, isIgnoredPluginRule } from './jsPlugins.js';
-import { buildUnsupportedRuleExplanations } from './utilities.js';
+import { buildUnsupportedRuleExplanations, isEqualDeep } from './utilities.js';
 
 const allRules = Object.values(rules).flat();
 const unsupportedRuleExplanations = buildUnsupportedRuleExplanations();
@@ -324,71 +324,93 @@ export const cleanUpUselessOverridesPlugins = (config: OxlintConfig): void => {
 };
 
 export const cleanUpUselessOverridesRules = (config: OxlintConfig): void => {
-  if (config.rules === undefined || config.overrides === undefined) {
+  if (config.overrides === undefined) {
     return;
   }
 
-  // Build a map of files pattern -> {firstOverrideIndex, finalMergedRules}
-  const filesPatternMap = new Map<
-    string,
-    {
-      firstIndex: number;
-      finalRules: Record<string, Linter.RuleEntry>;
-      indicesToRemove: number[];
-    }
-  >();
+  for (let i = 0; i < config.overrides.length; i++) {
+    const current = config.overrides[i];
 
-  // First pass: merge all overrides with same files pattern
-  for (const [i, override] of config.overrides.entries()) {
-    if (override.files === undefined) {
-      continue;
-    }
-
-    const filesKey = JSON.stringify(override.files);
-    let entry = filesPatternMap.get(filesKey);
-
-    if (!entry) {
-      entry = {
-        firstIndex: i,
-        finalRules: {},
-        indicesToRemove: [],
-      };
-      filesPatternMap.set(filesKey, entry);
-    } else {
-      // Mark this duplicate for removal
-      entry.indicesToRemove.push(i);
+    // Merge consecutive same-files overrides into prev and splice out current.
+    // Non-consecutive same-files overrides must NOT be merged — intervening
+    // overrides with overlapping file patterns would change precedence.
+    if (i > 0) {
+      const previous = config.overrides[i - 1];
+      if (isEqualDeep(previous.files, current.files)) {
+        mergeOverrideProperties(previous, current);
+        config.overrides.splice(i, 1);
+        i -= 2; // re-process prev (merge may have changed root-matching)
+        continue;
+      }
     }
 
-    // Merge rules with last-wins semantics
-    if (override.rules) {
-      Object.assign(entry.finalRules, override.rules);
+    // Remove rules matching root config
+    removeRootMatchingRules(config, i);
+  }
+};
+
+/** Merge all properties from `source` into `target` (same-files overrides). */
+const mergeOverrideProperties = (
+  target: OxlintConfigOverride,
+  source: OxlintConfigOverride
+): void => {
+  // Rules: last-wins per key
+  if (source.rules) {
+    target.rules = { ...target.rules, ...source.rules };
+  }
+
+  // Array properties: union
+  if (source.plugins) {
+    target.plugins = [
+      ...new Set([...(target.plugins ?? []), ...source.plugins]),
+    ];
+  }
+  if (source.jsPlugins) {
+    target.jsPlugins = [
+      ...new Set([...(target.jsPlugins ?? []), ...source.jsPlugins]),
+    ];
+  }
+
+  // Object properties: last-wins per key
+  if (source.env) {
+    target.env = { ...target.env, ...source.env };
+  }
+  if (source.globals) {
+    target.globals = { ...target.globals, ...source.globals };
+  }
+  if (source.categories) {
+    target.categories = { ...target.categories, ...source.categories };
+  }
+};
+
+/**
+ * Remove rules from `config.overrides[overrideIndex]` that match root config,
+ * unless a previous override also has the rule (meaning it overrides root with
+ * a different value — same-as-root rules are removed earlier in the loop).
+ */
+const removeRootMatchingRules = (
+  config: OxlintConfig,
+  overrideIndex: number
+): void => {
+  const override = config.overrides![overrideIndex];
+
+  if (!override.rules || !config.rules) {
+    return;
+  }
+
+  for (const [rule, settings] of Object.entries(override.rules)) {
+    if (config.rules[rule] === settings) {
+      const previousOverrideHasRule = config
+        .overrides!.slice(0, overrideIndex)
+        .some((prev) => prev.rules?.[rule] !== undefined);
+      if (!previousOverrideHasRule) {
+        delete override.rules[rule];
+      }
     }
   }
 
-  // Second pass: update first occurrence with merged rules and mark duplicates for deletion
-  for (const entry of filesPatternMap.values()) {
-    const firstOverride = config.overrides[entry.firstIndex];
-
-    // Update the first override with the final merged rules
-    firstOverride.rules = entry.finalRules;
-
-    // Remove rules that match root config
-    if (firstOverride.rules) {
-      for (const [rule, settings] of Object.entries(firstOverride.rules)) {
-        if (config.rules[rule] === settings) {
-          delete firstOverride.rules[rule];
-        }
-      }
-
-      if (Object.keys(firstOverride.rules).length === 0) {
-        delete firstOverride.rules;
-      }
-    }
-
-    // Mark duplicate overrides for removal by clearing their rules
-    for (const indexToRemove of entry.indicesToRemove) {
-      delete config.overrides[indexToRemove].rules;
-    }
+  if (Object.keys(override.rules).length === 0) {
+    delete override.rules;
   }
 };
 
