@@ -6,6 +6,6 @@ export default defineConfig([
   {
     files: ['**/*.ts'],
     extends: [tseslint.configs.recommended],
-    rules: { '@typescript-eslint/no-explicit-any': 'error' },
+    rules: { '@typescript-eslint/no-explicit-any': 'warn' },
   },
 ]);
