@@ -86,14 +86,14 @@ exports[`typescript-simple > typescript-simple 1`] = `
     "js-plugins": [],
     "not-implemented": [
       "@typescript-eslint/no-unnecessary-type-conversion",
-      "@typescript-eslint/no-unnecessary-type-parameters",
-      "@typescript-eslint/no-useless-default-assignment",
     ],
     "nursery": [
       "getter-return",
       "no-undef",
       "no-unreachable",
       "@typescript-eslint/no-unnecessary-condition",
+      "@typescript-eslint/no-unnecessary-type-parameters",
+      "@typescript-eslint/no-useless-default-assignment",
     ],
     "type-aware": [
       "@typescript-eslint/await-thenable",
@@ -225,14 +225,14 @@ exports[`typescript-simple --js-plugins > typescript-simple--js-plugins 1`] = `
     "js-plugins": [],
     "not-implemented": [
       "@typescript-eslint/no-unnecessary-type-conversion",
-      "@typescript-eslint/no-unnecessary-type-parameters",
-      "@typescript-eslint/no-useless-default-assignment",
     ],
     "nursery": [
       "getter-return",
       "no-undef",
       "no-unreachable",
       "@typescript-eslint/no-unnecessary-condition",
+      "@typescript-eslint/no-unnecessary-type-parameters",
+      "@typescript-eslint/no-useless-default-assignment",
     ],
     "type-aware": [
       "@typescript-eslint/await-thenable",
@@ -422,14 +422,14 @@ exports[`typescript-simple --type-aware > typescript-simple--type-aware 1`] = `
     "js-plugins": [],
     "not-implemented": [
       "@typescript-eslint/no-unnecessary-type-conversion",
-      "@typescript-eslint/no-unnecessary-type-parameters",
-      "@typescript-eslint/no-useless-default-assignment",
     ],
     "nursery": [
       "getter-return",
       "no-undef",
       "no-unreachable",
       "@typescript-eslint/no-unnecessary-condition",
+      "@typescript-eslint/no-unnecessary-type-parameters",
+      "@typescript-eslint/no-useless-default-assignment",
     ],
     "type-aware": [],
     "unsupported": [],
@@ -523,14 +523,14 @@ exports[`typescript-simple merge > typescript-simple--merge 1`] = `
     "js-plugins": [],
     "not-implemented": [
       "@typescript-eslint/no-unnecessary-type-conversion",
-      "@typescript-eslint/no-unnecessary-type-parameters",
-      "@typescript-eslint/no-useless-default-assignment",
     ],
     "nursery": [
       "getter-return",
       "no-undef",
       "no-unreachable",
       "@typescript-eslint/no-unnecessary-condition",
+      "@typescript-eslint/no-unnecessary-type-parameters",
+      "@typescript-eslint/no-useless-default-assignment",
     ],
     "type-aware": [
       "@typescript-eslint/await-thenable",
