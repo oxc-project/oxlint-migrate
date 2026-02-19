@@ -359,10 +359,10 @@ exports[`vscode > vscode 1`] = `
       "local/code-import-patterns",
       "local/code-no-runtime-import",
       "local/code-limited-top-functions",
-      "@typescript-eslint/prefer-readonly",
     ],
     "nursery": [
       "@typescript-eslint/prefer-optional-chain",
+      "@typescript-eslint/prefer-readonly",
     ],
     "type-aware": [],
     "unsupported": [
@@ -755,10 +755,10 @@ exports[`vscode --js-plugins > vscode--js-plugins 1`] = `
       "local/code-import-patterns",
       "local/code-no-runtime-import",
       "local/code-limited-top-functions",
-      "@typescript-eslint/prefer-readonly",
     ],
     "nursery": [
       "@typescript-eslint/prefer-optional-chain",
+      "@typescript-eslint/prefer-readonly",
     ],
     "type-aware": [],
     "unsupported": [
@@ -1130,10 +1130,10 @@ exports[`vscode --type-aware > vscode--type-aware 1`] = `
       "local/code-import-patterns",
       "local/code-no-runtime-import",
       "local/code-limited-top-functions",
-      "@typescript-eslint/prefer-readonly",
     ],
     "nursery": [
       "@typescript-eslint/prefer-optional-chain",
+      "@typescript-eslint/prefer-readonly",
     ],
     "type-aware": [],
     "unsupported": [
@@ -1506,10 +1506,10 @@ exports[`vscode merge > vscode--merge 1`] = `
       "local/code-import-patterns",
       "local/code-no-runtime-import",
       "local/code-limited-top-functions",
-      "@typescript-eslint/prefer-readonly",
     ],
     "nursery": [
       "@typescript-eslint/prefer-optional-chain",
+      "@typescript-eslint/prefer-readonly",
     ],
     "type-aware": [],
     "unsupported": [

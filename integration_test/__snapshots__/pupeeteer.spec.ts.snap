@@ -258,13 +258,13 @@ exports[`puppeteer > puppeteer 1`] = `
       "no-implied-eval",
       "import/order",
       "no-restricted-syntax",
-      "@typescript-eslint/consistent-type-exports",
     ],
     "nursery": [
       "import/named",
       "no-unreachable",
       "getter-return",
       "no-undef",
+      "@typescript-eslint/consistent-type-exports",
     ],
     "type-aware": [
       "@typescript-eslint/no-unnecessary-template-expression",
@@ -568,13 +568,13 @@ exports[`puppeteer --js-plugins > puppeteer--js-plugins 1`] = `
       "no-implied-eval",
       "import/order",
       "no-restricted-syntax",
-      "@typescript-eslint/consistent-type-exports",
     ],
     "nursery": [
       "import/named",
       "no-unreachable",
       "getter-return",
       "no-undef",
+      "@typescript-eslint/consistent-type-exports",
     ],
     "type-aware": [
       "@typescript-eslint/no-unnecessary-template-expression",
@@ -880,13 +880,13 @@ exports[`puppeteer --type-aware > puppeteer--type-aware 1`] = `
       "no-implied-eval",
       "import/order",
       "no-restricted-syntax",
-      "@typescript-eslint/consistent-type-exports",
     ],
     "nursery": [
       "import/named",
       "no-unreachable",
       "getter-return",
       "no-undef",
+      "@typescript-eslint/consistent-type-exports",
     ],
     "type-aware": [],
     "unsupported": [
@@ -1146,13 +1146,13 @@ exports[`puppeteer merge > puppeteer--merge 1`] = `
       "no-implied-eval",
       "import/order",
       "no-restricted-syntax",
-      "@typescript-eslint/consistent-type-exports",
     ],
     "nursery": [
       "import/named",
       "no-unreachable",
       "getter-return",
       "no-undef",
+      "@typescript-eslint/consistent-type-exports",
     ],
     "type-aware": [
       "@typescript-eslint/no-unnecessary-template-expression",
