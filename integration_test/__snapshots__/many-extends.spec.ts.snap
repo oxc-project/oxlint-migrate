@@ -28,6 +28,9 @@ exports[`many-extends.spec.ts > many-extends.spec.ts 1`] = `
           "**/*.ts",
           "**/*.tsx",
         ],
+        "plugins": [
+          "typescript",
+        ],
         "rules": {
           "@typescript-eslint/adjacent-overload-signatures": "error",
           "@typescript-eslint/array-type": "error",
@@ -113,15 +116,6 @@ exports[`many-extends.spec.ts > many-extends.spec.ts 1`] = `
           "prefer-spread": "error",
           "require-await": "off",
         },
-      },
-      {
-        "files": [
-          "**/*.ts",
-          "**/*.tsx",
-        ],
-        "plugins": [
-          "typescript",
-        ],
       },
     ],
     "plugins": [
@@ -253,12 +247,6 @@ exports[`many-extends.spec.ts > many-extends.spec.ts 1`] = `
       "react/no-deprecated",
       "react/prop-types",
       "@typescript-eslint/no-unnecessary-type-conversion",
-      "@typescript-eslint/no-unnecessary-type-parameters",
-      "@typescript-eslint/no-useless-default-assignment",
-      "@typescript-eslint/dot-notation",
-      "@typescript-eslint/prefer-find",
-      "@typescript-eslint/prefer-regexp-exec",
-      "@typescript-eslint/prefer-string-starts-ends-with",
       "jsdoc/no-types",
       "react/prefer-stateless-function",
       "react/function-component-definition",
@@ -271,7 +259,13 @@ exports[`many-extends.spec.ts > many-extends.spec.ts 1`] = `
       "import/export",
       "react/require-render-return",
       "@typescript-eslint/no-unnecessary-condition",
+      "@typescript-eslint/no-unnecessary-type-parameters",
+      "@typescript-eslint/no-useless-default-assignment",
+      "@typescript-eslint/dot-notation",
+      "@typescript-eslint/prefer-find",
       "@typescript-eslint/prefer-optional-chain",
+      "@typescript-eslint/prefer-regexp-exec",
+      "@typescript-eslint/prefer-string-starts-ends-with",
     ],
     "type-aware": [
       "@typescript-eslint/await-thenable",
@@ -373,6 +367,9 @@ exports[`many-extends.spec.ts --js-plugins > many-extends.spec.ts--js-plugins 1`
           "**/*.ts",
           "**/*.tsx",
         ],
+        "plugins": [
+          "typescript",
+        ],
         "rules": {
           "@typescript-eslint/adjacent-overload-signatures": "error",
           "@typescript-eslint/array-type": "error",
@@ -458,15 +455,6 @@ exports[`many-extends.spec.ts --js-plugins > many-extends.spec.ts--js-plugins 1`
           "prefer-spread": "error",
           "require-await": "off",
         },
-      },
-      {
-        "files": [
-          "**/*.ts",
-          "**/*.tsx",
-        ],
-        "plugins": [
-          "typescript",
-        ],
       },
     ],
     "plugins": [
@@ -598,12 +586,6 @@ exports[`many-extends.spec.ts --js-plugins > many-extends.spec.ts--js-plugins 1`
       "react/no-deprecated",
       "react/prop-types",
       "@typescript-eslint/no-unnecessary-type-conversion",
-      "@typescript-eslint/no-unnecessary-type-parameters",
-      "@typescript-eslint/no-useless-default-assignment",
-      "@typescript-eslint/dot-notation",
-      "@typescript-eslint/prefer-find",
-      "@typescript-eslint/prefer-regexp-exec",
-      "@typescript-eslint/prefer-string-starts-ends-with",
       "jsdoc/no-types",
       "react/prefer-stateless-function",
       "react/function-component-definition",
@@ -616,7 +598,13 @@ exports[`many-extends.spec.ts --js-plugins > many-extends.spec.ts--js-plugins 1`
       "import/export",
       "react/require-render-return",
       "@typescript-eslint/no-unnecessary-condition",
+      "@typescript-eslint/no-unnecessary-type-parameters",
+      "@typescript-eslint/no-useless-default-assignment",
+      "@typescript-eslint/dot-notation",
+      "@typescript-eslint/prefer-find",
       "@typescript-eslint/prefer-optional-chain",
+      "@typescript-eslint/prefer-regexp-exec",
+      "@typescript-eslint/prefer-string-starts-ends-with",
     ],
     "type-aware": [
       "@typescript-eslint/await-thenable",
@@ -717,6 +705,9 @@ exports[`many-extends.spec.ts --type-aware > many-extends.spec.ts--type-aware 1`
         "files": [
           "**/*.ts",
           "**/*.tsx",
+        ],
+        "plugins": [
+          "typescript",
         ],
         "rules": {
           "@typescript-eslint/adjacent-overload-signatures": "error",
@@ -865,15 +856,6 @@ exports[`many-extends.spec.ts --type-aware > many-extends.spec.ts--type-aware 1`
           "require-await": "off",
         },
       },
-      {
-        "files": [
-          "**/*.ts",
-          "**/*.tsx",
-        ],
-        "plugins": [
-          "typescript",
-        ],
-      },
     ],
     "plugins": [
       "import",
@@ -1004,12 +986,6 @@ exports[`many-extends.spec.ts --type-aware > many-extends.spec.ts--type-aware 1`
       "react/no-deprecated",
       "react/prop-types",
       "@typescript-eslint/no-unnecessary-type-conversion",
-      "@typescript-eslint/no-unnecessary-type-parameters",
-      "@typescript-eslint/no-useless-default-assignment",
-      "@typescript-eslint/dot-notation",
-      "@typescript-eslint/prefer-find",
-      "@typescript-eslint/prefer-regexp-exec",
-      "@typescript-eslint/prefer-string-starts-ends-with",
       "jsdoc/no-types",
       "react/prefer-stateless-function",
       "react/function-component-definition",
@@ -1022,7 +998,13 @@ exports[`many-extends.spec.ts --type-aware > many-extends.spec.ts--type-aware 1`
       "import/export",
       "react/require-render-return",
       "@typescript-eslint/no-unnecessary-condition",
+      "@typescript-eslint/no-unnecessary-type-parameters",
+      "@typescript-eslint/no-useless-default-assignment",
+      "@typescript-eslint/dot-notation",
+      "@typescript-eslint/prefer-find",
       "@typescript-eslint/prefer-optional-chain",
+      "@typescript-eslint/prefer-regexp-exec",
+      "@typescript-eslint/prefer-string-starts-ends-with",
     ],
     "type-aware": [],
     "unsupported": [
@@ -1084,6 +1066,9 @@ exports[`many-extends.spec.ts merge > many-extends.spec.ts--merge 1`] = `
         "files": [
           "**/*.ts",
           "**/*.tsx",
+        ],
+        "plugins": [
+          "typescript",
         ],
         "rules": {
           "@typescript-eslint/adjacent-overload-signatures": "error",
@@ -1182,15 +1167,6 @@ exports[`many-extends.spec.ts merge > many-extends.spec.ts--merge 1`] = `
           "require-await": "off",
         },
       },
-      {
-        "files": [
-          "**/*.ts",
-          "**/*.tsx",
-        ],
-        "plugins": [
-          "typescript",
-        ],
-      },
     ],
     "plugins": [
       "import",
@@ -1263,12 +1239,6 @@ exports[`many-extends.spec.ts merge > many-extends.spec.ts--merge 1`] = `
       "react/no-deprecated",
       "react/prop-types",
       "@typescript-eslint/no-unnecessary-type-conversion",
-      "@typescript-eslint/no-unnecessary-type-parameters",
-      "@typescript-eslint/no-useless-default-assignment",
-      "@typescript-eslint/dot-notation",
-      "@typescript-eslint/prefer-find",
-      "@typescript-eslint/prefer-regexp-exec",
-      "@typescript-eslint/prefer-string-starts-ends-with",
       "jsdoc/no-types",
       "react/prefer-stateless-function",
       "react/function-component-definition",
@@ -1281,7 +1251,13 @@ exports[`many-extends.spec.ts merge > many-extends.spec.ts--merge 1`] = `
       "import/export",
       "react/require-render-return",
       "@typescript-eslint/no-unnecessary-condition",
+      "@typescript-eslint/no-unnecessary-type-parameters",
+      "@typescript-eslint/no-useless-default-assignment",
+      "@typescript-eslint/dot-notation",
+      "@typescript-eslint/prefer-find",
       "@typescript-eslint/prefer-optional-chain",
+      "@typescript-eslint/prefer-regexp-exec",
+      "@typescript-eslint/prefer-string-starts-ends-with",
     ],
     "type-aware": [
       "@typescript-eslint/await-thenable",

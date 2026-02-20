@@ -131,6 +131,7 @@ exports[`nuxt-auth > nuxt-auth 1`] = `
         ],
         "plugins": [
           "node",
+          "jsdoc",
         ],
         "rules": {
           "jsdoc/check-access": "warn",
@@ -145,21 +146,17 @@ exports[`nuxt-auth > nuxt-auth 1`] = `
           "jsdoc/require-returns-description": "warn",
           "node/no-exports-assign": "error",
           "node/no-new-require": "error",
+          "node/no-path-concat": "error",
         },
-      },
-      {
-        "files": [
-          "**/*.?([cm])[jt]s?(x)",
-        ],
-        "plugins": [
-          "jsdoc",
-        ],
       },
       {
         "files": [
           "**/*.?([cm])ts",
           "**/*.?([cm])tsx",
           "**/*.vue",
+        ],
+        "plugins": [
+          "typescript",
         ],
         "rules": {
           "@typescript-eslint/ban-ts-comment": [
@@ -253,16 +250,6 @@ exports[`nuxt-auth > nuxt-auth 1`] = `
             },
           ],
         },
-      },
-      {
-        "files": [
-          "**/*.?([cm])ts",
-          "**/*.?([cm])tsx",
-          "**/*.vue",
-        ],
-        "plugins": [
-          "typescript",
-        ],
       },
       {
         "files": [
@@ -525,6 +512,14 @@ exports[`nuxt-auth > nuxt-auth 1`] = `
           "vars": "all",
         },
       ],
+      "no-use-before-define": [
+        "error",
+        {
+          "classes": false,
+          "functions": false,
+          "variables": true,
+        },
+      ],
       "no-useless-call": "error",
       "no-useless-catch": "error",
       "no-useless-computed-key": "error",
@@ -763,7 +758,6 @@ exports[`nuxt-auth > nuxt-auth 1`] = `
       "prefer-regex-literals",
       "node/handle-callback-err",
       "node/no-deprecated-api",
-      "node/no-path-concat",
       "node/prefer-global/buffer",
       "node/prefer-global/process",
       "node/process-exit-as-throw",
@@ -825,7 +819,6 @@ exports[`nuxt-auth > nuxt-auth 1`] = `
       "no-octal",
       "no-octal-escape",
       "no-undef-init",
-      "no-use-before-define",
       "vue/comment-directive",
       "vue/no-child-content",
       "vue/no-deprecated-filter",
@@ -1083,6 +1076,7 @@ exports[`nuxt-auth --js-plugins > nuxt-auth--js-plugins 1`] = `
         ],
         "plugins": [
           "node",
+          "jsdoc",
         ],
         "rules": {
           "jsdoc/check-access": "warn",
@@ -1097,21 +1091,17 @@ exports[`nuxt-auth --js-plugins > nuxt-auth--js-plugins 1`] = `
           "jsdoc/require-returns-description": "warn",
           "node/no-exports-assign": "error",
           "node/no-new-require": "error",
+          "node/no-path-concat": "error",
         },
-      },
-      {
-        "files": [
-          "**/*.?([cm])[jt]s?(x)",
-        ],
-        "plugins": [
-          "jsdoc",
-        ],
       },
       {
         "files": [
           "**/*.?([cm])ts",
           "**/*.?([cm])tsx",
           "**/*.vue",
+        ],
+        "plugins": [
+          "typescript",
         ],
         "rules": {
           "@typescript-eslint/ban-ts-comment": [
@@ -1205,16 +1195,6 @@ exports[`nuxt-auth --js-plugins > nuxt-auth--js-plugins 1`] = `
             },
           ],
         },
-      },
-      {
-        "files": [
-          "**/*.?([cm])ts",
-          "**/*.?([cm])tsx",
-          "**/*.vue",
-        ],
-        "plugins": [
-          "typescript",
-        ],
       },
       {
         "files": [
@@ -1930,6 +1910,14 @@ exports[`nuxt-auth --js-plugins > nuxt-auth--js-plugins 1`] = `
           "vars": "all",
         },
       ],
+      "no-use-before-define": [
+        "error",
+        {
+          "classes": false,
+          "functions": false,
+          "variables": true,
+        },
+      ],
       "no-useless-call": "error",
       "no-useless-catch": "error",
       "no-useless-computed-key": "error",
@@ -2124,7 +2112,6 @@ exports[`nuxt-auth --js-plugins > nuxt-auth--js-plugins 1`] = `
       "prefer-regex-literals",
       "node/handle-callback-err",
       "node/no-deprecated-api",
-      "node/no-path-concat",
       "node/prefer-global/buffer",
       "node/prefer-global/process",
       "node/process-exit-as-throw",
@@ -2186,7 +2173,6 @@ exports[`nuxt-auth --js-plugins > nuxt-auth--js-plugins 1`] = `
       "no-octal",
       "no-octal-escape",
       "no-undef-init",
-      "no-use-before-define",
       "vue/comment-directive",
       "vue/no-child-content",
       "vue/no-deprecated-filter",
@@ -2435,6 +2421,7 @@ exports[`nuxt-auth --type-aware > nuxt-auth--type-aware 1`] = `
         ],
         "plugins": [
           "node",
+          "jsdoc",
         ],
         "rules": {
           "jsdoc/check-access": "warn",
@@ -2449,21 +2436,17 @@ exports[`nuxt-auth --type-aware > nuxt-auth--type-aware 1`] = `
           "jsdoc/require-returns-description": "warn",
           "node/no-exports-assign": "error",
           "node/no-new-require": "error",
+          "node/no-path-concat": "error",
         },
-      },
-      {
-        "files": [
-          "**/*.?([cm])[jt]s?(x)",
-        ],
-        "plugins": [
-          "jsdoc",
-        ],
       },
       {
         "files": [
           "**/*.?([cm])ts",
           "**/*.?([cm])tsx",
           "**/*.vue",
+        ],
+        "plugins": [
+          "typescript",
         ],
         "rules": {
           "@typescript-eslint/ban-ts-comment": [
@@ -2557,16 +2540,6 @@ exports[`nuxt-auth --type-aware > nuxt-auth--type-aware 1`] = `
             },
           ],
         },
-      },
-      {
-        "files": [
-          "**/*.?([cm])ts",
-          "**/*.?([cm])tsx",
-          "**/*.vue",
-        ],
-        "plugins": [
-          "typescript",
-        ],
       },
       {
         "files": [
@@ -2829,6 +2802,14 @@ exports[`nuxt-auth --type-aware > nuxt-auth--type-aware 1`] = `
           "vars": "all",
         },
       ],
+      "no-use-before-define": [
+        "error",
+        {
+          "classes": false,
+          "functions": false,
+          "variables": true,
+        },
+      ],
       "no-useless-call": "error",
       "no-useless-catch": "error",
       "no-useless-computed-key": "error",
@@ -3067,7 +3048,6 @@ exports[`nuxt-auth --type-aware > nuxt-auth--type-aware 1`] = `
       "prefer-regex-literals",
       "node/handle-callback-err",
       "node/no-deprecated-api",
-      "node/no-path-concat",
       "node/prefer-global/buffer",
       "node/prefer-global/process",
       "node/process-exit-as-throw",
@@ -3129,7 +3109,6 @@ exports[`nuxt-auth --type-aware > nuxt-auth--type-aware 1`] = `
       "no-octal",
       "no-octal-escape",
       "no-undef-init",
-      "no-use-before-define",
       "vue/comment-directive",
       "vue/no-child-content",
       "vue/no-deprecated-filter",
@@ -3379,6 +3358,7 @@ exports[`nuxt-auth merge > nuxt-auth--merge 1`] = `
         ],
         "plugins": [
           "node",
+          "jsdoc",
         ],
         "rules": {
           "jsdoc/check-access": "warn",
@@ -3393,21 +3373,17 @@ exports[`nuxt-auth merge > nuxt-auth--merge 1`] = `
           "jsdoc/require-returns-description": "warn",
           "node/no-exports-assign": "error",
           "node/no-new-require": "error",
+          "node/no-path-concat": "error",
         },
-      },
-      {
-        "files": [
-          "**/*.?([cm])[jt]s?(x)",
-        ],
-        "plugins": [
-          "jsdoc",
-        ],
       },
       {
         "files": [
           "**/*.?([cm])ts",
           "**/*.?([cm])tsx",
           "**/*.vue",
+        ],
+        "plugins": [
+          "typescript",
         ],
         "rules": {
           "@typescript-eslint/ban-ts-comment": [
@@ -3496,16 +3472,6 @@ exports[`nuxt-auth merge > nuxt-auth--merge 1`] = `
           "no-with": "off",
           "prefer-const": "error",
         },
-      },
-      {
-        "files": [
-          "**/*.?([cm])ts",
-          "**/*.?([cm])tsx",
-          "**/*.vue",
-        ],
-        "plugins": [
-          "typescript",
-        ],
       },
       {
         "files": [
@@ -3759,6 +3725,14 @@ exports[`nuxt-auth merge > nuxt-auth--merge 1`] = `
           "vars": "all",
         },
       ],
+      "no-use-before-define": [
+        "error",
+        {
+          "classes": false,
+          "functions": false,
+          "variables": true,
+        },
+      ],
       "no-useless-computed-key": "error",
       "no-useless-constructor": "error",
       "no-useless-return": "error",
@@ -3991,7 +3965,6 @@ exports[`nuxt-auth merge > nuxt-auth--merge 1`] = `
       "prefer-regex-literals",
       "node/handle-callback-err",
       "node/no-deprecated-api",
-      "node/no-path-concat",
       "node/prefer-global/buffer",
       "node/prefer-global/process",
       "node/process-exit-as-throw",
@@ -4053,7 +4026,6 @@ exports[`nuxt-auth merge > nuxt-auth--merge 1`] = `
       "no-octal",
       "no-octal-escape",
       "no-undef-init",
-      "no-use-before-define",
       "vue/comment-directive",
       "vue/no-child-content",
       "vue/no-deprecated-filter",

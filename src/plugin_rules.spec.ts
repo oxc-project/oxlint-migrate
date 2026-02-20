@@ -584,7 +584,8 @@ describe('rules and plugins', () => {
 
     cleanUpUselessOverridesRules(config);
 
-    // The final rule wins over the first, so react-in-jsx-scope should end up as "off".
+    // Consecutive same-files overrides are merged (last-wins).
+    // react-in-jsx-scope ends up as 'off' which matches root, so it's removed.
     expect(config).toStrictEqual({
       rules: {
         'react/react-in-jsx-scope': 'off',
@@ -596,8 +597,301 @@ describe('rules and plugins', () => {
             'react/foobar': 'error',
           },
         },
+      ],
+    });
+  });
+
+  test('cleanUpUselessOverridesRules merges all properties of consecutive same-files overrides', () => {
+    const config: OxlintConfig = {
+      overrides: [
         {
           files: ['**/*.ts', '**/*.tsx'],
+          plugins: ['typescript', 'oxc'],
+          jsPlugins: ['eslint-plugin-awesome', 'eslint-plugin-splendid'],
+          env: { browser: true, node: false },
+          globals: { jQuery: 'readonly', process: 'readonly' },
+          categories: { correctness: 'error' },
+          rules: {
+            'no-var': 'error',
+            'prefer-const': 'error',
+          },
+        },
+        {
+          files: ['**/*.ts', '**/*.tsx'],
+          plugins: ['react', 'oxc'],
+          jsPlugins: ['eslint-plugin-crap', 'eslint-plugin-awesome'],
+          env: { node: true, worker: true },
+          globals: { process: 'writable', __dirname: 'readonly' },
+          categories: { correctness: 'warn', suspicious: 'error' },
+          rules: {
+            'no-var': 'warn',
+            'no-console': 'error',
+          },
+        },
+        {
+          files: ['**/*.ts', '**/*.tsx'],
+          globals: { document: 'readonly' },
+          rules: {
+            'no-trousers': 'error',
+          },
+        },
+      ],
+    };
+
+    cleanUpUselessOverridesRules(config);
+
+    expect(config).toStrictEqual({
+      overrides: [
+        {
+          files: ['**/*.ts', '**/*.tsx'],
+          // `plugins` / `jsPlugins`: set union (deduplicated)
+          plugins: ['typescript', 'oxc', 'react'],
+          jsPlugins: [
+            'eslint-plugin-awesome',
+            'eslint-plugin-splendid',
+            'eslint-plugin-crap',
+          ],
+          // `env` / `globals` / `categories` / `rules`: last-wins per key
+          env: { browser: true, node: true, worker: true },
+          globals: {
+            jQuery: 'readonly',
+            process: 'writable',
+            __dirname: 'readonly',
+            document: 'readonly',
+          },
+          categories: { correctness: 'warn', suspicious: 'error' },
+          rules: {
+            'no-var': 'warn',
+            'prefer-const': 'error',
+            'no-console': 'error',
+            'no-trousers': 'error',
+          },
+        },
+      ],
+    });
+  });
+
+  test('cleanUpUselessOverridesRules does not merge non-consecutive same-files overrides', () => {
+    const config: OxlintConfig = {
+      rules: {
+        'no-debugger': 'error',
+      },
+      overrides: [
+        {
+          files: ['*.test.js'],
+          rules: {
+            'accessor-pairs': 'warn',
+          },
+        },
+        {
+          files: ['*.js'],
+          rules: {
+            'accessor-pairs': 'error',
+          },
+        },
+        {
+          files: ['*.test.js'],
+          rules: {
+            'accessor-pairs': 'off',
+          },
+        },
+      ],
+    };
+
+    cleanUpUselessOverridesRules(config);
+
+    // Non-consecutive same-files overrides must NOT be merged — the
+    // intervening *.js override would change precedence
+    expect(config).toStrictEqual({
+      rules: {
+        'no-debugger': 'error',
+      },
+      overrides: [
+        {
+          files: ['*.test.js'],
+          rules: {
+            'accessor-pairs': 'warn',
+          },
+        },
+        {
+          files: ['*.js'],
+          rules: {
+            'accessor-pairs': 'error',
+          },
+        },
+        {
+          files: ['*.test.js'],
+          rules: {
+            'accessor-pairs': 'off',
+          },
+        },
+      ],
+    });
+  });
+
+  test('cleanUpUselessOverridesRules merges consecutive same-files even without root rules', () => {
+    const config: OxlintConfig = {
+      overrides: [
+        {
+          files: ['*.js'],
+          rules: {
+            'accessor-pairs': 'warn',
+          },
+        },
+        {
+          files: ['*.js'],
+          rules: {
+            'no-debugger': 'error',
+          },
+        },
+      ],
+    };
+
+    cleanUpUselessOverridesRules(config);
+
+    expect(config).toStrictEqual({
+      overrides: [
+        {
+          files: ['*.js'],
+          rules: {
+            'accessor-pairs': 'warn',
+            'no-debugger': 'error',
+          },
+        },
+      ],
+    });
+  });
+
+  test('cleanUpUselessOverridesRules preserves rule needed to re-assert root value', () => {
+    const config: OxlintConfig = {
+      rules: {
+        'accessor-pairs': 'error',
+      },
+      overrides: [
+        {
+          files: ['*.js'],
+          rules: {
+            'accessor-pairs': 'warn',
+          },
+        },
+        {
+          files: ['*.test.js'],
+          rules: {
+            'accessor-pairs': 'error',
+          },
+        },
+      ],
+    };
+
+    cleanUpUselessOverridesRules(config);
+
+    // The `*.test.js` override re-asserts root value against the `*.js` override,
+    // so it must be preserved
+    expect(config).toStrictEqual({
+      rules: {
+        'accessor-pairs': 'error',
+      },
+      overrides: [
+        {
+          files: ['*.js'],
+          rules: {
+            'accessor-pairs': 'warn',
+          },
+        },
+        {
+          files: ['*.test.js'],
+          rules: {
+            'accessor-pairs': 'error',
+          },
+        },
+      ],
+    });
+  });
+
+  test('cleanUpUselessOverridesRules removes redundant rules when no previous conflict', () => {
+    const config: OxlintConfig = {
+      rules: {
+        'accessor-pairs': 'error',
+      },
+      overrides: [
+        {
+          files: ['*.js'],
+          rules: {
+            'accessor-pairs': 'error',
+          },
+        },
+        {
+          files: ['*.ts'],
+          rules: {
+            'accessor-pairs': 'error',
+          },
+        },
+      ],
+    };
+
+    cleanUpUselessOverridesRules(config);
+
+    // Both overrides have the same value as root with no conflicting
+    // previous override, so both rules should be removed
+    expect(config).toStrictEqual({
+      rules: {
+        'accessor-pairs': 'error',
+      },
+      overrides: [{ files: ['*.js'] }, { files: ['*.ts'] }],
+    });
+  });
+
+  test('cleanUpUselessOverridesRules removes redundant rules when no previous conflict, but keeps others with conflicting overrides', () => {
+    const config: OxlintConfig = {
+      rules: {
+        'accessor-pairs': 'error',
+      },
+      overrides: [
+        {
+          files: ['*.js'],
+          rules: {
+            'accessor-pairs': 'error',
+          },
+        },
+        {
+          files: ['*.ts'],
+          rules: {
+            'accessor-pairs': 'off',
+          },
+        },
+        {
+          files: ['*.test.ts'],
+          rules: {
+            'accessor-pairs': 'error',
+          },
+        },
+      ],
+    };
+
+    cleanUpUselessOverridesRules(config);
+
+    // 1st override had same value as root with no conflicting overrides.
+    // 2nd override has different value from root, so must be preserved.
+    // 3rd override has same value as root, but conflicts with 2nd override, so must be preserved too.
+    expect(config).toStrictEqual({
+      rules: {
+        'accessor-pairs': 'error',
+      },
+      overrides: [
+        {
+          files: ['*.js'],
+        },
+        {
+          files: ['*.ts'],
+          rules: {
+            'accessor-pairs': 'off',
+          },
+        },
+        {
+          files: ['*.test.ts'],
+          rules: {
+            'accessor-pairs': 'error',
+          },
         },
       ],
     });
