@@ -1,6 +1,6 @@
 import { Linter } from 'eslint';
 import { rulesPrefixesForPlugins } from './constants.js';
-import { OxlintConfigOrOverride } from './types.js';
+import { OxlintConfigOrOverride, OxlintConfigJsPluginEntry } from './types.js';
 
 const ignorePlugins = new Set<string>([
   ...Object.keys(rulesPrefixesForPlugins),
@@ -53,6 +53,17 @@ export const isIgnoredPluginRule = (ruleId: string): boolean => {
   return ignorePlugins.has(pluginName);
 };
 
+const jsPluginKey = (entry: OxlintConfigJsPluginEntry): string =>
+  typeof entry === 'string' ? entry : entry.name;
+
+export const deduplicateJsPlugins = (
+  entries: OxlintConfigJsPluginEntry[]
+): OxlintConfigJsPluginEntry[] => {
+  const seen = new Map<string, OxlintConfigJsPluginEntry>();
+  for (const entry of entries) seen.set(jsPluginKey(entry), entry);
+  return [...seen.values()];
+};
+
 // Enables the given rule in the target configuration, ensuring that the
 // corresponding ESLint plugin is included in the `jsPlugins` array.
 //
@@ -60,7 +71,8 @@ export const isIgnoredPluginRule = (ruleId: string): boolean => {
 export const enableJsPluginRule = (
   targetConfig: OxlintConfigOrOverride,
   rule: string,
-  ruleEntry: Linter.RuleEntry | undefined
+  ruleEntry: Linter.RuleEntry | undefined,
+  jsPluginEntry?: OxlintConfigJsPluginEntry
 ): boolean => {
   const pluginName = extractPluginId(rule);
 
@@ -71,14 +83,16 @@ export const enableJsPluginRule = (
   if (ignorePlugins.has(pluginName)) {
     return false;
   }
+
   if (targetConfig.jsPlugins === undefined) {
     targetConfig.jsPlugins = [];
   }
 
-  const eslintPluginName = guessEslintPluginName(pluginName);
-
-  if (!targetConfig.jsPlugins.includes(eslintPluginName)) {
-    targetConfig.jsPlugins.push(eslintPluginName);
+  const entry: OxlintConfigJsPluginEntry =
+    jsPluginEntry ?? guessEslintPluginName(pluginName);
+  const key = jsPluginKey(entry);
+  if (!targetConfig.jsPlugins.some((p) => jsPluginKey(p) === key)) {
+    targetConfig.jsPlugins.push(entry);
   }
 
   targetConfig.rules = targetConfig.rules || {};
