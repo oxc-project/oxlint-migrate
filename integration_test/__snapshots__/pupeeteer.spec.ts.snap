@@ -347,6 +347,10 @@ exports[`puppeteer --js-plugins > puppeteer--js-plugins 1`] = `
         "specifier": "@oxlint/plugin-eslint",
       },
       "eslint-plugin-mocha",
+      {
+        "name": "import-js",
+        "specifier": "eslint-plugin-import",
+      },
       "@stylistic/eslint-plugin",
       "@puppeteer/eslint-plugin",
     ],
@@ -609,6 +613,20 @@ exports[`puppeteer --js-plugins > puppeteer--js-plugins 1`] = `
         "error",
         "never",
       ],
+      "import-js/enforce-node-protocol-usage": [
+        "error",
+        "always",
+      ],
+      "import-js/order": [
+        "error",
+        {
+          "alphabetize": {
+            "caseInsensitive": true,
+            "order": "asc",
+          },
+          "newlines-between": "always",
+        },
+      ],
       "import/no-cycle": [
         "error",
         {
@@ -646,9 +664,7 @@ exports[`puppeteer --js-plugins > puppeteer--js-plugins 1`] = `
   },
   "skipped": {
     "js-plugins": [],
-    "not-implemented": [
-      "import/order",
-    ],
+    "not-implemented": [],
     "nursery": [
       "import/named",
       "no-unreachable",
@@ -661,9 +677,7 @@ exports[`puppeteer --js-plugins > puppeteer--js-plugins 1`] = `
       "@typescript-eslint/no-floating-promises",
       "@typescript-eslint/return-await",
     ],
-    "unsupported": [
-      "import/enforce-node-protocol-usage",
-    ],
+    "unsupported": [],
   },
   "warnings": [
     "Settings not migrated (not supported by oxlint): import/extensions, import/external-module-folders, import/parsers, import/resolver.",

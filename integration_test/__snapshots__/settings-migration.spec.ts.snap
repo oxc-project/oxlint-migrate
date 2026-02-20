@@ -78,7 +78,17 @@ exports[`settings-migration --js-plugins > settings-migration--js-plugins 1`] = 
     "env": {
       "builtin": true,
     },
+    "jsPlugins": [
+      {
+        "name": "react-js",
+        "specifier": "eslint-plugin-react",
+      },
+    ],
     "plugins": [],
+    "rules": {
+      "react-js/jsx-uses-react": "error",
+      "react-js/jsx-uses-vars": "error",
+    },
     "settings": {
       "jsdoc": {
         "ignoreInternal": true,
@@ -128,10 +138,7 @@ exports[`settings-migration --js-plugins > settings-migration--js-plugins 1`] = 
     "not-implemented": [],
     "nursery": [],
     "type-aware": [],
-    "unsupported": [
-      "react/jsx-uses-react",
-      "react/jsx-uses-vars",
-    ],
+    "unsupported": [],
   },
   "warnings": [
     "Settings not migrated (not supported by oxlint): import/resolver.",

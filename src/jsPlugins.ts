@@ -21,7 +21,7 @@ const guessEslintPluginName = (pluginName: string): string => {
   return `eslint-plugin-${pluginName}`;
 };
 
-const extractPluginId = (ruleId: string): string | undefined => {
+export const extractPluginId = (ruleId: string): string | undefined => {
   // ESLint rule ids are either "core" (no slash) or "<plugin>/<rule>".
   // For scoped plugin ids, the plugin id can itself contain a slash, e.g.
   //   @stylistic/ts/member-delimiter-style -> pluginId = @stylistic/ts

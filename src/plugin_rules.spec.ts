@@ -645,6 +645,75 @@ describe('rules and plugins', () => {
         specifier: '@oxlint/plugin-eslint',
       });
     });
+
+    test('active unsupported native plugin rule is mapped to -js prefix', () => {
+      const eslintConfig: Linter.Config = {
+        rules: {
+          'jsdoc/check-alignment': 'error',
+        },
+      };
+
+      const config: OxlintConfig = {};
+
+      transformRuleEntry(eslintConfig, config, undefined, {
+        jsPlugins: true,
+      });
+
+      expect(config.rules?.['jsdoc-js/check-alignment']).toBe('error');
+      expect(config.rules?.['jsdoc/check-alignment']).toBeUndefined();
+      expect(config.jsPlugins).toContainEqual({
+        name: 'jsdoc-js',
+        specifier: 'eslint-plugin-jsdoc',
+      });
+    });
+
+    test('off unsupported native plugin rule in base config is deleted', () => {
+      const enablingConfig: Linter.Config = {
+        rules: {
+          'jsdoc/check-alignment': 'error',
+        },
+      };
+
+      const disablingConfig: Linter.Config = {
+        rules: {
+          'jsdoc/check-alignment': 'off',
+        },
+      };
+
+      const config: OxlintConfig = {};
+
+      transformRuleEntry(enablingConfig, config, undefined, {
+        jsPlugins: true,
+      });
+      transformRuleEntry(disablingConfig, config, undefined, {
+        jsPlugins: true,
+      });
+
+      expect(config.rules?.['jsdoc-js/check-alignment']).toBeUndefined();
+      expect(config.rules?.['jsdoc/check-alignment']).toBeUndefined();
+    });
+
+    test('off unsupported native plugin rule in override is kept with -js prefix', () => {
+      const eslintConfig: Linter.Config = {
+        files: ['**/*.test.js'],
+        rules: {
+          'jsdoc/check-alignment': 'off',
+        },
+      };
+
+      const override: OxlintConfigOverride = { files: ['**/*.test.js'] };
+
+      transformRuleEntry(eslintConfig, override, undefined, {
+        jsPlugins: true,
+      });
+
+      expect(override.rules?.['jsdoc-js/check-alignment']).toBe('off');
+      expect(override.rules?.['jsdoc/check-alignment']).toBeUndefined();
+      expect(override.jsPlugins).toContainEqual({
+        name: 'jsdoc-js',
+        specifier: 'eslint-plugin-jsdoc',
+      });
+    });
   });
 
   test('cleanUpUselessOverridesRules', () => {
