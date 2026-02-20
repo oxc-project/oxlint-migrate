@@ -342,6 +342,10 @@ exports[`puppeteer --js-plugins > puppeteer--js-plugins 1`] = `
     ],
     "jsPlugins": [
       "eslint-plugin-prettier",
+      {
+        "name": "eslint-js",
+        "specifier": "@oxlint/plugin-eslint",
+      },
       "eslint-plugin-mocha",
       "@stylistic/eslint-plugin",
       "@puppeteer/eslint-plugin",
@@ -352,6 +356,10 @@ exports[`puppeteer --js-plugins > puppeteer--js-plugins 1`] = `
           "**/*.ts",
         ],
         "jsPlugins": [
+          {
+            "name": "eslint-js",
+            "specifier": "@oxlint/plugin-eslint",
+          },
           "@puppeteer/eslint-plugin",
         ],
         "plugins": [
@@ -403,6 +411,15 @@ exports[`puppeteer --js-plugins > puppeteer--js-plugins 1`] = `
           "@typescript-eslint/prefer-ts-expect-error": "error",
           "@typescript-eslint/triple-slash-reference": "error",
           "constructor-super": "off",
+          "eslint-js/no-dupe-args": "off",
+          "eslint-js/no-new-symbol": "off",
+          "eslint-js/no-restricted-syntax": [
+            "error",
+            {
+              "message": "\`require\` statements are not allowed. Use \`import\`.",
+              "selector": "CallExpression[callee.name='require']",
+            },
+          ],
           "no-array-constructor": "error",
           "no-class-assign": "off",
           "no-const-assign": "off",
@@ -435,7 +452,24 @@ exports[`puppeteer --js-plugins > puppeteer--js-plugins 1`] = `
         "files": [
           "packages/puppeteer-core/src/**/*.ts",
         ],
+        "jsPlugins": [
+          {
+            "name": "eslint-js",
+            "specifier": "@oxlint/plugin-eslint",
+          },
+        ],
         "rules": {
+          "eslint-js/no-restricted-syntax": [
+            "error",
+            {
+              "message": "Use method \`Deferred.race()\` instead.",
+              "selector": "MemberExpression[object.name="Promise"][property.name="race"]",
+            },
+            {
+              "message": "Deferred \`valueOrThrow\` should not be called in \`Deferred.race()\` pass deferred directly",
+              "selector": "CallExpression[callee.object.name="Deferred"][callee.property.name="race"] > ArrayExpression > CallExpression[callee.property.name="valueOrThrow"]",
+            },
+          ],
           "no-restricted-imports": [
             "error",
             {
@@ -479,6 +513,10 @@ exports[`puppeteer --js-plugins > puppeteer--js-plugins 1`] = `
           "test/**/*.spec.ts",
         ],
         "jsPlugins": [
+          {
+            "name": "eslint-js",
+            "specifier": "@oxlint/plugin-eslint",
+          },
           "eslint-plugin-mocha",
           "@puppeteer/eslint-plugin",
         ],
@@ -487,6 +525,21 @@ exports[`puppeteer --js-plugins > puppeteer--js-plugins 1`] = `
         ],
         "rules": {
           "@puppeteer/no-quirks-mode-set-content": "error",
+          "eslint-js/no-restricted-syntax": [
+            "error",
+            {
+              "message": "Use helper command \`launch\` to make sure the browsers get cleaned",
+              "selector": "MemberExpression[object.name="puppeteer"][property.name="launch"]",
+            },
+            {
+              "message": "Unexpected debugging mocha test.",
+              "selector": "CallExpression[callee.object.name="it"] > MemberExpression > Identifier[name="deflake"], CallExpression[callee.object.name="it"] > MemberExpression > Identifier[name="deflakeOnly"]",
+            },
+            {
+              "message": "No \`expect\` in EventHandler. They will never throw errors",
+              "selector": "CallExpression[callee.property.name="on"] BlockStatement > :not(TryStatement) > ExpressionStatement > CallExpression[callee.object.callee.name="expect"]",
+            },
+          ],
           "mocha/no-identical-title": "error",
           "mocha/no-pending-tests": "error",
           "no-unused-vars": [
@@ -527,6 +580,35 @@ exports[`puppeteer --js-plugins > puppeteer--js-plugins 1`] = `
       "eqeqeq": [
         "error",
       ],
+      "eslint-js/max-len": [
+        "error",
+        {
+          "code": 200,
+          "comments": 90,
+          "ignoreRegExpLiterals": true,
+          "ignoreStrings": true,
+          "ignoreTemplateLiterals": true,
+          "ignoreUrls": true,
+        },
+      ],
+      "eslint-js/new-parens": "error",
+      "eslint-js/no-implied-eval": "error",
+      "eslint-js/no-new-object": "error",
+      "eslint-js/no-octal-escape": "error",
+      "eslint-js/spaced-comment": [
+        "error",
+        "always",
+        {
+          "markers": [
+            "*",
+            "/",
+          ],
+        },
+      ],
+      "eslint-js/template-curly-spacing": [
+        "error",
+        "never",
+      ],
       "import/no-cycle": [
         "error",
         {
@@ -565,9 +647,7 @@ exports[`puppeteer --js-plugins > puppeteer--js-plugins 1`] = `
   "skipped": {
     "js-plugins": [],
     "not-implemented": [
-      "no-implied-eval",
       "import/order",
-      "no-restricted-syntax",
     ],
     "nursery": [
       "import/named",
@@ -582,12 +662,6 @@ exports[`puppeteer --js-plugins > puppeteer--js-plugins 1`] = `
       "@typescript-eslint/return-await",
     ],
     "unsupported": [
-      "spaced-comment",
-      "new-parens",
-      "max-len",
-      "no-new-object",
-      "no-octal-escape",
-      "template-curly-spacing",
       "import/enforce-node-protocol-usage",
     ],
   },

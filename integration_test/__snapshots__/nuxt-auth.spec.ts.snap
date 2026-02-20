@@ -1062,6 +1062,10 @@ exports[`nuxt-auth --js-plugins > nuxt-auth--js-plugins 1`] = `
     ],
     "jsPlugins": [
       "eslint-plugin-antfu",
+      {
+        "name": "eslint-js",
+        "specifier": "@oxlint/plugin-eslint",
+      },
       "eslint-plugin-unused-imports",
       "eslint-plugin-eslint-comments",
       "eslint-plugin-command",
@@ -1099,6 +1103,12 @@ exports[`nuxt-auth --js-plugins > nuxt-auth--js-plugins 1`] = `
           "**/*.?([cm])ts",
           "**/*.?([cm])tsx",
           "**/*.vue",
+        ],
+        "jsPlugins": [
+          {
+            "name": "eslint-js",
+            "specifier": "@oxlint/plugin-eslint",
+          },
         ],
         "plugins": [
           "typescript",
@@ -1152,6 +1162,8 @@ exports[`nuxt-auth --js-plugins > nuxt-auth--js-plugins 1`] = `
           "@typescript-eslint/triple-slash-reference": "off",
           "@typescript-eslint/unified-signatures": "off",
           "constructor-super": "off",
+          "eslint-js/no-dupe-args": "off",
+          "eslint-js/no-new-symbol": "off",
           "no-class-assign": "off",
           "no-const-assign": "off",
           "no-dupe-keys": "off",
@@ -1294,6 +1306,10 @@ exports[`nuxt-auth --js-plugins > nuxt-auth--js-plugins 1`] = `
         ],
         "jsPlugins": [
           "eslint-plugin-antfu",
+          {
+            "name": "eslint-js",
+            "specifier": "@oxlint/plugin-eslint",
+          },
           "@stylistic/eslint-plugin",
           "eslint-plugin-unused-imports",
         ],
@@ -1308,6 +1324,7 @@ exports[`nuxt-auth --js-plugins > nuxt-auth--js-plugins 1`] = `
           "@typescript-eslint/no-namespace": "off",
           "@typescript-eslint/no-require-imports": "off",
           "antfu/no-top-level-await": "off",
+          "eslint-js/no-restricted-syntax": "off",
           "no-alert": "off",
           "no-labels": "off",
           "no-lone-blocks": "off",
@@ -1367,10 +1384,15 @@ exports[`nuxt-auth --js-plugins > nuxt-auth--js-plugins 1`] = `
         ],
         "jsPlugins": [
           "eslint-plugin-eslint-comments",
+          {
+            "name": "eslint-js",
+            "specifier": "@oxlint/plugin-eslint",
+          },
           "eslint-plugin-unused-imports",
         ],
         "rules": {
           "eslint-comments/no-unlimited-disable": "off",
+          "eslint-js/no-restricted-syntax": "off",
           "unused-imports/no-unused-vars": "off",
         },
       },
@@ -1810,6 +1832,68 @@ exports[`nuxt-auth --js-plugins > nuxt-auth--js-plugins 1`] = `
       "eslint-comments/no-duplicate-disable": "error",
       "eslint-comments/no-unlimited-disable": "error",
       "eslint-comments/no-unused-enable": "error",
+      "eslint-js/dot-notation": [
+        "error",
+        {
+          "allowKeywords": true,
+        },
+      ],
+      "eslint-js/no-dupe-args": "error",
+      "eslint-js/no-implied-eval": "error",
+      "eslint-js/no-octal": "error",
+      "eslint-js/no-octal-escape": "error",
+      "eslint-js/no-restricted-properties": [
+        "error",
+        {
+          "message": "Use \`Object.getPrototypeOf\` or \`Object.setPrototypeOf\` instead.",
+          "property": "__proto__",
+        },
+        {
+          "message": "Use \`Object.defineProperty\` instead.",
+          "property": "__defineGetter__",
+        },
+        {
+          "message": "Use \`Object.defineProperty\` instead.",
+          "property": "__defineSetter__",
+        },
+        {
+          "message": "Use \`Object.getOwnPropertyDescriptor\` instead.",
+          "property": "__lookupGetter__",
+        },
+        {
+          "message": "Use \`Object.getOwnPropertyDescriptor\` instead.",
+          "property": "__lookupSetter__",
+        },
+      ],
+      "eslint-js/no-restricted-syntax": [
+        "error",
+        "TSEnumDeclaration[const=true]",
+        "TSExportAssignment",
+      ],
+      "eslint-js/no-undef-init": "error",
+      "eslint-js/no-unreachable-loop": "error",
+      "eslint-js/object-shorthand": [
+        "error",
+        "always",
+        {
+          "avoidQuotes": true,
+          "ignoreConstructors": false,
+        },
+      ],
+      "eslint-js/one-var": [
+        "error",
+        {
+          "initialized": "never",
+        },
+      ],
+      "eslint-js/prefer-arrow-callback": [
+        "error",
+        {
+          "allowNamedFunctions": false,
+          "allowUnboundThis": true,
+        },
+      ],
+      "eslint-js/prefer-regex-literals": "error",
       "import/consistent-type-specifier-style": [
         "error",
         "top-level",
@@ -2130,14 +2214,6 @@ exports[`nuxt-auth --js-plugins > nuxt-auth--js-plugins 1`] = `
   "skipped": {
     "js-plugins": [],
     "not-implemented": [
-      "no-implied-eval",
-      "no-restricted-properties",
-      "no-restricted-syntax",
-      "no-unreachable-loop",
-      "object-shorthand",
-      "one-var",
-      "prefer-arrow-callback",
-      "prefer-regex-literals",
       "node/handle-callback-err",
       "node/no-deprecated-api",
       "node/prefer-global/buffer",
@@ -2196,11 +2272,6 @@ exports[`nuxt-auth --js-plugins > nuxt-auth--js-plugins 1`] = `
     ],
     "type-aware": [],
     "unsupported": [
-      "dot-notation",
-      "no-dupe-args",
-      "no-octal",
-      "no-octal-escape",
-      "no-undef-init",
       "vue/comment-directive",
       "vue/no-child-content",
       "vue/no-deprecated-filter",

@@ -96,6 +96,12 @@ exports[`config-with-extends.eslint.spec.ts --js-plugins > config-with-extends.e
         "files": [
           "**/*.ts",
         ],
+        "jsPlugins": [
+          {
+            "name": "eslint-js",
+            "specifier": "@oxlint/plugin-eslint",
+          },
+        ],
         "plugins": [
           "typescript",
         ],
@@ -118,6 +124,8 @@ exports[`config-with-extends.eslint.spec.ts --js-plugins > config-with-extends.e
           "@typescript-eslint/prefer-namespace-keyword": "error",
           "@typescript-eslint/triple-slash-reference": "error",
           "constructor-super": "off",
+          "eslint-js/no-dupe-args": "off",
+          "eslint-js/no-new-symbol": "off",
           "no-array-constructor": "error",
           "no-class-assign": "off",
           "no-const-assign": "off",
