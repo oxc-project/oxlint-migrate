@@ -87,9 +87,8 @@ program
     'Search in the project files for eslint comments and replaces them with oxlint. Some eslint comments are not supported and will be reported.'
   )
   .option(
-    '--type-aware [bool]',
-    'Includes supported type-aware rules. Enabled by default; pass `--type-aware=false` to disable.',
-    true
+    '--type-aware',
+    'Includes supported type-aware rules. Needs the same flag in `oxlint` to enable it.'
   )
   .option(
     '--js-plugins [bool]',
@@ -103,7 +102,6 @@ program
   )
   .action(async (filePath: string | undefined) => {
     const cliOptions = program.opts();
-    const typeAware = parseCliBoolean(cliOptions.typeAware);
     const jsPlugins = parseCliBoolean(cliOptions.jsPlugins);
     const oxlintFilePath = path.join(cwd, cliOptions.outputFile);
     const reporter = new DefaultReporter();
@@ -112,7 +110,9 @@ program
       reporter,
       merge: !!cliOptions.merge,
       withNursery: !!cliOptions.withNursery,
-      typeAware,
+      // TODO: Once the `typeAware` config option is added in oxlintrc.json, we can make
+      // this default to true like `--js-plugins`.
+      typeAware: !!cliOptions.typeAware,
       jsPlugins,
     };
 
@@ -170,7 +170,7 @@ program
       skippedRulesByCategory: reporter.getSkippedRulesByCategory(),
       cliOptions: {
         withNursery: !!cliOptions.withNursery,
-        typeAware,
+        typeAware: !!cliOptions.typeAware,
         details: !!cliOptions.details,
         jsPlugins,
       },
