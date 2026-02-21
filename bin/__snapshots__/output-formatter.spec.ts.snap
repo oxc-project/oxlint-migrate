@@ -11,7 +11,7 @@ exports[`formatMigrationOutput > should NOT show --details hint when all categor
      -   2 Not Implemented (Not yet in oxlint: rule6, rule7)
 
 👉 Re-run with flags to include more:
-     npx @oxlint/migrate --with-nursery --type-aware --js-plugins
+     npx @oxlint/migrate --with-nursery --type-aware --js-plugins=true
 
 🚀 Next:
      npx oxlint .
@@ -48,7 +48,7 @@ exports[`formatMigrationOutput > should format complete output with all sections
      -   1 Not Implemented (Not yet in oxlint: prefer-const)
 
 👉 Re-run with flags to include more:
-     npx @oxlint/migrate eslint.config.mjs --with-nursery --type-aware --js-plugins
+     npx @oxlint/migrate eslint.config.mjs --with-nursery --type-aware --js-plugins=true
 
 🚀 Next:
      npx oxlint .
@@ -117,7 +117,7 @@ exports[`formatMigrationOutput > should show --details hint when any category ha
      Tip: Use --details to see the full list.
 
 👉 Re-run with flags to include more:
-     npx @oxlint/migrate --with-nursery --type-aware --js-plugins
+     npx @oxlint/migrate --with-nursery --type-aware --js-plugins=true
 
 🚀 Next:
      npx oxlint .
@@ -176,7 +176,7 @@ exports[`formatMigrationOutput > should show vertical list for multiple categori
        - camelcase: Superseded by \`@typescript-eslint/naming-convention\`, which accomplishes the same behavior with more flexibility.
 
 👉 Re-run with flags to include more:
-     npx @oxlint/migrate --with-nursery --type-aware --js-plugins
+     npx @oxlint/migrate --with-nursery --type-aware --js-plugins=true
 
 🚀 Next:
      npx oxlint .
