@@ -83,7 +83,7 @@ export function formatCategorySummary(
  */
 export function detectMissingFlags(
   byCategory: SkippedCategoryGroup,
-  cliOptions: { withNursery: boolean; typeAware: boolean; jsPlugins?: boolean }
+  cliOptions: { withNursery: boolean; typeAware: boolean; jsPlugins: boolean }
 ): string[] {
   const missingFlags: string[] = [];
 
@@ -96,7 +96,7 @@ export function detectMissingFlags(
   }
 
   if (byCategory['js-plugins'].length > 0 && !cliOptions.jsPlugins) {
-    missingFlags.push('--js-plugins');
+    missingFlags.push('--js-plugins=true');
   }
 
   return missingFlags;
