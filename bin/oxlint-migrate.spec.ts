@@ -15,7 +15,7 @@ const runMigrate = (args: string[]) => {
 };
 
 describe('oxlint-migrate CLI defaults', () => {
-  it('enables --type-aware and --js-plugins by default', () => {
+  it('enables --js-plugins by default but not --type-aware', () => {
     const cwd = process.cwd();
     const tempDir = mkdtempSync(path.join(cwd, '.tmp-oxlint-migrate-cli-'));
     const configPath = path.join(tempDir, 'eslint.config.mjs');
@@ -41,9 +41,9 @@ describe('oxlint-migrate CLI defaults', () => {
       ]);
 
       const output = JSON.parse(readFileSync(outputPath, 'utf8'));
-      expect(output.rules['@typescript-eslint/no-floating-promises']).toBe(
-        'error'
-      );
+      expect(
+        output.rules['@typescript-eslint/no-floating-promises']
+      ).toBeUndefined();
       expect(output.rules['regexp/no-lazy-ends']).toStrictEqual([
         'error',
         { ignorePartial: false },
@@ -54,7 +54,7 @@ describe('oxlint-migrate CLI defaults', () => {
     }
   });
 
-  it('can disable default behavior with --type-aware=false and --js-plugins=false', () => {
+  it('can disable default behavior with --js-plugins=false', () => {
     const cwd = process.cwd();
     const tempDir = mkdtempSync(path.join(cwd, '.tmp-oxlint-migrate-cli-'));
     const configPath = path.join(tempDir, 'eslint.config.mjs');
@@ -77,13 +77,52 @@ describe('oxlint-migrate CLI defaults', () => {
         path.relative(cwd, configPath),
         '--output-file',
         path.relative(cwd, outputPath),
-        '--type-aware=false',
         '--js-plugins=false',
       ]);
 
       const output = JSON.parse(readFileSync(outputPath, 'utf8'));
       expect(output.rules).toBeUndefined();
       expect(output.jsPlugins).toBeUndefined();
+    } finally {
+      rmSync(tempDir, { recursive: true, force: true });
+    }
+  });
+
+  it('can enable type-aware rules with --type-aware', () => {
+    const cwd = process.cwd();
+    const tempDir = mkdtempSync(path.join(cwd, '.tmp-oxlint-migrate-cli-'));
+    const configPath = path.join(tempDir, 'eslint.config.mjs');
+    const outputPath = path.join(tempDir, 'out.json');
+
+    try {
+      writeFileSync(
+        configPath,
+        `export default {
+  rules: {
+    '@typescript-eslint/no-floating-promises': 'error',
+    'regexp/no-lazy-ends': ['error', { ignorePartial: false }],
+  },
+};
+`,
+        'utf8'
+      );
+
+      runMigrate([
+        path.relative(cwd, configPath),
+        '--output-file',
+        path.relative(cwd, outputPath),
+        '--type-aware',
+      ]);
+
+      const output = JSON.parse(readFileSync(outputPath, 'utf8'));
+      expect(
+        output.rules['@typescript-eslint/no-floating-promises']
+      ).toStrictEqual('error');
+      // JS Plugins should still be included by default
+      expect(output.rules['regexp/no-lazy-ends']).toStrictEqual([
+        'error',
+        { ignorePartial: false },
+      ]);
     } finally {
       rmSync(tempDir, { recursive: true, force: true });
     }
