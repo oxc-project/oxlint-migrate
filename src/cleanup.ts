@@ -14,9 +14,9 @@ import {
   replaceReactRefreshPluginName,
   replaceTypescriptAliasRules,
 } from './plugins_rules.js';
-import {
-  OxlintConfigOrOverride,
+import type {
   OxlintConfig,
+  OxlintConfigOrOverride,
   OxlintConfigOverride,
 } from './types.js';
 import { isEqualDeep } from './utilities.js';

@@ -1,6 +1,6 @@
 import { describe, expect, test } from 'vitest';
 import { enableJsPluginRule, isIgnoredPluginRule } from './jsPlugins.js';
-import { OxlintConfigOrOverride } from './types.js';
+import type { OxlintConfigOrOverride } from './types.js';
 
 describe('enableJsPluginRule', () => {
   const rules = [

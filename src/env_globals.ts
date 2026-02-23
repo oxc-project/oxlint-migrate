@@ -1,6 +1,10 @@
 import globals from 'globals';
-import { Options, OxlintConfig, OxlintConfigOrOverride } from './types.js';
-import type { Linter } from 'eslint';
+import type {
+  ESLint,
+  Options,
+  OxlintConfig,
+  OxlintConfigOrOverride,
+} from './types.js';
 
 // <https://github.com/oxc-project/javascript-globals/blob/55be079bd9ac417b7d5007723beb7aa59193dbd0/xtask/src/main.rs#L121-L136>
 export const ES_VERSIONS = [
@@ -44,7 +48,9 @@ const OTHER_SUPPORTED_ENVS = [
 // these parsers are supported by oxlint and should not be reported
 const SUPPORTED_ESLINT_PARSERS = ['typescript-eslint/parser'];
 
-const normalizeGlobValue = (value: Linter.GlobalConf): boolean | undefined => {
+const normalizeGlobValue = (
+  value: ESLint.GlobalAccess
+): boolean | undefined => {
   if (value === 'readable' || value === 'readonly' || value === false) {
     return false;
   }
@@ -149,7 +155,7 @@ export const detectEnvironmentByGlobals = (config: OxlintConfigOrOverride) => {
 };
 
 export const transformEnvAndGlobals = (
-  eslintConfig: Linter.Config,
+  eslintConfig: ESLint.Config,
   targetConfig: OxlintConfigOrOverride,
   options?: Options
 ): void => {
