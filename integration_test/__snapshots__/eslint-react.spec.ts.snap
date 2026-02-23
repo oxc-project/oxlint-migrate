@@ -211,12 +211,12 @@ exports[`eslint-react --js-plugins > eslint-react--js-plugins 1`] = `
           "**/*.{js,jsx}",
         ],
         "jsPlugins": [
-          "@eslint-react/eslint-plugin",
-          "@eslint-react/eslint-plugin-rsc",
-          "@eslint-react/eslint-plugin-dom",
-          "@eslint-react/eslint-plugin-web-api",
-          "@eslint-react/eslint-plugin-hooks-extra",
-          "@eslint-react/eslint-plugin-naming-convention",
+          "eslint-plugin-react-x",
+          "eslint-plugin-react-rsc",
+          "eslint-plugin-react-dom",
+          "eslint-plugin-react-web-api",
+          "eslint-plugin-react-hooks-extra",
+          "eslint-plugin-react-naming-convention",
         ],
         "plugins": [
           "react",
