@@ -23,6 +23,9 @@ import {
 
 const cwd = process.cwd();
 
+const parseCliBoolean = (value: unknown): boolean =>
+  value === 'false' ? false : !!value;
+
 const getFileContent = (absoluteFilePath: string): string | undefined => {
   try {
     return readFileSync(absoluteFilePath, 'utf-8');
@@ -88,8 +91,9 @@ program
     'Includes supported type-aware rules. Needs the same flag in `oxlint` to enable it.'
   )
   .option(
-    '--js-plugins',
-    'Tries to convert unsupported oxlint plugins with `jsPlugins`.'
+    '--js-plugins [bool]',
+    'Tries to convert unsupported oxlint plugins with `jsPlugins`. Enabled by default; pass `--js-plugins=false` to disable.',
+    true
   )
   .option(
     '--details',
@@ -98,6 +102,7 @@ program
   )
   .action(async (filePath: string | undefined) => {
     const cliOptions = program.opts();
+    const jsPlugins = parseCliBoolean(cliOptions.jsPlugins);
     const oxlintFilePath = path.join(cwd, cliOptions.outputFile);
     const reporter = new DefaultReporter();
 
@@ -105,8 +110,10 @@ program
       reporter,
       merge: !!cliOptions.merge,
       withNursery: !!cliOptions.withNursery,
+      // TODO: Once the `typeAware` config option is added in oxlintrc.json, we can make
+      // this default to true like `--js-plugins`.
       typeAware: !!cliOptions.typeAware,
-      jsPlugins: !!cliOptions.jsPlugins,
+      jsPlugins,
     };
 
     if (cliOptions.replaceEslintComments) {
@@ -165,7 +172,7 @@ program
         withNursery: !!cliOptions.withNursery,
         typeAware: !!cliOptions.typeAware,
         details: !!cliOptions.details,
-        jsPlugins: !!cliOptions.jsPlugins,
+        jsPlugins,
       },
       eslintConfigPath: filePath,
     });

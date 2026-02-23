@@ -18,15 +18,15 @@ When no config file is provided, the script searches for the default ESLint conf
 
 ### Options
 
-| Options                     | Description                                                                                                                                 |
-| --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
-| `--merge`                   | \* merge ESLint configuration with an existing .oxlintrc.json configuration                                                                 |
-| `--type-aware`              | Include type aware rules, which are supported with `oxlint --type-aware` and [oxlint-tsgolint](https://github.com/oxc-project/tsgolint)     |
-| `--with-nursery`            | Include oxlint rules which are currently under development                                                                                  |
-| `--js-plugins`              | \*\* Include ESLint plugins via `jsPlugins` key.                                                                                            |
-| `--details`                 | List rules that could not be migrated to oxlint                                                                                             |
-| `--output-file <file>`      | The oxlint configuration file where ESLint v9 rules will be written to, default: `.oxlintrc.json`                                           |
-| `--replace-eslint-comments` | Search in the project files for ESLint comments and replaces them with oxlint. Some ESLint comments are not supported and will be reported. |
+| Options                     | Description                                                                                                                                   |
+| --------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| `--merge`                   | \* merge ESLint configuration with an existing .oxlintrc.json configuration                                                                   |
+| `--type-aware`              | Include type aware rules. These rules are supported with `oxlint --type-aware` and [oxlint-tsgolint](https://github.com/oxc-project/tsgolint) |
+| `--with-nursery`            | Include oxlint rules which are currently under development                                                                                    |
+| `--js-plugins [bool]`       | \*\* Include ESLint plugins via `jsPlugins` key (enabled by default). Use `--js-plugins=false` to disable.                                    |
+| `--details`                 | List rules that could not be migrated to oxlint                                                                                               |
+| `--output-file <file>`      | The oxlint configuration file where ESLint v9 rules will be written to, default: `.oxlintrc.json`                                             |
+| `--replace-eslint-comments` | Search in the project files for ESLint comments and replaces them with oxlint. Some ESLint comments are not supported and will be reported.   |
 
 \* WARNING: When some `categories` are enabled, this tools will enable more rules with the combination of `plugins`.
 Else we need to disable each rule `plugin/categories` combination, which is not covered by your ESLint configuration.
@@ -65,7 +65,7 @@ Here are some known caveats to be aware of:
 
 **`settings` field migration**
 
-The `settings` field (e.g. for setting the React version) is migrated for known oxlint-supported plugins: `jsx-a11y`, `next`, `react`, `jsdoc`, and `vitest`. By default, other settings keys are skipped since they aren't supported by oxlint. If using the `--js-plugins` flag, other settings keys will also be migrated in order to support JS Plugins.
+The `settings` field (e.g. for setting the React version) is migrated for known oxlint-supported plugins: `jsx-a11y`, `next`, `react`, `jsdoc`, and `vitest`. By default, other settings keys are also migrated to support JS Plugins. Use `--js-plugins=false` to skip migrating unknown settings keys.
 
 Note: Oxlint does not support `settings` in override configs. If your ESLint config has settings in configs with `files` patterns, those settings will be skipped and a warning will be shown.
 
@@ -73,7 +73,7 @@ Not all `settings` options are supported by oxlint, and so rule behavior in cert
 
 **Local ESLint Plugins imported via path are not migrated**
 
-The `--js-plugins` flag cannot migrate ESLint plugins from file paths in the same repo currently (e.g. if you have `../eslint-plugin-myplugin` in your `eslint.config.mjs`). You will need to copy them over into the `jsPlugins` manually. See [the JS Plugins docs]() for more info.
+JS plugin migration cannot migrate ESLint plugins from file paths in the same repo currently (e.g. if you have `../eslint-plugin-myplugin` in your `eslint.config.mjs`). You will need to copy them over into the `jsPlugins` manually. See [the JS Plugins docs]() for more info.
 
 **`globals` field with large number of values**
 
