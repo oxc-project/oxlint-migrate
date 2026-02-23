@@ -58,6 +58,17 @@ export namespace ESLint {
     [name: string]: GlobalAccess;
   }
 
+  export interface Plugin {
+    meta?: {
+      name?: string;
+    };
+    configs?: Record<string, unknown[]> | undefined;
+    environments?: Record<string, unknown> | undefined;
+    languages?: Record<string, unknown> | undefined;
+    processors?: Record<string, unknown> | undefined;
+    rules?: RulesRecord | undefined;
+  }
+
   /**
    * ESLint flat configuration object compatible with ESLint 9 and 10.
    * Uses index signature to allow additional properties from various ESLint configurations.
@@ -88,7 +99,7 @@ export namespace ESLint {
     /** Processor name or object */
     processor?: string | object;
     /** Plugin configurations */
-    plugins?: Record<string, unknown>;
+    plugins?: Record<string, Plugin>;
     /** Rule configurations */
     rules?: Partial<Rules>;
     /** Settings available to all rules */
@@ -100,7 +111,6 @@ export namespace ESLint {
     /** Legacy overrides configuration */
     overrides?: unknown[];
     /** Index signature to accept any additional properties */
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     [key: string]: any;
   }
 }

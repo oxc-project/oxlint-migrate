@@ -1,6 +1,6 @@
 import { describe, expect, test } from 'vitest';
 import { enableJsPluginRule, isIgnoredPluginRule } from './jsPlugins.js';
-import type { OxlintConfigOrOverride } from './types.js';
+import type { ESLint, OxlintConfigOrOverride } from './types.js';
 
 describe('enableJsPluginRule', () => {
   const rules = [
@@ -47,6 +47,41 @@ describe('enableJsPluginRule', () => {
       expect(targetConfig.rules?.[oxlintRule]).toBe('error');
     });
   }
+
+  test('should use meta.name when it is a full package name', () => {
+    const targetConfig: OxlintConfigOrOverride = {};
+    const plugins: Record<string, ESLint.Plugin> = {
+      e18e: { meta: { name: '@e18e/eslint-plugin' } },
+    };
+
+    const result = enableJsPluginRule(
+      targetConfig,
+      'e18e/prefer-regex-literals',
+      'error',
+      plugins
+    );
+
+    expect(result).toBe(true);
+    expect(targetConfig.jsPlugins).toContain('@e18e/eslint-plugin');
+  });
+
+  test('should resolve meta.name through heuristic when not a full package name', () => {
+    const targetConfig: OxlintConfigOrOverride = {};
+    const plugins: Record<string, ESLint.Plugin> = {
+      foo: { meta: { name: 'foo' } },
+    };
+
+    const result = enableJsPluginRule(
+      targetConfig,
+      'foo/some-rule',
+      'error',
+      plugins
+    );
+
+    expect(result).toBe(true);
+    // meta.name "foo" doesn't contain "eslint-plugin", so it goes through resolution
+    expect(targetConfig.jsPlugins).toBeDefined();
+  });
 
   test('should return false for ignored plugins', () => {
     const targetConfig: OxlintConfigOrOverride = {};

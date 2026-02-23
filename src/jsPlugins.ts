@@ -102,6 +102,20 @@ export const isIgnoredPluginRule = (ruleId: string): boolean => {
   return ignorePlugins.has(pluginName);
 };
 
+/**
+ * Derives the npm package name for a plugin from its `meta.name` field.
+ *
+ * If `meta.name` already looks like a full npm package name (contains
+ * "eslint-plugin"), it is returned as-is.  Otherwise it is fed through
+ * {@link resolveEslintPluginName} for the usual heuristic resolution.
+ */
+const resolveFromMetaName = (metaName: string): string => {
+  if (metaName.includes('eslint-plugin')) {
+    return metaName;
+  }
+  return resolveEslintPluginName(metaName);
+};
+
 // Enables the given rule in the target configuration, ensuring that the
 // corresponding ESLint plugin is included in the `jsPlugins` array.
 //
@@ -109,7 +123,8 @@ export const isIgnoredPluginRule = (ruleId: string): boolean => {
 export const enableJsPluginRule = (
   targetConfig: OxlintConfigOrOverride,
   rule: string,
-  ruleEntry: ESLint.RuleConfig | undefined
+  ruleEntry: ESLint.RuleConfig | undefined,
+  plugins?: Record<string, ESLint.Plugin> | null
 ): boolean => {
   const pluginName = extractPluginId(rule);
 
@@ -124,7 +139,11 @@ export const enableJsPluginRule = (
     targetConfig.jsPlugins = [];
   }
 
-  const eslintPluginName = resolveEslintPluginName(pluginName);
+  // Prefer the plugin's own meta.name when available; fall back to heuristic.
+  const metaName = plugins?.[pluginName]?.meta?.name;
+  const eslintPluginName = metaName
+    ? resolveFromMetaName(metaName)
+    : resolveEslintPluginName(pluginName);
 
   if (!targetConfig.jsPlugins.includes(eslintPluginName)) {
     targetConfig.jsPlugins.push(eslintPluginName);
