@@ -230,7 +230,14 @@ export const transformRuleEntry = (
           continue;
         }
 
-        if (!enableJsPluginRule(targetConfig, rule, normalizedConfig, eslintConfig.plugins)) {
+        if (
+          !enableJsPluginRule(
+            targetConfig,
+            rule,
+            normalizedConfig,
+            eslintConfig.plugins
+          )
+        ) {
           const category = unsupportedRuleExplanations[rule]
             ? 'unsupported'
             : 'not-implemented';
