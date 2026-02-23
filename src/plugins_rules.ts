@@ -11,7 +11,11 @@ import {
   rulesPrefixesForPlugins,
   typescriptRulesExtendEslintRules,
 } from './constants.js';
-import { enableJsPluginRule, isIgnoredPluginRule } from './jsPlugins.js';
+import {
+  enableJsPluginRule,
+  isIgnoredPluginRule,
+  resolveJsPluginRuleName,
+} from './jsPlugins.js';
 import { buildUnsupportedRuleExplanations, isEqualDeep } from './utilities.js';
 
 const allRules = Object.values(rules).flat();
@@ -175,6 +179,14 @@ export const transformRuleEntry = (
     // only works on non-merge because `overrides` is already prefilled from previous result.
     if (!options?.merge) {
       removePreviousOverrideRule(rule, eslintConfig, overrides);
+      // Also try the resolved name in case the rule was stored under a
+      // renamed prefix by a previous enableJsPluginRule call.
+      if (options?.jsPlugins) {
+        const resolved = resolveJsPluginRuleName(rule, eslintConfig.plugins);
+        if (resolved !== rule) {
+          removePreviousOverrideRule(resolved, eslintConfig, overrides);
+        }
+      }
     }
 
     if (allRules.includes(rule)) {
@@ -212,13 +224,19 @@ export const transformRuleEntry = (
       if (options?.jsPlugins) {
         // If the rule is disabled, avoid enabling the jsPlugin to prevent noise.
         if (isOffValue(normalizedConfig)) {
+          // Use the resolved (potentially renamed) rule name for consistency
+          // with enabled rules that go through enableJsPluginRule.
+          const resolvedRule = resolveJsPluginRuleName(
+            rule,
+            eslintConfig.plugins
+          );
           if (eslintConfig.files === undefined) {
             // base config: drop disabled rule entirely
-            delete targetConfig.rules[rule];
+            delete targetConfig.rules[resolvedRule];
           } else {
             // override: keep the disabled setting without adding jsPlugin, unless plugin is ignored
             if (!isIgnoredPluginRule(rule)) {
-              targetConfig.rules[rule] = normalizedConfig;
+              targetConfig.rules[resolvedRule] = normalizedConfig;
             }
           }
           // also remove any previously queued unsupported report for base

@@ -116,6 +116,68 @@ const resolveFromMetaName = (metaName: string): string => {
   return resolveEslintPluginName(metaName);
 };
 
+/**
+ * Derives the rule-ID prefix that an npm package exposes.
+ *
+ * Examples:
+ *   `eslint-plugin-react-dom`        -> `react-dom`
+ *   `eslint-plugin-mocha`            -> `mocha`
+ *   `@stylistic/eslint-plugin`       -> `@stylistic`
+ *   `@stylistic/eslint-plugin-ts`    -> `@stylistic/ts`
+ */
+const deriveRulePrefix = (packageName: string): string => {
+  if (packageName.startsWith('@')) {
+    const slashIdx = packageName.indexOf('/');
+    const scope = packageName.substring(0, slashIdx);
+    const rest = packageName.substring(slashIdx + 1);
+    if (rest === 'eslint-plugin') {
+      return scope;
+    }
+    if (rest.startsWith('eslint-plugin-')) {
+      return `${scope}/${rest.substring('eslint-plugin-'.length)}`;
+    }
+    return packageName;
+  }
+  if (packageName.startsWith('eslint-plugin-')) {
+    return packageName.substring('eslint-plugin-'.length);
+  }
+  return packageName;
+};
+
+/**
+ * Resolves the canonical rule name for a jsPlugin rule.
+ *
+ * When a plugin is registered under an alias (e.g. `@eslint-react/dom`) but
+ * its `meta.name` reveals a different canonical package (`eslint-plugin-react-dom`),
+ * the rule must be rewritten so that oxlint can match it to the loaded plugin.
+ *
+ * For example:
+ *   `@eslint-react/dom/no-find-dom-node` -> `react-dom/no-find-dom-node`
+ */
+export const resolveJsPluginRuleName = (
+  rule: string,
+  plugins?: Record<string, ESLint.Plugin> | null
+): string => {
+  const pluginName = extractPluginId(rule);
+  if (pluginName === undefined) {
+    return rule;
+  }
+
+  const metaName = plugins?.[pluginName]?.meta?.name;
+  if (!metaName || !metaName.includes('eslint-plugin')) {
+    return rule;
+  }
+
+  const canonicalPrefix = deriveRulePrefix(metaName);
+  if (canonicalPrefix === pluginName) {
+    return rule;
+  }
+
+  // Replace the alias prefix with the canonical prefix
+  const ruleSuffix = rule.substring(pluginName.length + 1); // +1 for the '/'
+  return `${canonicalPrefix}/${ruleSuffix}`;
+};
+
 // Enables the given rule in the target configuration, ensuring that the
 // corresponding ESLint plugin is included in the `jsPlugins` array.
 //
@@ -149,7 +211,10 @@ export const enableJsPluginRule = (
     targetConfig.jsPlugins.push(eslintPluginName);
   }
 
+  // Rewrite the rule name if the plugin is registered under an alias.
+  const resolvedRule = resolveJsPluginRuleName(rule, plugins);
+
   targetConfig.rules = targetConfig.rules || {};
-  targetConfig.rules[rule] = ruleEntry;
+  targetConfig.rules[resolvedRule] = ruleEntry;
   return true;
 };
