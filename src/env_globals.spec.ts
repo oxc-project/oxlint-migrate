@@ -9,6 +9,7 @@ import {
 import { OxlintConfig } from './types.js';
 import globals from 'globals';
 import type { Linter } from 'eslint';
+import { DefaultReporter } from './reporter.js';
 
 describe('detectEnvironmentByGlobals', () => {
   test('detect es2024', () => {
@@ -156,6 +157,48 @@ describe('transformEnvAndGlobals', () => {
         },
       ],
     });
+  });
+
+  test('warns about unsupported parser with informative message', () => {
+    const reporter = new DefaultReporter();
+    const eslintConfig: Linter.Config = {
+      languageOptions: {
+        parser: {
+          meta: {
+            name: 'svelte-eslint-parser',
+          },
+        },
+      },
+    };
+
+    const config: OxlintConfig = {};
+    transformEnvAndGlobals(eslintConfig, config, { reporter });
+
+    const warnings = reporter.getWarnings();
+    expect(warnings).toHaveLength(1);
+    expect(warnings[0]).toContain(
+      'parsers are not yet supported: https://github.com/oxc-project/oxc/issues/14826'
+    );
+    expect(warnings[0]).toContain('svelte-eslint-parser was not migrated');
+  });
+
+  test('does not warn about supported parser', () => {
+    const reporter = new DefaultReporter();
+    const eslintConfig: Linter.Config = {
+      languageOptions: {
+        parser: {
+          meta: {
+            name: 'typescript-eslint/parser',
+          },
+        },
+      },
+    };
+
+    const config: OxlintConfig = {};
+    transformEnvAndGlobals(eslintConfig, config, { reporter });
+
+    const warnings = reporter.getWarnings();
+    expect(warnings).toHaveLength(0);
   });
 });
 

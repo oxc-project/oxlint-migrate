@@ -163,10 +163,10 @@ export const transformEnvAndGlobals = (
       eslintConfig.languageOptions.parser.meta?.name
     )
   ) {
+    // @ts-expect-error
+    const parserName = eslintConfig.languageOptions.parser.meta?.name;
     options?.reporter?.addWarning(
-      'special parser detected: ' +
-        // @ts-expect-error
-        eslintConfig.languageOptions.parser.meta?.name
+      `parsers are not yet supported: https://github.com/oxc-project/oxc/issues/14826\n${parserName} was not migrated`
     );
   }
 
