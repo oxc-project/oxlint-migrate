@@ -7,17 +7,67 @@ const ignorePlugins = new Set<string>([
   'local', // ToDo: handle local plugin rules
 ]);
 
-const guessEslintPluginName = (pluginName: string): string => {
+const tryResolvePackage = (packageName: string): boolean => {
+  try {
+    import.meta.resolve(packageName);
+    return true;
+  } catch {
+    return false;
+  }
+};
+
+// Cache resolved plugin names to avoid repeated module resolution.
+const pluginNameCache = new Map<string, string>();
+
+/**
+ * Resolves the npm package name for an ESLint plugin given its scope name.
+ *
+ * For scoped plugin names (starting with `@`), the mapping is unambiguous:
+ *   - `@scope`     -> `@scope/eslint-plugin`
+ *   - `@scope/sub` -> `@scope/eslint-plugin-sub`
+ *
+ * For non-scoped names, the npm package could follow either convention:
+ *   - `eslint-plugin-{name}` (e.g. `eslint-plugin-mocha`)
+ *   - `@{name}/eslint-plugin` (e.g. `@e18e/eslint-plugin`)
+ *
+ * We try to resolve both candidates against the installed packages and
+ * use the one that is actually present, falling back to the standard
+ * `eslint-plugin-{name}` convention when neither can be resolved.
+ */
+const resolveEslintPluginName = (pluginName: string): string => {
+  const cached = pluginNameCache.get(pluginName);
+  if (cached !== undefined) {
+    return cached;
+  }
+
+  let result: string;
+
   if (pluginName.startsWith('@')) {
     // Scoped plugin. If it contains a sub-id (e.g. @scope/id), map to @scope/eslint-plugin-id
     const [scope, maybeSub] = pluginName.split('/');
     if (maybeSub) {
-      return `${scope}/eslint-plugin-${maybeSub}`;
+      result = `${scope}/eslint-plugin-${maybeSub}`;
+    } else {
+      // Plain scoped plugin (e.g. @stylistic)
+      result = `${scope}/eslint-plugin`;
     }
-    // Plain scoped plugin (e.g. @stylistic)
-    return `${scope}/eslint-plugin`;
+  } else {
+    // For non-scoped plugins, try to resolve the actual installed package.
+    const standardName = `eslint-plugin-${pluginName}`;
+    const scopedName = `@${pluginName}/eslint-plugin`;
+
+    if (tryResolvePackage(standardName)) {
+      result = standardName;
+    } else if (tryResolvePackage(scopedName)) {
+      result = scopedName;
+    } else {
+      // Neither resolves; fall back to standard convention.
+      result = standardName;
+    }
   }
-  return `eslint-plugin-${pluginName}`;
+
+  pluginNameCache.set(pluginName, result);
+  return result;
 };
 
 const extractPluginId = (ruleId: string): string | undefined => {
@@ -74,7 +124,7 @@ export const enableJsPluginRule = (
     targetConfig.jsPlugins = [];
   }
 
-  const eslintPluginName = guessEslintPluginName(pluginName);
+  const eslintPluginName = resolveEslintPluginName(pluginName);
 
   if (!targetConfig.jsPlugins.includes(eslintPluginName)) {
     targetConfig.jsPlugins.push(eslintPluginName);
