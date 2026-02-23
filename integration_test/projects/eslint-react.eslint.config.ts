@@ -2,7 +2,7 @@ import js from '@eslint/js';
 import reactHooks from 'eslint-plugin-react-hooks';
 import reactRefresh from 'eslint-plugin-react-refresh';
 import { defineConfig } from 'eslint/config';
-import eslintReact from "@eslint-react/eslint-plugin";
+import eslintReact from '@eslint-react/eslint-plugin';
 
 export default defineConfig([
   {
