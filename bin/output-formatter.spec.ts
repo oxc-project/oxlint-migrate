@@ -140,7 +140,11 @@ describe('detectMissingFlags', () => {
 
     const result = detectMissingFlags(byCategory, cliOptions);
 
-    expect(result).toEqual(['--with-nursery', '--type-aware', '--js-plugins']);
+    expect(result).toEqual([
+      '--with-nursery',
+      '--type-aware',
+      '--js-plugins=true',
+    ]);
   });
 
   it('should detect only --with-nursery when needed', () => {

@@ -1,6 +1,6 @@
 {
   "name": "@oxlint/migrate",
-  "version": "1.49.0",
+  "version": "1.50.0",
   "description": "Generates a `.oxlintrc.json` from a existing eslint flat config",
   "keywords": [
     "eslint",
@@ -46,6 +46,7 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "^7.0.0",
+    "@eslint-react/eslint-plugin": "^2.13.0",
     "@eslint/js": "^9.29.0",
     "@logux/eslint-config": "^57.0.0",
     "@oxc-node/core": "^0.0.35",
@@ -72,14 +73,15 @@
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-perf": "^3.3.3",
     "eslint-plugin-react-refresh": "^0.5.0",
+    "eslint-plugin-react-web-api": "^2.13.0",
     "eslint-plugin-regexp": "^3.0.0",
     "eslint-plugin-tsdoc": "^0.5.0",
     "eslint-plugin-unicorn": "^62.0.0",
     "husky": "^9.1.7",
     "lint-staged": "^16.1.2",
     "next": "^16.0.0",
-    "oxfmt": "^0.33.0",
-    "oxlint": "^1.49.0",
+    "oxfmt": "^0.34.0",
+    "oxlint": "^1.50.0",
     "oxlint-tsgolint": "^0.14.0",
     "tsdown": "^0.20.0",
     "typescript-eslint": "^8.35.0",
@@ -88,5 +90,5 @@
   "lint-staged": {
     "*": "oxfmt --no-error-on-unmatched-pattern"
   },
-  "packageManager": "pnpm@10.29.3"
+  "packageManager": "pnpm@10.30.1"
 }
