@@ -188,6 +188,23 @@ export const transformRuleEntry = (
         continue;
       }
 
+      // if typeAware is enabled, and this is a type aware rule,
+      // we need to set the typeAware option in the base config, so it is applied to all overrides as well.
+      if (options?.typeAware && rules.typeAwareRules.includes(rule)) {
+        // when base config exists, we are in an override.
+        // we are probably in the base oxlint config, check for 'files' to be sure.
+        const baseOxlintConfig =
+          baseConfig ?? ('files' in targetConfig ? undefined : targetConfig);
+        if (baseOxlintConfig) {
+          if (
+            !('options' in baseOxlintConfig) ||
+            baseOxlintConfig.options === undefined
+          ) {
+            baseOxlintConfig.options = {};
+          }
+          baseOxlintConfig.options.typeAware = true;
+        }
+      }
       if (options?.merge) {
         // when merge, only override if not exists
         // for non merge override it because eslint/typescript rules

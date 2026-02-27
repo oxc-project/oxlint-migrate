@@ -650,6 +650,9 @@ exports[`puppeteer --type-aware > puppeteer--type-aware 1`] = `
       "examples/puppeteer-in-extension/out/**/*",
       "examples/puppeteer-in-extension/node_modules/**/*",
     ],
+    "options": {
+      "typeAware": true,
+    },
     "overrides": [
       {
         "files": [
