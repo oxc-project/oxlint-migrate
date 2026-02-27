@@ -100,7 +100,6 @@ export namespace ESLint {
     /** Legacy overrides configuration */
     overrides?: unknown[];
     /** Index signature to accept any additional properties */
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     [key: string]: any;
   }
 }
@@ -121,6 +120,11 @@ export type OxlintSupportedSettingsKey =
 export type OxlintSettings = {
   [K in OxlintSupportedSettingsKey]?: Record<string, unknown>;
 } & Record<string, Record<string, unknown> | undefined>;
+
+export type OxlintOptions = {
+  typeAware?: boolean;
+  typeCheck?: boolean;
+};
 
 export type OxlintConfigOverride = {
   files: string[];
@@ -143,8 +147,8 @@ export type OxlintConfig = {
   overrides?: OxlintConfigOverride[];
   ignorePatterns?: OxlintConfigIgnorePatterns;
   settings?: OxlintSettings;
+  options?: OxlintOptions;
 };
-
 export type OxlintConfigOrOverride = OxlintConfig | OxlintConfigOverride;
 
 export type RuleSkippedCategory =

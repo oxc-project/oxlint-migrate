@@ -14,6 +14,7 @@ import {
   detectNeededRulesPlugins,
   transformRuleEntry,
 } from './plugins_rules.js';
+import { typeAwareRules } from './generated/rules.js';
 import { detectSameOverride } from './overrides.js';
 import fixForJsPlugins from './js_plugin_fixes.js';
 import { processConfigFiles } from './files.js';
@@ -130,6 +131,20 @@ const buildConfig = (
   detectNeededRulesPlugins(oxlintConfig);
   detectEnvironmentByGlobals(oxlintConfig);
   cleanUpOxlintConfig(oxlintConfig);
+
+  // If the --type-aware flag is used and the output config contains any
+  // type-aware rules, set the `typeAware` option to true.
+  if (options?.typeAware) {
+    const allOutputRules = [
+      ...Object.keys(oxlintConfig.rules ?? {}),
+      ...(oxlintConfig.overrides ?? []).flatMap((o) =>
+        Object.keys(o.rules ?? {})
+      ),
+    ];
+    if (allOutputRules.some((rule) => typeAwareRules.includes(rule))) {
+      oxlintConfig.options = { ...oxlintConfig.options, typeAware: true };
+    }
+  }
 
   return oxlintConfig;
 };

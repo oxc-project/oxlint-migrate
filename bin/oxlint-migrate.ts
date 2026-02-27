@@ -88,7 +88,7 @@ program
   )
   .option(
     '--type-aware',
-    'Includes supported type-aware rules. Needs the same flag in `oxlint` to enable it.'
+    'Includes supported type-aware rules. Needs the same flag in `oxlint` or the `typeAware` config option to enable it.'
   )
   .option(
     '--js-plugins [bool]',
