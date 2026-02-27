@@ -12,9 +12,7 @@ import stylisticTs from '@stylistic/eslint-plugin-ts';
 // import pluginLocal from 'eslint-plugin-local';
 import pluginJsdoc from 'eslint-plugin-jsdoc';
 
-// @ts-expect-error -- No types available for this plugin
-import pluginHeader from 'eslint-plugin-header';
-pluginHeader.rules.header.meta.schema = false;
+import pluginHeader from '@tony.ganchev/eslint-plugin-header';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ignores = fs
@@ -101,13 +99,17 @@ export default tseslint.config(
       ],
       'header/header': [
         2,
-        'block',
-        [
-          '---------------------------------------------------------------------------------------------',
-          ' *  Copyright (c) Microsoft Corporation. All rights reserved.',
-          ' *  Licensed under the MIT License. See License.txt in the project root for license information.',
-          ' *--------------------------------------------------------------------------------------------',
-        ],
+        {
+          header: {
+            commentType: 'block',
+            lines: [
+              '---------------------------------------------------------------------------------------------',
+              ' *  Copyright (c) Microsoft Corporation. All rights reserved.',
+              ' *  Licensed under the MIT License. See License.txt in the project root for license information.',
+              ' *--------------------------------------------------------------------------------------------',
+            ],
+          },
+        },
       ],
     },
   },

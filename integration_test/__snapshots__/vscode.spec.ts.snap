@@ -316,7 +316,7 @@ exports[`vscode > vscode 1`] = `
   },
   "skipped": {
     "js-plugins": [
-      "header/header",
+      "@tony.ganchev/header/header",
       "@stylistic/ts/semi",
       "@stylistic/ts/member-delimiter-style",
     ],
@@ -426,7 +426,7 @@ exports[`vscode --js-plugins > vscode--js-plugins 1`] = `
       "!.vscode",
     ],
     "jsPlugins": [
-      "eslint-plugin-header",
+      "@tony.ganchev/eslint-plugin-header",
     ],
     "overrides": [
       {
@@ -670,15 +670,19 @@ exports[`vscode --js-plugins > vscode--js-plugins 1`] = `
       "constructor-super": "warn",
       "curly": "warn",
       "eqeqeq": "warn",
-      "header/header": [
+      "@tony.ganchev/header/header": [
         "error",
-        "block",
-        [
-          "---------------------------------------------------------------------------------------------",
-          " *  Copyright (c) Microsoft Corporation. All rights reserved.",
-          " *  Licensed under the MIT License. See License.txt in the project root for license information.",
-          " *--------------------------------------------------------------------------------------------",
-        ],
+        {
+          "header": {
+            "commentType": "block",
+            "lines": [
+              "---------------------------------------------------------------------------------------------",
+              " *  Copyright (c) Microsoft Corporation. All rights reserved.",
+              " *  Licensed under the MIT License. See License.txt in the project root for license information.",
+              " *--------------------------------------------------------------------------------------------",
+            ],
+          }
+        }
       ],
       "no-async-promise-executor": "warn",
       "no-caller": "warn",
@@ -1087,7 +1091,7 @@ exports[`vscode --type-aware > vscode--type-aware 1`] = `
   },
   "skipped": {
     "js-plugins": [
-      "header/header",
+      "@tony.ganchev/header/header",
       "@stylistic/ts/semi",
       "@stylistic/ts/member-delimiter-style",
     ],
@@ -1463,7 +1467,7 @@ exports[`vscode merge > vscode--merge 1`] = `
   },
   "skipped": {
     "js-plugins": [
-      "header/header",
+      "@tony.ganchev/header/header",
       "@stylistic/ts/semi",
       "@stylistic/ts/member-delimiter-style",
     ],

@@ -39,6 +39,7 @@
     "manual-test": "pnpm build; chmod +x dist/bin/oxlint-migrate.mjs; npx ."
   },
   "dependencies": {
+    "@tony.ganchev/eslint-plugin-header": "^3.2.4",
     "commander": "^14.0.0",
     "globals": "^17.0.0",
     "oxc-parser": "^0.114.0",
@@ -63,7 +64,6 @@
     "eslint": "^9.29.0",
     "eslint-config-next": "^16.0.0",
     "eslint-config-prettier": "^10.1.5",
-    "eslint-plugin-header": "^3.1.1",
     "eslint-plugin-import": "^2.32.0",
     "eslint-plugin-import-x": "^4.16.0",
     "eslint-plugin-jsdoc": "^62.0.0",
