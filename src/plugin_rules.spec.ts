@@ -99,26 +99,90 @@ describe('rules and plugins', () => {
       expect(configWithNursery.rules['getter-return']).toBe('error');
     });
 
-    test('typeAware', () => {
-      const eslintConfig: ESLint.Config = {
-        rules: {
-          '@typescript-eslint/no-floating-promises': 'error',
-        },
-      };
+    describe('typeAware', () => {
+      test('basic', () => {
+        const eslintConfig: ESLint.Config = {
+          rules: {
+            '@typescript-eslint/no-floating-promises': 'error',
+          },
+        };
 
-      const configWithTypeAware: OxlintConfig = {};
-      const configWithoutTypeAware: OxlintConfig = {};
+        const configWithTypeAware: OxlintConfig = {};
+        const configWithoutTypeAware: OxlintConfig = {};
 
-      transformRuleEntry(eslintConfig, configWithoutTypeAware);
-      expect(configWithoutTypeAware.rules).toStrictEqual({});
+        transformRuleEntry(eslintConfig, configWithoutTypeAware);
+        expect(configWithoutTypeAware.rules).toStrictEqual({});
 
-      transformRuleEntry(eslintConfig, configWithTypeAware, undefined, {
-        typeAware: true,
+        transformRuleEntry(eslintConfig, configWithTypeAware, undefined, {
+          typeAware: true,
+        });
+        assert(configWithTypeAware.options);
+        expect(configWithTypeAware.options.typeAware).toBe(true);
+        assert(configWithTypeAware.rules);
+        expect(
+          configWithTypeAware.rules['@typescript-eslint/no-floating-promises']
+        ).toBe('error');
       });
-      assert(configWithTypeAware.rules);
-      expect(
-        configWithTypeAware.rules['@typescript-eslint/no-floating-promises']
-      ).toBe('error');
+
+      test('should set typeAware in baseConfig when processing override with baseConfig provided', () => {
+        const eslintConfig: ESLint.Config = {
+          files: ['**/*.ts'],
+          rules: {
+            '@typescript-eslint/no-floating-promises': 'error',
+          },
+        };
+
+        const baseConfig: OxlintConfig = {};
+        const overrideTarget: OxlintConfigOverride = {
+          files: ['**/*.ts'],
+        };
+
+        transformRuleEntry(eslintConfig, overrideTarget, baseConfig, {
+          typeAware: true,
+        });
+
+        assert(baseConfig.options);
+        expect(baseConfig.options.typeAware).toBe(true);
+        assert(overrideTarget.rules);
+        expect(
+          overrideTarget.rules['@typescript-eslint/no-floating-promises']
+        ).toBe('error');
+      });
+
+      test('should not set typeAware when typeAware option is not enabled', () => {
+        const eslintConfig: ESLint.Config = {
+          rules: {
+            '@typescript-eslint/no-floating-promises': 'error',
+          },
+        };
+
+        const targetConfig: OxlintConfig = {};
+
+        transformRuleEntry(eslintConfig, targetConfig, undefined, {
+          typeAware: false,
+        });
+
+        expect(targetConfig.options?.typeAware).toBeUndefined();
+        expect(targetConfig.rules).toStrictEqual({});
+      });
+
+      test('should not set typeAware when rule is not a typeAware rule', () => {
+        const eslintConfig: ESLint.Config = {
+          rules: {
+            'no-console': 'error',
+          },
+        };
+
+        const targetConfig: OxlintConfig = {};
+
+        transformRuleEntry(eslintConfig, targetConfig, undefined, {
+          typeAware: true,
+        });
+
+        expect(targetConfig.options?.typeAware).toBeUndefined();
+        assert(targetConfig.rules);
+        expect(targetConfig.rules['no-console']).toBe('error');
+      });
     });
 
     test('does not report unsupported rules that are disabled', () => {
