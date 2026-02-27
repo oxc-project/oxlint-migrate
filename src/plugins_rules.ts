@@ -190,7 +190,11 @@ export const transformRuleEntry = (
 
       // if typeAware is enabled, and this is a type aware rule,
       // we need to set the typeAware option in the base config, so it is applied to all overrides as well.
-      if (options?.typeAware && rules.typeAwareRules.includes(rule)) {
+      if (
+        options?.typeAware &&
+        rules.typeAwareRules.includes(rule) &&
+        isActiveValue(normalizedConfig)
+      ) {
         // when base config exists, we are in an override.
         // we are probably in the base oxlint config, check for 'files' to be sure.
         const baseOxlintConfig =

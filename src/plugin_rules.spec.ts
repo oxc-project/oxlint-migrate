@@ -183,6 +183,22 @@ describe('rules and plugins', () => {
         assert(targetConfig.rules);
         expect(targetConfig.rules['no-console']).toBe('error');
       });
+
+      test('should not set typeAware option when rule is off', () => {
+        const eslintConfig: ESLint.Config = {
+          rules: {
+            '@typescript-eslint/no-floating-promises': 'off',
+          },
+        };
+        const targetConfig: OxlintConfig = {};
+        transformRuleEntry(eslintConfig, targetConfig, undefined, {
+          typeAware: true,
+        });
+        expect(targetConfig.options?.typeAware).toBeUndefined();
+        expect(targetConfig.rules).toStrictEqual({
+          '@typescript-eslint/no-floating-promises': 'off',
+        });
+      });
     });
 
     test('does not report unsupported rules that are disabled', () => {
