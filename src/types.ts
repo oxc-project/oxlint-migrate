@@ -122,6 +122,10 @@ export type OxlintSettings = {
   [K in OxlintSupportedSettingsKey]?: Record<string, unknown>;
 } & Record<string, Record<string, unknown> | undefined>;
 
+export type OxlintOptions = {
+  typeAware?: boolean;
+};
+
 export type OxlintConfigOverride = {
   files: string[];
   env?: OxlintConfigEnv;
@@ -143,6 +147,7 @@ export type OxlintConfig = {
   overrides?: OxlintConfigOverride[];
   ignorePatterns?: OxlintConfigIgnorePatterns;
   settings?: OxlintSettings;
+  options?: OxlintOptions;
 };
 
 export type OxlintConfigOrOverride = OxlintConfig | OxlintConfigOverride;
