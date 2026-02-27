@@ -1,0 +1,139 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`tanstack > tanstack 1`] = `
+{
+  "config": {
+    "$schema": "./node_modules/oxlint/configuration_schema.json",
+    "categories": {
+      "correctness": "off",
+    },
+    "env": {
+      "builtin": true,
+    },
+    "plugins": [],
+  },
+  "skipped": {
+    "js-plugins": [
+      "@tanstack/query/exhaustive-deps",
+      "@tanstack/query/no-rest-destructuring",
+      "@tanstack/query/stable-query-client",
+      "@tanstack/query/no-unstable-deps",
+      "@tanstack/query/infinite-query-property-order",
+      "@tanstack/query/no-void-query-fn",
+      "@tanstack/query/mutation-property-order",
+      "@tanstack/router/create-route-property-order",
+      "@tanstack/router/route-param-names",
+    ],
+    "not-implemented": [],
+    "nursery": [],
+    "type-aware": [],
+    "unsupported": [],
+  },
+  "warnings": [],
+}
+`;
+
+exports[`tanstack --js-plugins > tanstack--js-plugins 1`] = `
+{
+  "config": {
+    "$schema": "./node_modules/oxlint/configuration_schema.json",
+    "categories": {
+      "correctness": "off",
+    },
+    "env": {
+      "builtin": true,
+    },
+    "jsPlugins": [
+      "@tanstack/eslint-plugin-query",
+      "@tanstack/eslint-plugin-router",
+    ],
+    "plugins": [],
+    "rules": {
+      "@tanstack/query/exhaustive-deps": "error",
+      "@tanstack/query/infinite-query-property-order": "error",
+      "@tanstack/query/mutation-property-order": "error",
+      "@tanstack/query/no-rest-destructuring": "warn",
+      "@tanstack/query/no-unstable-deps": "error",
+      "@tanstack/query/no-void-query-fn": "error",
+      "@tanstack/query/stable-query-client": "error",
+      "@tanstack/router/create-route-property-order": "warn",
+      "@tanstack/router/route-param-names": "error",
+    },
+  },
+  "skipped": {
+    "js-plugins": [],
+    "not-implemented": [],
+    "nursery": [],
+    "type-aware": [],
+    "unsupported": [],
+  },
+  "warnings": [],
+}
+`;
+
+exports[`tanstack --type-aware > tanstack--type-aware 1`] = `
+{
+  "config": {
+    "$schema": "./node_modules/oxlint/configuration_schema.json",
+    "categories": {
+      "correctness": "off",
+    },
+    "env": {
+      "builtin": true,
+    },
+    "plugins": [],
+  },
+  "skipped": {
+    "js-plugins": [
+      "@tanstack/query/exhaustive-deps",
+      "@tanstack/query/no-rest-destructuring",
+      "@tanstack/query/stable-query-client",
+      "@tanstack/query/no-unstable-deps",
+      "@tanstack/query/infinite-query-property-order",
+      "@tanstack/query/no-void-query-fn",
+      "@tanstack/query/mutation-property-order",
+      "@tanstack/router/create-route-property-order",
+      "@tanstack/router/route-param-names",
+    ],
+    "not-implemented": [],
+    "nursery": [],
+    "type-aware": [],
+    "unsupported": [],
+  },
+  "warnings": [],
+}
+`;
+
+exports[`tanstack merge > tanstack--merge 1`] = `
+{
+  "config": {
+    "$schema": "./node_modules/oxlint/configuration_schema.json",
+    "categories": {
+      "correctness": "error",
+      "perf": "error",
+    },
+    "env": {
+      "builtin": true,
+    },
+    "plugins": [],
+  },
+  "skipped": {
+    "js-plugins": [
+      "@tanstack/query/exhaustive-deps",
+      "@tanstack/query/no-rest-destructuring",
+      "@tanstack/query/stable-query-client",
+      "@tanstack/query/no-unstable-deps",
+      "@tanstack/query/infinite-query-property-order",
+      "@tanstack/query/no-void-query-fn",
+      "@tanstack/query/mutation-property-order",
+      "@tanstack/router/create-route-property-order",
+      "@tanstack/router/route-param-names",
+    ],
+    "not-implemented": [],
+    "nursery": [],
+    "type-aware": [],
+    "unsupported": [],
+  },
+  "warnings": [],
+}
+`;
