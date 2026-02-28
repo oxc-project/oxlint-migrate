@@ -55,8 +55,9 @@ describe('JS Plugins with overrides', () => {
     // The override should still be present, should only have one.
     const overrides = oxlintConfig.overrides!;
     expect(overrides).toHaveLength(1);
-    // jsPlugins is unnecessary in the override since it's already set in the base config.
-    expect(overrides[0].jsPlugins).toBeUndefined();
+    // jsPlugins is also present in the override (redundant with base, but ensures
+    // oxlint can resolve the rule name regardless of config structure).
+    expect(overrides[0].jsPlugins).toStrictEqual(['eslint-plugin-regexp']);
 
     // Should be set to off in the override.
     expect(overrides[0].rules?.['regexp/no-lazy-ends']).toBe('off');

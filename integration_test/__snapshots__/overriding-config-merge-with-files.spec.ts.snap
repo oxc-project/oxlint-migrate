@@ -43,6 +43,9 @@ exports[`overriding-config-merge-with-files --js-plugins > overriding-config-mer
         "files": [
           "**/*.js",
         ],
+        "jsPlugins": [
+          "eslint-plugin-regexp",
+        ],
         "rules": {
           "regexp/no-lazy-ends": [
             "off",
