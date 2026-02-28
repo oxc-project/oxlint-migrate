@@ -121,6 +121,51 @@ describe('rules and plugins', () => {
       ).toBe('error');
     });
 
+    test('eslint rules remapped to typescript equivalents when type-aware is enabled', () => {
+      // dot-notation and consistent-return are unsupported as plain ESLint rules in oxlint,
+      // but oxlint supports them as @typescript-eslint type-aware rules.
+      const eslintConfig: Linter.Config = {
+        rules: {
+          'dot-notation': 'error',
+          'consistent-return': 'warn',
+        },
+      };
+
+      const configWithoutTypeAware: OxlintConfig = {};
+      const configWithTypeAwareOnly: OxlintConfig = {};
+      const configWithTypeAwareAndNursery: OxlintConfig = {};
+
+      // Without --type-aware: rules are not migrated (they are unsupported)
+      transformRuleEntry(eslintConfig, configWithoutTypeAware);
+      expect(configWithoutTypeAware.rules).toStrictEqual({});
+
+      // With --type-aware but not --with-nursery: remapped but skipped (nursery rules)
+      transformRuleEntry(eslintConfig, configWithTypeAwareOnly, undefined, {
+        typeAware: true,
+      });
+      expect(configWithTypeAwareOnly.rules).toStrictEqual({});
+
+      // With both --type-aware and --with-nursery: remapped and included
+      transformRuleEntry(
+        eslintConfig,
+        configWithTypeAwareAndNursery,
+        undefined,
+        {
+          typeAware: true,
+          withNursery: true,
+        }
+      );
+      assert(configWithTypeAwareAndNursery.rules);
+      expect(
+        configWithTypeAwareAndNursery.rules['@typescript-eslint/dot-notation']
+      ).toBe('error');
+      expect(
+        configWithTypeAwareAndNursery.rules[
+          '@typescript-eslint/consistent-return'
+        ]
+      ).toBe('warn');
+    });
+
     test('does not report unsupported rules that are disabled', () => {
       const enabledConfig: ESLint.Config = {
         rules: {
