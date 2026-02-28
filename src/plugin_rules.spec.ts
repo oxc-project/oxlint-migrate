@@ -132,37 +132,23 @@ describe('rules and plugins', () => {
       };
 
       const configWithoutTypeAware: OxlintConfig = {};
-      const configWithTypeAwareOnly: OxlintConfig = {};
-      const configWithTypeAwareAndNursery: OxlintConfig = {};
+      const configWithTypeAware: OxlintConfig = {};
 
       // Without --type-aware: rules are not migrated (they are unsupported)
       transformRuleEntry(eslintConfig, configWithoutTypeAware);
       expect(configWithoutTypeAware.rules).toStrictEqual({});
 
-      // With --type-aware but not --with-nursery: remapped but skipped (nursery rules)
-      transformRuleEntry(eslintConfig, configWithTypeAwareOnly, undefined, {
+      // With --type-aware: remapped to @typescript-eslint equivalents
+      transformRuleEntry(eslintConfig, configWithTypeAware, undefined, {
         typeAware: true,
+        withNursery: true,
       });
-      expect(configWithTypeAwareOnly.rules).toStrictEqual({});
-
-      // With both --type-aware and --with-nursery: remapped and included
-      transformRuleEntry(
-        eslintConfig,
-        configWithTypeAwareAndNursery,
-        undefined,
-        {
-          typeAware: true,
-          withNursery: true,
-        }
+      assert(configWithTypeAware.rules);
+      expect(configWithTypeAware.rules['@typescript-eslint/dot-notation']).toBe(
+        'error'
       );
-      assert(configWithTypeAwareAndNursery.rules);
       expect(
-        configWithTypeAwareAndNursery.rules['@typescript-eslint/dot-notation']
-      ).toBe('error');
-      expect(
-        configWithTypeAwareAndNursery.rules[
-          '@typescript-eslint/consistent-return'
-        ]
+        configWithTypeAware.rules['@typescript-eslint/consistent-return']
       ).toBe('warn');
     });
 
