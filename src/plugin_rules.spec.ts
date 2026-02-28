@@ -124,7 +124,7 @@ describe('rules and plugins', () => {
     test('eslint rules remapped to typescript equivalents when type-aware is enabled', () => {
       // dot-notation and consistent-return are unsupported as plain ESLint rules in oxlint,
       // but oxlint supports them as @typescript-eslint type-aware rules.
-      const eslintConfig: Linter.Config = {
+      const eslintConfig: ESLint.Config = {
         rules: {
           'dot-notation': 'error',
           'consistent-return': 'warn',
