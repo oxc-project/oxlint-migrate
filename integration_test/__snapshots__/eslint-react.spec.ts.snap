@@ -187,7 +187,8 @@ exports[`eslint-react > eslint-react 1`] = `
     ],
   },
   "warnings": [
-    "Settings found in config with 'files' pattern (react-x). Oxlint does not support settings in overrides, these settings will be skipped.",
+    "Settings found under a 'files' pattern — oxlint does not support settings in overrides and they will be skipped:
+\`react-x\`",
   ],
 }
 `;
@@ -386,7 +387,8 @@ exports[`eslint-react --js-plugins > eslint-react--js-plugins 1`] = `
     ],
   },
   "warnings": [
-    "Settings found in config with 'files' pattern (react-x). Oxlint does not support settings in overrides, these settings will be skipped.",
+    "Settings found under a 'files' pattern — oxlint does not support settings in overrides and they will be skipped:
+\`react-x\`",
   ],
 }
 `;
@@ -578,7 +580,8 @@ exports[`eslint-react --type-aware > eslint-react--type-aware 1`] = `
     ],
   },
   "warnings": [
-    "Settings found in config with 'files' pattern (react-x). Oxlint does not support settings in overrides, these settings will be skipped.",
+    "Settings found under a 'files' pattern — oxlint does not support settings in overrides and they will be skipped:
+\`react-x\`",
   ],
 }
 `;
@@ -770,7 +773,8 @@ exports[`eslint-react merge > eslint-react--merge 1`] = `
     ],
   },
   "warnings": [
-    "Settings found in config with 'files' pattern (react-x). Oxlint does not support settings in overrides, these settings will be skipped.",
+    "Settings found under a 'files' pattern — oxlint does not support settings in overrides and they will be skipped:
+\`react-x\`",
   ],
 }
 `;

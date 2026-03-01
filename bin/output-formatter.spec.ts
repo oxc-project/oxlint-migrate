@@ -3,6 +3,7 @@ import {
   formatCategorySummary,
   detectMissingFlags,
   formatMigrationOutput,
+  formatWarningsOutput,
   type MigrationOutputData,
 } from './output-formatter.js';
 import { SkippedCategoryGroup } from '../src/types.js';
@@ -217,6 +218,33 @@ describe('detectMissingFlags', () => {
     const result = detectMissingFlags(byCategory, cliOptions);
 
     expect(result).toEqual([]);
+  });
+});
+
+describe('formatWarningsOutput', () => {
+  it('should return empty string when no warnings', () => {
+    expect(formatWarningsOutput([])).toBe('');
+  });
+
+  it('should format single-line warnings as bullets', () => {
+    const result = formatWarningsOutput(['first warning', 'second warning']);
+
+    expect(result).toBe(
+      '⚠️  Warnings (2):\n' + '   * first warning\n' + '   * second warning'
+    );
+  });
+
+  it('should format multiline warnings with sub-bullets', () => {
+    const result = formatWarningsOutput([
+      'Settings not migrated (not supported by oxlint):\n`import/resolver`\n`custom-plugin`',
+    ]);
+
+    expect(result).toBe(
+      '⚠️  Warnings (1):\n' +
+        '   * Settings not migrated (not supported by oxlint):\n' +
+        '     * `import/resolver`\n' +
+        '     * `custom-plugin`'
+    );
   });
 });
 

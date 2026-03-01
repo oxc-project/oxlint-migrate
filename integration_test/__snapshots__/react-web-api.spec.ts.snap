@@ -123,7 +123,8 @@ exports[`react-web-api > react-web-api 1`] = `
     "ESLint AND glob patterns (nested arrays in files) are not supported in oxlint: ["**/*.{ts,tsx}","**/*.tsx"]",
     "ESLint AND glob patterns (nested arrays in files) are not supported in oxlint: ["**/*.{ts,tsx}","**/*.mts"]",
     "ESLint AND glob patterns (nested arrays in files) are not supported in oxlint: ["**/*.{ts,tsx}","**/*.cts"]",
-    "Settings found in config with 'files' pattern (react-x). Oxlint does not support settings in overrides, these settings will be skipped.",
+    "Settings found under a 'files' pattern — oxlint does not support settings in overrides and they will be skipped:
+\`react-x\`",
   ],
 }
 `;
@@ -253,7 +254,8 @@ exports[`react-web-api --js-plugins > react-web-api--js-plugins 1`] = `
     "ESLint AND glob patterns (nested arrays in files) are not supported in oxlint: ["**/*.{ts,tsx}","**/*.tsx"]",
     "ESLint AND glob patterns (nested arrays in files) are not supported in oxlint: ["**/*.{ts,tsx}","**/*.mts"]",
     "ESLint AND glob patterns (nested arrays in files) are not supported in oxlint: ["**/*.{ts,tsx}","**/*.cts"]",
-    "Settings found in config with 'files' pattern (react-x). Oxlint does not support settings in overrides, these settings will be skipped.",
+    "Settings found under a 'files' pattern — oxlint does not support settings in overrides and they will be skipped:
+\`react-x\`",
   ],
 }
 `;
@@ -381,7 +383,8 @@ exports[`react-web-api --type-aware > react-web-api--type-aware 1`] = `
     "ESLint AND glob patterns (nested arrays in files) are not supported in oxlint: ["**/*.{ts,tsx}","**/*.tsx"]",
     "ESLint AND glob patterns (nested arrays in files) are not supported in oxlint: ["**/*.{ts,tsx}","**/*.mts"]",
     "ESLint AND glob patterns (nested arrays in files) are not supported in oxlint: ["**/*.{ts,tsx}","**/*.cts"]",
-    "Settings found in config with 'files' pattern (react-x). Oxlint does not support settings in overrides, these settings will be skipped.",
+    "Settings found under a 'files' pattern — oxlint does not support settings in overrides and they will be skipped:
+\`react-x\`",
   ],
 }
 `;
@@ -509,7 +512,8 @@ exports[`react-web-api merge > react-web-api--merge 1`] = `
     "ESLint AND glob patterns (nested arrays in files) are not supported in oxlint: ["**/*.{ts,tsx}","**/*.tsx"]",
     "ESLint AND glob patterns (nested arrays in files) are not supported in oxlint: ["**/*.{ts,tsx}","**/*.mts"]",
     "ESLint AND glob patterns (nested arrays in files) are not supported in oxlint: ["**/*.{ts,tsx}","**/*.cts"]",
-    "Settings found in config with 'files' pattern (react-x). Oxlint does not support settings in overrides, these settings will be skipped.",
+    "Settings found under a 'files' pattern — oxlint does not support settings in overrides and they will be skipped:
+\`react-x\`",
   ],
 }
 `;

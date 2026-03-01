@@ -337,9 +337,11 @@ describe('transformSettings', () => {
       });
       const warnings = reporter.getWarnings();
       expect(warnings).toHaveLength(1);
-      expect(warnings[0]).toContain('import/resolver');
-      expect(warnings[0]).toContain('custom-plugin');
-      expect(warnings[0]).toContain('not supported by oxlint');
+      expect(warnings[0]).toContain(
+        'Settings not migrated (not supported by oxlint):'
+      );
+      expect(warnings[0]).toContain('\n`import/resolver`');
+      expect(warnings[0]).toContain('\n`custom-plugin`');
     });
 
     it('should skip non-object settings values', () => {
@@ -360,8 +362,11 @@ describe('transformSettings', () => {
       });
       const warnings = reporter.getWarnings();
       expect(warnings).toHaveLength(1);
-      expect(warnings[0]).toContain('string-setting');
-      expect(warnings[0]).toContain('number-setting');
+      expect(warnings[0]).toContain(
+        'Settings not migrated (not supported by oxlint):'
+      );
+      expect(warnings[0]).toContain('\n`string-setting`');
+      expect(warnings[0]).toContain('\n`number-setting`');
     });
   });
 
@@ -392,7 +397,7 @@ describe('transformSettings', () => {
       // Should still warn about unsupported settings
       const warnings = reporter.getWarnings();
       expect(warnings).toHaveLength(1);
-      expect(warnings[0]).toContain('import/resolver');
+      expect(warnings[0]).toContain('\n`import/resolver`');
     });
   });
 
@@ -503,9 +508,10 @@ describe('warnSettingsInOverride', () => {
 
     const warnings = reporter.getWarnings();
     expect(warnings).toHaveLength(1);
-    expect(warnings[0]).toContain('react');
-    expect(warnings[0]).toContain('jsx-a11y');
+    expect(warnings[0]).toContain("Settings found under a 'files' pattern");
     expect(warnings[0]).toContain('does not support settings in overrides');
+    expect(warnings[0]).toContain('\n`react`');
+    expect(warnings[0]).toContain('\n`jsx-a11y`');
   });
 
   it('should not warn when no settings in override config', () => {

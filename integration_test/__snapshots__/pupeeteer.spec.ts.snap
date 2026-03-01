@@ -282,8 +282,13 @@ exports[`puppeteer > puppeteer 1`] = `
     ],
   },
   "warnings": [
-    "Settings not migrated (not supported by oxlint): import/extensions, import/external-module-folders, import/parsers, import/resolver.",
-    "Settings not migrated (not supported by oxlint): import/resolver.",
+    "Settings not migrated (not supported by oxlint):
+\`import/extensions\`
+\`import/external-module-folders\`
+\`import/parsers\`
+\`import/resolver\`",
+    "Settings not migrated (not supported by oxlint):
+\`import/resolver\`",
   ],
 }
 `;
@@ -592,8 +597,13 @@ exports[`puppeteer --js-plugins > puppeteer--js-plugins 1`] = `
     ],
   },
   "warnings": [
-    "Settings not migrated (not supported by oxlint): import/extensions, import/external-module-folders, import/parsers, import/resolver.",
-    "Settings not migrated (not supported by oxlint): import/resolver.",
+    "Settings not migrated (not supported by oxlint):
+\`import/extensions\`
+\`import/external-module-folders\`
+\`import/parsers\`
+\`import/resolver\`",
+    "Settings not migrated (not supported by oxlint):
+\`import/resolver\`",
   ],
 }
 `;
@@ -903,8 +913,13 @@ exports[`puppeteer --type-aware > puppeteer--type-aware 1`] = `
     ],
   },
   "warnings": [
-    "Settings not migrated (not supported by oxlint): import/extensions, import/external-module-folders, import/parsers, import/resolver.",
-    "Settings not migrated (not supported by oxlint): import/resolver.",
+    "Settings not migrated (not supported by oxlint):
+\`import/extensions\`
+\`import/external-module-folders\`
+\`import/parsers\`
+\`import/resolver\`",
+    "Settings not migrated (not supported by oxlint):
+\`import/resolver\`",
   ],
 }
 `;
@@ -1173,8 +1188,13 @@ exports[`puppeteer merge > puppeteer--merge 1`] = `
     ],
   },
   "warnings": [
-    "Settings not migrated (not supported by oxlint): import/extensions, import/external-module-folders, import/parsers, import/resolver.",
-    "Settings not migrated (not supported by oxlint): import/resolver.",
+    "Settings not migrated (not supported by oxlint):
+\`import/extensions\`
+\`import/external-module-folders\`
+\`import/parsers\`
+\`import/resolver\`",
+    "Settings not migrated (not supported by oxlint):
+\`import/resolver\`",
   ],
 }
 `;

@@ -59,6 +59,14 @@ const isSupportedSettingsKey = (key: OxlintSupportedSettingsKey): boolean => {
 };
 
 /**
+ * Format a list of settings keys into a newline-separated, backtick-quoted
+ * string for warning output.
+ */
+const formatSettingsKeyList = (keys: string[]): string => {
+  return keys.map((key) => `\`${key}\``).join('\n');
+};
+
+/**
  * Transform ESLint settings to oxlint settings.
  *
  * Only processes settings for the base config (not overrides) since oxlint
@@ -116,8 +124,8 @@ export const transformSettings = (
     // Special case: react.version = "detect" is not supported by oxlint
     if (key === 'react' && settingsValue.version === 'detect') {
       options?.reporter?.addWarning(
-        `react.version "detect" is not supported by oxlint. ` +
-          `Please specify an explicit version (e.g., "18.2.0") in your oxlint config.`
+        `react.version "detect" is not supported. ` +
+          `Specify an explicit version (e.g., "18.2.0") in your oxlint config.`
       );
       const { version: _, ...restReactSettings } = settingsValue;
       settingsValue = restReactSettings;
@@ -127,18 +135,12 @@ export const transformSettings = (
     // or `vitest.vitestImports`, and warn about them.
     const unsupportedSubKeys = UNSUPPORTED_SETTINGS_SUB_KEYS[key];
     if (unsupportedSubKeys !== undefined) {
-      const strippedKeys: string[] = [];
       for (const subKey of unsupportedSubKeys) {
         if (subKey in settingsValue) {
-          strippedKeys.push(`${key}.${subKey}`);
+          skippedKeys.push(`${key}.${subKey}`);
           const { [subKey]: _, ...rest } = settingsValue;
           settingsValue = rest;
         }
-      }
-      if (strippedKeys.length > 0) {
-        options?.reporter?.addWarning(
-          `Settings not migrated (not supported by oxlint): ${strippedKeys.join(', ')}.`
-        );
       }
     }
 
@@ -153,7 +155,7 @@ export const transformSettings = (
   // Warn about unsupported settings that were skipped
   if (skippedKeys.length > 0) {
     options?.reporter?.addWarning(
-      `Settings not migrated (not supported by oxlint): ${skippedKeys.join(', ')}.`
+      `Settings not migrated (not supported by oxlint):\n${formatSettingsKeyList(skippedKeys)}`
     );
   }
 
@@ -193,10 +195,11 @@ export const warnSettingsInOverride = (
     eslintConfig.settings !== null &&
     Object.keys(eslintConfig.settings).length > 0
   ) {
-    const settingsKeys = Object.keys(eslintConfig.settings).join(', ');
+    const settingsKeys = Object.keys(eslintConfig.settings);
     options?.reporter?.addWarning(
-      `Settings found in config with 'files' pattern (${settingsKeys}). ` +
-        `Oxlint does not support settings in overrides, these settings will be skipped.`
+      `Settings found under a 'files' pattern — ` +
+        `oxlint does not support settings in overrides and they will be skipped:\n` +
+        formatSettingsKeyList(settingsKeys)
     );
   }
 };
