@@ -189,6 +189,7 @@ exports[`many-extends.spec.ts > many-extends.spec.ts 1`] = `
       "no-shadow-restricted-names": "error",
       "no-sparse-arrays": "error",
       "no-this-before-super": "error",
+      "no-unassigned-vars": "error",
       "no-unexpected-multiline": "error",
       "no-unsafe-finally": "error",
       "no-unsafe-negation": "error",
@@ -199,6 +200,7 @@ exports[`many-extends.spec.ts > many-extends.spec.ts 1`] = `
       "no-useless-catch": "error",
       "no-useless-escape": "error",
       "no-with": "error",
+      "preserve-caught-error": "error",
       "react-hooks/exhaustive-deps": "warn",
       "react-hooks/rules-of-hooks": "error",
       "react/button-has-type": "error",
@@ -225,6 +227,7 @@ exports[`many-extends.spec.ts > many-extends.spec.ts 1`] = `
   "skipped": {
     "js-plugins": [],
     "not-implemented": [
+      "no-useless-assignment",
       "jsdoc/check-alignment",
       "jsdoc/check-param-names",
       "jsdoc/check-types",
@@ -534,6 +537,7 @@ exports[`many-extends.spec.ts --js-plugins > many-extends.spec.ts--js-plugins 1`
       "no-shadow-restricted-names": "error",
       "no-sparse-arrays": "error",
       "no-this-before-super": "error",
+      "no-unassigned-vars": "error",
       "no-unexpected-multiline": "error",
       "no-unsafe-finally": "error",
       "no-unsafe-negation": "error",
@@ -544,6 +548,7 @@ exports[`many-extends.spec.ts --js-plugins > many-extends.spec.ts--js-plugins 1`
       "no-useless-catch": "error",
       "no-useless-escape": "error",
       "no-with": "error",
+      "preserve-caught-error": "error",
       "react-hooks/exhaustive-deps": "warn",
       "react-hooks/rules-of-hooks": "error",
       "react/button-has-type": "error",
@@ -570,6 +575,7 @@ exports[`many-extends.spec.ts --js-plugins > many-extends.spec.ts--js-plugins 1`
   "skipped": {
     "js-plugins": [],
     "not-implemented": [
+      "no-useless-assignment",
       "jsdoc/check-alignment",
       "jsdoc/check-param-names",
       "jsdoc/check-types",
@@ -943,6 +949,7 @@ exports[`many-extends.spec.ts --type-aware > many-extends.spec.ts--type-aware 1`
       "no-shadow-restricted-names": "error",
       "no-sparse-arrays": "error",
       "no-this-before-super": "error",
+      "no-unassigned-vars": "error",
       "no-unexpected-multiline": "error",
       "no-unsafe-finally": "error",
       "no-unsafe-negation": "error",
@@ -953,6 +960,7 @@ exports[`many-extends.spec.ts --type-aware > many-extends.spec.ts--type-aware 1`
       "no-useless-catch": "error",
       "no-useless-escape": "error",
       "no-with": "error",
+      "preserve-caught-error": "error",
       "react-hooks/exhaustive-deps": "warn",
       "react-hooks/rules-of-hooks": "error",
       "react/button-has-type": "error",
@@ -979,6 +987,7 @@ exports[`many-extends.spec.ts --type-aware > many-extends.spec.ts--type-aware 1`
   "skipped": {
     "js-plugins": [],
     "not-implemented": [
+      "no-useless-assignment",
       "jsdoc/check-alignment",
       "jsdoc/check-param-names",
       "jsdoc/check-types",
@@ -1223,6 +1232,7 @@ exports[`many-extends.spec.ts merge > many-extends.spec.ts--merge 1`] = `
       "no-redeclare": "error",
       "no-regex-spaces": "error",
       "no-unexpected-multiline": "error",
+      "preserve-caught-error": "error",
       "react-hooks/exhaustive-deps": "warn",
       "react-hooks/rules-of-hooks": "error",
       "react/button-has-type": "error",
@@ -1238,6 +1248,7 @@ exports[`many-extends.spec.ts merge > many-extends.spec.ts--merge 1`] = `
   "skipped": {
     "js-plugins": [],
     "not-implemented": [
+      "no-useless-assignment",
       "jsdoc/check-alignment",
       "jsdoc/check-param-names",
       "jsdoc/check-types",

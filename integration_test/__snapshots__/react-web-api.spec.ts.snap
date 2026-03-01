@@ -79,6 +79,7 @@ exports[`react-web-api > react-web-api 1`] = `
           "no-shadow-restricted-names": "error",
           "no-sparse-arrays": "error",
           "no-this-before-super": "error",
+          "no-unassigned-vars": "error",
           "no-unexpected-multiline": "error",
           "no-unsafe-finally": "error",
           "no-unsafe-negation": "error",
@@ -91,6 +92,7 @@ exports[`react-web-api > react-web-api 1`] = `
           "no-useless-catch": "error",
           "no-useless-escape": "error",
           "no-with": "error",
+          "preserve-caught-error": "error",
           "require-yield": "error",
           "use-isnan": "error",
           "valid-typeof": "error",
@@ -106,7 +108,9 @@ exports[`react-web-api > react-web-api 1`] = `
       "react-web-api/no-leaked-resize-observer",
       "react-web-api/no-leaked-timeout",
     ],
-    "not-implemented": [],
+    "not-implemented": [
+      "no-useless-assignment",
+    ],
     "nursery": [
       "getter-return",
       "no-undef",
@@ -211,6 +215,7 @@ exports[`react-web-api --js-plugins > react-web-api--js-plugins 1`] = `
           "no-shadow-restricted-names": "error",
           "no-sparse-arrays": "error",
           "no-this-before-super": "error",
+          "no-unassigned-vars": "error",
           "no-unexpected-multiline": "error",
           "no-unsafe-finally": "error",
           "no-unsafe-negation": "error",
@@ -223,6 +228,7 @@ exports[`react-web-api --js-plugins > react-web-api--js-plugins 1`] = `
           "no-useless-catch": "error",
           "no-useless-escape": "error",
           "no-with": "error",
+          "preserve-caught-error": "error",
           "react-web-api/no-leaked-event-listener": "error",
           "react-web-api/no-leaked-interval": "warn",
           "react-web-api/no-leaked-resize-observer": "warn",
@@ -237,7 +243,9 @@ exports[`react-web-api --js-plugins > react-web-api--js-plugins 1`] = `
   },
   "skipped": {
     "js-plugins": [],
-    "not-implemented": [],
+    "not-implemented": [
+      "no-useless-assignment",
+    ],
     "nursery": [
       "getter-return",
       "no-undef",
@@ -339,6 +347,7 @@ exports[`react-web-api --type-aware > react-web-api--type-aware 1`] = `
           "no-shadow-restricted-names": "error",
           "no-sparse-arrays": "error",
           "no-this-before-super": "error",
+          "no-unassigned-vars": "error",
           "no-unexpected-multiline": "error",
           "no-unsafe-finally": "error",
           "no-unsafe-negation": "error",
@@ -351,6 +360,7 @@ exports[`react-web-api --type-aware > react-web-api--type-aware 1`] = `
           "no-useless-catch": "error",
           "no-useless-escape": "error",
           "no-with": "error",
+          "preserve-caught-error": "error",
           "require-yield": "error",
           "use-isnan": "error",
           "valid-typeof": "error",
@@ -366,7 +376,9 @@ exports[`react-web-api --type-aware > react-web-api--type-aware 1`] = `
       "react-web-api/no-leaked-resize-observer",
       "react-web-api/no-leaked-timeout",
     ],
-    "not-implemented": [],
+    "not-implemented": [
+      "no-useless-assignment",
+    ],
     "nursery": [
       "getter-return",
       "no-undef",
@@ -469,6 +481,7 @@ exports[`react-web-api merge > react-web-api--merge 1`] = `
           "no-shadow-restricted-names": "error",
           "no-sparse-arrays": "error",
           "no-this-before-super": "error",
+          "no-unassigned-vars": "error",
           "no-unexpected-multiline": "error",
           "no-unsafe-finally": "error",
           "no-unsafe-negation": "error",
@@ -481,6 +494,7 @@ exports[`react-web-api merge > react-web-api--merge 1`] = `
           "no-useless-catch": "error",
           "no-useless-escape": "error",
           "no-with": "error",
+          "preserve-caught-error": "error",
           "require-yield": "error",
           "use-isnan": "error",
           "valid-typeof": "error",
@@ -495,7 +509,9 @@ exports[`react-web-api merge > react-web-api--merge 1`] = `
       "react-web-api/no-leaked-resize-observer",
       "react-web-api/no-leaked-timeout",
     ],
-    "not-implemented": [],
+    "not-implemented": [
+      "no-useless-assignment",
+    ],
     "nursery": [
       "getter-return",
       "no-undef",

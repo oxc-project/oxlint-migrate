@@ -64,6 +64,7 @@ exports[`eslint-react > eslint-react 1`] = `
           "no-shadow-restricted-names": "error",
           "no-sparse-arrays": "error",
           "no-this-before-super": "error",
+          "no-unassigned-vars": "error",
           "no-unexpected-multiline": "error",
           "no-unsafe-finally": "error",
           "no-unsafe-negation": "error",
@@ -80,6 +81,7 @@ exports[`eslint-react > eslint-react 1`] = `
           "no-useless-catch": "error",
           "no-useless-escape": "error",
           "no-with": "error",
+          "preserve-caught-error": "error",
           "react-hooks/exhaustive-deps": "warn",
           "react-hooks/rules-of-hooks": "error",
           "react/only-export-components": [
@@ -159,7 +161,9 @@ exports[`eslint-react > eslint-react 1`] = `
       "@eslint-react/naming-convention/ref-name",
       "@eslint-react/naming-convention/use-state",
     ],
-    "not-implemented": [],
+    "not-implemented": [
+      "no-useless-assignment",
+    ],
     "nursery": [
       "getter-return",
       "no-undef",
@@ -265,6 +269,7 @@ exports[`eslint-react --js-plugins > eslint-react--js-plugins 1`] = `
           "no-shadow-restricted-names": "error",
           "no-sparse-arrays": "error",
           "no-this-before-super": "error",
+          "no-unassigned-vars": "error",
           "no-unexpected-multiline": "error",
           "no-unsafe-finally": "error",
           "no-unsafe-negation": "error",
@@ -281,6 +286,7 @@ exports[`eslint-react --js-plugins > eslint-react--js-plugins 1`] = `
           "no-useless-catch": "error",
           "no-useless-escape": "error",
           "no-with": "error",
+          "preserve-caught-error": "error",
           "react-dom/no-dangerously-set-innerhtml": "warn",
           "react-dom/no-dangerously-set-innerhtml-with-children": "error",
           "react-dom/no-find-dom-node": "error",
@@ -359,7 +365,9 @@ exports[`eslint-react --js-plugins > eslint-react--js-plugins 1`] = `
   },
   "skipped": {
     "js-plugins": [],
-    "not-implemented": [],
+    "not-implemented": [
+      "no-useless-assignment",
+    ],
     "nursery": [
       "getter-return",
       "no-undef",
@@ -457,6 +465,7 @@ exports[`eslint-react --type-aware > eslint-react--type-aware 1`] = `
           "no-shadow-restricted-names": "error",
           "no-sparse-arrays": "error",
           "no-this-before-super": "error",
+          "no-unassigned-vars": "error",
           "no-unexpected-multiline": "error",
           "no-unsafe-finally": "error",
           "no-unsafe-negation": "error",
@@ -473,6 +482,7 @@ exports[`eslint-react --type-aware > eslint-react--type-aware 1`] = `
           "no-useless-catch": "error",
           "no-useless-escape": "error",
           "no-with": "error",
+          "preserve-caught-error": "error",
           "react-hooks/exhaustive-deps": "warn",
           "react-hooks/rules-of-hooks": "error",
           "react/only-export-components": [
@@ -552,7 +562,9 @@ exports[`eslint-react --type-aware > eslint-react--type-aware 1`] = `
       "@eslint-react/naming-convention/ref-name",
       "@eslint-react/naming-convention/use-state",
     ],
-    "not-implemented": [],
+    "not-implemented": [
+      "no-useless-assignment",
+    ],
     "nursery": [
       "getter-return",
       "no-undef",
@@ -651,6 +663,7 @@ exports[`eslint-react merge > eslint-react--merge 1`] = `
           "no-shadow-restricted-names": "error",
           "no-sparse-arrays": "error",
           "no-this-before-super": "error",
+          "no-unassigned-vars": "error",
           "no-unexpected-multiline": "error",
           "no-unsafe-finally": "error",
           "no-unsafe-negation": "error",
@@ -667,6 +680,7 @@ exports[`eslint-react merge > eslint-react--merge 1`] = `
           "no-useless-catch": "error",
           "no-useless-escape": "error",
           "no-with": "error",
+          "preserve-caught-error": "error",
           "react-hooks/exhaustive-deps": "warn",
           "react-hooks/rules-of-hooks": "error",
           "react/only-export-components": [
@@ -745,7 +759,9 @@ exports[`eslint-react merge > eslint-react--merge 1`] = `
       "@eslint-react/naming-convention/ref-name",
       "@eslint-react/naming-convention/use-state",
     ],
-    "not-implemented": [],
+    "not-implemented": [
+      "no-useless-assignment",
+    ],
     "nursery": [
       "getter-return",
       "no-undef",
