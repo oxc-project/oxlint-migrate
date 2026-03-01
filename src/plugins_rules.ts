@@ -162,7 +162,8 @@ export const transformRuleEntry = (
   targetConfig: OxlintConfigOrOverride,
   baseConfig?: OxlintConfig,
   options?: Options,
-  overrides?: OxlintConfigOverride[]
+  overrides?: OxlintConfigOverride[],
+  globalPlugins?: Record<string, ESLint.Plugin> | null
 ): void => {
   if (eslintConfig.rules === undefined) {
     return;
@@ -171,6 +172,14 @@ export const transformRuleEntry = (
   if (targetConfig.rules === undefined) {
     targetConfig.rules = {};
   }
+
+  // Merge global plugins with local config plugins, with local taking priority.
+  // This allows alias resolution when a plugin is registered in one config
+  // object but its rules are used in a separate config object.
+  const effectivePlugins: Record<string, ESLint.Plugin> | null | undefined =
+    globalPlugins
+      ? { ...globalPlugins, ...eslintConfig.plugins }
+      : eslintConfig.plugins;
 
   for (const [rule, config] of Object.entries(eslintConfig.rules)) {
     const normalizedConfig = normalizeSeverityValue(config);
@@ -182,7 +191,7 @@ export const transformRuleEntry = (
       // Also try the resolved name in case the rule was stored under a
       // renamed prefix by a previous enableJsPluginRule call.
       if (options?.jsPlugins) {
-        const resolved = resolveJsPluginRuleName(rule, eslintConfig.plugins);
+        const resolved = resolveJsPluginRuleName(rule, effectivePlugins);
         if (resolved !== rule) {
           removePreviousOverrideRule(resolved, eslintConfig, overrides);
         }
@@ -226,10 +235,7 @@ export const transformRuleEntry = (
         if (isOffValue(normalizedConfig)) {
           // Use the resolved (potentially renamed) rule name for consistency
           // with enabled rules that go through enableJsPluginRule.
-          const resolvedRule = resolveJsPluginRuleName(
-            rule,
-            eslintConfig.plugins
-          );
+          const resolvedRule = resolveJsPluginRuleName(rule, effectivePlugins);
           if (eslintConfig.files === undefined) {
             // base config: drop disabled rule entirely
             delete targetConfig.rules[resolvedRule];
@@ -253,7 +259,7 @@ export const transformRuleEntry = (
             targetConfig,
             rule,
             normalizedConfig,
-            eslintConfig.plugins
+            effectivePlugins
           )
         ) {
           const category = unsupportedRuleExplanations[rule]
