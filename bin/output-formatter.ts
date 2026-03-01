@@ -209,13 +209,32 @@ export function formatMigrationOutput(data: MigrationOutputData): string {
   return output;
 }
 
+export function formatWarningsOutput(warnings: string[]): string {
+  if (warnings.length === 0) {
+    return '';
+  }
+
+  let output = `⚠️  Warnings (${warnings.length}):\n`;
+
+  for (const warning of warnings) {
+    const [message, ...details] = warning.split('\n');
+    output += `   * ${message}\n`;
+
+    for (const detail of details.filter((line) => line.trim().length)) {
+      output += `     * ${detail}\n`;
+    }
+  }
+
+  return output.trimEnd();
+}
+
 export function displayMigrationResult(
   outputMessage: string,
   warnings: string[]
 ): void {
   console.log(outputMessage);
 
-  for (const warning of warnings) {
-    console.warn(warning);
+  if (warnings.length > 0) {
+    console.warn(formatWarningsOutput(warnings));
   }
 }

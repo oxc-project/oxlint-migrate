@@ -63,7 +63,9 @@ exports[`settings-migration > settings-migration 1`] = `
     ],
   },
   "warnings": [
-    "Settings not migrated (not supported by oxlint): import/resolver, my-custom-plugin.",
+    "Settings not migrated (not supported by oxlint):
+\`import/resolver\`
+\`my-custom-plugin\`",
   ],
 }
 `;
@@ -134,7 +136,8 @@ exports[`settings-migration --js-plugins > settings-migration--js-plugins 1`] = 
     ],
   },
   "warnings": [
-    "Settings not migrated (not supported by oxlint): import/resolver.",
+    "Settings not migrated (not supported by oxlint):
+\`import/resolver\`",
   ],
 }
 `;
@@ -202,7 +205,9 @@ exports[`settings-migration --type-aware > settings-migration--type-aware 1`] = 
     ],
   },
   "warnings": [
-    "Settings not migrated (not supported by oxlint): import/resolver, my-custom-plugin.",
+    "Settings not migrated (not supported by oxlint):
+\`import/resolver\`
+\`my-custom-plugin\`",
   ],
 }
 `;
@@ -271,7 +276,9 @@ exports[`settings-migration merge > settings-migration--merge 1`] = `
     ],
   },
   "warnings": [
-    "Settings not migrated (not supported by oxlint): import/resolver, my-custom-plugin.",
+    "Settings not migrated (not supported by oxlint):
+\`import/resolver\`
+\`my-custom-plugin\`",
   ],
 }
 `;

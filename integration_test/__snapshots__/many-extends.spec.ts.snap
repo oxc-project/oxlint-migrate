@@ -332,9 +332,15 @@ exports[`many-extends.spec.ts > many-extends.spec.ts 1`] = `
     ],
   },
   "warnings": [
-    "Settings not migrated (not supported by oxlint): import/extensions.",
-    "Settings found in config with 'files' pattern (import/extensions). Oxlint does not support settings in overrides, these settings will be skipped.",
-    "Settings found in config with 'files' pattern (import/extensions, import/external-module-folders, import/parsers, import/resolver). Oxlint does not support settings in overrides, these settings will be skipped.",
+    "Settings not migrated (not supported by oxlint):
+\`import/extensions\`",
+    "Settings found under a 'files' pattern — oxlint does not support settings in overrides and they will be skipped:
+\`import/extensions\`",
+    "Settings found under a 'files' pattern — oxlint does not support settings in overrides and they will be skipped:
+\`import/extensions\`
+\`import/external-module-folders\`
+\`import/parsers\`
+\`import/resolver\`",
   ],
 }
 `;
@@ -671,9 +677,15 @@ exports[`many-extends.spec.ts --js-plugins > many-extends.spec.ts--js-plugins 1`
     ],
   },
   "warnings": [
-    "Settings not migrated (not supported by oxlint): import/extensions.",
-    "Settings found in config with 'files' pattern (import/extensions). Oxlint does not support settings in overrides, these settings will be skipped.",
-    "Settings found in config with 'files' pattern (import/extensions, import/external-module-folders, import/parsers, import/resolver). Oxlint does not support settings in overrides, these settings will be skipped.",
+    "Settings not migrated (not supported by oxlint):
+\`import/extensions\`",
+    "Settings found under a 'files' pattern — oxlint does not support settings in overrides and they will be skipped:
+\`import/extensions\`",
+    "Settings found under a 'files' pattern — oxlint does not support settings in overrides and they will be skipped:
+\`import/extensions\`
+\`import/external-module-folders\`
+\`import/parsers\`
+\`import/resolver\`",
   ],
 }
 `;
@@ -1031,9 +1043,15 @@ exports[`many-extends.spec.ts --type-aware > many-extends.spec.ts--type-aware 1`
     ],
   },
   "warnings": [
-    "Settings not migrated (not supported by oxlint): import/extensions.",
-    "Settings found in config with 'files' pattern (import/extensions). Oxlint does not support settings in overrides, these settings will be skipped.",
-    "Settings found in config with 'files' pattern (import/extensions, import/external-module-folders, import/parsers, import/resolver). Oxlint does not support settings in overrides, these settings will be skipped.",
+    "Settings not migrated (not supported by oxlint):
+\`import/extensions\`",
+    "Settings found under a 'files' pattern — oxlint does not support settings in overrides and they will be skipped:
+\`import/extensions\`",
+    "Settings found under a 'files' pattern — oxlint does not support settings in overrides and they will be skipped:
+\`import/extensions\`
+\`import/external-module-folders\`
+\`import/parsers\`
+\`import/resolver\`",
   ],
 }
 `;
@@ -1324,9 +1342,15 @@ exports[`many-extends.spec.ts merge > many-extends.spec.ts--merge 1`] = `
     ],
   },
   "warnings": [
-    "Settings not migrated (not supported by oxlint): import/extensions.",
-    "Settings found in config with 'files' pattern (import/extensions). Oxlint does not support settings in overrides, these settings will be skipped.",
-    "Settings found in config with 'files' pattern (import/extensions, import/external-module-folders, import/parsers, import/resolver). Oxlint does not support settings in overrides, these settings will be skipped.",
+    "Settings not migrated (not supported by oxlint):
+\`import/extensions\`",
+    "Settings found under a 'files' pattern — oxlint does not support settings in overrides and they will be skipped:
+\`import/extensions\`",
+    "Settings found under a 'files' pattern — oxlint does not support settings in overrides and they will be skipped:
+\`import/extensions\`
+\`import/external-module-folders\`
+\`import/parsers\`
+\`import/resolver\`",
   ],
 }
 `;

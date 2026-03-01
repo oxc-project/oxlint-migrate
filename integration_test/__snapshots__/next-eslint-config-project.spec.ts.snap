@@ -135,7 +135,10 @@ exports[`next-eslint-config-project > next-eslint-config-project 1`] = `
   },
   "warnings": [
     "special parser detected: eslint-config-next/parser",
-    "Settings found in config with 'files' pattern (react, import/parsers, import/resolver). Oxlint does not support settings in overrides, these settings will be skipped.",
+    "Settings found under a 'files' pattern — oxlint does not support settings in overrides and they will be skipped:
+\`react\`
+\`import/parsers\`
+\`import/resolver\`",
   ],
 }
 `;
@@ -275,7 +278,10 @@ exports[`next-eslint-config-project --js-plugins > next-eslint-config-project--j
   },
   "warnings": [
     "special parser detected: eslint-config-next/parser",
-    "Settings found in config with 'files' pattern (react, import/parsers, import/resolver). Oxlint does not support settings in overrides, these settings will be skipped.",
+    "Settings found under a 'files' pattern — oxlint does not support settings in overrides and they will be skipped:
+\`react\`
+\`import/parsers\`
+\`import/resolver\`",
   ],
 }
 `;
@@ -415,7 +421,10 @@ exports[`next-eslint-config-project --type-aware > next-eslint-config-project--t
   },
   "warnings": [
     "special parser detected: eslint-config-next/parser",
-    "Settings found in config with 'files' pattern (react, import/parsers, import/resolver). Oxlint does not support settings in overrides, these settings will be skipped.",
+    "Settings found under a 'files' pattern — oxlint does not support settings in overrides and they will be skipped:
+\`react\`
+\`import/parsers\`
+\`import/resolver\`",
   ],
 }
 `;
@@ -556,7 +565,10 @@ exports[`next-eslint-config-project merge > next-eslint-config-project--merge 1`
   },
   "warnings": [
     "special parser detected: eslint-config-next/parser",
-    "Settings found in config with 'files' pattern (react, import/parsers, import/resolver). Oxlint does not support settings in overrides, these settings will be skipped.",
+    "Settings found under a 'files' pattern — oxlint does not support settings in overrides and they will be skipped:
+\`react\`
+\`import/parsers\`
+\`import/resolver\`",
   ],
 }
 `;
