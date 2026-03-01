@@ -827,6 +827,9 @@ exports[`typescript --type-aware > typescript--type-aware 1`] = `
       "internal/**",
       "coverage/**",
     ],
+    "options": {
+      "typeAware": true,
+    },
     "overrides": [
       {
         "files": [

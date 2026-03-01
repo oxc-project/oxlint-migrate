@@ -288,6 +288,9 @@ exports[`typescript-simple --type-aware > typescript-simple--type-aware 1`] = `
     "env": {
       "builtin": true,
     },
+    "options": {
+      "typeAware": true,
+    },
     "overrides": [
       {
         "files": [

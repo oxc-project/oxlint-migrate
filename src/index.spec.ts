@@ -186,4 +186,134 @@ describe('main', () => {
       plugins: [],
     });
   });
+
+  test('adds options.typeAware when type-aware rules are detected', async () => {
+    const result = await main(
+      [
+        {
+          rules: {
+            '@typescript-eslint/no-floating-promises': 'error',
+          },
+        },
+      ],
+      undefined,
+      { typeAware: true }
+    );
+
+    expect(result).toStrictEqual({
+      $schema: './node_modules/oxlint/configuration_schema.json',
+      categories: {
+        correctness: 'off',
+      },
+      env: {
+        builtin: true,
+      },
+      options: {
+        typeAware: true,
+      },
+      plugins: ['typescript'],
+      rules: {
+        '@typescript-eslint/no-floating-promises': 'error',
+      },
+    });
+  });
+
+  test('does not add options.typeAware when type-aware flag is false', async () => {
+    const result = await main(
+      [
+        {
+          rules: {
+            '@typescript-eslint/no-floating-promises': 'error',
+          },
+        },
+      ],
+      undefined,
+      { typeAware: false }
+    );
+
+    expect(result).toStrictEqual({
+      $schema: './node_modules/oxlint/configuration_schema.json',
+      categories: {
+        correctness: 'off',
+      },
+      env: {
+        builtin: true,
+      },
+      plugins: [],
+    });
+  });
+
+  test('does not add options.typeAware when no type-aware rules are detected', async () => {
+    const result = await main(
+      [
+        {
+          rules: {
+            'no-magic-numbers': 'error',
+          },
+        },
+      ],
+      undefined,
+      { typeAware: true }
+    );
+
+    expect(result).toStrictEqual({
+      $schema: './node_modules/oxlint/configuration_schema.json',
+      categories: {
+        correctness: 'off',
+      },
+      env: {
+        builtin: true,
+      },
+      plugins: [],
+      rules: {
+        'no-magic-numbers': 'error',
+      },
+    });
+  });
+
+  test('enables options.typeAware even if the type-aware rules are only in overrides', async () => {
+    const result = await main(
+      [
+        {
+          rules: {
+            'no-magic-numbers': 'error',
+          },
+        },
+        {
+          files: ['*.ts'],
+          rules: {
+            '@typescript-eslint/no-floating-promises': 'error',
+          },
+        },
+      ],
+      undefined,
+      { typeAware: true }
+    );
+
+    expect(result).toStrictEqual({
+      $schema: './node_modules/oxlint/configuration_schema.json',
+      categories: {
+        correctness: 'off',
+      },
+      env: {
+        builtin: true,
+      },
+      options: {
+        typeAware: true,
+      },
+      rules: {
+        'no-magic-numbers': 'error',
+      },
+      overrides: [
+        {
+          files: ['*.ts'],
+          plugins: ['typescript'],
+          rules: {
+            '@typescript-eslint/no-floating-promises': 'error',
+          },
+        },
+      ],
+      plugins: [],
+    });
+  });
 });

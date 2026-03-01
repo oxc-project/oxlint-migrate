@@ -689,6 +689,9 @@ exports[`many-extends.spec.ts --type-aware > many-extends.spec.ts--type-aware 1`
       "builtin": true,
       "es2018": true,
     },
+    "options": {
+      "typeAware": true,
+    },
     "overrides": [
       {
         "env": {
