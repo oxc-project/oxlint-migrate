@@ -52,7 +52,7 @@ exports[`e18e --js-plugins > e18e--js-plugins 1`] = `
       "builtin": true,
     },
     "jsPlugins": [
-      "eslint-plugin-e18e",
+      "@e18e/eslint-plugin",
     ],
     "plugins": [],
     "rules": {

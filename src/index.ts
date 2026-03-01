@@ -71,6 +71,16 @@ const buildConfig = (
     ? (oxlintConfig.overrides ?? [])
     : [];
 
+  // Build a global plugin registry from all configs so that alias resolution
+  // works even when a plugin is declared in one config object and its rules
+  // are used in a separate config object (cross-config aliased plugins).
+  const globalPlugins: Record<string, ESLint.Plugin> = {};
+  for (const config of configs) {
+    if (config.plugins) {
+      Object.assign(globalPlugins, config.plugins);
+    }
+  }
+
   for (const config of configs) {
     // we are ignoring oxlint eslint plugin
     if (config.name?.startsWith('oxlint/')) {
@@ -106,7 +116,8 @@ const buildConfig = (
       targetConfig,
       config.files !== undefined ? oxlintConfig : undefined,
       options,
-      config.files === undefined ? overrides : undefined
+      config.files === undefined ? overrides : undefined,
+      globalPlugins
     );
     transformEnvAndGlobals(config, targetConfig, options);
 

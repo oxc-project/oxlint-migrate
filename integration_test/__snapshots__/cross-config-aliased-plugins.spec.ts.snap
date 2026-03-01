@@ -1,0 +1,110 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`cross-config-aliased-plugins > cross-config-aliased-plugins 1`] = `
+{
+  "config": {
+    "$schema": "./node_modules/oxlint/configuration_schema.json",
+    "categories": {
+      "correctness": "off",
+    },
+    "env": {
+      "builtin": true,
+    },
+    "plugins": [],
+  },
+  "skipped": {
+    "js-plugins": [
+      "@eslint-react/dom/no-find-dom-node",
+      "@eslint-react/dom/no-namespace",
+    ],
+    "not-implemented": [],
+    "nursery": [],
+    "type-aware": [],
+    "unsupported": [],
+  },
+  "warnings": [],
+}
+`;
+
+exports[`cross-config-aliased-plugins --js-plugins > cross-config-aliased-plugins--js-plugins 1`] = `
+{
+  "config": {
+    "$schema": "./node_modules/oxlint/configuration_schema.json",
+    "categories": {
+      "correctness": "off",
+    },
+    "env": {
+      "builtin": true,
+    },
+    "jsPlugins": [
+      "eslint-plugin-react-dom",
+    ],
+    "plugins": [],
+    "rules": {
+      "react-dom/no-find-dom-node": "error",
+      "react-dom/no-namespace": "warn",
+    },
+  },
+  "skipped": {
+    "js-plugins": [],
+    "not-implemented": [],
+    "nursery": [],
+    "type-aware": [],
+    "unsupported": [],
+  },
+  "warnings": [],
+}
+`;
+
+exports[`cross-config-aliased-plugins --type-aware > cross-config-aliased-plugins--type-aware 1`] = `
+{
+  "config": {
+    "$schema": "./node_modules/oxlint/configuration_schema.json",
+    "categories": {
+      "correctness": "off",
+    },
+    "env": {
+      "builtin": true,
+    },
+    "plugins": [],
+  },
+  "skipped": {
+    "js-plugins": [
+      "@eslint-react/dom/no-find-dom-node",
+      "@eslint-react/dom/no-namespace",
+    ],
+    "not-implemented": [],
+    "nursery": [],
+    "type-aware": [],
+    "unsupported": [],
+  },
+  "warnings": [],
+}
+`;
+
+exports[`cross-config-aliased-plugins merge > cross-config-aliased-plugins--merge 1`] = `
+{
+  "config": {
+    "$schema": "./node_modules/oxlint/configuration_schema.json",
+    "categories": {
+      "correctness": "error",
+      "perf": "error",
+    },
+    "env": {
+      "builtin": true,
+    },
+    "plugins": [],
+  },
+  "skipped": {
+    "js-plugins": [
+      "@eslint-react/dom/no-find-dom-node",
+      "@eslint-react/dom/no-namespace",
+    ],
+    "not-implemented": [],
+    "nursery": [],
+    "type-aware": [],
+    "unsupported": [],
+  },
+  "warnings": [],
+}
+`;

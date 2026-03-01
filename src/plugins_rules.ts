@@ -11,7 +11,11 @@ import {
   rulesPrefixesForPlugins,
   typescriptRulesExtendEslintRules,
 } from './constants.js';
-import { enableJsPluginRule, isIgnoredPluginRule } from './jsPlugins.js';
+import {
+  enableJsPluginRule,
+  isIgnoredPluginRule,
+  resolveJsPluginRuleName,
+} from './jsPlugins.js';
 import { buildUnsupportedRuleExplanations, isEqualDeep } from './utilities.js';
 
 const allRules = Object.values(rules).flat();
@@ -158,7 +162,8 @@ export const transformRuleEntry = (
   targetConfig: OxlintConfigOrOverride,
   baseConfig?: OxlintConfig,
   options?: Options,
-  overrides?: OxlintConfigOverride[]
+  overrides?: OxlintConfigOverride[],
+  globalPlugins?: Record<string, ESLint.Plugin> | null
 ): void => {
   if (eslintConfig.rules === undefined) {
     return;
@@ -168,6 +173,14 @@ export const transformRuleEntry = (
     targetConfig.rules = {};
   }
 
+  // Merge global plugins with local config plugins, with local taking priority.
+  // This allows alias resolution when a plugin is registered in one config
+  // object but its rules are used in a separate config object.
+  const effectivePlugins: Record<string, ESLint.Plugin> | null | undefined =
+    globalPlugins
+      ? { ...globalPlugins, ...eslintConfig.plugins }
+      : eslintConfig.plugins;
+
   for (const [rule, config] of Object.entries(eslintConfig.rules)) {
     const normalizedConfig = normalizeSeverityValue(config);
 
@@ -175,6 +188,14 @@ export const transformRuleEntry = (
     // only works on non-merge because `overrides` is already prefilled from previous result.
     if (!options?.merge) {
       removePreviousOverrideRule(rule, eslintConfig, overrides);
+      // Also try the resolved name in case the rule was stored under a
+      // renamed prefix by a previous enableJsPluginRule call.
+      if (options?.jsPlugins) {
+        const resolved = resolveJsPluginRuleName(rule, effectivePlugins);
+        if (resolved !== rule) {
+          removePreviousOverrideRule(resolved, eslintConfig, overrides);
+        }
+      }
     }
 
     if (allRules.includes(rule)) {
@@ -212,13 +233,16 @@ export const transformRuleEntry = (
       if (options?.jsPlugins) {
         // If the rule is disabled, avoid enabling the jsPlugin to prevent noise.
         if (isOffValue(normalizedConfig)) {
+          // Use the resolved (potentially renamed) rule name for consistency
+          // with enabled rules that go through enableJsPluginRule.
+          const resolvedRule = resolveJsPluginRuleName(rule, effectivePlugins);
           if (eslintConfig.files === undefined) {
             // base config: drop disabled rule entirely
-            delete targetConfig.rules[rule];
+            delete targetConfig.rules[resolvedRule];
           } else {
             // override: keep the disabled setting without adding jsPlugin, unless plugin is ignored
             if (!isIgnoredPluginRule(rule)) {
-              targetConfig.rules[rule] = normalizedConfig;
+              targetConfig.rules[resolvedRule] = normalizedConfig;
             }
           }
           // also remove any previously queued unsupported report for base
@@ -230,7 +254,14 @@ export const transformRuleEntry = (
           continue;
         }
 
-        if (!enableJsPluginRule(targetConfig, rule, normalizedConfig)) {
+        if (
+          !enableJsPluginRule(
+            targetConfig,
+            rule,
+            normalizedConfig,
+            effectivePlugins
+          )
+        ) {
           const category = unsupportedRuleExplanations[rule]
             ? 'unsupported'
             : 'not-implemented';
