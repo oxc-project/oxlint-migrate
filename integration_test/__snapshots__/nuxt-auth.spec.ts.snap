@@ -302,6 +302,14 @@ exports[`nuxt-auth > nuxt-auth 1`] = `
       },
       {
         "files": [
+          "**/*.md",
+        ],
+        "rules": {
+          "no-irregular-whitespace": "off",
+        },
+      },
+      {
+        "files": [
           "**/*.md/**/*.?([cm])[jt]s?(x)",
           "**/*.md/**/*.vue",
         ],
@@ -746,6 +754,22 @@ exports[`nuxt-auth > nuxt-auth 1`] = `
       "toml/quoted-keys",
       "toml/spaced-comment",
       "toml/table-bracket-spacing",
+      "markdown/fenced-code-language",
+      "markdown/heading-increment",
+      "markdown/no-duplicate-definitions",
+      "markdown/no-empty-definitions",
+      "markdown/no-empty-images",
+      "markdown/no-empty-links",
+      "markdown/no-invalid-label-refs",
+      "markdown/no-missing-atx-heading-space",
+      "markdown/no-missing-link-fragments",
+      "markdown/no-multiple-h1",
+      "markdown/no-reference-like-urls",
+      "markdown/no-reversed-media-syntax",
+      "markdown/no-space-in-emphasis",
+      "markdown/no-unused-definitions",
+      "markdown/require-alt-text",
+      "markdown/table-column-count",
     ],
     "not-implemented": [
       "no-implied-eval",
@@ -931,7 +955,6 @@ exports[`nuxt-auth > nuxt-auth 1`] = `
     "special parser detected: vue-eslint-parser",
     "special parser detected: toml-eslint-parser",
     "ignore list inside overrides is not supported",
-    "special parser detected: parser-plain",
   ],
 }
 `;
@@ -1278,6 +1301,42 @@ exports[`nuxt-auth --js-plugins > nuxt-auth--js-plugins 1`] = `
           "toml/table-bracket-spacing": "error",
           "toml/tables-order": "error",
           "toml/vue-custom-block/no-parsing-error": "error",
+        },
+      },
+      {
+        "files": [
+          "**/*.md",
+        ],
+        "jsPlugins": [
+          "@eslint/eslint-plugin-markdown",
+        ],
+        "rules": {
+          "@stylistic/indent": "off",
+          "command/command": "off",
+          "markdown/fenced-code-language": "error",
+          "markdown/heading-increment": "error",
+          "markdown/no-duplicate-definitions": "error",
+          "markdown/no-empty-definitions": "error",
+          "markdown/no-empty-images": "error",
+          "markdown/no-empty-links": "error",
+          "markdown/no-invalid-label-refs": "error",
+          "markdown/no-missing-atx-heading-space": "error",
+          "markdown/no-missing-label-refs": "off",
+          "markdown/no-missing-link-fragments": "error",
+          "markdown/no-multiple-h1": "error",
+          "markdown/no-reference-like-urls": "error",
+          "markdown/no-reversed-media-syntax": "error",
+          "markdown/no-space-in-emphasis": "error",
+          "markdown/no-unused-definitions": "error",
+          "markdown/require-alt-text": "error",
+          "markdown/table-column-count": "error",
+          "no-irregular-whitespace": "off",
+          "perfectionist/sort-exports": "off",
+          "perfectionist/sort-imports": "off",
+          "regexp/no-legacy-features": "off",
+          "regexp/no-missing-g-flag": "off",
+          "regexp/no-useless-dollar-replacements": "off",
+          "regexp/no-useless-flag": "off",
         },
       },
       {
@@ -2285,7 +2344,6 @@ exports[`nuxt-auth --js-plugins > nuxt-auth--js-plugins 1`] = `
     "special parser detected: vue-eslint-parser",
     "special parser detected: toml-eslint-parser",
     "ignore list inside overrides is not supported",
-    "special parser detected: parser-plain",
   ],
 }
 `;
@@ -2588,6 +2646,14 @@ exports[`nuxt-auth --type-aware > nuxt-auth--type-aware 1`] = `
           "vue/prefer-import-from-vue": "error",
           "vue/valid-define-emits": "error",
           "vue/valid-define-props": "error",
+        },
+      },
+      {
+        "files": [
+          "**/*.md",
+        ],
+        "rules": {
+          "no-irregular-whitespace": "off",
         },
       },
       {
@@ -3036,6 +3102,22 @@ exports[`nuxt-auth --type-aware > nuxt-auth--type-aware 1`] = `
       "toml/quoted-keys",
       "toml/spaced-comment",
       "toml/table-bracket-spacing",
+      "markdown/fenced-code-language",
+      "markdown/heading-increment",
+      "markdown/no-duplicate-definitions",
+      "markdown/no-empty-definitions",
+      "markdown/no-empty-images",
+      "markdown/no-empty-links",
+      "markdown/no-invalid-label-refs",
+      "markdown/no-missing-atx-heading-space",
+      "markdown/no-missing-link-fragments",
+      "markdown/no-multiple-h1",
+      "markdown/no-reference-like-urls",
+      "markdown/no-reversed-media-syntax",
+      "markdown/no-space-in-emphasis",
+      "markdown/no-unused-definitions",
+      "markdown/require-alt-text",
+      "markdown/table-column-count",
     ],
     "not-implemented": [
       "no-implied-eval",
@@ -3221,7 +3303,6 @@ exports[`nuxt-auth --type-aware > nuxt-auth--type-aware 1`] = `
     "special parser detected: vue-eslint-parser",
     "special parser detected: toml-eslint-parser",
     "ignore list inside overrides is not supported",
-    "special parser detected: parser-plain",
   ],
 }
 `;
@@ -3520,6 +3601,14 @@ exports[`nuxt-auth merge > nuxt-auth--merge 1`] = `
           "vue/prefer-import-from-vue": "error",
           "vue/valid-define-emits": "error",
           "vue/valid-define-props": "error",
+        },
+      },
+      {
+        "files": [
+          "**/*.md",
+        ],
+        "rules": {
+          "no-irregular-whitespace": "off",
         },
       },
       {
@@ -3953,6 +4042,22 @@ exports[`nuxt-auth merge > nuxt-auth--merge 1`] = `
       "toml/quoted-keys",
       "toml/spaced-comment",
       "toml/table-bracket-spacing",
+      "markdown/fenced-code-language",
+      "markdown/heading-increment",
+      "markdown/no-duplicate-definitions",
+      "markdown/no-empty-definitions",
+      "markdown/no-empty-images",
+      "markdown/no-empty-links",
+      "markdown/no-invalid-label-refs",
+      "markdown/no-missing-atx-heading-space",
+      "markdown/no-missing-link-fragments",
+      "markdown/no-multiple-h1",
+      "markdown/no-reference-like-urls",
+      "markdown/no-reversed-media-syntax",
+      "markdown/no-space-in-emphasis",
+      "markdown/no-unused-definitions",
+      "markdown/require-alt-text",
+      "markdown/table-column-count",
     ],
     "not-implemented": [
       "no-implied-eval",
@@ -4138,7 +4243,6 @@ exports[`nuxt-auth merge > nuxt-auth--merge 1`] = `
     "special parser detected: vue-eslint-parser",
     "special parser detected: toml-eslint-parser",
     "ignore list inside overrides is not supported",
-    "special parser detected: parser-plain",
   ],
 }
 `;
