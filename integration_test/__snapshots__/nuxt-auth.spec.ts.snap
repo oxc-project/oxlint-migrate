@@ -3098,13 +3098,13 @@ exports[`nuxt-auth --type-aware > nuxt-auth--type-aware 1`] = `
       "vue/no-irregular-whitespace",
     ],
     "nursery": [
+      "@typescript-eslint/dot-notation",
       "no-undef",
       "no-unreachable",
       "getter-return",
     ],
     "type-aware": [],
     "unsupported": [
-      "dot-notation",
       "no-dupe-args",
       "no-octal",
       "no-octal-escape",
