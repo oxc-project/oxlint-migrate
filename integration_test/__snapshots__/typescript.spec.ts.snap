@@ -212,6 +212,7 @@ exports[`typescript > typescript 1`] = `
       "no-template-curly-in-string": "error",
       "no-this-before-super": "error",
       "no-throw-literal": "error",
+      "no-unassigned-vars": "error",
       "no-unexpected-multiline": "error",
       "no-unsafe-finally": "error",
       "no-unsafe-negation": "error",
@@ -237,6 +238,7 @@ exports[`typescript > typescript 1`] = `
       "no-with": "error",
       "prefer-const": "error",
       "prefer-object-spread": "error",
+      "preserve-caught-error": "error",
       "require-yield": "error",
       "unicode-bom": [
         "error",
@@ -310,6 +312,7 @@ exports[`typescript > typescript 1`] = `
       "regexp/use-ignore-case",
     ],
     "not-implemented": [
+      "no-useless-assignment",
       "prefer-regex-literals",
       "object-shorthand",
       "no-restricted-syntax",
@@ -617,6 +620,7 @@ exports[`typescript --js-plugins > typescript--js-plugins 1`] = `
       "no-template-curly-in-string": "error",
       "no-this-before-super": "error",
       "no-throw-literal": "error",
+      "no-unassigned-vars": "error",
       "no-unexpected-multiline": "error",
       "no-unsafe-finally": "error",
       "no-unsafe-negation": "error",
@@ -642,6 +646,7 @@ exports[`typescript --js-plugins > typescript--js-plugins 1`] = `
       "no-with": "error",
       "prefer-const": "error",
       "prefer-object-spread": "error",
+      "preserve-caught-error": "error",
       "regexp/confusing-quantifier": "warn",
       "regexp/control-character-escape": "error",
       "regexp/match-any": "error",
@@ -714,6 +719,7 @@ exports[`typescript --js-plugins > typescript--js-plugins 1`] = `
   "skipped": {
     "js-plugins": [],
     "not-implemented": [
+      "no-useless-assignment",
       "prefer-regex-literals",
       "object-shorthand",
       "no-restricted-syntax",
@@ -1065,6 +1071,7 @@ exports[`typescript --type-aware > typescript--type-aware 1`] = `
       "no-template-curly-in-string": "error",
       "no-this-before-super": "error",
       "no-throw-literal": "error",
+      "no-unassigned-vars": "error",
       "no-unexpected-multiline": "error",
       "no-unsafe-finally": "error",
       "no-unsafe-negation": "error",
@@ -1090,6 +1097,7 @@ exports[`typescript --type-aware > typescript--type-aware 1`] = `
       "no-with": "error",
       "prefer-const": "error",
       "prefer-object-spread": "error",
+      "preserve-caught-error": "error",
       "require-yield": "error",
       "unicode-bom": [
         "error",
@@ -1163,6 +1171,7 @@ exports[`typescript --type-aware > typescript--type-aware 1`] = `
       "regexp/use-ignore-case",
     ],
     "not-implemented": [
+      "no-useless-assignment",
       "prefer-regex-literals",
       "object-shorthand",
       "no-restricted-syntax",
@@ -1391,6 +1400,7 @@ exports[`typescript merge > typescript--merge 1`] = `
       "no-var": "error",
       "prefer-const": "error",
       "prefer-object-spread": "error",
+      "preserve-caught-error": "error",
       "unicode-bom": [
         "error",
         "never",
@@ -1461,6 +1471,7 @@ exports[`typescript merge > typescript--merge 1`] = `
       "regexp/use-ignore-case",
     ],
     "not-implemented": [
+      "no-useless-assignment",
       "prefer-regex-literals",
       "object-shorthand",
       "no-restricted-syntax",
