@@ -1,6 +1,6 @@
 {
   "name": "@oxlint/migrate",
-  "version": "1.50.0",
+  "version": "1.51.0",
   "description": "Generates a `.oxlintrc.json` from a existing eslint flat config",
   "keywords": [
     "eslint",
@@ -93,5 +93,5 @@
   "lint-staged": {
     "*": "oxfmt --no-error-on-unmatched-pattern"
   },
-  "packageManager": "pnpm@10.30.1"
+  "packageManager": "pnpm@10.30.3"
 }
