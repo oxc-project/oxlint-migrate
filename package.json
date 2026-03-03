@@ -1,6 +1,6 @@
 {
   "name": "@oxlint/migrate",
-  "version": "1.51.0",
+  "version": "1.50.0",
   "description": "Generates a `.oxlintrc.json` from a existing eslint flat config",
   "keywords": [
     "eslint",
@@ -33,7 +33,7 @@
     "generate:unsupported": "node --import @oxc-node/core/register ./scripts/fetch-unsupported-rules.ts",
     "generate:all": "pnpm generate:vitest && pnpm generate && pnpm generate:unsupported && pnpm format",
     "format": "oxfmt",
-    "lint": "oxlint --type-aware --type-check",
+    "lint": "oxlint",
     "test": "vitest",
     "build": "tsdown",
     "manual-test": "pnpm build; chmod +x dist/bin/oxlint-migrate.mjs; npx ."
@@ -41,26 +41,23 @@
   "dependencies": {
     "commander": "^14.0.0",
     "globals": "^17.0.0",
-    "oxc-parser": "^0.116.0",
+    "oxc-parser": "^0.114.0",
     "tinyglobby": "^0.2.14"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^7.0.0",
-    "@e18e/eslint-plugin": "^0.2.0",
     "@eslint-react/eslint-plugin": "^2.13.0",
-    "@eslint/js": "^10.0.0",
+    "@eslint/js": "^9.29.0",
     "@logux/eslint-config": "^57.0.0",
     "@oxc-node/core": "^0.0.35",
     "@stylistic/eslint-plugin": "^5.0.0",
     "@stylistic/eslint-plugin-ts": "^4.4.1",
-    "@tanstack/eslint-plugin-query": "^5.91.4",
-    "@tanstack/eslint-plugin-router": "^1.161.4",
     "@types/eslint-config-prettier": "^6.11.3",
     "@types/node": "^25.0.0",
     "@typescript-eslint/eslint-plugin": "^8.35.0",
     "@typescript-eslint/parser": "^8.35.0",
     "@vitest/coverage-v8": "^4.0.0",
-    "eslint": "^10.0.0",
+    "eslint": "^9.29.0",
     "eslint-config-next": "^16.0.0",
     "eslint-config-prettier": "^10.1.5",
     "eslint-plugin-header": "^3.1.1",
@@ -79,13 +76,13 @@
     "eslint-plugin-react-web-api": "^2.13.0",
     "eslint-plugin-regexp": "^3.0.0",
     "eslint-plugin-tsdoc": "^0.5.0",
-    "eslint-plugin-unicorn": "^63.0.0",
+    "eslint-plugin-unicorn": "^62.0.0",
     "husky": "^9.1.7",
     "lint-staged": "^16.1.2",
     "next": "^16.0.0",
-    "oxfmt": "^0.36.0",
+    "oxfmt": "^0.34.0",
     "oxlint": "^1.51.0",
-    "oxlint-tsgolint": "^0.15.0",
+    "oxlint-tsgolint": "^0.14.0",
     "tsdown": "^0.20.0",
     "typescript-eslint": "^8.35.0",
     "vitest": "^4.0.0"
@@ -93,5 +90,5 @@
   "lint-staged": {
     "*": "oxfmt --no-error-on-unmatched-pattern"
   },
-  "packageManager": "pnpm@10.30.3"
+  "packageManager": "pnpm@10.30.1"
 }
