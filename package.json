@@ -33,7 +33,7 @@
     "generate:unsupported": "node --import @oxc-node/core/register ./scripts/fetch-unsupported-rules.ts",
     "generate:all": "pnpm generate:vitest && pnpm generate && pnpm generate:unsupported && pnpm format",
     "format": "oxfmt",
-    "lint": "oxlint --type-aware --type-check",
+    "lint": "oxlint",
     "test": "vitest",
     "build": "tsdown",
     "manual-test": "pnpm build; chmod +x dist/bin/oxlint-migrate.mjs; npx ."

@@ -9,5 +9,9 @@
     "no-unused-expressions": ["error", { "allowShortCircuit": true }],
     "eqeqeq": ["error", "always"],
     "@typescript-eslint/no-array-delete": "off" // FIXME
+  },
+  "options": {
+    "typeAware": true,
+    "typeCheck": true
   }
 }
