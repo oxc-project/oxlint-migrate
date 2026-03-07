@@ -224,12 +224,17 @@ export const transformEnvAndGlobals = (
 };
 
 export const cleanUpUselessOverridesEnv = (config: OxlintConfig): void => {
-  if (config.env === undefined || config.overrides === undefined) {
+  if (
+    config.env === undefined ||
+    config.env === null ||
+    config.overrides === undefined ||
+    config.overrides === null
+  ) {
     return;
   }
 
   for (const override of config.overrides) {
-    if (override.env === undefined) {
+    if (override.env === undefined || override.env === null) {
       continue;
     }
 
@@ -284,7 +289,7 @@ export const cleanUpSupersetEnvs = (config: OxlintConfig): void => {
   // Clean up overrides
   if (config.overrides !== undefined) {
     for (const override of config.overrides) {
-      if (override.env === undefined) {
+      if (override.env === undefined || override.env === null) {
         continue;
       }
 

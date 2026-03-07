@@ -305,7 +305,7 @@ export const detectNeededRulesPlugins = (
     return;
   }
 
-  if (targetConfig.plugins === undefined) {
+  if (targetConfig.plugins === undefined || targetConfig.plugins === null) {
     targetConfig.plugins = [];
   }
 
@@ -336,9 +336,9 @@ export const cleanUpUselessOverridesPlugins = (config: OxlintConfig): void => {
     return;
   }
 
-  if (config.plugins !== undefined) {
+  if (config.plugins !== undefined && config.plugins !== null) {
     for (const override of config.overrides) {
-      if (override.plugins === undefined) {
+      if (override.plugins === undefined || override.plugins === null) {
         continue;
       }
 

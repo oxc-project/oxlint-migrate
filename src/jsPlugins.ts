@@ -197,7 +197,8 @@ export const enableJsPluginRule = (
   if (ignorePlugins.has(pluginName)) {
     return false;
   }
-  if (targetConfig.jsPlugins === undefined) {
+
+  if (targetConfig.jsPlugins === undefined || targetConfig.jsPlugins === null) {
     targetConfig.jsPlugins = [];
   }
 
@@ -214,7 +215,7 @@ export const enableJsPluginRule = (
   // Rewrite the rule name if the plugin is registered under an alias.
   const resolvedRule = resolveJsPluginRuleName(rule, plugins);
 
-  targetConfig.rules = targetConfig.rules || {};
-  targetConfig.rules[resolvedRule] = ruleEntry;
+  targetConfig.rules = targetConfig.rules ?? {};
+  targetConfig.rules[resolvedRule] = ruleEntry!; // TODO: handle undefined ruleEntry if needed
   return true;
 };

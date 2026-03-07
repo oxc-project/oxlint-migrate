@@ -115,12 +115,22 @@ export namespace ESLint {
   }
 }
 
-type OxlintConfigPlugins = string[];
-type OxlintConfigJsPlugins = string[];
-type OxlintConfigCategories = Partial<Record<Category, unknown>>;
-type OxlintConfigEnv = Record<string, boolean>;
-type OxlintConfigIgnorePatterns = string[];
+import type {
+  OxlintConfig as OxlintConfigInternal,
+  OxlintOverride,
+  RuleCategories,
+} from 'oxlint';
 
+export type OxlintConfig = Exclude<OxlintConfigInternal, undefined> & {
+  $schema?: string;
+};
+
+export type OxlintSettings = Exclude<
+  OxlintConfigInternal['settings'],
+  undefined
+>;
+
+// export type OxlintSupportedSettingsKey = keyof OxlintSettings;
 export type OxlintSupportedSettingsKey =
   | 'jsx-a11y'
   | 'next'
@@ -128,39 +138,13 @@ export type OxlintSupportedSettingsKey =
   | 'jsdoc'
   | 'vitest';
 
-export type OxlintSettings = {
-  [K in OxlintSupportedSettingsKey]?: Record<string, unknown>;
-} & Record<string, Record<string, unknown> | undefined>;
+export type OxlintOptions = Exclude<OxlintConfigInternal['options'], undefined>;
 
-export type OxlintOptions = {
-  typeAware?: boolean;
-  typeCheck?: boolean;
-};
+export type OxlintConfigOverride = OxlintOverride;
 
-export type OxlintConfigOverride = {
-  files: string[];
-  env?: OxlintConfigEnv;
-  globals?: ESLint.GlobalsConfig;
-  plugins?: OxlintConfigPlugins;
-  jsPlugins?: OxlintConfigJsPlugins;
-  categories?: OxlintConfigCategories;
-  rules?: Partial<ESLint.RulesRecord>;
-};
+export type OxlintConfigOrOverride = OxlintConfigInternal | OxlintOverride;
 
-export type OxlintConfig = {
-  $schema?: string;
-  env?: OxlintConfigEnv;
-  globals?: ESLint.GlobalsConfig;
-  plugins?: OxlintConfigPlugins;
-  jsPlugins?: OxlintConfigJsPlugins;
-  categories?: OxlintConfigCategories;
-  rules?: Partial<ESLint.RulesRecord>;
-  overrides?: OxlintConfigOverride[];
-  ignorePatterns?: OxlintConfigIgnorePatterns;
-  settings?: OxlintSettings;
-  options?: OxlintOptions;
-};
-export type OxlintConfigOrOverride = OxlintConfig | OxlintConfigOverride;
+export type Category = keyof RuleCategories;
 
 export type RuleSkippedCategory =
   | 'nursery'
@@ -186,12 +170,3 @@ export type Options = {
   typeAware?: boolean;
   jsPlugins?: boolean;
 };
-
-export type Category =
-  | 'style'
-  | 'correctness'
-  | 'nursery'
-  | 'suspicious'
-  | 'pedantic'
-  | 'perf'
-  | 'restriction';

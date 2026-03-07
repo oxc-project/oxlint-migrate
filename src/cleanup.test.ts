@@ -199,7 +199,7 @@ describe('cleanUpOxlintConfig', () => {
           },
           {
             files: ['*.js'],
-            plugins: ['javascript'],
+            plugins: ['oxc'],
           },
           {
             files: ['*.tsx'],
