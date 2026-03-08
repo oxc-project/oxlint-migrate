@@ -132,13 +132,7 @@ export type OxlintSettings = Exclude<
   undefined
 >;
 
-// export type OxlintSupportedSettingsKey = keyof OxlintSettings;
-export type OxlintSupportedSettingsKey =
-  | 'jsx-a11y'
-  | 'next'
-  | 'react'
-  | 'jsdoc'
-  | 'vitest';
+export type OxlintSupportedSettingsKey = keyof OxlintSettings;
 
 export type OxlintOptions = Exclude<OxlintConfigInternal['options'], undefined>;
 
@@ -155,7 +149,10 @@ export type OxlintConfigPlugin = Exclude<
   null | undefined
 >[number];
 
-export type OxlintConfigGlobalsValue = 'readonly' | 'writable' | 'off';
+export type OxlintConfigGlobalsValue = Exclude<
+  OxlintConfigInternal['globals'],
+  undefined
+>[string];
 
 export type OxlintConfigRuleSeverity = DummyRule;
 
