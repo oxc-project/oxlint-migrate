@@ -121,6 +121,8 @@ type OxlintConfigCategories = Partial<Record<Category, unknown>>;
 type OxlintConfigEnv = Record<string, boolean>;
 type OxlintConfigIgnorePatterns = string[];
 
+export type OxlintConfigGlobalsValue = 'readonly' | 'writable' | 'off';
+
 export type OxlintSupportedSettingsKey =
   | 'jsx-a11y'
   | 'next'
@@ -140,7 +142,7 @@ export type OxlintOptions = {
 export type OxlintConfigOverride = {
   files: string[];
   env?: OxlintConfigEnv;
-  globals?: ESLint.GlobalsConfig;
+  globals?: Record<string, OxlintConfigGlobalsValue>;
   plugins?: OxlintConfigPlugins;
   jsPlugins?: OxlintConfigJsPlugins;
   categories?: OxlintConfigCategories;
@@ -150,7 +152,7 @@ export type OxlintConfigOverride = {
 export type OxlintConfig = {
   $schema?: string;
   env?: OxlintConfigEnv;
-  globals?: ESLint.GlobalsConfig;
+  globals?: Record<string, OxlintConfigGlobalsValue>;
   plugins?: OxlintConfigPlugins;
   jsPlugins?: OxlintConfigJsPlugins;
   categories?: OxlintConfigCategories;
