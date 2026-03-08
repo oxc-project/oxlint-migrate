@@ -138,7 +138,7 @@ export type OxlintSupportedSettingsKey = keyof OxlintSettings;
 export type OxlintOptions = Exclude<OxlintConfigInternal['options'], undefined>;
 
 export type OxlintConfigOverride = OxlintOverride & {
-  categories?: OxlintConfigInternal['categories'];
+  categories?: RuleCategories;
 };
 
 export type OxlintConfigOrOverride =
