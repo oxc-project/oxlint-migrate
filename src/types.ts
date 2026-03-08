@@ -120,6 +120,7 @@ import type {
   OxlintConfig as OxlintConfigInternal,
   OxlintOverride,
   RuleCategories,
+  OxlintGlobals,
 } from 'oxlint';
 
 export type OxlintConfig = Omit<OxlintConfigInternal, 'overrides'> & {
@@ -149,11 +150,12 @@ export type OxlintConfigPlugin = Exclude<
   null | undefined
 >[number];
 
-export type OxlintConfigGlobalsValue = Exclude<
-  OxlintConfigInternal['globals'],
-  undefined
->[string];
+export type OxlintConfigGlobalsValue = OxlintGlobals[string];
 
+// this is type safer, but oxlint does make a broader approach with AllowWarnDeny | unknown[]
+// export type OxlintConfigRuleSeverity =
+//   | AllowWarnDeny
+//   | [AllowWarnDeny, ...unknown[]];
 export type OxlintConfigRuleSeverity = DummyRule;
 
 export type OxlintCategory = keyof RuleCategories;
