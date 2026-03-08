@@ -85,8 +85,8 @@
     "next": "^16.0.0",
     "oxfmt": "^0.36.0",
     "oxlint": "^1.51.0",
-    "oxlint-tsgolint": "^0.15.0",
-    "tsdown": "^0.20.0",
+    "oxlint-tsgolint": "^0.16.0",
+    "tsdown": "^0.21.0",
     "typescript-eslint": "^8.35.0",
     "vitest": "^4.0.0"
   },
