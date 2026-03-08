@@ -187,7 +187,7 @@ export const transformRuleEntry = (
     // equivalents that oxlint supports as type-aware rules.
     const rule =
       options?.typeAware &&
-        eslintRulesToTypescriptEquivalents[originalRule] !== undefined
+      eslintRulesToTypescriptEquivalents[originalRule] !== undefined
         ? eslintRulesToTypescriptEquivalents[originalRule]
         : originalRule;
 
