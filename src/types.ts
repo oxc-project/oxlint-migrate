@@ -150,6 +150,11 @@ export type OxlintConfigOrOverride =
   | OxlintConfigInternal
   | OxlintConfigOverride;
 
+export type OxlintConfigPlugins = Exclude<
+  OxlintConfigInternal['plugins'],
+  null | undefined
+>[number];
+
 export type OxlintConfigGlobalsValue = 'readonly' | 'writable' | 'off';
 
 export type OxlintConfigRuleSeverity = DummyRule;

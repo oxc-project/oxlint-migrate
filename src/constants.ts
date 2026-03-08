@@ -1,4 +1,6 @@
-export const rulesPrefixesForPlugins: Record<string, string> = {
+import { OxlintConfigPlugins } from './types.js';
+
+export const rulesPrefixesForPlugins: Record<string, OxlintConfigPlugins> = {
   import: 'import',
   'import-x': 'import',
   jest: 'jest',
