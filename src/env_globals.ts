@@ -98,20 +98,22 @@ export const transformBoolGlobalToString = (config: OxlintConfigOrOverride) => {
     return;
   }
 
-  for (const [entry, value] of Object.entries(
-    config.globals as Record<string, ESLint.GlobalAccess>
-  )) {
+  for (const [entry, value] of Object.entries(config.globals)) {
     config.globals[entry] =
       transformEslintGlobalAccessToOxlintGlobalValue(value);
   }
 };
 
-const transformEslintGlobalAccessToOxlintGlobalValue = (
+export const transformEslintGlobalAccessToOxlintGlobalValue = (
   global: ESLint.GlobalAccess
 ): OxlintConfigGlobalsValue => {
-  if (global === false || global === 'readable') {
+  if (global === false || global === 'readable' || global === 'readonly') {
     return 'readonly';
-  } else if (global === true || global === 'writeable') {
+  } else if (
+    global === true ||
+    global === 'writeable' ||
+    global === 'writable'
+  ) {
     return 'writable';
   } else {
     return 'off';
@@ -213,7 +215,12 @@ export const transformEnvAndGlobals = (
       }
     } else {
       // no merge, hard append
-      Object.assign(targetConfig.globals, eslintConfig.languageOptions.globals);
+      for (const [global, globalSetting] of Object.entries(
+        eslintConfig.languageOptions.globals
+      )) {
+        targetConfig.globals[global] =
+          transformEslintGlobalAccessToOxlintGlobalValue(globalSetting);
+      }
     }
   }
 

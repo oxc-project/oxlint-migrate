@@ -5,14 +5,30 @@ import {
   detectEnvironmentByGlobals,
   removeGlobalsWithAreCoveredByEnv,
   transformEnvAndGlobals,
+  transformEslintGlobalAccessToOxlintGlobalValue,
 } from './env_globals.js';
-import type { ESLint, OxlintConfig } from './types.js';
+import type {
+  ESLint,
+  OxlintConfig,
+  OxlintConfigGlobalsValue,
+} from './types.js';
 import globals from 'globals';
+
+const transformNPMGlobalsToOxlintGlobals = (
+  npmGlobals: Record<string, boolean>
+): Record<string, OxlintConfigGlobalsValue> => {
+  return Object.fromEntries(
+    Object.entries(npmGlobals).map(([key, value]) => [
+      key,
+      transformEslintGlobalAccessToOxlintGlobalValue(value),
+    ])
+  );
+};
 
 describe('detectEnvironmentByGlobals', () => {
   test('detect es2024', () => {
     const config: OxlintConfig = {
-      globals: globals.es2024,
+      globals: transformNPMGlobalsToOxlintGlobals(globals.es2024),
     };
 
     detectEnvironmentByGlobals(config);
@@ -21,7 +37,7 @@ describe('detectEnvironmentByGlobals', () => {
 
   test('does not detect unsupported es version', () => {
     const config: OxlintConfig = {
-      globals: globals.es3,
+      globals: transformNPMGlobalsToOxlintGlobals(globals.es3),
     };
 
     detectEnvironmentByGlobals(config);
@@ -30,9 +46,7 @@ describe('detectEnvironmentByGlobals', () => {
 
   test('detect browser env with >=97% match (missing a few keys)', () => {
     // Create a copy of browser globals and remove a few keys to simulate version differences
-    const browserGlobals: Record<string, boolean | 'readonly' | 'writable'> = {
-      ...globals.browser,
-    };
+    const browserGlobals = transformNPMGlobalsToOxlintGlobals(globals.browser);
     const totalKeys = Object.keys(browserGlobals).length;
     const keysToRemove = Math.floor(totalKeys * 0.02); // Remove 2% of keys
 
@@ -56,9 +70,7 @@ describe('detectEnvironmentByGlobals', () => {
 
   test('does not detect env when match is <97%', () => {
     // Create a copy of browser globals and remove >3% of keys
-    const browserGlobals: Record<string, boolean | 'readonly' | 'writable'> = {
-      ...globals.browser,
-    };
+    const browserGlobals = transformNPMGlobalsToOxlintGlobals(globals.browser);
     const totalKeys = Object.keys(browserGlobals).length;
     const keysToRemove = Math.floor(totalKeys * 0.04); // Remove 4% of keys
 
@@ -85,7 +97,7 @@ describe('removeGlobalsWithAreCoveredByEnv', () => {
       env: {
         es2024: true,
       },
-      globals: globals.es2024,
+      globals: transformNPMGlobalsToOxlintGlobals(globals.es2024),
     };
 
     removeGlobalsWithAreCoveredByEnv(config);
