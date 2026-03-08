@@ -210,7 +210,12 @@ export const transformEnvAndGlobals = (
       }
     } else {
       // no merge, hard append
-      Object.assign(targetConfig.globals, eslintConfig.languageOptions.globals);
+      for (const [global, globalSetting] of Object.entries(
+        eslintConfig.languageOptions.globals
+      )) {
+        targetConfig.globals[global] =
+          transformEslintGlobalAccessToOxlintGlobalValue(globalSetting);
+      }
     }
   }
 
