@@ -150,7 +150,7 @@ export type OxlintConfigOrOverride =
   | OxlintConfigInternal
   | OxlintConfigOverride;
 
-export type OxlintConfigPlugins = Exclude<
+export type OxlintConfigPlugin = Exclude<
   OxlintConfigInternal['plugins'],
   null | undefined
 >[number];

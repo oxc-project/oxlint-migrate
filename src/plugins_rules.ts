@@ -183,14 +183,7 @@ export const transformRuleEntry = (
       : eslintConfig.plugins;
 
   for (const [rule, config] of Object.entries(eslintConfig.rules)) {
-    const normalizedConfig = normalizeSeverityValue(config);
-
-    if (normalizedConfig === undefined) {
-      options?.reporter?.addWarning(
-        `Unsupported config value for rule "${rule}": ${JSON.stringify(config)}`
-      );
-      continue;
-    }
+    const normalizedConfig = normalizeSeverityValue(config)!;
 
     // removing rules from previous "overrides"
     // only works on non-merge because `overrides` is already prefilled from previous result.

@@ -50,7 +50,6 @@ const buildConfig = (
       };
     }
   }
-  oxlintConfig = oxlintConfig!;
 
   // when merge check if $schema is not defined,
   // the default config has already defined it
