@@ -8,6 +8,7 @@ import type {
   Category,
 } from './types.js';
 import {
+  eslintRulesToTypescriptEquivalents,
   rulesPrefixesForPlugins,
   typescriptRulesExtendEslintRules,
 } from './constants.js';
@@ -181,7 +182,15 @@ export const transformRuleEntry = (
       ? { ...globalPlugins, ...eslintConfig.plugins }
       : eslintConfig.plugins;
 
-  for (const [rule, config] of Object.entries(eslintConfig.rules)) {
+  for (const [originalRule, config] of Object.entries(eslintConfig.rules)) {
+    // When --type-aware is enabled, remap ESLint rules to their @typescript-eslint
+    // equivalents that oxlint supports as type-aware rules.
+    const rule =
+      options?.typeAware &&
+      eslintRulesToTypescriptEquivalents[originalRule] !== undefined
+        ? eslintRulesToTypescriptEquivalents[originalRule]
+        : originalRule;
+
     const normalizedConfig = normalizeSeverityValue(config);
 
     // removing rules from previous "overrides"
