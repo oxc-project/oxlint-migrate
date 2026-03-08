@@ -105,6 +105,7 @@ export const cleanUpOxlintConfig = (config: OxlintConfigOrOverride): void => {
   // no entries in globals, we can remove the globals key
   if (
     config.globals !== undefined &&
+    config.globals !== null &&
     Object.keys(config.globals).length === 0
   ) {
     delete config.globals;

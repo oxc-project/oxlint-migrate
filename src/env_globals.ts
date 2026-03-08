@@ -3,6 +3,7 @@ import type {
   ESLint,
   Options,
   OxlintConfig,
+  OxlintConfigGlobalsValue,
   OxlintConfigOrOverride,
 } from './types.js';
 
@@ -97,12 +98,23 @@ export const transformBoolGlobalToString = (config: OxlintConfigOrOverride) => {
     return;
   }
 
-  for (const [entry, value] of Object.entries(config.globals)) {
-    if (value === false || value === 'readable') {
-      config.globals[entry] = 'readonly';
-    } else if (value === true || value === 'writeable') {
-      config.globals[entry] = 'writable';
-    }
+  for (const [entry, value] of Object.entries(
+    config.globals as Record<string, ESLint.GlobalAccess>
+  )) {
+    config.globals[entry] =
+      transformEslintGlobalAccessToOxlintGlobalValue(value);
+  }
+};
+
+const transformEslintGlobalAccessToOxlintGlobalValue = (
+  global: ESLint.GlobalAccess
+): OxlintConfigGlobalsValue => {
+  if (global === false || global === 'readable') {
+    return 'readonly';
+  } else if (global === true || global === 'writeable') {
+    return 'writable';
+  } else {
+    return 'off';
   }
 };
 
@@ -195,7 +207,8 @@ export const transformEnvAndGlobals = (
         eslintConfig.languageOptions.globals
       )) {
         if (!(global in targetConfig.globals)) {
-          targetConfig.globals[global] = globalSetting;
+          targetConfig.globals[global] =
+            transformEslintGlobalAccessToOxlintGlobalValue(globalSetting);
         }
       }
     } else {

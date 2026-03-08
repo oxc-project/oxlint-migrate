@@ -116,13 +116,15 @@ export namespace ESLint {
 }
 
 import type {
+  DummyRule,
   OxlintConfig as OxlintConfigInternal,
   OxlintOverride,
   RuleCategories,
 } from 'oxlint';
 
-export type OxlintConfig = Exclude<OxlintConfigInternal, undefined> & {
+export type OxlintConfig = Omit<OxlintConfigInternal, 'overrides'> & {
   $schema?: string;
+  overrides?: OxlintConfigOverride[];
 };
 
 export type OxlintSettings = Exclude<
@@ -140,11 +142,19 @@ export type OxlintSupportedSettingsKey =
 
 export type OxlintOptions = Exclude<OxlintConfigInternal['options'], undefined>;
 
-export type OxlintConfigOverride = OxlintOverride;
+export type OxlintConfigOverride = OxlintOverride & {
+  categories?: OxlintConfigInternal['categories'];
+};
 
-export type OxlintConfigOrOverride = OxlintConfigInternal | OxlintOverride;
+export type OxlintConfigOrOverride =
+  | OxlintConfigInternal
+  | OxlintConfigOverride;
 
-export type Category = keyof RuleCategories;
+export type OxlintConfigGlobalsValue = 'readonly' | 'writable' | 'off';
+
+export type OxlintConfigRuleSeverity = DummyRule;
+
+export type OxlintCategory = keyof RuleCategories;
 
 export type RuleSkippedCategory =
   | 'nursery'
