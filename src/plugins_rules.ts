@@ -240,7 +240,7 @@ export const transformRuleEntry = (
       // For unsupported rules, when jsPlugins is enabled, always try to map
       // them to a JS plugin rule, regardless of severity (including 'off').
       if (options?.jsPlugins) {
-        // If the rule is disabled, avoid enabling the jsPlugin to prevent noise.
+        // If the rule is disabled, in base config, avoid enabling the jsPlugin to prevent noise.
         if (isOffValue(normalizedConfig)) {
           // Use the resolved (potentially renamed) rule name for consistency
           // with enabled rules that go through enableJsPluginRule.
@@ -249,9 +249,15 @@ export const transformRuleEntry = (
             // base config: drop disabled rule entirely
             delete targetConfig.rules[resolvedRule];
           } else {
-            // override: keep the disabled setting without adding jsPlugin, unless plugin is ignored
+            // override: keep the disabled rule and add the jsPlugin
+            // so oxlint can resolve the rule name
             if (!isIgnoredPluginRule(rule)) {
-              targetConfig.rules[resolvedRule] = normalizedConfig;
+              enableJsPluginRule(
+                targetConfig,
+                resolvedRule,
+                normalizedConfig,
+                effectivePlugins
+              );
             }
           }
           // also remove any previously queued unsupported report for base
