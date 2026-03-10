@@ -3,6 +3,7 @@ import * as rules from './generated/rules.js';
 import {
   Options,
   OxlintConfig,
+  OxlintConfigJsPluginEntry,
   OxlintConfigOrOverride,
   OxlintConfigOverride,
   type Category,
@@ -172,8 +173,16 @@ export const transformRuleEntry = (
     targetConfig.rules = {};
   }
 
-  for (const [rule, config] of Object.entries(eslintConfig.rules)) {
+  for (let [rule, config] of Object.entries(eslintConfig.rules)) {
     const normalizedConfig = normalizeSeverityValue(config);
+
+    const isSupported = allRules.includes(rule);
+
+    // When --js-plugins is enabled, rename unsupported core ESLint rules to
+    // `eslint-js/<rule>` so they flow through the JS plugin path naturally.
+    if (!isSupported && options?.jsPlugins && !rule.includes('/')) {
+      rule = `eslint-js/${rule}`;
+    }
 
     // removing rules from previous "overrides"
     // only works on non-merge because `overrides` is already prefilled from previous result.
@@ -181,7 +190,7 @@ export const transformRuleEntry = (
       removePreviousOverrideRule(rule, eslintConfig, overrides);
     }
 
-    if (allRules.includes(rule)) {
+    if (isSupported) {
       if (!options?.withNursery && rules.nurseryRules.includes(rule)) {
         options?.reporter?.markSkipped(rule, 'nursery');
         continue;
