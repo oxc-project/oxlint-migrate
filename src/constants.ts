@@ -18,6 +18,30 @@ export const rulesPrefixesForPlugins: Record<string, string> = {
   vue: 'vue',
 };
 
+// Maps each ESLint rule prefix to its npm package specifier.
+// Used when `--js-plugins` is enabled to generate `jsPlugins` entries
+// for unsupported native plugin rules.
+export const rulesPrefixSpecifiers: Record<string, string> = {
+  import: 'eslint-plugin-import',
+  'import-x': 'eslint-plugin-import-x',
+  jest: 'eslint-plugin-jest',
+  jsdoc: 'eslint-plugin-jsdoc',
+  'jsx-a11y': 'eslint-plugin-jsx-a11y',
+  '@next/next': '@next/eslint-plugin-next',
+  node: 'eslint-plugin-node',
+  n: 'eslint-plugin-n',
+  promise: 'eslint-plugin-promise',
+  react: 'eslint-plugin-react',
+  'react-perf': 'eslint-plugin-react-perf',
+  'react-hooks': 'eslint-plugin-react-hooks',
+  'react-refresh': 'eslint-plugin-react-refresh',
+  // TODO: Need to filter out unsupported type-aware rules - can't convert them to JS plugins
+  '@typescript-eslint': '@typescript-eslint/eslint-plugin',
+  unicorn: 'eslint-plugin-unicorn',
+  vitest: 'eslint-plugin-vitest',
+  vue: 'eslint-plugin-vue',
+};
+
 // Some typescript-eslint rules are re-implemented version of eslint rules.
 // Since oxlint supports these rules under eslint/* and it also supports TS,
 // we should override these to make implementation status up-to-date.
