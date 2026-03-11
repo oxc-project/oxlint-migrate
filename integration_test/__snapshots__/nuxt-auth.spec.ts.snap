@@ -1227,6 +1227,9 @@ exports[`nuxt-auth --js-plugins > nuxt-auth--js-plugins 1`] = `
           "**/*.bench.?([cm])[jt]s?(x)",
           "**/*.benchmark.?([cm])[jt]s?(x)",
         ],
+        "jsPlugins": [
+          "eslint-plugin-antfu",
+        ],
         "plugins": [
           "vitest",
           "typescript",
@@ -1252,6 +1255,9 @@ exports[`nuxt-auth --js-plugins > nuxt-auth--js-plugins 1`] = `
         "files": [
           "**/*.vue",
         ],
+        "jsPlugins": [
+          "eslint-plugin-antfu",
+        ],
         "plugins": [
           "vue",
           "typescript",
@@ -1275,6 +1281,7 @@ exports[`nuxt-auth --js-plugins > nuxt-auth--js-plugins 1`] = `
           "**/*.toml",
         ],
         "jsPlugins": [
+          "@stylistic/eslint-plugin",
           "eslint-plugin-toml",
         ],
         "rules": {
@@ -1309,6 +1316,10 @@ exports[`nuxt-auth --js-plugins > nuxt-auth--js-plugins 1`] = `
         ],
         "jsPlugins": [
           "@eslint/eslint-plugin-markdown",
+          "eslint-plugin-command",
+          "eslint-plugin-perfectionist",
+          "eslint-plugin-regexp",
+          "@stylistic/eslint-plugin",
         ],
         "rules": {
           "@stylistic/indent": "off",
@@ -1344,6 +1355,11 @@ exports[`nuxt-auth --js-plugins > nuxt-auth--js-plugins 1`] = `
           "**/*.md/**/*.?([cm])[jt]s?(x)",
           "**/*.md/**/*.vue",
         ],
+        "jsPlugins": [
+          "eslint-plugin-antfu",
+          "@stylistic/eslint-plugin",
+          "eslint-plugin-unused-imports",
+        ],
         "plugins": [
           "typescript",
         ],
@@ -1372,6 +1388,9 @@ exports[`nuxt-auth --js-plugins > nuxt-auth--js-plugins 1`] = `
         "files": [
           "**/scripts/**/*.?([cm])[jt]s?(x)",
         ],
+        "jsPlugins": [
+          "eslint-plugin-antfu",
+        ],
         "plugins": [
           "typescript",
         ],
@@ -1385,6 +1404,9 @@ exports[`nuxt-auth --js-plugins > nuxt-auth--js-plugins 1`] = `
           "**/cli/**/*.?([cm])[jt]s?(x)",
           "**/cli.?([cm])[jt]s?(x)",
         ],
+        "jsPlugins": [
+          "eslint-plugin-antfu",
+        ],
         "rules": {
           "antfu/no-top-level-await": "off",
         },
@@ -1394,6 +1416,9 @@ exports[`nuxt-auth --js-plugins > nuxt-auth--js-plugins 1`] = `
           "**/bin/**/*",
           "**/bin.?([cm])[jt]s?(x)",
         ],
+        "jsPlugins": [
+          "eslint-plugin-antfu",
+        ],
         "rules": {
           "antfu/no-import-dist": "off",
           "antfu/no-import-node-modules-by-path": "off",
@@ -1402,6 +1427,10 @@ exports[`nuxt-auth --js-plugins > nuxt-auth--js-plugins 1`] = `
       {
         "files": [
           "**/*.d.?([cm])ts",
+        ],
+        "jsPlugins": [
+          "eslint-plugin-eslint-comments",
+          "eslint-plugin-unused-imports",
         ],
         "rules": {
           "eslint-comments/no-unlimited-disable": "off",
@@ -1424,6 +1453,9 @@ exports[`nuxt-auth --js-plugins > nuxt-auth--js-plugins 1`] = `
         "files": [
           "**/*.config.?([cm])[jt]s?(x)",
           "**/*.config.*.?([cm])[jt]s?(x)",
+        ],
+        "jsPlugins": [
+          "eslint-plugin-antfu",
         ],
         "plugins": [
           "typescript",
