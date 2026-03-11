@@ -157,7 +157,15 @@ const buildConfig = (
     }
   }
 
-  return oxlintConfig;
+  // Reorder keys so that "options" appears near the top of the
+  // serialized JSON output, not hidden below potentially hundreds of rules.
+  const { $schema, categories, options: configOptions, ...rest } = oxlintConfig;
+  return {
+    ...($schema !== undefined ? { $schema } : {}),
+    ...(categories !== undefined ? { categories } : {}),
+    ...(configOptions !== undefined ? { options: configOptions } : {}),
+    ...rest,
+  };
 };
 
 const main = async (
