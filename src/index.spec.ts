@@ -271,6 +271,30 @@ describe('main', () => {
     });
   });
 
+  test('options key appears before rules key in output', async () => {
+    const result = await main(
+      [
+        {
+          rules: {
+            '@typescript-eslint/no-floating-promises': 'error',
+          },
+        },
+      ],
+      undefined,
+      { typeAware: true }
+    );
+
+    const keys = Object.keys(result);
+    const optionsIndex = keys.indexOf('options');
+    const rulesIndex = keys.indexOf('rules');
+    const pluginsIndex = keys.indexOf('plugins');
+
+    expect(optionsIndex).not.toBe(-1);
+    expect(rulesIndex).not.toBe(-1);
+    expect(optionsIndex).toBeLessThan(rulesIndex);
+    expect(optionsIndex).toBeLessThan(pluginsIndex);
+  });
+
   test('enables options.typeAware even if the type-aware rules are only in overrides', async () => {
     const result = await main(
       [
