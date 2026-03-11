@@ -271,7 +271,7 @@ describe('main', () => {
     });
   });
 
-  test('options key appears before rules key in output', async () => {
+  test('options key appears before plugins and rules in serialized JSON', async () => {
     const result = await main(
       [
         {
@@ -284,15 +284,26 @@ describe('main', () => {
       { typeAware: true }
     );
 
-    const keys = Object.keys(result);
-    const optionsIndex = keys.indexOf('options');
-    const rulesIndex = keys.indexOf('rules');
-    const pluginsIndex = keys.indexOf('plugins');
-
-    expect(optionsIndex).not.toBe(-1);
-    expect(rulesIndex).not.toBe(-1);
-    expect(optionsIndex).toBeLessThan(rulesIndex);
-    expect(optionsIndex).toBeLessThan(pluginsIndex);
+    expect(JSON.stringify(result, null, 2)).toMatchInlineSnapshot(`
+      "{
+        "$schema": "./node_modules/oxlint/configuration_schema.json",
+        "categories": {
+          "correctness": "off"
+        },
+        "options": {
+          "typeAware": true
+        },
+        "plugins": [
+          "typescript"
+        ],
+        "env": {
+          "builtin": true
+        },
+        "rules": {
+          "@typescript-eslint/no-floating-promises": "error"
+        }
+      }"
+    `);
   });
 
   test('enables options.typeAware even if the type-aware rules are only in overrides', async () => {
