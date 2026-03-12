@@ -287,12 +287,12 @@ describe('main', () => {
     expect(JSON.stringify(result, null, 2)).toMatchInlineSnapshot(`
       "{
         "$schema": "./node_modules/oxlint/configuration_schema.json",
-        "categories": {
-          "correctness": "off"
-        },
         "plugins": [
           "typescript"
         ],
+        "categories": {
+          "correctness": "off"
+        },
         "options": {
           "typeAware": true
         },

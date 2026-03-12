@@ -23,9 +23,9 @@ import { transformSettings, warnSettingsInOverride } from './settings.js';
 // Ensure all keys are added.
 const KEY_ORDER: (keyof OxlintConfig)[] = [
   '$schema',
-  'categories',
   'plugins',
   'jsPlugins',
+  'categories',
   'options',
   'env',
   'globals',
