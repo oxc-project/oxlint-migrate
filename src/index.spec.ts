@@ -290,12 +290,12 @@ describe('main', () => {
         "categories": {
           "correctness": "off"
         },
-        "options": {
-          "typeAware": true
-        },
         "plugins": [
           "typescript"
         ],
+        "options": {
+          "typeAware": true
+        },
         "env": {
           "builtin": true
         },

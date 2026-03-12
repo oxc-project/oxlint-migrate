@@ -20,6 +20,21 @@ import fixForJsPlugins from './js_plugin_fixes.js';
 import { processConfigFiles } from './files.js';
 import { transformSettings, warnSettingsInOverride } from './settings.js';
 
+// Ensure all keys are added.
+const KEY_ORDER: (keyof OxlintConfig)[] = [
+  '$schema',
+  'categories',
+  'plugins',
+  'jsPlugins',
+  'options',
+  'env',
+  'globals',
+  'settings',
+  'ignorePatterns',
+  'rules',
+  'overrides',
+];
+
 const buildConfig = (
   configs: ESLint.Config[],
   oxlintConfig?: OxlintConfig,
@@ -157,15 +172,13 @@ const buildConfig = (
     }
   }
 
-  // Reorder keys so that "options" appears near the top of the
-  // serialized JSON output, not hidden below potentially hundreds of rules.
-  const { $schema, categories, options: configOptions, ...rest } = oxlintConfig;
-  return {
-    ...($schema !== undefined ? { $schema } : {}),
-    ...(categories !== undefined ? { categories } : {}),
-    ...(configOptions !== undefined ? { options: configOptions } : {}),
-    ...rest,
-  };
+  // Reorder keys so that we have a consistently-generated config.
+  return Object.fromEntries(
+    KEY_ORDER.filter((key) => key in oxlintConfig).map((key) => [
+      key,
+      oxlintConfig[key],
+    ])
+  ) as OxlintConfig;
 };
 
 const main = async (
