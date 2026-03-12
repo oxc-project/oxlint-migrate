@@ -68,7 +68,12 @@ const normalizeGlobValue = (
 export const removeGlobalsWithAreCoveredByEnv = (
   config: OxlintConfigOrOverride
 ) => {
-  if (config.globals === undefined || config.env === undefined) {
+  if (
+    config.globals === undefined ||
+    config.globals === null ||
+    config.env === undefined ||
+    config.env === null
+  ) {
     return;
   }
 
@@ -89,7 +94,7 @@ export const removeGlobalsWithAreCoveredByEnv = (
 };
 
 export const transformBoolGlobalToString = (config: OxlintConfigOrOverride) => {
-  if (config.globals === undefined) {
+  if (config.globals === undefined || config.globals === null) {
     return;
   }
 
@@ -119,7 +124,7 @@ export const transformEslintGlobalAccessToOxlintGlobalValue = (
 const THRESHOLD_ENVS = ['browser', 'node', 'serviceworker', 'worker'];
 
 export const detectEnvironmentByGlobals = (config: OxlintConfigOrOverride) => {
-  if (config.globals === undefined) {
+  if (config.globals === undefined || config.globals === null) {
     return;
   }
 
@@ -160,7 +165,7 @@ export const detectEnvironmentByGlobals = (config: OxlintConfigOrOverride) => {
       withinThreshold ||
       (!useThreshold && matches.length === search.length)
     ) {
-      if (config.env === undefined) {
+      if (config.env === undefined || config.env === null) {
         config.env = {};
       }
       config.env[env] = true;
@@ -194,7 +199,7 @@ export const transformEnvAndGlobals = (
     eslintConfig.languageOptions?.globals !== undefined &&
     eslintConfig.languageOptions?.globals !== null
   ) {
-    if (targetConfig.globals === undefined) {
+    if (targetConfig.globals === undefined || targetConfig.globals === null) {
       targetConfig.globals = {};
     }
 
@@ -221,7 +226,7 @@ export const transformEnvAndGlobals = (
 
   if (eslintConfig.languageOptions?.ecmaVersion !== undefined) {
     if (eslintConfig.languageOptions.ecmaVersion === 'latest') {
-      if (targetConfig.env === undefined) {
+      if (targetConfig.env === undefined || targetConfig.env === null) {
         targetConfig.env = {};
       }
       const latestVersion = `es${ES_VERSIONS[ES_VERSIONS.length - 1]}`;
@@ -232,7 +237,7 @@ export const transformEnvAndGlobals = (
       typeof eslintConfig.languageOptions.ecmaVersion === 'number' &&
       ES_VERSIONS.includes(eslintConfig.languageOptions.ecmaVersion)
     ) {
-      if (targetConfig.env === undefined) {
+      if (targetConfig.env === undefined || targetConfig.env === null) {
         targetConfig.env = {};
       }
       const targetVersion = `es${eslintConfig.languageOptions.ecmaVersion}`;
@@ -244,12 +249,17 @@ export const transformEnvAndGlobals = (
 };
 
 export const cleanUpUselessOverridesEnv = (config: OxlintConfig): void => {
-  if (config.env === undefined || config.overrides === undefined) {
+  if (
+    config.env === undefined ||
+    config.env === null ||
+    config.overrides === undefined ||
+    config.overrides === null
+  ) {
     return;
   }
 
   for (const override of config.overrides) {
-    if (override.env === undefined) {
+    if (override.env === undefined || override.env === null) {
       continue;
     }
 
@@ -304,7 +314,7 @@ export const cleanUpSupersetEnvs = (config: OxlintConfig): void => {
   // Clean up overrides
   if (config.overrides !== undefined) {
     for (const override of config.overrides) {
-      if (override.env === undefined) {
+      if (override.env === undefined || override.env === null) {
         continue;
       }
 

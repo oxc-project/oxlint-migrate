@@ -1,5 +1,9 @@
 import { rulesPrefixesForPlugins } from './constants.js';
-import type { ESLint, OxlintConfigOrOverride } from './types.js';
+import type {
+  ESLint,
+  OxlintConfigOrOverride,
+  OxlintConfigRuleSeverity,
+} from './types.js';
 
 const ignorePlugins = new Set<string>([
   ...Object.keys(rulesPrefixesForPlugins),
@@ -185,7 +189,7 @@ export const resolveJsPluginRuleName = (
 export const enableJsPluginRule = (
   targetConfig: OxlintConfigOrOverride,
   rule: string,
-  ruleEntry: ESLint.RuleConfig | undefined,
+  ruleEntry: OxlintConfigRuleSeverity | undefined,
   plugins?: Record<string, ESLint.Plugin> | null
 ): boolean => {
   const pluginName = extractPluginId(rule);
@@ -197,7 +201,8 @@ export const enableJsPluginRule = (
   if (ignorePlugins.has(pluginName)) {
     return false;
   }
-  if (targetConfig.jsPlugins === undefined) {
+
+  if (targetConfig.jsPlugins === undefined || targetConfig.jsPlugins === null) {
     targetConfig.jsPlugins = [];
   }
 
@@ -214,7 +219,7 @@ export const enableJsPluginRule = (
   // Rewrite the rule name if the plugin is registered under an alias.
   const resolvedRule = resolveJsPluginRuleName(rule, plugins);
 
-  targetConfig.rules = targetConfig.rules || {};
-  targetConfig.rules[resolvedRule] = ruleEntry;
+  targetConfig.rules = targetConfig.rules ?? {};
+  targetConfig.rules[resolvedRule] = ruleEntry!; // TODO: handle undefined ruleEntry if needed
   return true;
 };

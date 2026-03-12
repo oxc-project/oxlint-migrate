@@ -105,12 +105,13 @@ export const cleanUpOxlintConfig = (config: OxlintConfigOrOverride): void => {
   // no entries in globals, we can remove the globals key
   if (
     config.globals !== undefined &&
+    config.globals !== null &&
     Object.keys(config.globals).length === 0
   ) {
     delete config.globals;
   }
 
-  if (config.env !== undefined) {
+  if (config.env !== undefined && config.env !== null) {
     // these are not supported by oxlint
     delete config.env.es3;
     delete config.env.es5;

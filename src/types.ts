@@ -115,54 +115,50 @@ export namespace ESLint {
   }
 }
 
-type OxlintConfigPlugins = string[];
-type OxlintConfigJsPlugins = string[];
-type OxlintConfigCategories = Partial<Record<Category, unknown>>;
-type OxlintConfigEnv = Record<string, boolean>;
-type OxlintConfigIgnorePatterns = string[];
+import type {
+  DummyRule,
+  OxlintConfig as OxlintConfigInternal,
+  OxlintOverride,
+  RuleCategories,
+  OxlintGlobals,
+} from 'oxlint';
 
-export type OxlintConfigGlobalsValue = 'readonly' | 'writable' | 'off';
-
-export type OxlintSupportedSettingsKey =
-  | 'jsx-a11y'
-  | 'next'
-  | 'react'
-  | 'jsdoc'
-  | 'vitest';
-
-export type OxlintSettings = {
-  [K in OxlintSupportedSettingsKey]?: Record<string, unknown>;
-} & Record<string, Record<string, unknown> | undefined>;
-
-export type OxlintOptions = {
-  typeAware?: boolean;
-  typeCheck?: boolean;
-};
-
-export type OxlintConfigOverride = {
-  files: string[];
-  env?: OxlintConfigEnv;
-  globals?: Record<string, OxlintConfigGlobalsValue>;
-  plugins?: OxlintConfigPlugins;
-  jsPlugins?: OxlintConfigJsPlugins;
-  categories?: OxlintConfigCategories;
-  rules?: Partial<ESLint.RulesRecord>;
-};
-
-export type OxlintConfig = {
+export type OxlintConfig = Omit<OxlintConfigInternal, 'overrides'> & {
   $schema?: string;
-  env?: OxlintConfigEnv;
-  globals?: Record<string, OxlintConfigGlobalsValue>;
-  plugins?: OxlintConfigPlugins;
-  jsPlugins?: OxlintConfigJsPlugins;
-  categories?: OxlintConfigCategories;
-  rules?: Partial<ESLint.RulesRecord>;
   overrides?: OxlintConfigOverride[];
-  ignorePatterns?: OxlintConfigIgnorePatterns;
-  settings?: OxlintSettings;
-  options?: OxlintOptions;
 };
-export type OxlintConfigOrOverride = OxlintConfig | OxlintConfigOverride;
+
+export type OxlintSettings = Exclude<
+  OxlintConfigInternal['settings'],
+  undefined
+>;
+
+export type OxlintSupportedSettingsKey = keyof OxlintSettings;
+
+export type OxlintOptions = Exclude<OxlintConfigInternal['options'], undefined>;
+
+export type OxlintConfigOverride = OxlintOverride & {
+  categories?: RuleCategories;
+};
+
+export type OxlintConfigOrOverride =
+  | OxlintConfigInternal
+  | OxlintConfigOverride;
+
+export type OxlintConfigPlugin = Exclude<
+  OxlintConfigInternal['plugins'],
+  null | undefined
+>[number];
+
+export type OxlintConfigGlobalsValue = OxlintGlobals[string];
+
+// this is type safer, but oxlint does make a broader approach with AllowWarnDeny | unknown[]
+// export type OxlintConfigRuleSeverity =
+//   | AllowWarnDeny
+//   | [AllowWarnDeny, ...unknown[]];
+export type OxlintConfigRuleSeverity = DummyRule;
+
+export type OxlintCategory = keyof RuleCategories;
 
 export type RuleSkippedCategory =
   | 'nursery'
@@ -188,12 +184,3 @@ export type Options = {
   typeAware?: boolean;
   jsPlugins?: boolean;
 };
-
-export type Category =
-  | 'style'
-  | 'correctness'
-  | 'nursery'
-  | 'suspicious'
-  | 'pedantic'
-  | 'perf'
-  | 'restriction';

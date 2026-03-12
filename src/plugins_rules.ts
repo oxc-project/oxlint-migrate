@@ -5,7 +5,8 @@ import type {
   OxlintConfig,
   OxlintConfigOrOverride,
   OxlintConfigOverride,
-  Category,
+  OxlintCategory,
+  OxlintConfigRuleSeverity,
 } from './types.js';
 import {
   eslintRulesToTypescriptEquivalents,
@@ -43,7 +44,7 @@ const isErrorValue = (value: unknown) => isValueInSet(value, ['error', 2]);
 
 const normalizeSeverityValue = (
   value: ESLint.RuleConfig | undefined
-): ESLint.RuleConfig | undefined => {
+): OxlintConfigRuleSeverity | undefined => {
   if (value === undefined) {
     return value;
   }
@@ -111,9 +112,9 @@ const removePreviousOverrideRule = (
  * @returns The merged rule configuration
  */
 const mergeRuleConfig = (
-  existingConfig: ESLint.RuleConfig | undefined,
-  newConfig: ESLint.RuleConfig | undefined
-): ESLint.RuleConfig | undefined => {
+  existingConfig: OxlintConfigRuleSeverity | undefined,
+  newConfig: OxlintConfigRuleSeverity | undefined
+): OxlintConfigRuleSeverity | undefined => {
   if (newConfig === undefined) {
     return existingConfig;
   }
@@ -191,7 +192,7 @@ export const transformRuleEntry = (
         ? eslintRulesToTypescriptEquivalents[originalRule]
         : originalRule;
 
-    const normalizedConfig = normalizeSeverityValue(config);
+    const normalizedConfig = normalizeSeverityValue(config)!;
 
     // removing rules from previous "overrides"
     // only works on non-merge because `overrides` is already prefilled from previous result.
@@ -234,7 +235,7 @@ export const transformRuleEntry = (
         targetConfig.rules[rule] = mergeRuleConfig(
           existingConfig,
           normalizedConfig
-        );
+        )!; // TODO: check for undefined
       }
     } else {
       // For unsupported rules, when jsPlugins is enabled, always try to map
@@ -320,7 +321,7 @@ export const detectNeededRulesPlugins = (
     return;
   }
 
-  if (targetConfig.plugins === undefined) {
+  if (targetConfig.plugins === undefined || targetConfig.plugins === null) {
     targetConfig.plugins = [];
   }
 
@@ -351,9 +352,9 @@ export const cleanUpUselessOverridesPlugins = (config: OxlintConfig): void => {
     return;
   }
 
-  if (config.plugins !== undefined) {
+  if (config.plugins !== undefined && config.plugins !== null) {
     for (const override of config.overrides) {
-      if (override.plugins === undefined) {
+      if (override.plugins === undefined || override.plugins === null) {
         continue;
       }
 
@@ -466,9 +467,9 @@ export const cleanUpRulesWhichAreCoveredByCategory = (
     return;
   }
 
-  const enabledCategories: Category[] = Object.entries(config.categories)
+  const enabledCategories: OxlintCategory[] = Object.entries(config.categories)
     .filter(([, severity]) => severity === 'warn' || severity === 'error')
-    .map(([category]) => category as Category);
+    .map(([category]) => category as OxlintCategory);
 
   for (const [rule, settings] of Object.entries(config.rules)) {
     for (const category of enabledCategories) {
@@ -491,13 +492,13 @@ export const cleanUpRulesWhichAreCoveredByCategory = (
   }
 };
 
-const getEnabledCategories = (config: OxlintConfig): Category[] => {
+const getEnabledCategories = (config: OxlintConfig): OxlintCategory[] => {
   if (config.categories === undefined) {
     return ['correctness'];
   }
-  const categories: Category[] = Object.entries(config.categories)
+  const categories: OxlintCategory[] = Object.entries(config.categories)
     .filter(([, severity]) => severity === 'warn' || severity === 'error')
-    .map(([category]) => category as Category);
+    .map(([category]) => category as OxlintCategory);
 
   // special case: when correctness is not defined, we consider it enabled
   if (Object.keys(config.categories).includes('correctness')) {
@@ -509,7 +510,7 @@ const getEnabledCategories = (config: OxlintConfig): Category[] => {
 
 const isRuleInEnabledCategory = (
   rule: string,
-  enabledCategories: Category[]
+  enabledCategories: OxlintCategory[]
 ): boolean => {
   for (const category of enabledCategories) {
     if (
