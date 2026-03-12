@@ -20,6 +20,14 @@ export const rulesPrefixesForPlugins: Record<string, OxlintConfigPlugin> = {
   vue: 'vue',
 };
 
+// Some ESLint rules are superseded by @typescript-eslint equivalents in oxlint.
+// When --type-aware is enabled, we should remap these ESLint rules to their
+// @typescript-eslint counterparts so they get migrated correctly.
+export const eslintRulesToTypescriptEquivalents: Record<string, string> = {
+  'dot-notation': '@typescript-eslint/dot-notation',
+  'consistent-return': '@typescript-eslint/consistent-return',
+};
+
 // Some typescript-eslint rules are re-implemented version of eslint rules.
 // Since oxlint supports these rules under eslint/* and it also supports TS,
 // we should override these to make implementation status up-to-date.

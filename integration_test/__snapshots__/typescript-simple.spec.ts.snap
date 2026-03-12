@@ -84,14 +84,13 @@ exports[`typescript-simple > typescript-simple 1`] = `
   },
   "skipped": {
     "js-plugins": [],
-    "not-implemented": [
-      "@typescript-eslint/no-unnecessary-type-conversion",
-    ],
+    "not-implemented": [],
     "nursery": [
       "getter-return",
       "no-undef",
       "no-unreachable",
       "@typescript-eslint/no-unnecessary-condition",
+      "@typescript-eslint/no-unnecessary-type-conversion",
       "@typescript-eslint/no-unnecessary-type-parameters",
       "@typescript-eslint/no-useless-default-assignment",
     ],
@@ -223,14 +222,13 @@ exports[`typescript-simple --js-plugins > typescript-simple--js-plugins 1`] = `
   },
   "skipped": {
     "js-plugins": [],
-    "not-implemented": [
-      "@typescript-eslint/no-unnecessary-type-conversion",
-    ],
+    "not-implemented": [],
     "nursery": [
       "getter-return",
       "no-undef",
       "no-unreachable",
       "@typescript-eslint/no-unnecessary-condition",
+      "@typescript-eslint/no-unnecessary-type-conversion",
       "@typescript-eslint/no-unnecessary-type-parameters",
       "@typescript-eslint/no-useless-default-assignment",
     ],
@@ -423,14 +421,13 @@ exports[`typescript-simple --type-aware > typescript-simple--type-aware 1`] = `
   },
   "skipped": {
     "js-plugins": [],
-    "not-implemented": [
-      "@typescript-eslint/no-unnecessary-type-conversion",
-    ],
+    "not-implemented": [],
     "nursery": [
       "getter-return",
       "no-undef",
       "no-unreachable",
       "@typescript-eslint/no-unnecessary-condition",
+      "@typescript-eslint/no-unnecessary-type-conversion",
       "@typescript-eslint/no-unnecessary-type-parameters",
       "@typescript-eslint/no-useless-default-assignment",
     ],
@@ -524,14 +521,13 @@ exports[`typescript-simple merge > typescript-simple--merge 1`] = `
   },
   "skipped": {
     "js-plugins": [],
-    "not-implemented": [
-      "@typescript-eslint/no-unnecessary-type-conversion",
-    ],
+    "not-implemented": [],
     "nursery": [
       "getter-return",
       "no-undef",
       "no-unreachable",
       "@typescript-eslint/no-unnecessary-condition",
+      "@typescript-eslint/no-unnecessary-type-conversion",
       "@typescript-eslint/no-unnecessary-type-parameters",
       "@typescript-eslint/no-useless-default-assignment",
     ],

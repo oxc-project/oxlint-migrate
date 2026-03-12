@@ -121,6 +121,67 @@ describe('rules and plugins', () => {
       ).toBe('error');
     });
 
+    test('eslint rules remapped to typescript equivalents when type-aware is enabled', () => {
+      // dot-notation and consistent-return are unsupported as plain ESLint rules in oxlint,
+      // but oxlint supports them as @typescript-eslint type-aware rules.
+      const eslintConfig: ESLint.Config = {
+        rules: {
+          'dot-notation': 'error',
+          'consistent-return': 'warn',
+        },
+      };
+
+      const configWithoutTypeAware: OxlintConfig = {};
+      const configWithTypeAware: OxlintConfig = {};
+
+      // Without --type-aware: rules are not migrated (they are unsupported)
+      transformRuleEntry(eslintConfig, configWithoutTypeAware);
+      expect(configWithoutTypeAware.rules).toStrictEqual({});
+
+      // With --type-aware: remapped to @typescript-eslint equivalents
+      transformRuleEntry(eslintConfig, configWithTypeAware, undefined, {
+        typeAware: true,
+        withNursery: true,
+      });
+      assert(configWithTypeAware.rules);
+      expect(configWithTypeAware.rules['@typescript-eslint/dot-notation']).toBe(
+        'error'
+      );
+      expect(
+        configWithTypeAware.rules['@typescript-eslint/consistent-return']
+      ).toBe('warn');
+    });
+
+    test('typescript rules still get mapped to typescript equivalents as expected', () => {
+      // Ensure that these two rules - despite being treated as extensions - still get mapped appropriately.
+      const eslintConfig: ESLint.Config = {
+        rules: {
+          '@typescript-eslint/dot-notation': 'error',
+          '@typescript-eslint/consistent-return': 'warn',
+        },
+      };
+
+      const configWithoutTypeAware: OxlintConfig = {};
+      const configWithTypeAware: OxlintConfig = {};
+
+      // Without --type-aware: rules are not migrated (they are unsupported)
+      transformRuleEntry(eslintConfig, configWithoutTypeAware);
+      expect(configWithoutTypeAware.rules).toStrictEqual({});
+
+      // With --type-aware: ported
+      transformRuleEntry(eslintConfig, configWithTypeAware, undefined, {
+        typeAware: true,
+        withNursery: true,
+      });
+      assert(configWithTypeAware.rules);
+      expect(configWithTypeAware.rules['@typescript-eslint/dot-notation']).toBe(
+        'error'
+      );
+      expect(
+        configWithTypeAware.rules['@typescript-eslint/consistent-return']
+      ).toBe('warn');
+    });
+
     test('does not report unsupported rules that are disabled', () => {
       const enabledConfig: ESLint.Config = {
         rules: {
@@ -273,8 +334,9 @@ describe('rules and plugins', () => {
       expect(overrideTarget.rules?.['regexp/no-lazy-ends']).toStrictEqual([
         'off',
       ]);
-      // plugin should not be added for a disabled rule in an override
-      expect(overrideTarget.jsPlugins).toBeUndefined();
+      // plugin is added even for a disabled rule in an override,
+      // so oxlint can resolve the rule name
+      expect(overrideTarget.jsPlugins).toContain('eslint-plugin-regexp');
 
       expect(reporter.getWarnings()).toStrictEqual([]);
     });

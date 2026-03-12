@@ -1092,6 +1092,7 @@ exports[`autoprefixer --type-aware > autoprefixer--type-aware 1`] = `
       "prefer-regex-literals",
     ],
     "nursery": [
+      "@typescript-eslint/dot-notation",
       "getter-return",
       "import-x/export",
       "no-undef",
@@ -1100,7 +1101,6 @@ exports[`autoprefixer --type-aware > autoprefixer--type-aware 1`] = `
     "type-aware": [],
     "unsupported": [
       "camelcase",
-      "dot-notation",
       "no-dupe-args",
       "no-invalid-this",
       "no-octal",
