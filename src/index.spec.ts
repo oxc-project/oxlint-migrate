@@ -271,6 +271,41 @@ describe('main', () => {
     });
   });
 
+  test('options key appears before plugins and rules in serialized JSON', async () => {
+    const result = await main(
+      [
+        {
+          rules: {
+            '@typescript-eslint/no-floating-promises': 'error',
+          },
+        },
+      ],
+      undefined,
+      { typeAware: true }
+    );
+
+    expect(JSON.stringify(result, null, 2)).toMatchInlineSnapshot(`
+      "{
+        "$schema": "./node_modules/oxlint/configuration_schema.json",
+        "plugins": [
+          "typescript"
+        ],
+        "categories": {
+          "correctness": "off"
+        },
+        "options": {
+          "typeAware": true
+        },
+        "env": {
+          "builtin": true
+        },
+        "rules": {
+          "@typescript-eslint/no-floating-promises": "error"
+        }
+      }"
+    `);
+  });
+
   test('enables options.typeAware even if the type-aware rules are only in overrides', async () => {
     const result = await main(
       [

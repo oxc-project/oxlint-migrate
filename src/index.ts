@@ -20,6 +20,21 @@ import fixForJsPlugins from './js_plugin_fixes.js';
 import { processConfigFiles } from './files.js';
 import { transformSettings, warnSettingsInOverride } from './settings.js';
 
+// Ensure all keys are added.
+const KEY_ORDER: (keyof OxlintConfig)[] = [
+  '$schema',
+  'plugins',
+  'jsPlugins',
+  'categories',
+  'options',
+  'env',
+  'globals',
+  'settings',
+  'ignorePatterns',
+  'rules',
+  'overrides',
+];
+
 const buildConfig = (
   configs: ESLint.Config[],
   oxlintConfig?: OxlintConfig,
@@ -157,7 +172,13 @@ const buildConfig = (
     }
   }
 
-  return oxlintConfig;
+  // Reorder keys so that we have a consistently-generated config.
+  return Object.fromEntries(
+    KEY_ORDER.filter((key) => key in oxlintConfig).map((key) => [
+      key,
+      oxlintConfig[key],
+    ])
+  ) as OxlintConfig;
 };
 
 const main = async (
