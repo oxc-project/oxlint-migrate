@@ -599,7 +599,6 @@ exports[`nuxt-auth > nuxt-auth 1`] = `
       "eslint-comments/no-unused-enable",
       "command/command",
       "perfectionist/sort-exports",
-      "perfectionist/sort-imports",
       "perfectionist/sort-named-exports",
       "perfectionist/sort-named-imports",
       "antfu/import-dedupe",
@@ -952,6 +951,9 @@ exports[`nuxt-auth > nuxt-auth 1`] = `
     ],
   },
   "warnings": [
+    "ESLint import-sorting rules like \`sort-imports\` were not migrated because they conflict with Oxfmt's import sorting.
+Use Oxfmt's \`sortImports\` formatter option instead. It is based on \`eslint-plugin-perfectionist/sort-imports\`, is disabled by default, and will need to be enabled.
+https://oxc.rs/docs/guide/usage/formatter/sorting.html",
     "special parser detected: vue-eslint-parser",
     "special parser detected: toml-eslint-parser",
     "ignore list inside overrides is not supported",
@@ -1343,7 +1345,6 @@ exports[`nuxt-auth --js-plugins > nuxt-auth--js-plugins 1`] = `
           "markdown/table-column-count": "error",
           "no-irregular-whitespace": "off",
           "perfectionist/sort-exports": "off",
-          "perfectionist/sort-imports": "off",
           "regexp/no-legacy-features": "off",
           "regexp/no-missing-g-flag": "off",
           "regexp/no-useless-dollar-replacements": "off",
@@ -2024,35 +2025,6 @@ exports[`nuxt-auth --js-plugins > nuxt-auth--js-plugins 1`] = `
           "type": "natural",
         },
       ],
-      "perfectionist/sort-imports": [
-        "error",
-        {
-          "groups": [
-            "type-import",
-            [
-              "type-parent",
-              "type-sibling",
-              "type-index",
-              "type-internal",
-            ],
-            "value-builtin",
-            "value-external",
-            "value-internal",
-            [
-              "value-parent",
-              "value-sibling",
-              "value-index",
-            ],
-            "side-effect",
-            "ts-equals-import",
-            "unknown",
-          ],
-          "newlinesBetween": "ignore",
-          "newlinesInside": "ignore",
-          "order": "asc",
-          "type": "natural",
-        },
-      ],
       "perfectionist/sort-named-exports": [
         "error",
         {
@@ -2373,6 +2345,9 @@ exports[`nuxt-auth --js-plugins > nuxt-auth--js-plugins 1`] = `
     ],
   },
   "warnings": [
+    "ESLint import-sorting rules like \`sort-imports\` were not migrated because they conflict with Oxfmt's import sorting.
+Use Oxfmt's \`sortImports\` formatter option instead. It is based on \`eslint-plugin-perfectionist/sort-imports\`, is disabled by default, and will need to be enabled.
+https://oxc.rs/docs/guide/usage/formatter/sorting.html",
     "special parser detected: vue-eslint-parser",
     "special parser detected: toml-eslint-parser",
     "ignore list inside overrides is not supported",
@@ -2979,7 +2954,6 @@ exports[`nuxt-auth --type-aware > nuxt-auth--type-aware 1`] = `
       "eslint-comments/no-unused-enable",
       "command/command",
       "perfectionist/sort-exports",
-      "perfectionist/sort-imports",
       "perfectionist/sort-named-exports",
       "perfectionist/sort-named-imports",
       "antfu/import-dedupe",
@@ -3332,6 +3306,9 @@ exports[`nuxt-auth --type-aware > nuxt-auth--type-aware 1`] = `
     ],
   },
   "warnings": [
+    "ESLint import-sorting rules like \`sort-imports\` were not migrated because they conflict with Oxfmt's import sorting.
+Use Oxfmt's \`sortImports\` formatter option instead. It is based on \`eslint-plugin-perfectionist/sort-imports\`, is disabled by default, and will need to be enabled.
+https://oxc.rs/docs/guide/usage/formatter/sorting.html",
     "special parser detected: vue-eslint-parser",
     "special parser detected: toml-eslint-parser",
     "ignore list inside overrides is not supported",
@@ -3919,7 +3896,6 @@ exports[`nuxt-auth merge > nuxt-auth--merge 1`] = `
       "eslint-comments/no-unused-enable",
       "command/command",
       "perfectionist/sort-exports",
-      "perfectionist/sort-imports",
       "perfectionist/sort-named-exports",
       "perfectionist/sort-named-imports",
       "antfu/import-dedupe",
@@ -4272,6 +4248,9 @@ exports[`nuxt-auth merge > nuxt-auth--merge 1`] = `
     ],
   },
   "warnings": [
+    "ESLint import-sorting rules like \`sort-imports\` were not migrated because they conflict with Oxfmt's import sorting.
+Use Oxfmt's \`sortImports\` formatter option instead. It is based on \`eslint-plugin-perfectionist/sort-imports\`, is disabled by default, and will need to be enabled.
+https://oxc.rs/docs/guide/usage/formatter/sorting.html",
     "special parser detected: vue-eslint-parser",
     "special parser detected: toml-eslint-parser",
     "ignore list inside overrides is not supported",

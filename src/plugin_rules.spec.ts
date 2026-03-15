@@ -121,6 +121,65 @@ describe('rules and plugins', () => {
       ).toBe('error');
     });
 
+    test('does not migrate core import sorting and warns to use Oxfmt instead', () => {
+      const eslintConfig: ESLint.Config = {
+        rules: {
+          'sort-imports': ['error', { ignoreDeclarationSort: true }],
+        },
+      };
+
+      const config: OxlintConfig = {};
+      const reporter = new DefaultReporter();
+
+      transformRuleEntry(eslintConfig, config, undefined, { reporter });
+
+      expect(config.rules).toStrictEqual({});
+      expect(reporter.getWarnings()).toStrictEqual([
+        "ESLint import-sorting rules like `sort-imports` were not migrated because they conflict with Oxfmt's import sorting.\n" +
+          "Use Oxfmt's `sortImports` formatter option instead. It is based on `eslint-plugin-perfectionist/sort-imports`, is disabled by default, and will need to be enabled.\n" +
+          'https://oxc.rs/docs/guide/usage/formatter/sorting.html',
+      ]);
+      expect(reporter.getSkippedRulesByCategory()).toStrictEqual({
+        nursery: [],
+        'type-aware': [],
+        'not-implemented': [],
+        'js-plugins': [],
+        unsupported: [],
+      });
+    });
+
+    test('does not migrate perfectionist import sorting and warns to use Oxfmt instead', () => {
+      const eslintConfig: ESLint.Config = {
+        plugins: { perfectionist: {} },
+        rules: {
+          'perfectionist/sort-imports': 'error',
+        },
+      };
+
+      const config: OxlintConfig = {};
+      const reporter = new DefaultReporter();
+
+      transformRuleEntry(eslintConfig, config, undefined, {
+        reporter,
+        jsPlugins: true,
+      });
+
+      expect(config.rules).toStrictEqual({});
+      expect(config.jsPlugins).toBeUndefined();
+      expect(reporter.getWarnings()).toStrictEqual([
+        "ESLint import-sorting rules like `sort-imports` were not migrated because they conflict with Oxfmt's import sorting.\n" +
+          "Use Oxfmt's `sortImports` formatter option instead. It is based on `eslint-plugin-perfectionist/sort-imports`, is disabled by default, and will need to be enabled.\n" +
+          'https://oxc.rs/docs/guide/usage/formatter/sorting.html',
+      ]);
+      expect(reporter.getSkippedRulesByCategory()).toStrictEqual({
+        nursery: [],
+        'type-aware': [],
+        'not-implemented': [],
+        'js-plugins': [],
+        unsupported: [],
+      });
+    });
+
     test('eslint rules remapped to typescript equivalents when type-aware is enabled', () => {
       // dot-notation and consistent-return are unsupported as plain ESLint rules in oxlint,
       // but oxlint supports them as @typescript-eslint type-aware rules.
