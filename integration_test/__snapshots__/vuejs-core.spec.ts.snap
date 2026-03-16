@@ -136,12 +136,6 @@ exports[`vuejs/core > vuejs/core 1`] = `
             "module",
             "require",
           ],
-          "sort-imports": [
-            "error",
-            {
-              "ignoreDeclarationSort": true,
-            },
-          ],
         },
       },
       {
@@ -355,7 +349,11 @@ exports[`vuejs/core > vuejs/core 1`] = `
     "type-aware": [],
     "unsupported": [],
   },
-  "warnings": [],
+  "warnings": [
+    "ESLint import-sorting rules like \`sort-imports\` were not migrated because they conflict with Oxfmt's import sorting.
+Use Oxfmt's \`sortImports\` formatter option instead. It is based on \`eslint-plugin-perfectionist/sort-imports\`, is disabled by default, and will need to be enabled.
+https://oxc.rs/docs/guide/usage/formatter/sorting.html",
+  ],
 }
 `;
 
@@ -495,12 +493,6 @@ exports[`vuejs/core --js-plugins > vuejs/core--js-plugins 1`] = `
             "module",
             "require",
           ],
-          "sort-imports": [
-            "error",
-            {
-              "ignoreDeclarationSort": true,
-            },
-          ],
         },
       },
       {
@@ -714,7 +706,11 @@ exports[`vuejs/core --js-plugins > vuejs/core--js-plugins 1`] = `
     "type-aware": [],
     "unsupported": [],
   },
-  "warnings": [],
+  "warnings": [
+    "ESLint import-sorting rules like \`sort-imports\` were not migrated because they conflict with Oxfmt's import sorting.
+Use Oxfmt's \`sortImports\` formatter option instead. It is based on \`eslint-plugin-perfectionist/sort-imports\`, is disabled by default, and will need to be enabled.
+https://oxc.rs/docs/guide/usage/formatter/sorting.html",
+  ],
 }
 `;
 
@@ -854,12 +850,6 @@ exports[`vuejs/core --type-aware > vuejs/core--type-aware 1`] = `
             "module",
             "require",
           ],
-          "sort-imports": [
-            "error",
-            {
-              "ignoreDeclarationSort": true,
-            },
-          ],
         },
       },
       {
@@ -1073,7 +1063,11 @@ exports[`vuejs/core --type-aware > vuejs/core--type-aware 1`] = `
     "type-aware": [],
     "unsupported": [],
   },
-  "warnings": [],
+  "warnings": [
+    "ESLint import-sorting rules like \`sort-imports\` were not migrated because they conflict with Oxfmt's import sorting.
+Use Oxfmt's \`sortImports\` formatter option instead. It is based on \`eslint-plugin-perfectionist/sort-imports\`, is disabled by default, and will need to be enabled.
+https://oxc.rs/docs/guide/usage/formatter/sorting.html",
+  ],
 }
 `;
 
@@ -1214,12 +1208,6 @@ exports[`vuejs/core merge > vuejs/core--merge 1`] = `
             "module",
             "require",
           ],
-          "sort-imports": [
-            "error",
-            {
-              "ignoreDeclarationSort": true,
-            },
-          ],
         },
       },
       {
@@ -1432,6 +1420,10 @@ exports[`vuejs/core merge > vuejs/core--merge 1`] = `
     "type-aware": [],
     "unsupported": [],
   },
-  "warnings": [],
+  "warnings": [
+    "ESLint import-sorting rules like \`sort-imports\` were not migrated because they conflict with Oxfmt's import sorting.
+Use Oxfmt's \`sortImports\` formatter option instead. It is based on \`eslint-plugin-perfectionist/sort-imports\`, is disabled by default, and will need to be enabled.
+https://oxc.rs/docs/guide/usage/formatter/sorting.html",
+  ],
 }
 `;

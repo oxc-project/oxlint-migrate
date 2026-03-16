@@ -22,6 +22,12 @@ import { buildUnsupportedRuleExplanations, isEqualDeep } from './utilities.js';
 
 const allRules = Object.values(rules).flat();
 const unsupportedRuleExplanations = buildUnsupportedRuleExplanations();
+const OXFMT_SORTING_DOCS_URL =
+  'https://oxc.rs/docs/guide/usage/formatter/sorting.html';
+const oxfmtImportSortingRules = new Set([
+  'sort-imports',
+  'perfectionist/sort-imports',
+]);
 
 /**
  * checks if value is validSet, or if validSet is an array, check if value is first value of it
@@ -41,6 +47,17 @@ export const isOffValue = (value: unknown) => isValueInSet(value, ['off', 0]);
 const isWarnValue = (value: unknown) => isValueInSet(value, ['warn', 1]);
 
 const isErrorValue = (value: unknown) => isValueInSet(value, ['error', 2]);
+
+const isOxfmtImportSortingRule = (rule: string): boolean =>
+  oxfmtImportSortingRules.has(rule);
+
+const addOxfmtImportSortingWarning = (options?: Options): void => {
+  options?.reporter?.addWarning(
+    "ESLint import-sorting rules like `sort-imports` were not migrated because they conflict with Oxfmt's import sorting.\n" +
+      "Use Oxfmt's `sortImports` formatter option instead. It is based on `eslint-plugin-perfectionist/sort-imports`, is disabled by default, and will need to be enabled.\n" +
+      OXFMT_SORTING_DOCS_URL
+  );
+};
 
 const normalizeSeverityValue = (
   value: ESLint.RuleConfig | undefined
@@ -193,6 +210,13 @@ export const transformRuleEntry = (
         : originalRule;
 
     const normalizedConfig = normalizeSeverityValue(config)!;
+
+    if (isOxfmtImportSortingRule(rule)) {
+      if (isActiveValue(normalizedConfig)) {
+        addOxfmtImportSortingWarning(options);
+      }
+      continue;
+    }
 
     // removing rules from previous "overrides"
     // only works on non-merge because `overrides` is already prefilled from previous result.
