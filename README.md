@@ -114,8 +114,4 @@ Depending on how this is implemented by the given config, these behaviors may no
 
 The JS Plugins API supports almost all ESLint v9+ plugins for linting JS/TS/JSX/TSX files, but there are still some minor holes in support. See the [JS Plugins documentation](https://oxc.rs/docs/guide/usage/linter/js-plugins.html) for specifics.
 
-For example, if you currently use `eslint-plugin-prettier`, it will not work as a JS Plugin, as we do not support custom parsers for JS Plugins. To replace the functionality of `eslint-plugin-prettier`, you can use `prettier --check` in CI and/or your git pre-commit hooks to ensure code formatting is enforced.
-
-You could also consider [replacing Prettier with Oxfmt](https://oxc.rs/docs/guide/usage/formatter/migrate-from-prettier.html).
-
-Note that `eslint-config-prettier` is different from the prettier plugin, and _will_ be migrated fine, as it's just a config to disable formatting-related ESLint rules, not an actual plugin.
+For example, if you currently use `eslint-plugin-svelte`, only some of its rules will work via JS Plugin, as Oxlint does not yet fully support custom file formats like `.svelte`. This means that Oxlint will only be able to lint the script blocks in your `.svelte` files, and not the template blocks where many of the `eslint-plugin-svelte` rules apply.
