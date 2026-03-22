@@ -41,7 +41,7 @@
   "dependencies": {
     "commander": "^14.0.0",
     "globals": "^17.0.0",
-    "oxc-parser": "^0.120.0",
+    "oxc-parser": "^0.121.0",
     "tinyglobby": "^0.2.14"
   },
   "devDependencies": {
