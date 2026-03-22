@@ -12,8 +12,10 @@ import {
   cleanUpUselessOverridesPlugins,
   cleanUpUselessOverridesRules,
   replaceNodePluginName,
+  replaceReactHooksPluginName,
   replaceReactRefreshPluginName,
   replaceTypescriptAliasRules,
+  replaceTypescriptPluginName,
 } from './plugins_rules.js';
 import type {
   OxlintConfig,
@@ -99,8 +101,10 @@ export const cleanUpOxlintConfig = (config: OxlintConfigOrOverride): void => {
   removeGlobalsWithAreCoveredByEnv(config);
   transformBoolGlobalToString(config);
   replaceTypescriptAliasRules(config);
+  replaceTypescriptPluginName(config);
   replaceNodePluginName(config);
   replaceReactRefreshPluginName(config);
+  replaceReactHooksPluginName(config);
   cleanUpRulesWhichAreCoveredByCategory(config);
 
   // For overrides, clean up jsPlugins now (overrides don't go through

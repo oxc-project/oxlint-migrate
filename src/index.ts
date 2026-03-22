@@ -167,7 +167,19 @@ const buildConfig = (
         Object.keys(o.rules ?? {})
       ),
     ];
-    if (allOutputRules.some((rule) => typeAwareRules.includes(rule))) {
+    if (
+      allOutputRules.some((rule) => {
+        if (typeAwareRules.includes(rule)) return true;
+        // After canonical renaming, rules use `typescript/` prefix but
+        // the generated typeAwareRules list uses `@typescript-eslint/`.
+        if (rule.startsWith('typescript/')) {
+          return typeAwareRules.includes(
+            `@typescript-eslint/${rule.slice('typescript/'.length)}`
+          );
+        }
+        return false;
+      })
+    ) {
       oxlintConfig.options = { ...oxlintConfig.options, typeAware: true };
     }
   }

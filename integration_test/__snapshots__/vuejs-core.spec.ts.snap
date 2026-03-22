@@ -30,15 +30,6 @@ exports[`vuejs/core > vuejs/core 1`] = `
           "typescript",
         ],
         "rules": {
-          "@typescript-eslint/consistent-type-imports": [
-            "error",
-            {
-              "disallowTypeAnnotations": false,
-              "fixStyle": "inline-type-imports",
-            },
-          ],
-          "@typescript-eslint/no-import-type-side-effects": "error",
-          "@typescript-eslint/prefer-ts-expect-error": "error",
           "import-x/no-nodejs-modules": [
             "error",
             {
@@ -136,6 +127,15 @@ exports[`vuejs/core > vuejs/core 1`] = `
             "module",
             "require",
           ],
+          "typescript/consistent-type-imports": [
+            "error",
+            {
+              "disallowTypeAnnotations": false,
+              "fixStyle": "inline-type-imports",
+            },
+          ],
+          "typescript/no-import-type-side-effects": "error",
+          "typescript/prefer-ts-expect-error": "error",
         },
       },
       {
@@ -387,15 +387,6 @@ exports[`vuejs/core --js-plugins > vuejs/core--js-plugins 1`] = `
           "typescript",
         ],
         "rules": {
-          "@typescript-eslint/consistent-type-imports": [
-            "error",
-            {
-              "disallowTypeAnnotations": false,
-              "fixStyle": "inline-type-imports",
-            },
-          ],
-          "@typescript-eslint/no-import-type-side-effects": "error",
-          "@typescript-eslint/prefer-ts-expect-error": "error",
           "import-x/no-nodejs-modules": [
             "error",
             {
@@ -493,6 +484,15 @@ exports[`vuejs/core --js-plugins > vuejs/core--js-plugins 1`] = `
             "module",
             "require",
           ],
+          "typescript/consistent-type-imports": [
+            "error",
+            {
+              "disallowTypeAnnotations": false,
+              "fixStyle": "inline-type-imports",
+            },
+          ],
+          "typescript/no-import-type-side-effects": "error",
+          "typescript/prefer-ts-expect-error": "error",
         },
       },
       {
@@ -744,15 +744,6 @@ exports[`vuejs/core --type-aware > vuejs/core--type-aware 1`] = `
           "typescript",
         ],
         "rules": {
-          "@typescript-eslint/consistent-type-imports": [
-            "error",
-            {
-              "disallowTypeAnnotations": false,
-              "fixStyle": "inline-type-imports",
-            },
-          ],
-          "@typescript-eslint/no-import-type-side-effects": "error",
-          "@typescript-eslint/prefer-ts-expect-error": "error",
           "import-x/no-nodejs-modules": [
             "error",
             {
@@ -850,6 +841,15 @@ exports[`vuejs/core --type-aware > vuejs/core--type-aware 1`] = `
             "module",
             "require",
           ],
+          "typescript/consistent-type-imports": [
+            "error",
+            {
+              "disallowTypeAnnotations": false,
+              "fixStyle": "inline-type-imports",
+            },
+          ],
+          "typescript/no-import-type-side-effects": "error",
+          "typescript/prefer-ts-expect-error": "error",
         },
       },
       {
@@ -1102,15 +1102,6 @@ exports[`vuejs/core merge > vuejs/core--merge 1`] = `
           "typescript",
         ],
         "rules": {
-          "@typescript-eslint/consistent-type-imports": [
-            "error",
-            {
-              "disallowTypeAnnotations": false,
-              "fixStyle": "inline-type-imports",
-            },
-          ],
-          "@typescript-eslint/no-import-type-side-effects": "error",
-          "@typescript-eslint/prefer-ts-expect-error": "error",
           "import-x/no-nodejs-modules": [
             "error",
             {
@@ -1208,6 +1199,15 @@ exports[`vuejs/core merge > vuejs/core--merge 1`] = `
             "module",
             "require",
           ],
+          "typescript/consistent-type-imports": [
+            "error",
+            {
+              "disallowTypeAnnotations": false,
+              "fixStyle": "inline-type-imports",
+            },
+          ],
+          "typescript/no-import-type-side-effects": "error",
+          "typescript/prefer-ts-expect-error": "error",
         },
       },
       {

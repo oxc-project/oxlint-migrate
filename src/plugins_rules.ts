@@ -595,48 +595,48 @@ export const replaceTypescriptAliasRules = (
 };
 
 /**
- * Oxlint supports eslint-plugin-n rules only under the `node` plugin name
+ * Renames rules from an ESLint plugin prefix to the canonical Oxlint plugin prefix.
  */
-export const replaceNodePluginName = (config: OxlintConfigOrOverride): void => {
-  if (config.rules === undefined) {
-    return;
-  }
-
-  for (const rule of Object.keys(config.rules)) {
-    const prefix = 'n/';
-    if (!rule.startsWith(prefix)) {
-      continue;
-    }
-
-    const nodeRule = `node/${rule.slice(prefix.length)}`;
-
-    config.rules[nodeRule] = config.rules[rule];
-    // delete old rule
-    delete config.rules[rule];
-  }
-};
-
-/**
- * Oxlint supports the eslint-plugin-react-refresh/only-export-components rule
- * under the `react` plugin name.
- */
-export const replaceReactRefreshPluginName = (
-  config: OxlintConfigOrOverride
+const replaceRulePrefix = (
+  config: OxlintConfigOrOverride,
+  oldPrefix: string,
+  newPrefix: string
 ): void => {
   if (config.rules === undefined) {
     return;
   }
 
   for (const rule of Object.keys(config.rules)) {
-    const prefix = 'react-refresh/';
-    if (!rule.startsWith(prefix)) {
+    if (!rule.startsWith(`${oldPrefix}/`)) {
       continue;
     }
 
-    const reactRefreshRule = `react/${rule.slice(prefix.length)}`;
+    const canonicalRule = `${newPrefix}/${rule.slice(oldPrefix.length + 1)}`;
 
-    config.rules[reactRefreshRule] = config.rules[rule];
-    // delete old rule
+    config.rules[canonicalRule] = config.rules[rule];
     delete config.rules[rule];
   }
 };
+
+/** Oxlint supports eslint-plugin-n rules only under the `node` plugin name. */
+export const replaceNodePluginName = (config: OxlintConfigOrOverride): void =>
+  replaceRulePrefix(config, 'n', 'node');
+
+/** Oxlint supports eslint-plugin-react-refresh rules under the `react` plugin name. */
+export const replaceReactRefreshPluginName = (
+  config: OxlintConfigOrOverride
+): void => replaceRulePrefix(config, 'react-refresh', 'react');
+
+/**
+ * Oxlint uses the `typescript` plugin name for @typescript-eslint rules.
+ * This should run AFTER `replaceTypescriptAliasRules` so that rules which
+ * extend core ESLint rules have already been stripped of their prefix.
+ */
+export const replaceTypescriptPluginName = (
+  config: OxlintConfigOrOverride
+): void => replaceRulePrefix(config, '@typescript-eslint', 'typescript');
+
+/** Oxlint supports eslint-plugin-react-hooks rules under the `react` plugin name. */
+export const replaceReactHooksPluginName = (
+  config: OxlintConfigOrOverride
+): void => replaceRulePrefix(config, 'react-hooks', 'react');

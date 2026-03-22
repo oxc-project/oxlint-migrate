@@ -6,7 +6,9 @@ import {
   cleanUpUselessOverridesRules,
   detectNeededRulesPlugins,
   replaceNodePluginName,
+  replaceReactHooksPluginName,
   replaceTypescriptAliasRules,
+  replaceTypescriptPluginName,
   transformRuleEntry,
 } from './plugins_rules.js';
 import { DefaultReporter } from './reporter.js';
@@ -1155,6 +1157,64 @@ describe('rules and plugins', () => {
       expect(config).toStrictEqual({
         rules: {
           'node/no-new-require': 'error',
+        },
+      });
+    });
+  });
+
+  describe('replaceTypescriptPluginName', () => {
+    test('replace @typescript-eslint/rule-name to typescript/rule-name', () => {
+      const config: OxlintConfig = {
+        rules: {
+          '@typescript-eslint/no-namespace': 'error',
+          '@typescript-eslint/ban-ts-comment': 'warn',
+        },
+      };
+
+      replaceTypescriptPluginName(config);
+
+      expect(config).toStrictEqual({
+        rules: {
+          'typescript/no-namespace': 'error',
+          'typescript/ban-ts-comment': 'warn',
+        },
+      });
+    });
+
+    test('does not affect non-typescript rules', () => {
+      const config: OxlintConfig = {
+        rules: {
+          'no-unused-vars': 'error',
+          'react/jsx-key': 'warn',
+        },
+      };
+
+      replaceTypescriptPluginName(config);
+
+      expect(config).toStrictEqual({
+        rules: {
+          'no-unused-vars': 'error',
+          'react/jsx-key': 'warn',
+        },
+      });
+    });
+  });
+
+  describe('replaceReactHooksPluginName', () => {
+    test('replace react-hooks/rule-name to react/rule-name', () => {
+      const config: OxlintConfig = {
+        rules: {
+          'react-hooks/exhaustive-deps': 'warn',
+          'react-hooks/rules-of-hooks': 'error',
+        },
+      };
+
+      replaceReactHooksPluginName(config);
+
+      expect(config).toStrictEqual({
+        rules: {
+          'react/exhaustive-deps': 'warn',
+          'react/rules-of-hooks': 'error',
         },
       });
     });
