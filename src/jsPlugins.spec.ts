@@ -164,6 +164,28 @@ describe('enableJsPluginRule', () => {
     expect(targetConfig.jsPlugins).toBeUndefined();
     expect(targetConfig.rules).toBeUndefined();
   });
+
+  test('should return correct package name for non-standard plugin names', async () => {
+    const targetConfig: OxlintConfigOrOverride = {};
+    const plugins: Record<string, ESLint.Plugin> = {
+      'node-style-text': {
+        meta: { name: 'node-style-text' },
+      },
+    };
+
+    const result = enableJsPluginRule(
+      targetConfig,
+      'node-style-text/prefer-tagged-templates',
+      'warn',
+      plugins
+    );
+
+    expect(result).toBe(true);
+    expect(targetConfig.jsPlugins).toContain('node-style-text/eslint-config');
+    expect(
+      targetConfig.rules?.['node-style-text/prefer-tagged-templates']
+    ).toBe('warn');
+  });
 });
 
 describe('resolveJsPluginRuleName', () => {
