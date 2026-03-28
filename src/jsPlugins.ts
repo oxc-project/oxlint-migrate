@@ -1,4 +1,7 @@
-import { rulesPrefixesForPlugins } from './constants.js';
+import {
+  rulesPrefixesForPlugins,
+  eslintPluginPackageNames,
+} from './constants.js';
 import type {
   ESLint,
   OxlintConfigOrOverride,
@@ -46,7 +49,10 @@ const resolveEslintPluginName = (pluginName: string): string => {
 
   let result: string;
 
-  if (pluginName.startsWith('@')) {
+  if (eslintPluginPackageNames[pluginName]) {
+    // Non standard plugin package naming
+    result = eslintPluginPackageNames[pluginName];
+  } else if (pluginName.startsWith('@')) {
     // Scoped plugin. If it contains a sub-id (e.g. @scope/id), map to @scope/eslint-plugin-id
     const [scope, maybeSub] = pluginName.split('/');
     if (maybeSub) {

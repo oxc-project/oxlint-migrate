@@ -52,3 +52,8 @@ export const typescriptRulesExtendEslintRules = [
   'no-use-before-define',
   'no-useless-constructor',
 ];
+
+// Some eslint plugins use non-standard import name
+export const eslintPluginPackageNames: Record<string, string> = {
+  'node-style-text': 'node-style-text/eslint-config',
+};
