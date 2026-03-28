@@ -88,6 +88,7 @@
     "oxlint": "^1.57.0",
     "oxlint-tsgolint": "^0.17.0",
     "tsdown": "^0.21.0",
+    "typescript": "^5.9.3",
     "typescript-eslint": "^8.35.0",
     "vitest": "^4.0.0"
   },
