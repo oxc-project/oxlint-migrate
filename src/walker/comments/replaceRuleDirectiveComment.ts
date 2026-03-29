@@ -1,7 +1,9 @@
 import * as rules from '../../generated/rules.js';
+import { normalizeRuleToCanonical } from '../../constants.js';
 import { Options } from '../../types.js';
 
-const allRules = Object.values(rules).flat();
+const allRulesSet = new Set(Object.values(rules).flat());
+const nurseryRulesSet = new Set(rules.nurseryRules);
 
 export default function replaceRuleDirectiveComment(
   comment: string,
@@ -48,22 +50,23 @@ export default function replaceRuleDirectiveComment(
   }
 
   while (comment.length) {
-    let foundRule = false;
-    for (const rule of allRules) {
-      if (comment.startsWith(rule)) {
-        // skip nursery rules when not enabled
-        if (!options.withNursery && rules.nurseryRules.includes(rule)) {
-          continue;
-        }
-        foundRule = true;
-        comment = comment.substring(rule.length).trimStart();
-        break;
-      }
-    }
+    // Extract the candidate rule name: everything up to ', ' or end of string
+    const commaIdx = comment.indexOf(',');
+    const candidateEnd = commaIdx === -1 ? comment.length : commaIdx;
+    const candidate = comment.substring(0, candidateEnd).trimEnd();
 
-    if (!foundRule) {
+    const canonical = normalizeRuleToCanonical(candidate);
+
+    if (!allRulesSet.has(canonical)) {
       return originalComment;
     }
+
+    // skip nursery rules when not enabled
+    if (!options.withNursery && nurseryRulesSet.has(canonical)) {
+      return originalComment;
+    }
+
+    comment = comment.substring(candidate.length).trimStart();
 
     // we reached the end of the comment
     if (!comment.length) {

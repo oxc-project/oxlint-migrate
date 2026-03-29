@@ -20,6 +20,22 @@ export const rulesPrefixesForPlugins: Record<string, OxlintConfigPlugin> = {
   vue: 'vue',
 };
 
+/**
+ * Normalizes an ESLint-style rule name to its canonical Oxlint form.
+ * e.g. "@typescript-eslint/no-floating-promises" → "typescript/no-floating-promises"
+ *      "react-hooks/exhaustive-deps" → "react/exhaustive-deps"
+ *      "@next/next/inline-script-id" → "nextjs/inline-script-id"
+ *      "no-unused-vars" → "no-unused-vars" (unchanged for unprefixed rules)
+ */
+export function normalizeRuleToCanonical(rule: string): string {
+  for (const [prefix, plugin] of Object.entries(rulesPrefixesForPlugins)) {
+    if (prefix !== plugin && rule.startsWith(`${prefix}/`)) {
+      return `${plugin}/${rule.slice(prefix.length + 1)}`;
+    }
+  }
+  return rule;
+}
+
 // Some ESLint rules are superseded by @typescript-eslint equivalents in oxlint.
 // When --type-aware is enabled, we should remap these ESLint rules to their
 // @typescript-eslint counterparts so they get migrated correctly.

@@ -10,6 +10,7 @@ import type {
 } from './types.js';
 import {
   eslintRulesToTypescriptEquivalents,
+  normalizeRuleToCanonical,
   rulesPrefixesForPlugins,
   typescriptRulesExtendEslintRules,
 } from './constants.js';
@@ -232,13 +233,17 @@ export const transformRuleEntry = (
       }
     }
 
-    if (allRules.includes(rule)) {
-      if (!options?.withNursery && rules.nurseryRules.includes(rule)) {
+    // Normalize to canonical Oxlint name for lookups against the generated
+    // rules list (e.g. "@next/next/foo" → "nextjs/foo").
+    const canonicalRule = normalizeRuleToCanonical(rule);
+
+    if (allRules.includes(canonicalRule)) {
+      if (!options?.withNursery && rules.nurseryRules.includes(canonicalRule)) {
         options?.reporter?.markSkipped(rule, 'nursery');
         continue;
       }
 
-      if (!options?.typeAware && rules.typeAwareRules.includes(rule)) {
+      if (!options?.typeAware && rules.typeAwareRules.includes(canonicalRule)) {
         options?.reporter?.markSkipped(rule, 'type-aware');
         continue;
       }
