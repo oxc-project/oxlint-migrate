@@ -20,6 +20,17 @@ import fixForJsPlugins from './js_plugin_fixes.js';
 import { processConfigFiles } from './files.js';
 import { transformSettings, warnSettingsInOverride } from './settings.js';
 
+// The generated typeAwareRules list uses `@typescript-eslint/` because
+// enableRules matches against it before canonical renaming. Map to the
+// canonical `typescript/` prefix so we can compare against the output.
+const canonicalTypeAwareRules: ReadonlySet<string> = new Set(
+  typeAwareRules.map((r) =>
+    r.startsWith('@typescript-eslint/')
+      ? `typescript/${r.slice('@typescript-eslint/'.length)}`
+      : r
+  )
+);
+
 // Ensure all keys are added.
 const KEY_ORDER: (keyof OxlintConfig)[] = [
   '$schema',
@@ -167,15 +178,7 @@ const buildConfig = (
         Object.keys(o.rules ?? {})
       ),
     ];
-    // The generated typeAwareRules list uses `@typescript-eslint/` because
-    // enableRules matches against it before canonical renaming. Map to the
-    // canonical `typescript/` prefix so we can compare against the output.
-    const canonicalTypeAwareRules = typeAwareRules.map((r) =>
-      r.startsWith('@typescript-eslint/')
-        ? `typescript/${r.slice('@typescript-eslint/'.length)}`
-        : r
-    );
-    if (allOutputRules.some((rule) => canonicalTypeAwareRules.includes(rule))) {
+    if (allOutputRules.some((rule) => canonicalTypeAwareRules.has(rule))) {
       oxlintConfig.options = { ...oxlintConfig.options, typeAware: true };
     }
   }
