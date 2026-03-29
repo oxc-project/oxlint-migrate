@@ -1,0 +1,128 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`eslint-config-prettier-with-override > eslint-config-prettier-with-override 1`] = `
+{
+  "config": {
+    "$schema": "./node_modules/oxlint/configuration_schema.json",
+    "categories": {
+      "correctness": "off",
+    },
+    "env": {
+      "builtin": true,
+    },
+    "plugins": [
+      "unicorn",
+    ],
+    "rules": {},
+  },
+  "skipped": {
+    "js-plugins": [
+      "@babel/object-curly-spacing",
+      "@babel/no-invalid-this",
+    ],
+    "not-implemented": [],
+    "nursery": [],
+    "type-aware": [],
+    "unsupported": [],
+  },
+  "warnings": [],
+}
+`;
+
+exports[`eslint-config-prettier-with-override --js-plugins > eslint-config-prettier-with-override--js-plugins 1`] = `
+{
+  "config": {
+    "$schema": "./node_modules/oxlint/configuration_schema.json",
+    "categories": {
+      "correctness": "off",
+    },
+    "env": {
+      "builtin": true,
+    },
+    "overrides": [
+      {
+        "files": [
+          "**/*.test.js",
+        ],
+        "jsPlugins": [
+          "@babel/eslint-plugin",
+        ],
+        "rules": {
+          "@babel/no-invalid-this": "error",
+        },
+      },
+    ],
+    "plugins": [
+      "unicorn",
+    ],
+    "rules": {},
+  },
+  "skipped": {
+    "js-plugins": [],
+    "not-implemented": [],
+    "nursery": [],
+    "type-aware": [],
+    "unsupported": [],
+  },
+  "warnings": [],
+}
+`;
+
+exports[`eslint-config-prettier-with-override --type-aware > eslint-config-prettier-with-override--type-aware 1`] = `
+{
+  "config": {
+    "$schema": "./node_modules/oxlint/configuration_schema.json",
+    "categories": {
+      "correctness": "off",
+    },
+    "env": {
+      "builtin": true,
+    },
+    "plugins": [
+      "unicorn",
+    ],
+    "rules": {},
+  },
+  "skipped": {
+    "js-plugins": [
+      "@babel/object-curly-spacing",
+      "@babel/no-invalid-this",
+    ],
+    "not-implemented": [],
+    "nursery": [],
+    "type-aware": [],
+    "unsupported": [],
+  },
+  "warnings": [],
+}
+`;
+
+exports[`eslint-config-prettier-with-override merge > eslint-config-prettier-with-override--merge 1`] = `
+{
+  "config": {
+    "$schema": "./node_modules/oxlint/configuration_schema.json",
+    "categories": {
+      "correctness": "error",
+      "perf": "error",
+    },
+    "env": {
+      "builtin": true,
+    },
+    "plugins": [
+      "unicorn",
+    ],
+    "rules": {},
+  },
+  "skipped": {
+    "js-plugins": [
+      "@babel/object-curly-spacing",
+      "@babel/no-invalid-this",
+    ],
+    "not-implemented": [],
+    "nursery": [],
+    "type-aware": [],
+    "unsupported": [],
+  },
+  "warnings": [],
+}
+`;
