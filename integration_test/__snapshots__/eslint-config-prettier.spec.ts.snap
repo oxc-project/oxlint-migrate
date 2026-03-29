@@ -1,0 +1,118 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`eslint-config-prettier > eslint-config-prettier 1`] = `
+{
+  "config": {
+    "$schema": "./node_modules/oxlint/configuration_schema.json",
+    "categories": {
+      "correctness": "off",
+    },
+    "env": {
+      "builtin": true,
+    },
+    "plugins": [
+      "unicorn",
+    ],
+    "rules": {},
+  },
+  "skipped": {
+    "js-plugins": [
+      "@babel/object-curly-spacing",
+      "@babel/semi",
+    ],
+    "not-implemented": [],
+    "nursery": [],
+    "type-aware": [],
+    "unsupported": [],
+  },
+  "warnings": [],
+}
+`;
+
+exports[`eslint-config-prettier --js-plugins > eslint-config-prettier--js-plugins 1`] = `
+{
+  "config": {
+    "$schema": "./node_modules/oxlint/configuration_schema.json",
+    "categories": {
+      "correctness": "off",
+    },
+    "env": {
+      "builtin": true,
+    },
+    "jsPlugins": [
+      "@babel/eslint-plugin",
+    ],
+    "plugins": [
+      "unicorn",
+    ],
+    "rules": {},
+  },
+  "skipped": {
+    "js-plugins": [],
+    "not-implemented": [],
+    "nursery": [],
+    "type-aware": [],
+    "unsupported": [],
+  },
+  "warnings": [],
+}
+`;
+
+exports[`eslint-config-prettier --type-aware > eslint-config-prettier--type-aware 1`] = `
+{
+  "config": {
+    "$schema": "./node_modules/oxlint/configuration_schema.json",
+    "categories": {
+      "correctness": "off",
+    },
+    "env": {
+      "builtin": true,
+    },
+    "plugins": [
+      "unicorn",
+    ],
+    "rules": {},
+  },
+  "skipped": {
+    "js-plugins": [
+      "@babel/object-curly-spacing",
+      "@babel/semi",
+    ],
+    "not-implemented": [],
+    "nursery": [],
+    "type-aware": [],
+    "unsupported": [],
+  },
+  "warnings": [],
+}
+`;
+
+exports[`eslint-config-prettier merge > eslint-config-prettier--merge 1`] = `
+{
+  "config": {
+    "$schema": "./node_modules/oxlint/configuration_schema.json",
+    "categories": {
+      "correctness": "error",
+      "perf": "error",
+    },
+    "env": {
+      "builtin": true,
+    },
+    "plugins": [
+      "unicorn",
+    ],
+    "rules": {},
+  },
+  "skipped": {
+    "js-plugins": [
+      "@babel/object-curly-spacing",
+      "@babel/semi",
+    ],
+    "not-implemented": [],
+    "nursery": [],
+    "type-aware": [],
+    "unsupported": [],
+  },
+  "warnings": [],
+}
+`;
