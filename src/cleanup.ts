@@ -5,6 +5,7 @@ import {
   removeGlobalsWithAreCoveredByEnv,
   transformBoolGlobalToString,
 } from './env_globals.js';
+import { cleanUpUnusedJsPlugins } from './jsPlugins.js';
 import {
   cleanUpDisabledRootRules,
   cleanUpRulesWhichAreCoveredByCategory,
@@ -101,6 +102,7 @@ export const cleanUpOxlintConfig = (config: OxlintConfigOrOverride): void => {
   replaceNodePluginName(config);
   replaceReactRefreshPluginName(config);
   cleanUpRulesWhichAreCoveredByCategory(config);
+  cleanUpUnusedJsPlugins(config);
 
   // no entries in globals, we can remove the globals key
   if (

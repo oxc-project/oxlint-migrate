@@ -1,5 +1,6 @@
 import { describe, expect, test } from 'vitest';
 import {
+  cleanUpUnusedJsPlugins,
   enableJsPluginRule,
   isIgnoredPluginRule,
   resolveJsPluginRuleName,
@@ -211,6 +212,69 @@ describe('resolveJsPluginRuleName', () => {
     expect(resolveJsPluginRuleName('e18e/prefer-includes', plugins)).toBe(
       'e18e/prefer-includes'
     );
+  });
+});
+
+describe('cleanUpUnusedJsPlugins', () => {
+  test('removes jsPlugin with no matching rules', () => {
+    const config: OxlintConfigOrOverride = {
+      jsPlugins: ['@babel/eslint-plugin'],
+      rules: {},
+    };
+    cleanUpUnusedJsPlugins(config);
+    expect(config.jsPlugins).toBeUndefined();
+  });
+
+  test('keeps jsPlugin when matching rules exist', () => {
+    const config: OxlintConfigOrOverride = {
+      jsPlugins: ['eslint-plugin-mocha'],
+      rules: { 'mocha/no-pending-tests': 'error' },
+    };
+    cleanUpUnusedJsPlugins(config);
+    expect(config.jsPlugins).toEqual(['eslint-plugin-mocha']);
+  });
+
+  test('handles scoped plugins registered without scope (e.g. @e18e/eslint-plugin with e18e/ rules)', () => {
+    const config: OxlintConfigOrOverride = {
+      jsPlugins: ['@e18e/eslint-plugin'],
+      rules: { 'e18e/prefer-includes': 'error' },
+    };
+    cleanUpUnusedJsPlugins(config);
+    expect(config.jsPlugins).toEqual(['@e18e/eslint-plugin']);
+  });
+
+  test('handles scoped plugins with sub-name (e.g. @eslint/eslint-plugin-markdown with markdown/ rules)', () => {
+    const config: OxlintConfigOrOverride = {
+      jsPlugins: ['@eslint/eslint-plugin-markdown'],
+      rules: { 'markdown/fenced-code-language': 'error' },
+    };
+    cleanUpUnusedJsPlugins(config);
+    expect(config.jsPlugins).toEqual(['@eslint/eslint-plugin-markdown']);
+  });
+
+  test('removes only unused plugins from a mixed list', () => {
+    const config: OxlintConfigOrOverride = {
+      jsPlugins: ['@babel/eslint-plugin', 'eslint-plugin-mocha'],
+      rules: { 'mocha/no-pending-tests': 'error' },
+    };
+    cleanUpUnusedJsPlugins(config);
+    expect(config.jsPlugins).toEqual(['eslint-plugin-mocha']);
+  });
+
+  test('is a no-op when jsPlugins is undefined', () => {
+    const config: OxlintConfigOrOverride = { rules: {} };
+    cleanUpUnusedJsPlugins(config);
+    expect(config.jsPlugins).toBeUndefined();
+  });
+
+  test('keeps jsPlugin in override when rule is off', () => {
+    const config: OxlintConfigOrOverride = {
+      files: ['**/*.ts'],
+      jsPlugins: ['eslint-plugin-regexp'],
+      rules: { 'regexp/no-lazy-ends': 'off' },
+    };
+    cleanUpUnusedJsPlugins(config);
+    expect(config.jsPlugins).toEqual(['eslint-plugin-regexp']);
   });
 });
 

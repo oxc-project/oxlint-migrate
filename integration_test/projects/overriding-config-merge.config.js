@@ -17,7 +17,7 @@ export default defineConfig([
     plugins: { regexp: regexpPlugin },
     rules: {
       // This should end up overriding the no-lazy-ends from the configs.strict config.
-      // So it should end up as "off" in the final oxlint config.
+      // So it should end up as "off" in the final oxlint config (and, in fact, removed entirely).
       'regexp/no-lazy-ends': 'off',
     },
   },

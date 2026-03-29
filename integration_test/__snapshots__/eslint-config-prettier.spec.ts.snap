@@ -18,7 +18,6 @@ exports[`eslint-config-prettier > eslint-config-prettier 1`] = `
   "skipped": {
     "js-plugins": [
       "@babel/object-curly-spacing",
-      "@babel/semi",
     ],
     "not-implemented": [],
     "nursery": [],
@@ -39,9 +38,6 @@ exports[`eslint-config-prettier --js-plugins > eslint-config-prettier--js-plugin
     "env": {
       "builtin": true,
     },
-    "jsPlugins": [
-      "@babel/eslint-plugin",
-    ],
     "plugins": [
       "unicorn",
     ],
@@ -76,7 +72,6 @@ exports[`eslint-config-prettier --type-aware > eslint-config-prettier--type-awar
   "skipped": {
     "js-plugins": [
       "@babel/object-curly-spacing",
-      "@babel/semi",
     ],
     "not-implemented": [],
     "nursery": [],
@@ -106,7 +101,6 @@ exports[`eslint-config-prettier merge > eslint-config-prettier--merge 1`] = `
   "skipped": {
     "js-plugins": [
       "@babel/object-curly-spacing",
-      "@babel/semi",
     ],
     "not-implemented": [],
     "nursery": [],

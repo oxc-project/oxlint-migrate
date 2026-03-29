@@ -223,3 +223,63 @@ export const enableJsPluginRule = (
   targetConfig.rules[resolvedRule] = ruleEntry!; // TODO: handle undefined ruleEntry if needed
   return true;
 };
+
+/**
+ * Returns true if any rule name matches the given jsPlugin package.
+ *
+ * Handles aliased plugins where the ESLint registration name differs from the
+ * canonical prefix derived from the npm package name:
+ *  - `@e18e/eslint-plugin` → prefix `@e18e`, but rules may use `e18e/`
+ *  - `@eslint/eslint-plugin-markdown` → prefix `@eslint/markdown`, but rules
+ *    may use `markdown/`
+ */
+const hasRulesForPlugin = (
+  ruleNames: string[],
+  pluginPackage: string
+): boolean => {
+  const prefix = deriveRulePrefix(pluginPackage);
+  if (ruleNames.some((rule) => rule.startsWith(`${prefix}/`))) {
+    return true;
+  }
+  // When the derived prefix is scoped, the plugin may have been registered
+  // without the scope in the ESLint config:
+  //   `@scope`      → also check `scope/`
+  //   `@scope/name` → also check `name/`
+  if (prefix.startsWith('@')) {
+    const slashIdx = prefix.indexOf('/');
+    const unscoped =
+      slashIdx === -1 ? prefix.substring(1) : prefix.substring(slashIdx + 1);
+    return ruleNames.some((rule) => rule.startsWith(`${unscoped}/`));
+  }
+  return false;
+};
+
+/**
+ * Removes jsPlugin entries that have no corresponding rules left in the config.
+ *
+ * This can happen when an earlier ESLint config enables a plugin rule (adding the
+ * jsPlugin) but a later config (e.g. eslint-config-prettier) turns all of that
+ * plugin's rules off (deleting them from the rules object).
+ */
+export const cleanUpUnusedJsPlugins = (
+  config: OxlintConfigOrOverride
+): void => {
+  if (
+    config.jsPlugins === undefined ||
+    config.jsPlugins === null ||
+    config.jsPlugins.length === 0
+  ) {
+    return;
+  }
+
+  const ruleNames = Object.keys(config.rules ?? {});
+
+  config.jsPlugins = config.jsPlugins.filter((entry) => {
+    const packageName = typeof entry === 'string' ? entry : entry.specifier;
+    return hasRulesForPlugin(ruleNames, packageName);
+  });
+
+  if (config.jsPlugins.length === 0) {
+    delete config.jsPlugins;
+  }
+};

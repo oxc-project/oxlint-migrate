@@ -35,9 +35,6 @@ exports[`overriding-config-merge --js-plugins > overriding-config-merge--js-plug
     "env": {
       "builtin": true,
     },
-    "jsPlugins": [
-      "eslint-plugin-regexp",
-    ],
     "plugins": [],
   },
   "skipped": {
