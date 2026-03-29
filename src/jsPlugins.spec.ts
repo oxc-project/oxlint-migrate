@@ -276,6 +276,40 @@ describe('cleanUpUnusedJsPlugins', () => {
     cleanUpUnusedJsPlugins(config);
     expect(config.jsPlugins).toEqual(['eslint-plugin-regexp']);
   });
+
+  test('handles object-form ExternalPluginEntry', () => {
+    const config: OxlintConfigOrOverride = {
+      jsPlugins: [
+        { name: 'mocha', specifier: 'eslint-plugin-mocha' },
+        { name: 'babel', specifier: '@babel/eslint-plugin' },
+      ],
+      rules: { 'mocha/no-pending-tests': 'error' },
+    };
+    cleanUpUnusedJsPlugins(config);
+    expect(config.jsPlugins).toEqual([
+      { name: 'mocha', specifier: 'eslint-plugin-mocha' },
+    ]);
+  });
+
+  test('is a no-op when jsPlugins is null', () => {
+    const config: OxlintConfigOrOverride = {
+      jsPlugins: null,
+      rules: {},
+    };
+    cleanUpUnusedJsPlugins(config);
+    expect(config.jsPlugins).toBeNull();
+  });
+
+  test('scoped prefix with sub-path does not false-positive on unscoped fallback', () => {
+    // @stylistic/eslint-plugin-ts → prefix @stylistic/ts → rules use @stylistic/ts/
+    // The unscoped fallback "ts/" should NOT be what matches here.
+    const config: OxlintConfigOrOverride = {
+      jsPlugins: ['@stylistic/eslint-plugin-ts'],
+      rules: { '@stylistic/ts/member-delimiter-style': 'error' },
+    };
+    cleanUpUnusedJsPlugins(config);
+    expect(config.jsPlugins).toEqual(['@stylistic/eslint-plugin-ts']);
+  });
 });
 
 describe('isIgnoredPluginRule', () => {
