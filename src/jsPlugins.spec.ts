@@ -5,7 +5,8 @@ import {
   isIgnoredPluginRule,
   resolveJsPluginRuleName,
 } from './jsPlugins.js';
-import type { ESLint, OxlintConfigOrOverride } from './types.js';
+import { cleanUpOxlintConfig } from './cleanup.js';
+import type { ESLint, OxlintConfig, OxlintConfigOrOverride } from './types.js';
 
 describe('enableJsPluginRule', () => {
   const rules = [
@@ -298,6 +299,20 @@ describe('cleanUpUnusedJsPlugins', () => {
     };
     cleanUpUnusedJsPlugins(config);
     expect(config.jsPlugins).toBeNull();
+  });
+
+  test('removes jsPlugin after cleanUpDisabledRootRules deletes off rules in base config', () => {
+    // Simulates a base config where a jsPlugin rule ended up as "off".
+    // cleanUpDisabledRootRules removes the rule, then cleanUpUnusedJsPlugins
+    // should remove the now-orphaned jsPlugin.
+    const config: OxlintConfig = {
+      categories: { correctness: 'off' },
+      jsPlugins: ['eslint-plugin-mocha'],
+      rules: { 'mocha/no-pending-tests': 'off' },
+    };
+    cleanUpOxlintConfig(config);
+    expect(config.jsPlugins).toBeUndefined();
+    expect(config.rules).toStrictEqual({});
   });
 
   test('scoped prefix with sub-path does not false-positive on unscoped fallback', () => {

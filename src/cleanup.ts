@@ -102,7 +102,12 @@ export const cleanUpOxlintConfig = (config: OxlintConfigOrOverride): void => {
   replaceNodePluginName(config);
   replaceReactRefreshPluginName(config);
   cleanUpRulesWhichAreCoveredByCategory(config);
-  cleanUpUnusedJsPlugins(config);
+
+  // For overrides, clean up jsPlugins now (overrides don't go through
+  // cleanUpDisabledRootRules, so the rules object is already final).
+  if ('files' in config) {
+    cleanUpUnusedJsPlugins(config);
+  }
 
   // no entries in globals, we can remove the globals key
   if (
@@ -134,6 +139,9 @@ export const cleanUpOxlintConfig = (config: OxlintConfigOrOverride): void => {
   if (!('files' in config)) {
     cleanUpUselessOverridesEntries(config);
     cleanUpDisabledRootRules(config);
+    // Run after cleanUpDisabledRootRules so that "off" rules have been
+    // removed before we check whether any rules remain for each jsPlugin.
+    cleanUpUnusedJsPlugins(config);
   }
 };
 
