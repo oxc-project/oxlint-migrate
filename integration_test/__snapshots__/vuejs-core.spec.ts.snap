@@ -30,7 +30,7 @@ exports[`vuejs/core > vuejs/core 1`] = `
           "typescript",
         ],
         "rules": {
-          "import-x/no-nodejs-modules": [
+          "import/no-nodejs-modules": [
             "error",
             {
               "allow": [
@@ -256,7 +256,7 @@ exports[`vuejs/core > vuejs/core 1`] = `
           "import",
         ],
         "rules": {
-          "import-x/no-nodejs-modules": [
+          "import/no-nodejs-modules": [
             "error",
             {
               "allow": [
@@ -387,7 +387,7 @@ exports[`vuejs/core --js-plugins > vuejs/core--js-plugins 1`] = `
           "typescript",
         ],
         "rules": {
-          "import-x/no-nodejs-modules": [
+          "import/no-nodejs-modules": [
             "error",
             {
               "allow": [
@@ -613,7 +613,7 @@ exports[`vuejs/core --js-plugins > vuejs/core--js-plugins 1`] = `
           "import",
         ],
         "rules": {
-          "import-x/no-nodejs-modules": [
+          "import/no-nodejs-modules": [
             "error",
             {
               "allow": [
@@ -744,7 +744,7 @@ exports[`vuejs/core --type-aware > vuejs/core--type-aware 1`] = `
           "typescript",
         ],
         "rules": {
-          "import-x/no-nodejs-modules": [
+          "import/no-nodejs-modules": [
             "error",
             {
               "allow": [
@@ -970,7 +970,7 @@ exports[`vuejs/core --type-aware > vuejs/core--type-aware 1`] = `
           "import",
         ],
         "rules": {
-          "import-x/no-nodejs-modules": [
+          "import/no-nodejs-modules": [
             "error",
             {
               "allow": [
@@ -1102,7 +1102,7 @@ exports[`vuejs/core merge > vuejs/core--merge 1`] = `
           "typescript",
         ],
         "rules": {
-          "import-x/no-nodejs-modules": [
+          "import/no-nodejs-modules": [
             "error",
             {
               "allow": [
@@ -1328,7 +1328,7 @@ exports[`vuejs/core merge > vuejs/core--merge 1`] = `
           "import",
         ],
         "rules": {
-          "import-x/no-nodejs-modules": [
+          "import/no-nodejs-modules": [
             "error",
             {
               "allow": [

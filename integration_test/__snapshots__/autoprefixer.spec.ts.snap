@@ -73,8 +73,8 @@ exports[`autoprefixer > autoprefixer 1`] = `
         },
       ],
       "for-direction": "error",
-      "import-x/first": "error",
-      "import-x/no-absolute-path": [
+      "import/first": "error",
+      "import/no-absolute-path": [
         "error",
         {
           "amd": false,
@@ -82,9 +82,9 @@ exports[`autoprefixer > autoprefixer 1`] = `
           "esmodule": true,
         },
       ],
-      "import-x/no-duplicates": "error",
-      "import-x/no-named-default": "error",
-      "import-x/no-webpack-loader-syntax": "error",
+      "import/no-duplicates": "error",
+      "import/no-named-default": "error",
+      "import/no-webpack-loader-syntax": "error",
       "new-cap": [
         "error",
         {
@@ -403,8 +403,8 @@ exports[`autoprefixer --js-plugins > autoprefixer--js-plugins 1`] = `
         },
       ],
       "for-direction": "error",
-      "import-x/first": "error",
-      "import-x/no-absolute-path": [
+      "import/first": "error",
+      "import/no-absolute-path": [
         "error",
         {
           "amd": false,
@@ -412,9 +412,9 @@ exports[`autoprefixer --js-plugins > autoprefixer--js-plugins 1`] = `
           "esmodule": true,
         },
       ],
-      "import-x/no-duplicates": "error",
-      "import-x/no-named-default": "error",
-      "import-x/no-webpack-loader-syntax": "error",
+      "import/no-duplicates": "error",
+      "import/no-named-default": "error",
+      "import/no-webpack-loader-syntax": "error",
       "new-cap": [
         "error",
         {
@@ -853,8 +853,8 @@ exports[`autoprefixer --type-aware > autoprefixer--type-aware 1`] = `
         },
       ],
       "for-direction": "error",
-      "import-x/first": "error",
-      "import-x/no-absolute-path": [
+      "import/first": "error",
+      "import/no-absolute-path": [
         "error",
         {
           "amd": false,
@@ -862,9 +862,9 @@ exports[`autoprefixer --type-aware > autoprefixer--type-aware 1`] = `
           "esmodule": true,
         },
       ],
-      "import-x/no-duplicates": "error",
-      "import-x/no-named-default": "error",
-      "import-x/no-webpack-loader-syntax": "error",
+      "import/no-duplicates": "error",
+      "import/no-named-default": "error",
+      "import/no-webpack-loader-syntax": "error",
       "new-cap": [
         "error",
         {
@@ -1178,8 +1178,8 @@ exports[`autoprefixer merge > autoprefixer--merge 1`] = `
           "null": "ignore",
         },
       ],
-      "import-x/first": "error",
-      "import-x/no-absolute-path": [
+      "import/first": "error",
+      "import/no-absolute-path": [
         "error",
         {
           "amd": false,
@@ -1187,9 +1187,9 @@ exports[`autoprefixer merge > autoprefixer--merge 1`] = `
           "esmodule": true,
         },
       ],
-      "import-x/no-duplicates": "error",
-      "import-x/no-named-default": "error",
-      "import-x/no-webpack-loader-syntax": "error",
+      "import/no-duplicates": "error",
+      "import/no-named-default": "error",
+      "import/no-webpack-loader-syntax": "error",
       "new-cap": [
         "error",
         {
