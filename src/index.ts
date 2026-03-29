@@ -7,6 +7,7 @@ import type {
 import {
   detectEnvironmentByGlobals,
   transformEnvAndGlobals,
+  warnAboutLargeRootGlobals,
 } from './env_globals.js';
 import { cleanUpOxlintConfig } from './cleanup.js';
 import { transformIgnorePatterns } from './ignorePatterns.js';
@@ -157,6 +158,7 @@ const buildConfig = (
   detectNeededRulesPlugins(oxlintConfig);
   detectEnvironmentByGlobals(oxlintConfig);
   cleanUpOxlintConfig(oxlintConfig);
+  warnAboutLargeRootGlobals(configs, oxlintConfig, options);
 
   // If the --type-aware flag is used and the output config contains any
   // type-aware rules, set the `typeAware` option to true.
