@@ -5,6 +5,7 @@ import {
   removeGlobalsWithAreCoveredByEnv,
   transformBoolGlobalToString,
 } from './env_globals.js';
+import { cleanUpUnusedJsPlugins } from './jsPlugins.js';
 import {
   cleanUpDisabledRootRules,
   cleanUpRulesWhichAreCoveredByCategory,
@@ -102,6 +103,12 @@ export const cleanUpOxlintConfig = (config: OxlintConfigOrOverride): void => {
   replaceReactRefreshPluginName(config);
   cleanUpRulesWhichAreCoveredByCategory(config);
 
+  // For overrides, clean up jsPlugins now (overrides don't go through
+  // cleanUpDisabledRootRules, so the rules object is already final).
+  if ('files' in config) {
+    cleanUpUnusedJsPlugins(config);
+  }
+
   // no entries in globals, we can remove the globals key
   if (
     config.globals !== undefined &&
@@ -132,6 +139,9 @@ export const cleanUpOxlintConfig = (config: OxlintConfigOrOverride): void => {
   if (!('files' in config)) {
     cleanUpUselessOverridesEntries(config);
     cleanUpDisabledRootRules(config);
+    // Run after cleanUpDisabledRootRules so that "off" rules have been
+    // removed before we check whether any rules remain for each jsPlugin.
+    cleanUpUnusedJsPlugins(config);
   }
 };
 

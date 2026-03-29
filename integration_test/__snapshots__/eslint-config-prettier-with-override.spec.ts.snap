@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`overriding-config-merge > overriding-config-merge 1`] = `
+exports[`eslint-config-prettier-with-override > eslint-config-prettier-with-override 1`] = `
 {
   "config": {
     "$schema": "./node_modules/oxlint/configuration_schema.json",
@@ -10,11 +10,15 @@ exports[`overriding-config-merge > overriding-config-merge 1`] = `
     "env": {
       "builtin": true,
     },
-    "plugins": [],
+    "plugins": [
+      "unicorn",
+    ],
+    "rules": {},
   },
   "skipped": {
     "js-plugins": [
-      "regexp/no-lazy-ends",
+      "@babel/object-curly-spacing",
+      "@babel/no-invalid-this",
     ],
     "not-implemented": [],
     "nursery": [],
@@ -25,7 +29,7 @@ exports[`overriding-config-merge > overriding-config-merge 1`] = `
 }
 `;
 
-exports[`overriding-config-merge --js-plugins > overriding-config-merge--js-plugins 1`] = `
+exports[`eslint-config-prettier-with-override --js-plugins > eslint-config-prettier-with-override--js-plugins 1`] = `
 {
   "config": {
     "$schema": "./node_modules/oxlint/configuration_schema.json",
@@ -35,7 +39,23 @@ exports[`overriding-config-merge --js-plugins > overriding-config-merge--js-plug
     "env": {
       "builtin": true,
     },
-    "plugins": [],
+    "overrides": [
+      {
+        "files": [
+          "**/*.test.js",
+        ],
+        "jsPlugins": [
+          "@babel/eslint-plugin",
+        ],
+        "rules": {
+          "@babel/no-invalid-this": "error",
+        },
+      },
+    ],
+    "plugins": [
+      "unicorn",
+    ],
+    "rules": {},
   },
   "skipped": {
     "js-plugins": [],
@@ -48,7 +68,7 @@ exports[`overriding-config-merge --js-plugins > overriding-config-merge--js-plug
 }
 `;
 
-exports[`overriding-config-merge --type-aware > overriding-config-merge--type-aware 1`] = `
+exports[`eslint-config-prettier-with-override --type-aware > eslint-config-prettier-with-override--type-aware 1`] = `
 {
   "config": {
     "$schema": "./node_modules/oxlint/configuration_schema.json",
@@ -58,11 +78,15 @@ exports[`overriding-config-merge --type-aware > overriding-config-merge--type-aw
     "env": {
       "builtin": true,
     },
-    "plugins": [],
+    "plugins": [
+      "unicorn",
+    ],
+    "rules": {},
   },
   "skipped": {
     "js-plugins": [
-      "regexp/no-lazy-ends",
+      "@babel/object-curly-spacing",
+      "@babel/no-invalid-this",
     ],
     "not-implemented": [],
     "nursery": [],
@@ -73,7 +97,7 @@ exports[`overriding-config-merge --type-aware > overriding-config-merge--type-aw
 }
 `;
 
-exports[`overriding-config-merge merge > overriding-config-merge--merge 1`] = `
+exports[`eslint-config-prettier-with-override merge > eslint-config-prettier-with-override--merge 1`] = `
 {
   "config": {
     "$schema": "./node_modules/oxlint/configuration_schema.json",
@@ -84,11 +108,15 @@ exports[`overriding-config-merge merge > overriding-config-merge--merge 1`] = `
     "env": {
       "builtin": true,
     },
-    "plugins": [],
+    "plugins": [
+      "unicorn",
+    ],
+    "rules": {},
   },
   "skipped": {
     "js-plugins": [
-      "regexp/no-lazy-ends",
+      "@babel/object-curly-spacing",
+      "@babel/no-invalid-this",
     ],
     "not-implemented": [],
     "nursery": [],
