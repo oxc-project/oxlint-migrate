@@ -213,7 +213,7 @@ describe('main', () => {
       },
       plugins: ['typescript'],
       rules: {
-        '@typescript-eslint/no-floating-promises': 'error',
+        'typescript/no-floating-promises': 'error',
       },
     });
   });
@@ -300,7 +300,7 @@ describe('main', () => {
           "builtin": true
         },
         "rules": {
-          "@typescript-eslint/no-floating-promises": "error"
+          "typescript/no-floating-promises": "error"
         }
       }"
     `);
@@ -344,7 +344,7 @@ describe('main', () => {
           files: ['*.ts'],
           plugins: ['typescript'],
           rules: {
-            '@typescript-eslint/no-floating-promises': 'error',
+            'typescript/no-floating-promises': 'error',
           },
         },
       ],

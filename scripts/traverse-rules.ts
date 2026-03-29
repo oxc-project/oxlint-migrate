@@ -1,9 +1,5 @@
 import { execSync } from 'node:child_process';
-import {
-  aliasPluginNames,
-  reactHookRulesInsideReactScope,
-  unicornRulesExtendEslintRules,
-} from './constants.js';
+import { unicornRulesExtendEslintRules } from './constants.js';
 
 import vitestCompatibleRules from './generated/vitest-compatible-jest-rules.json' with { type: 'json' };
 import { typescriptRulesExtendEslintRules } from '../src/constants.js';
@@ -30,35 +26,26 @@ function readRulesFromCommand(): Rule[] {
 }
 
 /**
- * Some rules are in a different scope than in eslint
- */
-function fixScopeOfRule(rule: Rule): void {
-  if (
-    rule.scope === 'react' &&
-    reactHookRulesInsideReactScope.includes(rule.value)
-  ) {
-    rule.scope = 'react_hooks';
-  }
-}
-
-/**
- * oxlint returns the value without a scope name
+ * oxlint returns the value without a scope name.
+ * Uses the canonical Oxlint scope (with underscores replaced by hyphens).
  */
 function fixValueOfRule(rule: Rule): void {
   if (rule.scope === 'eslint') {
     return;
   }
 
-  const scope =
-    rule.scope in aliasPluginNames ? aliasPluginNames[rule.scope] : rule.scope;
-
-  rule.value = `${scope}/${rule.value}`;
+  rule.value = `${rule.scope.replaceAll('_', '-')}/${rule.value}`;
 }
 
 /**
  * Some rules are reimplemented in another scope,
  * we need to set up their aliases so we can discover
  * them in the list of rules.
+ *
+ * Alias values use canonical Oxlint names (e.g. `typescript/` not `@typescript-eslint/`).
+ * Input normalization in the migration tool converts ESLint-style names to
+ * canonical form before matching, so these aliases just need to cover cases
+ * where a rule exists under multiple canonical scopes.
  */
 function getAliasRules(rule: Rule): Rule | undefined {
   if (
@@ -66,7 +53,7 @@ function getAliasRules(rule: Rule): Rule | undefined {
     typescriptRulesExtendEslintRules.includes(rule.value)
   ) {
     return {
-      value: `@typescript-eslint/${rule.value}`,
+      value: `typescript/${rule.value}`,
       scope: 'typescript',
       category: rule.category,
       type_aware: rule.type_aware,
@@ -77,39 +64,6 @@ function getAliasRules(rule: Rule): Rule | undefined {
     return {
       value: `vitest/${rule.value}`,
       scope: 'vitest',
-      category: rule.category,
-      type_aware: rule.type_aware,
-    };
-  }
-
-  if (rule.scope === 'import') {
-    return {
-      value: `import-x/${rule.value}`,
-      scope: 'import-x',
-      category: rule.category,
-      type_aware: rule.type_aware,
-    };
-  }
-
-  // Oxlint supports eslint-plugin-n rules only under the `node` plugin name.
-  if (rule.scope === 'node') {
-    return {
-      value: `n/${rule.value}`,
-      scope: 'n',
-      category: rule.category,
-      type_aware: rule.type_aware,
-    };
-  }
-
-  // This rule comes from eslint-plugin-react-refresh but is namespaced under `react/`.
-  // When generating the list of rules that can be ported, we need to create
-  // `react-refresh/only-export-components` as the supported rule name.
-  // It will be renamed back to `react/only-export-components` for the
-  // `.oxlintrc.json`.
-  if (rule.scope === 'react' && rule.value === 'only-export-components') {
-    return {
-      value: `react-refresh/${rule.value}`,
-      scope: 'react-refresh',
       category: rule.category,
       type_aware: rule.type_aware,
     };
@@ -142,7 +96,6 @@ export function traverseRules(): Rule[] {
       aliasRules.push(aliasRule);
     }
 
-    fixScopeOfRule(rule);
     fixValueOfRule(rule);
   }
 

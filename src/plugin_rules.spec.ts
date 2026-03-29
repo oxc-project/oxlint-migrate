@@ -5,7 +5,7 @@ import {
   cleanUpRulesWhichAreCoveredByCategory,
   cleanUpUselessOverridesRules,
   detectNeededRulesPlugins,
-  replaceNodePluginName,
+  replaceCanonicalPluginPrefixes,
   replaceTypescriptAliasRules,
   transformRuleEntry,
 } from './plugins_rules.js';
@@ -1142,19 +1142,49 @@ describe('rules and plugins', () => {
     });
   });
 
-  describe('replaceNodePluginName', () => {
-    test('replace n/rule-name to node/rule-name', () => {
+  describe('replaceCanonicalPluginPrefixes', () => {
+    test('renames all non-canonical prefixes to their canonical equivalents', () => {
       const config: OxlintConfig = {
         rules: {
           'n/no-new-require': 'error',
+          '@typescript-eslint/no-namespace': 'error',
+          'react-hooks/exhaustive-deps': 'warn',
+          'react-refresh/only-export-components': 'error',
+          'import-x/no-duplicates': 'error',
+          '@next/next/no-img-element': 'error',
         },
       };
 
-      replaceNodePluginName(config);
+      replaceCanonicalPluginPrefixes(config);
 
       expect(config).toStrictEqual({
         rules: {
           'node/no-new-require': 'error',
+          'typescript/no-namespace': 'error',
+          'react/exhaustive-deps': 'warn',
+          'react/only-export-components': 'error',
+          'import/no-duplicates': 'error',
+          'nextjs/no-img-element': 'error',
+        },
+      });
+    });
+
+    test('does not affect rules that already use canonical prefixes', () => {
+      const config: OxlintConfig = {
+        rules: {
+          'no-unused-vars': 'error',
+          'react/jsx-key': 'warn',
+          'import/order': 'error',
+        },
+      };
+
+      replaceCanonicalPluginPrefixes(config);
+
+      expect(config).toStrictEqual({
+        rules: {
+          'no-unused-vars': 'error',
+          'react/jsx-key': 'warn',
+          'import/order': 'error',
         },
       });
     });

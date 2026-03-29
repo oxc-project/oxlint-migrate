@@ -115,9 +115,9 @@ describe('oxlint-migrate CLI defaults', () => {
       ]);
 
       const output = JSON.parse(readFileSync(outputPath, 'utf8'));
-      expect(
-        output.rules['@typescript-eslint/no-floating-promises']
-      ).toStrictEqual('error');
+      expect(output.rules['typescript/no-floating-promises']).toStrictEqual(
+        'error'
+      );
       // JS Plugins should still be included by default
       expect(output.rules['regexp/no-lazy-ends']).toStrictEqual([
         'error',

@@ -10,6 +10,7 @@ import type {
 } from './types.js';
 import {
   eslintRulesToTypescriptEquivalents,
+  normalizeRuleToCanonical,
   rulesPrefixesForPlugins,
   typescriptRulesExtendEslintRules,
 } from './constants.js';
@@ -232,13 +233,17 @@ export const transformRuleEntry = (
       }
     }
 
-    if (allRules.includes(rule)) {
-      if (!options?.withNursery && rules.nurseryRules.includes(rule)) {
+    // Normalize to canonical Oxlint name for lookups against the generated
+    // rules list (e.g. "@next/next/foo" → "nextjs/foo").
+    const canonicalRule = normalizeRuleToCanonical(rule);
+
+    if (allRules.includes(canonicalRule)) {
+      if (!options?.withNursery && rules.nurseryRules.includes(canonicalRule)) {
         options?.reporter?.markSkipped(rule, 'nursery');
         continue;
       }
 
-      if (!options?.typeAware && rules.typeAwareRules.includes(rule)) {
+      if (!options?.typeAware && rules.typeAwareRules.includes(canonicalRule)) {
         options?.reporter?.markSkipped(rule, 'type-aware');
         continue;
       }
@@ -595,48 +600,42 @@ export const replaceTypescriptAliasRules = (
 };
 
 /**
- * Oxlint supports eslint-plugin-n rules only under the `node` plugin name
+ * Renames rules from an ESLint plugin prefix to the canonical Oxlint plugin prefix.
  */
-export const replaceNodePluginName = (config: OxlintConfigOrOverride): void => {
-  if (config.rules === undefined) {
-    return;
-  }
-
-  for (const rule of Object.keys(config.rules)) {
-    const prefix = 'n/';
-    if (!rule.startsWith(prefix)) {
-      continue;
-    }
-
-    const nodeRule = `node/${rule.slice(prefix.length)}`;
-
-    config.rules[nodeRule] = config.rules[rule];
-    // delete old rule
-    delete config.rules[rule];
-  }
-};
-
-/**
- * Oxlint supports the eslint-plugin-react-refresh/only-export-components rule
- * under the `react` plugin name.
- */
-export const replaceReactRefreshPluginName = (
-  config: OxlintConfigOrOverride
+const replaceRulePrefix = (
+  config: OxlintConfigOrOverride,
+  oldPrefix: string,
+  newPrefix: string
 ): void => {
   if (config.rules === undefined) {
     return;
   }
 
   for (const rule of Object.keys(config.rules)) {
-    const prefix = 'react-refresh/';
-    if (!rule.startsWith(prefix)) {
+    if (!rule.startsWith(`${oldPrefix}/`)) {
       continue;
     }
 
-    const reactRefreshRule = `react/${rule.slice(prefix.length)}`;
+    const canonicalRule = `${newPrefix}/${rule.slice(oldPrefix.length + 1)}`;
 
-    config.rules[reactRefreshRule] = config.rules[rule];
-    // delete old rule
+    config.rules[canonicalRule] = config.rules[rule];
     delete config.rules[rule];
+  }
+};
+
+/**
+ * Renames all ESLint plugin prefixes to their canonical Oxlint equivalents,
+ * driven by the `rulesPrefixesForPlugins` mapping in constants.ts.
+ *
+ * This should run AFTER `replaceTypescriptAliasRules` so that rules which
+ * extend core ESLint rules have already been stripped of their prefix.
+ */
+export const replaceCanonicalPluginPrefixes = (
+  config: OxlintConfigOrOverride
+): void => {
+  for (const [prefix, plugin] of Object.entries(rulesPrefixesForPlugins)) {
+    if (prefix !== plugin) {
+      replaceRulePrefix(config, prefix, plugin);
+    }
   }
 };
