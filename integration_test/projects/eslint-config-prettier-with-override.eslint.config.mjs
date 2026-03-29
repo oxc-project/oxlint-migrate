@@ -12,9 +12,9 @@ export default [
     },
   },
   {
-    // In this override, the base @babel rules are re-enabled for test files,
-    // and one is explicitly turned off. The jsPlugin should be kept in the
-    // override so that oxlint can resolve the @babel rule names.
+    // In this override, a non-formatting @babel rule is enabled for test files.
+    // The jsPlugin should be kept in the override so that oxlint can resolve
+    // the @babel rule name.
     files: ['**/*.test.js'],
     plugins: {
       '@babel': babelPlugin,
