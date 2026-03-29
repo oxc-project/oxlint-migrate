@@ -1,0 +1,38 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`--replace-eslint-comments e2e > should snapshot the full transformation of a realistic file 1`] = `
+{
+  "output": "
+import React from 'react';
+import { useState } from 'react';
+
+/* oxlint-disable no-console */
+
+/**
+ * A component that does things.
+ */
+function App() {
+  // oxlint-disable-next-line no-debugger
+  debugger;
+
+  const [count, setCount] = useState(0);
+
+  // oxlint-disable-next-line no-console
+  console.log('render count:', count);
+
+  return (
+    <div>
+      <button onClick={() => setCount(count + 1)}>
+        Count: {count}
+      </button>
+    </div>
+  );
+}
+
+/* oxlint-enable no-console */
+
+export default App;
+",
+  "warnings": [],
+}
+`;

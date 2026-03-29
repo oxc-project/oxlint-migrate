@@ -1,0 +1,209 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`replaceCommentsInFile snapshots > Astro files > should handle comments in frontmatter and script blocks 1`] = `
+{
+  "output": "---
+// oxlint-disable-next-line no-debugger
+debugger;
+
+/* oxlint-disable no-console */
+console.log('frontmatter');
+/* oxlint-enable no-console */
+---
+
+<html>
+<body>
+  <h1>Hello Astro</h1>
+  <script>
+    // oxlint-disable-next-line no-console
+    console.log('inline script');
+  </script>
+</body>
+</html>
+",
+  "warnings": [],
+}
+`;
+
+exports[`replaceCommentsInFile snapshots > JSX files > should handle comments in JSX 1`] = `
+{
+  "output": "
+import React from 'react';
+
+/* oxlint-disable no-console */
+
+// oxlint-disable-next-line no-debugger
+debugger;
+
+function App() {
+  console.log('render'); // oxlint-disable-line no-console
+  return <div>Hello</div>;
+}
+
+/* oxlint-enable no-console */
+
+export default App;
+",
+  "warnings": [],
+}
+`;
+
+exports[`replaceCommentsInFile snapshots > Svelte files > should handle comments in script and module blocks 1`] = `
+{
+  "output": "<script context="module">
+// oxlint-disable-next-line no-console
+console.log('module level');
+</script>
+
+<script lang="ts">
+/* oxlint-disable no-debugger */
+import { onMount } from 'svelte';
+
+onMount(() => {
+  debugger; // oxlint-disable-line no-debugger
+});
+/* oxlint-enable no-debugger */
+</script>
+
+<div>Hello Svelte</div>
+",
+  "warnings": [],
+}
+`;
+
+exports[`replaceCommentsInFile snapshots > TypeScript files > should handle all directive types together 1`] = `
+{
+  "output": "
+/* oxlint-disable no-console */
+
+// oxlint-disable-next-line no-debugger
+debugger;
+
+console.log('test'); // oxlint-disable-line no-console
+
+/* oxlint-enable no-console */
+",
+  "warnings": [],
+}
+`;
+
+exports[`replaceCommentsInFile snapshots > TypeScript files > should handle file with no eslint comments 1`] = `
+{
+  "output": "
+import { foo } from 'bar';
+
+// This is a regular comment
+const x = 1;
+
+/* Another regular comment */
+function hello() {
+  return 'world';
+}
+",
+  "warnings": [],
+}
+`;
+
+exports[`replaceCommentsInFile snapshots > TypeScript files > should handle mixed line and block comments 1`] = `
+{
+  "output": "
+import { foo } from 'bar';
+
+// oxlint-disable-next-line no-debugger
+debugger;
+
+/* oxlint-disable no-console */
+console.log('hello');
+/* oxlint-enable no-console */
+
+const x = 1; // oxlint-disable-line no-unused-vars
+
+/* oxlint-disable no-debugger, no-console -- these are needed for dev */
+debugger;
+console.log('dev mode');
+/* oxlint-enable no-debugger, no-console */
+",
+  "warnings": [],
+}
+`;
+
+exports[`replaceCommentsInFile snapshots > TypeScript files > should handle unsupported inline config comments 1`] = `
+{
+  "output": "
+/* eslint eqeqeq: "off", curly: "error" */
+/* global jQuery, lodash */
+
+// oxlint-disable-next-line no-debugger
+debugger;
+
+/* eslint no-console: "warn" -- temporarily allow */
+console.log('test');
+",
+  "warnings": [
+    "/tmp/test.ts, char offset 1: changing eslint rules with inline comment is not supported",
+    "/tmp/test.ts, char offset 44: changing globals with inline comment is not supported",
+    "/tmp/test.ts, char offset 124: changing eslint rules with inline comment is not supported",
+  ],
+}
+`;
+
+exports[`replaceCommentsInFile snapshots > Vue files > should handle comments across multiple script blocks 1`] = `
+{
+  "output": "<template>
+  <div>
+    <!-- This HTML comment should not be touched -->
+    <h1>Hello</h1>
+  </div>
+</template>
+
+<script setup lang="ts">
+// oxlint-disable-next-line no-debugger
+debugger;
+
+/* oxlint-disable no-console */
+console.log('setup');
+/* oxlint-enable no-console */
+</script>
+
+<script lang="ts">
+/* oxlint-disable no-debugger -- needed in dev */
+export default {
+  mounted() {
+    debugger;
+  }
+};
+/* oxlint-enable no-debugger */
+</script>
+
+<style scoped>
+.hello { color: red; }
+</style>
+",
+  "warnings": [],
+}
+`;
+
+exports[`replaceCommentsInFile snapshots > with nursery rules > should snapshot with and without nursery option 1`] = `
+{
+  "withNursery": {
+    "output": "
+// oxlint-disable-next-line getter-return
+const x = 1;
+
+// oxlint-disable-next-line no-console
+console.log('test');
+",
+    "warnings": [],
+  },
+  "withoutNursery": {
+    "output": "
+// eslint-disable-next-line getter-return
+const x = 1;
+
+// oxlint-disable-next-line no-console
+console.log('test');
+",
+    "warnings": [],
+  },
+}
+`;
