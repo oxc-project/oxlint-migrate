@@ -19,6 +19,7 @@ import { detectSameOverride } from './overrides.js';
 import fixForJsPlugins from './js_plugin_fixes.js';
 import { processConfigFiles } from './files.js';
 import { transformSettings, warnSettingsInOverride } from './settings.js';
+import { UrlAndSpecifiers } from '../bin/config-loader.js';
 
 // Ensure all keys are added.
 const KEY_ORDER: (keyof OxlintConfig)[] = [
@@ -38,7 +39,8 @@ const KEY_ORDER: (keyof OxlintConfig)[] = [
 const buildConfig = (
   configs: ESLint.Config[],
   oxlintConfig?: OxlintConfig,
-  options?: Options
+  options?: Options,
+  loadedModules?: Map<unknown, UrlAndSpecifiers[]>
 ): OxlintConfig => {
   if (oxlintConfig === undefined) {
     // when upgrading and no configuration is found, we use the default configuration from oxlint
@@ -132,7 +134,8 @@ const buildConfig = (
       config.files !== undefined ? oxlintConfig : undefined,
       options,
       config.files === undefined ? overrides : undefined,
-      globalPlugins
+      globalPlugins,
+      loadedModules
     );
     transformEnvAndGlobals(config, targetConfig, options);
 
@@ -188,12 +191,13 @@ const main = async (
     | Promise<ESLint.Config>
     | Promise<ESLint.Config[]>,
   oxlintConfig?: OxlintConfig,
-  options?: Options
+  options?: Options,
+  loadedModules?: Map<unknown, UrlAndSpecifiers[]>
 ): Promise<OxlintConfig> => {
   const resolved = await Promise.resolve(fixForJsPlugins(configs));
   const resolvedConfigs = Array.isArray(resolved) ? resolved : [resolved];
 
-  return buildConfig(resolvedConfigs, oxlintConfig, options);
+  return buildConfig(resolvedConfigs, oxlintConfig, options, loadedModules);
 };
 
 export default main;

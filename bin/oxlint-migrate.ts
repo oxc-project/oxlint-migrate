@@ -140,7 +140,7 @@ program
     }
 
     const resetPreFix = await preFixForJsPlugins();
-    const eslintConfigs = await loadESLintConfig(filePath);
+    const [eslintConfigs, loadedModules] = await loadESLintConfig(filePath);
     resetPreFix();
 
     let config;
@@ -153,8 +153,8 @@ program
 
     const oxlintConfig =
       'default' in eslintConfigs
-        ? await main(eslintConfigs.default, config, options)
-        : await main(eslintConfigs, config, options);
+        ? await main(eslintConfigs.default, config, options, loadedModules)
+        : await main(eslintConfigs, config, options, loadedModules);
 
     if (existsSync(oxlintFilePath)) {
       renameSync(oxlintFilePath, `${oxlintFilePath}.bak`);
