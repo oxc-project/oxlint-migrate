@@ -20,6 +20,7 @@ import {
   resolveJsPluginRuleName,
 } from './jsPlugins.js';
 import { buildUnsupportedRuleExplanations, isEqualDeep } from './utilities.js';
+import { UrlAndSpecifiers } from '../bin/config-loader.js';
 
 const allRules = Object.values(rules).flat();
 const unsupportedRuleExplanations = buildUnsupportedRuleExplanations();
@@ -183,7 +184,8 @@ export const transformRuleEntry = (
   baseConfig?: OxlintConfig,
   options?: Options,
   overrides?: OxlintConfigOverride[],
-  globalPlugins?: Record<string, ESLint.Plugin> | null
+  globalPlugins?: Record<string, ESLint.Plugin> | null,
+  loadedModules?: Map<unknown, UrlAndSpecifiers[]>
 ): void => {
   if (eslintConfig.rules === undefined) {
     return;
@@ -286,7 +288,8 @@ export const transformRuleEntry = (
                 targetConfig,
                 resolvedRule,
                 normalizedConfig,
-                effectivePlugins
+                effectivePlugins,
+                loadedModules
               );
             }
           }
@@ -304,7 +307,8 @@ export const transformRuleEntry = (
             targetConfig,
             rule,
             normalizedConfig,
-            effectivePlugins
+            effectivePlugins,
+            loadedModules
           )
         ) {
           const category = unsupportedRuleExplanations[rule]
