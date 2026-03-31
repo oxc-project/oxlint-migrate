@@ -362,9 +362,10 @@ exports[`vscode > vscode 1`] = `
     ],
     "nursery": [
       "@typescript-eslint/prefer-optional-chain",
+    ],
+    "type-aware": [
       "@typescript-eslint/prefer-readonly",
     ],
-    "type-aware": [],
     "unsupported": [
       "no-buffer-constructor",
       "no-extra-semi",
@@ -758,9 +759,10 @@ exports[`vscode --js-plugins > vscode--js-plugins 1`] = `
     ],
     "nursery": [
       "@typescript-eslint/prefer-optional-chain",
+    ],
+    "type-aware": [
       "@typescript-eslint/prefer-readonly",
     ],
-    "type-aware": [],
     "unsupported": [
       "no-buffer-constructor",
       "no-extra-semi",
@@ -821,6 +823,9 @@ exports[`vscode --type-aware > vscode--type-aware 1`] = `
       "**/typings/**",
       "!.vscode",
     ],
+    "options": {
+      "typeAware": true,
+    },
     "overrides": [
       {
         "files": [
@@ -1045,6 +1050,17 @@ exports[`vscode --type-aware > vscode--type-aware 1`] = `
           ],
         },
       },
+      {
+        "files": [
+          "extensions/typescript-language-features/**/*.ts",
+        ],
+        "plugins": [
+          "typescript",
+        ],
+        "rules": {
+          "typescript/prefer-readonly": "warn",
+        },
+      },
     ],
     "plugins": [],
     "rules": {
@@ -1133,7 +1149,6 @@ exports[`vscode --type-aware > vscode--type-aware 1`] = `
     ],
     "nursery": [
       "@typescript-eslint/prefer-optional-chain",
-      "@typescript-eslint/prefer-readonly",
     ],
     "type-aware": [],
     "unsupported": [
@@ -1509,9 +1524,10 @@ exports[`vscode merge > vscode--merge 1`] = `
     ],
     "nursery": [
       "@typescript-eslint/prefer-optional-chain",
+    ],
+    "type-aware": [
       "@typescript-eslint/prefer-readonly",
     ],
-    "type-aware": [],
     "unsupported": [
       "no-buffer-constructor",
       "no-extra-semi",
