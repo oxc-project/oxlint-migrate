@@ -6,13 +6,16 @@ import {
   removeGlobalsWithAreCoveredByEnv,
   transformEnvAndGlobals,
   transformEslintGlobalAccessToOxlintGlobalValue,
+  warnAboutLargeRootGlobals,
 } from './env_globals.js';
 import type {
   ESLint,
   OxlintConfig,
   OxlintConfigGlobalsValue,
 } from './types.js';
+import { DefaultReporter } from './reporter.js';
 import globals from 'globals';
+import { OxlintGlobals } from 'oxlint';
 
 const transformNPMGlobalsToOxlintGlobals = (
   npmGlobals: Record<string, boolean>
@@ -167,6 +170,77 @@ describe('transformEnvAndGlobals', () => {
         },
       ],
     });
+  });
+});
+
+describe('warnAboutLargeRootGlobals', () => {
+  const makeGlobals = (count: number): ESLint.GlobalsConfig & OxlintGlobals =>
+    Object.fromEntries(
+      Array.from({ length: count }, (_, i) => [`global${i + 1}`, 'readonly'])
+    );
+
+  test('warns when source and final root globals both exceed threshold', () => {
+    const reporter = new DefaultReporter();
+    const configs: ESLint.Config[] = [
+      { languageOptions: { globals: makeGlobals(11) } },
+    ];
+    const oxlintConfig: OxlintConfig = { globals: makeGlobals(11) };
+
+    warnAboutLargeRootGlobals(configs, oxlintConfig, { reporter });
+
+    const warnings = reporter.getWarnings();
+    expect(warnings).toHaveLength(1);
+    expect(warnings[0]).toContain('Added 11 globals to the root config.');
+    expect(warnings[0]).toContain('different version of the `globals` package');
+  });
+
+  test('does not warn when source root globals are 10 or fewer', () => {
+    const reporter = new DefaultReporter();
+    const configs: ESLint.Config[] = [
+      { languageOptions: { globals: makeGlobals(10) } },
+    ];
+    const oxlintConfig: OxlintConfig = { globals: makeGlobals(10) };
+
+    warnAboutLargeRootGlobals(configs, oxlintConfig, { reporter });
+
+    expect(reporter.getWarnings()).toHaveLength(0);
+  });
+
+  test('does not warn when final root globals are 10 or fewer', () => {
+    const reporter = new DefaultReporter();
+    const configs: ESLint.Config[] = [
+      { languageOptions: { globals: makeGlobals(11) } },
+    ];
+    const oxlintConfig: OxlintConfig = { globals: makeGlobals(5) };
+
+    warnAboutLargeRootGlobals(configs, oxlintConfig, { reporter });
+
+    expect(reporter.getWarnings()).toHaveLength(0);
+  });
+
+  test('ignores configs with files (overrides)', () => {
+    const reporter = new DefaultReporter();
+    const configs: ESLint.Config[] = [
+      { files: ['*.test.js'], languageOptions: { globals: makeGlobals(20) } },
+    ];
+    const oxlintConfig: OxlintConfig = { globals: makeGlobals(20) };
+
+    warnAboutLargeRootGlobals(configs, oxlintConfig, { reporter });
+
+    expect(reporter.getWarnings()).toHaveLength(0);
+  });
+
+  test('only counts source globals from root configs, not overrides', () => {
+    const reporter = new DefaultReporter();
+    const configs: ESLint.Config[] = [
+      { languageOptions: { globals: { oneGlobal: 'readonly' } } },
+      { files: ['*.ts'], languageOptions: { globals: makeGlobals(50) } },
+    ];
+    const oxlintConfig: OxlintConfig = { globals: makeGlobals(20) };
+
+    warnAboutLargeRootGlobals(configs, oxlintConfig, { reporter });
+
+    expect(reporter.getWarnings()).toHaveLength(0);
   });
 });
 

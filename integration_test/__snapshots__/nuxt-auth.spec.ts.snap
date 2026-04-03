@@ -971,6 +971,7 @@ https://oxc.rs/docs/guide/usage/formatter/sorting.html",
     "special parser detected: vue-eslint-parser",
     "special parser detected: toml-eslint-parser",
     "ignore list inside overrides is not supported",
+    "Added 14 globals to the root config. This may happen when your ESLint config uses a different version of the \`globals\` package than @oxlint/migrate. Try updating \`globals\` and rerun the migration to get a simpler config.",
   ],
 }
 `;
@@ -2385,6 +2386,7 @@ https://oxc.rs/docs/guide/usage/formatter/sorting.html",
     "special parser detected: vue-eslint-parser",
     "special parser detected: toml-eslint-parser",
     "ignore list inside overrides is not supported",
+    "Added 14 globals to the root config. This may happen when your ESLint config uses a different version of the \`globals\` package than @oxlint/migrate. Try updating \`globals\` and rerun the migration to get a simpler config.",
   ],
 }
 `;
@@ -3360,6 +3362,7 @@ https://oxc.rs/docs/guide/usage/formatter/sorting.html",
     "special parser detected: vue-eslint-parser",
     "special parser detected: toml-eslint-parser",
     "ignore list inside overrides is not supported",
+    "Added 14 globals to the root config. This may happen when your ESLint config uses a different version of the \`globals\` package than @oxlint/migrate. Try updating \`globals\` and rerun the migration to get a simpler config.",
   ],
 }
 `;
@@ -4316,6 +4319,7 @@ https://oxc.rs/docs/guide/usage/formatter/sorting.html",
     "special parser detected: vue-eslint-parser",
     "special parser detected: toml-eslint-parser",
     "ignore list inside overrides is not supported",
+    "Added 14 globals to the root config. This may happen when your ESLint config uses a different version of the \`globals\` package than @oxlint/migrate. Try updating \`globals\` and rerun the migration to get a simpler config.",
   ],
 }
 `;
