@@ -161,13 +161,12 @@ exports[`eslint-react > eslint-react 1`] = `
       "@eslint-react/naming-convention/id-name",
       "@eslint-react/naming-convention/ref-name",
     ],
-    "not-implemented": [
-      "no-useless-assignment",
-    ],
+    "not-implemented": [],
     "nursery": [
       "getter-return",
       "no-undef",
       "no-unreachable",
+      "no-useless-assignment",
     ],
     "type-aware": [],
     "unsupported": [
@@ -364,13 +363,12 @@ exports[`eslint-react --js-plugins > eslint-react--js-plugins 1`] = `
   },
   "skipped": {
     "js-plugins": [],
-    "not-implemented": [
-      "no-useless-assignment",
-    ],
+    "not-implemented": [],
     "nursery": [
       "getter-return",
       "no-undef",
       "no-unreachable",
+      "no-useless-assignment",
     ],
     "type-aware": [],
     "unsupported": [
@@ -561,13 +559,12 @@ exports[`eslint-react --type-aware > eslint-react--type-aware 1`] = `
       "@eslint-react/naming-convention/id-name",
       "@eslint-react/naming-convention/ref-name",
     ],
-    "not-implemented": [
-      "no-useless-assignment",
-    ],
+    "not-implemented": [],
     "nursery": [
       "getter-return",
       "no-undef",
       "no-unreachable",
+      "no-useless-assignment",
     ],
     "type-aware": [],
     "unsupported": [
@@ -758,13 +755,12 @@ exports[`eslint-react merge > eslint-react--merge 1`] = `
       "@eslint-react/naming-convention/id-name",
       "@eslint-react/naming-convention/ref-name",
     ],
-    "not-implemented": [
-      "no-useless-assignment",
-    ],
+    "not-implemented": [],
     "nursery": [
       "getter-return",
       "no-undef",
       "no-unreachable",
+      "no-useless-assignment",
     ],
     "type-aware": [],
     "unsupported": [

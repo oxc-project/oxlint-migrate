@@ -249,7 +249,6 @@ exports[`eslint-plugin-oxlint > eslint-plugin-oxlint 1`] = `
   "skipped": {
     "js-plugins": [],
     "not-implemented": [
-      "no-useless-assignment",
       "unicorn/expiring-todo-comments",
       "unicorn/import-style",
       "unicorn/isolated-functions",
@@ -263,6 +262,7 @@ exports[`eslint-plugin-oxlint > eslint-plugin-oxlint 1`] = `
       "getter-return",
       "no-undef",
       "no-unreachable",
+      "no-useless-assignment",
     ],
     "type-aware": [],
     "unsupported": [
@@ -525,7 +525,6 @@ exports[`eslint-plugin-oxlint --js-plugins > eslint-plugin-oxlint--js-plugins 1`
   "skipped": {
     "js-plugins": [],
     "not-implemented": [
-      "no-useless-assignment",
       "unicorn/expiring-todo-comments",
       "unicorn/import-style",
       "unicorn/isolated-functions",
@@ -539,6 +538,7 @@ exports[`eslint-plugin-oxlint --js-plugins > eslint-plugin-oxlint--js-plugins 1`
       "getter-return",
       "no-undef",
       "no-unreachable",
+      "no-useless-assignment",
     ],
     "type-aware": [],
     "unsupported": [
@@ -801,7 +801,6 @@ exports[`eslint-plugin-oxlint --type-aware > eslint-plugin-oxlint--type-aware 1`
   "skipped": {
     "js-plugins": [],
     "not-implemented": [
-      "no-useless-assignment",
       "unicorn/expiring-todo-comments",
       "unicorn/import-style",
       "unicorn/isolated-functions",
@@ -815,6 +814,7 @@ exports[`eslint-plugin-oxlint --type-aware > eslint-plugin-oxlint--type-aware 1`
       "getter-return",
       "no-undef",
       "no-unreachable",
+      "no-useless-assignment",
     ],
     "type-aware": [],
     "unsupported": [
@@ -1005,7 +1005,6 @@ exports[`eslint-plugin-oxlint merge > eslint-plugin-oxlint--merge 1`] = `
   "skipped": {
     "js-plugins": [],
     "not-implemented": [
-      "no-useless-assignment",
       "unicorn/expiring-todo-comments",
       "unicorn/import-style",
       "unicorn/isolated-functions",
@@ -1019,6 +1018,7 @@ exports[`eslint-plugin-oxlint merge > eslint-plugin-oxlint--merge 1`] = `
       "getter-return",
       "no-undef",
       "no-unreachable",
+      "no-useless-assignment",
     ],
     "type-aware": [],
     "unsupported": [
