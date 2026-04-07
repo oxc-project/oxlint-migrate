@@ -240,6 +240,7 @@ exports[`eslint-plugin-oxlint > eslint-plugin-oxlint 1`] = `
       "unicorn/require-module-specifiers": "error",
       "unicorn/require-number-to-fixed-digits-argument": "error",
       "unicorn/switch-case-braces": "error",
+      "unicorn/switch-case-break-position": "error",
       "unicorn/text-encoding-identifier-case": "error",
       "unicorn/throw-new-error": "error",
       "use-isnan": "error",
@@ -249,11 +250,13 @@ exports[`eslint-plugin-oxlint > eslint-plugin-oxlint 1`] = `
   "skipped": {
     "js-plugins": [],
     "not-implemented": [
+      "unicorn/consistent-template-literal-escape",
       "unicorn/expiring-todo-comments",
       "unicorn/import-style",
       "unicorn/isolated-functions",
       "unicorn/no-unnecessary-polyfills",
       "unicorn/prefer-export-from",
+      "unicorn/prefer-simple-condition-first",
       "unicorn/prefer-single-call",
       "unicorn/prefer-switch",
       "unicorn/prevent-abbreviations",
@@ -263,6 +266,7 @@ exports[`eslint-plugin-oxlint > eslint-plugin-oxlint 1`] = `
       "no-undef",
       "no-unreachable",
       "no-useless-assignment",
+      "unicorn/no-useless-iterator-to-array",
     ],
     "type-aware": [],
     "unsupported": [
@@ -516,6 +520,7 @@ exports[`eslint-plugin-oxlint --js-plugins > eslint-plugin-oxlint--js-plugins 1`
       "unicorn/require-module-specifiers": "error",
       "unicorn/require-number-to-fixed-digits-argument": "error",
       "unicorn/switch-case-braces": "error",
+      "unicorn/switch-case-break-position": "error",
       "unicorn/text-encoding-identifier-case": "error",
       "unicorn/throw-new-error": "error",
       "use-isnan": "error",
@@ -525,11 +530,13 @@ exports[`eslint-plugin-oxlint --js-plugins > eslint-plugin-oxlint--js-plugins 1`
   "skipped": {
     "js-plugins": [],
     "not-implemented": [
+      "unicorn/consistent-template-literal-escape",
       "unicorn/expiring-todo-comments",
       "unicorn/import-style",
       "unicorn/isolated-functions",
       "unicorn/no-unnecessary-polyfills",
       "unicorn/prefer-export-from",
+      "unicorn/prefer-simple-condition-first",
       "unicorn/prefer-single-call",
       "unicorn/prefer-switch",
       "unicorn/prevent-abbreviations",
@@ -539,6 +546,7 @@ exports[`eslint-plugin-oxlint --js-plugins > eslint-plugin-oxlint--js-plugins 1`
       "no-undef",
       "no-unreachable",
       "no-useless-assignment",
+      "unicorn/no-useless-iterator-to-array",
     ],
     "type-aware": [],
     "unsupported": [
@@ -792,6 +800,7 @@ exports[`eslint-plugin-oxlint --type-aware > eslint-plugin-oxlint--type-aware 1`
       "unicorn/require-module-specifiers": "error",
       "unicorn/require-number-to-fixed-digits-argument": "error",
       "unicorn/switch-case-braces": "error",
+      "unicorn/switch-case-break-position": "error",
       "unicorn/text-encoding-identifier-case": "error",
       "unicorn/throw-new-error": "error",
       "use-isnan": "error",
@@ -801,11 +810,13 @@ exports[`eslint-plugin-oxlint --type-aware > eslint-plugin-oxlint--type-aware 1`
   "skipped": {
     "js-plugins": [],
     "not-implemented": [
+      "unicorn/consistent-template-literal-escape",
       "unicorn/expiring-todo-comments",
       "unicorn/import-style",
       "unicorn/isolated-functions",
       "unicorn/no-unnecessary-polyfills",
       "unicorn/prefer-export-from",
+      "unicorn/prefer-simple-condition-first",
       "unicorn/prefer-single-call",
       "unicorn/prefer-switch",
       "unicorn/prevent-abbreviations",
@@ -815,6 +826,7 @@ exports[`eslint-plugin-oxlint --type-aware > eslint-plugin-oxlint--type-aware 1`
       "no-undef",
       "no-unreachable",
       "no-useless-assignment",
+      "unicorn/no-useless-iterator-to-array",
     ],
     "type-aware": [],
     "unsupported": [
@@ -998,6 +1010,7 @@ exports[`eslint-plugin-oxlint merge > eslint-plugin-oxlint--merge 1`] = `
       "unicorn/require-module-specifiers": "error",
       "unicorn/require-number-to-fixed-digits-argument": "error",
       "unicorn/switch-case-braces": "error",
+      "unicorn/switch-case-break-position": "error",
       "unicorn/text-encoding-identifier-case": "error",
       "unicorn/throw-new-error": "error",
     },
@@ -1005,11 +1018,13 @@ exports[`eslint-plugin-oxlint merge > eslint-plugin-oxlint--merge 1`] = `
   "skipped": {
     "js-plugins": [],
     "not-implemented": [
+      "unicorn/consistent-template-literal-escape",
       "unicorn/expiring-todo-comments",
       "unicorn/import-style",
       "unicorn/isolated-functions",
       "unicorn/no-unnecessary-polyfills",
       "unicorn/prefer-export-from",
+      "unicorn/prefer-simple-condition-first",
       "unicorn/prefer-single-call",
       "unicorn/prefer-switch",
       "unicorn/prevent-abbreviations",
@@ -1019,6 +1034,7 @@ exports[`eslint-plugin-oxlint merge > eslint-plugin-oxlint--merge 1`] = `
       "no-undef",
       "no-unreachable",
       "no-useless-assignment",
+      "unicorn/no-useless-iterator-to-array",
     ],
     "type-aware": [],
     "unsupported": [
