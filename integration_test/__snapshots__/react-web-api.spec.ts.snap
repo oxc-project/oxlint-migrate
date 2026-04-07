@@ -108,13 +108,12 @@ exports[`react-web-api > react-web-api 1`] = `
       "react-web-api/no-leaked-resize-observer",
       "react-web-api/no-leaked-timeout",
     ],
-    "not-implemented": [
-      "no-useless-assignment",
-    ],
+    "not-implemented": [],
     "nursery": [
       "getter-return",
       "no-undef",
       "no-unreachable",
+      "no-useless-assignment",
     ],
     "type-aware": [],
     "unsupported": [
@@ -243,13 +242,12 @@ exports[`react-web-api --js-plugins > react-web-api--js-plugins 1`] = `
   },
   "skipped": {
     "js-plugins": [],
-    "not-implemented": [
-      "no-useless-assignment",
-    ],
+    "not-implemented": [],
     "nursery": [
       "getter-return",
       "no-undef",
       "no-unreachable",
+      "no-useless-assignment",
     ],
     "type-aware": [],
     "unsupported": [
@@ -376,13 +374,12 @@ exports[`react-web-api --type-aware > react-web-api--type-aware 1`] = `
       "react-web-api/no-leaked-resize-observer",
       "react-web-api/no-leaked-timeout",
     ],
-    "not-implemented": [
-      "no-useless-assignment",
-    ],
+    "not-implemented": [],
     "nursery": [
       "getter-return",
       "no-undef",
       "no-unreachable",
+      "no-useless-assignment",
     ],
     "type-aware": [],
     "unsupported": [
@@ -509,13 +506,12 @@ exports[`react-web-api merge > react-web-api--merge 1`] = `
       "react-web-api/no-leaked-resize-observer",
       "react-web-api/no-leaked-timeout",
     ],
-    "not-implemented": [
-      "no-useless-assignment",
-    ],
+    "not-implemented": [],
     "nursery": [
       "getter-return",
       "no-undef",
       "no-unreachable",
+      "no-useless-assignment",
     ],
     "type-aware": [],
     "unsupported": [
