@@ -37,12 +37,12 @@ exports[`cross-config-aliased-plugins --js-plugins > cross-config-aliased-plugin
       "builtin": true,
     },
     "jsPlugins": [
-      "eslint-plugin-react-dom",
+      "@eslint-react/eslint-plugin-dom",
     ],
     "plugins": [],
     "rules": {
-      "react-dom/no-find-dom-node": "error",
-      "react-dom/no-namespace": "warn",
+      "@eslint-react/dom/no-find-dom-node": "error",
+      "@eslint-react/dom/no-namespace": "warn",
     },
   },
   "skipped": {
