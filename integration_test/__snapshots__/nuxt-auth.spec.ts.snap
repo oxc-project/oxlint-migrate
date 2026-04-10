@@ -854,7 +854,6 @@ exports[`nuxt-auth > nuxt-auth 1`] = `
     "nursery": [
       "no-undef",
       "no-unreachable",
-      "getter-return",
     ],
     "type-aware": [],
     "unsupported": [
@@ -2276,7 +2275,6 @@ exports[`nuxt-auth --js-plugins > nuxt-auth--js-plugins 1`] = `
     "nursery": [
       "no-undef",
       "no-unreachable",
-      "getter-return",
     ],
     "type-aware": [],
     "unsupported": [
@@ -3252,7 +3250,6 @@ exports[`nuxt-auth --type-aware > nuxt-auth--type-aware 1`] = `
     "nursery": [
       "no-undef",
       "no-unreachable",
-      "getter-return",
     ],
     "type-aware": [],
     "unsupported": [
@@ -4215,7 +4212,6 @@ exports[`nuxt-auth merge > nuxt-auth--merge 1`] = `
     "nursery": [
       "no-undef",
       "no-unreachable",
-      "getter-return",
     ],
     "type-aware": [],
     "unsupported": [

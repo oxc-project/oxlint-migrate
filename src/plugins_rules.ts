@@ -239,12 +239,16 @@ export const transformRuleEntry = (
 
     if (allRules.includes(canonicalRule)) {
       if (!options?.withNursery && rules.nurseryRules.includes(canonicalRule)) {
-        options?.reporter?.markSkipped(rule, 'nursery');
+        if (!isOffValue(normalizedConfig)) {
+          options?.reporter?.markSkipped(rule, 'nursery');
+        }
         continue;
       }
 
       if (!options?.typeAware && rules.typeAwareRules.includes(canonicalRule)) {
-        options?.reporter?.markSkipped(rule, 'type-aware');
+        if (!isOffValue(normalizedConfig)) {
+          options?.reporter?.markSkipped(rule, 'type-aware');
+        }
         continue;
       }
 

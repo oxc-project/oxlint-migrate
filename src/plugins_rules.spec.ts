@@ -1,5 +1,11 @@
 import { assert, describe, expect, test } from 'vitest';
-import type { ESLint, OxlintConfig, OxlintConfigOverride } from './types.js';
+import type {
+  ESLint,
+  Options,
+  OxlintConfig,
+  OxlintConfigOverride,
+  RuleSkippedCategory,
+} from './types.js';
 import {
   cleanUpDisabledRootRules,
   cleanUpRulesWhichAreCoveredByCategory,
@@ -654,6 +660,49 @@ describe('rules and plugins', () => {
       // rule should also be removed from overrides
       expect(overrides[0].rules?.['some-plugin/some-rule']).toBeUndefined();
     });
+
+    test.each<{
+      category: RuleSkippedCategory;
+      rule: string;
+      options?: Partial<Options>;
+    }>([
+      { category: 'nursery', rule: 'getter-return' },
+      {
+        category: 'nursery',
+        rule: '@typescript-eslint/no-unnecessary-condition',
+        options: { typeAware: true },
+      },
+      {
+        category: 'type-aware',
+        rule: '@typescript-eslint/dot-notation',
+      },
+      { category: 'not-implemented', rule: 'unknown-rule' },
+      { category: 'unsupported', rule: 'dot-notation' },
+      { category: 'js-plugins', rule: 'compat/compat' },
+    ])(
+      'does not report $category rules that are disabled',
+      ({ category, rule, options }) => {
+        const eslintConfig: ESLint.Config = {
+          rules: { [rule]: 'off' },
+        };
+
+        const configWithTypeAware: OxlintConfig = {};
+        const reporter = new DefaultReporter();
+
+        transformRuleEntry(eslintConfig, configWithTypeAware, undefined, {
+          ...options,
+          reporter,
+        });
+
+        assert(configWithTypeAware.rules);
+        expect(configWithTypeAware.rules[rule]).toBeUndefined();
+        expect(reporter.getSkippedRulesByCategory()).toStrictEqual(
+          expect.objectContaining({
+            [category]: [],
+          })
+        );
+      }
+    );
   });
 
   test('cleanUpUselessOverridesRules', () => {
