@@ -129,6 +129,7 @@ exports[`eslint-plugin-oxlint > eslint-plugin-oxlint 1`] = `
       "unicorn/consistent-empty-array-spread": "error",
       "unicorn/consistent-existence-index-check": "error",
       "unicorn/consistent-function-scoping": "error",
+      "unicorn/consistent-template-literal-escape": "error",
       "unicorn/error-message": "error",
       "unicorn/escape-case": "error",
       "unicorn/explicit-length-check": "error",
@@ -250,7 +251,6 @@ exports[`eslint-plugin-oxlint > eslint-plugin-oxlint 1`] = `
   "skipped": {
     "js-plugins": [],
     "not-implemented": [
-      "unicorn/consistent-template-literal-escape",
       "unicorn/expiring-todo-comments",
       "unicorn/import-style",
       "unicorn/isolated-functions",
@@ -409,6 +409,7 @@ exports[`eslint-plugin-oxlint --js-plugins > eslint-plugin-oxlint--js-plugins 1`
       "unicorn/consistent-empty-array-spread": "error",
       "unicorn/consistent-existence-index-check": "error",
       "unicorn/consistent-function-scoping": "error",
+      "unicorn/consistent-template-literal-escape": "error",
       "unicorn/error-message": "error",
       "unicorn/escape-case": "error",
       "unicorn/explicit-length-check": "error",
@@ -530,7 +531,6 @@ exports[`eslint-plugin-oxlint --js-plugins > eslint-plugin-oxlint--js-plugins 1`
   "skipped": {
     "js-plugins": [],
     "not-implemented": [
-      "unicorn/consistent-template-literal-escape",
       "unicorn/expiring-todo-comments",
       "unicorn/import-style",
       "unicorn/isolated-functions",
@@ -689,6 +689,7 @@ exports[`eslint-plugin-oxlint --type-aware > eslint-plugin-oxlint--type-aware 1`
       "unicorn/consistent-empty-array-spread": "error",
       "unicorn/consistent-existence-index-check": "error",
       "unicorn/consistent-function-scoping": "error",
+      "unicorn/consistent-template-literal-escape": "error",
       "unicorn/error-message": "error",
       "unicorn/escape-case": "error",
       "unicorn/explicit-length-check": "error",
@@ -810,7 +811,6 @@ exports[`eslint-plugin-oxlint --type-aware > eslint-plugin-oxlint--type-aware 1`
   "skipped": {
     "js-plugins": [],
     "not-implemented": [
-      "unicorn/consistent-template-literal-escape",
       "unicorn/expiring-todo-comments",
       "unicorn/import-style",
       "unicorn/isolated-functions",
@@ -912,6 +912,7 @@ exports[`eslint-plugin-oxlint merge > eslint-plugin-oxlint--merge 1`] = `
       "unicorn/consistent-empty-array-spread": "error",
       "unicorn/consistent-existence-index-check": "error",
       "unicorn/consistent-function-scoping": "error",
+      "unicorn/consistent-template-literal-escape": "error",
       "unicorn/empty-brace-spaces": "error",
       "unicorn/error-message": "error",
       "unicorn/escape-case": "error",
@@ -1018,7 +1019,6 @@ exports[`eslint-plugin-oxlint merge > eslint-plugin-oxlint--merge 1`] = `
   "skipped": {
     "js-plugins": [],
     "not-implemented": [
-      "unicorn/consistent-template-literal-escape",
       "unicorn/expiring-todo-comments",
       "unicorn/import-style",
       "unicorn/isolated-functions",
