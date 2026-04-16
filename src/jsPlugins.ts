@@ -1,3 +1,5 @@
+import { ExternalPluginEntry } from 'oxlint';
+import { UrlAndSpecifiers } from '../bin/config-loader.js';
 import { rulesPrefixesForPlugins } from './constants.js';
 import type {
   ESLint,
@@ -167,7 +169,8 @@ export const resolveJsPluginRuleName = (
     return rule;
   }
 
-  const metaName = plugins?.[pluginName]?.meta?.name;
+  const metaName =
+    plugins?.[pluginName]?.meta?.name ?? plugins?.[pluginName]?.name;
   if (!metaName || !metaName.includes('eslint-plugin')) {
     return rule;
   }
@@ -190,7 +193,8 @@ export const enableJsPluginRule = (
   targetConfig: OxlintConfigOrOverride,
   rule: string,
   ruleEntry: OxlintConfigRuleSeverity | undefined,
-  plugins?: Record<string, ESLint.Plugin> | null
+  plugins?: Record<string, ESLint.Plugin> | null,
+  loadedModules?: Map<unknown, UrlAndSpecifiers[]>
 ): boolean => {
   const pluginName = extractPluginId(rule);
 
@@ -206,14 +210,49 @@ export const enableJsPluginRule = (
     targetConfig.jsPlugins = [];
   }
 
-  // Prefer the plugin's own meta.name when available; fall back to heuristic.
-  const metaName = plugins?.[pluginName]?.meta?.name;
-  const eslintPluginName = metaName
-    ? resolveFromMetaName(metaName)
-    : resolveEslintPluginName(pluginName);
+  const module = plugins?.[pluginName];
+  const moduleSpecifiersAndUrls = module && loadedModules?.get(module);
 
-  if (!targetConfig.jsPlugins.includes(eslintPluginName)) {
-    targetConfig.jsPlugins.push(eslintPluginName);
+  // Prefer the plugin's own meta.name when available; fall back to heuristic.
+  const metaName = module?.meta?.name ?? module?.name;
+
+  let jsPlugin: ExternalPluginEntry;
+  if (moduleSpecifiersAndUrls?.length) {
+    const specifiers = Array.from(
+      moduleSpecifiersAndUrls.reduce(
+        (acc, { specifiers }) => acc.union(specifiers),
+        new Set<string>()
+      )
+    );
+
+    // Prefer the plugin's own meta.name when available; fall back to pluginName.
+    // TODO: Shouldn't we use specifiers if no meta name is available ? How does it behave for local plugins
+    const name = metaName ?? pluginName;
+
+    // Prefer the plugin's own meta.namespace when available; fall back to heuristic.
+    const namespace = module?.meta?.namespace ?? deriveRulePrefix(name);
+
+    const specifier =
+      specifiers.find((specifier) => specifier === name) || specifiers.at(0)!;
+
+    jsPlugin = { name: namespace, specifier };
+  } else {
+    const eslintPluginName = metaName
+      ? resolveFromMetaName(metaName)
+      : resolveEslintPluginName(pluginName);
+
+    jsPlugin = eslintPluginName;
+  }
+
+  const eslintPluginName =
+    typeof jsPlugin === 'string' ? jsPlugin : jsPlugin.specifier;
+  if (
+    !targetConfig.jsPlugins.some(
+      (jsp) =>
+        (typeof jsp === 'string' ? jsp : jsp.specifier) === eslintPluginName
+    )
+  ) {
+    targetConfig.jsPlugins.push(jsPlugin);
   }
 
   // Rewrite the rule name if the plugin is registered under an alias.

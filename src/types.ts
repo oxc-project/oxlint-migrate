@@ -61,7 +61,9 @@ export namespace ESLint {
   export interface Plugin {
     meta?: {
       name?: string;
+      namespace?: string;
     };
+    name?: string; // Backward compatible plugin name
     configs?: Record<string, unknown[]> | undefined;
     environments?: Record<string, unknown> | undefined;
     languages?: Record<string, unknown> | undefined;
