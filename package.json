@@ -41,7 +41,7 @@
   "dependencies": {
     "commander": "^14.0.0",
     "globals": "^17.0.0",
-    "oxc-parser": "^0.123.0",
+    "oxc-parser": "^0.126.0",
     "tinyglobby": "^0.2.14"
   },
   "devDependencies": {
@@ -84,9 +84,9 @@
     "husky": "^9.1.7",
     "lint-staged": "^16.1.2",
     "next": "^16.0.0",
-    "oxfmt": "^0.43.0",
+    "oxfmt": "^0.45.0",
     "oxlint": "^1.60.0",
-    "oxlint-tsgolint": "^0.19.0",
+    "oxlint-tsgolint": "^0.21.0",
     "tsdown": "^0.21.0",
     "typescript": "^6.0.0",
     "typescript-eslint": "^8.35.0",
