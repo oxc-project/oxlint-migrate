@@ -489,6 +489,7 @@ export const restrictionRules = [
   'react/only-export-components',
   'react/prefer-function-component',
   'typescript/explicit-function-return-type',
+  'typescript/explicit-member-accessibility',
   'typescript/explicit-module-boundary-types',
   'typescript/no-dynamic-delete',
   'typescript/no-empty-object-type',
