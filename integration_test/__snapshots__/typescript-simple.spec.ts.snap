@@ -86,9 +86,6 @@ exports[`typescript-simple > typescript-simple 1`] = `
     "js-plugins": [],
     "not-implemented": [],
     "nursery": [
-      "getter-return",
-      "no-undef",
-      "no-unreachable",
       "@typescript-eslint/no-unnecessary-condition",
     ],
     "type-aware": [
@@ -224,9 +221,6 @@ exports[`typescript-simple --js-plugins > typescript-simple--js-plugins 1`] = `
     "js-plugins": [],
     "not-implemented": [],
     "nursery": [
-      "getter-return",
-      "no-undef",
-      "no-unreachable",
       "@typescript-eslint/no-unnecessary-condition",
     ],
     "type-aware": [
@@ -426,9 +420,6 @@ exports[`typescript-simple --type-aware > typescript-simple--type-aware 1`] = `
     "js-plugins": [],
     "not-implemented": [],
     "nursery": [
-      "getter-return",
-      "no-undef",
-      "no-unreachable",
       "@typescript-eslint/no-unnecessary-condition",
     ],
     "type-aware": [],
@@ -523,9 +514,6 @@ exports[`typescript-simple merge > typescript-simple--merge 1`] = `
     "js-plugins": [],
     "not-implemented": [],
     "nursery": [
-      "getter-return",
-      "no-undef",
-      "no-unreachable",
       "@typescript-eslint/no-unnecessary-condition",
     ],
     "type-aware": [

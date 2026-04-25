@@ -259,10 +259,7 @@ exports[`puppeteer > puppeteer 1`] = `
       "no-restricted-syntax",
     ],
     "nursery": [
-      "import/named",
       "no-unreachable",
-      "getter-return",
-      "no-undef",
     ],
     "type-aware": [
       "@typescript-eslint/no-unnecessary-template-expression",
@@ -574,10 +571,7 @@ exports[`puppeteer --js-plugins > puppeteer--js-plugins 1`] = `
       "no-restricted-syntax",
     ],
     "nursery": [
-      "import/named",
       "no-unreachable",
-      "getter-return",
-      "no-undef",
     ],
     "type-aware": [
       "@typescript-eslint/no-unnecessary-template-expression",
@@ -895,10 +889,7 @@ exports[`puppeteer --type-aware > puppeteer--type-aware 1`] = `
       "no-restricted-syntax",
     ],
     "nursery": [
-      "import/named",
       "no-unreachable",
-      "getter-return",
-      "no-undef",
     ],
     "type-aware": [],
     "unsupported": [
@@ -1165,10 +1156,7 @@ exports[`puppeteer merge > puppeteer--merge 1`] = `
       "no-restricted-syntax",
     ],
     "nursery": [
-      "import/named",
       "no-unreachable",
-      "getter-return",
-      "no-undef",
     ],
     "type-aware": [
       "@typescript-eslint/no-unnecessary-template-expression",
