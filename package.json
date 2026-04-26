@@ -86,7 +86,7 @@
     "next": "^16.0.0",
     "oxfmt": "^0.46.0",
     "oxlint": "^1.61.0",
-    "oxlint-tsgolint": "^0.21.0",
+    "oxlint-tsgolint": "^0.22.0",
     "tsdown": "^0.21.0",
     "typescript": "^6.0.0",
     "typescript-eslint": "^8.35.0",
@@ -95,5 +95,5 @@
   "lint-staged": {
     "*": "oxfmt --no-error-on-unmatched-pattern"
   },
-  "packageManager": "pnpm@10.33.0"
+  "packageManager": "pnpm@10.33.2"
 }
