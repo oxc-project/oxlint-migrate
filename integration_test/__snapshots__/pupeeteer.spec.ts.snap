@@ -62,6 +62,7 @@ exports[`puppeteer > puppeteer 1`] = `
         ],
         "rules": {
           "constructor-super": "off",
+          "getter-return": "off",
           "no-array-constructor": "error",
           "no-class-assign": "off",
           "no-const-assign": "off",
@@ -75,6 +76,7 @@ exports[`puppeteer > puppeteer 1`] = `
           "no-redeclare": "off",
           "no-setter-return": "off",
           "no-this-before-super": "off",
+          "no-unreachable": "off",
           "no-unsafe-negation": "off",
           "no-unused-expressions": "error",
           "no-unused-vars": [
@@ -222,6 +224,7 @@ exports[`puppeteer > puppeteer 1`] = `
       "no-multi-str": "error",
       "no-self-compare": "error",
       "no-shadow-restricted-names": "error",
+      "no-unreachable": "error",
       "no-unsafe-negation": "error",
       "no-unused-vars": [
         "error",
@@ -258,9 +261,7 @@ exports[`puppeteer > puppeteer 1`] = `
       "no-implied-eval",
       "no-restricted-syntax",
     ],
-    "nursery": [
-      "no-unreachable",
-    ],
+    "nursery": [],
     "type-aware": [
       "@typescript-eslint/no-unnecessary-template-expression",
       "@typescript-eslint/no-floating-promises",
@@ -362,6 +363,7 @@ exports[`puppeteer --js-plugins > puppeteer--js-plugins 1`] = `
         "rules": {
           "@puppeteer/use-using": "error",
           "constructor-super": "off",
+          "getter-return": "off",
           "no-array-constructor": "error",
           "no-class-assign": "off",
           "no-const-assign": "off",
@@ -375,6 +377,7 @@ exports[`puppeteer --js-plugins > puppeteer--js-plugins 1`] = `
           "no-redeclare": "off",
           "no-setter-return": "off",
           "no-this-before-super": "off",
+          "no-unreachable": "off",
           "no-unsafe-negation": "off",
           "no-unused-expressions": "error",
           "no-unused-vars": [
@@ -546,6 +549,7 @@ exports[`puppeteer --js-plugins > puppeteer--js-plugins 1`] = `
       "no-multi-str": "error",
       "no-self-compare": "error",
       "no-shadow-restricted-names": "error",
+      "no-unreachable": "error",
       "no-unsafe-negation": "error",
       "no-unused-vars": [
         "error",
@@ -570,9 +574,7 @@ exports[`puppeteer --js-plugins > puppeteer--js-plugins 1`] = `
       "no-implied-eval",
       "no-restricted-syntax",
     ],
-    "nursery": [
-      "no-unreachable",
-    ],
+    "nursery": [],
     "type-aware": [
       "@typescript-eslint/no-unnecessary-template-expression",
       "@typescript-eslint/no-floating-promises",
@@ -667,6 +669,7 @@ exports[`puppeteer --type-aware > puppeteer--type-aware 1`] = `
         ],
         "rules": {
           "constructor-super": "off",
+          "getter-return": "off",
           "no-array-constructor": "error",
           "no-class-assign": "off",
           "no-const-assign": "off",
@@ -680,6 +683,7 @@ exports[`puppeteer --type-aware > puppeteer--type-aware 1`] = `
           "no-redeclare": "off",
           "no-setter-return": "off",
           "no-this-before-super": "off",
+          "no-unreachable": "off",
           "no-unsafe-negation": "off",
           "no-unused-expressions": "error",
           "no-unused-vars": [
@@ -852,6 +856,7 @@ exports[`puppeteer --type-aware > puppeteer--type-aware 1`] = `
       "no-multi-str": "error",
       "no-self-compare": "error",
       "no-shadow-restricted-names": "error",
+      "no-unreachable": "error",
       "no-unsafe-negation": "error",
       "no-unused-vars": [
         "error",
@@ -888,9 +893,7 @@ exports[`puppeteer --type-aware > puppeteer--type-aware 1`] = `
       "no-implied-eval",
       "no-restricted-syntax",
     ],
-    "nursery": [
-      "no-unreachable",
-    ],
+    "nursery": [],
     "type-aware": [],
     "unsupported": [
       "spaced-comment",
@@ -978,6 +981,7 @@ exports[`puppeteer merge > puppeteer--merge 1`] = `
         ],
         "rules": {
           "constructor-super": "off",
+          "getter-return": "off",
           "no-array-constructor": "error",
           "no-class-assign": "off",
           "no-const-assign": "off",
@@ -991,6 +995,7 @@ exports[`puppeteer merge > puppeteer--merge 1`] = `
           "no-redeclare": "off",
           "no-setter-return": "off",
           "no-this-before-super": "off",
+          "no-unreachable": "off",
           "no-unsafe-negation": "off",
           "no-unused-expressions": "error",
           "no-unused-vars": [
@@ -1155,9 +1160,7 @@ exports[`puppeteer merge > puppeteer--merge 1`] = `
       "no-implied-eval",
       "no-restricted-syntax",
     ],
-    "nursery": [
-      "no-unreachable",
-    ],
+    "nursery": [],
     "type-aware": [
       "@typescript-eslint/no-unnecessary-template-expression",
       "@typescript-eslint/no-floating-promises",

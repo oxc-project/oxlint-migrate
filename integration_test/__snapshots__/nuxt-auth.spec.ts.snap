@@ -168,6 +168,7 @@ exports[`nuxt-auth > nuxt-auth 1`] = `
         ],
         "rules": {
           "constructor-super": "off",
+          "getter-return": "off",
           "no-class-assign": "off",
           "no-const-assign": "off",
           "no-dupe-keys": "off",
@@ -183,6 +184,7 @@ exports[`nuxt-auth > nuxt-auth 1`] = `
           ],
           "no-setter-return": "off",
           "no-this-before-super": "off",
+          "no-unreachable": "off",
           "no-unsafe-negation": "off",
           "no-unused-expressions": [
             "error",
@@ -298,7 +300,11 @@ exports[`nuxt-auth > nuxt-auth 1`] = `
         "rules": {
           "typescript/explicit-function-return-type": "off",
           "vue/no-arrow-functions-in-watch": "error",
+          "vue/no-deprecated-data-object-declaration": "error",
+          "vue/no-deprecated-delete-set": "error",
           "vue/no-deprecated-destroyed-lifecycle": "error",
+          "vue/no-deprecated-events-api": "error",
+          "vue/no-deprecated-vue-config-keycodes": "error",
           "vue/no-export-in-script-setup": "error",
           "vue/no-lifecycle-after-await": "error",
           "vue/no-multiple-slot-args": "warn",
@@ -509,6 +515,7 @@ exports[`nuxt-auth > nuxt-auth 1`] = `
           "defaultAssignment": false,
         },
       ],
+      "no-unreachable": "error",
       "no-unsafe-finally": "error",
       "no-unsafe-negation": "error",
       "no-unused-expressions": [
@@ -819,14 +826,10 @@ exports[`nuxt-auth > nuxt-auth 1`] = `
       "vue/jsx-uses-vars",
       "vue/no-async-in-computed-properties",
       "vue/no-computed-properties-in-data",
-      "vue/no-deprecated-data-object-declaration",
-      "vue/no-deprecated-delete-set",
       "vue/no-deprecated-dollar-listeners-api",
       "vue/no-deprecated-dollar-scopedslots-api",
-      "vue/no-deprecated-events-api",
       "vue/no-deprecated-model-definition",
       "vue/no-deprecated-props-default-this",
-      "vue/no-deprecated-vue-config-keycodes",
       "vue/no-expose-after-await",
       "vue/no-mutating-props",
       "vue/no-ref-as-operand",
@@ -854,7 +857,6 @@ exports[`nuxt-auth > nuxt-auth 1`] = `
     ],
     "nursery": [
       "no-undef",
-      "no-unreachable",
     ],
     "type-aware": [],
     "unsupported": [
@@ -1161,6 +1163,7 @@ exports[`nuxt-auth --js-plugins > nuxt-auth--js-plugins 1`] = `
         ],
         "rules": {
           "constructor-super": "off",
+          "getter-return": "off",
           "no-class-assign": "off",
           "no-const-assign": "off",
           "no-dupe-keys": "off",
@@ -1176,6 +1179,7 @@ exports[`nuxt-auth --js-plugins > nuxt-auth--js-plugins 1`] = `
           ],
           "no-setter-return": "off",
           "no-this-before-super": "off",
+          "no-unreachable": "off",
           "no-unsafe-negation": "off",
           "no-unused-expressions": [
             "error",
@@ -1301,7 +1305,11 @@ exports[`nuxt-auth --js-plugins > nuxt-auth--js-plugins 1`] = `
           "antfu/no-top-level-await": "off",
           "typescript/explicit-function-return-type": "off",
           "vue/no-arrow-functions-in-watch": "error",
+          "vue/no-deprecated-data-object-declaration": "error",
+          "vue/no-deprecated-delete-set": "error",
           "vue/no-deprecated-destroyed-lifecycle": "error",
+          "vue/no-deprecated-events-api": "error",
+          "vue/no-deprecated-vue-config-keycodes": "error",
           "vue/no-export-in-script-setup": "error",
           "vue/no-lifecycle-after-await": "error",
           "vue/no-multiple-slot-args": "warn",
@@ -2027,6 +2035,7 @@ exports[`nuxt-auth --js-plugins > nuxt-auth--js-plugins 1`] = `
           "defaultAssignment": false,
         },
       ],
+      "no-unreachable": "error",
       "no-unsafe-finally": "error",
       "no-unsafe-negation": "error",
       "no-unused-expressions": [
@@ -2241,14 +2250,10 @@ exports[`nuxt-auth --js-plugins > nuxt-auth--js-plugins 1`] = `
       "vue/jsx-uses-vars",
       "vue/no-async-in-computed-properties",
       "vue/no-computed-properties-in-data",
-      "vue/no-deprecated-data-object-declaration",
-      "vue/no-deprecated-delete-set",
       "vue/no-deprecated-dollar-listeners-api",
       "vue/no-deprecated-dollar-scopedslots-api",
-      "vue/no-deprecated-events-api",
       "vue/no-deprecated-model-definition",
       "vue/no-deprecated-props-default-this",
-      "vue/no-deprecated-vue-config-keycodes",
       "vue/no-expose-after-await",
       "vue/no-mutating-props",
       "vue/no-ref-as-operand",
@@ -2276,7 +2281,6 @@ exports[`nuxt-auth --js-plugins > nuxt-auth--js-plugins 1`] = `
     ],
     "nursery": [
       "no-undef",
-      "no-unreachable",
     ],
     "type-aware": [],
     "unsupported": [
@@ -2573,6 +2577,7 @@ exports[`nuxt-auth --type-aware > nuxt-auth--type-aware 1`] = `
         ],
         "rules": {
           "constructor-super": "off",
+          "getter-return": "off",
           "no-class-assign": "off",
           "no-const-assign": "off",
           "no-dupe-keys": "off",
@@ -2588,6 +2593,7 @@ exports[`nuxt-auth --type-aware > nuxt-auth--type-aware 1`] = `
           ],
           "no-setter-return": "off",
           "no-this-before-super": "off",
+          "no-unreachable": "off",
           "no-unsafe-negation": "off",
           "no-unused-expressions": [
             "error",
@@ -2701,7 +2707,11 @@ exports[`nuxt-auth --type-aware > nuxt-auth--type-aware 1`] = `
         "rules": {
           "typescript/explicit-function-return-type": "off",
           "vue/no-arrow-functions-in-watch": "error",
+          "vue/no-deprecated-data-object-declaration": "error",
+          "vue/no-deprecated-delete-set": "error",
           "vue/no-deprecated-destroyed-lifecycle": "error",
+          "vue/no-deprecated-events-api": "error",
+          "vue/no-deprecated-vue-config-keycodes": "error",
           "vue/no-export-in-script-setup": "error",
           "vue/no-lifecycle-after-await": "error",
           "vue/no-multiple-slot-args": "warn",
@@ -2901,6 +2911,7 @@ exports[`nuxt-auth --type-aware > nuxt-auth--type-aware 1`] = `
           "defaultAssignment": false,
         },
       ],
+      "no-unreachable": "error",
       "no-unsafe-finally": "error",
       "no-unsafe-negation": "error",
       "no-unused-expressions": [
@@ -3217,14 +3228,10 @@ exports[`nuxt-auth --type-aware > nuxt-auth--type-aware 1`] = `
       "vue/jsx-uses-vars",
       "vue/no-async-in-computed-properties",
       "vue/no-computed-properties-in-data",
-      "vue/no-deprecated-data-object-declaration",
-      "vue/no-deprecated-delete-set",
       "vue/no-deprecated-dollar-listeners-api",
       "vue/no-deprecated-dollar-scopedslots-api",
-      "vue/no-deprecated-events-api",
       "vue/no-deprecated-model-definition",
       "vue/no-deprecated-props-default-this",
-      "vue/no-deprecated-vue-config-keycodes",
       "vue/no-expose-after-await",
       "vue/no-mutating-props",
       "vue/no-ref-as-operand",
@@ -3252,7 +3259,6 @@ exports[`nuxt-auth --type-aware > nuxt-auth--type-aware 1`] = `
     ],
     "nursery": [
       "no-undef",
-      "no-unreachable",
     ],
     "type-aware": [],
     "unsupported": [
@@ -3549,6 +3555,7 @@ exports[`nuxt-auth merge > nuxt-auth--merge 1`] = `
         ],
         "rules": {
           "constructor-super": "off",
+          "getter-return": "off",
           "no-class-assign": "off",
           "no-const-assign": "off",
           "no-dupe-class-members": "error",
@@ -3565,6 +3572,7 @@ exports[`nuxt-auth merge > nuxt-auth--merge 1`] = `
           ],
           "no-setter-return": "off",
           "no-this-before-super": "off",
+          "no-unreachable": "off",
           "no-unsafe-negation": "off",
           "no-unused-expressions": [
             "error",
@@ -3674,7 +3682,11 @@ exports[`nuxt-auth merge > nuxt-auth--merge 1`] = `
         "rules": {
           "typescript/explicit-function-return-type": "off",
           "vue/no-arrow-functions-in-watch": "error",
+          "vue/no-deprecated-data-object-declaration": "error",
+          "vue/no-deprecated-delete-set": "error",
           "vue/no-deprecated-destroyed-lifecycle": "error",
+          "vue/no-deprecated-events-api": "error",
+          "vue/no-deprecated-vue-config-keycodes": "error",
           "vue/no-export-in-script-setup": "error",
           "vue/no-lifecycle-after-await": "error",
           "vue/no-multiple-slot-args": "warn",
@@ -4180,14 +4192,10 @@ exports[`nuxt-auth merge > nuxt-auth--merge 1`] = `
       "vue/jsx-uses-vars",
       "vue/no-async-in-computed-properties",
       "vue/no-computed-properties-in-data",
-      "vue/no-deprecated-data-object-declaration",
-      "vue/no-deprecated-delete-set",
       "vue/no-deprecated-dollar-listeners-api",
       "vue/no-deprecated-dollar-scopedslots-api",
-      "vue/no-deprecated-events-api",
       "vue/no-deprecated-model-definition",
       "vue/no-deprecated-props-default-this",
-      "vue/no-deprecated-vue-config-keycodes",
       "vue/no-expose-after-await",
       "vue/no-mutating-props",
       "vue/no-ref-as-operand",
@@ -4215,7 +4223,6 @@ exports[`nuxt-auth merge > nuxt-auth--merge 1`] = `
     ],
     "nursery": [
       "no-undef",
-      "no-unreachable",
     ],
     "type-aware": [],
     "unsupported": [
