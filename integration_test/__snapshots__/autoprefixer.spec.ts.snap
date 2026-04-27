@@ -73,6 +73,8 @@ exports[`autoprefixer > autoprefixer 1`] = `
         },
       ],
       "for-direction": "error",
+      "func-name-matching": "error",
+      "getter-return": "error",
       "import/first": "error",
       "import/no-absolute-path": [
         "error",
@@ -189,6 +191,7 @@ exports[`autoprefixer > autoprefixer 1`] = `
           "defaultAssignment": false,
         },
       ],
+      "no-unreachable": "error",
       "no-unsafe-finally": "error",
       "no-unsafe-negation": "error",
       "no-unsafe-optional-chaining": "error",
@@ -286,7 +289,6 @@ exports[`autoprefixer > autoprefixer 1`] = `
       "prefer-let/prefer-let",
     ],
     "not-implemented": [
-      "func-name-matching",
       "n/no-deprecated-api",
       "n/no-extraneous-require",
       "n/no-missing-require",
@@ -302,10 +304,8 @@ exports[`autoprefixer > autoprefixer 1`] = `
       "prefer-regex-literals",
     ],
     "nursery": [
-      "getter-return",
       "import-x/export",
       "no-undef",
-      "no-unreachable",
     ],
     "type-aware": [],
     "unsupported": [
@@ -403,6 +403,8 @@ exports[`autoprefixer --js-plugins > autoprefixer--js-plugins 1`] = `
         },
       ],
       "for-direction": "error",
+      "func-name-matching": "error",
+      "getter-return": "error",
       "import/first": "error",
       "import/no-absolute-path": [
         "error",
@@ -519,6 +521,7 @@ exports[`autoprefixer --js-plugins > autoprefixer--js-plugins 1`] = `
           "defaultAssignment": false,
         },
       ],
+      "no-unreachable": "error",
       "no-unsafe-finally": "error",
       "no-unsafe-negation": "error",
       "no-unsafe-optional-chaining": "error",
@@ -740,7 +743,6 @@ exports[`autoprefixer --js-plugins > autoprefixer--js-plugins 1`] = `
   "skipped": {
     "js-plugins": [],
     "not-implemented": [
-      "func-name-matching",
       "n/no-deprecated-api",
       "n/no-extraneous-require",
       "n/no-missing-require",
@@ -756,10 +758,8 @@ exports[`autoprefixer --js-plugins > autoprefixer--js-plugins 1`] = `
       "prefer-regex-literals",
     ],
     "nursery": [
-      "getter-return",
       "import-x/export",
       "no-undef",
-      "no-unreachable",
     ],
     "type-aware": [],
     "unsupported": [
@@ -857,6 +857,8 @@ exports[`autoprefixer --type-aware > autoprefixer--type-aware 1`] = `
         },
       ],
       "for-direction": "error",
+      "func-name-matching": "error",
+      "getter-return": "error",
       "import/first": "error",
       "import/no-absolute-path": [
         "error",
@@ -973,6 +975,7 @@ exports[`autoprefixer --type-aware > autoprefixer--type-aware 1`] = `
           "defaultAssignment": false,
         },
       ],
+      "no-unreachable": "error",
       "no-unsafe-finally": "error",
       "no-unsafe-negation": "error",
       "no-unsafe-optional-chaining": "error",
@@ -1076,7 +1079,6 @@ exports[`autoprefixer --type-aware > autoprefixer--type-aware 1`] = `
       "prefer-let/prefer-let",
     ],
     "not-implemented": [
-      "func-name-matching",
       "n/no-deprecated-api",
       "n/no-extraneous-require",
       "n/no-missing-require",
@@ -1092,10 +1094,8 @@ exports[`autoprefixer --type-aware > autoprefixer--type-aware 1`] = `
       "prefer-regex-literals",
     ],
     "nursery": [
-      "getter-return",
       "import-x/export",
       "no-undef",
-      "no-unreachable",
     ],
     "type-aware": [],
     "unsupported": [
@@ -1187,6 +1187,7 @@ exports[`autoprefixer merge > autoprefixer--merge 1`] = `
           "null": "ignore",
         },
       ],
+      "func-name-matching": "error",
       "import/first": "error",
       "import/no-absolute-path": [
         "error",
@@ -1358,7 +1359,6 @@ exports[`autoprefixer merge > autoprefixer--merge 1`] = `
       "prefer-let/prefer-let",
     ],
     "not-implemented": [
-      "func-name-matching",
       "n/no-deprecated-api",
       "n/no-extraneous-require",
       "n/no-missing-require",
@@ -1374,10 +1374,8 @@ exports[`autoprefixer merge > autoprefixer--merge 1`] = `
       "prefer-regex-literals",
     ],
     "nursery": [
-      "getter-return",
       "import-x/export",
       "no-undef",
-      "no-unreachable",
     ],
     "type-aware": [],
     "unsupported": [

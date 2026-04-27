@@ -21,6 +21,7 @@ exports[`typescript-simple > typescript-simple 1`] = `
         ],
         "rules": {
           "constructor-super": "off",
+          "getter-return": "off",
           "no-array-constructor": "error",
           "no-class-assign": "off",
           "no-const-assign": "off",
@@ -34,6 +35,7 @@ exports[`typescript-simple > typescript-simple 1`] = `
           "no-setter-return": "off",
           "no-this-before-super": "off",
           "no-throw-literal": "off",
+          "no-unreachable": "off",
           "no-unsafe-negation": "off",
           "no-unused-expressions": "error",
           "no-unused-vars": "error",
@@ -156,6 +158,7 @@ exports[`typescript-simple --js-plugins > typescript-simple--js-plugins 1`] = `
         ],
         "rules": {
           "constructor-super": "off",
+          "getter-return": "off",
           "no-array-constructor": "error",
           "no-class-assign": "off",
           "no-const-assign": "off",
@@ -169,6 +172,7 @@ exports[`typescript-simple --js-plugins > typescript-simple--js-plugins 1`] = `
           "no-setter-return": "off",
           "no-this-before-super": "off",
           "no-throw-literal": "off",
+          "no-unreachable": "off",
           "no-unsafe-negation": "off",
           "no-unused-expressions": "error",
           "no-unused-vars": "error",
@@ -294,6 +298,7 @@ exports[`typescript-simple --type-aware > typescript-simple--type-aware 1`] = `
         ],
         "rules": {
           "constructor-super": "off",
+          "getter-return": "off",
           "no-array-constructor": "error",
           "no-class-assign": "off",
           "no-const-assign": "off",
@@ -307,6 +312,7 @@ exports[`typescript-simple --type-aware > typescript-simple--type-aware 1`] = `
           "no-setter-return": "off",
           "no-this-before-super": "off",
           "no-throw-literal": "off",
+          "no-unreachable": "off",
           "no-unsafe-negation": "off",
           "no-unused-expressions": "error",
           "no-unused-vars": "error",
@@ -451,6 +457,7 @@ exports[`typescript-simple merge > typescript-simple--merge 1`] = `
         ],
         "rules": {
           "constructor-super": "off",
+          "getter-return": "off",
           "no-array-constructor": "error",
           "no-class-assign": "off",
           "no-const-assign": "off",
@@ -464,6 +471,7 @@ exports[`typescript-simple merge > typescript-simple--merge 1`] = `
           "no-setter-return": "off",
           "no-this-before-super": "off",
           "no-throw-literal": "off",
+          "no-unreachable": "off",
           "no-unsafe-negation": "off",
           "no-unused-expressions": "error",
           "no-unused-vars": "error",

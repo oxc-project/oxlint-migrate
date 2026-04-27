@@ -187,7 +187,7 @@ exports[`replaceCommentsInFile snapshots > with nursery rules > should snapshot 
 {
   "withNursery": {
     "output": "
-// oxlint-disable-next-line getter-return
+// oxlint-disable-next-line no-restricted-exports
 const x = 1;
 
 // oxlint-disable-next-line no-console
@@ -197,7 +197,7 @@ console.log('test');
   },
   "withoutNursery": {
     "output": "
-// eslint-disable-next-line getter-return
+// eslint-disable-next-line no-restricted-exports
 const x = 1;
 
 // oxlint-disable-next-line no-console

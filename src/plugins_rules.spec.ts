@@ -15,6 +15,7 @@ import {
   replaceTypescriptAliasRules,
   transformRuleEntry,
 } from './plugins_rules.js';
+import { nurseryRules } from './generated/rules.js';
 import { DefaultReporter } from './reporter.js';
 
 describe('rules and plugins', () => {
@@ -86,9 +87,10 @@ describe('rules and plugins', () => {
     });
 
     test('withNursery', () => {
+      const nurseryRule = nurseryRules[0];
       const eslintConfig: ESLint.Config = {
         rules: {
-          'getter-return': 'error',
+          [nurseryRule]: 'error',
         },
       };
 
@@ -102,7 +104,7 @@ describe('rules and plugins', () => {
         withNursery: true,
       });
       assert(configWithNursery.rules);
-      expect(configWithNursery.rules['getter-return']).toBe('error');
+      expect(configWithNursery.rules[nurseryRule]).toBe('error');
     });
 
     test('typeAware', () => {
@@ -666,7 +668,7 @@ describe('rules and plugins', () => {
       rule: string;
       options?: Partial<Options>;
     }>([
-      { category: 'nursery', rule: 'getter-return' },
+      { category: 'nursery', rule: nurseryRules[0] },
       {
         category: 'nursery',
         rule: '@typescript-eslint/no-unnecessary-condition',
