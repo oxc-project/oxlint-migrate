@@ -1,7 +1,6 @@
 import { execSync } from 'node:child_process';
 import { unicornRulesExtendEslintRules } from './constants.js';
 
-import vitestCompatibleRules from './generated/vitest-compatible-jest-rules.json' with { type: 'json' };
 import { typescriptRulesExtendEslintRules } from '../src/constants.js';
 
 export type Rule = {
@@ -55,15 +54,6 @@ function getAliasRules(rule: Rule): Rule | undefined {
     return {
       value: `typescript/${rule.value}`,
       scope: 'typescript',
-      category: rule.category,
-      type_aware: rule.type_aware,
-    };
-  }
-
-  if (rule.scope === 'jest' && vitestCompatibleRules.includes(rule.value)) {
-    return {
-      value: `vitest/${rule.value}`,
-      scope: 'vitest',
       category: rule.category,
       type_aware: rule.type_aware,
     };

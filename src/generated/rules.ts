@@ -361,27 +361,6 @@ export const styleRules = [
   'typescript/init-declarations',
   'typescript/max-params',
   'typescript/no-magic-numbers',
-  'vitest/no-restricted-jest-methods',
-  'vitest/no-restricted-matchers',
-  'vitest/no-test-prefixes',
-  'vitest/no-test-return-statement',
-  'vitest/no-unneeded-async-expect-function',
-  'vitest/prefer-called-with',
-  'vitest/prefer-comparison-matcher',
-  'vitest/prefer-each',
-  'vitest/prefer-equality-matcher',
-  'vitest/prefer-expect-resolves',
-  'vitest/prefer-hooks-in-order',
-  'vitest/prefer-hooks-on-top',
-  'vitest/prefer-lowercase-title',
-  'vitest/prefer-mock-promise-shorthand',
-  'vitest/prefer-mock-return-shorthand',
-  'vitest/prefer-spy-on',
-  'vitest/prefer-strict-equal',
-  'vitest/prefer-to-be',
-  'vitest/prefer-to-have-been-called-times',
-  'vitest/prefer-to-have-length',
-  'vitest/require-hook',
 ];
 
 export const suspiciousRules = [
@@ -757,11 +736,6 @@ export const correctnessRules = [
   'typescript/no-loss-of-precision',
   'typescript/no-unused-expressions',
   'typescript/no-unused-vars',
-  'vitest/no-standalone-expect',
-  'vitest/prefer-snapshot-hint',
-  'vitest/require-to-throw-message',
-  'vitest/valid-describe-callback',
-  'vitest/valid-expect-in-promise',
 ];
 
 export const perfRules = [
