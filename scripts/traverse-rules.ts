@@ -1,6 +1,4 @@
 import { execSync } from 'node:child_process';
-import { unicornRulesExtendEslintRules } from './constants.js';
-
 import { typescriptRulesExtendEslintRules } from '../src/constants.js';
 
 export type Rule = {
@@ -54,18 +52,6 @@ function getAliasRules(rule: Rule): Rule | undefined {
     return {
       value: `typescript/${rule.value}`,
       scope: 'typescript',
-      category: rule.category,
-      type_aware: rule.type_aware,
-    };
-  }
-
-  if (
-    rule.scope === 'eslint' &&
-    unicornRulesExtendEslintRules.includes(rule.value)
-  ) {
-    return {
-      value: `unicorn/${rule.value}`,
-      scope: 'unicorn',
       category: rule.category,
       type_aware: rule.type_aware,
     };
