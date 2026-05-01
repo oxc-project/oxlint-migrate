@@ -29,9 +29,8 @@
   "scripts": {
     "prepare": "husky",
     "generate": "node --import @oxc-node/core/register ./scripts/generate.ts",
-    "generate:vitest": "node --import @oxc-node/core/register ./scripts/generate-vitest-rules.ts",
     "generate:unsupported": "node --import @oxc-node/core/register ./scripts/fetch-unsupported-rules.ts",
-    "generate:all": "pnpm generate:vitest && pnpm generate && pnpm generate:unsupported && pnpm format",
+    "generate:all": "pnpm generate && pnpm generate:unsupported && pnpm format",
     "format": "oxfmt",
     "lint": "oxlint",
     "test": "vitest",
@@ -41,7 +40,7 @@
   "dependencies": {
     "commander": "^14.0.0",
     "globals": "^17.0.0",
-    "oxc-parser": "^0.127.0",
+    "oxc-parser": "^0.128.0",
     "tinyglobby": "^0.2.14"
   },
   "devDependencies": {
@@ -84,7 +83,7 @@
     "husky": "^9.1.7",
     "lint-staged": "^16.1.2",
     "next": "^16.0.0",
-    "oxfmt": "^0.46.0",
+    "oxfmt": "^0.47.0",
     "oxlint": "^1.62.0",
     "oxlint-tsgolint": "^0.22.0",
     "tsdown": "^0.21.0",
