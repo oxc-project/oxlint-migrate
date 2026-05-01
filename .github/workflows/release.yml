@@ -28,8 +28,16 @@ jobs:
         env:
           COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
         run: |
-          VERSION=$(echo "${COMMIT_MESSAGE}" | grep -oP 'release: \Kv[0-9]+\.[0-9]+\.[0-9]+')
-          echo "VERSION=$VERSION" >> $GITHUB_ENV
+          COMMIT_SUBJECT=${COMMIT_MESSAGE%%$'\n'*}
+          VERSION=$(sed -nE 's/^release: (v[0-9]+\.[0-9]+\.[0-9]+).*/\1/p' <<< "${COMMIT_SUBJECT}")
+          if [[ -z "${VERSION}" ]]; then
+            ESCAPED_COMMIT_SUBJECT=${COMMIT_SUBJECT//'%'/'%25'}
+            ESCAPED_COMMIT_SUBJECT=${ESCAPED_COMMIT_SUBJECT//$'\r'/'%0D'}
+            ESCAPED_COMMIT_SUBJECT=${ESCAPED_COMMIT_SUBJECT//$'\n'/'%0A'}
+            echo "::error::Could not extract release version from commit subject: ${ESCAPED_COMMIT_SUBJECT}" >&2
+            exit 1
+          fi
+          echo "VERSION=$VERSION" >> "$GITHUB_ENV"
 
       - run: npm install -g npm@latest # For trusted publishing support
 
