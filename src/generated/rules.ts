@@ -121,7 +121,6 @@ export const pedanticRules = [
   'vitest/no-conditional-in-test',
   'typescript/no-array-constructor',
   'typescript/no-loop-func',
-  'unicorn/no-negated-condition',
   'typescript/no-redeclare',
 ];
 
