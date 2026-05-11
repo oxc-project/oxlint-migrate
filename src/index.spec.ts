@@ -84,6 +84,30 @@ describe('main', () => {
     });
   });
 
+  test('later base config disables a rule previously enabled in an override (issue #495)', async () => {
+    // ESLint flat config: a later base config (no files) matches all files and
+    // overrides earlier file-scoped configs. Oxlint overrides take precedence
+    // over root, so the previously-set override rule must be removed even when
+    // the rule was renamed during override cleanup (e.g. `@typescript-eslint/`
+    // → `typescript/`).
+    const result = await main([
+      {
+        files: ['**/*.ts'],
+        rules: {
+          '@typescript-eslint/array-type': 'error',
+        },
+      },
+      {
+        rules: {
+          '@typescript-eslint/array-type': 'off',
+        },
+      },
+    ]);
+
+    expect(result.overrides).toBeUndefined();
+    expect(result.rules).toStrictEqual({});
+  });
+
   test('1 basic config, 1 file config', async () => {
     const result = await main([
       {

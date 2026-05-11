@@ -95,6 +95,24 @@ const normalizeSeverityValue = (
   return undefined;
 };
 
+// Collect every rule-name form the rule may be stored under after override
+// cleanup. `cleanUpOxlintConfig` rewrites override rule names via
+// `replaceTypescriptAliasRules` (strips `@typescript-eslint/` for rules that
+// extend a core ESLint rule) and `replaceCanonicalPluginPrefixes` (e.g.
+// `@typescript-eslint/foo` → `typescript/foo`), so a later config disabling
+// the rule under its original ESLint name must match either form.
+const equivalentRuleNames = (rule: string): string[] => {
+  const names = new Set<string>([rule, normalizeRuleToCanonical(rule)]);
+  const tsPrefix = '@typescript-eslint/';
+  if (rule.startsWith(tsPrefix)) {
+    const eslintRule = rule.slice(tsPrefix.length);
+    if (typescriptRulesExtendEslintRules.includes(eslintRule)) {
+      names.add(eslintRule);
+    }
+  }
+  return [...names];
+};
+
 // ESLint flat config: later configs override earlier ones for matching files.
 // A base config (no files) matches ALL files and comes after earlier overrides,
 // so it should "win" over any override that set this rule previously.
@@ -106,9 +124,15 @@ const removePreviousOverrideRule = (
   overrides?: OxlintConfigOverride[]
 ): void => {
   if (eslintConfig.files === undefined && overrides) {
+    const names = equivalentRuleNames(rule);
     for (const override of overrides) {
-      if (override.rules?.[rule]) {
-        delete override.rules[rule];
+      if (!override.rules) {
+        continue;
+      }
+      for (const name of names) {
+        if (name in override.rules) {
+          delete override.rules[name];
+        }
       }
     }
   }
