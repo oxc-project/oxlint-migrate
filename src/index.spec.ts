@@ -108,6 +108,51 @@ describe('main', () => {
     expect(result.rules).toStrictEqual({});
   });
 
+  test('later base config disables an "extending" typescript-eslint rule previously enabled in an override (issue #495)', async () => {
+    // Rules listed in `typescriptRulesExtendEslintRules` go through
+    // `replaceTypescriptAliasRules` during override cleanup, which strips the
+    // `@typescript-eslint/` prefix entirely (`@typescript-eslint/no-shadow` →
+    // `no-shadow`). The lookup must match this stripped form too.
+    const result = await main([
+      {
+        files: ['**/*.ts'],
+        rules: {
+          '@typescript-eslint/no-shadow': 'error',
+        },
+      },
+      {
+        rules: {
+          '@typescript-eslint/no-shadow': 'off',
+        },
+      },
+    ]);
+
+    expect(result.overrides).toBeUndefined();
+    expect(result.rules).toStrictEqual({});
+  });
+
+  test('later base config disables a non-typescript aliased rule previously enabled in an override (issue #495)', async () => {
+    // `react-hooks/exhaustive-deps` is renamed to `react/exhaustive-deps` by
+    // `replaceCanonicalPluginPrefixes`. Ensures the fix isn't specific to
+    // the `@typescript-eslint/` prefix.
+    const result = await main([
+      {
+        files: ['**/*.tsx'],
+        rules: {
+          'react-hooks/exhaustive-deps': 'error',
+        },
+      },
+      {
+        rules: {
+          'react-hooks/exhaustive-deps': 'off',
+        },
+      },
+    ]);
+
+    expect(result.overrides).toBeUndefined();
+    expect(result.rules).toStrictEqual({});
+  });
+
   test('1 basic config, 1 file config', async () => {
     const result = await main([
       {
