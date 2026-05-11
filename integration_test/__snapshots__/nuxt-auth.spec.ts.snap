@@ -593,6 +593,12 @@ exports[`nuxt-auth > nuxt-auth 1`] = `
       ],
       "prefer-exponentiation-operator": "error",
       "prefer-promise-reject-errors": "error",
+      "prefer-regex-literals": [
+        "error",
+        {
+          "disallowRedundantWrapping": true,
+        },
+      ],
       "prefer-rest-params": "error",
       "prefer-spread": "error",
       "prefer-template": "error",
@@ -832,7 +838,6 @@ exports[`nuxt-auth > nuxt-auth 1`] = `
       "no-unreachable-loop",
       "one-var",
       "prefer-arrow-callback",
-      "prefer-regex-literals",
       "node/no-deprecated-api",
       "node/prefer-global/buffer",
       "node/prefer-global/process",
@@ -2156,6 +2161,12 @@ exports[`nuxt-auth --js-plugins > nuxt-auth--js-plugins 1`] = `
       ],
       "prefer-exponentiation-operator": "error",
       "prefer-promise-reject-errors": "error",
+      "prefer-regex-literals": [
+        "error",
+        {
+          "disallowRedundantWrapping": true,
+        },
+      ],
       "prefer-rest-params": "error",
       "prefer-spread": "error",
       "prefer-template": "error",
@@ -2278,7 +2289,6 @@ exports[`nuxt-auth --js-plugins > nuxt-auth--js-plugins 1`] = `
       "no-unreachable-loop",
       "one-var",
       "prefer-arrow-callback",
-      "prefer-regex-literals",
       "node/no-deprecated-api",
       "node/prefer-global/buffer",
       "node/prefer-global/process",
@@ -3033,6 +3043,12 @@ exports[`nuxt-auth --type-aware > nuxt-auth--type-aware 1`] = `
       ],
       "prefer-exponentiation-operator": "error",
       "prefer-promise-reject-errors": "error",
+      "prefer-regex-literals": [
+        "error",
+        {
+          "disallowRedundantWrapping": true,
+        },
+      ],
       "prefer-rest-params": "error",
       "prefer-spread": "error",
       "prefer-template": "error",
@@ -3278,7 +3294,6 @@ exports[`nuxt-auth --type-aware > nuxt-auth--type-aware 1`] = `
       "no-unreachable-loop",
       "one-var",
       "prefer-arrow-callback",
-      "prefer-regex-literals",
       "node/no-deprecated-api",
       "node/prefer-global/buffer",
       "node/prefer-global/process",
@@ -4027,6 +4042,12 @@ exports[`nuxt-auth merge > nuxt-auth--merge 1`] = `
       ],
       "prefer-exponentiation-operator": "error",
       "prefer-promise-reject-errors": "error",
+      "prefer-regex-literals": [
+        "error",
+        {
+          "disallowRedundantWrapping": true,
+        },
+      ],
       "prefer-rest-params": "error",
       "prefer-spread": "error",
       "prefer-template": "error",
@@ -4264,7 +4285,6 @@ exports[`nuxt-auth merge > nuxt-auth--merge 1`] = `
       "no-unreachable-loop",
       "one-var",
       "prefer-arrow-callback",
-      "prefer-regex-literals",
       "node/no-deprecated-api",
       "node/prefer-global/buffer",
       "node/prefer-global/process",
