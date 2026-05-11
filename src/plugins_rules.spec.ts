@@ -629,6 +629,71 @@ describe('rules and plugins', () => {
       ).toBeUndefined();
     });
 
+    test('base config removes a rule from an override that was already renamed to its canonical form (issue #495)', () => {
+      // After `cleanUpOxlintConfig` runs on an override, plugin-prefixed rules
+      // get renamed to their canonical oxlint form. A subsequent base config
+      // disabling the rule under its original eslint name must still match.
+      const baseConfig: ESLint.Config = {
+        rules: {
+          '@typescript-eslint/array-type': 'off',
+        },
+      };
+
+      // Override is pre-renamed to the canonical form, as it would be after
+      // an earlier `cleanUpOxlintConfig` pass.
+      const overrides: OxlintConfigOverride[] = [
+        {
+          files: ['**/*.ts'],
+          rules: {
+            'typescript/array-type': 'error',
+          },
+        },
+      ];
+      const baseTarget: OxlintConfig = {};
+
+      transformRuleEntry(
+        baseConfig,
+        baseTarget,
+        undefined,
+        undefined,
+        overrides
+      );
+
+      expect(overrides[0].rules?.['typescript/array-type']).toBeUndefined();
+    });
+
+    test('base config removes a typescript-eslint rule from an override that was stripped to its core eslint name (issue #495)', () => {
+      // Rules in `typescriptRulesExtendEslintRules` get their `@typescript-eslint/`
+      // prefix stripped entirely during override cleanup. A subsequent base
+      // config disabling the rule under its `@typescript-eslint/` name must
+      // still match the stripped form.
+      const baseConfig: ESLint.Config = {
+        rules: {
+          '@typescript-eslint/no-shadow': 'off',
+        },
+      };
+
+      const overrides: OxlintConfigOverride[] = [
+        {
+          files: ['**/*.ts'],
+          rules: {
+            'no-shadow': 'error',
+          },
+        },
+      ];
+      const baseTarget: OxlintConfig = {};
+
+      transformRuleEntry(
+        baseConfig,
+        baseTarget,
+        undefined,
+        undefined,
+        overrides
+      );
+
+      expect(overrides[0].rules?.['no-shadow']).toBeUndefined();
+    });
+
     test('unsupported rules disabled in base config should be removed from overrides with jsPlugins', () => {
       const overrideConfig: ESLint.Config = {
         files: ['**/*.js'],
