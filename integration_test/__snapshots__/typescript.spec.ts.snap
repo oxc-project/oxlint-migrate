@@ -224,6 +224,7 @@ exports[`typescript > typescript 1`] = `
       "object-shorthand": "error",
       "prefer-const": "error",
       "prefer-object-spread": "error",
+      "prefer-regex-literals": "error",
       "preserve-caught-error": "error",
       "require-yield": "error",
       "typescript/adjacent-overload-signatures": "error",
@@ -317,7 +318,6 @@ exports[`typescript > typescript 1`] = `
       "regexp/use-ignore-case",
     ],
     "not-implemented": [
-      "prefer-regex-literals",
       "no-restricted-syntax",
       "@typescript-eslint/naming-convention",
       "local/only-arrow-functions",
@@ -580,6 +580,7 @@ exports[`typescript --js-plugins > typescript--js-plugins 1`] = `
       "object-shorthand": "error",
       "prefer-const": "error",
       "prefer-object-spread": "error",
+      "prefer-regex-literals": "error",
       "preserve-caught-error": "error",
       "regexp/confusing-quantifier": "warn",
       "regexp/control-character-escape": "error",
@@ -672,7 +673,6 @@ exports[`typescript --js-plugins > typescript--js-plugins 1`] = `
   "skipped": {
     "js-plugins": [],
     "not-implemented": [
-      "prefer-regex-literals",
       "no-restricted-syntax",
       "@typescript-eslint/naming-convention",
       "local/only-arrow-functions",
@@ -989,6 +989,7 @@ exports[`typescript --type-aware > typescript--type-aware 1`] = `
       "object-shorthand": "error",
       "prefer-const": "error",
       "prefer-object-spread": "error",
+      "prefer-regex-literals": "error",
       "preserve-caught-error": "error",
       "require-yield": "error",
       "typescript/adjacent-overload-signatures": "error",
@@ -1083,7 +1084,6 @@ exports[`typescript --type-aware > typescript--type-aware 1`] = `
       "regexp/use-ignore-case",
     ],
     "not-implemented": [
-      "prefer-regex-literals",
       "no-restricted-syntax",
       "@typescript-eslint/naming-convention",
       "local/only-arrow-functions",
@@ -1277,6 +1277,7 @@ exports[`typescript merge > typescript--merge 1`] = `
       "object-shorthand": "error",
       "prefer-const": "error",
       "prefer-object-spread": "error",
+      "prefer-regex-literals": "error",
       "preserve-caught-error": "error",
       "typescript/adjacent-overload-signatures": "error",
       "typescript/array-type": "error",
@@ -1368,7 +1369,6 @@ exports[`typescript merge > typescript--merge 1`] = `
       "regexp/use-ignore-case",
     ],
     "not-implemented": [
-      "prefer-regex-literals",
       "no-restricted-syntax",
       "@typescript-eslint/naming-convention",
       "local/only-arrow-functions",
