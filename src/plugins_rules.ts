@@ -99,7 +99,7 @@ const normalizeSeverityValue = (
 // cleanup. `cleanUpOxlintConfig` rewrites override rule names via
 // `replaceTypescriptAliasRules` (strips `@typescript-eslint/` for rules that
 // extend a core ESLint rule) and `replaceCanonicalPluginPrefixes` (e.g.
-// `@typescript-eslint/foo` → `typescript/foo`), so a later config disabling
+// `@typescript-eslint/foo` to `typescript/foo`), so a later config disabling
 // the rule under its original ESLint name must match either form.
 const equivalentRuleNames = (rule: string): string[] => {
   const names = new Set<string>([rule, normalizeRuleToCanonical(rule)]);
