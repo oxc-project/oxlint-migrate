@@ -1267,6 +1267,7 @@ describe('rules and plugins', () => {
           'react-hooks/exhaustive-deps': 'warn',
           'react-refresh/only-export-components': 'error',
           'import-x/no-duplicates': 'error',
+          'jsx-a11y-x/no-autofocus': 'warn',
           '@next/next/no-img-element': 'error',
         },
       };
@@ -1280,6 +1281,7 @@ describe('rules and plugins', () => {
           'react/exhaustive-deps': 'warn',
           'react/only-export-components': 'error',
           'import/no-duplicates': 'error',
+          'jsx-a11y/no-autofocus': 'warn',
           'nextjs/no-img-element': 'error',
         },
       });
