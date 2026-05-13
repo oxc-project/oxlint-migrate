@@ -6,6 +6,7 @@ export const rulesPrefixesForPlugins: Record<string, OxlintConfigPlugin> = {
   jest: 'jest',
   jsdoc: 'jsdoc',
   'jsx-a11y': 'jsx-a11y',
+  'jsx-a11y-x': 'jsx-a11y',
   '@next/next': 'nextjs',
   node: 'node',
   n: 'node',

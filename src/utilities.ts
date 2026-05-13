@@ -21,7 +21,7 @@ export const isEqualDeep = <T>(a: T, b: T): boolean => {
  * Builds a lookup map of unsupported rule explanations.
  * Converts oxc-style rule keys (e.g. "eslint/no-dupe-args", "react/immutability")
  * to all matching ESLint-style keys, using rulesPrefixesForPlugins for aliases
- * (e.g. react → react-hooks/react-refresh, import → import-x, node → n).
+ * (e.g. react → react-hooks/react-refresh, import → import-x, jsx-a11y → jsx-a11y-x, node → n).
  */
 export function buildUnsupportedRuleExplanations(): Record<string, string> {
   const explanations: Record<string, string> = {};
