@@ -238,6 +238,7 @@ exports[`autoprefixer > autoprefixer 1`] = `
       "node/no-new-require": "error",
       "node/no-path-concat": "error",
       "object-shorthand": "error",
+      "prefer-arrow-callback": "error",
       "prefer-exponentiation-operator": "error",
       "prefer-promise-reject-errors": "error",
       "prefer-regex-literals": [
@@ -306,7 +307,6 @@ exports[`autoprefixer > autoprefixer 1`] = `
       "no-implied-eval",
       "no-unreachable-loop",
       "one-var",
-      "prefer-arrow-callback",
     ],
     "nursery": [
       "import-x/export",
@@ -713,6 +713,7 @@ exports[`autoprefixer --js-plugins > autoprefixer--js-plugins 1`] = `
           "type": "alphabetical",
         },
       ],
+      "prefer-arrow-callback": "error",
       "prefer-exponentiation-operator": "error",
       "prefer-let/prefer-let": [
         "error",
@@ -765,7 +766,6 @@ exports[`autoprefixer --js-plugins > autoprefixer--js-plugins 1`] = `
       "no-implied-eval",
       "no-unreachable-loop",
       "one-var",
-      "prefer-arrow-callback",
     ],
     "nursery": [
       "import-x/export",
@@ -1032,6 +1032,7 @@ exports[`autoprefixer --type-aware > autoprefixer--type-aware 1`] = `
       "node/no-new-require": "error",
       "node/no-path-concat": "error",
       "object-shorthand": "error",
+      "prefer-arrow-callback": "error",
       "prefer-exponentiation-operator": "error",
       "prefer-promise-reject-errors": "error",
       "prefer-regex-literals": [
@@ -1106,7 +1107,6 @@ exports[`autoprefixer --type-aware > autoprefixer--type-aware 1`] = `
       "no-implied-eval",
       "no-unreachable-loop",
       "one-var",
-      "prefer-arrow-callback",
     ],
     "nursery": [
       "import-x/export",
@@ -1324,6 +1324,7 @@ exports[`autoprefixer merge > autoprefixer--merge 1`] = `
       "node/no-new-require": "error",
       "node/no-path-concat": "error",
       "object-shorthand": "error",
+      "prefer-arrow-callback": "error",
       "prefer-exponentiation-operator": "error",
       "prefer-promise-reject-errors": "error",
       "prefer-regex-literals": [
@@ -1391,7 +1392,6 @@ exports[`autoprefixer merge > autoprefixer--merge 1`] = `
       "no-implied-eval",
       "no-unreachable-loop",
       "one-var",
-      "prefer-arrow-callback",
     ],
     "nursery": [
       "import-x/export",

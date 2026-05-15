@@ -584,6 +584,13 @@ exports[`nuxt-auth > nuxt-auth 1`] = `
           "ignoreConstructors": false,
         },
       ],
+      "prefer-arrow-callback": [
+        "error",
+        {
+          "allowNamedFunctions": false,
+          "allowUnboundThis": true,
+        },
+      ],
       "prefer-const": [
         "error",
         {
@@ -837,7 +844,6 @@ exports[`nuxt-auth > nuxt-auth 1`] = `
       "no-restricted-syntax",
       "no-unreachable-loop",
       "one-var",
-      "prefer-arrow-callback",
       "node/no-deprecated-api",
       "node/prefer-global/buffer",
       "node/prefer-global/process",
@@ -2152,6 +2158,13 @@ exports[`nuxt-auth --js-plugins > nuxt-auth--js-plugins 1`] = `
           "type": "natural",
         },
       ],
+      "prefer-arrow-callback": [
+        "error",
+        {
+          "allowNamedFunctions": false,
+          "allowUnboundThis": true,
+        },
+      ],
       "prefer-const": [
         "error",
         {
@@ -2288,7 +2301,6 @@ exports[`nuxt-auth --js-plugins > nuxt-auth--js-plugins 1`] = `
       "no-restricted-syntax",
       "no-unreachable-loop",
       "one-var",
-      "prefer-arrow-callback",
       "node/no-deprecated-api",
       "node/prefer-global/buffer",
       "node/prefer-global/process",
@@ -3034,6 +3046,13 @@ exports[`nuxt-auth --type-aware > nuxt-auth--type-aware 1`] = `
           "ignoreConstructors": false,
         },
       ],
+      "prefer-arrow-callback": [
+        "error",
+        {
+          "allowNamedFunctions": false,
+          "allowUnboundThis": true,
+        },
+      ],
       "prefer-const": [
         "error",
         {
@@ -3293,7 +3312,6 @@ exports[`nuxt-auth --type-aware > nuxt-auth--type-aware 1`] = `
       "no-restricted-syntax",
       "no-unreachable-loop",
       "one-var",
-      "prefer-arrow-callback",
       "node/no-deprecated-api",
       "node/prefer-global/buffer",
       "node/prefer-global/process",
@@ -4033,6 +4051,13 @@ exports[`nuxt-auth merge > nuxt-auth--merge 1`] = `
           "ignoreConstructors": false,
         },
       ],
+      "prefer-arrow-callback": [
+        "error",
+        {
+          "allowNamedFunctions": false,
+          "allowUnboundThis": true,
+        },
+      ],
       "prefer-const": [
         "error",
         {
@@ -4284,7 +4309,6 @@ exports[`nuxt-auth merge > nuxt-auth--merge 1`] = `
       "no-restricted-syntax",
       "no-unreachable-loop",
       "one-var",
-      "prefer-arrow-callback",
       "node/no-deprecated-api",
       "node/prefer-global/buffer",
       "node/prefer-global/process",
