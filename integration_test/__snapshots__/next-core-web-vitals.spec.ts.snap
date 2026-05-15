@@ -108,9 +108,7 @@ exports[`next-core-web-vitals > next-core-web-vitals 1`] = `
   },
   "skipped": {
     "js-plugins": [],
-    "not-implemented": [
-      "react/no-deprecated",
-    ],
+    "not-implemented": [],
     "nursery": [
       "react/require-render-return",
     ],
@@ -118,6 +116,7 @@ exports[`next-core-web-vitals > next-core-web-vitals 1`] = `
     "unsupported": [
       "react/jsx-uses-react",
       "react/jsx-uses-vars",
+      "react/no-deprecated",
       "react-hooks/static-components",
       "react-hooks/use-memo",
       "react-hooks/preserve-manual-memoization",
@@ -252,9 +251,7 @@ exports[`next-core-web-vitals --js-plugins > next-core-web-vitals--js-plugins 1`
   },
   "skipped": {
     "js-plugins": [],
-    "not-implemented": [
-      "react/no-deprecated",
-    ],
+    "not-implemented": [],
     "nursery": [
       "react/require-render-return",
     ],
@@ -262,6 +259,7 @@ exports[`next-core-web-vitals --js-plugins > next-core-web-vitals--js-plugins 1`
     "unsupported": [
       "react/jsx-uses-react",
       "react/jsx-uses-vars",
+      "react/no-deprecated",
       "react-hooks/static-components",
       "react-hooks/use-memo",
       "react-hooks/preserve-manual-memoization",
@@ -396,9 +394,7 @@ exports[`next-core-web-vitals --type-aware > next-core-web-vitals--type-aware 1`
   },
   "skipped": {
     "js-plugins": [],
-    "not-implemented": [
-      "react/no-deprecated",
-    ],
+    "not-implemented": [],
     "nursery": [
       "react/require-render-return",
     ],
@@ -406,6 +402,7 @@ exports[`next-core-web-vitals --type-aware > next-core-web-vitals--type-aware 1`
     "unsupported": [
       "react/jsx-uses-react",
       "react/jsx-uses-vars",
+      "react/no-deprecated",
       "react-hooks/static-components",
       "react-hooks/use-memo",
       "react-hooks/preserve-manual-memoization",
@@ -541,9 +538,7 @@ exports[`next-core-web-vitals merge > next-core-web-vitals--merge 1`] = `
   },
   "skipped": {
     "js-plugins": [],
-    "not-implemented": [
-      "react/no-deprecated",
-    ],
+    "not-implemented": [],
     "nursery": [
       "react/require-render-return",
     ],
@@ -551,6 +546,7 @@ exports[`next-core-web-vitals merge > next-core-web-vitals--merge 1`] = `
     "unsupported": [
       "react/jsx-uses-react",
       "react/jsx-uses-vars",
+      "react/no-deprecated",
       "react-hooks/static-components",
       "react-hooks/use-memo",
       "react-hooks/preserve-manual-memoization",
