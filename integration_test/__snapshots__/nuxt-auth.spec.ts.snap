@@ -127,6 +127,7 @@ exports[`nuxt-auth > nuxt-auth 1`] = `
       "node_modules",
       "**/node_modules/**",
       "**/public/**",
+      "**/*.md",
     ],
     "overrides": [
       {
@@ -314,14 +315,6 @@ exports[`nuxt-auth > nuxt-auth 1`] = `
           "vue/return-in-computed-property": "error",
           "vue/valid-define-emits": "error",
           "vue/valid-define-props": "error",
-        },
-      },
-      {
-        "files": [
-          "**/*.md",
-        ],
-        "rules": {
-          "no-irregular-whitespace": "off",
         },
       },
       {
@@ -1145,6 +1138,7 @@ exports[`nuxt-auth --js-plugins > nuxt-auth--js-plugins 1`] = `
       "node_modules",
       "**/node_modules/**",
       "**/public/**",
+      "**/*.md",
     ],
     "jsPlugins": [
       "eslint-plugin-antfu",
@@ -1394,14 +1388,8 @@ exports[`nuxt-auth --js-plugins > nuxt-auth--js-plugins 1`] = `
         ],
         "jsPlugins": [
           "@eslint/eslint-plugin-markdown",
-          "eslint-plugin-command",
-          "eslint-plugin-perfectionist",
-          "eslint-plugin-regexp",
-          "@stylistic/eslint-plugin",
         ],
         "rules": {
-          "@stylistic/indent": "off",
-          "command/command": "off",
           "markdown/fenced-code-language": "off",
           "markdown/heading-increment": "error",
           "markdown/no-duplicate-definitions": "error",
@@ -1419,12 +1407,6 @@ exports[`nuxt-auth --js-plugins > nuxt-auth--js-plugins 1`] = `
           "markdown/no-unused-definitions": "error",
           "markdown/require-alt-text": "error",
           "markdown/table-column-count": "error",
-          "no-irregular-whitespace": "off",
-          "perfectionist/sort-exports": "off",
-          "regexp/no-legacy-features": "off",
-          "regexp/no-missing-g-flag": "off",
-          "regexp/no-useless-dollar-replacements": "off",
-          "regexp/no-useless-flag": "off",
         },
       },
       {
@@ -2602,6 +2584,7 @@ exports[`nuxt-auth --type-aware > nuxt-auth--type-aware 1`] = `
       "node_modules",
       "**/node_modules/**",
       "**/public/**",
+      "**/*.md",
     ],
     "options": {
       "typeAware": true,
@@ -2787,14 +2770,6 @@ exports[`nuxt-auth --type-aware > nuxt-auth--type-aware 1`] = `
           "vue/return-in-computed-property": "error",
           "vue/valid-define-emits": "error",
           "vue/valid-define-props": "error",
-        },
-      },
-      {
-        "files": [
-          "**/*.md",
-        ],
-        "rules": {
-          "no-irregular-whitespace": "off",
         },
       },
       {
@@ -3613,6 +3588,7 @@ exports[`nuxt-auth merge > nuxt-auth--merge 1`] = `
       "node_modules",
       "**/node_modules/**",
       "**/public/**",
+      "**/*.md",
     ],
     "overrides": [
       {
@@ -3795,14 +3771,6 @@ exports[`nuxt-auth merge > nuxt-auth--merge 1`] = `
           "vue/return-in-computed-property": "error",
           "vue/valid-define-emits": "error",
           "vue/valid-define-props": "error",
-        },
-      },
-      {
-        "files": [
-          "**/*.md",
-        ],
-        "rules": {
-          "no-irregular-whitespace": "off",
         },
       },
       {
