@@ -406,6 +406,12 @@ exports[`nuxt-auth > nuxt-auth 1`] = `
         "top-level",
       ],
       "import/first": "error",
+      "import/newline-after-import": [
+        "error",
+        {
+          "count": 1,
+        },
+      ],
       "import/no-duplicates": "error",
       "import/no-mutable-exports": "error",
       "import/no-named-default": "error",
@@ -450,6 +456,7 @@ exports[`nuxt-auth > nuxt-auth 1`] = `
       "no-fallthrough": "error",
       "no-func-assign": "error",
       "no-global-assign": "error",
+      "no-implied-eval": "error",
       "no-import-assign": "error",
       "no-irregular-whitespace": "error",
       "no-iterator": "error",
@@ -833,7 +840,6 @@ exports[`nuxt-auth > nuxt-auth 1`] = `
       "markdown/table-column-count",
     ],
     "not-implemented": [
-      "no-implied-eval",
       "no-restricted-syntax",
       "no-unreachable-loop",
       "one-var",
@@ -848,7 +854,6 @@ exports[`nuxt-auth > nuxt-auth 1`] = `
       "jsdoc/require-yields-check",
       "jsdoc/check-alignment",
       "jsdoc/multiline-blocks",
-      "import/newline-after-import",
       "@typescript-eslint/method-signature-style",
       "vitest/no-only-tests",
       "vue/jsx-uses-vars",
@@ -1948,6 +1953,12 @@ exports[`nuxt-auth --js-plugins > nuxt-auth--js-plugins 1`] = `
         "top-level",
       ],
       "import/first": "error",
+      "import/newline-after-import": [
+        "error",
+        {
+          "count": 1,
+        },
+      ],
       "import/no-duplicates": "error",
       "import/no-mutable-exports": "error",
       "import/no-named-default": "error",
@@ -1992,6 +2003,7 @@ exports[`nuxt-auth --js-plugins > nuxt-auth--js-plugins 1`] = `
       "no-fallthrough": "error",
       "no-func-assign": "error",
       "no-global-assign": "error",
+      "no-implied-eval": "error",
       "no-import-assign": "error",
       "no-irregular-whitespace": "error",
       "no-iterator": "error",
@@ -2279,7 +2291,6 @@ exports[`nuxt-auth --js-plugins > nuxt-auth--js-plugins 1`] = `
   "skipped": {
     "js-plugins": [],
     "not-implemented": [
-      "no-implied-eval",
       "no-restricted-syntax",
       "no-unreachable-loop",
       "one-var",
@@ -2294,7 +2305,6 @@ exports[`nuxt-auth --js-plugins > nuxt-auth--js-plugins 1`] = `
       "jsdoc/require-yields-check",
       "jsdoc/check-alignment",
       "jsdoc/multiline-blocks",
-      "import/newline-after-import",
       "@typescript-eslint/method-signature-style",
       "vitest/no-only-tests",
       "vue/jsx-uses-vars",
@@ -2850,6 +2860,12 @@ exports[`nuxt-auth --type-aware > nuxt-auth--type-aware 1`] = `
         "top-level",
       ],
       "import/first": "error",
+      "import/newline-after-import": [
+        "error",
+        {
+          "count": 1,
+        },
+      ],
       "import/no-duplicates": "error",
       "import/no-mutable-exports": "error",
       "import/no-named-default": "error",
@@ -2894,6 +2910,7 @@ exports[`nuxt-auth --type-aware > nuxt-auth--type-aware 1`] = `
       "no-fallthrough": "error",
       "no-func-assign": "error",
       "no-global-assign": "error",
+      "no-implied-eval": "error",
       "no-import-assign": "error",
       "no-irregular-whitespace": "error",
       "no-iterator": "error",
@@ -3283,7 +3300,6 @@ exports[`nuxt-auth --type-aware > nuxt-auth--type-aware 1`] = `
       "markdown/table-column-count",
     ],
     "not-implemented": [
-      "no-implied-eval",
       "no-restricted-syntax",
       "no-unreachable-loop",
       "one-var",
@@ -3298,7 +3314,6 @@ exports[`nuxt-auth --type-aware > nuxt-auth--type-aware 1`] = `
       "jsdoc/require-yields-check",
       "jsdoc/check-alignment",
       "jsdoc/multiline-blocks",
-      "import/newline-after-import",
       "@typescript-eslint/method-signature-style",
       "vitest/no-only-tests",
       "vue/jsx-uses-vars",
@@ -3873,6 +3888,12 @@ exports[`nuxt-auth merge > nuxt-auth--merge 1`] = `
         "top-level",
       ],
       "import/first": "error",
+      "import/newline-after-import": [
+        "error",
+        {
+          "count": 1,
+        },
+      ],
       "import/no-duplicates": "error",
       "import/no-mutable-exports": "error",
       "import/no-named-default": "error",
@@ -3909,6 +3930,7 @@ exports[`nuxt-auth merge > nuxt-auth--merge 1`] = `
       "no-extend-native": "error",
       "no-extra-bind": "error",
       "no-fallthrough": "error",
+      "no-implied-eval": "error",
       "no-labels": [
         "error",
         {
@@ -4273,7 +4295,6 @@ exports[`nuxt-auth merge > nuxt-auth--merge 1`] = `
       "markdown/table-column-count",
     ],
     "not-implemented": [
-      "no-implied-eval",
       "no-restricted-syntax",
       "no-unreachable-loop",
       "one-var",
@@ -4288,7 +4309,6 @@ exports[`nuxt-auth merge > nuxt-auth--merge 1`] = `
       "jsdoc/require-yields-check",
       "jsdoc/check-alignment",
       "jsdoc/multiline-blocks",
-      "import/newline-after-import",
       "@typescript-eslint/method-signature-style",
       "vitest/no-only-tests",
       "vue/jsx-uses-vars",
