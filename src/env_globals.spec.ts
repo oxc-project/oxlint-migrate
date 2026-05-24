@@ -10,6 +10,7 @@ import {
 } from './env_globals.js';
 import type {
   ESLint,
+  GlobalsCatalog,
   OxlintConfig,
   OxlintConfigGlobalsValue,
 } from './types.js';
@@ -26,6 +27,15 @@ const transformNPMGlobalsToOxlintGlobals = (
       transformEslintGlobalAccessToOxlintGlobalValue(value),
     ])
   );
+};
+
+const makeOlderBrowserGlobalsCatalog = (): GlobalsCatalog => {
+  const browserEntries = Object.entries(globals.browser);
+  const keyCount = Math.floor(browserEntries.length * 0.95);
+
+  return {
+    browser: Object.fromEntries(browserEntries.slice(0, keyCount)),
+  };
 };
 
 describe('detectEnvironmentByGlobals', () => {
@@ -92,6 +102,21 @@ describe('detectEnvironmentByGlobals', () => {
     detectEnvironmentByGlobals(config);
     expect(config.env?.browser).toBeUndefined();
   });
+
+  test('detects env with a project globals catalog when bundled globals differ by >3%', () => {
+    const projectGlobalsCatalog = makeOlderBrowserGlobalsCatalog();
+    const config: OxlintConfig = {
+      globals: transformNPMGlobalsToOxlintGlobals(
+        projectGlobalsCatalog.browser
+      ),
+    };
+
+    detectEnvironmentByGlobals(config, {
+      globalsCatalogs: [projectGlobalsCatalog],
+    });
+
+    expect(config.env?.browser).toBe(true);
+  });
 });
 
 describe('removeGlobalsWithAreCoveredByEnv', () => {
@@ -105,6 +130,47 @@ describe('removeGlobalsWithAreCoveredByEnv', () => {
 
     removeGlobalsWithAreCoveredByEnv(config);
     expect(config.globals).toBeUndefined();
+  });
+
+  test('removes globals covered by a project globals catalog', () => {
+    const projectGlobalsCatalog = makeOlderBrowserGlobalsCatalog();
+    const config: OxlintConfig = {
+      env: {
+        browser: true,
+      },
+      globals: transformNPMGlobalsToOxlintGlobals(
+        projectGlobalsCatalog.browser
+      ),
+    };
+
+    removeGlobalsWithAreCoveredByEnv(config, {
+      globalsCatalogs: [projectGlobalsCatalog],
+    });
+
+    expect(config.globals).toBeUndefined();
+  });
+
+  test('keeps globals that differ from a detected project globals catalog', () => {
+    const projectGlobalsCatalog = makeOlderBrowserGlobalsCatalog();
+    const config: OxlintConfig = {
+      env: {
+        browser: true,
+      },
+      globals: {
+        ...transformNPMGlobalsToOxlintGlobals(projectGlobalsCatalog.browser),
+        document: 'off',
+        ProjectGlobal: 'readonly',
+      },
+    };
+
+    removeGlobalsWithAreCoveredByEnv(config, {
+      globalsCatalogs: [projectGlobalsCatalog],
+    });
+
+    expect(config.globals).toStrictEqual({
+      document: 'off',
+      ProjectGlobal: 'readonly',
+    });
   });
 });
 
