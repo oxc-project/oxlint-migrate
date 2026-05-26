@@ -138,6 +138,7 @@ exports[`eslint-plugin-oxlint > eslint-plugin-oxlint 1`] = `
       "unicorn/escape-case": "error",
       "unicorn/explicit-length-check": "error",
       "unicorn/filename-case": "error",
+      "unicorn/import-style": "error",
       "unicorn/new-for-builtins": "error",
       "unicorn/no-abusive-eslint-disable": "error",
       "unicorn/no-accessor-recursion": "error",
@@ -256,7 +257,6 @@ exports[`eslint-plugin-oxlint > eslint-plugin-oxlint 1`] = `
     "js-plugins": [],
     "not-implemented": [
       "unicorn/expiring-todo-comments",
-      "unicorn/import-style",
       "unicorn/isolated-functions",
       "unicorn/no-unnecessary-polyfills",
       "unicorn/prefer-export-from",
@@ -420,6 +420,7 @@ exports[`eslint-plugin-oxlint --js-plugins > eslint-plugin-oxlint--js-plugins 1`
       "unicorn/escape-case": "error",
       "unicorn/explicit-length-check": "error",
       "unicorn/filename-case": "error",
+      "unicorn/import-style": "error",
       "unicorn/new-for-builtins": "error",
       "unicorn/no-abusive-eslint-disable": "error",
       "unicorn/no-accessor-recursion": "error",
@@ -538,7 +539,6 @@ exports[`eslint-plugin-oxlint --js-plugins > eslint-plugin-oxlint--js-plugins 1`
     "js-plugins": [],
     "not-implemented": [
       "unicorn/expiring-todo-comments",
-      "unicorn/import-style",
       "unicorn/isolated-functions",
       "unicorn/no-unnecessary-polyfills",
       "unicorn/prefer-export-from",
@@ -702,6 +702,7 @@ exports[`eslint-plugin-oxlint --type-aware > eslint-plugin-oxlint--type-aware 1`
       "unicorn/escape-case": "error",
       "unicorn/explicit-length-check": "error",
       "unicorn/filename-case": "error",
+      "unicorn/import-style": "error",
       "unicorn/new-for-builtins": "error",
       "unicorn/no-abusive-eslint-disable": "error",
       "unicorn/no-accessor-recursion": "error",
@@ -820,7 +821,6 @@ exports[`eslint-plugin-oxlint --type-aware > eslint-plugin-oxlint--type-aware 1`
     "js-plugins": [],
     "not-implemented": [
       "unicorn/expiring-todo-comments",
-      "unicorn/import-style",
       "unicorn/isolated-functions",
       "unicorn/no-unnecessary-polyfills",
       "unicorn/prefer-export-from",
@@ -926,6 +926,7 @@ exports[`eslint-plugin-oxlint merge > eslint-plugin-oxlint--merge 1`] = `
       "unicorn/escape-case": "error",
       "unicorn/explicit-length-check": "error",
       "unicorn/filename-case": "error",
+      "unicorn/import-style": "error",
       "unicorn/new-for-builtins": "error",
       "unicorn/no-abusive-eslint-disable": "error",
       "unicorn/no-accessor-recursion": "error",
@@ -1028,7 +1029,6 @@ exports[`eslint-plugin-oxlint merge > eslint-plugin-oxlint--merge 1`] = `
     "js-plugins": [],
     "not-implemented": [
       "unicorn/expiring-todo-comments",
-      "unicorn/import-style",
       "unicorn/isolated-functions",
       "unicorn/no-unnecessary-polyfills",
       "unicorn/prefer-export-from",
