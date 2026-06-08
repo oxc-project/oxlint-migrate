@@ -1141,6 +1141,7 @@ describe('rules and plugins', () => {
       },
       rules: {
         'no-await-in-loop': 'error',
+        // @ts-expect-error - the rule does not accept this configuration, but we want to test that it is preserved since it's custom
         'no-useless-call': ['error', 'some-config'],
         'unicorn/prefer-set-has': ['error'],
       },
