@@ -6,6 +6,7 @@ import path from 'node:path';
 import {
   getAutodetectedEslintConfigName,
   loadESLintConfig,
+  loadProjectGlobalsCatalog,
 } from './config-loader.js';
 import main from '../src/index.js';
 import packageJson from '../package.json' with { type: 'json' };
@@ -142,6 +143,11 @@ program
     const resetPreFix = await preFixForJsPlugins();
     const eslintConfigs = await loadESLintConfig(filePath);
     resetPreFix();
+    const globalsCatalog = loadProjectGlobalsCatalog(filePath);
+
+    if (globalsCatalog !== undefined) {
+      options.globalsCatalogs = [globalsCatalog];
+    }
 
     let config;
     if (options.merge && existsSync(oxlintFilePath)) {

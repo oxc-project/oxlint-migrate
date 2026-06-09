@@ -1,6 +1,8 @@
 import { existsSync } from 'node:fs';
+import { createRequire } from 'node:module';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
+import type { GlobalsCatalog } from '../src/types.js';
 
 // @link <https://github.com/eslint/eslint/blob/5fd211d00b6f0fc58cf587196a432325b7b88ec2/lib/config/config-loader.js#L40-L47>
 const FLAT_CONFIG_FILENAMES = [
@@ -48,4 +50,15 @@ export const loadESLintConfig = async (filePath: string): Promise<any> => {
   // See: https://nodejs.org/en/learn/typescript/run-natively
   // If the environment is not properly configured, the runtime will throw an error when trying to import the TypeScript file
   return import(url);
+};
+
+export const loadProjectGlobalsCatalog = (
+  eslintConfigPath: string
+): GlobalsCatalog | undefined => {
+  try {
+    const require = createRequire(eslintConfigPath);
+    return require('globals');
+  } catch {
+    return undefined;
+  }
 };
