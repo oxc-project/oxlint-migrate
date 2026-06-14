@@ -40,7 +40,7 @@
   "dependencies": {
     "commander": "^14.0.0",
     "globals": "^17.0.0",
-    "oxc-parser": "^0.134.0",
+    "oxc-parser": "^0.135.0",
     "tinyglobby": "^0.2.14"
   },
   "devDependencies": {
@@ -83,7 +83,7 @@
     "husky": "^9.1.7",
     "lint-staged": "^16.1.2",
     "next": "^16.0.0",
-    "oxfmt": "^0.53.0",
+    "oxfmt": "^0.54.0",
     "oxlint": "^1.69.0",
     "oxlint-tsgolint": "^0.23.0",
     "tsdown": "^0.22.0",
@@ -94,5 +94,5 @@
   "lint-staged": {
     "*": "oxfmt --no-error-on-unmatched-pattern"
   },
-  "packageManager": "pnpm@11.5.1"
+  "packageManager": "pnpm@11.5.3"
 }
