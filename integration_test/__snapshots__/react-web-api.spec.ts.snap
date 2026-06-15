@@ -106,6 +106,8 @@ exports[`react-web-api > react-web-api 1`] = `
   "skipped": {
     "js-plugins": [
       "react-web-api/no-leaked-event-listener",
+      "react-web-api/no-leaked-fetch",
+      "react-web-api/no-leaked-intersection-observer",
       "react-web-api/no-leaked-interval",
       "react-web-api/no-leaked-resize-observer",
       "react-web-api/no-leaked-timeout",
@@ -214,6 +216,8 @@ exports[`react-web-api --js-plugins > react-web-api--js-plugins 1`] = `
           "no-with": "error",
           "preserve-caught-error": "error",
           "react-web-api/no-leaked-event-listener": "error",
+          "react-web-api/no-leaked-fetch": "warn",
+          "react-web-api/no-leaked-intersection-observer": "warn",
           "react-web-api/no-leaked-interval": "warn",
           "react-web-api/no-leaked-resize-observer": "warn",
           "react-web-api/no-leaked-timeout": "warn",
@@ -372,6 +376,8 @@ exports[`react-web-api --type-aware > react-web-api--type-aware 1`] = `
   "skipped": {
     "js-plugins": [
       "react-web-api/no-leaked-event-listener",
+      "react-web-api/no-leaked-fetch",
+      "react-web-api/no-leaked-intersection-observer",
       "react-web-api/no-leaked-interval",
       "react-web-api/no-leaked-resize-observer",
       "react-web-api/no-leaked-timeout",
@@ -504,6 +510,8 @@ exports[`react-web-api merge > react-web-api--merge 1`] = `
   "skipped": {
     "js-plugins": [
       "react-web-api/no-leaked-event-listener",
+      "react-web-api/no-leaked-fetch",
+      "react-web-api/no-leaked-intersection-observer",
       "react-web-api/no-leaked-interval",
       "react-web-api/no-leaked-resize-observer",
       "react-web-api/no-leaked-timeout",
