@@ -25,8 +25,8 @@ importers:
         specifier: ^9.0.0
         version: 9.0.0(@eslint-react/eslint-plugin@5.9.0(eslint@10.5.0)(typescript@6.0.3))(@next/eslint-plugin-next@16.2.9)(@typescript-eslint/rule-tester@8.56.1(eslint@10.5.0)(typescript@6.0.3))(@typescript-eslint/typescript-estree@8.61.1(typescript@6.0.3))(@typescript-eslint/utils@8.61.1(eslint@10.5.0)(typescript@6.0.3))(@vue/compiler-sfc@3.5.24)(eslint-plugin-jsx-a11y@6.10.2(eslint@10.5.0))(eslint-plugin-react-refresh@0.5.3(eslint@10.5.0))(eslint@10.5.0)(oxlint@1.70.0(oxlint-tsgolint@0.23.0))(ts-declaration-location@1.0.7(typescript@6.0.3))(typescript@6.0.3)(vitest@4.1.9)
       '@babel/eslint-plugin':
-        specifier: ^7.27.1
-        version: 7.29.7(@babel/eslint-parser@7.28.6(@babel/core@7.29.0)(eslint@10.5.0))(eslint@10.5.0)
+        specifier: ^8.0.0
+        version: 8.0.1(@babel/core@7.29.0)(@babel/eslint-parser@7.28.6(@babel/core@7.29.0)(eslint@10.5.0))(eslint@10.5.0)
       '@e18e/eslint-plugin':
         specifier: ^0.5.0
         version: 0.5.1(eslint@10.5.0)(oxlint@1.70.0(oxlint-tsgolint@0.23.0))
@@ -127,8 +127,8 @@ importers:
         specifier: ^0.5.0
         version: 0.5.2(eslint@10.5.0)(typescript@6.0.3)
       eslint-plugin-unicorn:
-        specifier: ^65.0.0
-        version: 65.0.1(eslint@10.5.0)
+        specifier: ^67.0.0
+        version: 67.0.0(eslint@10.5.0)
       husky:
         specifier: ^9.1.7
         version: 9.1.7
@@ -245,12 +245,13 @@ packages:
       '@babel/core': ^7.11.0
       eslint: ^7.5.0 || ^8.0.0 || ^9.0.0
 
-  '@babel/eslint-plugin@7.29.7':
-    resolution: {integrity: sha512-9qag/N0IHYLNf0nCNvHctNGBpoY4Idr7JkPeYUf2p5J9UpvHpd+Xx6VGjHDhJKmueVBa4/cq6MPl3uxj6/8knw==}
-    engines: {node: ^10.13.0 || ^12.13.0 || >=14.0.0}
+  '@babel/eslint-plugin@8.0.1':
+    resolution: {integrity: sha512-nHigH34PJCSbkPeK4PEzfwfy6O8VWfeucP2ZP8nwf0QcKZBxcX+uD6Zp8uMxrvYvWXYmlhYwU+Ix5N5TMjq3qQ==}
+    engines: {node: ^22.18.0 || >=24.11.0}
     peerDependencies:
-      '@babel/eslint-parser': ^7.11.0
-      eslint: ^7.5.0 || ^8.0.0 || ^9.0.0
+      '@babel/core': ^8.0.0
+      '@babel/eslint-parser': ^8.0.1
+      eslint: ^9.0.0 || ^10.0.0
 
   '@babel/generator@7.29.7':
     resolution: {integrity: sha512-DkXD5OJQaAQIdZ1bt3UZdEnHAn9Imd3IVBdX03UFe+ony9Ojw5pzr9YVKGDY1jt+Gcn/FnGkNf8r+Vj5NOJWtQ==}
@@ -2863,11 +2864,11 @@ packages:
     peerDependencies:
       eslint: '>=9.38.0'
 
-  eslint-plugin-unicorn@65.0.1:
-    resolution: {integrity: sha512-daCrQrgxOoOz2uMPWB3Y3vvv/5q+ncwICI8IjoebiwtW87CaY4tAN5EEiRXTYVnf7qi1v1BGBdHOSnZLV0rx6A==}
-    engines: {node: ^20.10.0 || >=21.0.0}
+  eslint-plugin-unicorn@67.0.0:
+    resolution: {integrity: sha512-XEYhNfAFFFYQLq++53iqpgIPFqvjasf5lsUJuCdmd/QvbRfcLbmPTjcTyVEXc5yBudWIg08SSEGgqJtEojk1ug==}
+    engines: {node: '>=22'}
     peerDependencies:
-      eslint: '>=9.38.0'
+      eslint: '>=10.4'
 
   eslint-plugin-unused-imports@4.4.1:
     resolution: {integrity: sha512-oZGYUz1X3sRMGUB+0cZyK2VcvRX5lm/vB56PgNNcU+7ficUCKm66oZWKUubXWnOuPjQ8PvmXtCViXBMONPe7tQ==}
@@ -2903,10 +2904,6 @@ packages:
     peerDependencies:
       '@vue/compiler-sfc': ^3.3.0
       eslint: '>=9.0.0'
-
-  eslint-rule-composer@0.3.0:
-    resolution: {integrity: sha512-bt+Sh8CtDmn2OajxvNO+BX7Wn4CIWMpTRm3MaiKPCQcnnlm0CS2mhui6QaoeQugs+3Kj2ESKEEGJUdVafwhiCg==}
-    engines: {node: '>=4.0.0'}
 
   eslint-scope@5.1.1:
     resolution: {integrity: sha512-2NxwbF/hZ0KpepYN0cNbo+FN6XoK7GaHlQhgx/hIZl6Va0bF45RQOOwhLIy8lQDbuCiadSLCBnH2CFYquit5bw==}
@@ -3923,8 +3920,8 @@ packages:
     resolution: {integrity: sha512-dYqgNSZbDwkaJ2ceRd9ojCGjBq+mOm9LmtXnAnEGyHhN/5R7iDW2TRw3h+o/jCFxus3P2LfWIIiwowAjANm7IA==}
     engines: {node: '>= 0.4'}
 
-  regjsparser@0.13.0:
-    resolution: {integrity: sha512-NZQZdC5wOE/H3UT28fVGL+ikOZcEzfMGk/c3iN9UGxzWHMa1op7274oyiUVrAG4B2EuFhus8SvkaYnhvW92p9Q==}
+  regjsparser@0.13.2:
+    resolution: {integrity: sha512-NgRBy2Nx/bE+9F27nVHnqcN5HjyLmecqsqx2PJHu3/IEtADD4WuxuXIVExD5PoSDFVrl78dOonfcOe5O+5nbzQ==}
     hasBin: true
 
   require-from-string@2.0.2:
@@ -4618,11 +4615,11 @@ snapshots:
       eslint-visitor-keys: 2.1.0
       semver: 6.3.1
 
-  '@babel/eslint-plugin@7.29.7(@babel/eslint-parser@7.28.6(@babel/core@7.29.0)(eslint@10.5.0))(eslint@10.5.0)':
+  '@babel/eslint-plugin@8.0.1(@babel/core@7.29.0)(@babel/eslint-parser@7.28.6(@babel/core@7.29.0)(eslint@10.5.0))(eslint@10.5.0)':
     dependencies:
+      '@babel/core': 7.29.0
       '@babel/eslint-parser': 7.28.6(@babel/core@7.29.0)(eslint@10.5.0)
       eslint: 10.5.0
-      eslint-rule-composer: 0.3.0
 
   '@babel/generator@7.29.7':
     dependencies:
@@ -7139,14 +7136,15 @@ snapshots:
       jsesc: 3.1.0
       pluralize: 8.0.0
       regexp-tree: 0.1.27
-      regjsparser: 0.13.0
+      regjsparser: 0.13.2
       semver: 7.8.5
       strip-indent: 4.1.1
 
-  eslint-plugin-unicorn@65.0.1(eslint@10.5.0):
+  eslint-plugin-unicorn@67.0.0(eslint@10.5.0):
     dependencies:
       '@babel/helper-validator-identifier': 7.29.7
       '@eslint-community/eslint-utils': 4.9.1(eslint@10.5.0)
+      browserslist: 4.28.2
       change-case: 5.4.4
       ci-info: 4.4.0
       core-js-compat: 3.49.0
@@ -7158,7 +7156,7 @@ snapshots:
       is-builtin-module: 5.0.0
       jsesc: 3.1.0
       pluralize: 8.0.0
-      regjsparser: 0.13.0
+      regjsparser: 0.13.2
       semver: 7.8.5
       strip-indent: 4.1.1
 
@@ -7197,8 +7195,6 @@ snapshots:
     dependencies:
       '@vue/compiler-sfc': 3.5.24
       eslint: 10.5.0
-
-  eslint-rule-composer@0.3.0: {}
 
   eslint-scope@5.1.1:
     dependencies:
@@ -8469,7 +8465,7 @@ snapshots:
       gopd: 1.2.0
       set-function-name: 2.0.2
 
-  regjsparser@0.13.0:
+  regjsparser@0.13.2:
     dependencies:
       jsesc: 3.1.0
 
