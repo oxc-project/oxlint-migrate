@@ -100,8 +100,10 @@ export const transformBoolGlobalToString = (config: OxlintConfigOrOverride) => {
   }
 
   for (const [entry, value] of Object.entries(config.globals)) {
-    config.globals[entry] =
-      transformEslintGlobalAccessToOxlintGlobalValue(value);
+    if (typeof value === 'string') {
+      continue;
+    }
+    config.globals[entry] = value ? 'writable' : 'readonly';
   }
 };
 
