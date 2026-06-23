@@ -35,6 +35,48 @@ const getFileContent = (absoluteFilePath: string): string | undefined => {
 };
 
 /**
+ * Strips JSON comments (single-line `//` and multi-line) and trailing commas
+ * so that `tsconfig.json` (which is actually JSONC) can be parsed with `JSON.parse`.
+ */
+const stripJsoncFeatures = (text: string): string =>
+  text
+    // Remove single-line comments
+    .replace(/\/\/.*$/gm, '')
+    // Remove multi-line comments
+    .replace(/\/\*[\s\S]*?\*\//g, '')
+    // Remove trailing commas before } or ]
+    .replace(/,\s*([}\]])/g, '$1');
+
+/**
+ * When `--type-aware` is used, check whether the project's `tsconfig.json`
+ * contains a `baseUrl` value in `compilerOptions`. If it does, emit a warning
+ * because `tsgo` does not support `baseUrl`, which may cause issues with
+ * type-aware linting.
+ */
+const warnIfTsconfigHasBaseUrl = (reporter: DefaultReporter): void => {
+  const tsconfigPath = path.join(cwd, 'tsconfig.json');
+  const content = getFileContent(tsconfigPath);
+
+  if (content === undefined) {
+    return;
+  }
+
+  try {
+    const tsconfig = JSON.parse(stripJsoncFeatures(content));
+
+    if (tsconfig?.compilerOptions?.baseUrl !== undefined) {
+      reporter.addWarning(
+        `tsconfig.json has \`baseUrl\` set to ${JSON.stringify(tsconfig.compilerOptions.baseUrl)}. ` +
+          `\`baseUrl\` is not supported by tsgo, which may cause issues with type-aware linting. ` +
+          `Consider removing \`baseUrl\` or using path aliases instead.`
+      );
+    }
+  } catch {
+    // If tsconfig.json can't be parsed, silently ignore — it's not critical.
+  }
+};
+
+/**
  * Count enabled rules (excluding "off" rules) from both rules and overrides
  */
 const countEnabledRules = (config: OxlintConfig): number => {
@@ -115,6 +157,12 @@ program
       typeAware: !!cliOptions.typeAware,
       jsPlugins,
     };
+
+    // Warn if --type-aware is used and tsconfig.json has baseUrl set,
+    // since tsgo does not support baseUrl.
+    if (options.typeAware) {
+      warnIfTsconfigHasBaseUrl(reporter);
+    }
 
     if (cliOptions.replaceEslintComments) {
       await walkAndReplaceProjectFiles(
