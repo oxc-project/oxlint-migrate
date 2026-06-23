@@ -177,10 +177,13 @@ export type Reporter = {
   getSkippedRulesByCategory(): SkippedCategoryGroup;
 };
 
+export type GlobalsCatalog = Record<string, Record<string, boolean>>;
+
 export type Options = {
   reporter?: Reporter;
   merge?: boolean;
   withNursery?: boolean;
   typeAware?: boolean;
   jsPlugins?: boolean;
+  globalsCatalogs?: GlobalsCatalog[];
 };

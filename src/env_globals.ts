@@ -1,6 +1,7 @@
 import globals from 'globals';
 import type {
   ESLint,
+  GlobalsCatalog,
   Options,
   OxlintConfig,
   OxlintConfigGlobalsValue,
@@ -50,6 +51,11 @@ const OTHER_SUPPORTED_ENVS = [
 const SUPPORTED_ESLINT_PARSERS = ['typescript-eslint/parser'];
 const ROOT_GLOBALS_WARNING_THRESHOLD = 10;
 
+const getGlobalsCatalogs = (options?: Options): GlobalsCatalog[] => [
+  ...(options?.globalsCatalogs ?? []),
+  globals,
+];
+
 const normalizeGlobValue = (
   value: ESLint.GlobalAccess
 ): boolean | undefined => {
@@ -67,7 +73,8 @@ const normalizeGlobValue = (
 // In Eslint v9 there are no envs and all are build in with `globals` package
 // we look what environment is supported and remove all globals which fall under it
 export const removeGlobalsWithAreCoveredByEnv = (
-  config: OxlintConfigOrOverride
+  config: OxlintConfigOrOverride,
+  options?: Options
 ) => {
   if (
     config.globals === undefined ||
@@ -78,10 +85,13 @@ export const removeGlobalsWithAreCoveredByEnv = (
     return;
   }
 
-  for (const [env, entries] of Object.entries(globals)) {
-    if (config.env[env] === true) {
+  for (const globalsCatalog of getGlobalsCatalogs(options)) {
+    for (const [env, entries] of Object.entries(globalsCatalog)) {
+      if (config.env[env] !== true) {
+        continue;
+      }
+
       for (const entry of Object.keys(entries)) {
-        // @ts-expect-error -- filtering makes the key to any
         if (normalizeGlobValue(config.globals[entry]) === entries[entry]) {
           delete config.globals[entry];
         }
@@ -126,52 +136,57 @@ export const transformEslintGlobalAccessToOxlintGlobalValue = (
 // Environments we want to apply a threshold match for, because they're quite large.
 const THRESHOLD_ENVS = ['browser', 'node', 'serviceworker', 'worker'];
 
-export const detectEnvironmentByGlobals = (config: OxlintConfigOrOverride) => {
+export const detectEnvironmentByGlobals = (
+  config: OxlintConfigOrOverride,
+  options?: Options
+) => {
   if (config.globals === undefined || config.globals === null) {
     return;
   }
 
-  for (const [env, entries] of Object.entries(globals)) {
-    if (!env.startsWith('es') && !OTHER_SUPPORTED_ENVS.includes(env)) {
-      continue;
-    }
-
-    // skip unsupported oxlint EcmaScript versions
-    if (
-      env.startsWith('es') &&
-      !ES_VERSIONS.includes(parseInt(env.replace(/^es/, '')))
-    ) {
-      continue;
-    }
-
-    let search = Object.keys(entries);
-
-    let matches = search.filter(
-      (entry) =>
-        // @ts-expect-error -- we already checked for undefined
-        entry in config.globals &&
-        // @ts-expect-error -- filtering makes the key to any
-        normalizeGlobValue(config.globals[entry]) === entries[entry]
-    );
-
-    // For especially large globals, we allow a match if >=97% of keys match.
-    // This lets us handle version differences in globals package where
-    // there's a difference of just a few extra/removed keys.
-    // Do not do any other envs, otherwise things like es2024 and es2026
-    // would match each other.
-    const useThreshold = THRESHOLD_ENVS.includes(env);
-
-    const withinThreshold =
-      useThreshold && matches.length / search.length >= 0.97;
-
-    if (
-      withinThreshold ||
-      (!useThreshold && matches.length === search.length)
-    ) {
-      if (config.env === undefined || config.env === null) {
-        config.env = {};
+  for (const globalsCatalog of getGlobalsCatalogs(options)) {
+    for (const [env, entries] of Object.entries(globalsCatalog)) {
+      if (!env.startsWith('es') && !OTHER_SUPPORTED_ENVS.includes(env)) {
+        continue;
       }
-      config.env[env] = true;
+
+      // skip unsupported oxlint EcmaScript versions
+      if (
+        env.startsWith('es') &&
+        !ES_VERSIONS.includes(parseInt(env.replace(/^es/, '')))
+      ) {
+        continue;
+      }
+
+      let search = Object.keys(entries);
+
+      let matches = search.filter(
+        (entry) =>
+          // @ts-expect-error -- we already checked for undefined
+          entry in config.globals &&
+          // @ts-expect-error -- filtering makes the key to any
+          normalizeGlobValue(config.globals[entry]) === entries[entry]
+      );
+
+      // For especially large globals, we allow a match if >=97% of keys match.
+      // This lets us handle version differences in globals package where
+      // there's a difference of just a few extra/removed keys.
+      // Do not do any other envs, otherwise things like es2024 and es2026
+      // would match each other.
+      const useThreshold = THRESHOLD_ENVS.includes(env);
+
+      const withinThreshold =
+        useThreshold && matches.length / search.length >= 0.97;
+
+      if (
+        withinThreshold ||
+        (!useThreshold && matches.length === search.length)
+      ) {
+        if (config.env === undefined || config.env === null) {
+          config.env = {};
+        }
+        config.env[env] = true;
+      }
     }
   }
 };

@@ -1,6 +1,13 @@
 import { execFileSync } from 'node:child_process';
-import { mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import {
+  mkdirSync,
+  mkdtempSync,
+  readFileSync,
+  rmSync,
+  writeFileSync,
+} from 'node:fs';
 import path from 'node:path';
+import globals from 'globals';
 import { describe, expect, it } from 'vitest';
 
 const runMigrate = (args: string[]) => {
@@ -123,6 +130,58 @@ describe('oxlint-migrate CLI defaults', () => {
         'error',
         { ignorePartial: false },
       ]);
+    } finally {
+      rmSync(tempDir, { recursive: true, force: true });
+    }
+  });
+
+  it('uses the project globals package to collapse globals to env', () => {
+    const cwd = process.cwd();
+    const tempDir = mkdtempSync(path.join(cwd, '.tmp-oxlint-migrate-cli-'));
+    const configPath = path.join(tempDir, 'eslint.config.mjs');
+    const outputPath = path.join(tempDir, 'out.json');
+    const projectGlobalsPath = path.join(tempDir, 'node_modules/globals');
+    const browserEntries = Object.entries(globals.browser);
+    const browserGlobals = Object.fromEntries(
+      browserEntries.slice(0, Math.floor(browserEntries.length * 0.95))
+    );
+
+    try {
+      mkdirSync(projectGlobalsPath, { recursive: true });
+      writeFileSync(
+        path.join(projectGlobalsPath, 'package.json'),
+        JSON.stringify({ name: 'globals', version: '0.0.0', main: 'index.js' }),
+        'utf8'
+      );
+      writeFileSync(
+        path.join(projectGlobalsPath, 'index.js'),
+        `module.exports = ${JSON.stringify({ browser: browserGlobals })};\n`,
+        'utf8'
+      );
+      writeFileSync(
+        configPath,
+        `import globals from 'globals';
+
+export default {
+  languageOptions: {
+    globals: {
+      ...globals.browser,
+    },
+  },
+};
+`,
+        'utf8'
+      );
+
+      runMigrate([
+        path.relative(cwd, configPath),
+        '--output-file',
+        path.relative(cwd, outputPath),
+      ]);
+
+      const output = JSON.parse(readFileSync(outputPath, 'utf8'));
+      expect(output.env.browser).toBe(true);
+      expect(output.globals).toBeUndefined();
     } finally {
       rmSync(tempDir, { recursive: true, force: true });
     }
