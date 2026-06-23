@@ -4,6 +4,7 @@
     "github>Boshen/renovate",
     "helpers:pinGitHubActionDigestsToSemver"
   ],
+  "minimumReleaseAge": "1 day",
   "packageRules": [
     {
       "groupName": "npm packages",
