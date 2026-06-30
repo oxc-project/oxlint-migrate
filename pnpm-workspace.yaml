@@ -3,7 +3,10 @@ allowBuilds:
   sharp: true
   unrs-resolver: true
 minimumReleaseAgeExclude:
-  - '@oxlint/*'
   - oxlint
+  - '@oxlint/*'
   - oxfmt
+  - '@oxfmt/*'
+  - '@oxc-project/types'
+  - oxc-parser
   - '@oxc-parser/*'
