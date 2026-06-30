@@ -3,23 +3,10 @@ allowBuilds:
   sharp: true
   unrs-resolver: true
 minimumReleaseAgeExclude:
-  - '@oxlint/binding-android-arm-eabi'
-  - '@oxlint/binding-android-arm64'
-  - '@oxlint/binding-darwin-arm64'
-  - '@oxlint/binding-darwin-x64'
-  - '@oxlint/binding-freebsd-x64'
-  - '@oxlint/binding-linux-arm-gnueabihf'
-  - '@oxlint/binding-linux-arm-musleabihf'
-  - '@oxlint/binding-linux-arm64-gnu'
-  - '@oxlint/binding-linux-arm64-musl'
-  - '@oxlint/binding-linux-ppc64-gnu'
-  - '@oxlint/binding-linux-riscv64-gnu'
-  - '@oxlint/binding-linux-riscv64-musl'
-  - '@oxlint/binding-linux-s390x-gnu'
-  - '@oxlint/binding-linux-x64-gnu'
-  - '@oxlint/binding-linux-x64-musl'
-  - '@oxlint/binding-openharmony-arm64'
-  - '@oxlint/binding-win32-arm64-msvc'
-  - '@oxlint/binding-win32-ia32-msvc'
-  - '@oxlint/binding-win32-x64-msvc'
   - oxlint
+  - '@oxlint/*'
+  - oxfmt
+  - '@oxfmt/*'
+  - '@oxc-project/types'
+  - oxc-parser
+  - '@oxc-parser/*'
