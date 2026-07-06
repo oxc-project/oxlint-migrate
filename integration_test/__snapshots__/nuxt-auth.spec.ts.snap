@@ -870,7 +870,6 @@ exports[`nuxt-auth > nuxt-auth 1`] = `
     ],
     "not-implemented": [
       "no-restricted-syntax",
-      "no-unreachable-loop",
       "one-var",
       "node/no-deprecated-api",
       "node/prefer-global/buffer",
@@ -898,6 +897,7 @@ exports[`nuxt-auth > nuxt-auth 1`] = `
     ],
     "nursery": [
       "no-undef",
+      "no-unreachable-loop",
     ],
     "type-aware": [],
     "unsupported": [
@@ -2331,7 +2331,6 @@ exports[`nuxt-auth --js-plugins > nuxt-auth--js-plugins 1`] = `
     "js-plugins": [],
     "not-implemented": [
       "no-restricted-syntax",
-      "no-unreachable-loop",
       "one-var",
       "node/no-deprecated-api",
       "node/prefer-global/buffer",
@@ -2359,6 +2358,7 @@ exports[`nuxt-auth --js-plugins > nuxt-auth--js-plugins 1`] = `
     ],
     "nursery": [
       "no-undef",
+      "no-unreachable-loop",
     ],
     "type-aware": [],
     "unsupported": [
@@ -3350,7 +3350,6 @@ exports[`nuxt-auth --type-aware > nuxt-auth--type-aware 1`] = `
     ],
     "not-implemented": [
       "no-restricted-syntax",
-      "no-unreachable-loop",
       "one-var",
       "node/no-deprecated-api",
       "node/prefer-global/buffer",
@@ -3378,6 +3377,7 @@ exports[`nuxt-auth --type-aware > nuxt-auth--type-aware 1`] = `
     ],
     "nursery": [
       "no-undef",
+      "no-unreachable-loop",
     ],
     "type-aware": [],
     "unsupported": [
@@ -4357,7 +4357,6 @@ exports[`nuxt-auth merge > nuxt-auth--merge 1`] = `
     ],
     "not-implemented": [
       "no-restricted-syntax",
-      "no-unreachable-loop",
       "one-var",
       "node/no-deprecated-api",
       "node/prefer-global/buffer",
@@ -4385,6 +4384,7 @@ exports[`nuxt-auth merge > nuxt-auth--merge 1`] = `
     ],
     "nursery": [
       "no-undef",
+      "no-unreachable-loop",
     ],
     "type-aware": [],
     "unsupported": [
