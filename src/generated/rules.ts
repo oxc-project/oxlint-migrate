@@ -302,6 +302,7 @@ export const styleRules = [
   'unicorn/custom-error-definition',
   'unicorn/empty-brace-spaces',
   'unicorn/error-message',
+  'unicorn/explicit-timer-delay',
   'unicorn/filename-case',
   'unicorn/max-nested-calls',
   'unicorn/no-array-method-this-argument',
@@ -459,6 +460,7 @@ export const suspiciousRules = [
   'unicorn/no-array-fill-with-reference-type',
   'unicorn/no-array-reverse',
   'unicorn/no-array-sort',
+  'unicorn/no-confusing-array-with',
   'unicorn/no-instanceof-builtins',
   'unicorn/prefer-add-event-listener',
   'unicorn/require-module-specifiers',
@@ -839,6 +841,7 @@ export const perfRules = [
 export const nurseryRules = [
   'no-restricted-exports',
   'no-undef',
+  'no-unreachable-loop',
   'no-useless-assignment',
   'import/export',
   'import/named',
