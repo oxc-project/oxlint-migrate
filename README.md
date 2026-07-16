@@ -116,10 +116,10 @@ The JS Plugins API supports almost all ESLint v9+ plugins for linting JS/TS/JSX/
 
 For example, if you currently use `eslint-plugin-svelte`, only some of its rules will work via JS Plugin, as Oxlint does not yet fully support custom file formats like `.svelte`. This means that Oxlint will only be able to lint the script blocks in your `.svelte` files, and not the template blocks where many of the `eslint-plugin-svelte` rules apply.
 
-## ❤ Who's [Sponsoring Oxc](https://github.com/sponsors/Boshen)?
+# [Sponsored By](https://oxc.rs/sponsor)
 
 <p align="center">
-  <a href="https://github.com/sponsors/Boshen">
-    <img src="https://raw.githubusercontent.com/Boshen/sponsors/main/sponsors.svg" alt="Our sponsors" />
+  <a href="https://oxc.rs/sponsor">
+    <img src="https://raw.githubusercontent.com/oxc-project/sponsors/main/sponsors.svg" alt="Our sponsors" />
   </a>
 </p>
