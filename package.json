@@ -79,7 +79,7 @@
     "eslint-plugin-react-web-api": "^5.0.0",
     "eslint-plugin-regexp": "^3.0.0",
     "eslint-plugin-tsdoc": "^0.5.0",
-    "eslint-plugin-unicorn": "^67.0.0",
+    "eslint-plugin-unicorn": "^72.0.0",
     "husky": "^9.1.7",
     "lint-staged": "^17.0.0",
     "next": "^16.0.0",
@@ -87,7 +87,7 @@
     "oxlint": "^1.74.0",
     "oxlint-tsgolint": "^0.24.0",
     "tsdown": "^0.22.0",
-    "typescript": "^6.0.0",
+    "typescript": "^7.0.0",
     "typescript-eslint": "^8.35.0",
     "vitest": "^4.0.0"
   },
