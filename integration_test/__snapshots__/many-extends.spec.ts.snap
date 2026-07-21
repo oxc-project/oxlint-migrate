@@ -76,6 +76,12 @@ exports[`many-extends.spec.ts > many-extends.spec.ts 1`] = `
           "prefer-promise-reject-errors": "off",
           "prefer-rest-params": "error",
           "prefer-spread": "error",
+          "react/function-component-definition": [
+            "error",
+            {
+              "namedComponents": "arrow-function",
+            },
+          ],
           "require-await": "off",
           "typescript/adjacent-overload-signatures": "error",
           "typescript/array-type": "error",
@@ -252,7 +258,6 @@ exports[`many-extends.spec.ts > many-extends.spec.ts 1`] = `
       "jsdoc/ts-no-empty-object-type",
       "jsdoc/valid-types",
       "jsdoc/no-types",
-      "react/function-component-definition",
     ],
     "nursery": [
       "no-undef",
@@ -426,6 +431,12 @@ exports[`many-extends.spec.ts --js-plugins > many-extends.spec.ts--js-plugins 1`
           "prefer-promise-reject-errors": "off",
           "prefer-rest-params": "error",
           "prefer-spread": "error",
+          "react/function-component-definition": [
+            "error",
+            {
+              "namedComponents": "arrow-function",
+            },
+          ],
           "require-await": "off",
           "typescript/adjacent-overload-signatures": "error",
           "typescript/array-type": "error",
@@ -602,7 +613,6 @@ exports[`many-extends.spec.ts --js-plugins > many-extends.spec.ts--js-plugins 1`
       "jsdoc/ts-no-empty-object-type",
       "jsdoc/valid-types",
       "jsdoc/no-types",
-      "react/function-component-definition",
     ],
     "nursery": [
       "no-undef",
@@ -779,6 +789,12 @@ exports[`many-extends.spec.ts --type-aware > many-extends.spec.ts--type-aware 1`
           "prefer-promise-reject-errors": "off",
           "prefer-rest-params": "error",
           "prefer-spread": "error",
+          "react/function-component-definition": [
+            "error",
+            {
+              "namedComponents": "arrow-function",
+            },
+          ],
           "require-await": "off",
           "typescript/adjacent-overload-signatures": "error",
           "typescript/array-type": "error",
@@ -1023,7 +1039,6 @@ exports[`many-extends.spec.ts --type-aware > many-extends.spec.ts--type-aware 1`
       "jsdoc/ts-no-empty-object-type",
       "jsdoc/valid-types",
       "jsdoc/no-types",
-      "react/function-component-definition",
     ],
     "nursery": [
       "no-undef",
@@ -1151,6 +1166,12 @@ exports[`many-extends.spec.ts merge > many-extends.spec.ts--merge 1`] = `
           "prefer-promise-reject-errors": "off",
           "prefer-rest-params": "error",
           "prefer-spread": "error",
+          "react/function-component-definition": [
+            "error",
+            {
+              "namedComponents": "arrow-function",
+            },
+          ],
           "react/jsx-key": "error",
           "react/jsx-no-duplicate-props": "error",
           "react/jsx-no-undef": "error",
@@ -1277,7 +1298,6 @@ exports[`many-extends.spec.ts merge > many-extends.spec.ts--merge 1`] = `
       "jsdoc/ts-no-empty-object-type",
       "jsdoc/valid-types",
       "jsdoc/no-types",
-      "react/function-component-definition",
     ],
     "nursery": [
       "no-undef",
