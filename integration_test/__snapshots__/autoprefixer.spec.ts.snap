@@ -239,6 +239,12 @@ exports[`autoprefixer > autoprefixer 1`] = `
       "node/no-new-require": "error",
       "node/no-path-concat": "error",
       "object-shorthand": "error",
+      "one-var": [
+        "error",
+        {
+          "initialized": "never",
+        },
+      ],
       "prefer-arrow-callback": "error",
       "prefer-exponentiation-operator": "error",
       "prefer-promise-reject-errors": "error",
@@ -305,7 +311,6 @@ exports[`autoprefixer > autoprefixer 1`] = `
       "n/no-unsupported-features/es-syntax",
       "n/no-unsupported-features/node-builtins",
       "n/process-exit-as-throw",
-      "one-var",
     ],
     "nursery": [
       "import-x/export",
@@ -574,6 +579,12 @@ exports[`autoprefixer --js-plugins > autoprefixer--js-plugins 1`] = `
       "node/no-new-require": "error",
       "node/no-path-concat": "error",
       "object-shorthand": "error",
+      "one-var": [
+        "error",
+        {
+          "initialized": "never",
+        },
+      ],
       "perfectionist/sort-array-includes": [
         "warn",
         {
@@ -764,7 +775,6 @@ exports[`autoprefixer --js-plugins > autoprefixer--js-plugins 1`] = `
       "n/no-unsupported-features/es-syntax",
       "n/no-unsupported-features/node-builtins",
       "n/process-exit-as-throw",
-      "one-var",
     ],
     "nursery": [
       "import-x/export",
@@ -1033,6 +1043,12 @@ exports[`autoprefixer --type-aware > autoprefixer--type-aware 1`] = `
       "node/no-new-require": "error",
       "node/no-path-concat": "error",
       "object-shorthand": "error",
+      "one-var": [
+        "error",
+        {
+          "initialized": "never",
+        },
+      ],
       "prefer-arrow-callback": "error",
       "prefer-exponentiation-operator": "error",
       "prefer-promise-reject-errors": "error",
@@ -1105,7 +1121,6 @@ exports[`autoprefixer --type-aware > autoprefixer--type-aware 1`] = `
       "n/no-unsupported-features/es-syntax",
       "n/no-unsupported-features/node-builtins",
       "n/process-exit-as-throw",
-      "one-var",
     ],
     "nursery": [
       "import-x/export",
@@ -1325,6 +1340,12 @@ exports[`autoprefixer merge > autoprefixer--merge 1`] = `
       "node/no-new-require": "error",
       "node/no-path-concat": "error",
       "object-shorthand": "error",
+      "one-var": [
+        "error",
+        {
+          "initialized": "never",
+        },
+      ],
       "prefer-arrow-callback": "error",
       "prefer-exponentiation-operator": "error",
       "prefer-promise-reject-errors": "error",
@@ -1390,7 +1411,6 @@ exports[`autoprefixer merge > autoprefixer--merge 1`] = `
       "n/no-unsupported-features/es-syntax",
       "n/no-unsupported-features/node-builtins",
       "n/process-exit-as-throw",
-      "one-var",
     ],
     "nursery": [
       "import-x/export",

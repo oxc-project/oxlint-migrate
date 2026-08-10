@@ -627,6 +627,12 @@ exports[`nuxt-auth > nuxt-auth 1`] = `
           "ignoreConstructors": false,
         },
       ],
+      "one-var": [
+        "error",
+        {
+          "initialized": "never",
+        },
+      ],
       "prefer-arrow-callback": [
         "error",
         {
@@ -870,7 +876,6 @@ exports[`nuxt-auth > nuxt-auth 1`] = `
     ],
     "not-implemented": [
       "no-restricted-syntax",
-      "one-var",
       "node/no-deprecated-api",
       "node/prefer-global/buffer",
       "node/prefer-global/process",
@@ -2185,6 +2190,12 @@ exports[`nuxt-auth --js-plugins > nuxt-auth--js-plugins 1`] = `
           "ignoreConstructors": false,
         },
       ],
+      "one-var": [
+        "error",
+        {
+          "initialized": "never",
+        },
+      ],
       "perfectionist/sort-exports": [
         "error",
         {
@@ -2331,7 +2342,6 @@ exports[`nuxt-auth --js-plugins > nuxt-auth--js-plugins 1`] = `
     "js-plugins": [],
     "not-implemented": [
       "no-restricted-syntax",
-      "one-var",
       "node/no-deprecated-api",
       "node/prefer-global/buffer",
       "node/prefer-global/process",
@@ -3101,6 +3111,12 @@ exports[`nuxt-auth --type-aware > nuxt-auth--type-aware 1`] = `
           "ignoreConstructors": false,
         },
       ],
+      "one-var": [
+        "error",
+        {
+          "initialized": "never",
+        },
+      ],
       "prefer-arrow-callback": [
         "error",
         {
@@ -3350,7 +3366,6 @@ exports[`nuxt-auth --type-aware > nuxt-auth--type-aware 1`] = `
     ],
     "not-implemented": [
       "no-restricted-syntax",
-      "one-var",
       "node/no-deprecated-api",
       "node/prefer-global/buffer",
       "node/prefer-global/process",
@@ -4114,6 +4129,12 @@ exports[`nuxt-auth merge > nuxt-auth--merge 1`] = `
           "ignoreConstructors": false,
         },
       ],
+      "one-var": [
+        "error",
+        {
+          "initialized": "never",
+        },
+      ],
       "prefer-arrow-callback": [
         "error",
         {
@@ -4357,7 +4378,6 @@ exports[`nuxt-auth merge > nuxt-auth--merge 1`] = `
     ],
     "not-implemented": [
       "no-restricted-syntax",
-      "one-var",
       "node/no-deprecated-api",
       "node/prefer-global/buffer",
       "node/prefer-global/process",
