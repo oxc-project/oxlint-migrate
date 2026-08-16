@@ -73,7 +73,7 @@ Not all `settings` options are supported by oxlint, and so rule behavior in cert
 
 **Local ESLint Plugins imported via path are not migrated**
 
-JS plugin migration cannot migrate ESLint plugins from file paths in the same repo currently (e.g. if you have `../eslint-plugin-myplugin` in your `eslint.config.mjs`). You will need to copy them over into the `jsPlugins` manually. See [the JS Plugins docs]() for more info.
+JS plugin migration cannot migrate ESLint plugins from file paths in the same repo currently (e.g. if you have `../eslint-plugin-myplugin` in your `eslint.config.mjs`). You will need to copy them over into the `jsPlugins` manually. See [the JS Plugins docs](<>) for more info.
 
 **`globals` field with large number of values**
 
