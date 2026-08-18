@@ -103,11 +103,11 @@ describe('formatCategorySummary', () => {
     const result = formatCategorySummary(
       1,
       'unsupported',
-      ['react-hooks/immutability'],
+      ['react-hooks/gating'],
       true
     );
 
-    expect(result).toContain('react-hooks/immutability: ');
+    expect(result).toContain('react-hooks/gating: ');
     expect(result).toContain('React Compiler');
   });
 
