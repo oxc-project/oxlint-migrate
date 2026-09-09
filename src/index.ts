@@ -45,8 +45,8 @@ const buildConfig = (
     // when upgrading and no configuration is found, we use the default configuration from oxlint
     if (options?.merge) {
       oxlintConfig = {
-        // disable all plugins and check later
-        plugins: ['oxc', 'typescript', 'unicorn', 'react'],
+        // use Oxlint's default plugins and check later
+        plugins: ['oxc', 'typescript', 'unicorn'],
         categories: {
           correctness: 'warn',
         },
