@@ -148,16 +148,16 @@ const buildConfig = (
     // clean up overrides
     if ('files' in targetConfig) {
       detectNeededRulesPlugins(targetConfig);
-      detectEnvironmentByGlobals(targetConfig);
-      cleanUpOxlintConfig(targetConfig);
+      detectEnvironmentByGlobals(targetConfig, options);
+      cleanUpOxlintConfig(targetConfig, options);
     }
   }
 
   oxlintConfig.overrides = overrides;
 
   detectNeededRulesPlugins(oxlintConfig);
-  detectEnvironmentByGlobals(oxlintConfig);
-  cleanUpOxlintConfig(oxlintConfig);
+  detectEnvironmentByGlobals(oxlintConfig, options);
+  cleanUpOxlintConfig(oxlintConfig, options);
   warnAboutLargeRootGlobals(configs, oxlintConfig, options);
 
   // If the --type-aware flag is used and the output config contains any
