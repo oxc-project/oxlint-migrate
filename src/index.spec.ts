@@ -27,6 +27,34 @@ describe('main', () => {
     });
   });
 
+  test('merge without an existing Oxlint config uses the default plugins', async () => {
+    const result = await main(
+      [
+        {
+          rules: {
+            'no-unused-vars': 'error',
+          },
+        },
+      ],
+      undefined,
+      { merge: true }
+    );
+
+    expect(result).toStrictEqual({
+      $schema: './node_modules/oxlint/configuration_schema.json',
+      categories: {
+        correctness: 'warn',
+      },
+      env: {
+        builtin: true,
+      },
+      plugins: ['oxc', 'typescript', 'unicorn'],
+      rules: {
+        'no-unused-vars': 'error',
+      },
+    });
+  });
+
   test('2 basic configs', async () => {
     const result = await main([
       {
