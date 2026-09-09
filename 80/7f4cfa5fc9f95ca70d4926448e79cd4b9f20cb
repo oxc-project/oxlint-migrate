@@ -1,0 +1,9 @@
+src/env_globals.ts
+  8ea8462f0dd40373 63
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "807f4cfa5fc9f95ca70d4926448e79cd4b9f20cb",
+  "prompts": {}
+}
