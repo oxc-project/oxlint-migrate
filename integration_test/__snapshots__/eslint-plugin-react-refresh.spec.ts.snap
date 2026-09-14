@@ -93,6 +93,147 @@ exports[`eslint-plugin-react-refresh --type-aware > eslint-plugin-react-refresh-
 }
 `;
 
+exports[`eslint-plugin-react-refresh Vite > eslint-plugin-react-refresh Vite 1`] = `
+{
+  "config": {
+    "$schema": "./node_modules/oxlint/configuration_schema.json",
+    "categories": {
+      "correctness": "off",
+    },
+    "env": {
+      "builtin": true,
+    },
+    "plugins": [
+      "react",
+    ],
+    "rules": {
+      "react/only-export-components": [
+        "error",
+        {
+          "allowConstantExport": true,
+        },
+      ],
+    },
+  },
+  "skipped": {
+    "js-plugins": [],
+    "not-implemented": [],
+    "nursery": [],
+    "type-aware": [],
+    "unsupported": [],
+  },
+  "warnings": [
+    "Removed unsupported option \`allowCompoundComponents\` from \`react/only-export-components\`. Compound component exports may now report lint errors.",
+  ],
+}
+`;
+
+exports[`eslint-plugin-react-refresh Vite --js-plugins > eslint-plugin-react-refresh Vite--js-plugins 1`] = `
+{
+  "config": {
+    "$schema": "./node_modules/oxlint/configuration_schema.json",
+    "categories": {
+      "correctness": "off",
+    },
+    "env": {
+      "builtin": true,
+    },
+    "plugins": [
+      "react",
+    ],
+    "rules": {
+      "react/only-export-components": [
+        "error",
+        {
+          "allowConstantExport": true,
+        },
+      ],
+    },
+  },
+  "skipped": {
+    "js-plugins": [],
+    "not-implemented": [],
+    "nursery": [],
+    "type-aware": [],
+    "unsupported": [],
+  },
+  "warnings": [
+    "Removed unsupported option \`allowCompoundComponents\` from \`react/only-export-components\`. Compound component exports may now report lint errors.",
+  ],
+}
+`;
+
+exports[`eslint-plugin-react-refresh Vite --type-aware > eslint-plugin-react-refresh Vite--type-aware 1`] = `
+{
+  "config": {
+    "$schema": "./node_modules/oxlint/configuration_schema.json",
+    "categories": {
+      "correctness": "off",
+    },
+    "env": {
+      "builtin": true,
+    },
+    "plugins": [
+      "react",
+    ],
+    "rules": {
+      "react/only-export-components": [
+        "error",
+        {
+          "allowConstantExport": true,
+        },
+      ],
+    },
+  },
+  "skipped": {
+    "js-plugins": [],
+    "not-implemented": [],
+    "nursery": [],
+    "type-aware": [],
+    "unsupported": [],
+  },
+  "warnings": [
+    "Removed unsupported option \`allowCompoundComponents\` from \`react/only-export-components\`. Compound component exports may now report lint errors.",
+  ],
+}
+`;
+
+exports[`eslint-plugin-react-refresh Vite merge > eslint-plugin-react-refresh Vite--merge 1`] = `
+{
+  "config": {
+    "$schema": "./node_modules/oxlint/configuration_schema.json",
+    "categories": {
+      "correctness": "error",
+      "perf": "error",
+    },
+    "env": {
+      "builtin": true,
+    },
+    "plugins": [
+      "react",
+    ],
+    "rules": {
+      "react/only-export-components": [
+        "error",
+        {
+          "allowConstantExport": true,
+        },
+      ],
+    },
+  },
+  "skipped": {
+    "js-plugins": [],
+    "not-implemented": [],
+    "nursery": [],
+    "type-aware": [],
+    "unsupported": [],
+  },
+  "warnings": [
+    "Removed unsupported option \`allowCompoundComponents\` from \`react/only-export-components\`. Compound component exports may now report lint errors.",
+  ],
+}
+`;
+
 exports[`eslint-plugin-react-refresh merge > eslint-plugin-react-refresh--merge 1`] = `
 {
   "config": {

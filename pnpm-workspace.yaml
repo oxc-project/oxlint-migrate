@@ -10,3 +10,5 @@ minimumReleaseAgeExclude:
   - '@oxc-project/types'
   - oxc-parser
   - '@oxc-parser/*'
+  # Exercise the Vite preset regression introduced in this release.
+  - eslint-plugin-react-refresh@0.5.7

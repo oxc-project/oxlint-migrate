@@ -95,6 +95,38 @@ const normalizeSeverityValue = (
   return undefined;
 };
 
+const removeUnsupportedReactRefreshOption = (
+  rule: string,
+  config: OxlintConfigRuleSeverity,
+  options?: Options
+): OxlintConfigRuleSeverity => {
+  if (rule !== 'react/only-export-components' || !Array.isArray(config)) {
+    return config;
+  }
+
+  const ruleOptions = config[1];
+  if (
+    !ruleOptions ||
+    typeof ruleOptions !== 'object' ||
+    Array.isArray(ruleOptions) ||
+    !('allowCompoundComponents' in ruleOptions)
+  ) {
+    return config;
+  }
+
+  // eslint-plugin-react-refresh 0.5.7 enables this option in its Vite preset.
+  // Remove this workaround when Oxlint supports the option natively.
+  const supportedOptions = { ...ruleOptions };
+  delete supportedOptions.allowCompoundComponents;
+  if (isActiveValue(config)) {
+    options?.reporter?.addWarning(
+      'Removed unsupported option `allowCompoundComponents` from `react/only-export-components`. ' +
+        'Compound component exports may now report lint errors.'
+    );
+  }
+  return [config[0], supportedOptions, ...config.slice(2)];
+};
+
 // Collect every rule-name form the rule may be stored under after override
 // cleanup. `cleanUpOxlintConfig` rewrites override rule names via
 // `replaceTypescriptAliasRules` (strips `@typescript-eslint/` for rules that
@@ -276,12 +308,18 @@ export const transformRuleEntry = (
         continue;
       }
 
+      // Existing Oxlint rules take precedence when merging.
+      if (options?.merge && rule in targetConfig.rules) {
+        continue;
+      }
+      const supportedConfig = removeUnsupportedReactRefreshOption(
+        canonicalRule,
+        normalizedConfig,
+        options
+      );
+
       if (options?.merge) {
-        // when merge, only override if not exists
-        // for non merge override it because eslint/typescript rules
-        if (!(rule in targetConfig.rules)) {
-          targetConfig.rules[rule] = normalizedConfig;
-        }
+        targetConfig.rules[rule] = supportedConfig;
       } else {
         // Merge the new config with the existing one to preserve options
         // For file overrides, also check the base config for existing rules
@@ -291,7 +329,7 @@ export const transformRuleEntry = (
             : baseConfig?.rules?.[rule];
         targetConfig.rules[rule] = mergeRuleConfig(
           existingConfig,
-          normalizedConfig
+          supportedConfig
         )!; // TODO: check for undefined
       }
     } else {
