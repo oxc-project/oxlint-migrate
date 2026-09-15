@@ -1,6 +1,8 @@
+import type { ExternalPluginEntry } from 'oxlint';
 import { rulesPrefixesForPlugins } from './constants.js';
 import type {
   ESLint,
+  JsPluginSpecifiers,
   OxlintConfigOrOverride,
   OxlintConfigRuleSeverity,
 } from './types.js';
@@ -129,7 +131,7 @@ const resolveFromMetaName = (metaName: string): string => {
  *   `@stylistic/eslint-plugin`       -> `@stylistic`
  *   `@stylistic/eslint-plugin-ts`    -> `@stylistic/ts`
  */
-const deriveRulePrefix = (packageName: string): string => {
+export const deriveRulePrefix = (packageName: string): string => {
   if (packageName.startsWith('@')) {
     const slashIdx = packageName.indexOf('/');
     const scope = packageName.substring(0, slashIdx);
@@ -149,37 +151,138 @@ const deriveRulePrefix = (packageName: string): string => {
 };
 
 /**
- * Resolves the canonical rule name for a jsPlugin rule.
+ * Plugin namespaces oxlint implements natively in Rust. oxlint rejects a
+ * `jsPlugins` entry that claims one of them.
  *
- * When a plugin is registered under an alias (e.g. `@eslint-react/dom`) but
- * its `meta.name` reveals a different canonical package (`eslint-plugin-react-dom`),
- * the rule must be rewritten so that oxlint can match it to the loaded plugin.
+ * @link https://oxc.rs/docs/guide/usage/linter/js-plugins.html
+ */
+const RESERVED_JS_PLUGIN_NAMESPACES = new Set([
+  'eslint',
+  'import',
+  'jest',
+  'jsdoc',
+  'jsx-a11y',
+  'nextjs',
+  'node',
+  'oxc',
+  'promise',
+  'react',
+  'react-perf',
+  'typescript',
+  'unicorn',
+  'vitest',
+  'vue',
+]);
+
+/**
+ * Makes a namespace usable for a JS plugin, following the `import` / `import-js`
+ * convention from the oxlint docs when it collides with a native Rust plugin.
+ */
+const asJsPluginNamespace = (namespace: string): string =>
+  RESERVED_JS_PLUGIN_NAMESPACES.has(namespace) ? `${namespace}-js` : namespace;
+
+/**
+ * The npm package name a plugin reports for itself, if any.
  *
- * For example:
+ * `meta.name` is the flat-config convention; plugins that predate it sometimes
+ * expose the package name on the plugin root instead. Only accept the latter when
+ * it actually looks like a plugin package, so an unrelated `name` property (an
+ * ESLint config object nested under `plugins`, say) is not mistaken for one.
+ */
+const getPluginMetaName = (plugin?: ESLint.Plugin): string | undefined =>
+  plugin?.meta?.name ??
+  (plugin?.name?.includes('eslint-plugin') ? plugin.name : undefined);
+
+/**
+ * The namespace oxlint will address a plugin's rules under.
+ *
+ * When the plugin's import specifier is known we emit an object entry carrying an
+ * explicit `name`, which lets us keep the alias the ESLint config used verbatim so
+ * that no rule has to be renamed. Without a specifier the entry is a bare string
+ * and oxlint derives the namespace itself, from `meta.namespace` and then
+ * `meta.name`, so the rules have to follow that derivation instead.
+ *
+ * This is the single source of truth for the prefix: both the `jsPlugins` entry and
+ * the migrated rule names are built from it, so they cannot drift apart.
+ */
+const resolveJsPluginNamespace = (
+  pluginName: string,
+  plugin: ESLint.Plugin | undefined,
+  specifiers?: JsPluginSpecifiers
+): string => {
+  if (plugin !== undefined && specifiers?.get(plugin) !== undefined) {
+    return asJsPluginNamespace(pluginName);
+  }
+
+  if (plugin?.meta?.namespace) {
+    return plugin.meta.namespace;
+  }
+
+  const metaName = getPluginMetaName(plugin);
+  if (metaName !== undefined && metaName.includes('eslint-plugin')) {
+    return deriveRulePrefix(metaName);
+  }
+
+  return pluginName;
+};
+
+/** Identity of a `jsPlugins` entry, used to de-duplicate the list. */
+const jsPluginKey = (entry: ExternalPluginEntry): string =>
+  typeof entry === 'string' ? entry : `${entry.name}\u0000${entry.specifier}`;
+
+/**
+ * Unions `jsPlugins` lists, de-duplicating entries.
+ *
+ * Object entries are compared by value; a plain `Set` would keep duplicates of them
+ * because every entry is a fresh object.
+ */
+export const mergeJsPlugins = (
+  ...lists: (ExternalPluginEntry[] | null | undefined)[]
+): ExternalPluginEntry[] => {
+  const byKey = new Map<string, ExternalPluginEntry>();
+  for (const list of lists) {
+    for (const entry of list ?? []) {
+      const key = jsPluginKey(entry);
+      if (!byKey.has(key)) {
+        byKey.set(key, entry);
+      }
+    }
+  }
+  return [...byKey.values()];
+};
+
+/**
+ * Resolves the rule name oxlint will know a jsPlugin rule under.
+ *
+ * When the plugin's specifier is known the ESLint alias is kept and the rule is
+ * returned unchanged. Otherwise the entry is a bare package name and oxlint derives
+ * the namespace from the plugin, so an aliased plugin (e.g. `@eslint-react/dom`
+ * whose `meta.name` is `eslint-plugin-react-dom`) needs its rules rewritten to
+ * match:
  *   `@eslint-react/dom/no-find-dom-node` -> `react-dom/no-find-dom-node`
  */
 export const resolveJsPluginRuleName = (
   rule: string,
-  plugins?: Record<string, ESLint.Plugin> | null
+  plugins?: Record<string, ESLint.Plugin> | null,
+  specifiers?: JsPluginSpecifiers
 ): string => {
   const pluginName = extractPluginId(rule);
   if (pluginName === undefined) {
     return rule;
   }
 
-  const metaName = plugins?.[pluginName]?.meta?.name;
-  if (!metaName || !metaName.includes('eslint-plugin')) {
+  const namespace = resolveJsPluginNamespace(
+    pluginName,
+    plugins?.[pluginName],
+    specifiers
+  );
+  if (namespace === pluginName) {
     return rule;
   }
 
-  const canonicalPrefix = deriveRulePrefix(metaName);
-  if (canonicalPrefix === pluginName) {
-    return rule;
-  }
-
-  // Replace the alias prefix with the canonical prefix
+  // Replace the alias prefix with the namespace oxlint will use
   const ruleSuffix = rule.substring(pluginName.length + 1); // +1 for the '/'
-  return `${canonicalPrefix}/${ruleSuffix}`;
+  return `${namespace}/${ruleSuffix}`;
 };
 
 // Enables the given rule in the target configuration, ensuring that the
@@ -190,7 +293,8 @@ export const enableJsPluginRule = (
   targetConfig: OxlintConfigOrOverride,
   rule: string,
   ruleEntry: OxlintConfigRuleSeverity | undefined,
-  plugins?: Record<string, ESLint.Plugin> | null
+  plugins?: Record<string, ESLint.Plugin> | null,
+  specifiers?: JsPluginSpecifiers
 ): boolean => {
   const pluginName = extractPluginId(rule);
 
@@ -202,22 +306,37 @@ export const enableJsPluginRule = (
     return false;
   }
 
-  if (targetConfig.jsPlugins === undefined || targetConfig.jsPlugins === null) {
-    targetConfig.jsPlugins = [];
+  targetConfig.jsPlugins ??= [];
+
+  const plugin = plugins?.[pluginName];
+  const specifier = plugin === undefined ? undefined : specifiers?.get(plugin);
+
+  let entry: ExternalPluginEntry;
+  if (specifier === undefined) {
+    // Nothing tells us where the plugin was imported from, so guess the npm
+    // package name and let oxlint derive the namespace from the package itself.
+    const metaName = getPluginMetaName(plugin);
+    entry = metaName
+      ? resolveFromMetaName(metaName)
+      : resolveEslintPluginName(pluginName);
+  } else {
+    // The specifier is known, so the plugin can be registered under the very
+    // alias the ESLint config used and its rules can stay as they are.
+    entry = {
+      name: resolveJsPluginNamespace(pluginName, plugin, specifiers),
+      specifier,
+    };
   }
 
-  // Prefer the plugin's own meta.name when available; fall back to heuristic.
-  const metaName = plugins?.[pluginName]?.meta?.name;
-  const eslintPluginName = metaName
-    ? resolveFromMetaName(metaName)
-    : resolveEslintPluginName(pluginName);
-
-  if (!targetConfig.jsPlugins.includes(eslintPluginName)) {
-    targetConfig.jsPlugins.push(eslintPluginName);
+  const key = jsPluginKey(entry);
+  if (
+    !targetConfig.jsPlugins.some((existing) => jsPluginKey(existing) === key)
+  ) {
+    targetConfig.jsPlugins.push(entry);
   }
 
   // Rewrite the rule name if the plugin is registered under an alias.
-  const resolvedRule = resolveJsPluginRuleName(rule, plugins);
+  const resolvedRule = resolveJsPluginRuleName(rule, plugins, specifiers);
 
   targetConfig.rules = targetConfig.rules ?? {};
   targetConfig.rules[resolvedRule] = ruleEntry!; // TODO: handle undefined ruleEntry if needed
@@ -274,10 +393,14 @@ export const cleanUpUnusedJsPlugins = (
 
   const ruleNames = Object.keys(config.rules ?? {});
 
-  config.jsPlugins = config.jsPlugins.filter((entry) => {
-    const packageName = typeof entry === 'string' ? entry : entry.specifier;
-    return hasRulesForPlugin(ruleNames, packageName);
-  });
+  config.jsPlugins = config.jsPlugins.filter((entry) =>
+    // An object entry states its namespace, so the match is exact. A string entry
+    // only carries the package name and oxlint derives the namespace from the
+    // plugin itself, which we cannot see here, hence the heuristic.
+    typeof entry === 'string'
+      ? hasRulesForPlugin(ruleNames, entry)
+      : ruleNames.some((rule) => rule.startsWith(`${entry.name}/`))
+  );
 
   if (config.jsPlugins.length === 0) {
     delete config.jsPlugins;
