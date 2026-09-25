@@ -32,7 +32,7 @@ When no config file is provided, the script searches for the default ESLint conf
 Else we need to disable each rule `plugin/categories` combination, which is not covered by your ESLint configuration.
 This behavior can change in the future.
 
-\*\* WARNING: Tries to guess the plugin name. Should work fine with most plugin names, but is not perfect.
+\*\* WARNING: The import specifier of each plugin is taken from the ESLint config where possible. When a plugin cannot be traced back to a module, the package name is guessed from the rule prefix, which should work fine with most plugin names but is not perfect.
 Not every ESLint API is integrated with `oxlint`.
 Tested ESLint Plugins with `oxlint` can be found in this [Oxc Discussion](https://github.com/oxc-project/oxc/discussions/14862). See the caveats section for more details.
 
@@ -71,9 +71,11 @@ Note: Oxlint does not support `settings` in override configs. If your ESLint con
 
 Not all `settings` options are supported by oxlint, and so rule behavior in certain edge-cases may differ. See [the Settings docs](https://oxc.rs/docs/guide/usage/linter/config-file-reference.html#settings) for more info.
 
-**Local ESLint Plugins imported via path are not migrated**
+**ESLint Plugins built inside the config file are not migrated**
 
-JS plugin migration cannot migrate ESLint plugins from file paths in the same repo currently (e.g. if you have `../eslint-plugin-myplugin` in your `eslint.config.mjs`). You will need to copy them over into the `jsPlugins` manually. See [the JS Plugins docs](<>) for more info.
+Plugins that are imported, whether from a package or from a file path in the same repo, are migrated with the path or package name they were imported from, rewritten to be relative to the generated `.oxlintrc.json`.
+
+A plugin that has no module to point at cannot be migrated: one written inline in `eslint.config.mjs`, or built by spreading another plugin. The rules are still migrated, but you will need to move the plugin into its own file and fix up its `jsPlugins` entry by hand. See [the JS Plugins docs](https://oxc.rs/docs/guide/usage/linter/js-plugins.html) for more info.
 
 **`globals` field with large number of values**
 
