@@ -269,6 +269,7 @@ exports[`many-extends.spec.ts > many-extends.spec.ts 1`] = `
       "jsdoc/tag-lines",
       "jsdoc/ts-no-empty-object-type",
       "jsdoc/valid-types",
+      "@typescript-eslint/no-generated-empty-object-type",
       "jsdoc/no-types",
     ],
     "nursery": [
@@ -624,6 +625,7 @@ exports[`many-extends.spec.ts --js-plugins > many-extends.spec.ts--js-plugins 1`
       "jsdoc/tag-lines",
       "jsdoc/ts-no-empty-object-type",
       "jsdoc/valid-types",
+      "@typescript-eslint/no-generated-empty-object-type",
       "jsdoc/no-types",
     ],
     "nursery": [
@@ -1050,6 +1052,7 @@ exports[`many-extends.spec.ts --type-aware > many-extends.spec.ts--type-aware 1`
       "jsdoc/tag-lines",
       "jsdoc/ts-no-empty-object-type",
       "jsdoc/valid-types",
+      "@typescript-eslint/no-generated-empty-object-type",
       "jsdoc/no-types",
     ],
     "nursery": [
@@ -1309,6 +1312,7 @@ exports[`many-extends.spec.ts merge > many-extends.spec.ts--merge 1`] = `
       "jsdoc/tag-lines",
       "jsdoc/ts-no-empty-object-type",
       "jsdoc/valid-types",
+      "@typescript-eslint/no-generated-empty-object-type",
       "jsdoc/no-types",
     ],
     "nursery": [

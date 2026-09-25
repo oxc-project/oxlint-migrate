@@ -92,6 +92,7 @@ exports[`eslint-react > eslint-react 1`] = `
           "react/only-export-components": [
             "error",
             {
+              "allowCompoundComponents": true,
               "allowConstantExport": true,
             },
           ],
@@ -360,6 +361,7 @@ exports[`eslint-react --js-plugins > eslint-react--js-plugins 1`] = `
           "react/only-export-components": [
             "error",
             {
+              "allowCompoundComponents": true,
               "allowConstantExport": true,
             },
           ],
@@ -494,6 +496,7 @@ exports[`eslint-react --type-aware > eslint-react--type-aware 1`] = `
           "react/only-export-components": [
             "error",
             {
+              "allowCompoundComponents": true,
               "allowConstantExport": true,
             },
           ],
@@ -695,6 +698,7 @@ exports[`eslint-react merge > eslint-react--merge 1`] = `
           "react/only-export-components": [
             "error",
             {
+              "allowCompoundComponents": true,
               "allowConstantExport": true,
             },
           ],

@@ -87,7 +87,9 @@ exports[`typescript-simple > typescript-simple 1`] = `
   },
   "skipped": {
     "js-plugins": [],
-    "not-implemented": [],
+    "not-implemented": [
+      "@typescript-eslint/no-generated-empty-object-type",
+    ],
     "nursery": [
       "@typescript-eslint/no-unnecessary-condition",
     ],
@@ -225,7 +227,9 @@ exports[`typescript-simple --js-plugins > typescript-simple--js-plugins 1`] = `
   },
   "skipped": {
     "js-plugins": [],
-    "not-implemented": [],
+    "not-implemented": [
+      "@typescript-eslint/no-generated-empty-object-type",
+    ],
     "nursery": [
       "@typescript-eslint/no-unnecessary-condition",
     ],
@@ -427,7 +431,9 @@ exports[`typescript-simple --type-aware > typescript-simple--type-aware 1`] = `
   },
   "skipped": {
     "js-plugins": [],
-    "not-implemented": [],
+    "not-implemented": [
+      "@typescript-eslint/no-generated-empty-object-type",
+    ],
     "nursery": [
       "@typescript-eslint/no-unnecessary-condition",
     ],
@@ -524,7 +530,9 @@ exports[`typescript-simple merge > typescript-simple--merge 1`] = `
   },
   "skipped": {
     "js-plugins": [],
-    "not-implemented": [],
+    "not-implemented": [
+      "@typescript-eslint/no-generated-empty-object-type",
+    ],
     "nursery": [
       "@typescript-eslint/no-unnecessary-condition",
     ],
