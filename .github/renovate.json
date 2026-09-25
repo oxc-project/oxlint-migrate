@@ -9,7 +9,7 @@
     {
       "groupName": "npm packages",
       "matchManagers": ["npm"],
-      "ignoreDeps": ["oxlint"]
+      "ignoreDeps": ["oxlint", "typescript"]
     },
     {
       "groupName": "oxlint",
