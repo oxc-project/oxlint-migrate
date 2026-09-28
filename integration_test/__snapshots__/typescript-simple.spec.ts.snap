@@ -87,9 +87,7 @@ exports[`typescript-simple > typescript-simple 1`] = `
   },
   "skipped": {
     "js-plugins": [],
-    "not-implemented": [
-      "@typescript-eslint/no-generated-empty-object-type",
-    ],
+    "not-implemented": [],
     "nursery": [
       "@typescript-eslint/no-unnecessary-condition",
     ],
@@ -102,6 +100,7 @@ exports[`typescript-simple > typescript-simple 1`] = `
       "@typescript-eslint/no-duplicate-type-constituents",
       "@typescript-eslint/no-floating-promises",
       "@typescript-eslint/no-for-in-array",
+      "@typescript-eslint/no-generated-empty-object-type",
       "@typescript-eslint/no-implied-eval",
       "@typescript-eslint/no-meaningless-void-operator",
       "@typescript-eslint/no-misused-promises",
@@ -227,9 +226,7 @@ exports[`typescript-simple --js-plugins > typescript-simple--js-plugins 1`] = `
   },
   "skipped": {
     "js-plugins": [],
-    "not-implemented": [
-      "@typescript-eslint/no-generated-empty-object-type",
-    ],
+    "not-implemented": [],
     "nursery": [
       "@typescript-eslint/no-unnecessary-condition",
     ],
@@ -242,6 +239,7 @@ exports[`typescript-simple --js-plugins > typescript-simple--js-plugins 1`] = `
       "@typescript-eslint/no-duplicate-type-constituents",
       "@typescript-eslint/no-floating-promises",
       "@typescript-eslint/no-for-in-array",
+      "@typescript-eslint/no-generated-empty-object-type",
       "@typescript-eslint/no-implied-eval",
       "@typescript-eslint/no-meaningless-void-operator",
       "@typescript-eslint/no-misused-promises",
@@ -351,6 +349,7 @@ exports[`typescript-simple --type-aware > typescript-simple--type-aware 1`] = `
           "typescript/no-extraneous-class": "error",
           "typescript/no-floating-promises": "error",
           "typescript/no-for-in-array": "error",
+          "typescript/no-generated-empty-object-type": "error",
           "typescript/no-implied-eval": "error",
           "typescript/no-invalid-void-type": "error",
           "typescript/no-meaningless-void-operator": "error",
@@ -431,9 +430,7 @@ exports[`typescript-simple --type-aware > typescript-simple--type-aware 1`] = `
   },
   "skipped": {
     "js-plugins": [],
-    "not-implemented": [
-      "@typescript-eslint/no-generated-empty-object-type",
-    ],
+    "not-implemented": [],
     "nursery": [
       "@typescript-eslint/no-unnecessary-condition",
     ],
@@ -530,9 +527,7 @@ exports[`typescript-simple merge > typescript-simple--merge 1`] = `
   },
   "skipped": {
     "js-plugins": [],
-    "not-implemented": [
-      "@typescript-eslint/no-generated-empty-object-type",
-    ],
+    "not-implemented": [],
     "nursery": [
       "@typescript-eslint/no-unnecessary-condition",
     ],
@@ -545,6 +540,7 @@ exports[`typescript-simple merge > typescript-simple--merge 1`] = `
       "@typescript-eslint/no-duplicate-type-constituents",
       "@typescript-eslint/no-floating-promises",
       "@typescript-eslint/no-for-in-array",
+      "@typescript-eslint/no-generated-empty-object-type",
       "@typescript-eslint/no-implied-eval",
       "@typescript-eslint/no-meaningless-void-operator",
       "@typescript-eslint/no-misused-promises",

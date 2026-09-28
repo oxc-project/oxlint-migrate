@@ -845,6 +845,7 @@ exports[`typescript --type-aware > typescript--type-aware 1`] = `
           "typescript/no-duplicate-type-constituents": "off",
           "typescript/no-floating-promises": "off",
           "typescript/no-for-in-array": "off",
+          "typescript/no-generated-empty-object-type": "off",
           "typescript/no-implied-eval": "off",
           "typescript/no-meaningless-void-operator": "off",
           "typescript/no-misused-promises": "off",
