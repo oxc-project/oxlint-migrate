@@ -10,6 +10,7 @@ import {
 } from './env_globals.js';
 import type {
   ESLint,
+  GlobalsCatalog,
   OxlintConfig,
   OxlintConfigGlobalsValue,
 } from './types.js';
@@ -27,6 +28,24 @@ const transformNPMGlobalsToOxlintGlobals = (
     ])
   );
 };
+
+const makeOlderBrowserGlobalsCatalog = (): GlobalsCatalog => {
+  const browserEntries = Object.entries(globals.browser);
+  const keyCount = Math.floor(browserEntries.length * 0.95);
+
+  return {
+    browser: Object.fromEntries(browserEntries.slice(0, keyCount)),
+  };
+};
+
+const getGlobalsMissingFromProjectCatalog = (
+  projectGlobalsCatalog: GlobalsCatalog
+): Record<string, 'off'> =>
+  Object.fromEntries(
+    Object.keys(globals.browser)
+      .filter((entry) => !(entry in projectGlobalsCatalog.browser))
+      .map((entry) => [entry, 'off' as const])
+  );
 
 describe('detectEnvironmentByGlobals', () => {
   test('detect es2024', () => {
@@ -92,6 +111,21 @@ describe('detectEnvironmentByGlobals', () => {
     detectEnvironmentByGlobals(config);
     expect(config.env?.browser).toBeUndefined();
   });
+
+  test('detects env with a project globals catalog when bundled globals differ by >3%', () => {
+    const projectGlobalsCatalog = makeOlderBrowserGlobalsCatalog();
+    const config: OxlintConfig = {
+      globals: transformNPMGlobalsToOxlintGlobals(
+        projectGlobalsCatalog.browser
+      ),
+    };
+
+    detectEnvironmentByGlobals(config, {
+      globalsCatalogs: [projectGlobalsCatalog],
+    });
+
+    expect(config.env?.browser).toBe(true);
+  });
 });
 
 describe('removeGlobalsWithAreCoveredByEnv', () => {
@@ -105,6 +139,82 @@ describe('removeGlobalsWithAreCoveredByEnv', () => {
 
     removeGlobalsWithAreCoveredByEnv(config);
     expect(config.globals).toBeUndefined();
+  });
+
+  test('collapses project globals to env while disabling newer Oxlint globals', () => {
+    const projectGlobalsCatalog = makeOlderBrowserGlobalsCatalog();
+    const reporter = new DefaultReporter();
+    const config: OxlintConfig = {
+      env: {
+        browser: true,
+      },
+      globals: transformNPMGlobalsToOxlintGlobals(
+        projectGlobalsCatalog.browser
+      ),
+    };
+
+    removeGlobalsWithAreCoveredByEnv(config, {
+      globalsCatalogs: [projectGlobalsCatalog],
+      reporter,
+    });
+
+    expect(config.globals).toStrictEqual(
+      getGlobalsMissingFromProjectCatalog(projectGlobalsCatalog)
+    );
+    expect(reporter.getWarnings()).toStrictEqual([
+      expect.stringContaining(
+        "The project's configured globals differ from Oxlint's browser environment."
+      ),
+    ]);
+  });
+
+  test('keeps globals that differ from a detected project globals catalog', () => {
+    const projectGlobalsCatalog = makeOlderBrowserGlobalsCatalog();
+    const config: OxlintConfig = {
+      env: {
+        browser: true,
+      },
+      globals: {
+        ...transformNPMGlobalsToOxlintGlobals(projectGlobalsCatalog.browser),
+        document: 'off',
+        ProjectGlobal: 'readonly',
+      },
+    };
+
+    removeGlobalsWithAreCoveredByEnv(config, {
+      globalsCatalogs: [projectGlobalsCatalog],
+    });
+
+    expect(config.globals).toStrictEqual({
+      ...getGlobalsMissingFromProjectCatalog(projectGlobalsCatalog),
+      document: 'off',
+      ProjectGlobal: 'readonly',
+    });
+  });
+
+  test('keeps project globals that are not part of the Oxlint environment', () => {
+    const projectGlobalsCatalog: GlobalsCatalog = {
+      browser: {
+        ...globals.browser,
+        LegacyBrowserGlobal: false,
+      },
+    };
+    const config: OxlintConfig = {
+      env: {
+        browser: true,
+      },
+      globals: transformNPMGlobalsToOxlintGlobals(
+        projectGlobalsCatalog.browser
+      ),
+    };
+
+    removeGlobalsWithAreCoveredByEnv(config, {
+      globalsCatalogs: [projectGlobalsCatalog],
+    });
+
+    expect(config.globals).toStrictEqual({
+      LegacyBrowserGlobal: 'readonly',
+    });
   });
 });
 

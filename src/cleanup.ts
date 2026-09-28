@@ -15,6 +15,7 @@ import {
   replaceTypescriptAliasRules,
 } from './plugins_rules.js';
 import type {
+  Options,
   OxlintConfig,
   OxlintConfigOrOverride,
   OxlintConfigOverride,
@@ -94,8 +95,11 @@ const cleanUpUselessOverridesEntries = (config: OxlintConfig): void => {
   }
 };
 
-export const cleanUpOxlintConfig = (config: OxlintConfigOrOverride): void => {
-  removeGlobalsWithAreCoveredByEnv(config);
+export const cleanUpOxlintConfig = (
+  config: OxlintConfigOrOverride,
+  options?: Options
+): void => {
+  removeGlobalsWithAreCoveredByEnv(config, options);
   transformBoolGlobalToString(config);
   replaceTypescriptAliasRules(config);
   replaceCanonicalPluginPrefixes(config);
