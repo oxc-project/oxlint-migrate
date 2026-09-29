@@ -4,7 +4,7 @@
     "correctness": "error",
     "perf": "error"
   },
-  "ignorePatterns": ["integration_test/projects"],
+  "ignorePatterns": ["integration_test/projects", "integration_test/fixtures"],
   "rules": {
     "unicorn/prefer-set-has": "off",
     "no-unused-expressions": ["error", { "allowShortCircuit": true }],

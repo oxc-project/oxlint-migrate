@@ -3,6 +3,7 @@ import {
   cleanUpUnusedJsPlugins,
   enableJsPluginRule,
   isIgnoredPluginRule,
+  mergeJsPlugins,
   resolveJsPluginRuleName,
 } from './jsPlugins.js';
 import { cleanUpOxlintConfig } from './cleanup.js';
@@ -352,5 +353,279 @@ describe('isIgnoredPluginRule', () => {
     expect(isIgnoredPluginRule('@stylistic/ts/member-delimiter-style')).toBe(
       false
     );
+  });
+});
+
+describe('enableJsPluginRule with known specifiers', () => {
+  /** Builds the `plugins` record and the specifier map the CLI would hand over. */
+  const setup = (
+    entries: Record<string, [ESLint.Plugin, string | undefined]>
+  ) => {
+    const plugins: Record<string, ESLint.Plugin> = {};
+    const specifiers = new Map<unknown, string>();
+    for (const [alias, [plugin, specifier]] of Object.entries(entries)) {
+      plugins[alias] = plugin;
+      if (specifier !== undefined) {
+        specifiers.set(plugin, specifier);
+      }
+    }
+    return { plugins, specifiers };
+  };
+
+  test('registers a local plugin under the alias the ESLint config used', () => {
+    const targetConfig: OxlintConfigOrOverride = {};
+    const { plugins, specifiers } = setup({
+      mylocal: [{ meta: { name: 'my-local-plugin' } }, './plugins/local.js'],
+    });
+
+    expect(
+      enableJsPluginRule(
+        targetConfig,
+        'mylocal/no-foo',
+        'error',
+        plugins,
+        specifiers
+      )
+    ).toBe(true);
+
+    expect(targetConfig.jsPlugins).toStrictEqual([
+      { name: 'mylocal', specifier: './plugins/local.js' },
+    ]);
+    // The alias is kept, so the rule name does not have to change.
+    expect(targetConfig.rules).toStrictEqual({ 'mylocal/no-foo': 'error' });
+  });
+
+  test('registers a plugin that has no meta at all', () => {
+    const targetConfig: OxlintConfigOrOverride = {};
+    const { plugins, specifiers } = setup({
+      anon: [{ rules: {} }, './plugins/anon.js'],
+    });
+
+    enableJsPluginRule(
+      targetConfig,
+      'anon/no-bar',
+      'warn',
+      plugins,
+      specifiers
+    );
+
+    expect(targetConfig.jsPlugins).toStrictEqual([
+      { name: 'anon', specifier: './plugins/anon.js' },
+    ]);
+    expect(targetConfig.rules).toStrictEqual({ 'anon/no-bar': 'warn' });
+  });
+
+  test('keeps the alias of an npm plugin instead of renaming its rules', () => {
+    const targetConfig: OxlintConfigOrOverride = {};
+    const { plugins, specifiers } = setup({
+      moka: [{ meta: { name: 'eslint-plugin-mocha' } }, 'eslint-plugin-mocha'],
+    });
+
+    enableJsPluginRule(
+      targetConfig,
+      'moka/no-exclusive-tests',
+      'error',
+      plugins,
+      specifiers
+    );
+
+    expect(targetConfig.jsPlugins).toStrictEqual([
+      { name: 'moka', specifier: 'eslint-plugin-mocha' },
+    ]);
+    expect(targetConfig.rules).toStrictEqual({
+      'moka/no-exclusive-tests': 'error',
+    });
+  });
+
+  test('renames the rules of the same plugin without a specifier', () => {
+    const targetConfig: OxlintConfigOrOverride = {};
+    const plugins: Record<string, ESLint.Plugin> = {
+      moka: { meta: { name: 'eslint-plugin-mocha' } },
+    };
+
+    enableJsPluginRule(
+      targetConfig,
+      'moka/no-exclusive-tests',
+      'error',
+      plugins
+    );
+
+    expect(targetConfig.jsPlugins).toStrictEqual(['eslint-plugin-mocha']);
+    expect(targetConfig.rules).toStrictEqual({
+      'mocha/no-exclusive-tests': 'error',
+    });
+  });
+
+  test('registers one entry per alias when a plugin is aliased twice', () => {
+    const targetConfig: OxlintConfigOrOverride = {};
+    const plugin: ESLint.Plugin = { meta: { name: 'eslint-plugin-regexp' } };
+    const { plugins, specifiers } = setup({
+      regexp: [plugin, 'eslint-plugin-regexp'],
+      re: [plugin, 'eslint-plugin-regexp'],
+    });
+
+    enableJsPluginRule(
+      targetConfig,
+      'regexp/no-lazy-ends',
+      'error',
+      plugins,
+      specifiers
+    );
+    enableJsPluginRule(
+      targetConfig,
+      're/no-empty-group',
+      'error',
+      plugins,
+      specifiers
+    );
+
+    expect(targetConfig.jsPlugins).toStrictEqual([
+      { name: 'regexp', specifier: 'eslint-plugin-regexp' },
+      { name: 're', specifier: 'eslint-plugin-regexp' },
+    ]);
+  });
+
+  test('adds a single entry when the same alias is used twice', () => {
+    const targetConfig: OxlintConfigOrOverride = {};
+    const { plugins, specifiers } = setup({
+      regexp: [{ rules: {} }, 'eslint-plugin-regexp'],
+    });
+
+    enableJsPluginRule(
+      targetConfig,
+      'regexp/no-lazy-ends',
+      'error',
+      plugins,
+      specifiers
+    );
+    enableJsPluginRule(
+      targetConfig,
+      'regexp/no-empty-group',
+      'error',
+      plugins,
+      specifiers
+    );
+
+    expect(targetConfig.jsPlugins).toHaveLength(1);
+  });
+
+  test('avoids a namespace oxlint reserves for its native plugins', () => {
+    const targetConfig: OxlintConfigOrOverride = {};
+    const { plugins, specifiers } = setup({
+      oxc: [{ rules: {} }, './plugins/oxc.js'],
+    });
+
+    enableJsPluginRule(
+      targetConfig,
+      'oxc/my-rule',
+      'error',
+      plugins,
+      specifiers
+    );
+
+    expect(targetConfig.jsPlugins).toStrictEqual([
+      { name: 'oxc-js', specifier: './plugins/oxc.js' },
+    ]);
+    expect(targetConfig.rules).toStrictEqual({ 'oxc-js/my-rule': 'error' });
+  });
+
+  test('falls back to the heuristic for a plugin that has no specifier', () => {
+    const targetConfig: OxlintConfigOrOverride = {};
+    const knownPlugin: ESLint.Plugin = { rules: {} };
+    const plugins: Record<string, ESLint.Plugin> = {
+      regexp: knownPlugin,
+      inline: { rules: {} },
+    };
+    const specifiers = new Map<unknown, string>([
+      [knownPlugin, 'eslint-plugin-regexp'],
+    ]);
+
+    enableJsPluginRule(
+      targetConfig,
+      'inline/no-inline',
+      'error',
+      plugins,
+      specifiers
+    );
+
+    expect(targetConfig.jsPlugins).toStrictEqual(['eslint-plugin-inline']);
+  });
+});
+
+describe('resolveJsPluginRuleName with meta.namespace', () => {
+  test('prefers meta.namespace over the name derived from meta.name', () => {
+    const plugins: Record<string, ESLint.Plugin> = {
+      alias: { meta: { name: 'eslint-plugin-thing', namespace: 'thingy' } },
+    };
+
+    expect(resolveJsPluginRuleName('alias/some-rule', plugins)).toBe(
+      'thingy/some-rule'
+    );
+  });
+
+  test('keeps the alias when the specifier is known', () => {
+    const plugin: ESLint.Plugin = {
+      meta: { name: 'eslint-plugin-thing', namespace: 'thingy' },
+    };
+
+    expect(
+      resolveJsPluginRuleName(
+        'alias/some-rule',
+        { alias: plugin },
+        new Map([[plugin, 'eslint-plugin-thing']])
+      )
+    ).toBe('alias/some-rule');
+  });
+});
+
+describe('cleanUpUnusedJsPlugins with object entries', () => {
+  test('matches an object entry on its name, not on its specifier', () => {
+    const config: OxlintConfigOrOverride = {
+      jsPlugins: [{ name: 'mylocal', specifier: './plugins/local.js' }],
+      rules: { 'mylocal/no-foo': 'error' },
+    };
+
+    cleanUpUnusedJsPlugins(config);
+
+    expect(config.jsPlugins).toStrictEqual([
+      { name: 'mylocal', specifier: './plugins/local.js' },
+    ]);
+  });
+
+  test('drops an object entry whose namespace has no rules left', () => {
+    const config: OxlintConfigOrOverride = {
+      jsPlugins: [{ name: 'mylocal', specifier: './plugins/local.js' }],
+      rules: { 'other/no-foo': 'error' },
+    };
+
+    cleanUpUnusedJsPlugins(config);
+
+    expect(config.jsPlugins).toBeUndefined();
+  });
+});
+
+describe('mergeJsPlugins', () => {
+  test('de-duplicates object entries by value', () => {
+    expect(
+      mergeJsPlugins(
+        [{ name: 'a', specifier: './a.js' }, 'eslint-plugin-b'],
+        [{ name: 'a', specifier: './a.js' }, 'eslint-plugin-b']
+      )
+    ).toStrictEqual([{ name: 'a', specifier: './a.js' }, 'eslint-plugin-b']);
+  });
+
+  test('keeps entries that share a specifier but not a name', () => {
+    expect(
+      mergeJsPlugins(
+        [{ name: 'a', specifier: './p.js' }],
+        [{ name: 'b', specifier: './p.js' }]
+      )
+    ).toHaveLength(2);
+  });
+
+  test('ignores missing lists', () => {
+    expect(mergeJsPlugins(undefined, null, ['eslint-plugin-a'])).toStrictEqual([
+      'eslint-plugin-a',
+    ]);
   });
 });

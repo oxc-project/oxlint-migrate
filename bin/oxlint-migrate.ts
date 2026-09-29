@@ -188,8 +188,16 @@ program
     }
 
     const resetPreFix = await preFixForJsPlugins();
-    const eslintConfigs = await loadESLintConfig(filePath);
-    resetPreFix();
+    let eslintConfigs;
+    try {
+      ({ config: eslintConfigs, pluginSpecifiers: options.jsPluginSpecifiers } =
+        await loadESLintConfig(filePath, {
+          collectPluginSpecifiers: jsPlugins,
+          specifierBaseDir: path.dirname(oxlintFilePath),
+        }));
+    } finally {
+      resetPreFix();
+    }
 
     let config;
     if (options.merge && existsSync(oxlintFilePath)) {
