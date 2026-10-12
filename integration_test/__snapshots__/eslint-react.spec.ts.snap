@@ -220,6 +220,10 @@ exports[`eslint-react --js-plugins > eslint-react--js-plugins 1`] = `
           "**/*.{js,jsx}",
         ],
         "jsPlugins": [
+          {
+            "name": "react-hooks-js",
+            "specifier": "eslint-plugin-react-hooks",
+          },
           "@eslint-react/eslint-plugin",
         ],
         "plugins": [
@@ -353,6 +357,8 @@ exports[`eslint-react --js-plugins > eslint-react--js-plugins 1`] = `
           "no-useless-escape": "error",
           "no-with": "error",
           "preserve-caught-error": "error",
+          "react-hooks-js/config": "error",
+          "react-hooks-js/gating": "error",
           "react/error-boundaries": "error",
           "react/exhaustive-deps": "warn",
           "react/globals": "error",
@@ -393,8 +399,6 @@ exports[`eslint-react --js-plugins > eslint-react--js-plugins 1`] = `
     "unsupported": [
       "no-dupe-args",
       "no-octal",
-      "react-hooks/config",
-      "react-hooks/gating",
     ],
   },
   "warnings": [

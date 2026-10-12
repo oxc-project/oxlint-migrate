@@ -2349,6 +2349,20 @@ exports[`next-eslint-config-project --js-plugins > next-eslint-config-project--j
           "when": "readonly",
           "window": "readonly",
         },
+        "jsPlugins": [
+          {
+            "name": "react-js",
+            "specifier": "eslint-plugin-react",
+          },
+          {
+            "name": "react-hooks-js",
+            "specifier": "eslint-plugin-react-hooks",
+          },
+          {
+            "name": "nextjs-js",
+            "specifier": "@next/eslint-plugin-next",
+          },
+        ],
         "plugins": [
           "react",
           "nextjs",
@@ -2373,6 +2387,7 @@ exports[`next-eslint-config-project --js-plugins > next-eslint-config-project--j
           "jsx-a11y/aria-unsupported-elements": "warn",
           "jsx-a11y/role-has-required-aria-props": "warn",
           "jsx-a11y/role-supports-aria-props": "warn",
+          "nextjs-js/no-location-assign-relative-destination": "warn",
           "nextjs/google-font-display": "warn",
           "nextjs/google-font-preconnect": "warn",
           "nextjs/inline-script-id": "error",
@@ -2394,6 +2409,12 @@ exports[`next-eslint-config-project --js-plugins > next-eslint-config-project--j
           "nextjs/no-title-in-document-head": "warn",
           "nextjs/no-typos": "warn",
           "nextjs/no-unwanted-polyfillio": "warn",
+          "react-hooks-js/config": "error",
+          "react-hooks-js/gating": "error",
+          "react-js/jsx-uses-react": "error",
+          "react-js/jsx-uses-vars": "error",
+          "react-js/no-deprecated": "error",
+          "react-js/prop-types": "off",
           "react/display-name": "error",
           "react/error-boundaries": "error",
           "react/exhaustive-deps": "warn",
@@ -2433,20 +2454,13 @@ exports[`next-eslint-config-project --js-plugins > next-eslint-config-project--j
   "skipped": {
     "js-plugins": [],
     "not-implemented": [
-      "@next/next/no-location-assign-relative-destination",
       "node/prefer-global/process",
     ],
     "nursery": [
       "react/require-render-return",
     ],
     "type-aware": [],
-    "unsupported": [
-      "react/jsx-uses-react",
-      "react/jsx-uses-vars",
-      "react/no-deprecated",
-      "react-hooks/config",
-      "react-hooks/gating",
-    ],
+    "unsupported": [],
   },
   "warnings": [
     "special parser detected: eslint-config-next/parser",

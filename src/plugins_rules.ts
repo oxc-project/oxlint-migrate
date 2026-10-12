@@ -15,6 +15,7 @@ import {
   typescriptRulesExtendEslintRules,
 } from './constants.js';
 import {
+  cleanUpUnusedJsPlugins,
   enableJsPluginRule,
   isIgnoredPluginRule,
   resolveJsPluginRuleName,
@@ -129,9 +130,19 @@ const removePreviousOverrideRule = (
       if (!override.rules) {
         continue;
       }
+      let removed = false;
       for (const name of names) {
         if (name in override.rules) {
           delete override.rules[name];
+          removed = true;
+        }
+      }
+      if (removed) {
+        if (Object.keys(override.rules).length === 0) {
+          delete override.rules;
+        }
+        if (!override.categories) {
+          cleanUpUnusedJsPlugins(override);
         }
       }
     }
@@ -243,6 +254,11 @@ export const transformRuleEntry = (
       continue;
     }
 
+    // Normalize to canonical Oxlint name for lookups against the generated
+    // rules list (e.g. "@next/next/foo" → "nextjs/foo").
+    const canonicalRule = normalizeRuleToCanonical(rule);
+    const hasNativeRule = allRules.includes(canonicalRule);
+
     // removing rules from previous "overrides"
     // only works on non-merge because `overrides` is already prefilled from previous result.
     if (!options?.merge) {
@@ -250,18 +266,18 @@ export const transformRuleEntry = (
       // Also try the resolved name in case the rule was stored under a
       // renamed prefix by a previous enableJsPluginRule call.
       if (options?.jsPlugins) {
-        const resolved = resolveJsPluginRuleName(rule, effectivePlugins);
+        const resolved = resolveJsPluginRuleName(
+          rule,
+          effectivePlugins,
+          !hasNativeRule
+        );
         if (resolved !== rule) {
           removePreviousOverrideRule(resolved, eslintConfig, overrides);
         }
       }
     }
 
-    // Normalize to canonical Oxlint name for lookups against the generated
-    // rules list (e.g. "@next/next/foo" → "nextjs/foo").
-    const canonicalRule = normalizeRuleToCanonical(rule);
-
-    if (allRules.includes(canonicalRule)) {
+    if (hasNativeRule) {
       if (!options?.withNursery && rules.nurseryRules.includes(canonicalRule)) {
         if (!isOffValue(normalizedConfig)) {
           options?.reporter?.markSkipped(rule, 'nursery');
@@ -302,21 +318,23 @@ export const transformRuleEntry = (
         if (isOffValue(normalizedConfig)) {
           // Use the resolved (potentially renamed) rule name for consistency
           // with enabled rules that go through enableJsPluginRule.
-          const resolvedRule = resolveJsPluginRuleName(rule, effectivePlugins);
+          const resolvedRule = resolveJsPluginRuleName(
+            rule,
+            effectivePlugins,
+            true
+          );
           if (eslintConfig.files === undefined) {
             // base config: drop disabled rule entirely
             delete targetConfig.rules[resolvedRule];
           } else {
             // override: keep the disabled rule and add the jsPlugin
             // so oxlint can resolve the rule name
-            if (!isIgnoredPluginRule(rule)) {
-              enableJsPluginRule(
-                targetConfig,
-                resolvedRule,
-                normalizedConfig,
-                effectivePlugins
-              );
-            }
+            enableJsPluginRule(
+              targetConfig,
+              rule,
+              normalizedConfig,
+              effectivePlugins
+            );
           }
           // also remove any previously queued unsupported report for base
           if (eslintConfig.files === undefined) {
@@ -327,11 +345,22 @@ export const transformRuleEntry = (
           continue;
         }
 
+        const resolvedRule = resolveJsPluginRuleName(
+          rule,
+          effectivePlugins,
+          true
+        );
+        const existingConfig =
+          targetConfig.rules[resolvedRule] ?? baseConfig?.rules?.[resolvedRule];
+        const migratedConfig =
+          options?.merge && existingConfig !== undefined
+            ? existingConfig
+            : mergeRuleConfig(existingConfig, normalizedConfig);
         if (
           !enableJsPluginRule(
             targetConfig,
             rule,
-            normalizedConfig,
+            migratedConfig,
             effectivePlugins
           )
         ) {

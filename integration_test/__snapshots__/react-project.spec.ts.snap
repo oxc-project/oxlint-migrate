@@ -79,11 +79,20 @@ exports[`react-project --js-plugins > react-project--js-plugins 1`] = `
     "env": {
       "builtin": true,
     },
+    "jsPlugins": [
+      {
+        "name": "react-js",
+        "specifier": "eslint-plugin-react",
+      },
+    ],
     "plugins": [
       "react",
       "react-perf",
     ],
     "rules": {
+      "react-js/jsx-uses-vars": "error",
+      "react-js/no-deprecated": "error",
+      "react-js/prop-types": "error",
       "react-perf/jsx-no-new-array-as-prop": "error",
       "react-perf/jsx-no-new-function-as-prop": "error",
       "react-perf/jsx-no-new-object-as-prop": "error",
@@ -127,9 +136,6 @@ exports[`react-project --js-plugins > react-project--js-plugins 1`] = `
     ],
     "type-aware": [],
     "unsupported": [
-      "react/jsx-uses-vars",
-      "react/no-deprecated",
-      "react/prop-types",
       "react-hooks/config",
       "react-hooks/gating",
     ],

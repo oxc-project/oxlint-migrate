@@ -11,6 +11,29 @@ const ignorePlugins = new Set<string>([
   'local', // ToDo: handle local plugin rules
 ]);
 
+const nativeJsPluginAlias = (
+  rule: string,
+  plugins?: Record<string, ESLint.Plugin> | null
+): string | undefined => {
+  const pluginName = extractPluginId(rule);
+  if (!pluginName || pluginName === 'local' || !ignorePlugins.has(pluginName)) {
+    return;
+  }
+
+  // Only use an ESLint plugin that actually provides this rule. Native plugin
+  // namespaces may also appear in configs without an importable JS plugin.
+  const ruleName = rule.slice(pluginName.length + 1);
+  if (!Object.hasOwn(plugins?.[pluginName]?.rules ?? {}, ruleName)) {
+    return;
+  }
+
+  const name = pluginName.startsWith('@')
+    ? (rulesPrefixesForPlugins[pluginName] ??
+      pluginName.slice(1).replace('/', '-'))
+    : pluginName;
+  return `${name}-js`;
+};
+
 const tryResolvePackage = (packageName: string): boolean => {
   try {
     import.meta.resolve(packageName);
@@ -160,11 +183,17 @@ const deriveRulePrefix = (packageName: string): string => {
  */
 export const resolveJsPluginRuleName = (
   rule: string,
-  plugins?: Record<string, ESLint.Plugin> | null
+  plugins?: Record<string, ESLint.Plugin> | null,
+  aliasNative = false
 ): string => {
   const pluginName = extractPluginId(rule);
   if (pluginName === undefined) {
     return rule;
+  }
+
+  const alias = aliasNative && nativeJsPluginAlias(rule, plugins);
+  if (alias) {
+    return `${alias}/${rule.slice(pluginName.length + 1)}`;
   }
 
   const metaName = plugins?.[pluginName]?.meta?.name;
@@ -198,7 +227,8 @@ export const enableJsPluginRule = (
     return false;
   }
 
-  if (ignorePlugins.has(pluginName)) {
+  const alias = nativeJsPluginAlias(rule, plugins);
+  if (ignorePlugins.has(pluginName) && !alias) {
     return false;
   }
 
@@ -212,12 +242,23 @@ export const enableJsPluginRule = (
     ? resolveFromMetaName(metaName)
     : resolveEslintPluginName(pluginName);
 
-  if (!targetConfig.jsPlugins.includes(eslintPluginName)) {
-    targetConfig.jsPlugins.push(eslintPluginName);
+  const entry = alias
+    ? { name: alias, specifier: eslintPluginName }
+    : eslintPluginName;
+  if (
+    !targetConfig.jsPlugins.some((existing) =>
+      typeof existing === 'string'
+        ? existing === entry
+        : typeof entry !== 'string' &&
+          existing.name === entry.name &&
+          existing.specifier === entry.specifier
+    )
+  ) {
+    targetConfig.jsPlugins.push(entry);
   }
 
   // Rewrite the rule name if the plugin is registered under an alias.
-  const resolvedRule = resolveJsPluginRuleName(rule, plugins);
+  const resolvedRule = resolveJsPluginRuleName(rule, plugins, true);
 
   targetConfig.rules = targetConfig.rules ?? {};
   targetConfig.rules[resolvedRule] = ruleEntry!; // TODO: handle undefined ruleEntry if needed
@@ -275,8 +316,10 @@ export const cleanUpUnusedJsPlugins = (
   const ruleNames = Object.keys(config.rules ?? {});
 
   config.jsPlugins = config.jsPlugins.filter((entry) => {
-    const packageName = typeof entry === 'string' ? entry : entry.specifier;
-    return hasRulesForPlugin(ruleNames, packageName);
+    if (typeof entry === 'string') {
+      return hasRulesForPlugin(ruleNames, entry);
+    }
+    return ruleNames.some((rule) => rule.startsWith(`${entry.name}/`));
   });
 
   if (config.jsPlugins.length === 0) {
