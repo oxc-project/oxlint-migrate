@@ -6,8 +6,8 @@ import type { ESLint } from './types.js';
 const nextPlugin: ESLint.Plugin = {
   meta: { name: '@next/eslint-plugin-next' },
   rules: {
-    'no-img-element': 'error',
-    'no-location-assign-relative-destination': 'error',
+    'no-img-element': {},
+    'no-location-assign-relative-destination': {},
   },
 };
 
@@ -112,11 +112,11 @@ describe('JavaScript fallback for missing native plugin rules', () => {
           plugins: {
             react: {
               meta: { name: 'eslint-plugin-react' },
-              rules: { 'no-deprecated': 'error' },
+              rules: { 'no-deprecated': {} },
             },
             'react-hooks': {
               meta: { name: 'eslint-plugin-react-hooks' },
-              rules: { config: 'error' },
+              rules: { config: {} },
             },
           },
           rules: {

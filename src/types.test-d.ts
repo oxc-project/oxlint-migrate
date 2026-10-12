@@ -163,6 +163,12 @@ describe('ESLint type compatibility', () => {
   });
 
   describe('Type assignability from ESLint to our types', () => {
+    test('ESLint plugin rules retain compatible metadata', () => {
+      expectTypeOf<
+        NonNullable<Linter.Config['plugins']>[string]['rules']
+      >().toMatchTypeOf<ESLint.Plugin['rules']>();
+    });
+
     test('Linter.Config structure matches ESLint.Config structure', () => {
       const eslintConfig: Linter.Config = {
         name: 'my-config',

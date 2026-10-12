@@ -119,9 +119,6 @@ const extractPluginId = (ruleId: string): string | undefined => {
   return ruleId.substring(0, firstSlash);
 };
 
-const isRecord = (value: unknown): value is Record<string, unknown> =>
-  typeof value === 'object' && value !== null;
-
 export const jsPluginRuleRequiresTypeInformation = (
   ruleId: string,
   plugins?: Record<string, ESLint.Plugin> | null
@@ -131,12 +128,9 @@ export const jsPluginRuleRequiresTypeInformation = (
     return false;
   }
 
-  const rule = plugins?.[pluginId]?.rules?.[ruleId.slice(pluginId.length + 1)];
   return (
-    isRecord(rule) &&
-    isRecord(rule.meta) &&
-    isRecord(rule.meta.docs) &&
-    rule.meta.docs.requiresTypeChecking === true
+    plugins?.[pluginId]?.rules?.[ruleId.slice(pluginId.length + 1)]?.meta?.docs
+      ?.requiresTypeChecking === true
   );
 };
 
