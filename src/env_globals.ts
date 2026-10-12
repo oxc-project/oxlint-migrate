@@ -190,7 +190,7 @@ export const transformEnvAndGlobals = (
     ) {
       options?.reporter?.addWarning(
         `ESLint parser ${parserName ?? '(unnamed)'} is not carried over. ` +
-          'Oxlint JS plugins cannot use its custom AST or parser services, so rules depending on them (such as template rules) may miss issues. Keep ESLint for those checks.'
+          'Oxlint JS plugins cannot use its custom AST or parser services, so rules depending on them (such as template rules) may miss issues. Migration of these checks is incomplete.'
       );
     }
   }
@@ -203,7 +203,7 @@ export const transformEnvAndGlobals = (
         : (processor as { meta?: { name?: string } }).meta?.name;
     options?.reporter?.addWarning(
       `ESLint processor ${processorName ?? '(unnamed)'} is not carried over. ` +
-        'Rules depending on its transformed content may miss issues in Oxlint. Keep ESLint for those checks.'
+        'Rules depending on its transformed content may miss issues in Oxlint. Migration of these checks is incomplete.'
     );
   }
 

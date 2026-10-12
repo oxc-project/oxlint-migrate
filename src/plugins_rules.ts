@@ -373,7 +373,7 @@ export const transformRuleEntry = (
           jsPluginRuleRequiresTypeInformation(rule, effectivePlugins)
         ) {
           options?.reporter?.addWarning(
-            `ESLint rule ${rule} requires type information, which Oxlint JS plugins cannot provide. Keep ESLint for this rule.`
+            `ESLint rule ${rule} requires type information, which Oxlint JS plugins cannot currently provide. Migration of this rule is incomplete.`
           );
         }
         continue;
