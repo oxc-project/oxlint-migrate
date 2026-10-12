@@ -1023,9 +1023,11 @@ exports[`nuxt-auth > nuxt-auth 1`] = `
     "ESLint import-sorting rules like \`sort-imports\` were not migrated because they conflict with Oxfmt's import sorting.
 Use Oxfmt's \`sortImports\` formatter option instead. It is based on \`eslint-plugin-perfectionist/sort-imports\`, is disabled by default, and will need to be enabled.
 https://oxc.rs/docs/guide/usage/formatter/sorting.html",
-    "special parser detected: vue-eslint-parser",
-    "special parser detected: toml-eslint-parser",
+    "ESLint parser vue-eslint-parser is not carried over. Oxlint JS plugins cannot use its custom AST or parser services, so rules depending on them (such as template rules) may miss issues. Keep ESLint for those checks.",
+    "ESLint processor merged-processor:eslint-plugin-vue+eslint-processor-vue-blocks is not carried over. Rules depending on its transformed content may miss issues in Oxlint. Keep ESLint for those checks.",
+    "ESLint parser toml-eslint-parser is not carried over. Oxlint JS plugins cannot use its custom AST or parser services, so rules depending on them (such as template rules) may miss issues. Keep ESLint for those checks.",
     "ignore list inside overrides is not supported",
+    "ESLint processor merged-processor:@eslint/markdown/markdown+pass-through is not carried over. Rules depending on its transformed content may miss issues in Oxlint. Keep ESLint for those checks.",
     "Added 14 globals to the root config. This may happen when your ESLint config uses a different version of the \`globals\` package than @oxlint/migrate. Try updating \`globals\` and rerun the migration to get a simpler config.",
   ],
 }
@@ -2670,9 +2672,11 @@ exports[`nuxt-auth --js-plugins > nuxt-auth--js-plugins 1`] = `
     "ESLint import-sorting rules like \`sort-imports\` were not migrated because they conflict with Oxfmt's import sorting.
 Use Oxfmt's \`sortImports\` formatter option instead. It is based on \`eslint-plugin-perfectionist/sort-imports\`, is disabled by default, and will need to be enabled.
 https://oxc.rs/docs/guide/usage/formatter/sorting.html",
-    "special parser detected: vue-eslint-parser",
-    "special parser detected: toml-eslint-parser",
+    "ESLint parser vue-eslint-parser is not carried over. Oxlint JS plugins cannot use its custom AST or parser services, so rules depending on them (such as template rules) may miss issues. Keep ESLint for those checks.",
+    "ESLint processor merged-processor:eslint-plugin-vue+eslint-processor-vue-blocks is not carried over. Rules depending on its transformed content may miss issues in Oxlint. Keep ESLint for those checks.",
+    "ESLint parser toml-eslint-parser is not carried over. Oxlint JS plugins cannot use its custom AST or parser services, so rules depending on them (such as template rules) may miss issues. Keep ESLint for those checks.",
     "ignore list inside overrides is not supported",
+    "ESLint processor merged-processor:@eslint/markdown/markdown+pass-through is not carried over. Rules depending on its transformed content may miss issues in Oxlint. Keep ESLint for those checks.",
     "Added 14 globals to the root config. This may happen when your ESLint config uses a different version of the \`globals\` package than @oxlint/migrate. Try updating \`globals\` and rerun the migration to get a simpler config.",
   ],
 }
@@ -3693,9 +3697,11 @@ exports[`nuxt-auth --type-aware > nuxt-auth--type-aware 1`] = `
     "ESLint import-sorting rules like \`sort-imports\` were not migrated because they conflict with Oxfmt's import sorting.
 Use Oxfmt's \`sortImports\` formatter option instead. It is based on \`eslint-plugin-perfectionist/sort-imports\`, is disabled by default, and will need to be enabled.
 https://oxc.rs/docs/guide/usage/formatter/sorting.html",
-    "special parser detected: vue-eslint-parser",
-    "special parser detected: toml-eslint-parser",
+    "ESLint parser vue-eslint-parser is not carried over. Oxlint JS plugins cannot use its custom AST or parser services, so rules depending on them (such as template rules) may miss issues. Keep ESLint for those checks.",
+    "ESLint processor merged-processor:eslint-plugin-vue+eslint-processor-vue-blocks is not carried over. Rules depending on its transformed content may miss issues in Oxlint. Keep ESLint for those checks.",
+    "ESLint parser toml-eslint-parser is not carried over. Oxlint JS plugins cannot use its custom AST or parser services, so rules depending on them (such as template rules) may miss issues. Keep ESLint for those checks.",
     "ignore list inside overrides is not supported",
+    "ESLint processor merged-processor:@eslint/markdown/markdown+pass-through is not carried over. Rules depending on its transformed content may miss issues in Oxlint. Keep ESLint for those checks.",
     "Added 14 globals to the root config. This may happen when your ESLint config uses a different version of the \`globals\` package than @oxlint/migrate. Try updating \`globals\` and rerun the migration to get a simpler config.",
   ],
 }
@@ -4706,9 +4712,11 @@ exports[`nuxt-auth merge > nuxt-auth--merge 1`] = `
     "ESLint import-sorting rules like \`sort-imports\` were not migrated because they conflict with Oxfmt's import sorting.
 Use Oxfmt's \`sortImports\` formatter option instead. It is based on \`eslint-plugin-perfectionist/sort-imports\`, is disabled by default, and will need to be enabled.
 https://oxc.rs/docs/guide/usage/formatter/sorting.html",
-    "special parser detected: vue-eslint-parser",
-    "special parser detected: toml-eslint-parser",
+    "ESLint parser vue-eslint-parser is not carried over. Oxlint JS plugins cannot use its custom AST or parser services, so rules depending on them (such as template rules) may miss issues. Keep ESLint for those checks.",
+    "ESLint processor merged-processor:eslint-plugin-vue+eslint-processor-vue-blocks is not carried over. Rules depending on its transformed content may miss issues in Oxlint. Keep ESLint for those checks.",
+    "ESLint parser toml-eslint-parser is not carried over. Oxlint JS plugins cannot use its custom AST or parser services, so rules depending on them (such as template rules) may miss issues. Keep ESLint for those checks.",
     "ignore list inside overrides is not supported",
+    "ESLint processor merged-processor:@eslint/markdown/markdown+pass-through is not carried over. Rules depending on its transformed content may miss issues in Oxlint. Keep ESLint for those checks.",
     "Added 14 globals to the root config. This may happen when your ESLint config uses a different version of the \`globals\` package than @oxlint/migrate. Try updating \`globals\` and rerun the migration to get a simpler config.",
   ],
 }

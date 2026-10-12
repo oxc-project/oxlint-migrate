@@ -12,6 +12,69 @@ const nextPlugin: ESLint.Plugin = {
 };
 
 describe('JavaScript fallback for missing native plugin rules', () => {
+  test('warns about custom parser coverage without dropping JS plugin rules', async () => {
+    const reporter = new DefaultReporter();
+    const config = await migrateConfig(
+      [
+        {
+          files: ['**/*.svelte'],
+          languageOptions: {
+            parser: { meta: { name: 'svelte-eslint-parser' } },
+          },
+          plugins: {
+            svelte: {
+              meta: { name: 'eslint-plugin-svelte' },
+              rules: { 'no-at-html-tags': {} },
+            },
+          },
+          rules: { 'svelte/no-at-html-tags': 'error' },
+        },
+      ],
+      undefined,
+      { jsPlugins: true, reporter }
+    );
+
+    expect(config.overrides?.[0].rules?.['svelte/no-at-html-tags']).toBe(
+      'error'
+    );
+    expect(reporter.getWarnings()).toEqual([
+      expect.stringContaining('svelte-eslint-parser'),
+    ]);
+  });
+
+  test('warns when plugin metadata marks a rule as type-aware', async () => {
+    const reporter = new DefaultReporter();
+    const config = await migrateConfig(
+      [
+        {
+          plugins: {
+            example: {
+              meta: { name: 'eslint-plugin-example' },
+              rules: {
+                'needs-types': {
+                  meta: { docs: { requiresTypeChecking: true } },
+                },
+                'plain-rule': { meta: { docs: {} } },
+              },
+            },
+          },
+          rules: {
+            'example/needs-types': 'error',
+            'example/plain-rule': 'warn',
+          },
+        },
+      ],
+      undefined,
+      { jsPlugins: true, reporter }
+    );
+
+    expect(config.rules?.['example/needs-types']).toBe('error');
+    expect(config.rules?.['example/plain-rule']).toBe('warn');
+    expect(reporter.getWarnings()).toEqual([
+      expect.stringContaining('example/needs-types requires type information'),
+    ]);
+  });
+
   test('keeps native rules and aliases missing rules from the same plugin', async () => {
     const reporter = new DefaultReporter();
     const config = await migrateConfig(

@@ -50,6 +50,20 @@ const OTHER_SUPPORTED_ENVS = [
 const SUPPORTED_ESLINT_PARSERS = ['typescript-eslint/parser'];
 const ROOT_GLOBALS_WARNING_THRESHOLD = 10;
 
+const getMetaName = (value: unknown): string | undefined => {
+  if (
+    typeof value === 'object' &&
+    value !== null &&
+    'meta' in value &&
+    typeof value.meta === 'object' &&
+    value.meta !== null &&
+    'name' in value.meta &&
+    typeof value.meta.name === 'string'
+  ) {
+    return value.meta.name;
+  }
+};
+
 const normalizeGlobValue = (
   value: ESLint.GlobalAccess
 ): boolean | undefined => {
@@ -181,20 +195,27 @@ export const transformEnvAndGlobals = (
   targetConfig: OxlintConfigOrOverride,
   options?: Options
 ): void => {
-  if (
-    eslintConfig.languageOptions?.parser !== undefined &&
-    eslintConfig.languageOptions?.parser !== null &&
-    typeof eslintConfig.languageOptions.parser === 'object' &&
-    'meta' in eslintConfig.languageOptions.parser &&
-    !(SUPPORTED_ESLINT_PARSERS as (string | undefined)[]).includes(
-      // @ts-expect-error
-      eslintConfig.languageOptions.parser.meta?.name
-    )
-  ) {
+  const parser = eslintConfig.languageOptions?.parser;
+  if (parser !== undefined && parser !== null) {
+    const parserName = getMetaName(parser);
+    if (
+      parserName === undefined ||
+      !SUPPORTED_ESLINT_PARSERS.includes(parserName)
+    ) {
+      options?.reporter?.addWarning(
+        `ESLint parser ${parserName ?? '(unnamed)'} is not carried over. ` +
+          'Oxlint JS plugins cannot use its custom AST or parser services, so rules depending on them (such as template rules) may miss issues. Keep ESLint for those checks.'
+      );
+    }
+  }
+
+  const processor = eslintConfig.processor;
+  if (processor !== undefined && processor !== null) {
+    const processorName =
+      typeof processor === 'string' ? processor : getMetaName(processor);
     options?.reporter?.addWarning(
-      'special parser detected: ' +
-        // @ts-expect-error
-        eslintConfig.languageOptions.parser.meta?.name
+      `ESLint processor ${processorName ?? '(unnamed)'} is not carried over. ` +
+        'Rules depending on its transformed content may miss issues in Oxlint. Keep ESLint for those checks.'
     );
   }
 

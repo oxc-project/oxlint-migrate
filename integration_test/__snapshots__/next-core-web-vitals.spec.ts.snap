@@ -1222,7 +1222,7 @@ exports[`next-core-web-vitals > next-core-web-vitals 1`] = `
     ],
   },
   "warnings": [
-    "special parser detected: eslint-config-next/parser",
+    "ESLint parser eslint-config-next/parser is not carried over. Oxlint JS plugins cannot use its custom AST or parser services, so rules depending on them (such as template rules) may miss issues. Keep ESLint for those checks.",
     "Settings found under a 'files' pattern — oxlint does not support settings in overrides and they will be skipped:
 \`react\`
 \`import/parsers\`
@@ -2468,7 +2468,7 @@ exports[`next-core-web-vitals --js-plugins > next-core-web-vitals--js-plugins 1`
     "unsupported": [],
   },
   "warnings": [
-    "special parser detected: eslint-config-next/parser",
+    "ESLint parser eslint-config-next/parser is not carried over. Oxlint JS plugins cannot use its custom AST or parser services, so rules depending on them (such as template rules) may miss issues. Keep ESLint for those checks.",
     "Settings found under a 'files' pattern — oxlint does not support settings in overrides and they will be skipped:
 \`react\`
 \`import/parsers\`
@@ -3699,7 +3699,7 @@ exports[`next-core-web-vitals --type-aware > next-core-web-vitals--type-aware 1`
     ],
   },
   "warnings": [
-    "special parser detected: eslint-config-next/parser",
+    "ESLint parser eslint-config-next/parser is not carried over. Oxlint JS plugins cannot use its custom AST or parser services, so rules depending on them (such as template rules) may miss issues. Keep ESLint for those checks.",
     "Settings found under a 'files' pattern — oxlint does not support settings in overrides and they will be skipped:
 \`react\`
 \`import/parsers\`
@@ -4931,7 +4931,7 @@ exports[`next-core-web-vitals merge > next-core-web-vitals--merge 1`] = `
     ],
   },
   "warnings": [
-    "special parser detected: eslint-config-next/parser",
+    "ESLint parser eslint-config-next/parser is not carried over. Oxlint JS plugins cannot use its custom AST or parser services, so rules depending on them (such as template rules) may miss issues. Keep ESLint for those checks.",
     "Settings found under a 'files' pattern — oxlint does not support settings in overrides and they will be skipped:
 \`react\`
 \`import/parsers\`

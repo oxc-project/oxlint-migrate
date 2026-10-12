@@ -18,6 +18,7 @@ import {
   cleanUpUnusedJsPlugins,
   enableJsPluginRule,
   isIgnoredPluginRule,
+  jsPluginRuleRequiresTypeInformation,
   resolveJsPluginRuleName,
 } from './jsPlugins.js';
 import { buildUnsupportedRuleExplanations, isEqualDeep } from './utilities.js';
@@ -368,6 +369,12 @@ export const transformRuleEntry = (
             ? 'unsupported'
             : 'not-implemented';
           options?.reporter?.markSkipped(rule, category);
+        } else if (
+          jsPluginRuleRequiresTypeInformation(rule, effectivePlugins)
+        ) {
+          options?.reporter?.addWarning(
+            `ESLint rule ${rule} requires type information, which Oxlint JS plugins cannot provide. Keep ESLint for this rule.`
+          );
         }
         continue;
       }

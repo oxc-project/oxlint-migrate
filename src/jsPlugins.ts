@@ -119,6 +119,32 @@ const extractPluginId = (ruleId: string): string | undefined => {
   return ruleId.substring(0, firstSlash);
 };
 
+export const jsPluginRuleRequiresTypeInformation = (
+  ruleId: string,
+  plugins?: Record<string, ESLint.Plugin> | null
+): boolean => {
+  const pluginId = extractPluginId(ruleId);
+  if (pluginId === undefined) {
+    return false;
+  }
+
+  const rule = plugins?.[pluginId]?.rules?.[ruleId.slice(pluginId.length + 1)];
+  if (typeof rule !== 'object' || rule === null || !('meta' in rule)) {
+    return false;
+  }
+  const meta = rule.meta;
+  if (typeof meta !== 'object' || meta === null || !('docs' in meta)) {
+    return false;
+  }
+  const docs = meta.docs;
+  return (
+    typeof docs === 'object' &&
+    docs !== null &&
+    'requiresTypeChecking' in docs &&
+    docs.requiresTypeChecking === true
+  );
+};
+
 export const isIgnoredPluginRule = (ruleId: string): boolean => {
   const pluginName = extractPluginId(ruleId);
   // Return true because the rule comes from core ESLint, and so

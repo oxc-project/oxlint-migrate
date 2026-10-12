@@ -921,7 +921,9 @@ exports[`eslint-plugin-oxlint --js-plugins > eslint-plugin-oxlint--js-plugins 1`
       "no-octal",
     ],
   },
-  "warnings": [],
+  "warnings": [
+    "ESLint rule unicorn/no-non-function-verb-prefix requires type information, which Oxlint JS plugins cannot provide. Keep ESLint for this rule.",
+  ],
 }
 `;
 

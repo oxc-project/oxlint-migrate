@@ -945,7 +945,9 @@ exports[`vscode --js-plugins > vscode--js-plugins 1`] = `
       "comma-dangle",
     ],
   },
-  "warnings": [],
+  "warnings": [
+    "ESLint rule @typescript-eslint/naming-convention requires type information, which Oxlint JS plugins cannot provide. Keep ESLint for this rule.",
+  ],
 }
 `;
 

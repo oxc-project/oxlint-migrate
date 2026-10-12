@@ -813,7 +813,9 @@ exports[`typescript --js-plugins > typescript--js-plugins 1`] = `
       "no-undef-init",
     ],
   },
-  "warnings": [],
+  "warnings": [
+    "ESLint rule @typescript-eslint/naming-convention requires type information, which Oxlint JS plugins cannot provide. Keep ESLint for this rule.",
+  ],
 }
 `;
 
