@@ -128,21 +128,10 @@ export const jsPluginRuleRequiresTypeInformation = (
     return false;
   }
 
-  const rule = plugins?.[pluginId]?.rules?.[ruleId.slice(pluginId.length + 1)];
-  if (typeof rule !== 'object' || rule === null || !('meta' in rule)) {
-    return false;
-  }
-  const meta = rule.meta;
-  if (typeof meta !== 'object' || meta === null || !('docs' in meta)) {
-    return false;
-  }
-  const docs = meta.docs;
-  return (
-    typeof docs === 'object' &&
-    docs !== null &&
-    'requiresTypeChecking' in docs &&
-    docs.requiresTypeChecking === true
-  );
+  const rule = plugins?.[pluginId]?.rules?.[
+    ruleId.slice(pluginId.length + 1)
+  ] as { meta?: { docs?: { requiresTypeChecking?: boolean } } } | undefined;
+  return rule?.meta?.docs?.requiresTypeChecking === true;
 };
 
 export const isIgnoredPluginRule = (ruleId: string): boolean => {

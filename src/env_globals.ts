@@ -50,20 +50,6 @@ const OTHER_SUPPORTED_ENVS = [
 const SUPPORTED_ESLINT_PARSERS = ['typescript-eslint/parser'];
 const ROOT_GLOBALS_WARNING_THRESHOLD = 10;
 
-const getMetaName = (value: unknown): string | undefined => {
-  if (
-    typeof value === 'object' &&
-    value !== null &&
-    'meta' in value &&
-    typeof value.meta === 'object' &&
-    value.meta !== null &&
-    'name' in value.meta &&
-    typeof value.meta.name === 'string'
-  ) {
-    return value.meta.name;
-  }
-};
-
 const normalizeGlobValue = (
   value: ESLint.GlobalAccess
 ): boolean | undefined => {
@@ -197,7 +183,7 @@ export const transformEnvAndGlobals = (
 ): void => {
   const parser = eslintConfig.languageOptions?.parser;
   if (parser !== undefined && parser !== null) {
-    const parserName = getMetaName(parser);
+    const parserName = (parser as { meta?: { name?: string } }).meta?.name;
     if (
       parserName === undefined ||
       !SUPPORTED_ESLINT_PARSERS.includes(parserName)
@@ -212,7 +198,9 @@ export const transformEnvAndGlobals = (
   const processor = eslintConfig.processor;
   if (processor !== undefined && processor !== null) {
     const processorName =
-      typeof processor === 'string' ? processor : getMetaName(processor);
+      typeof processor === 'string'
+        ? processor
+        : (processor as { meta?: { name?: string } }).meta?.name;
     options?.reporter?.addWarning(
       `ESLint processor ${processorName ?? '(unnamed)'} is not carried over. ` +
         'Rules depending on its transformed content may miss issues in Oxlint. Keep ESLint for those checks.'
