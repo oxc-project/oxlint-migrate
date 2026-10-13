@@ -292,6 +292,17 @@ describe('cleanUpUnusedJsPlugins', () => {
     ]);
   });
 
+  test('keeps an aliased plugin by its configured name', () => {
+    const config: OxlintConfigOrOverride = {
+      jsPlugins: [{ name: 'nextjs-js', specifier: '@next/eslint-plugin-next' }],
+      rules: { 'nextjs-js/no-location-assign-relative-destination': 'warn' },
+    };
+    cleanUpUnusedJsPlugins(config);
+    expect(config.jsPlugins).toEqual([
+      { name: 'nextjs-js', specifier: '@next/eslint-plugin-next' },
+    ]);
+  });
+
   test('is a no-op when jsPlugins is null', () => {
     const config: OxlintConfigOrOverride = {
       jsPlugins: null,
