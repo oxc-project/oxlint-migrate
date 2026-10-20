@@ -19,6 +19,7 @@ import {
   isIgnoredPluginRule,
   resolveJsPluginRuleName,
 } from './jsPlugins.js';
+import { transformRuleOptions } from './rule_options.js';
 import { buildUnsupportedRuleExplanations, isEqualDeep } from './utilities.js';
 
 const allRules = Object.values(rules).flat();
@@ -276,11 +277,22 @@ export const transformRuleEntry = (
         continue;
       }
 
+      const pluginPrefix = rule.includes('/')
+        ? rule.slice(0, rule.lastIndexOf('/'))
+        : undefined;
+      const oxlintConfig = transformRuleOptions(
+        canonicalRule,
+        normalizedConfig,
+        pluginPrefix === undefined
+          ? undefined
+          : effectivePlugins?.[pluginPrefix]
+      );
+
       if (options?.merge) {
         // when merge, only override if not exists
         // for non merge override it because eslint/typescript rules
         if (!(rule in targetConfig.rules)) {
-          targetConfig.rules[rule] = normalizedConfig;
+          targetConfig.rules[rule] = oxlintConfig;
         }
       } else {
         // Merge the new config with the existing one to preserve options
@@ -291,7 +303,7 @@ export const transformRuleEntry = (
             : baseConfig?.rules?.[rule];
         targetConfig.rules[rule] = mergeRuleConfig(
           existingConfig,
-          normalizedConfig
+          oxlintConfig
         )!; // TODO: check for undefined
       }
     } else {
