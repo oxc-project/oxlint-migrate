@@ -16,10 +16,10 @@ import {
 } from './constants.js';
 import {
   enableJsPluginRule,
+  extractPluginId,
   isIgnoredPluginRule,
   resolveJsPluginRuleName,
 } from './jsPlugins.js';
-import { transformRuleOptions } from './rule_options.js';
 import { buildUnsupportedRuleExplanations, isEqualDeep } from './utilities.js';
 
 const allRules = Object.values(rules).flat();
@@ -59,6 +59,39 @@ const addOxfmtImportSortingWarning = (options?: Options): void => {
       "Use Oxfmt's `sortImports` formatter option instead. It is based on `eslint-plugin-perfectionist/sort-imports`, is disabled by default, and will need to be enabled.\n" +
       OXFMT_SORTING_DOCS_URL
   );
+};
+
+// eslint-plugin-import-lite, which @antfu/eslint-config registers as `import`,
+// renamed this rule's modes and reused `prefer-top-level` for a looser mode.
+// https://github.com/9romise/eslint-plugin-import-lite/blob/v0.6.0/src/rules/consistent-type-specifier-style/README.md
+const importLiteTypeSpecifierModes: Record<string, string> = {
+  'top-level': 'prefer-top-level',
+  inline: 'prefer-inline',
+  'prefer-top-level': 'prefer-top-level-if-only-type-imports',
+};
+
+const transformTypeSpecifierStyleOptions = (
+  config: OxlintConfigRuleSeverity,
+  plugin: ESLint.Plugin | undefined
+): OxlintConfigRuleSeverity => {
+  if (!Array.isArray(config) || typeof config[1] !== 'string') {
+    return config;
+  }
+
+  const [severity, mode, ...rest] = config;
+  // `prefer-top-level` is also an eslint-plugin-import / import-x mode, so only
+  // remap it when the registered plugin is import-lite.
+  const rule = (plugin?.rules as Record<string, unknown> | undefined)?.[
+    'consistent-type-specifier-style'
+  ] as { meta?: { schema?: { enum?: unknown[] }[] } } | undefined;
+  const isImportLite =
+    rule?.meta?.schema?.[0]?.enum?.includes('top-level') ?? false;
+  if (mode === 'prefer-top-level' && !isImportLite) {
+    return config;
+  }
+
+  const mapped = importLiteTypeSpecifierModes[mode];
+  return mapped === undefined ? config : [severity, mapped, ...rest];
 };
 
 const normalizeSeverityValue = (
@@ -277,16 +310,14 @@ export const transformRuleEntry = (
         continue;
       }
 
-      const pluginPrefix = rule.includes('/')
-        ? rule.slice(0, rule.lastIndexOf('/'))
-        : undefined;
-      const oxlintConfig = transformRuleOptions(
-        canonicalRule,
-        normalizedConfig,
-        pluginPrefix === undefined
-          ? undefined
-          : effectivePlugins?.[pluginPrefix]
-      );
+      const pluginId = extractPluginId(rule);
+      const oxlintConfig =
+        canonicalRule === 'import/consistent-type-specifier-style'
+          ? transformTypeSpecifierStyleOptions(
+              normalizedConfig,
+              pluginId === undefined ? undefined : effectivePlugins?.[pluginId]
+            )
+          : normalizedConfig;
 
       if (options?.merge) {
         // when merge, only override if not exists

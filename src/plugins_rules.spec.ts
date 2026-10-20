@@ -49,37 +49,24 @@ describe('rules and plugins', () => {
 
     describe('import/consistent-type-specifier-style options', () => {
       const rule = 'import/consistent-type-specifier-style';
-      // Shape of eslint-plugin-import-lite@0.6.0, which @antfu/eslint-config
-      // registers as `import`.
-      const importLite: ESLint.Plugin = {
+      const pluginWithModes = (modes: string[]): ESLint.Plugin => ({
         rules: {
           'consistent-type-specifier-style': {
-            meta: {
-              schema: [
-                {
-                  type: 'string',
-                  enum: ['top-level', 'inline', 'prefer-top-level'],
-                },
-              ],
-            },
+            meta: { schema: [{ type: 'string', enum: modes }] },
           },
         } as unknown as ESLint.RulesRecord,
-      };
-      // Shape of eslint-plugin-import / eslint-plugin-import-x.
-      const importPlugin: ESLint.Plugin = {
-        rules: {
-          'consistent-type-specifier-style': {
-            meta: {
-              schema: [
-                {
-                  type: 'string',
-                  enum: ['prefer-top-level', 'prefer-inline'],
-                },
-              ],
-            },
-          },
-        } as unknown as ESLint.RulesRecord,
-      };
+      });
+      // eslint-plugin-import-lite@0.6.0, registered as `import` by @antfu/eslint-config
+      const importLite = pluginWithModes([
+        'top-level',
+        'inline',
+        'prefer-top-level',
+      ]);
+      // eslint-plugin-import / eslint-plugin-import-x
+      const importPlugin = pluginWithModes([
+        'prefer-top-level',
+        'prefer-inline',
+      ]);
 
       test.each([
         ['top-level', 'prefer-top-level'],
@@ -134,16 +121,25 @@ describe('rules and plugins', () => {
         }
       );
 
-      test('does not mutate the ESLint config', () => {
-        const eslintRule: ESLint.RuleConfig = ['error', 'top-level'];
+      test('keeps eslint-plugin-import-x `prefer-top-level`', () => {
         const config: OxlintConfig = {};
 
         transformRuleEntry(
-          { plugins: { import: importLite }, rules: { [rule]: eslintRule } },
+          {
+            plugins: { 'import-x': importPlugin },
+            rules: {
+              'import-x/consistent-type-specifier-style': [
+                'error',
+                'prefer-top-level',
+              ],
+            },
+          },
           config
         );
 
-        expect(eslintRule).toStrictEqual(['error', 'top-level']);
+        expect(
+          config.rules?.['import-x/consistent-type-specifier-style']
+        ).toStrictEqual(['error', 'prefer-top-level']);
       });
     });
 
