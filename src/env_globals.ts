@@ -1,6 +1,7 @@
 import globals from 'globals';
 import type {
   ESLint,
+  GlobalsCatalog,
   Options,
   OxlintConfig,
   OxlintConfigGlobalsValue,
@@ -49,9 +50,17 @@ const OTHER_SUPPORTED_ENVS = [
 // these parsers are supported by oxlint and should not be reported
 const SUPPORTED_ESLINT_PARSERS = ['typescript-eslint/parser'];
 const ROOT_GLOBALS_WARNING_THRESHOLD = 10;
+// Environments we want to apply a threshold match for, because they're quite large.
+const THRESHOLD_ENVS = ['browser', 'node', 'serviceworker', 'worker'];
+const OXLINT_GLOBALS_CATALOG = globals as GlobalsCatalog;
+
+const getGlobalsCatalogs = (options?: Options): GlobalsCatalog[] => [
+  ...(options?.globalsCatalogs ?? []),
+  OXLINT_GLOBALS_CATALOG,
+];
 
 const normalizeGlobValue = (
-  value: ESLint.GlobalAccess
+  value: ESLint.GlobalAccess | undefined
 ): boolean | undefined => {
   if (value === 'readable' || value === 'readonly' || value === false) {
     return false;
@@ -64,10 +73,33 @@ const normalizeGlobValue = (
   return true;
 };
 
+const isEnvironmentMatch = (
+  config: OxlintConfigOrOverride,
+  env: string,
+  entries: Record<string, boolean>
+): boolean => {
+  const configGlobals = config.globals;
+  if (configGlobals === undefined || configGlobals === null) {
+    return false;
+  }
+
+  const search = Object.keys(entries);
+  const matches = search.filter(
+    (entry) =>
+      entry in configGlobals &&
+      normalizeGlobValue(configGlobals[entry]) === entries[entry]
+  );
+
+  return THRESHOLD_ENVS.includes(env)
+    ? matches.length / search.length >= 0.97
+    : matches.length === search.length;
+};
+
 // In Eslint v9 there are no envs and all are build in with `globals` package
 // we look what environment is supported and remove all globals which fall under it
 export const removeGlobalsWithAreCoveredByEnv = (
-  config: OxlintConfigOrOverride
+  config: OxlintConfigOrOverride,
+  options?: Options
 ) => {
   if (
     config.globals === undefined ||
@@ -78,13 +110,54 @@ export const removeGlobalsWithAreCoveredByEnv = (
     return;
   }
 
-  for (const [env, entries] of Object.entries(globals)) {
-    if (config.env[env] === true) {
-      for (const entry of Object.keys(entries)) {
-        // @ts-expect-error -- filtering makes the key to any
-        if (normalizeGlobValue(config.globals[entry]) === entries[entry]) {
-          delete config.globals[entry];
+  const originalGlobals = { ...config.globals };
+
+  // Oxlint's env uses its current globals catalog. When an environment was
+  // detected from the project's catalog, preserve the difference explicitly:
+  // newer Oxlint globals are disabled and project-only globals remain inline.
+  // This avoids silently broadening or narrowing the migrated configuration.
+  for (const projectCatalog of options?.globalsCatalogs ?? []) {
+    for (const [env, projectEntries] of Object.entries(projectCatalog)) {
+      const oxlintEntries = OXLINT_GLOBALS_CATALOG[env];
+      if (
+        config.env[env] !== true ||
+        oxlintEntries === undefined ||
+        !isEnvironmentMatch({ globals: originalGlobals }, env, projectEntries)
+      ) {
+        continue;
+      }
+
+      let differenceCount = 0;
+      for (const entry of Object.keys(oxlintEntries)) {
+        if (!(entry in originalGlobals)) {
+          config.globals[entry] = 'off';
+          differenceCount++;
         }
+      }
+
+      differenceCount += Object.entries(projectEntries).filter(
+        ([entry, value]) =>
+          !(entry in oxlintEntries) || oxlintEntries[entry] !== value
+      ).length;
+
+      if (differenceCount > 0) {
+        options?.reporter?.addWarning(
+          `The project's configured globals differ from Oxlint's ${env} environment. ` +
+            `Preserved ${differenceCount} differing global${differenceCount === 1 ? '' : 's'} explicitly. ` +
+            `If they come from the globals package, consider updating it.`
+        );
+      }
+    }
+  }
+
+  for (const [env, entries] of Object.entries(OXLINT_GLOBALS_CATALOG)) {
+    if (config.env[env] !== true) {
+      continue;
+    }
+
+    for (const entry of Object.keys(entries)) {
+      if (normalizeGlobValue(config.globals[entry]) === entries[entry]) {
+        delete config.globals[entry];
       }
     }
   }
@@ -123,55 +196,34 @@ export const transformEslintGlobalAccessToOxlintGlobalValue = (
   }
 };
 
-// Environments we want to apply a threshold match for, because they're quite large.
-const THRESHOLD_ENVS = ['browser', 'node', 'serviceworker', 'worker'];
-
-export const detectEnvironmentByGlobals = (config: OxlintConfigOrOverride) => {
+export const detectEnvironmentByGlobals = (
+  config: OxlintConfigOrOverride,
+  options?: Options
+) => {
   if (config.globals === undefined || config.globals === null) {
     return;
   }
 
-  for (const [env, entries] of Object.entries(globals)) {
-    if (!env.startsWith('es') && !OTHER_SUPPORTED_ENVS.includes(env)) {
-      continue;
-    }
-
-    // skip unsupported oxlint EcmaScript versions
-    if (
-      env.startsWith('es') &&
-      !ES_VERSIONS.includes(parseInt(env.replace(/^es/, '')))
-    ) {
-      continue;
-    }
-
-    let search = Object.keys(entries);
-
-    let matches = search.filter(
-      (entry) =>
-        // @ts-expect-error -- we already checked for undefined
-        entry in config.globals &&
-        // @ts-expect-error -- filtering makes the key to any
-        normalizeGlobValue(config.globals[entry]) === entries[entry]
-    );
-
-    // For especially large globals, we allow a match if >=97% of keys match.
-    // This lets us handle version differences in globals package where
-    // there's a difference of just a few extra/removed keys.
-    // Do not do any other envs, otherwise things like es2024 and es2026
-    // would match each other.
-    const useThreshold = THRESHOLD_ENVS.includes(env);
-
-    const withinThreshold =
-      useThreshold && matches.length / search.length >= 0.97;
-
-    if (
-      withinThreshold ||
-      (!useThreshold && matches.length === search.length)
-    ) {
-      if (config.env === undefined || config.env === null) {
-        config.env = {};
+  for (const globalsCatalog of getGlobalsCatalogs(options)) {
+    for (const [env, entries] of Object.entries(globalsCatalog)) {
+      if (!env.startsWith('es') && !OTHER_SUPPORTED_ENVS.includes(env)) {
+        continue;
       }
-      config.env[env] = true;
+
+      // skip unsupported oxlint EcmaScript versions
+      if (
+        env.startsWith('es') &&
+        !ES_VERSIONS.includes(parseInt(env.replace(/^es/, '')))
+      ) {
+        continue;
+      }
+
+      if (isEnvironmentMatch(config, env, entries)) {
+        if (config.env === undefined || config.env === null) {
+          config.env = {};
+        }
+        config.env[env] = true;
+      }
     }
   }
 };
