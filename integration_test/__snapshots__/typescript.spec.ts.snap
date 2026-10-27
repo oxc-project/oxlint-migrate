@@ -862,6 +862,7 @@ exports[`typescript --type-aware > typescript--type-aware 1`] = `
           "typescript/no-unsafe-argument": "off",
           "typescript/no-unsafe-assignment": "off",
           "typescript/no-unsafe-call": "off",
+          "typescript/no-unsafe-enum-assignment": "off",
           "typescript/no-unsafe-enum-comparison": "off",
           "typescript/no-unsafe-function-type": "off",
           "typescript/no-unsafe-member-access": "off",

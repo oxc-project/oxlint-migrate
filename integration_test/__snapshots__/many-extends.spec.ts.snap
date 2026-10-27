@@ -269,7 +269,6 @@ exports[`many-extends.spec.ts > many-extends.spec.ts 1`] = `
       "jsdoc/tag-lines",
       "jsdoc/ts-no-empty-object-type",
       "jsdoc/valid-types",
-      "@typescript-eslint/no-unsafe-enum-assignment",
       "jsdoc/no-types",
     ],
     "nursery": [
@@ -306,6 +305,7 @@ exports[`many-extends.spec.ts > many-extends.spec.ts 1`] = `
       "@typescript-eslint/no-unsafe-argument",
       "@typescript-eslint/no-unsafe-assignment",
       "@typescript-eslint/no-unsafe-call",
+      "@typescript-eslint/no-unsafe-enum-assignment",
       "@typescript-eslint/no-unsafe-enum-comparison",
       "@typescript-eslint/no-unsafe-member-access",
       "@typescript-eslint/no-unsafe-return",
@@ -626,7 +626,6 @@ exports[`many-extends.spec.ts --js-plugins > many-extends.spec.ts--js-plugins 1`
       "jsdoc/tag-lines",
       "jsdoc/ts-no-empty-object-type",
       "jsdoc/valid-types",
-      "@typescript-eslint/no-unsafe-enum-assignment",
       "jsdoc/no-types",
     ],
     "nursery": [
@@ -663,6 +662,7 @@ exports[`many-extends.spec.ts --js-plugins > many-extends.spec.ts--js-plugins 1`
       "@typescript-eslint/no-unsafe-argument",
       "@typescript-eslint/no-unsafe-assignment",
       "@typescript-eslint/no-unsafe-call",
+      "@typescript-eslint/no-unsafe-enum-assignment",
       "@typescript-eslint/no-unsafe-enum-comparison",
       "@typescript-eslint/no-unsafe-member-access",
       "@typescript-eslint/no-unsafe-return",
@@ -857,6 +857,7 @@ exports[`many-extends.spec.ts --type-aware > many-extends.spec.ts--type-aware 1`
           "typescript/no-unsafe-assignment": "error",
           "typescript/no-unsafe-call": "error",
           "typescript/no-unsafe-declaration-merging": "error",
+          "typescript/no-unsafe-enum-assignment": "error",
           "typescript/no-unsafe-enum-comparison": "error",
           "typescript/no-unsafe-function-type": "error",
           "typescript/no-unsafe-member-access": "error",
@@ -1055,7 +1056,6 @@ exports[`many-extends.spec.ts --type-aware > many-extends.spec.ts--type-aware 1`
       "jsdoc/tag-lines",
       "jsdoc/ts-no-empty-object-type",
       "jsdoc/valid-types",
-      "@typescript-eslint/no-unsafe-enum-assignment",
       "jsdoc/no-types",
     ],
     "nursery": [
@@ -1315,7 +1315,6 @@ exports[`many-extends.spec.ts merge > many-extends.spec.ts--merge 1`] = `
       "jsdoc/tag-lines",
       "jsdoc/ts-no-empty-object-type",
       "jsdoc/valid-types",
-      "@typescript-eslint/no-unsafe-enum-assignment",
       "jsdoc/no-types",
     ],
     "nursery": [
@@ -1352,6 +1351,7 @@ exports[`many-extends.spec.ts merge > many-extends.spec.ts--merge 1`] = `
       "@typescript-eslint/no-unsafe-argument",
       "@typescript-eslint/no-unsafe-assignment",
       "@typescript-eslint/no-unsafe-call",
+      "@typescript-eslint/no-unsafe-enum-assignment",
       "@typescript-eslint/no-unsafe-enum-comparison",
       "@typescript-eslint/no-unsafe-member-access",
       "@typescript-eslint/no-unsafe-return",
