@@ -87,9 +87,7 @@ exports[`typescript-simple > typescript-simple 1`] = `
   },
   "skipped": {
     "js-plugins": [],
-    "not-implemented": [
-      "@typescript-eslint/no-unsafe-enum-assignment",
-    ],
+    "not-implemented": [],
     "nursery": [
       "@typescript-eslint/no-unnecessary-condition",
     ],
@@ -118,6 +116,7 @@ exports[`typescript-simple > typescript-simple 1`] = `
       "@typescript-eslint/no-unsafe-argument",
       "@typescript-eslint/no-unsafe-assignment",
       "@typescript-eslint/no-unsafe-call",
+      "@typescript-eslint/no-unsafe-enum-assignment",
       "@typescript-eslint/no-unsafe-enum-comparison",
       "@typescript-eslint/no-unsafe-member-access",
       "@typescript-eslint/no-unsafe-return",
@@ -228,9 +227,7 @@ exports[`typescript-simple --js-plugins > typescript-simple--js-plugins 1`] = `
   },
   "skipped": {
     "js-plugins": [],
-    "not-implemented": [
-      "@typescript-eslint/no-unsafe-enum-assignment",
-    ],
+    "not-implemented": [],
     "nursery": [
       "@typescript-eslint/no-unnecessary-condition",
     ],
@@ -259,6 +256,7 @@ exports[`typescript-simple --js-plugins > typescript-simple--js-plugins 1`] = `
       "@typescript-eslint/no-unsafe-argument",
       "@typescript-eslint/no-unsafe-assignment",
       "@typescript-eslint/no-unsafe-call",
+      "@typescript-eslint/no-unsafe-enum-assignment",
       "@typescript-eslint/no-unsafe-enum-comparison",
       "@typescript-eslint/no-unsafe-member-access",
       "@typescript-eslint/no-unsafe-return",
@@ -379,6 +377,7 @@ exports[`typescript-simple --type-aware > typescript-simple--type-aware 1`] = `
           "typescript/no-unsafe-assignment": "error",
           "typescript/no-unsafe-call": "error",
           "typescript/no-unsafe-declaration-merging": "error",
+          "typescript/no-unsafe-enum-assignment": "error",
           "typescript/no-unsafe-enum-comparison": "error",
           "typescript/no-unsafe-function-type": "error",
           "typescript/no-unsafe-member-access": "error",
@@ -434,9 +433,7 @@ exports[`typescript-simple --type-aware > typescript-simple--type-aware 1`] = `
   },
   "skipped": {
     "js-plugins": [],
-    "not-implemented": [
-      "@typescript-eslint/no-unsafe-enum-assignment",
-    ],
+    "not-implemented": [],
     "nursery": [
       "@typescript-eslint/no-unnecessary-condition",
     ],
@@ -533,9 +530,7 @@ exports[`typescript-simple merge > typescript-simple--merge 1`] = `
   },
   "skipped": {
     "js-plugins": [],
-    "not-implemented": [
-      "@typescript-eslint/no-unsafe-enum-assignment",
-    ],
+    "not-implemented": [],
     "nursery": [
       "@typescript-eslint/no-unnecessary-condition",
     ],
@@ -564,6 +559,7 @@ exports[`typescript-simple merge > typescript-simple--merge 1`] = `
       "@typescript-eslint/no-unsafe-argument",
       "@typescript-eslint/no-unsafe-assignment",
       "@typescript-eslint/no-unsafe-call",
+      "@typescript-eslint/no-unsafe-enum-assignment",
       "@typescript-eslint/no-unsafe-enum-comparison",
       "@typescript-eslint/no-unsafe-member-access",
       "@typescript-eslint/no-unsafe-return",
