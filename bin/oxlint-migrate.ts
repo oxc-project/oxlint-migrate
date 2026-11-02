@@ -145,7 +145,7 @@ program
   .action(async (filePath: string | undefined) => {
     const cliOptions = program.opts();
     const jsPlugins = parseCliBoolean(cliOptions.jsPlugins);
-    const oxlintFilePath = path.join(cwd, cliOptions.outputFile);
+    const oxlintFilePath = path.resolve(cwd, cliOptions.outputFile);
     const reporter = new DefaultReporter();
 
     const options: Options = {
@@ -180,7 +180,7 @@ program
     if (filePath === undefined) {
       filePath = getAutodetectedEslintConfigName(cwd);
     } else {
-      filePath = path.join(cwd, filePath);
+      filePath = path.resolve(cwd, filePath);
     }
 
     if (filePath === undefined) {
