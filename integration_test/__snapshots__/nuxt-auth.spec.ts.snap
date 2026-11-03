@@ -446,7 +446,7 @@ exports[`nuxt-auth > nuxt-auth 1`] = `
       ],
       "import/consistent-type-specifier-style": [
         "error",
-        "top-level",
+        "prefer-top-level",
       ],
       "import/first": "error",
       "import/newline-after-import": [
@@ -2009,7 +2009,7 @@ exports[`nuxt-auth --js-plugins > nuxt-auth--js-plugins 1`] = `
       "eslint-comments/no-unused-enable": "error",
       "import/consistent-type-specifier-style": [
         "error",
-        "top-level",
+        "prefer-top-level",
       ],
       "import/first": "error",
       "import/newline-after-import": [
@@ -2930,7 +2930,7 @@ exports[`nuxt-auth --type-aware > nuxt-auth--type-aware 1`] = `
       ],
       "import/consistent-type-specifier-style": [
         "error",
-        "top-level",
+        "prefer-top-level",
       ],
       "import/first": "error",
       "import/newline-after-import": [
@@ -3973,7 +3973,7 @@ exports[`nuxt-auth merge > nuxt-auth--merge 1`] = `
       ],
       "import/consistent-type-specifier-style": [
         "error",
-        "top-level",
+        "prefer-top-level",
       ],
       "import/first": "error",
       "import/newline-after-import": [
