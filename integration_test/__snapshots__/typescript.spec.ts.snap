@@ -373,6 +373,10 @@ exports[`typescript --js-plugins > typescript--js-plugins 1`] = `
     ],
     "jsPlugins": [
       "eslint-plugin-regexp",
+      {
+        "name": "typescript-js",
+        "specifier": "@typescript-eslint/eslint-plugin",
+      },
     ],
     "overrides": [
       {
@@ -477,11 +481,19 @@ exports[`typescript --js-plugins > typescript--js-plugins 1`] = `
         "files": [
           "src/lib/*.d.ts",
         ],
+        "jsPlugins": [
+          {
+            "name": "typescript-js",
+            "specifier": "@typescript-eslint/eslint-plugin",
+          },
+        ],
         "rules": {
           "no-restricted-globals": "off",
           "no-shadow-restricted-names": "off",
           "no-unused-vars": "off",
           "no-var": "off",
+          "typescript-js/naming-convention": "off",
+          "typescript-js/prefer-destructuring": "off",
           "typescript/no-unsafe-function-type": "off",
           "typescript/no-wrapper-object-types": "off",
           "typescript/prefer-function-type": "off",
@@ -643,6 +655,108 @@ exports[`typescript --js-plugins > typescript--js-plugins 1`] = `
       "regexp/strict": "error",
       "regexp/use-ignore-case": "error",
       "require-yield": "error",
+      "typescript-js/naming-convention": [
+        "error",
+        {
+          "filter": {
+            "match": false,
+            "regex": "^(__String|[A-Za-z]+_[A-Za-z]+)$",
+          },
+          "format": [
+            "PascalCase",
+          ],
+          "selector": "typeLike",
+        },
+        {
+          "custom": {
+            "match": false,
+            "regex": "^I[A-Z]",
+          },
+          "filter": {
+            "match": false,
+            "regex": "^I(Arguments|TextWriter|O([A-Z][a-z]+[A-Za-z]*)?)$",
+          },
+          "format": [
+            "PascalCase",
+          ],
+          "selector": "interface",
+        },
+        {
+          "filter": {
+            "match": false,
+            "regex": "^(_{1,2}filename|_{1,2}dirname|_+|[A-Za-z]+_[A-Za-z]+)$",
+          },
+          "format": [
+            "camelCase",
+            "PascalCase",
+            "UPPER_CASE",
+          ],
+          "leadingUnderscore": "allow",
+          "selector": "variable",
+        },
+        {
+          "filter": {
+            "match": false,
+            "regex": "^[A-Za-z]+_[A-Za-z]+$",
+          },
+          "format": [
+            "camelCase",
+            "PascalCase",
+          ],
+          "leadingUnderscore": "allow",
+          "selector": "function",
+        },
+        {
+          "filter": {
+            "match": false,
+            "regex": "^(_+|[A-Za-z]+_[A-Z][a-z]+)$",
+          },
+          "format": [
+            "camelCase",
+          ],
+          "leadingUnderscore": "allow",
+          "selector": "parameter",
+        },
+        {
+          "filter": {
+            "match": false,
+            "regex": "^([0-9]+|[A-Za-z]+_[A-Za-z]+)$",
+          },
+          "format": [
+            "camelCase",
+            "PascalCase",
+          ],
+          "leadingUnderscore": "allow",
+          "selector": "method",
+        },
+        {
+          "filter": {
+            "match": false,
+            "regex": "^([0-9]+|[A-Za-z]+_[A-Za-z]+)$",
+          },
+          "format": [
+            "camelCase",
+          ],
+          "leadingUnderscore": "allow",
+          "selector": "memberLike",
+        },
+        {
+          "filter": {
+            "match": false,
+            "regex": "^[A-Za-z]+_[A-Za-z]+$",
+          },
+          "format": [
+            "camelCase",
+            "PascalCase",
+          ],
+          "leadingUnderscore": "allow",
+          "selector": "enumMember",
+        },
+        {
+          "format": null,
+          "selector": "property",
+        },
+      ],
       "typescript/adjacent-overload-signatures": "error",
       "typescript/array-type": "error",
       "typescript/ban-tslint-comment": "error",
@@ -674,7 +788,6 @@ exports[`typescript --js-plugins > typescript--js-plugins 1`] = `
     "js-plugins": [],
     "not-implemented": [
       "no-restricted-syntax",
-      "@typescript-eslint/naming-convention",
       "local/only-arrow-functions",
       "local/argument-trivia",
       "local/no-in-operator",
@@ -700,7 +813,9 @@ exports[`typescript --js-plugins > typescript--js-plugins 1`] = `
       "no-undef-init",
     ],
   },
-  "warnings": [],
+  "warnings": [
+    "ESLint rule @typescript-eslint/naming-convention requires type information, which Oxlint JS plugins cannot provide. Keep ESLint for this rule.",
+  ],
 }
 `;
 

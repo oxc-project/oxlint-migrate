@@ -181,20 +181,29 @@ export const transformEnvAndGlobals = (
   targetConfig: OxlintConfigOrOverride,
   options?: Options
 ): void => {
-  if (
-    eslintConfig.languageOptions?.parser !== undefined &&
-    eslintConfig.languageOptions?.parser !== null &&
-    typeof eslintConfig.languageOptions.parser === 'object' &&
-    'meta' in eslintConfig.languageOptions.parser &&
-    !(SUPPORTED_ESLINT_PARSERS as (string | undefined)[]).includes(
-      // @ts-expect-error
-      eslintConfig.languageOptions.parser.meta?.name
-    )
-  ) {
+  const parser = eslintConfig.languageOptions?.parser;
+  if (parser !== undefined && parser !== null) {
+    const parserName = (parser as { meta?: { name?: string } }).meta?.name;
+    if (
+      parserName === undefined ||
+      !SUPPORTED_ESLINT_PARSERS.includes(parserName)
+    ) {
+      options?.reporter?.addWarning(
+        `ESLint parser ${parserName ?? '(unnamed)'} is not carried over. ` +
+          'Oxlint JS plugins cannot use its custom AST or parser services, so rules depending on them (such as template rules) may miss issues. Migration of these checks is incomplete.'
+      );
+    }
+  }
+
+  const processor = eslintConfig.processor;
+  if (processor !== undefined && processor !== null) {
+    const processorName =
+      typeof processor === 'string'
+        ? processor
+        : (processor as { meta?: { name?: string } }).meta?.name;
     options?.reporter?.addWarning(
-      'special parser detected: ' +
-        // @ts-expect-error
-        eslintConfig.languageOptions.parser.meta?.name
+      `ESLint processor ${processorName ?? '(unnamed)'} is not carried over. ` +
+        'Rules depending on its transformed content may miss issues in Oxlint. Migration of these checks is incomplete.'
     );
   }
 

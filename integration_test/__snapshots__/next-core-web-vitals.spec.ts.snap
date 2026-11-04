@@ -1222,7 +1222,7 @@ exports[`next-core-web-vitals > next-core-web-vitals 1`] = `
     ],
   },
   "warnings": [
-    "special parser detected: eslint-config-next/parser",
+    "ESLint parser eslint-config-next/parser is not carried over. Oxlint JS plugins cannot use its custom AST or parser services, so rules depending on them (such as template rules) may miss issues. Keep ESLint for those checks.",
     "Settings found under a 'files' pattern — oxlint does not support settings in overrides and they will be skipped:
 \`react\`
 \`import/parsers\`
@@ -1246,6 +1246,12 @@ exports[`next-core-web-vitals --js-plugins > next-core-web-vitals--js-plugins 1`
       "out/**",
       "build/**",
       "next-env.d.ts",
+    ],
+    "jsPlugins": [
+      {
+        "name": "nextjs-js",
+        "specifier": "@next/eslint-plugin-next",
+      },
     ],
     "overrides": [
       {
@@ -2351,6 +2357,16 @@ exports[`next-core-web-vitals --js-plugins > next-core-web-vitals--js-plugins 1`
           "when": "readonly",
           "window": "readonly",
         },
+        "jsPlugins": [
+          {
+            "name": "react-js",
+            "specifier": "eslint-plugin-react",
+          },
+          {
+            "name": "react-hooks-js",
+            "specifier": "eslint-plugin-react-hooks",
+          },
+        ],
         "plugins": [
           "react",
           "import",
@@ -2374,6 +2390,12 @@ exports[`next-core-web-vitals --js-plugins > next-core-web-vitals--js-plugins 1`
           "jsx-a11y/aria-unsupported-elements": "warn",
           "jsx-a11y/role-has-required-aria-props": "warn",
           "jsx-a11y/role-supports-aria-props": "warn",
+          "react-hooks-js/config": "error",
+          "react-hooks-js/gating": "error",
+          "react-js/jsx-uses-react": "error",
+          "react-js/jsx-uses-vars": "error",
+          "react-js/no-deprecated": "error",
+          "react-js/prop-types": "off",
           "react/display-name": "error",
           "react/error-boundaries": "error",
           "react/exhaustive-deps": "warn",
@@ -2412,6 +2434,7 @@ exports[`next-core-web-vitals --js-plugins > next-core-web-vitals--js-plugins 1`
       "nextjs",
     ],
     "rules": {
+      "nextjs-js/no-location-assign-relative-destination": "warn",
       "nextjs/google-font-display": "warn",
       "nextjs/google-font-preconnect": "warn",
       "nextjs/inline-script-id": "error",
@@ -2437,23 +2460,15 @@ exports[`next-core-web-vitals --js-plugins > next-core-web-vitals--js-plugins 1`
   },
   "skipped": {
     "js-plugins": [],
-    "not-implemented": [
-      "@next/next/no-location-assign-relative-destination",
-    ],
+    "not-implemented": [],
     "nursery": [
       "react/require-render-return",
     ],
     "type-aware": [],
-    "unsupported": [
-      "react/jsx-uses-react",
-      "react/jsx-uses-vars",
-      "react/no-deprecated",
-      "react-hooks/config",
-      "react-hooks/gating",
-    ],
+    "unsupported": [],
   },
   "warnings": [
-    "special parser detected: eslint-config-next/parser",
+    "ESLint parser eslint-config-next/parser is not carried over. Oxlint JS plugins cannot use its custom AST or parser services, so rules depending on them (such as template rules) may miss issues. Keep ESLint for those checks.",
     "Settings found under a 'files' pattern — oxlint does not support settings in overrides and they will be skipped:
 \`react\`
 \`import/parsers\`
@@ -3684,7 +3699,7 @@ exports[`next-core-web-vitals --type-aware > next-core-web-vitals--type-aware 1`
     ],
   },
   "warnings": [
-    "special parser detected: eslint-config-next/parser",
+    "ESLint parser eslint-config-next/parser is not carried over. Oxlint JS plugins cannot use its custom AST or parser services, so rules depending on them (such as template rules) may miss issues. Keep ESLint for those checks.",
     "Settings found under a 'files' pattern — oxlint does not support settings in overrides and they will be skipped:
 \`react\`
 \`import/parsers\`
@@ -4916,7 +4931,7 @@ exports[`next-core-web-vitals merge > next-core-web-vitals--merge 1`] = `
     ],
   },
   "warnings": [
-    "special parser detected: eslint-config-next/parser",
+    "ESLint parser eslint-config-next/parser is not carried over. Oxlint JS plugins cannot use its custom AST or parser services, so rules depending on them (such as template rules) may miss issues. Keep ESLint for those checks.",
     "Settings found under a 'files' pattern — oxlint does not support settings in overrides and they will be skipped:
 \`react\`
 \`import/parsers\`

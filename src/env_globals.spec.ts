@@ -109,6 +109,56 @@ describe('removeGlobalsWithAreCoveredByEnv', () => {
 });
 
 describe('transformEnvAndGlobals', () => {
+  test('warns that custom parser rules may lose template coverage', () => {
+    const reporter = new DefaultReporter();
+    transformEnvAndGlobals(
+      {
+        files: ['**/*.svelte'],
+        languageOptions: {
+          parser: { meta: { name: 'svelte-eslint-parser' } },
+        },
+      },
+      {},
+      { reporter, jsPlugins: true }
+    );
+
+    expect(reporter.getWarnings()).toEqual([
+      expect.stringContaining('svelte-eslint-parser'),
+    ]);
+    expect(reporter.getWarnings()[0]).toContain('template rules');
+  });
+
+  test('warns about processors and unnamed custom parsers', () => {
+    const reporter = new DefaultReporter();
+    transformEnvAndGlobals(
+      {
+        languageOptions: { parser: {} },
+        processor: 'svelte/svelte',
+      },
+      {},
+      { reporter }
+    );
+
+    expect(reporter.getWarnings()).toHaveLength(2);
+    expect(reporter.getWarnings()[0]).toContain('parser (unnamed)');
+    expect(reporter.getWarnings()[1]).toContain('processor svelte/svelte');
+  });
+
+  test('does not warn about a supported TypeScript parser', () => {
+    const reporter = new DefaultReporter();
+    transformEnvAndGlobals(
+      {
+        languageOptions: {
+          parser: { meta: { name: 'typescript-eslint/parser' } },
+        },
+      },
+      {},
+      { reporter }
+    );
+
+    expect(reporter.getWarnings()).toEqual([]);
+  });
+
   test('transform languageOptions.ecmaVersion 2024 to env', () => {
     const eslintConfig: ESLint.Config = {
       languageOptions: {

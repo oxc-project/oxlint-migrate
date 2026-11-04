@@ -58,6 +58,15 @@ export namespace ESLint {
     [name: string]: GlobalAccess;
   }
 
+  export interface PluginRule {
+    meta?: {
+      docs?: {
+        description?: string;
+        requiresTypeChecking?: boolean;
+      };
+    };
+  }
+
   export interface Plugin {
     meta?: {
       name?: string;
@@ -66,7 +75,7 @@ export namespace ESLint {
     environments?: Record<string, unknown> | undefined;
     languages?: Record<string, unknown> | undefined;
     processors?: Record<string, unknown> | undefined;
-    rules?: RulesRecord | undefined;
+    rules?: Record<string, PluginRule> | undefined;
   }
 
   /**
