@@ -60,8 +60,13 @@ export namespace ESLint {
 
   export interface Plugin {
     meta?: {
+      /** npm package name of the plugin, e.g. `eslint-plugin-regexp`. */
       name?: string;
+      /** Rule-id prefix the plugin wants its rules to be addressed under. */
+      namespace?: string;
     };
+    /** Package name on the plugin root, used by plugins that predate `meta`. */
+    name?: string;
     configs?: Record<string, unknown[]> | undefined;
     environments?: Record<string, unknown> | undefined;
     languages?: Record<string, unknown> | undefined;
@@ -177,10 +182,27 @@ export type Reporter = {
   getSkippedRulesByCategory(): SkippedCategoryGroup;
 };
 
+/**
+ * Maps every ESLint plugin object reachable from a flat config to the import
+ * specifier oxlint should load it from.
+ *
+ * The key is the plugin object itself, because that is the only thing an ESLint
+ * config exposes: `plugins: { regexp }` says nothing about where `regexp` came
+ * from. The CLI builds this map by recording module resolutions while it imports
+ * the ESLint config, see `bin/config-loader.ts`.
+ */
+export type JsPluginSpecifiers = ReadonlyMap<unknown, string>;
+
 export type Options = {
   reporter?: Reporter;
   merge?: boolean;
   withNursery?: boolean;
   typeAware?: boolean;
   jsPlugins?: boolean;
+  /**
+   * Import specifiers for the plugins used by the ESLint config. When a plugin is
+   * found here, its `jsPlugins` entry can name both the alias and the specifier
+   * instead of guessing the npm package name from the rule prefix.
+   */
+  jsPluginSpecifiers?: JsPluginSpecifiers;
 };
