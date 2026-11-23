@@ -85,4 +85,18 @@ describe('processConfigFiles', () => {
 
     expect(reporter.getWarnings()).toHaveLength(0);
   });
+
+  test('skips function matchers and reports them', () => {
+    const reporter = new DefaultReporter();
+
+    const result = processConfigFiles([() => true, '**/*.js'], reporter);
+
+    expect(result).toStrictEqual(['**/*.js']);
+
+    const reports = reporter.getWarnings();
+    expect(reports).toHaveLength(1);
+    expect(reports[0]).toContain('function matchers');
+
+    expect(processConfigFiles([() => true])).toStrictEqual([]);
+  });
 });
