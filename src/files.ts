@@ -5,11 +5,11 @@ import type { Reporter } from './types.js';
  * from nested arrays (AND glob patterns which are unsupported in oxlint).
  *
  * @param files - The files field from ESLint config (can be string, array of strings, or array with nested arrays)
- * @param reporter - Optional reporter to report unsupported AND patterns
+ * @param reporter - Optional reporter to report unsupported AND patterns and non-string matchers
  * @returns Array of simple string patterns (valid files)
  */
 export function processConfigFiles(
-  files: string | (string | string[])[],
+  files: unknown,
   reporter?: Reporter
 ): string[] {
   // Normalize files to an array
@@ -20,7 +20,7 @@ export function processConfigFiles(
 
   for (const file of filesArray) {
     if (Array.isArray(file)) {
-      const filesSet = new Set<string>(file);
+      const filesSet = new Set<unknown>(file);
       if (filesSet.size === 0) {
         // skip empty nested arrays
         continue;
@@ -34,9 +34,19 @@ export function processConfigFiles(
         continue;
       }
 
-      simpleFiles.push(file[0]);
-    } else {
+      if (typeof file[0] === 'string') {
+        simpleFiles.push(file[0]);
+      } else {
+        reporter?.addWarning(
+          'ESLint function matchers in files are not supported in oxlint'
+        );
+      }
+    } else if (typeof file === 'string') {
       simpleFiles.push(file);
+    } else {
+      reporter?.addWarning(
+        'ESLint function matchers in files are not supported in oxlint'
+      );
     }
   }
 
