@@ -47,6 +47,102 @@ describe('rules and plugins', () => {
       expect(config.rules['unknown-rule']).toBe(undefined);
     });
 
+    describe('import/consistent-type-specifier-style options', () => {
+      const rule = 'import/consistent-type-specifier-style';
+      const pluginWithModes = (modes: string[]): ESLint.Plugin => ({
+        rules: {
+          'consistent-type-specifier-style': {
+            meta: { schema: [{ type: 'string', enum: modes }] },
+          },
+        } as unknown as ESLint.RulesRecord,
+      });
+      // eslint-plugin-import-lite@0.6.0, registered as `import` by @antfu/eslint-config
+      const importLite = pluginWithModes([
+        'top-level',
+        'inline',
+        'prefer-top-level',
+      ]);
+      // eslint-plugin-import / eslint-plugin-import-x
+      const importPlugin = pluginWithModes([
+        'prefer-top-level',
+        'prefer-inline',
+      ]);
+
+      test.each([
+        ['top-level', 'prefer-top-level'],
+        ['inline', 'prefer-inline'],
+        ['prefer-top-level', 'prefer-top-level-if-only-type-imports'],
+      ])('import-lite `%s` becomes `%s`', (from, to) => {
+        const config: OxlintConfig = {};
+
+        transformRuleEntry(
+          {
+            plugins: { import: importLite },
+            rules: { [rule]: ['error', from] },
+          },
+          config
+        );
+
+        expect(config.rules?.[rule]).toStrictEqual(['error', to]);
+      });
+
+      test('uses a plugin registered in an earlier config object', () => {
+        const config: OxlintConfig = {};
+
+        transformRuleEntry(
+          { rules: { [rule]: ['warn', 'prefer-top-level'] } },
+          config,
+          undefined,
+          undefined,
+          undefined,
+          { import: importLite }
+        );
+
+        expect(config.rules?.[rule]).toStrictEqual([
+          'warn',
+          'prefer-top-level-if-only-type-imports',
+        ]);
+      });
+
+      test.each(['prefer-top-level', 'prefer-inline'])(
+        'keeps eslint-plugin-import `%s`',
+        (mode) => {
+          const config: OxlintConfig = {};
+
+          transformRuleEntry(
+            {
+              plugins: { import: importPlugin },
+              rules: { [rule]: ['error', mode] },
+            },
+            config
+          );
+
+          expect(config.rules?.[rule]).toStrictEqual(['error', mode]);
+        }
+      );
+
+      test('keeps eslint-plugin-import-x `prefer-top-level`', () => {
+        const config: OxlintConfig = {};
+
+        transformRuleEntry(
+          {
+            plugins: { 'import-x': importPlugin },
+            rules: {
+              'import-x/consistent-type-specifier-style': [
+                'error',
+                'prefer-top-level',
+              ],
+            },
+          },
+          config
+        );
+
+        expect(
+          config.rules?.['import-x/consistent-type-specifier-style']
+        ).toStrictEqual(['error', 'prefer-top-level']);
+      });
+    });
+
     test('rules with numeric severity', () => {
       const eslintConfig: ESLint.Config = {
         rules: {
